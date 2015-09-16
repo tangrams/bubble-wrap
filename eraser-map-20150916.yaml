@@ -1,4 +1,4 @@
-Author: Geraldine Sarmiento, Nathaniel V. Kelso
+# Author: Geraldine Sarmiento, Nathaniel V. Kelso
 
 labels-global:
     - &text_visible_continent         true
@@ -354,7 +354,7 @@ sources:
         type: TopoJSON
         #url: '//tileserver-dev-us-east-ext-538678355.us-east-1.elb.amazonaws.com/osm/all/{z}/{x}/{y}.topojson'
         #url:  //localhost:8080//osm/all/{z}/{x}/{y}.topojson
-        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-P6dkVl4
+        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
 
 cameras:
     isometric:
@@ -416,16 +416,30 @@ styles:
     tools:
         base: polygons
         shaders:
-            extensions: OES_standard_derivatives
             blocks:
                 global: |
-                    
+                    vec2 tile(vec2 _st, float _zoom){
+                      _st *= _zoom;
+                      return fract(_st);
+                    }
+
+                    vec2 brickTile(vec2 st, float zoom) {
+                      st *= zoom;
+                      if (fract(st.y * 0.5) > 0.5){
+                          st.x += 0.5;
+                      }
+                      return fract(st);
+                    }
+
+                    float circle(vec2 st, float radius) {
+                      vec2 pos = vec2(0.5)-st;
+                      radius *= 0.75;
+                      return 1.-smoothstep(radius-(radius*0.01),radius+(radius*0.01),dot(pos,pos)*3.14);
+                    }
+
                     // GridTile
                     //=============================
                     varying vec3 v_pos;
-                    
-                    #ifdef TANGRAM_FRAGMENT_SHADER
-                    
                     vec2 TileCoords() { 
                         return fract(v_pos.xy*0.0002445);
                     }
@@ -447,69 +461,7 @@ styles:
                     float TileGrid() { 
                         return mix(TileGrid(1.),TileGrid(2.),fract(u_map_position.z)); 
                     }
-                    
-                    float aastep(float threshold, float value) {
-                      #ifdef TANGRAM_EXTENSION_OES_standard_derivatives
-                        float afwidth = length(vec2(dFdx(value), dFdy(value))) * 0.70710678118654757;
-                        return smoothstep(threshold-afwidth, threshold+afwidth, value);
-                      #else
-                        return step(threshold, value);
-                      #endif  
-                    }
-                    
-                    vec2 tile(vec2 _st, float _zoom){
-                      _st *= _zoom;
-                      return fract(_st);
-                    }
-                    
-                    vec2 brickTile(vec2 st, float zoom){
-                      st *= zoom;
-                      if (fract(st.y * 0.5) > 0.5){
-                          st.x += 0.5;
-                      }
-                      return fract(st);
-                    }
-                    
-                    float circleDF(vec2 st){
-                      vec2 pos = vec2(0.5)-st;
-                      return dot(pos,pos)*3.14;
-                    }
-                    
-                    float circle(vec2 st, float radius){
-                      radius *= 0.75;
-                      return 1.-aastep(radius,circleDF(st));
-                    }
-                    
-                    float dots(vec2 st, float size){
-                        st = brickTile(st, 2.);
-                        return circle(st, size);
-                    }
-                    
-                    float dotsDF(vec2 st){
-                        st = brickTile(st, 2.);
-                        return circleDF(st);
-                    }
 
-                    float TileDots(float scale, float size) {
-                        vec2 IN = TileCoords()*scale;
-                        vec2 OUT = TileCoords()*scale*2.;
-                        float pct = fract(u_map_position.z);
-                        pct = pow(pct,6.);
-                        // return mix(dots(fract(IN),size*(1.-pct)), dots(fract(OUT),size*pct), pct);
-                        return mix(dots(fract(IN),size*(1.-pct)), dots(fract(OUT),size*pct), pct);
-                    }
-                    
-                    float TileDotsDF(float scale, float size) {
-                        vec2 IN = TileCoords()*scale;
-                        vec2 OUT = TileCoords()*scale*2.;
-                        float pct = fract(u_map_position.z);
-                        pct = pow(pct,15.);
-                        float d = 0.0;
-                        d = dotsDF(fract(IN))*(1.-pct) + dotsDF(fract(OUT))*pct;
-                        d = 1.-aastep(size,d);
-                        return d;
-                    }
-                    
                     // Grain
                     //=============================
                     float random(vec2 p) { 
@@ -544,7 +496,6 @@ styles:
                         vec2 st = pos/u_resolution.xy-vec2(.5);
                         return dot(st,st)+(fbm(pos*0.6)*0.1);
                     }
-                    #endif
                 position: |
                     // GridTile
                     v_pos = a_position.xyz * 32767.;
@@ -603,18 +554,43 @@ styles:
             blocks:
                 filter: |
                     color.rgb -= (0.22-grain(gl_FragCoord.xy))*0.21;
-
+                    
     dots:
+        mix: tools
+        base: polygons
+        shaders:
+            defines:
+                BACKGROUND: vec3(0.850,0.850,0.850)
+            blocks:
+                color: |
+                    vec2 st = TileCoords();
+                    st = brickTile(st,70.0);
+                    float b = circle(st,0.2);
+                filter: |
+                    color.rgb = mix(BACKGROUND, color.rgb, b);
+                    color.rgb -= (0.22-grain(gl_FragCoord.xy))*0.21;
+
+    dots2:
         base: polygons
         mix: tools
         shaders:
             defines:
                 BACKGROUND: vec3(0.850,0.850,0.850)
-                SIZE: 2.
             blocks: 
+                global: |
+                    float dots(vec2 st, float size){
+                        st = brickTile(st, 2.);
+                        return circle(st, size);
+                    }
+                    float TileDots(float scale, float size) {
+                        vec2 IN = TileCoords()*scale;
+                        vec2 OUT = TileCoords()*scale*2.;
+                        float pct = fract(u_map_position.z);
+                        pct = pow(pct,6.);
+                        return mix(dots(fract(IN),size*(1.-pct)), dots(fract(OUT),size*pct), pct);
+                    }
                 color: |
-                    // color.rgb = mix(BACKGROUND, color.rgb,TileDots(SIZE,0.2));
-                    color.rgb = mix(BACKGROUND, color.rgb,TileDotsDF(35.,.21));
+                    color.rgb = mix(BACKGROUND, color.rgb,TileDots(35.,0.2));
 
     buildings_grid:
         base: polygons
@@ -636,6 +612,7 @@ styles:
                     }
 
                 position: |
+                    // position.z = pow(position.z, 20. / u_map_position.z - .6 ) * 2.5;
                     // scale buildings based on zoom
                     float e = 2.71828; // natural log
                     float zoom = u_map_position.z;
@@ -653,6 +630,7 @@ styles:
         shaders:
             blocks:
                 position: |
+                    // position.z = pow(position.z, 20. / u_map_position.z - .6 ) * 2.5;
                     // scale buildings based on zoom
                     float e = 2.71828; // natural log
                     float zoom = u_map_position.z;
@@ -663,7 +641,6 @@ styles:
 
                     float exp = (zoom - midpoint)/(speed * .2);
                     position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
-
 
     icons:
         base: points
@@ -747,13 +724,6 @@ layers:
                 grid:
                     color: *water1
 
-        playas:
-            filter: { kind: playa, $zoom: {min:6} }
-            draw:
-                ground:
-                    visible: true
-                    color: red
-
         border_early:
             filter: { boundary: yes, $zoom: {min: 4, max: 17} }
             draw:
@@ -775,6 +745,15 @@ layers:
                     color: [0.886,0.937,0.988]
                     cap: round
                     width: 20px
+
+        # water_boundaries:
+        #   filter: { boundary: yes, $zoom: { min: 12 } }
+        #   draw:
+        #     lines:
+        #       order: 4
+        #       color: red
+        #       width: 2px
+        #       cap: round
 
     roads:        
         data: { source: osm, layer: roads }
@@ -830,7 +809,7 @@ layers:
                     width: [[8, 1px], [9, 1.25px], [11, 1.2px], [12, 1.3px], [13, 1.5px], [14, 2.25px], [15, 0.15px], [16, 5.5px], [17, 12m]]
                     cap: round
                     outline:
-                        color: [[9, *highway_casing1], [13, *highway_casing1], [15,[0.988,0.495,0.439]], [17, [0.988,0.495,0.439]]]
+                        color: [[9, *highway_casing1], [15,[0.988,0.495,0.439]], [17, [0.988,0.495,0.439]]]
                         width: [[9, 0.5px], [12, 1px], [15, 2px], [16, 2.25px], [17, 3px], [18, 3px]]
             not_link:
                 filter: { not: { is_link: yes }, $zoom: {max: 15} }
@@ -868,9 +847,9 @@ layers:
                 draw:
                     lines:
                         order: 4
-                        color: [[16, [0.843,0.843,0.843]]]
+                        color: [[16, [0.843,0.843,0.843]], [17, [0.863,0.863,0.863]]]
                         outline:
-                            color: [[13, [0.890,0.890,0.890]], [14, [0.870,0.870,0.870]]]
+                            color: [[16, [0.72,0.72,0.72]], [17, [0.78,0.78,0.78]]]
 
             labels-highway-early:
                 filter: { $zoom: { min: 7, max: 9 } }
@@ -992,7 +971,7 @@ layers:
                             color: [[9,*major_route1], [14,*major_route1], [15,[1.0,1.0,1.0]], [16,[1.0,1.0,1.0]]]
                             width: [[9, 1.0px], [10, 1.0px], [11, 1.2px], [12, 1.25px], [13, 1.5px], [14, 1.6px], [15, 0.15px], [16, 5.25px], [17, 12m]]
                             outline:
-                                color: [[13, [0.870,0.870,0.870]], [15, [0.976,0.612,0.573]]]
+                                color: [0.976,0.612,0.573]
                                 width: [[9, 0.0px], [12, 0px], [15, 2px], [16, 2px], [17, 3px]]
                     tunnel:
                         filter: {is_tunnel: yes, $zoom: {min: 13} }
@@ -1384,10 +1363,9 @@ layers:
                 # limit show smaller landuse areas to higher zooms
                 # - { $zoom: { min: 12 }, area: { min: 200000 }, name: true }
                 # - { $zoom: { min: 13 }, area: { min: 100000 }, name: true }
-                # - { $zoom: { min: 14 }, area: { min: 40000 }, name: true }
                 - { $zoom: { min: 15 } }
-            all:
-                - { $zoom: { max: 18 } }
+            # all:
+            #     - { $zoom: { max: 18 } }
         draw:
             #filter: { not: { location: underground } }
             polygons:
@@ -1395,7 +1373,7 @@ layers:
                 color: *building2
             outline:
                 style: lines
-                order: 8
+                order: 9
                 color: [0.600, 0.600, 0.600]
                 width: [[14,0.25px], [15,0.5px], [16,1px],[18,1.25px]]
                 extrude: false
@@ -1576,12 +1554,6 @@ layers:
                     order: 8
                     color: *country_boundary
                     width: [[0, 1.5px], [5, 2.5px], [7, 3.5px], [9, 7px], [14, 10px], [16, 12px], [17, 14m]]
-            water:
-                filter: { kind: territorial, boundary: maritime }
-                draw:
-                    flatlines:
-                        order: 9
-                        color: blue
         regions:
             filter: 
                 any:
@@ -1594,16 +1566,6 @@ layers:
                     order: 7
                     color: *region_boundary
                     width: [[0, 0.5px], [2, 1.0px], [5, 1.25px], [6, 1.5px], [7, 1.75px], [9, 3.5px], [14, 5.5px], [16, 6.5px], [17, 16m]]
-            water:
-                filter: { kind: territorial, boundary: maritime }
-                draw:
-                    flatlines:
-                        order: 8
-                        color: blue
-            early:
-                filter: { scalerank: [3,4,5,6,7,8,9], $zoom: {max: 8} }
-                draw:
-                    visible: false
 #        subregions:
 #            filter: { kind: county, $zoom: { min: 10 } }
 #            draw:
@@ -1727,28 +1689,28 @@ layers:
             filter:
                 kind: park
             draw:
-                dots:
+                dots2:
                     order: 1
                     color: *green1
         conservation:
             filter:
                 kind: conservation
             draw:
-                dots:
+                dots2:
                     order: 1
                     color: *green8
         cemetery:
             filter:
                 kind: cemetery
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: *green2
         forest:
             filter:
                 kind: forest
             draw:
-                dots:
+                dots2:
                     order: 1
                     color: [[9, [0.562,0.750,0.741]], [10, [0.562,0.750,0.741]], [11, [0.392,0.700,0.685]], [12, *green7]]
         # recreation_ground:
@@ -1763,21 +1725,21 @@ layers:
                 kind: [farm, farmland]
                 $zoom: { min: 10}
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: [0.600,0.790,0.714]
         golf_course:
             filter:
                 kind: golf_course
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: *green3
         nature_reserve:
             filter:
                 kind: nature_reserve
             draw:
-                dots:
+                dots2:
                     order: 1
                     color: [0.620,0.846,0.850]
         # stadium:
@@ -1791,7 +1753,7 @@ layers:
             filter:
                 kind: university
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: *brown1
         # school:
@@ -1805,7 +1767,7 @@ layers:
             filter:
                 kind: hospital
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: *red1
         # playground:
@@ -1882,7 +1844,7 @@ layers:
         filter:
             kind: ['urban area']
         draw:
-            dots:
+            dots2:
                 order: 1
                 color: [[4, [1.000,0.510,0.894]], [6, [1.000,0.510,0.894]], [7, [0.882,0.639,0.827]], [8, [0.757,0.729,0.753]]]
 
