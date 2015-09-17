@@ -103,7 +103,7 @@ settings:
         - &text_fill2        '#555'             # WHITE
         - &text_stroke [0.870,0.870,0.870]      # land color
         - &townspot_sprite   townspot-m-rev     # depends on land color and text settings
- 
+
 
 
 textures:
@@ -653,6 +653,37 @@ styles:
                     if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
                         // If it's a roof
                         color.rgb = vec3(.870);
+                    }
+
+                position: |
+                    // scale buildings based on zoom
+                    float e = 2.71828; // natural log
+                    float zoom = u_map_position.z;
+
+                    float min = .1;         // minimum building scale
+                    float midpoint = 16.; // middle of zoom range
+                    float speed = 2.;  // number of zoom levels to transition over
+
+                    float exp = (zoom - midpoint)/(speed * .2);
+                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
+
+    buildings_grid-univ:
+        base: polygons
+        texcoords: true
+        shaders:
+            blocks:
+                color: |
+                    vec2 st = v_texcoord.xy;
+                    vec2 f_st = fract(st*10.);
+                    vec2 i_st = floor(st*10.);
+                    // color.rg = f_st;
+                    
+                    vec2 pct = step(vec2(0.09),f_st);;
+                    color.rgb -= mix(vec3(0.0), vec3(0.35),(1.0-(pct.x * pct.y)));
+                    
+                    if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
+                        // If it's a roof
+                        color.rgb = vec3(1.0,0.0,0.0);
                     }
 
                 position: |
@@ -1452,9 +1483,9 @@ layers:
                 # limit show smaller landuse areas to higher zooms
                 - { $zoom: { min: 12 }, area: { min: 200000 }, name: true }
                 - { $zoom: { min: 13 }, area: { min: 100000 }, name: true }
-                - { $zoom: { min: 14 }, area: { min: 5000 }, name: true }
-                - { $zoom: { min: 15 }, area: { min: 5000 } }
-                - { $zoom: { min: 16 }, area: { min: 1000 } }
+                - { $zoom: { min: 14 }, area: { min: 500 }, name: true }
+                - { $zoom: { min: 15 }, area: { min: 500 } }
+                - { $zoom: { min: 16 }, area: { min: 100 } }
                 - { $zoom: { min: 17 }, area: { max: 500 } }
             all:
                 - { $zoom: { max: 18 } }
@@ -1467,37 +1498,39 @@ layers:
                 style: lines
                 order: 8
                 color: [0.600, 0.600, 0.600]
-                width: [[14,0.25px], [15,0.5px], [16,1px],[18,1.25px]]
+                width: [[14,0.6px], [15,0.65px], [16,1px],[18,1.25px]]
                 extrude: false
                 tile_edges: true
-        in_park:
-            filter: { landuse_kind: [park,forest,nature_reserve,conservation] }
-            draw:
-                polygons:
-                    color: green
-        in_university:
-            filter: { landuse_kind: university }
-            draw:
-                polygons:
-                    color: brown
-        in_hospital:
-            filter: { landuse_kind: hospital }
-            draw:
-                polygons:
-                    color: red
-        in_retail:
-            filter: { landuse_kind: retail }
-            draw:
-                polygons:
-                    color: orange
+        # in_park:
+        #     filter: { landuse_kind: [park,forest,nature_reserve,conservation] }
+        #     draw:
+        #         polygons:
+        #             color: green
+        # in_university:
+        #     filter: { landuse_kind: university }
+        #     draw:
+        #         polygons:
+        #             color: brown
+        # in_hospital:
+        #     filter: { landuse_kind: hospital }
+        #     draw:
+        #         polygons:
+        #             color: red
+        # in_retail:
+        #     filter: { landuse_kind: retail }
+        #     draw:
+        #         polygons:
+        #             color: orange
 
     buildings:
         data: { source: osm }
         filter: 
             any:
                 # limit show smaller landuse areas to higher zooms
-                - { $zoom: { min: 15 }, area: { min: 5000 }, name: true }
-                - { $zoom: { min: 16 }, area: { min: 1000 }, name: true }
+                - { $zoom: { min: 15 }, height: { min: 190 } }
+                - { $zoom: { min: 16 }, height: { min: 100 } }
+                - { $zoom: { min: 15 }, area: { min: 5000 } }
+                - { $zoom: { min: 16 }, area: { min: 3500 } }
                 - { $zoom: { min: 17 }, area: { min: 500 } }
                 - { $zoom: { min: 18 } }
 
@@ -1532,26 +1565,28 @@ layers:
                 polygons:
                     color: red
 
-        in_park:
-            filter: { landuse_kind: [park,forest,nature_reserve,conservation] }
-            draw:
-                polygons:
-                    color: green
+        # in_park:
+        #     filter: { landuse_kind: [park,forest,nature_reserve,conservation] }
+        #     draw:
+        #         polygons:
+        #             color: green
         in_university:
             filter: { landuse_kind: university }
             draw:
                 polygons:
-                    color: brown
-        in_hospital:
-            filter: { landuse_kind: hospital }
-            draw:
-                polygons:
-                    color: red
-        in_retail:
-            filter: { landuse_kind: retail }
-            draw:
-                polygons:
-                    color: orange
+                    order: 52
+                    style: buildings_grid-univ
+                    # color: red
+        # in_hospital:
+        #     filter: { landuse_kind: hospital }
+        #     draw:
+        #         polygons:
+        #             color: red
+        # in_retail:
+        #     filter: { landuse_kind: retail }
+        #     draw:
+        #         polygons:
+        #             color: orange
 
 
     # buildings-early:
