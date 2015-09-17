@@ -2641,13 +2641,13 @@ layers:
                 dots:
                     order: 2
                     color: *red1
-        # playground:
-        #     filter:
-        #         kind: playground
-        #     draw:
-        #         polygons:
-        #             order: 2
-        #             color: *brown3
+        playground:
+            filter:
+                kind: playground
+            draw:
+                dots-rev:
+                    order: 2
+                    color: [0.247,0.800,0.698]
         # pedestrian:
         #     filter:
         #         kind: pedestrian
@@ -2719,13 +2719,13 @@ layers:
                 dots-rev:
                     order: 2
                     color: [0.805,0.805,0.825]
-#        military:
-#            filter:
-#                kind: military
-#            draw:
-#                polygons:
-#                    order: 1
-#                    color: *purple   
+        military:
+            filter:
+                kind: military
+            draw:
+                dots:
+                    order: 1
+                    color: [0.624,0.709,0.800]   
 #        man-made:
 #            filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline] }
 #            draw: { polygons: { order: 2, color: *grey3 } }
