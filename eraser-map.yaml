@@ -102,7 +102,7 @@ settings:
         - &text_fill   black                    # WHITE
         - &text_fill2        '#555'             # WHITE
         - &text_stroke [0.870,0.870,0.870]      # land color
-        - &townspot_sprite   townspot-l-rev     # depends on land color and text settings
+        - &townspot_sprite   townspot-m-rev     # depends on land color and text settings
  
 
 
@@ -917,7 +917,7 @@ layers:
             highway_bridge:
                 filter: {is_bridge: yes}
                 draw:
-                    flatlines:
+                    lines:
                         cap: butt
             labels-highway-early:
                 filter: { $zoom: { min: 7, max: 9 } }
@@ -1692,7 +1692,7 @@ layers:
             water:
                 filter: { kind: territorial, boundary: maritime }
                 draw:
-                    flatlines:
+                    lines:
                         order: 9
                         color: blue
         regions:
@@ -1710,7 +1710,7 @@ layers:
             water:
                 filter: { kind: territorial, boundary: maritime }
                 draw:
-                    flatlines:
+                    lines:
                         order: 8
                         color: blue
             early:
@@ -1950,8 +1950,9 @@ layers:
             visible: false
         # nix podunk burgs under z15
         minor-places:
-            filter: { kind: [hamlet, village], $zoom: { max: 15 } }
+            filter: { kind: [locality, hamlet, village], $zoom: { max: 15 } }
             visible: false
+            
 
     neighborhood:
         data: { source: osm, layer: places }
@@ -2097,6 +2098,10 @@ layers:
                         fill: *text_fill
                         typeface: 500 12px Helvetica
                         stroke: { color: *text_stroke, width: 4 }
+        residential-labels:
+            filter:
+                kind: [residential]
+                $zoom: { min: 17 }
 
         # examples of different icons mapped to feature properties
         icons:
