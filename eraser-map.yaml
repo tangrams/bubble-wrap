@@ -775,21 +775,16 @@ layers:
                 grid:
                     color: *water1
         other-water-areas:
-            filter: { not: { kind: [ocean, lake, water, reservoir,playa] }, $zoom: { min: 11 }, area: { min: 100 } }
+            filter: { not: { kind: [ocean, lake, water, reservoir, playa] }, $zoom: { min: 11 }, area: { min: 100 } }
             draw:
                 grid:
                     color: *water1
         playas-early:
-            filter: { kind: playa, $zoom: {max:6} }
+            filter: { kind: playa }
             draw:
-                ground:
-                    visible: false
-        playas:
-            filter: { kind: playa, $zoom: {min:6} }
-            draw:
-                ground:
-                    visible: true
-                    color: red
+                polygons:
+                    color: [0.870,0.870,0.870]
+                    order: 5
         water-boundary-early:
             filter: { boundary: yes, $zoom: {min: 4, max: 17} }
             draw:
