@@ -476,12 +476,12 @@ styles:
                         return step(threshold, value);
                       #endif  
                     }
-                    
+
                     vec2 tile(vec2 _st, float _zoom){
                       _st *= _zoom;
                       return fract(_st);
                     }
-                    
+
                     vec2 brickTile(vec2 st, float zoom){
                       st *= zoom;
                       if (fract(st.y * 0.5) > 0.5){
@@ -489,22 +489,22 @@ styles:
                       }
                       return fract(st);
                     }
-                    
+
                     float circleDF(vec2 st){
                       vec2 pos = vec2(0.5)-st;
                       return dot(pos,pos)*3.14;
                     }
-                    
+
                     float circle(vec2 st, float radius){
                       radius *= 0.75;
                       return 1.-aastep(radius,circleDF(st));
                     }
-                    
+
                     float dots(vec2 st, float size){
                         st = brickTile(st, 2.);
                         return circle(st, size);
                     }
-                    
+
                     float dotsDF(vec2 st){
                         st = brickTile(st, 2.);
                         return circleDF(st);
@@ -518,7 +518,7 @@ styles:
                         // return mix(dots(fract(IN),size*(1.-pct)), dots(fract(OUT),size*pct), pct);
                         return mix(dots(fract(IN),size*(1.-pct)), dots(fract(OUT),size*pct), pct);
                     }
-                    
+
                     float TileDotsDF(float scale, float size) {
                         vec2 IN = TileCoords()*scale;
                         vec2 OUT = TileCoords()*scale*2.;
@@ -529,11 +529,11 @@ styles:
                         d = 1.-aastep(size,d);
                         return d;
                     }
-                    
+
                     // Grain
                     //=============================
-                    float random(vec2 p) { 
-                        return fract(1e4 * sin(17.0 * p.x + p.y * 0.1) * (0.1 + abs(sin(p.y * 13.0 + p.x)))); 
+                    float random(vec2 p) {
+                        return fract(1e4 * sin(17.0 * p.x + p.y * 0.1) * (0.1 + abs(sin(p.y * 13.0 + p.x))));
                     }
 
                     float noise(vec2 x) {
@@ -635,6 +635,17 @@ styles:
                 color: |
                     // color.rgb = mix(BACKGROUND, color.rgb,TileDots(SIZE,0.2));
                     color.rgb = mix(BACKGROUND, color.rgb,TileDotsDF(35.,.21));
+
+    dots-rev:
+        base: polygons
+        mix: tools
+        shaders:
+            defines:
+                BACKGROUND: vec3(0.850,0.850,0.850)
+                SIZE: 2.
+            blocks: 
+                color: |
+                    color.rgb = mix(color.rgb, BACKGROUND,TileDotsDF(35.,.21));
 
     buildings_grid:
         base: polygons
@@ -2573,13 +2584,13 @@ layers:
                 dots:
                     order: 1
                     color: [[9, [0.562,0.750,0.741]], [10, [0.562,0.750,0.741]], [11, [0.392,0.700,0.685]], [12, *green7]]
-        # recreation_ground:
-        #     filter:
-        #         kind: recreation_ground
-        #     draw:
-        #         polygons:
-        #             order: 1
-        #             color: *mystry1
+        recreation_ground:
+            filter:
+                kind: recreation_ground
+            draw:
+                dots:
+                    order: 1
+                    color: *green1
         farm:
             filter:
                 kind: [farm, farmland]
@@ -2602,13 +2613,13 @@ layers:
                 dots:
                     order: 1
                     color: [0.620,0.846,0.850]
-        # stadium:
-        #     filter:
-        #         kind: stadium
-        #     draw:
-        #         polygons:
-        #             order: 1
-        #             color: *orange1
+        stadium:
+            filter:
+                kind: stadium
+            draw:
+                dots:
+                    order: 1
+                    color: *orange1
         university:
             filter:
                 kind: university
@@ -2616,13 +2627,13 @@ layers:
                 dots:
                     order: 2
                     color: *brown1
-        # school:
-        #     filter:
-        #         kind: school
-        #     draw:
-        #         polygons:
-        #             order: 2
-        #             color: *brown2
+        school:
+            filter:
+                kind: school
+            draw:
+                dots:
+                    order: 2
+                    color: [0.730,0.697,0.664]
         hospital:
             filter:
                 kind: hospital
@@ -2650,28 +2661,28 @@ layers:
 #                polygons:
 #                    order: 2
 #                    color: *grey3
-        # retail:
-        #     filter:
-        #         kind: retail
-        #     draw:
-        #         polygons:
-        #             order: 2
-        #             color: *grey1
-#        commercial:
-#            filter:
-#                kind: commercial
-#            draw:
-#                polygons:
-#                    order: 2
-#                    color: [0.149, 0.475, 0.851]
+        retail:
+            filter:
+                kind: retail
+            draw:
+                dots:
+                    order: 2
+                    color: [0.855,0.748,0.667]
+        commercial:
+            filter:
+                kind: commercial
+            draw:
+                dots:
+                   order: 2
+                   color: [0.855,0.748,0.667]
 
-        # parking:
-        #     filter:
-        #         kind: parking
-        #     draw:
-        #         polygons:
-        #             order: 2
-        #             color: *grey1
+        parking:
+            filter:
+                kind: parking
+            draw:
+                dots-rev:
+                    order: 2
+                    color: [0.765,0.765,0.765]
         # railway:
         #     filter:
         #         kind: railway
@@ -2694,20 +2705,20 @@ layers:
 #                polygons:
 #                    order: 1
 #                    color: *earth2
-#        zoo:
-#            filter:
-#                kind: zoo
-#            draw:
-#                polygons:
-#                    order: 2
-#                    color: *green2
-#        airport:
-#            filter:
-#                kind: aerodrome
-#            draw:
-#                polygons:
-#                    order: 2
-#                    color: *purple
+        zoo:
+            filter:
+                kind: zoo
+            draw:
+                dots:
+                    order: 2
+                    color: [0.498,1.000,0.851]
+        airport:
+            filter:
+                 kind: aerodrome
+            draw:
+                dots-rev:
+                    order: 2
+                    color: [0.805,0.805,0.825]
 #        military:
 #            filter:
 #                kind: military
@@ -2729,7 +2740,7 @@ layers:
                 kind: runway
             draw:
                 polygons:
-                    order: 2
+                    order: 100
                     color: white
         apron:
             filter:
