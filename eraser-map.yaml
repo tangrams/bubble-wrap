@@ -1384,10 +1384,12 @@ layers:
         filter: 
             any:
                 # limit show smaller landuse areas to higher zooms
-                # - { $zoom: { min: 12 }, area: { min: 200000 }, name: true }
-                # - { $zoom: { min: 13 }, area: { min: 100000 }, name: true }
-                # - { $zoom: { min: 14 }, area: { min: 40000 }, name: true }
-                - { $zoom: { min: 15 } }
+                - { $zoom: { min: 12 }, area: { min: 200000 }, name: true }
+                - { $zoom: { min: 13 }, area: { min: 100000 }, name: true }
+                - { $zoom: { min: 14 }, area: { min: 5000 }, name: true }
+                - { $zoom: { min: 15 }, area: { min: 5000 } }
+                - { $zoom: { min: 16 }, area: { min: 1000 } }
+                - { $zoom: { min: 17 }, area: { max: 500 } }
             all:
                 - { $zoom: { max: 18 } }
         draw:
@@ -1430,9 +1432,6 @@ layers:
                 polygons:
                     style: buildings_grid
                     extrude: true
-                    # extrude: function () { return [Math.pow(feature.min_height,1/$zoom*10), Math.pow(feature.height,1/$zoom*10)]; }
-                    # extrude: function () { return [feature.min_height,1/$zoom*10), Math.pow(feature.height,1/$zoom*10)]; }
-                    # extrude: function () { return Math.pow(feature.height,.9); }
                 outline:
                     style: buildings_lines
                     order: 51
