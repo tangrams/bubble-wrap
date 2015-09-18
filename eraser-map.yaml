@@ -2065,6 +2065,7 @@ layers:
                         transform: uppercase
                         # stroke: { color: *text_stroke, width: 4 }
 
+
     pois_and_landuse_labels:
         data: { source: osm, layer: [pois, landuse_labels] }
         visible: true
