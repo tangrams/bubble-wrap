@@ -845,7 +845,6 @@ layers:
                 border:
                     order: 10
                     color: [0.886,0.937,0.988]
-                    cap: round
                     width: 20px
         river:
             filter: { kind: [river,canal,stream,dam,ditch,drain], $zoom: { min: 13 } }
