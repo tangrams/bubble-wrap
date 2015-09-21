@@ -1336,7 +1336,7 @@ layers:
                     lines:
                         cap: round
                         join: round
-                        order: 15
+                        #order: 15
             tunnel:
                 filter: {is_tunnel: yes, $zoom: {min: 13} }
                 draw:
@@ -1449,6 +1449,33 @@ layers:
                         font:
                             size: 12px
                             stroke: { color: *text_stroke, width: 4 }
+        airport-lines:
+            filter: { kind: minor_road, aeroway: [runway,taxiway] }
+            draw:
+                lines:
+                    color: white
+                    cap: butt
+                    width: [[10, 1px], [11, 1.5px], [12, 2px], [13, 4px], [14, 8px], [15, 16px], [16, 32px], [17, 60m]]
+                    outline:
+                        color: [0.7,0.7,0.7]
+            not-round:
+                filter: { $zoom: { min: 17 } }
+                draw:
+                    lines:
+                        cap: butt
+            taxiway:
+                filter: { aeroway: taxiway }
+                draw:
+                    lines:
+                        color: [[13,[0.8,0.8,0.8]],[15,[0.75,0.75,0.75]]]
+                        width: [[13, 1px], [14, 2px], [15, 4px], [16, 8px], [17, 25m]]
+                        outline:
+                            color: [0.85,0.85,0.85]
+                early:
+                    filter: { $zoom: { max: 14 } }
+                    draw:
+                        lines:
+                            visible: false
         z-order:
             #filter: { $zoom: {min: 12} }
             draw:
@@ -1880,14 +1907,8 @@ layers:
                 draw:
                     text:
                         visible: false
-            early-ones-z6:
-                filter: { name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ], $zoom: {min: 6, max: 7} }
-                draw:
-                    text:
-                        visible: false
-
-        country-z6:
-            filter: { name: true, kind: [country], $zoom: [6] }
+        country:
+            filter: { name: true, kind: [country], $zoom: { min: 6 } }
             draw:
                 text:
                     priority: 2
@@ -1931,7 +1952,7 @@ layers:
                     font:
                         size: 14px
                         weight: 800
-                        stroke: { color: *text_stroke, width: 4 }
+                        #stroke: { color: *text_stroke, width: 4 }
                         transform: uppercase
     #            icons:
     #                size: [[13, 12px], [15, 18px]]
@@ -2011,7 +2032,7 @@ layers:
                     sprite: *townspot_sprite
 
         populated-places-osm:
-            filter: { name: true, source: openstreetmap, not: { kind: [county, state, island, neighbourhood, suburb, quarter] }, $zoom: {min: 8} }
+            filter: { name: true, source: openstreetmap, not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }, $zoom: {min: 8} }
             draw:
                 text:
                     priority: 1
@@ -2128,7 +2149,6 @@ layers:
                     interactive: true
                     font:
                         size: 12px
-                        
                         stroke: { color: *text_stroke, width: 4 }
         landuse-labels-early:
             filter:
@@ -2179,7 +2199,7 @@ layers:
                     interactive: true
                     font:
                         size: 12px
-                        # stroke: { color: *text_stroke, width: 4 }
+                        stroke: { color: *text_stroke, width: 4 }
         car-sharing:
             filter: { kind: car_sharing, $zoom: { max: 17 } }
             draw:
@@ -2200,7 +2220,7 @@ layers:
                     interactive: true
                     font:
                         size: 12px
-                        # stroke: { color: *text_stroke, width: 4 }
+                        stroke: { color: *text_stroke, width: 4 }
         residential-labels:
             filter:
                 kind: [residential]
@@ -2798,6 +2818,8 @@ layers:
 
     landuse-not-filtered:
         data: { source: osm, layer: landuse }
+        # runways and taxiways are also in the roads layer as lines
+        # these ones are probably duplicate features, but have AREA (a good thing)
         runway:
             filter:
                 kind: runway
