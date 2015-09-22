@@ -78,6 +78,9 @@ settings:
         - &water1      [0.83, 0.83, 0.83]       # water
         - &earth1      '#666'                   # land color
         - &green1      [0.140,0.843,0.824]      # park
+        - &green1_r    [0.140,0.843,0.824]      # roads in parks
+        - &green1_b    '#94d8d6'                # buildings in parks
+        - &green1_bo   '#7fc3c1'                # buildings in parks, outlines
         - &green2      [0.547,0.760,0.590]      # cemetery
         - &green3      [0.000,0.779,0.328]      # golf course
         - &green4      '#526054'                # farm faint
@@ -87,9 +90,11 @@ settings:
         - &green8      [0.123,0.770,0.587]      # conservation
         - &orange1     '#bfb08e'                # stadium
         - &brown1      [0.814,0.692,0.570]      # university
+        - &brown1_r    [0.814,0.692,0.570]      # roads in university
         - &brown2      '#ada497'                # school
         - &brown3      '#c7b7a2'                # playground
         - &red1        [0.840,0.503,0.541]      # hospital
+        - &red1_r      [0.840,0.503,0.541]      # roads in hospital
         - &grey1       '#717171'                # pedestrian, retail, airport apron, parking, church
         - &grey2       [0.5, 0.5, 0.5]          # airport runway
         - &grey3       grey                     # railway
@@ -859,7 +864,7 @@ layers:
         data: { source: osm, layer: water }
         draw:
             grid:
-                order: 3
+                order: 4
                 color: *water1
         lakes:
             filter: 
@@ -890,38 +895,51 @@ layers:
                 grid:
                     color: *water1
         playas-early:
-            filter: { kind: playa }
+            filter: { kind: playa, $zoom: {max:6} }
+            draw:
+                ground:
+                    visible: false
+        playas:
+            filter: { kind: playa, $zoom: {min:6} }
             draw:
                 polygons:
                     color: [0.870,0.870,0.870]
                     order: 5
-        water-boundary-early:
-            filter: { boundary: yes, $zoom: {min: 4, max: 17} }
+        water-boundary-ocean-early:
+            filter: { boundary: yes, kind: ocean, $zoom: {min: 4, max: 17} }
             draw:
                 line2:
                     style: lines
                     order: 4
-                    width: [[0,0px],[10,2px],[13,4px]]
-                    color: [0.886,0.937,0.988]
+                    width: [[9,0.25px],[10,2px],[13,4px]]
+                    color: [[9,[0.396,0.833,0.920]],[10,[0.886,0.937,0.988]]]
                 lines:
                     order: 10
-                    width: 1px
+                    width: [[9,0px],[10,1px]]
                     color: [0.396,0.833,0.920]
-        water-boundary-late:
-            filter: { boundary: yes, $zoom: {min: 17} }
+        water-boundary-ocean-late:
+            filter: { boundary: yes, kind: ocean, $zoom: {min: 17} }
             draw:
                 border:
                     order: 10
                     color: [0.886,0.937,0.988]
                     width: 20px
+        water_boundaries-not-ocean:
+            filter: { boundary: yes, not: { kind: ocean }, $zoom: { min: 16 } }
+            draw:
+                lines:
+                    order: 5
+                    color: [0.886,0.937,0.988]
+                    width: [[14,1.0px],[16,1.5px],[18,2m]]
+                    join: round
         river:
             filter: { kind: [river,canal,stream,dam,ditch,drain], $zoom: { min: 13 } }
             draw:
                 lines:
-                    order: 2
+                    order: 3
                     color: [0.886,0.937,0.988]
                     width: [[13,0.5px],[14,1.0px],[16,1.5px],[18,4m]]
-                    cap: round
+                    join: round
 
     roads:
         data: { source: osm, layer: roads }
@@ -1024,7 +1042,7 @@ layers:
                 filter: {is_tunnel: yes, $zoom: {min: 13} }
                 draw:
                     lines:
-                        order: 4
+                        order: 6
                         color: [[16, [0.843,0.843,0.843]]]
                         outline:
                             color: [[13, [0.890,0.890,0.890]], [14, [0.870,0.870,0.870]]]
@@ -1249,12 +1267,11 @@ layers:
                     filter: { $zoom: { min: 18 } }
                     draw:
                         text:
+                            priority: 3
                             visible: *text_visible_trunk_primary
                             text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name } }
                             font:
-   
                                 size: 18px
-
             link:
                 filter: { is_link: yes } # on- and off-ramps, etc
                 draw:
@@ -1308,6 +1325,39 @@ layers:
        
                                     size: 12px
                                     stroke: { color: *text_stroke, width: 4 }
+                in_park:
+                    filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+                    draw:
+                        lines:
+                            #width: [[11, 0.0px], [12, .5px], [14, 1.5px], [16, 2.0px], [19, 7m]]
+                            color: [[11,*green1_r],[12,*minor_road3],[14,*minor_road3]]
+                            outline:
+                                color: [[14,*green1_r],[15,*major_casing1]]
+                                width: [[12, 0px], [13, 0.5px], [14, 1.0px], [15, 1.0px], [16, 1.5px], [18, 3.0px]]
+                    golf_course:
+                        filter: { landuse_kind: golf_course }
+                        draw:
+                            lines:
+                                outline:
+                                    color: red
+                    nature_reserve:
+                        filter: { landuse_kind: nature_reserve }
+                        draw:
+                            lines:
+                                outline:
+                                    color: blue
+                    conservation:
+                        filter: { landuse_kind: conservation }
+                        draw:
+                            lines:
+                                outline:
+                                    color: orange
+                    zoo:
+                        filter: { landuse_kind: zoo }
+                        draw:
+                            lines:
+                                outline:
+                                    color: pink
                 labels-secondary:
                     filter: { $zoom: { min: 13, max: 15 } }
                     draw:
@@ -1376,6 +1426,39 @@ layers:
                             outline:
                                 color: [[12,*major_casing2]]
                                 width: [[12, 0px], [14, 1px], [16, 1.5px], [17, 2px]]
+                in_park:
+                    filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+                    draw:
+                        lines:
+                            #width: [[11, 0.0px], [12, .5px], [14, 1.5px], [16, 2.0px], [19, 7m]]
+                            color: [[11,*green1_r],[12,*minor_road3],[14,*minor_road3]]
+                            outline:
+                                color: [[14,*green1_r],[18,[0.827,0.827,0.827]]]
+                                width: [[12, 0px], [13, 0.5px], [14, 1.0px], [15, 1.0px], [16, 1.5px], [18, 3.0px]]
+                    golf_course:
+                        filter: { landuse_kind: golf_course }
+                        draw:
+                            lines:
+                                outline:
+                                    color: red
+                    nature_reserve:
+                        filter: { landuse_kind: nature_reserve }
+                        draw:
+                            lines:
+                                outline:
+                                    color: blue
+                    conservation:
+                        filter: { landuse_kind: conservation }
+                        draw:
+                            lines:
+                                outline:
+                                    color: orange
+                    zoo:
+                        filter: { landuse_kind: zoo }
+                        draw:
+                            lines:
+                                outline:
+                                    color: pink
                 labels-tertiary:
                     filter: { $zoom: { min: 14, max: 15 } }
                     draw:
@@ -1406,7 +1489,6 @@ layers:
                             visible: *text_visible_tertiary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
-   
                                 size: 15px
                                 stroke: { color: *major_road1, width: 4 }
         minor_road:
@@ -1427,6 +1509,57 @@ layers:
                         cap: round
                         join: round
                         #order: 15
+                        
+            in_park:
+                filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+                draw:
+                    lines:
+                        width: [[11, 0.5px], [12, 1.0px], [13, 1.2px], [14, 1.75px], [15, 2.5px], [16, 8m]]
+                        color: [[11,*green1_r],[12,*green1_r],[14,*minor_road3]]
+                        outline:
+                            color: [[14,*green1_r],[17,*major_tunnel_casing1]]
+                            width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
+                golf_course:
+                    filter: { landuse_kind: golf_course }
+                    draw:
+                        lines:
+                            outline:
+                                color: red
+                nature_reserve:
+                    filter: { landuse_kind: nature_reserve }
+                    draw:
+                        lines:
+                            outline:
+                                color: blue
+                conservation:
+                    filter: { landuse_kind: conservation }
+                    draw:
+                        lines:
+                            outline:
+                                color: orange
+                zoo:
+                    filter: { landuse_kind: zoo }
+                    draw:
+                        lines:
+                            outline:
+                                color: pink
+            in_university:
+                filter: { landuse_kind: university }
+                draw:
+                    flatlines:
+                        color: [[11,*brown1_r],[13,*brown1_r],[14,*minor_road3]]
+                        outline:
+                            color: *brown1_r
+                            width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
+            in_hospital:
+                filter: { landuse_kind: hospital }
+                draw:
+                    flatlines:
+                        color: [[11,*red1_r],[13,*red1_r],[14,*minor_road3]]
+                        outline:
+                            color: *red1_r
+                            width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
+
             tunnel:
                 filter: {is_tunnel: yes, $zoom: {min: 13} }
                 draw:
@@ -1470,6 +1603,55 @@ layers:
                     outline:
                         color: [0.827,0.827,0.827]
                         width: [[15, 0px], [16, 1.0px]]
+            in_park:
+                filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+                draw:
+                    lines:
+                        width: [[11, 0.5px], [12, 1.0px], [13, 1.2px], [14, 1.75px], [15, 2.5px], [16, 8m]]
+                        color: [[11,*green1_r],[12,*green1_r],[14,*minor_road3]]
+                        outline:
+                            color: [[14,*green1_r],[17,*major_tunnel_casing1]]
+                            width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
+                golf_course:
+                    filter: { landuse_kind: golf_course }
+                    draw:
+                        lines:
+                            outline:
+                                color: red
+                nature_reserve:
+                    filter: { landuse_kind: nature_reserve }
+                    draw:
+                        lines:
+                            outline:
+                                color: blue
+                conservation:
+                    filter: { landuse_kind: conservation }
+                    draw:
+                        lines:
+                            outline:
+                                color: orange
+                zoo:
+                    filter: { landuse_kind: zoo }
+                    draw:
+                        lines:
+                            outline:
+                                color: pink
+            in_university:
+                filter: { landuse_kind: university }
+                draw:
+                    flatlines:
+                        color: [[11,*brown1_r],[13,*brown1_r],[14,*minor_road3]]
+                        outline:
+                            color: *brown1_r
+                            width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
+            in_hospital:
+                filter: { landuse_kind: hospital }
+                draw:
+                    flatlines:
+                        color: [[11,*red1_r],[13,*red1_r],[14,*minor_road3]]
+                        outline:
+                            color: *red1_r
+                            width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
             labels-service_road:
                 filter: { $zoom: { min: 17, min: 18 } }
                 draw:
@@ -1509,6 +1691,54 @@ layers:
                         outline:
                             color: [[15,*path_bridge_casing2],[16,*path_bridge_casing1]]
                             width: [[15, 0px], [16, 1.0px], [18, 2px]]
+            in_park:
+                filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+                draw:
+                    lines:
+                        color: [[15,white],[16,*minor_road3]]
+                        outline:
+                            color: *green1_r
+                            width: [[15, 0px], [16, 0.5px], [18, 2px]]
+                golf_course:
+                    filter: { landuse_kind: golf_course }
+                    draw:
+                        lines:
+                            outline:
+                                color: red
+                nature_reserve:
+                    filter: { landuse_kind: nature_reserve }
+                    draw:
+                        lines:
+                            outline:
+                                color: blue
+                conservation:
+                    filter: { landuse_kind: conservation }
+                    draw:
+                        lines:
+                            outline:
+                                color: orange
+                zoo:
+                    filter: { landuse_kind: zoo }
+                    draw:
+                        lines:
+                            outline:
+                                color: pink
+            in_university:
+                filter: { landuse_kind: university }
+                draw:
+                    flatlines:
+                        color: [[15,*brown1_r],[16,*minor_road3]]
+                        outline:
+                            color: *brown1_r
+                            width: [[15, 0px], [16, 0.5px], [18, 2px]]
+            in_hospital:
+                filter: { landuse_kind: hospital }
+                draw:
+                    flatlines:
+                        color: [[15,*red1_r],[16,*minor_road3]]
+                        outline:
+                            color: *red1_r
+                            width: [[15, 0px], [16, 0.5px], [18, 2px]]
             labels-path:
                 filter: { $zoom: { min: 17 } }
                 draw:
@@ -1609,26 +1839,52 @@ layers:
                 width: [[14,0.6px], [15,0.65px], [16,1px],[18,1.25px]]
                 extrude: false
                 tile_edges: true
-        # in_park:
-        #     filter: { landuse_kind: [park,forest,nature_reserve,conservation] }
-        #     draw:
-        #         polygons:
-        #             color: green
-        # in_university:
-        #     filter: { landuse_kind: university }
-        #     draw:
-        #         polygons:
-        #             color: brown
-        # in_hospital:
-        #     filter: { landuse_kind: hospital }
-        #     draw:
-        #         polygons:
-        #             color: red
-        # in_retail:
-        #     filter: { landuse_kind: retail }
-        #     draw:
-        #         polygons:
-        #             color: orange
+        in_park:
+            filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+            draw:
+                polygons:
+                    color: *green1_r
+                outline:
+                    color: *green1_bo
+            golf_course:
+                filter: { landuse_kind: golf_course }
+                draw:
+                    lines:
+                        outline:
+                            color: red
+            nature_reserve:
+                filter: { landuse_kind: nature_reserve }
+                draw:
+                    lines:
+                        outline:
+                            color: blue
+            conservation:
+                filter: { landuse_kind: conservation }
+                draw:
+                    lines:
+                        outline:
+                            color: orange
+            zoo:
+                filter: { landuse_kind: zoo }
+                draw:
+                    lines:
+                        outline:
+                            color: pink
+        in_university:
+            filter: { landuse_kind: [university,school] }
+            draw:
+                polygons:
+                    color: *brown1_r
+        in_hospital:
+            filter: { landuse_kind: hospital }
+            draw:
+                polygons:
+                    color: *red1_r
+#        in_retail:
+#            filter: { landuse_kind: retail }
+#            draw:
+#                polygons:
+#                    color: orange
 
     buildings:
         data: { source: osm }
@@ -1674,12 +1930,12 @@ layers:
                     color: red
 
         # in_park:
-        #     filter: { landuse_kind: [park,forest,nature_reserve,conservation] }
+        #     filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
         #     draw:
         #         polygons:
         #             color: green
         in_university:
-            filter: { landuse_kind: university }
+            filter: { landuse_kind: [university,school] }
             draw:
                 polygons:
                     order: 52
@@ -1872,7 +2128,6 @@ layers:
         draw:
             text:
                 visible: false    # labels are enabled by each layer below
-                offset: [0, 8px]
                 font:
                     family: Helvetica
                     # weight: 500
@@ -1897,8 +2152,8 @@ layers:
                     visible: *text_visible_admin
                     text_source: function() { return feature["name:en"] || feature["name"]; }
                     font:
-                        weight: 200
                         size: 11px
+                        weight: 200
                         # stroke: { color: *text_stroke, width: 4 }
                         transform: uppercase
     #            icons:
@@ -1911,22 +2166,6 @@ layers:
                 draw:
                     text:
                         visible: false
-            early-ones-z4:
-                filter: { name: [Nederland,Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,Crna Gora,Македонија,The Gambia,Burundi,Swaziland,الإمارات العربية المتحدة,العراق,Singapore,El Salvador,Belize,Trinidad and Tobago, Saint Lucia, Montserrat,Anguilla,República Dominicana,Bahamas,British Virgin Islands,Antigua and Barbuda,Grenada,Sint Maarten,Saint Kitts and Nevis,Cayman Islands,België - Belgique - Belgien], $zoom: {min: 4, max: 5} }
-                draw:
-                    text:
-                        visible: false
-            early-ones-z5:
-                filter: { name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,El Salvador,Belize,België - Belgique - Belgien], $zoom: {min: 5, max: 6} }
-                draw:
-                    text:
-                        visible: false
-            early-ones-z6:
-                filter: { name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ], $zoom: {min: 6, max: 7} }
-                draw:
-                    text:
-                        visible: false
-
         country-z4:
             filter: { name: true, population: true, kind: [country], $zoom: [4] }
             draw:
@@ -1943,28 +2182,11 @@ layers:
     #                size: [[13, 12px], [15, 18px]]
     #                interactive: true
     #                sprite: *townspot_sprite
-            early-ones:
-                # US, Brazil, China, Russia, Canada, Greenland, Iceland, Australia, India, Japan, Guam, Indonesia, South Africa, Egypt, Nigeria, Kenya
-                filter: { not: { name: ["United States of America","Brasil","中华人民共和国","Россия","Canada","Kalaallit Nunaat","Ísland","Australia","India","日本","Guam","Indonesia","South Africa","مصر","Nigeria","Kenya"] }, $zoom: {min: 3, max: 4} }
-                draw:
-                    text:
-                        visible: false
             early-ones-z4:
                 filter: { name: [Nederland,Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,Crna Gora,Македонија,The Gambia,Burundi,Swaziland,الإمارات العربية المتحدة,العراق,Singapore,El Salvador,Belize,Trinidad and Tobago, Saint Lucia, Montserrat,Anguilla,República Dominicana,Bahamas,British Virgin Islands,Antigua and Barbuda,Grenada,Sint Maarten,Saint Kitts and Nevis,Cayman Islands,België - Belgique - Belgien], $zoom: {min: 4, max: 5} }
                 draw:
                     text:
                         visible: false
-            early-ones-z5:
-                filter: { name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,El Salvador,Belize,België - Belgique - Belgien], $zoom: {min: 5, max: 6} }
-                draw:
-                    text:
-                        visible: false
-            early-ones-z6:
-                filter: { name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ], $zoom: {min: 6, max: 7} }
-                draw:
-                    text:
-                        visible: false
-
         country-z5:
             filter: { name: true, population: true, kind: [country], $zoom: [5] }
             draw:
@@ -1981,23 +2203,13 @@ layers:
     #                size: [[13, 12px], [15, 18px]]
     #                interactive: true
     #                sprite: *townspot_sprite
-            early-ones:
-                # US, Brazil, China, Russia, Canada, Greenland, Iceland, Australia, India, Japan, Guam, Indonesia, South Africa, Egypt, Nigeria, Kenya
-                filter: { not: { name: ["United States of America","Brasil","中华人民共和国","Россия","Canada","Kalaallit Nunaat","Ísland","Australia","India","日本","Guam","Indonesia","South Africa","مصر","Nigeria","Kenya"] }, $zoom: {min: 3, max: 4} }
-                draw:
-                    text:
-                        visible: false
-            early-ones-z4:
-                filter: { name: [Nederland,Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,Crna Gora,Македонија,The Gambia,Burundi,Swaziland,الإمارات العربية المتحدة,العراق,Singapore,El Salvador,Belize,Trinidad and Tobago, Saint Lucia, Montserrat,Anguilla,República Dominicana,Bahamas,British Virgin Islands,Antigua and Barbuda,Grenada,Sint Maarten,Saint Kitts and Nevis,Cayman Islands,België - Belgique - Belgien], $zoom: {min: 4, max: 5} }
-                draw:
-                    text:
-                        visible: false
             early-ones-z5:
                 filter: { name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,El Salvador,Belize,België - Belgique - Belgien], $zoom: {min: 5, max: 6} }
                 draw:
                     text:
                         visible: false
         country:
+            # South Ossetia and Abkhazia aren't countries (they are disputed areas)
             filter: { name: true, kind: [country], $zoom: { min: 6 } }
             draw:
                 text:
@@ -2009,13 +2221,13 @@ layers:
                         weight: 200
                         # stroke: { color: *text_stroke, width: 4 }
                         transform: uppercase
-            early-ones-z5-6:
-                filter: { name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,België - Belgique - Belgien], $zoom: {min: 5, max: 7} }
+            early-ones-z6:
+                filter: { name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,België - Belgique - Belgien,Хуссар Ирыстон,Аҧсны - Абхазия], $zoom: {min: 6, max: 7} }
                 draw:
                     text:
                         visible: false
             early-ones-z7:
-                filter: { name: [Liechtenstein,San Marino,Civitatis Vaticanæ], $zoom: {min: 7, max: 8} }
+                filter: { name: [Liechtenstein,San Marino,Civitatis Vaticanæ,Хуссар Ирыстон,Аҧсны - Абхазия], $zoom: {min: 7, max: 8} }
                 draw:
                     text:
                         visible: false
@@ -2038,7 +2250,7 @@ layers:
                 text:
                     priority: 2
                     visible: *text_visible_admin
-                    text_source: function() { return feature["name:short"] && feature["name"]; }
+                    text_source: function() { if(feature["name:short"]) { return feature["name"]; } else { return "" } }
                     font:
                         size: 14px
                         weight: 800
@@ -2061,120 +2273,125 @@ layers:
                         text_source: function() { return feature["name:abbreviation"] || feature["name"]; }
                         font: { transform: uppercase }
 
-        populated-places-natural-earth-early:
-            filter: { name: true, source: naturalearthdata.com, $zoom: {min: 2, max: 4}, scalerank: 0 }
+        populated-places:
             draw:
                 text:
-                    priority: 1
-                    interactive: true
-                    visible: *text_visible_populated_places
-                    font:
-                        size: 10px
-                        # stroke: { color: *text_stroke, width: 4 }
-                icons:
-                    size: [[13, 12px], [15, 18px]]
-                    interactive: true
-                    sprite: *townspot_sprite
+                    offset: [0, 8px]
 
-        populated-places-natural-earth-early2:
-            filter: { name: true, source: naturalearthdata.com, $zoom: {min: 4, max: 5}, scalerank: [0,1] }
-            draw:
-                text:
-                    priority: 1
-                    interactive: true
-                    visible: *text_visible_populated_places
-                    font:
-                        size: 10px
-                        # stroke: { color: *text_stroke, width: 4 }
-                icons:
-                    size: [[13, 12px], [15, 18px]]
-                    interactive: true
-                    sprite: *townspot_sprite
-
-        populated-places-natural-earth-early3:
-            filter: { name: true, source: naturalearthdata.com, $zoom: {min: 5, max: 6}, scalerank: [0,1,2,3] }
-            draw:
-                text:
-                    priority: 1
-                    interactive: true
-                    visible: *text_visible_populated_places
-                    font:
-                        size: 10px
-                        # stroke: { color: *text_stroke, width: 4 }
-                icons:
-                    size: [[13, 12px], [15, 18px]]
-                    interactive: true
-                    sprite: *townspot_sprite
-
-        populated-places-natural-earth:
-            filter: { name: true, source: naturalearthdata.com, $zoom: {min: 6, max: 8} }
-            draw:
-                text:
-                    priority: 1
-                    interactive: true
-                    visible: *text_visible_populated_places
-                    font:
-                        size: 11px
-                        # stroke: { color: *text_stroke, width: 4 }
-                icons:
-                    size: [[13, 12px], [15, 18px]]
-                    interactive: true
-                    sprite: *townspot_sprite
-
-        populated-places-osm:
-            filter: { name: true, source: openstreetmap, not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }, $zoom: {min: 8} }
-            draw:
-                text:
-                    priority: 1
-                    interactive: true
-                    visible: *text_visible_populated_places
-                    font:
-                        size: 13px
-                        # stroke: { color: *text_stroke, width: 4 }
-            # add townspots from zoom 0 thru zoom 11
-            townspots:
-                filter: { $zoom: { max: 11 } }
+            populated-places-natural-earth-z2-z3:
+                filter: { name: true, source: naturalearthdata.com, $zoom: {min: 2, max: 4}, scalerank: 0 }
                 draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 10px
+                            # stroke: { color: *text_stroke, width: 4 }
                     icons:
                         size: [[13, 12px], [15, 18px]]
                         interactive: true
                         sprite: *townspot_sprite
-            # nix major cities under z15
-            major-places:
-                filter: { kind: [city], $zoom: { min: 13, max: 15 } }
-                visible: false
-                draw:
-                    text:
-                        font:
-                            size: 14px
-            major-places:
-                filter: { kind: [city], $zoom: { min: 15 } }
-                visible: false
-                draw:
-                    text:
-                        visible: false
-                        font:
-                            size: 14px
-            medium-places:
-                filter: { kind: [town], $zoom: { max: 11 } }
-                visible: false
-            # nix podunk burgs under z15
-            minor-places:
-                filter: { kind: [locality, hamlet, village], $zoom: { max: 15 } }
-                visible: false
 
-        neighborhood:
-            filter: { name: true, kind: [neighbourhood, suburb, quarter], $zoom: { min: 14 } }
-            draw:
-                text:
-                    priority: 2
-                    visible: *text_visible_admin
-                    font:
-                        size: 12px
-                        weight: 600
-                        fill: [0.40,0.40,0.40]
-                        transform: uppercase
-                        # stroke: { color: *text_stroke, width: 4 }
+            populated-places-natural-earth-z4:
+                filter: { name: true, source: naturalearthdata.com, $zoom: {min: 4, max: 5}, scalerank: [0,1] }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 10px
+                            # stroke: { color: *text_stroke, width: 4 }
+                    icons:
+                        size: [[13, 12px], [15, 18px]]
+                        interactive: true
+                        sprite: *townspot_sprite
+
+            populated-places-natural-earth-z5:
+                filter: { name: true, source: naturalearthdata.com, $zoom: {min: 5, max: 6}, scalerank: [0,1,2,3] }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 10px
+                            # stroke: { color: *text_stroke, width: 4 }
+                    icons:
+                        size: [[13, 12px], [15, 18px]]
+                        interactive: true
+                        sprite: *townspot_sprite
+
+            populated-places-natural-earth-z6-z7:
+                filter: { name: true, source: naturalearthdata.com, $zoom: {min: 6, max: 8} }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 11px
+                            # stroke: { color: *text_stroke, width: 4 }
+                    icons:
+                        size: [[13, 12px], [15, 18px]]
+                        interactive: true
+                        sprite: *townspot_sprite
+
+            populated-places-osm:
+                filter: { name: true, source: openstreetmap, not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }, $zoom: {min: 8} }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 13px
+                            # stroke: { color: *text_stroke, width: 4 }
+                # add townspots from zoom 0 thru zoom 11
+                townspots:
+                    filter: { $zoom: { max: 11 } }
+                    draw:
+                        icons:
+                            size: [[13, 12px], [15, 18px]]
+                            interactive: true
+                            sprite: *townspot_sprite
+                # nix major cities under z15
+                major-places:
+                    filter: { kind: [city], $zoom: { min: 13, max: 15 } }
+                    visible: false
+                    draw:
+                        text:
+                            font:
+                                size: 14px
+                major-places:
+                    filter: { kind: [city], $zoom: { min: 15 } }
+                    visible: false
+                    draw:
+                        text:
+                            visible: false
+                            font:
+                                size: 14px
+                medium-places:
+                    filter: { kind: [town], $zoom: { max: 11 } }
+                    visible: false
+                # nix podunk burgs under z15
+                minor-places:
+                    filter: { kind: [locality, hamlet, village], $zoom: { max: 15 } }
+                    visible: false
+
+            neighborhood:
+                filter: { name: true, kind: [neighbourhood, suburb, quarter], $zoom: { min: 14 } }
+                draw:
+                    text:
+                        priority: 2
+                        visible: *text_visible_admin
+                        font:
+                            size: 12px
+                            weight: 600
+                            fill: [0.40,0.40,0.40]
+                            transform: uppercase
+                            # stroke: { color: *text_stroke, width: 4 }
 
 
     pois_and_landuse_labels:
@@ -2728,10 +2945,9 @@ layers:
                 - { $zoom: { min: 15 }, area: { min: 20000 } }
                 - { $zoom: { min: 15 }, area: { min: 2000 } }
                 - { $zoom: { min: 16 } }
-
         park:
             filter:
-                kind: park
+                kind: [park,'park or protected land']
             draw:
                 dots2:
                     order: 1
@@ -2748,6 +2964,13 @@ layers:
                 kind: cemetery
             draw:
                 dots2:
+                    order: 2
+                    color: *green2
+        garden:
+            filter:
+                kind: garden
+            draw:
+                polygons:
                     order: 2
                     color: *green2
         forest:
@@ -2828,12 +3051,12 @@ layers:
         #         polygons:
         #             order: 2
         #             color: *grey1
-#        power:
-#            filter: { kind: [plant, generator, substation] }
-#            draw:
-#                polygons:
-#                    order: 2
-#                    color: *grey3
+        # power:
+        #     filter: { kind: [plant, generator, substation] }
+        #     draw:
+        #         polygons:
+        #             order: 2
+        #             color: *grey3
         retail:
             filter:
                 kind: retail
@@ -2848,7 +3071,6 @@ layers:
                 dots:
                    order: 2
                    color: [0.855,0.748,0.667]
-
         parking:
             filter:
                 kind: parking
@@ -2915,7 +3137,7 @@ layers:
                 kind: runway
             draw:
                 polygons:
-                    order: 100
+                    order: 10
                     color: white
         apron:
             filter:
@@ -2923,7 +3145,7 @@ layers:
                 $zoom: { min: 15}
             draw:
                 polygons:
-                    order: 2
+                    order: 3
                     color: [0.783,0.783,0.783]
 
     landuse_urban_area:
