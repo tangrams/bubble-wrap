@@ -634,6 +634,96 @@ styles:
                 color: |
                     // color.rgb = mix(BACKGROUND, color.rgb,TileDots(SIZE,0.2));
                     color.rgb = mix(BACKGROUND, color.rgb,TileDotsDF(35.,.21));
+    space-tile:
+        shaders:
+            defines:
+                TILE_SCALE: 0.0002445
+                NORMALIZED_SHORT(x): (x * 32767.)
+            blocks:
+                global: |
+                    // Variant to be add to both vertex and fragments shaders
+                    varying vec3 v_pos;
+                    //
+                    // Get the coordinates in tile space
+                    // ================================
+                    vec2 getTileCoords () {
+                        return fract(v_pos.xy*TILE_SCALE);
+                    }
+
+                position: |
+                    // Normalize the attribute position of a vertex
+                    v_pos = NORMALIZED_SHORT(a_position.xyz);
+    tools-aastep:
+        shaders:
+            extensions: OES_standard_derivatives
+            blocks:
+                global: |
+                    float aastep(float threshold, float value) {
+                        #ifdef TANGRAM_FRAGMENT_SHADER
+                            #ifdef TANGRAM_EXTENSION_OES_standard_derivatives
+                                float afwidth = length(vec2(dFdx(value), dFdy(value))) * 0.70710678118654757;
+                                return smoothstep(threshold-afwidth, threshold+afwidth, value);
+                            #else
+                                return step(threshold, value);
+                            #endif  
+                        #else
+                            return step(threshold, value);
+                        #endif
+                    }
+    shapes-circle:
+        mix: tools-aastep
+        shaders:
+            defines:
+                PI: 3.14159265358979323846
+            blocks:
+                global: |
+                    // get distance field of a Circle
+                    // ================================
+                    float circleDF (vec2 st) {
+                        return dot(st,st);
+                    }
+    tiling-brick:
+        shaders:
+            blocks:
+                global: |
+                    // Repeats a coordinate space (st) in diferent brick-like tiles
+                    // ================================
+                    vec2 brick(vec2 st, float zoom){
+                        st *= zoom;
+                        // Here is where the offset is happening
+                        st.x += step(1., mod(st.y,2.0)) * 0.5;
+                        return fract(st);
+                    }
+    pattern-dots:
+        mix: [space-tile, tiling-brick, shapes-circle]
+        shaders:
+            blocks: 
+                global: |
+                    float TileDots(float scale, float size) {
+                        vec2 IN = brick(getTileCoords()*scale,2.);
+                        float A = circleDF(vec2(0.5)-IN)*1.8;
+                        float d = 0.0;
+                        if (u_map_position.z < 18.) {
+                            vec2 OUT = fract(getTileCoords()*scale*2.);
+                            float B = circleDF(vec2(0.25)-OUT)*7.;
+                            B = min(B, circleDF(vec2(0.75,0.25)-OUT)*7.);
+                            B = min(B, circleDF(vec2(0.5,0.75)-OUT)*7.);
+                            B = min(B, circleDF(vec2(0.,0.75)-OUT)*7.);
+                            B = min(B, circleDF(vec2(1.,0.75)-OUT)*7.);
+                            d = mix(A, B, pow(fract(u_map_position.z),10.));
+                        } else {
+                            d = A;
+                        }
+                        return aastep(size,d);
+                    }
+
+    dots2:
+        mix: pattern-dots
+        base: polygons
+        shaders:
+            blocks:
+                color: |
+                    color.rgb = mix(color.rgb,vec3(0.850,0.850,0.850),TileDots(40.,.18));
 
     dots-rev:
         base: polygons
@@ -2643,7 +2733,7 @@ layers:
             filter:
                 kind: park
             draw:
-                dots:
+                dots2:
                     order: 1
                     color: *green1
         conservation:
@@ -2657,7 +2747,7 @@ layers:
             filter:
                 kind: cemetery
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: *green2
         forest:
@@ -2686,7 +2776,7 @@ layers:
             filter:
                 kind: golf_course
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: *green3
         nature_reserve:
