@@ -1043,9 +1043,10 @@ layers:
                 draw:
                     lines:
                         order: 6
-                        color: [[16, [0.843,0.843,0.843]]]
+                        # color: [[16, [0.843,0.843,0.843]]]
+                        color: [[16, [0.85,0.85,0.85]]]
                         outline:
-                            color: [[13, [0.890,0.890,0.890]], [14, [0.870,0.870,0.870]]]
+                            color: [[13, [0.890,0.890,0.890]], [14, [0.870,0.870,0.870]], [16, [0.840,0.704,0.689]]]
             highway_bridge:
                 filter: {is_bridge: yes}
                 draw:
@@ -1681,10 +1682,10 @@ layers:
                 lines:
                     color: [[15, [0.97,0.97,0.97]], [16,[0.96,0.96,0.96]]]
                     order: 6
-                    width: [[15, 0.6px], [16, 1px], [17, 3m]]
+                    width: [[15, 0.6px], [16, 1px], [17, 2.5m]]
                     outline:
-                        color: *path_casing1
-                        width: [[15, 0.0], [16, 0.0], [17, 0.0], [18, .1]]
+                        color: [0.799,0.799,0.799]
+                        width: [[15, 0.0], [16, 0.5px], [18, 3px]]
             bridge:
                 filter: {is_bridge: yes }
                 draw:
@@ -1693,7 +1694,7 @@ layers:
                         width: [[15, 1.5px], [16, 4m], [17, 2m], [18, 2m]]
                         outline:
                             color: [[15,*path_bridge_casing2],[16,*path_bridge_casing1]]
-                            width: [[15, 0px], [16, 1.0px], [18, 2px]]
+                            width: [[15, 0px], [16, 1.0px], [18, 3px]]
             in_park:
                 filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
                 draw:
@@ -1720,12 +1721,12 @@ layers:
                         lines:
                             outline:
                                 color: orange
-                zoo:
-                    filter: { landuse_kind: zoo }
-                    draw:
-                        lines:
-                            outline:
-                                color: red
+            in_zoo:
+                filter: { landuse_kind: zoo }
+                draw:
+                    lines:
+                        outline:
+                            color: [0.708,0.881,0.831]
             in_university:
                 filter: { landuse_kind: university }
                 draw:
