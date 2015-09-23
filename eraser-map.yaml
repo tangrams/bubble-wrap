@@ -1333,7 +1333,6 @@ layers:
                             color: [1.0,1.0,1.0]
                             outline:
                                 color: [[14, [0.800,0.851,0.847]], [15, [0.678,0.796,0.792]]]
-                                # width: [[12, 0px], [13, 0.5px], [14, 1.0px], [15, 1.0px], [16, 1.5px], [18, 3.0px]]
                     golf_course:
                         filter: { landuse_kind: golf_course }
                         draw:
@@ -1614,7 +1613,7 @@ layers:
                     lines:
                         color: [0.976,0.976,0.976]
                         outline:
-                            color: [[14,*green1_r],[17,*major_tunnel_casing1]]
+                            color: [[14, [0.800,0.851,0.847]], [15, [0.678,0.796,0.792]]]
                             width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
                 golf_course:
                     filter: { landuse_kind: golf_course }
@@ -1640,6 +1639,13 @@ layers:
                         lines:
                             outline:
                                 color: pink
+            in_cemetery:
+                filter: { landuse_kind: cemetery }
+                draw:
+                    lines:
+                        outline:
+                            color: [0.737,0.816,0.753]
+                            width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
             in_university:
                 filter: { landuse_kind: university }
                 draw:
@@ -1696,7 +1702,7 @@ layers:
                             color: [[15,*path_bridge_casing2],[16,*path_bridge_casing1]]
                             width: [[15, 0px], [16, 1.0px], [18, 3px]]
             in_park:
-                filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+                filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden,wood] }
                 draw:
                     lines:
                         color: [[15,white], [16,white], [17, [0.95,0.95,0.95]]]
@@ -1721,12 +1727,20 @@ layers:
                         lines:
                             outline:
                                 color: orange
+            in_cemetery:
+                filter: { landuse_kind: cemetery }
+                draw:
+                    lines:
+                        outline:
+                            color: [0.737,0.816,0.753]
+                            width: [[15, 0px], [16, 0.5px], [18, 3px]]
             in_zoo:
                 filter: { landuse_kind: zoo }
                 draw:
                     lines:
                         outline:
                             color: [0.708,0.881,0.831]
+                            width: [[15, 0px], [16, 0.5px], [18, 3px]]
             in_university:
                 filter: { landuse_kind: university }
                 draw:
@@ -1759,7 +1773,7 @@ layers:
                 dashedline:
                     order: 23
                     color: *earth1
-                    width: [[15, 0.1], [17, 0.1]]
+                    width: [[15, 0.6px], [16, 1px], [17, 2.5m]]
                     outline:
                         color: *path_steps1
                         width: [[15, 1.5], [18, 3m]]
@@ -3067,7 +3081,7 @@ layers:
             draw:
                 dots:
                     order: 2
-                    color: [0.855,0.748,0.667]
+                    color: [0.955,0.752,0.650]
         commercial:
             filter:
                 kind: commercial
