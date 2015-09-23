@@ -784,11 +784,11 @@ styles:
                     // color.rg = f_st;
                     
                     vec2 pct = step(vec2(0.09),f_st);;
-                    color.rgb -= mix(vec3(0.0), vec3(0.35),(1.0-(pct.x * pct.y)));
+                    color.rgb -= mix(vec3(0.0,0.060,0.061), vec3(0.35),(1.0-(pct.x * pct.y)));
                     
                     if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
                         // If it's a roof
-                        color.rgb = vec3(1.0,0.0,0.0);
+                        color.rgb = vec3(.870);
                     }
 
                 position: |
@@ -1322,18 +1322,17 @@ layers:
                                 visible: *text_visible_secondary
                                 text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                                 font:
-       
+
                                     size: 12px
                                     stroke: { color: *text_stroke, width: 4 }
                 in_park:
                     filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
                     draw:
                         lines:
-                            #width: [[11, 0.0px], [12, .5px], [14, 1.5px], [16, 2.0px], [19, 7m]]
-                            color: [[11,*green1_r],[12,*minor_road3],[14,*minor_road3]]
+                            color: [1.0,1.0,1.0]
                             outline:
-                                color: [[14,*green1_r],[15,*major_casing1]]
-                                width: [[12, 0px], [13, 0.5px], [14, 1.0px], [15, 1.0px], [16, 1.5px], [18, 3.0px]]
+                                color: [[14, [0.800,0.851,0.847]], [15, [0.678,0.796,0.792]]]
+                                # width: [[12, 0px], [13, 0.5px], [14, 1.0px], [15, 1.0px], [16, 1.5px], [18, 3.0px]]
                     golf_course:
                         filter: { landuse_kind: golf_course }
                         draw:
@@ -1440,7 +1439,7 @@ layers:
                         draw:
                             lines:
                                 outline:
-                                    color: red
+                                    color: [0.698,0.835,0.765]
                     nature_reserve:
                         filter: { landuse_kind: nature_reserve }
                         draw:
@@ -1518,6 +1517,12 @@ layers:
                         outline:
                             color: [[14, [0.800,0.851,0.847]], [15, [0.678,0.796,0.792]]]
                             width: [[13, 0px], [14, 0.25px], [17, 2.0px], [18, 4.0px]]
+                residential:
+                    filter: { landuse_kind: residential }
+                    draw:
+                        lines:
+                            outline:
+                                color: red
                 golf_course:
                     filter: { landuse_kind: golf_course }
                     draw:
@@ -1545,18 +1550,18 @@ layers:
             in_university:
                 filter: { landuse_kind: university }
                 draw:
-                    flatlines:
-                        color: [[11,*brown1_r],[13,*brown1_r],[14,*minor_road3]]
+                    lines:
+                        color: [[12, [0.9,0.9,0.9]], [13, [0.96,0.96,0.96]], [14, [1.0,1.0,1.0]]]
                         outline:
-                            color: *brown1_r
+                            color: [0.806,0.763,0.717]
                             width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
             in_hospital:
                 filter: { landuse_kind: hospital }
                 draw:
-                    flatlines:
-                        color: [[11,*red1_r],[13,*red1_r],[14,*minor_road3]]
+                    lines:
+                        color: [[12, [0.9,0.9,0.9]], [13, [0.96,0.96,0.96]], [14, [1.0,1.0,1.0]]]
                         outline:
-                            color: *red1_r
+                            color: [0.818,0.702,0.713]
                             width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
 
             tunnel:
@@ -1597,7 +1602,7 @@ layers:
             draw:
                 lines:
                     # order: 3
-                    color: *service_road1
+                    color: [1.0,1.0,1.0]
                     width: [[15, 1.25px], [16, 2.0px], [18, 6m]]
                     outline:
                         color: [0.827,0.827,0.827]
@@ -1606,8 +1611,7 @@ layers:
                 filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
                 draw:
                     lines:
-                        width: [[11, 0.5px], [12, 1.0px], [13, 1.2px], [14, 1.75px], [15, 2.5px], [16, 8m]]
-                        color: [[11,*green1_r],[12,*green1_r],[14,*minor_road3]]
+                        color: [0.976,0.976,0.976]
                         outline:
                             color: [[14,*green1_r],[17,*major_tunnel_casing1]]
                             width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
@@ -1616,7 +1620,7 @@ layers:
                     draw:
                         lines:
                             outline:
-                                color: red
+                                color: [0.698,0.835,0.765]
                 nature_reserve:
                     filter: { landuse_kind: nature_reserve }
                     draw:
@@ -1638,18 +1642,18 @@ layers:
             in_university:
                 filter: { landuse_kind: university }
                 draw:
-                    flatlines:
-                        color: [[11,*brown1_r],[13,*brown1_r],[14,*minor_road3]]
+                    lines:
+                        color: [1.0,1.0,1.0]
                         outline:
-                            color: *brown1_r
+                            color: [0.806,0.763,0.717]
                             width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
             in_hospital:
                 filter: { landuse_kind: hospital }
                 draw:
-                    flatlines:
-                        color: [[11,*red1_r],[13,*red1_r],[14,*minor_road3]]
+                    lines:
+                        color: [1.0,1.0,1.0]
                         outline:
-                            color: *red1_r
+                            color: [0.818,0.702,0.713]
                             width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
             labels-service_road:
                 filter: { $zoom: { min: 17, min: 18 } }
@@ -1697,13 +1701,13 @@ layers:
                         color: [[15,white], [16,white], [17, [0.95,0.95,0.95]]]
                         outline:
                             color: [[16, [0.725,0.847,0.847]], [17, [0.663,0.847,0.843]]]
-                            width: [[15, 0px], [16, 0.5px], [18, 2px]]
+                            width: [[15, 0px], [16, 0.5px], [18, 3px]]
                 golf_course:
                     filter: { landuse_kind: golf_course }
                     draw:
                         lines:
                             outline:
-                                color: red
+                                color: [0.698,0.835,0.765]
                 nature_reserve:
                     filter: { landuse_kind: nature_reserve }
                     draw:
@@ -1721,23 +1725,23 @@ layers:
                     draw:
                         lines:
                             outline:
-                                color: pink
+                                color: red
             in_university:
                 filter: { landuse_kind: university }
                 draw:
-                    flatlines:
-                        color: [[15,*brown1_r],[16,*minor_road3]]
+                    lines:
+                        color: [[15, [0.97,0.97,0.97]], [16,[0.96,0.96,0.96]]]
                         outline:
-                            color: *brown1_r
-                            width: [[15, 0px], [16, 0.5px], [18, 2px]]
+                            color: [0.806,0.763,0.717]
+                            width: [[15, 0px], [16, 0.5px], [18, 3px]]
             in_hospital:
                 filter: { landuse_kind: hospital }
                 draw:
-                    flatlines:
+                    lines:
                         color: [[15,*red1_r],[16,*minor_road3]]
                         outline:
                             color: *red1_r
-                            width: [[15, 0px], [16, 0.5px], [18, 2px]]
+                            width: [[15, 0px], [16, 0.5px], [18, 3px]]
             labels-path:
                 filter: { $zoom: { min: 17 } }
                 draw:
@@ -1842,43 +1846,43 @@ layers:
             filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
             draw:
                 polygons:
-                    color: *green1_r
+                    color: *building2
                 outline:
-                    color: *green1_bo
+                    color: [0.600, 0.600, 0.600]
             golf_course:
                 filter: { landuse_kind: golf_course }
                 draw:
                     lines:
                         outline:
-                            color: red
+                            color: [0.600, 0.600, 0.600]
             nature_reserve:
                 filter: { landuse_kind: nature_reserve }
                 draw:
                     lines:
                         outline:
-                            color: blue
+                            color: [0.600, 0.600, 0.600]
             conservation:
                 filter: { landuse_kind: conservation }
                 draw:
                     lines:
                         outline:
-                            color: orange
+                            color: [0.600, 0.600, 0.600]
             zoo:
                 filter: { landuse_kind: zoo }
                 draw:
                     lines:
                         outline:
-                            color: pink
+                            color: [0.600, 0.600, 0.600]
         in_university:
             filter: { landuse_kind: [university,school] }
             draw:
                 polygons:
-                    color: *brown1_r
+                    color: *building2
         in_hospital:
             filter: { landuse_kind: hospital }
             draw:
                 polygons:
-                    color: *red1_r
+                    color: *building2
 #        in_retail:
 #            filter: { landuse_kind: retail }
 #            draw:
@@ -2969,16 +2973,16 @@ layers:
             filter:
                 kind: garden
             draw:
-                polygons:
+                dots:
                     order: 2
-                    color: *green2
+                    color: [0.604,0.973,0.722]
         forest:
             filter:
                 kind: forest
             draw:
                 dots:
                     order: 1
-                    color: [[9, [0.562,0.750,0.741]], [10, [0.562,0.750,0.741]], [11, [0.392,0.700,0.685]], [12, *green7]]
+                    color: [[9, [0.562,0.750,0.741]], [10, [0.562,0.750,0.741]], [11, [0.392,0.700,0.685]], [12, [0.194,0.748,0.721]]]
         recreation_ground:
             filter:
                 kind: recreation_ground
