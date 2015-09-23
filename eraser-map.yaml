@@ -1389,7 +1389,7 @@ layers:
                             #text_source: ref
                             text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name } }
                             font:
-   
+
                                 size: 18px
             tertiary:
                 filter: { highway: [tertiary, tertiary_link] }
@@ -1431,9 +1431,9 @@ layers:
                     draw:
                         lines:
                             #width: [[11, 0.0px], [12, .5px], [14, 1.5px], [16, 2.0px], [19, 7m]]
-                            color: [[11,*green1_r],[12,*minor_road3],[14,*minor_road3]]
+                            color: [[12, [0.9,0.9,0.9]], [13, [0.9,0.9,0.9]], [14, [0.98,0.98,0.98]]]
                             outline:
-                                color: [[14,*green1_r],[18,[0.827,0.827,0.827]]]
+                                color: [[14, [0.800,0.851,0.847]], [15, [0.678,0.796,0.792]]]
                                 width: [[12, 0px], [13, 0.5px], [14, 1.0px], [15, 1.0px], [16, 1.5px], [18, 3.0px]]
                     golf_course:
                         filter: { landuse_kind: golf_course }
@@ -1509,16 +1509,15 @@ layers:
                         cap: round
                         join: round
                         #order: 15
-                        
+
             in_park:
                 filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
                 draw:
                     lines:
-                        width: [[11, 0.5px], [12, 1.0px], [13, 1.2px], [14, 1.75px], [15, 2.5px], [16, 8m]]
-                        color: [[11,*green1_r],[12,*green1_r],[14,*minor_road3]]
+                        color: [[12, [0.9,0.9,0.9]], [13, [0.96,0.96,0.96]], [14, [1.0,1.0,1.0]]]
                         outline:
-                            color: [[14,*green1_r],[17,*major_tunnel_casing1]]
-                            width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
+                            color: [[14, [0.800,0.851,0.847]], [15, [0.678,0.796,0.792]]]
+                            width: [[13, 0px], [14, 0.25px], [17, 2.0px], [18, 4.0px]]
                 golf_course:
                     filter: { landuse_kind: golf_course }
                     draw:
@@ -1695,9 +1694,9 @@ layers:
                 filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
                 draw:
                     lines:
-                        color: [[15,white],[16,*minor_road3]]
+                        color: [[15,white], [16,white], [17, [0.95,0.95,0.95]]]
                         outline:
-                            color: *green1_r
+                            color: [[16, [0.725,0.847,0.847]], [17, [0.663,0.847,0.843]]]
                             width: [[15, 0px], [16, 0.5px], [18, 2px]]
                 golf_course:
                     filter: { landuse_kind: golf_course }
@@ -2949,7 +2948,7 @@ layers:
             filter:
                 kind: [park,'park or protected land']
             draw:
-                dots2:
+                dots:
                     order: 1
                     color: *green1
         conservation:
@@ -2999,7 +2998,7 @@ layers:
             filter:
                 kind: golf_course
             draw:
-                dots2:
+                dots:
                     order: 2
                     color: *green3
         nature_reserve:
