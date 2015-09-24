@@ -3026,7 +3026,7 @@ layers:
             draw:
                 dots:
                     order: 1
-                    color: [0.620,0.846,0.850]
+                    color: [0.326,0.740,0.678]
         stadium:
             filter:
                 kind: stadium
