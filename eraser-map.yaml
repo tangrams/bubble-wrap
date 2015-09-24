@@ -1,4 +1,4 @@
-﻿Author: Geraldine Sarmiento, Nathaniel V. Kelso, Patricio Gonzalez Vivo
+Author: Geraldine Sarmiento, Nathaniel V. Kelso, Patricio Gonzalez Vivo
 
 labels-global:
     - &text_visible_continent         true
@@ -113,7 +113,7 @@ settings:
 textures:
     pois:
         # EraserMaps the app only supports resources at a root asset dir
-        url: poi_icons_18@2x.png
+        url: images/poi_icons_18@2x.png
         filtering: mipmap
         sprites:
             # define sprites: [x origin, y origin, width, height]
