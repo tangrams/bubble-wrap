@@ -1845,7 +1845,7 @@ layers:
                     cap: butt
                     width: [[10, 1px], [11, 1.5px], [12, 2px], [13, 4px], [14, 8px], [15, 16px], [16, 32px], [17, 60m]]
                     outline:
-                        color: [0.7,0.7,0.7]
+                        color: [0.778,0.778,0.797]
             not-round:
                 filter: { $zoom: { min: 17 } }
                 draw:
@@ -1855,12 +1855,12 @@ layers:
                 filter: { aeroway: taxiway }
                 draw:
                     lines:
-                        color: [[13,[0.8,0.8,0.8]],[15,[0.75,0.75,0.75]]]
+                        color: [0.913,0.913,0.935]
                         width: [[13, 1px], [14, 2px], [15, 4px], [16, 8px], [17, 25m]]
                         outline:
-                            color: [0.85,0.85,0.85]
+                            color: [0.778,0.778,0.797]
                 early:
-                    filter: { $zoom: { max: 14 } }
+                    filter: { $zoom: { max: 13 } }
                     draw:
                         lines:
                             visible: false
@@ -3219,7 +3219,7 @@ layers:
             draw:
                 polygons:
                     order: 3
-                    color: [0.783,0.783,0.783]
+                    color: [0.778,0.778,0.797]
 
     landuse_urban_area:
         data: { source: osm, layer: landuse }
