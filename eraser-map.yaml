@@ -859,7 +859,6 @@ layers:
         #             color: [0.886,0.937,0.988]
         #             cap: round
         #             width: 20px
-
     water:
         data: { source: osm, layer: water }
         draw:
@@ -940,6 +939,57 @@ layers:
                     color: [0.886,0.937,0.988]
                     width: [[13,0.5px],[14,1.0px],[16,1.5px],[18,4m]]
                     join: round
+    railway-early:
+        data: { source: osm, layer: transit }
+        filter: { kind: [railway,subway,light_rail], $zoom: { min: 14 } }
+        draw:
+            lines:
+                interactive: true
+                order: function() { return 6 + feature.sort_key; }
+        rail:
+            filter: { kind: railway }
+            draw:
+                lines: 
+                    color: grey
+                    width: [[14,1px],[16,2px],[18,5m]]
+        subway:
+            filter: { kind: subway }
+            draw:
+                lines: 
+                    color: black
+                    width: [[14,0.5px],[16,1px],[18,3m]]
+        light_rail:
+            filter: { kind: light_rail, $zoom: { min: 15 } }
+            draw:
+                lines: 
+                    color: red
+                    order: 30
+
+    railway-late:
+        data: { source: osm, layer: roads }
+        filter: { kind: rail, not: { railway: light_rail } }
+        draw:
+            lines:
+                interactive: true
+                color: [[14,'#bbb'],[16,'#999']]
+                width: [[15,0.5px],[16,0.75px],[18,1m]]
+        z-order:
+            #filter: { $zoom: {min: 12} }
+            draw:
+                lines:
+                    # let roads sort themselves past zoom 14
+                    order: function() { return 6 + feature.sort_key; }
+                    # but give them all the same outline
+                    outline:
+                        order: 21 # 15 is the starting aboveground level, plus 6
+
+            bridges-tunnels:
+                filter: { any: [is_bridge: yes, is_tunnel: yes] }
+                draw:
+                    lines:
+                        outline:
+                            # except bridges and tunnels, their outlines should also self-sort
+                            order: function() { return 6 + feature.sort_key; }
 
     roads:
         data: { source: osm, layer: roads }
@@ -1046,7 +1096,7 @@ layers:
                         # color: [[16, [0.843,0.843,0.843]]]
                         color: [[16, [0.85,0.85,0.85]]]
                         outline:
-                            color: [[13, [0.890,0.890,0.890]], [14, [0.870,0.870,0.870]], [16, [0.840,0.704,0.689]]]
+                            color: [[13, [0.890,0.890,0.890]], [14, [0.870,0.870,0.870]], [16, [0.824,0.753,0.741]]]
             highway_bridge:
                 filter: {is_bridge: yes}
                 draw:
@@ -2535,6 +2585,11 @@ layers:
             draw:
                 icons:
                     visible: false
+        station:
+            filter: { kind: station, $zoom: { max: 14 } }
+            draw:
+                icons:
+                    visible: false
         bus-stop-labels:
             filter:
                 kind: [bus_stop, bus_station]
@@ -3061,7 +3116,7 @@ layers:
             draw:
                 dots-rev:
                     order: 2
-                    color: [0.247,0.800,0.698]
+                    color: [0.306,0.804,0.713]
         # pedestrian:
         #     filter:
         #         kind: pedestrian
