@@ -1344,7 +1344,7 @@ layers:
                         draw:
                             lines:
                                 outline:
-                                    color: blue
+                                    color: [0.635,0.819,0.742]
                     conservation:
                         filter: { landuse_kind: conservation }
                         draw:
@@ -1445,7 +1445,7 @@ layers:
                         draw:
                             lines:
                                 outline:
-                                    color: blue
+                                    color: [0.635,0.819,0.742]
                     conservation:
                         filter: { landuse_kind: conservation }
                         draw:
@@ -1534,7 +1534,7 @@ layers:
                     draw:
                         lines:
                             outline:
-                                color: blue
+                                color: [0.635,0.819,0.742]
                 conservation:
                     filter: { landuse_kind: conservation }
                     draw:
@@ -1626,7 +1626,7 @@ layers:
                     draw:
                         lines:
                             outline:
-                                color: blue
+                                color: [0.635,0.819,0.742]
                 conservation:
                     filter: { landuse_kind: conservation }
                     draw:
@@ -1720,7 +1720,7 @@ layers:
                     draw:
                         lines:
                             outline:
-                                color: blue
+                                color: [0.635,0.819,0.742]
                 conservation:
                     filter: { landuse_kind: conservation }
                     draw:
@@ -3026,7 +3026,7 @@ layers:
             draw:
                 dots:
                     order: 1
-                    color: [0.326,0.740,0.678]
+                    color: [0.027,0.804,0.494]
         stadium:
             filter:
                 kind: stadium
