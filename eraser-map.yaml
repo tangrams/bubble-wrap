@@ -384,12 +384,6 @@ cameras:
     isometric:
         type: isometric
 
-    # perspective:
-    #     type: perspective
-    #     focal_length: [[16, 2], [17, 2.5], [18, 3], [19, 4], [20, 6]] # pairs of [zoom, focal len]
-    #     vanishing_point: [0, -500] # relative to center of screen, in pixels
-    #     active: true
-
 styles:
     dashedline:
         base: lines
@@ -838,27 +832,6 @@ layers:
                 order: 0
                 color: [0.870,0.870,0.870]
 
-        # border_early:
-        #     filter: { $zoom: {min: 4, max: 17} }
-        #     draw:
-        #         line2:
-        #             style: lines
-        #             order: 4
-        #             width: [[0,0px],[10,2px],[13,4px]]
-        #             color: [0.886,0.937,0.988]
-        #         lines:
-        #             order: 10
-        #             width: 1px
-        #             color: [0.396,0.833,0.920]
-
-        # border_late:
-        #     filter: { $zoom: {min: 17} }
-        #     draw:
-        #         border:
-        #             order: 10
-        #             color: [0.886,0.937,0.988]
-        #             cap: round
-        #             width: 20px
     water:
         data: { source: osm, layer: water }
         draw:
@@ -1074,7 +1047,7 @@ layers:
                         cap: butt
                         outline:
                             color: [[10, *highway_casing1], [16, [0.988,0.495,0.439]], [17, [0.988,0.495,0.439]]]
-                            width: [[10, 1px], [14, 1px], [14, 0px], [15, 0.85px], [17, 1.125px], [18, 1.5px]]
+                            width: [[14, 0px], [15, 0.85px], [17, 1.125px], [18, 1.5px]]
                 early_link:
                     filter: { $zoom: {min: 13, max: 15} }
                     draw:
