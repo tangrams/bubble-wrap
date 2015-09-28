@@ -894,12 +894,12 @@ layers:
                 grid:
                     color: *water1
         playas-early:
-            filter: { kind: playa, $zoom: {max:6} }
+            filter: { kind: playa, $zoom: {max: 6} }
             draw:
                 ground:
                     visible: false
         playas:
-            filter: { kind: playa, $zoom: {min:6} }
+            filter: { kind: playa, $zoom: {min: 6} }
             draw:
                 polygons:
                     color: [0.870,0.870,0.870]
