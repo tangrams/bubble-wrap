@@ -1594,7 +1594,7 @@ layers:
                         order: 6
                         color: [0.870,0.870,0.870]
                         outline:
-                            color: *minor_tunnel_casing1
+                            color: [0.790,0.790,0.790]
             minor_road_bridge:
                 filter: {is_bridge: yes}
                 draw:
