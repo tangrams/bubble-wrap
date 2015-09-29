@@ -722,7 +722,7 @@ styles:
         shaders:
             blocks:
                 color: |
-                    color.rgb = mix(color.rgb,vec3(0.850,0.850,0.850),TileDots(40.,.18));
+                    color.rgb = mix(color.rgb,vec3(0.850,0.850,0.850),TileDots(35., 0.1));
 
     dots-rev:
         base: polygons
@@ -3039,14 +3039,14 @@ layers:
             filter:
                 kind: [park,'park or protected land']
             draw:
-                dots:
+                dots2:
                     order: 1
                     color: *green1
         conservation:
             filter:
                 kind: conservation
             draw:
-                dots:
+                dots2:
                     order: 1
                     color: *green8
         cemetery:
@@ -3060,21 +3060,21 @@ layers:
             filter:
                 kind: garden
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: [0.604,0.973,0.722]
         forest:
             filter:
                 kind: forest
             draw:
-                dots:
+                dots2:
                     order: 1
                     color: [[9, [0.562,0.750,0.741]], [10, [0.562,0.750,0.741]], [11, [0.392,0.700,0.685]], [12, [0.194,0.748,0.721]]]
         recreation_ground:
             filter:
                 kind: recreation_ground
             draw:
-                dots:
+                dots2:
                     order: 1
                     color: *green1
         farm:
@@ -3082,49 +3082,49 @@ layers:
                 kind: [farm, farmland]
                 $zoom: { min: 10}
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: [0.600,0.790,0.714]
         golf_course:
             filter:
                 kind: golf_course
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: *green3
         nature_reserve:
             filter:
                 kind: nature_reserve
             draw:
-                dots:
+                dots2:
                     order: 1
                     color: [0.027,0.804,0.494]
         stadium:
             filter:
                 kind: stadium
             draw:
-                dots:
+                dots2:
                     order: 1
                     color: *orange1
         university:
             filter:
                 kind: university
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: *brown1
         school:
             filter:
                 kind: school
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: [0.730,0.697,0.664]
         hospital:
             filter:
                 kind: hospital
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: *red1
         playground:
@@ -3151,14 +3151,14 @@ layers:
             filter:
                 kind: retail
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: [0.955,0.752,0.650]
         commercial:
             filter:
                 kind: commercial
             draw:
-                dots:
+                dots2:
                    order: 2
                    color: [0.855,0.748,0.667]
         parking:
@@ -3194,7 +3194,7 @@ layers:
             filter:
                 kind: zoo
             draw:
-                dots:
+                dots2:
                     order: 2
                     color: [0.498,1.000,0.851]
         airport:
@@ -3208,7 +3208,7 @@ layers:
             filter:
                 kind: military
             draw:
-                dots:
+                dots2:
                     order: 1
                     color: [0.624,0.709,0.800]   
 #        man-made:
@@ -3244,7 +3244,7 @@ layers:
             # This is from Natural Earth and only shows up from zoom(0,9)
             kind: ['urban area']
         draw:
-            dots:
+            dots2:
                 order: 1
                 color: [[4, [1.000,0.510,0.894]], [6, [1.000,0.510,0.894]], [7, [0.882,0.639,0.827]], [8, [0.757,0.729,0.753]]]
 
