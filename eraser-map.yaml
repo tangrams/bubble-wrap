@@ -772,17 +772,27 @@ styles:
         shaders:
             blocks:
                 color: |
-                    vec2 st = v_texcoord.xy;
-                    vec2 f_st = fract(st*10.);
-                    vec2 i_st = floor(st*10.);
+                    //vec2 st = v_texcoord.xy;
+                    //vec2 f_st = fract(st*10.);
+                    //vec2 i_st = floor(st*10.);
                     // color.rg = f_st;
                     
-                    vec2 pct = step(vec2(0.09),f_st);;
-                    color.rgb -= mix(vec3(0.0,0.060,0.061), vec3(0.35),(1.0-(pct.x * pct.y)));
+                    //vec2 pct = step(vec2(0.09),f_st);;
+                    //color.rgb -= mix(vec3(0.0,0.060,0.061), vec3(0.35),(1.0-(pct.x * pct.y)));
                     
                     if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
                         // If it's a roof
                         color.rgb = vec3(.870);
+                    } else {
+                        // is a wall
+                        //color.rgb = vec3(1.0,0.0,0.0);
+                        vec2 st = v_texcoord.xy;
+                        vec2 f_st = fract(st*10.);
+                        vec2 i_st = floor(st*10.);
+                        // color.rg = f_st;
+                    
+                        vec2 pct = step(vec2(0.09),f_st);;
+                        color.rgb = mix(vec3(0.658,0.617,0.576), vec3(0.35),(1.0-(pct.x * pct.y)));
                     }
 
                 position: |
