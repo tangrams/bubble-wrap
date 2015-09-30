@@ -800,6 +800,40 @@ styles:
                     float exp = (zoom - midpoint)/(speed * .2);
                     position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
 
+    buildings_grid-parks:
+        base: polygons
+        texcoords: true
+        shaders:
+            blocks:
+                color: |
+                    
+                    if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
+                        // If it's a roof
+                        color.rgb = vec3(0.847,0.886,0.882);
+                    } else {
+                        // is a wall
+                        //color.rgb = vec3(1.0,0.0,0.0);
+                        vec2 st = v_texcoord.xy;
+                        vec2 f_st = fract(st*10.);
+                        vec2 i_st = floor(st*10.);
+                        // color.rg = f_st;
+                    
+                        vec2 pct = step(vec2(0.09),f_st);;
+                        color.rgb = mix(vec3(0.627,0.722,0.718), vec3(0.35),(1.0-(pct.x * pct.y)));
+                    }
+
+                position: |
+                    // scale buildings based on zoom
+                    float e = 2.71828; // natural log
+                    float zoom = u_map_position.z;
+
+                    float min = .1;         // minimum building scale
+                    float midpoint = 16.; // middle of zoom range
+                    float speed = 2.;  // number of zoom levels to transition over
+
+                    float exp = (zoom - midpoint)/(speed * .2);
+                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
+
     buildings_grid-hospital:
         base: polygons
         texcoords: true
@@ -820,6 +854,40 @@ styles:
                     
                         vec2 pct = step(vec2(0.09),f_st);;
                         color.rgb = mix(vec3(0.692,0.575,0.586), vec3(0.35),(1.0-(pct.x * pct.y)));
+                    }
+
+                position: |
+                    // scale buildings based on zoom
+                    float e = 2.71828; // natural log
+                    float zoom = u_map_position.z;
+
+                    float min = .1;         // minimum building scale
+                    float midpoint = 16.; // middle of zoom range
+                    float speed = 2.;  // number of zoom levels to transition over
+
+                    float exp = (zoom - midpoint)/(speed * .2);
+                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
+
+    buildings_grid-retail:
+        base: polygons
+        texcoords: true
+        shaders:
+            blocks:
+                color: |
+                    
+                    if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
+                        // If it's a roof
+                        color.rgb = vec3(0.945,0.898,0.878);
+                    } else {
+                        // is a wall
+                        //color.rgb = vec3(1.0,0.0,0.0);
+                        vec2 st = v_texcoord.xy;
+                        vec2 f_st = fract(st*10.);
+                        vec2 i_st = floor(st*10.);
+                        // color.rg = f_st;
+                    
+                        vec2 pct = step(vec2(0.09),f_st);;
+                        color.rgb = mix(vec3(0.725,0.694,0.678), vec3(0.35),(1.0-(pct.x * pct.y)));
                     }
 
                 position: |
@@ -2012,7 +2080,7 @@ layers:
             filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
             draw:
                 polygons:
-                    style: buildings_grid-univ
+                    style: buildings_grid-parks
         in_university:
             filter: { landuse_kind: [university,school] }
             draw:
@@ -2025,11 +2093,11 @@ layers:
             draw:
                 polygons:
                     style: buildings_grid-hospital
-        # in_retail:
-        #     filter: { landuse_kind: retail }
-        #     draw:
-        #         polygons:
-        #             color: orange
+        in_retail:
+            filter: { landuse_kind: retail }
+            draw:
+                polygons:
+                    style: buildings_grid-retail
 
 
     # buildings-early:
