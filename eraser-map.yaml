@@ -775,7 +775,7 @@ styles:
                     
                     if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
                         // If it's a roof
-                        color.rgb = vec3(.870);
+                        color.rgb = vec3(0.922,0.894,0.862);
                     } else {
                         // is a wall
                         //color.rgb = vec3(1.0,0.0,0.0);
@@ -809,7 +809,7 @@ styles:
                     
                     if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
                         // If it's a roof
-                        color.rgb = vec3(.870);
+                        color.rgb = vec3(0.941,0.894,0.898);
                     } else {
                         // is a wall
                         //color.rgb = vec3(1.0,0.0,0.0);
@@ -2002,17 +2002,17 @@ layers:
                     extrude: true
                     tile_edges: true
 
-        high-line:
-            filter: { roof_material: grass }
-            draw:
-                polygons:
-                    color: red
-
-        # in_park:
-        #     filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+        # high-line:
+        #     filter: { roof_material: grass }
         #     draw:
         #         polygons:
-        #             color: green
+        #             color: red
+
+        in_park:
+            filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+            draw:
+                polygons:
+                    style: buildings_grid-univ
         in_university:
             filter: { landuse_kind: [university,school] }
             draw:
@@ -2024,7 +2024,6 @@ layers:
             filter: { landuse_kind: hospital }
             draw:
                 polygons:
-                    order: 52
                     style: buildings_grid-hospital
         # in_retail:
         #     filter: { landuse_kind: retail }
@@ -2277,7 +2276,7 @@ layers:
                     - population: true
                     - kind: [country]
                 any:
-                    - { $zoom: { min: 5 }, population: { min: 5000000 } }
+                    - { population: { min: 5000000 } }
 
 
             draw:
