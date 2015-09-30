@@ -2381,7 +2381,6 @@ layers:
             pesky:
                 filter: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"], $zoom: {min: 6, max: 8} }
                 draw:
-                    visible: false
                     text:
                         visible: false
             small-ones:
