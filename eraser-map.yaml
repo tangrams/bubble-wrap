@@ -1858,7 +1858,13 @@ layers:
                 order: 51
                 color: [0.600, 0.600, 0.600]
                 width: [[14,0.6px], [15,0.65px], [16,1px], [18,1.25px]]
-                
+
+        # turn interactive feature selection on for buildings with names
+        interactive:
+            filter: { name: true }
+            draw: { polygons: { interactive: true } }
+
+        # building footprints, pre-extrusion
         footprints:
             filter:
                 $zoom: { max: 18 }
