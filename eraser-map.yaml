@@ -1852,7 +1852,7 @@ layers:
                 visible: false
                 order: 50
                 color: *building2
-            outline:
+            lines:
                 visible: false
                 style: lines
                 order: 51
@@ -1861,20 +1861,64 @@ layers:
                 
         footprints:
             filter:
-                $zoom: { max: 17 }
+                $zoom: { max: 18 }
                 any:
                     # show footprints for buildings one zoom level before they will be extruded
                     - { $zoom: { min: 14 }, height: { min: 190 } }
                     - { $zoom: { min: 14 }, area: { min: 5000 } }
                     - { $zoom: { min: 15 }, height: { min: 100 } }
                     - { $zoom: { min: 15 }, area: { min: 3500 } }
-                    - { $zoom: { min: 16 } }
+                    - { $zoom: { min: 16 }, area: { min: 500 } }
+                    - { $zoom: { min: 17 } }
             draw:
                 polygons:
                     visible: true
-                outline:
+                lines:
                     visible: true
 
+            # landuse-specific rules
+            in_park:
+                filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+                draw:
+                    polygons:
+                        color: *building2
+                    lines:
+                        color: [0.600, 0.600, 0.600]
+                golf_course:
+                    filter: { landuse_kind: golf_course }
+                    draw:
+                        lines:
+                            color: [0.600, 0.600, 0.600]
+                nature_reserve:
+                    filter: { landuse_kind: nature_reserve }
+                    draw:
+                        lines:
+                            color: [0.600, 0.600, 0.600]
+                conservation:
+                    filter: { landuse_kind: conservation }
+                    draw:
+                        lines:
+                            color: [0.600, 0.600, 0.600]
+                zoo:
+                    filter: { landuse_kind: zoo }
+                    draw:
+                        lines:
+                            color: [0.600, 0.600, 0.600]
+            in_university:
+                filter: { landuse_kind: [university,school] }
+                draw:
+                    polygons:
+                        color: *building2
+            in_hospital:
+                filter: { landuse_kind: hospital }
+                draw:
+                    polygons:
+                        color: *building2
+    #        in_retail:
+    #            filter: { landuse_kind: retail }
+    #            draw:
+    #                polygons:
+    #                    color: orange
         extrude:
             filter:
                 any:
@@ -1883,17 +1927,43 @@ layers:
                     - { $zoom: { min: 15 }, area: { min: 5000 } }
                     - { $zoom: { min: 16 }, height: { min: 100 } }
                     - { $zoom: { min: 16 }, area: { min: 3500 } }
-                    - { $zoom: { min: 17 } }
+                    - { $zoom: { min: 17 }, area: { min: 500 } }
+                    - { $zoom: { min: 18 } }
             draw:
                 polygons:
                     visible: true
                     style: buildings_grid
                     extrude: true
                     color: [.65, .65, .65]
-                outline:
+                lines:
                     visible: true
                     style: buildings_lines
                     extrude: true
+
+            # landuse-specific rules
+            in_park:
+                filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+                draw:
+                    polygons:
+                        style: buildings_grid-parks
+            in_university:
+                filter: { landuse_kind: [university,school] }
+                draw:
+                    polygons:
+                        order: 52
+                        style: buildings_grid-univ
+                        # color: red
+            in_hospital:
+                filter: { landuse_kind: hospital }
+                draw:
+                    polygons:
+                        style: buildings_grid-hospital
+            in_retail:
+                filter: { landuse_kind: retail }
+                draw:
+                    polygons:
+                        style: buildings_grid-retail
+
 
     # buildings-early:
     #     data: { source: osm, layer: buildings }
