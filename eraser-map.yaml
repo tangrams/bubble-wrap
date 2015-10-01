@@ -735,191 +735,73 @@ styles:
                 color: |
                     color.rgb = mix(color.rgb, BACKGROUND,TileDotsDF(35.,.21));
 
+    building_scale:
+        shaders:
+            blocks:
+                position: |
+                    // scale buildings based on zoom
+                    float zoom = u_map_position.z;
+                    float min = .1;         // minimum building scale
+                    float midpoint = 16.; // middle of zoom range
+                    float speed = 2.;  // number of zoom levels to transition over
+
+                    float e = (zoom - midpoint)/(speed * .2);
+                    position.z *= ((1.-min) / (1.+(exp(e)))) + min;
+
     buildings_grid:
         base: polygons
+        mix: building_scale
         texcoords: true
         shaders:
+            defines:
+                ROOF_COLOR: vec3(.870, .870, .870)
+                WALL_COLOR: vec3(0.658, 0.617, 0.576)
             blocks:
                 color: |
-                    vec2 st = v_texcoord.xy;
-                    vec2 f_st = fract(st*10.);
-                    vec2 i_st = floor(st*10.);
-                    // color.rg = f_st;
-                    
-                    vec2 pct = step(vec2(0.09),f_st);;
-                    color.rgb -= mix(vec3(0.0), vec3(0.35),(1.0-(pct.x * pct.y)));
-                    
-                    if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
+                   if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
                         // If it's a roof
-                        color.rgb = vec3(.870);
+                        color.rgb = ROOF_COLOR;
+                    } else {
+                        // If it's a wall
+                        vec2 st = v_texcoord.xy;
+                        vec2 f_st = fract(st*10.);
+                    
+                        vec2 pct = step(vec2(0.09),f_st);;
+                        color.rgb = mix(WALL_COLOR, vec3(0.35),(1.0-(pct.x * pct.y)));
                     }
-
-                position: |
-                    // scale buildings based on zoom
-                    float e = 2.71828; // natural log
-                    float zoom = u_map_position.z;
-
-                    float min = .1;         // minimum building scale
-                    float midpoint = 16.; // middle of zoom range
-                    float speed = 2.;  // number of zoom levels to transition over
-
-                    float exp = (zoom - midpoint)/(speed * .2);
-                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
 
     buildings_grid-univ:
-        base: polygons
-        texcoords: true
+        mix: buildings_grid
         shaders:
-            blocks:
-                color: |
-                    
-                    if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
-                        // If it's a roof
-                        color.rgb = vec3(0.922,0.894,0.862);
-                    } else {
-                        // is a wall
-                        //color.rgb = vec3(1.0,0.0,0.0);
-                        vec2 st = v_texcoord.xy;
-                        vec2 f_st = fract(st*10.);
-                        vec2 i_st = floor(st*10.);
-                        // color.rg = f_st;
-                    
-                        vec2 pct = step(vec2(0.09),f_st);;
-                        color.rgb = mix(vec3(0.658,0.617,0.576), vec3(0.35),(1.0-(pct.x * pct.y)));
-                    }
-
-                position: |
-                    // scale buildings based on zoom
-                    float e = 2.71828; // natural log
-                    float zoom = u_map_position.z;
-
-                    float min = .1;         // minimum building scale
-                    float midpoint = 16.; // middle of zoom range
-                    float speed = 2.;  // number of zoom levels to transition over
-
-                    float exp = (zoom - midpoint)/(speed * .2);
-                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
-
+            defines:
+                ROOF_COLOR: vec3(0.922,0.894,0.862)
+                WALL_COLOR: vec3(0.658,0.617,0.576)
+ 
     buildings_grid-parks:
-        base: polygons
-        texcoords: true
+        mix: buildings_grid
         shaders:
-            blocks:
-                color: |
-                    
-                    if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
-                        // If it's a roof
-                        color.rgb = vec3(0.847,0.886,0.882);
-                    } else {
-                        // is a wall
-                        //color.rgb = vec3(1.0,0.0,0.0);
-                        vec2 st = v_texcoord.xy;
-                        vec2 f_st = fract(st*10.);
-                        vec2 i_st = floor(st*10.);
-                        // color.rg = f_st;
-                    
-                        vec2 pct = step(vec2(0.09),f_st);;
-                        color.rgb = mix(vec3(0.627,0.722,0.718), vec3(0.35),(1.0-(pct.x * pct.y)));
-                    }
-
-                position: |
-                    // scale buildings based on zoom
-                    float e = 2.71828; // natural log
-                    float zoom = u_map_position.z;
-
-                    float min = .1;         // minimum building scale
-                    float midpoint = 16.; // middle of zoom range
-                    float speed = 2.;  // number of zoom levels to transition over
-
-                    float exp = (zoom - midpoint)/(speed * .2);
-                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
+            defines:
+                ROOF_COLOR: vec3(0.847,0.886,0.882)
+                WALL_COLOR: vec3(0.627,0.722,0.718)
 
     buildings_grid-hospital:
-        base: polygons
-        texcoords: true
+        mix: buildings_grid
         shaders:
-            blocks:
-                color: |
-                    
-                    if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
-                        // If it's a roof
-                        color.rgb = vec3(0.941,0.894,0.898);
-                    } else {
-                        // is a wall
-                        //color.rgb = vec3(1.0,0.0,0.0);
-                        vec2 st = v_texcoord.xy;
-                        vec2 f_st = fract(st*10.);
-                        vec2 i_st = floor(st*10.);
-                        // color.rg = f_st;
-                    
-                        vec2 pct = step(vec2(0.09),f_st);;
-                        color.rgb = mix(vec3(0.692,0.575,0.586), vec3(0.35),(1.0-(pct.x * pct.y)));
-                    }
-
-                position: |
-                    // scale buildings based on zoom
-                    float e = 2.71828; // natural log
-                    float zoom = u_map_position.z;
-
-                    float min = .1;         // minimum building scale
-                    float midpoint = 16.; // middle of zoom range
-                    float speed = 2.;  // number of zoom levels to transition over
-
-                    float exp = (zoom - midpoint)/(speed * .2);
-                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
+            defines:
+                ROOF_COLOR: vec3(0.941,0.894,0.898)
+                WALL_COLOR: vec3(0.692,0.575,0.586)
 
     buildings_grid-retail:
-        base: polygons
-        texcoords: true
+        mix: buildings_grid
         shaders:
-            blocks:
-                color: |
-                    
-                    if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
-                        // If it's a roof
-                        color.rgb = vec3(0.945,0.898,0.878);
-                    } else {
-                        // is a wall
-                        //color.rgb = vec3(1.0,0.0,0.0);
-                        vec2 st = v_texcoord.xy;
-                        vec2 f_st = fract(st*10.);
-                        vec2 i_st = floor(st*10.);
-                        // color.rg = f_st;
-                    
-                        vec2 pct = step(vec2(0.09),f_st);;
-                        color.rgb = mix(vec3(0.725,0.694,0.678), vec3(0.35),(1.0-(pct.x * pct.y)));
-                    }
-
-                position: |
-                    // scale buildings based on zoom
-                    float e = 2.71828; // natural log
-                    float zoom = u_map_position.z;
-
-                    float min = .1;         // minimum building scale
-                    float midpoint = 16.; // middle of zoom range
-                    float speed = 2.;  // number of zoom levels to transition over
-
-                    float exp = (zoom - midpoint)/(speed * .2);
-                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
-
+            defines:
+                ROOF_COLOR: vec3(0.945,0.898,0.878)
+                WALL_COLOR: vec3(0.725,0.694,0.678)
 
     buildings_lines:
         base: lines
+        mix: building_scale
         texcoords: true
-        shaders:
-            blocks:
-                position: |
-                    // scale buildings based on zoom
-                    float e = 2.71828; // natural log
-                    float zoom = u_map_position.z;
-
-                    float min = .1;         // minimum building scale
-                    float midpoint = 16.; // middle of zoom range
-                    float speed = 2.;  // number of zoom levels to transition over
-
-                    float exp = (zoom - midpoint)/(speed * .2);
-                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
-
 
     icons:
         base: points
