@@ -478,12 +478,12 @@ styles:
                 global: |
                     // GridTile
                     //=============================
-                    varying vec3 v_pos;
+                    varying vec2 v_pos;
 
                     #ifdef TANGRAM_FRAGMENT_SHADER
 
                     vec2 TileCoords() {
-                        return fract(v_pos.xy*0.0002445);
+                        return v_pos;
                     }
 
                     bool grid(vec2 st, float res, float press) {
@@ -603,7 +603,7 @@ styles:
                     #endif
                 position: |
                     // GridTile
-                    v_pos = a_position.xyz * 32767.;
+                    v_pos = modelPosition().xy;
 
     grid:
         base: polygons
@@ -673,25 +673,22 @@ styles:
                     color.rgb = mix(BACKGROUND, color.rgb,TileDotsDF(35.,.21));
     space-tile:
         shaders:
-            defines:
-                TILE_SCALE: 0.0002445
-                NORMALIZED_SHORT(x): (x * 32767.)
             blocks:
                 global: |
                     // Variant to be add to both vertex and fragments shaders
-                    varying vec3 v_pos;
+                    varying vec2 v_pos;
                     //
                     // Get the coordinates in tile space
                     // ================================
                     #ifdef TANGRAM_FRAGMENT_SHADER
                         vec2 getTileCoords () {
-                            return fract(v_pos.xy*TILE_SCALE);
+                            return v_pos;
                         }
                     #endif
 
                 position: |
-                    // Normalize the attribute position of a vertex
-                    v_pos = NORMALIZED_SHORT(a_position.xyz);
+                    // Send tile position to fragment shader
+                    v_pos = modelPosition().xy;
     tools-aastep:
         shaders:
             extensions: OES_standard_derivatives
@@ -2216,7 +2213,7 @@ layers:
                         transform: uppercase
 
         country-z2:
-            filter: 
+            filter:
                 all:
                     - kind: [country]
                     - $zoom: [2]
