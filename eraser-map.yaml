@@ -931,6 +931,30 @@ scene:
         color: *scene1
 
 layers:
+    # Map overlays for styling the server response (using special source layer names) for route line, find_me location gem, and search result pins
+    route:
+        data: { source: route }
+        draw:
+            lines:
+                color: 'purple'
+                order: 50
+                width: 5
+    find_me:
+        data: { source: find_me }
+        draw:
+            icons:
+                priority: 1
+                sprite: capital-xl
+                size: 18px
+    search:
+        data: { source: search }
+        draw:
+            icons:
+                priority: 2
+                sprite: ice-cream-shop
+                size: 18px
+
+    # Basemap styling
     earth:
         data: { source: osm, layer: earth }
         draw:
