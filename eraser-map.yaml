@@ -3039,6 +3039,9 @@ layers:
             church:
                 filter: { kind: place_of_worship, religion: christian }
                 draw: { icons: { sprite: church }}
+            synagogue:
+                filter: { kind: place_of_worship, religion: jewish }
+                draw: { icons: { sprite: synagogue }}
             sporting-goods-shop:
                 filter: { kind: [sporting_goods, sporting-goods-shop, sports, outdoor] }
                 draw:   { icons: { sprite: sporting-goods-shop } }
