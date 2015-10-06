@@ -2009,7 +2009,6 @@ layers:
                 color: [0.600, 0.600, 0.600]
                 width: [[14,0.6px], [15,0.65px], [16,1px],[18,1.25px]]
                 extrude: false
-                tile_edges: true
         in_park:
             filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
             draw:
@@ -2092,7 +2091,6 @@ layers:
                     color: [0.600, 0.600, 0.600]
                     width: [[14,0.1px],[16,1px],[18,1.25px]]
                     extrude: true
-                    tile_edges: true
 
         # high-line:
         #     filter: { roof_material: grass }
@@ -2148,8 +2146,7 @@ layers:
     #             color: [0.600, 0.600, 0.600]
     #             width: [[14,0.1px],[16,1px],[18,1.25px]]
     #             extrude: false
-    #             tile_edges: true
-
+    
     # buildings-early-labels:
     #     data: { source: osm, layer: buildings }
     #     filter: 
@@ -2190,7 +2187,6 @@ layers:
     #             color: [0.600, 0.600, 0.600]
     #             width: [[14,0.1px],[16,1px],[18,1.25px]]
     #             extrude: true
-    #             tile_edges: true
     #     extruded:
     #         filter: { $zoom: { min: 17 } }
     #         properties:
