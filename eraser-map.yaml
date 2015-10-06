@@ -21,7 +21,7 @@ labels-global:
 
 settings:
     cameras:
-        - &camera_settings            { type: isometric, axis: [0, .1], vanishing_point: [0, -500] }
+        - &camera_settings            { type: isometric, axis: [0, 1] }
 
     lights:
         - &light_settings             { type: directional, direction: [1, 1, -.9], diffuse: 0.5, ambient: 0.85 }
