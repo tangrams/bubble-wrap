@@ -6,24 +6,24 @@ labels-global:
     - &text_visible_populated_places  true
     - &label_visible_landuse_green    true
     - &icon_visible_landuse_green     true
-    - &text_visible_landuse_green     true
+    - &text_visible_landuse_green     false
     - &label_visible_poi_landuse      true
     - &icon_visible_poi_landuse       true
     - &text_visible_poi_landuse       true
     - &text_visible_water_labels      true
-    - &text_visible_highway           true
+    - &text_visible_highway           false
     - &text_visible_highway_e         false
-    - &text_visible_trunk_primary     true
+    - &text_visible_trunk_primary     false
     - &text_visible_trunk_primary_e   false
-    - &text_visible_secondary         true
+    - &text_visible_secondary         false
     - &text_visible_secondary_e       false
-    - &text_visible_tertiary          true
+    - &text_visible_tertiary          false
     - &text_visible_tertiary_e        false
-    - &text_visible_minor_road        true
-    - &text_visible_minor_road_e      true
-    - &text_visible_service_road      true
-    - &text_visible_path              true
-    - &text_visible_steps             true
+    - &text_visible_minor_road        false
+    - &text_visible_minor_road_e      false
+    - &text_visible_service_road      false
+    - &text_visible_path              false
+    - &text_visible_steps             false
 
 settings:
     cameras:
@@ -136,7 +136,7 @@ settings:
         - &text_fill   black
         - &text_fill2        '#555'             # WHITE
         - &text_fill_water   '#4c89b5'          # blue
-        - &text_fill_park    '#43a254'          # green
+        - &text_fill_park    [0.0,0.0,0.0]      # black
         - &text_stroke [0.870,0.870,0.870]      # land color
         - &townspot_sprite   townspot-m-rev     # depends on land color and text settings
 
@@ -2150,7 +2150,8 @@ layers:
         filter: 
             all:
                 - { $zoom: { min: 16 } }
-                - label_placement: yes
+                # buildings dont' extrude with label_placement line below
+                # - label_placement: yes
                 - not: { location: underground }
             any:
                 # limit show smaller landuse areas to higher zooms
@@ -2849,7 +2850,7 @@ layers:
                             fill: *text_fill_park
                             size: 12px
                             style: italic
-                            stroke: { color: '#d3f8dc', width: 4 }
+                            # stroke: { color: '#d3f8dc', width: 4 }
                 wilderness-areas-early:
                    filter: function() { return $zoom < 10 && feature.name && (feature.name.includes("Wilderness") || feature.name.includes("BLM")) }
                    draw:
