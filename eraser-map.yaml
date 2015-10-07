@@ -377,7 +377,7 @@ sources:
     osm:
         # EraserMaps the app only supports MVT format tiles
         type: MVT
-        #url: '//tileserver-dev-us-east-ext-538678355.us-east-1.elb.amazonaws.com/osm/all/{z}/{x}/{y}.mvt'
+        #url:   //vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.mvt
         #url:  //localhost:8080//osm/all/{z}/{x}/{y}.mvt
         url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-HqUVidw
 
