@@ -408,9 +408,9 @@ sources:
     osm:
         # EraserMaps the app only supports MVT format tiles
         type: MVT
-        # url:   //vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.mvt
+        url:   //vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.mvt
         #url:  //localhost:8080//osm/all/{z}/{x}/{y}.mvt
-        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-HqUVidw
+        # url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-HqUVidw
 
 cameras:
     isometric:
