@@ -438,7 +438,7 @@ styles:
 
                     float chevron(vec2 st){
                         st = mirrorTile(st,vec2(1.,6.));
-                        float x = st.x*2.; 
+                        float x = st.x*2.;
                         float a = floor(1.+sin(x*3.14));
                         float b = floor(1.+sin((x+1.)*3.14));
                         float f = fract(x);
@@ -456,7 +456,7 @@ styles:
                 color: |
                     vec2 st = v_texcoord;
                     vec4 foreground = vec4(1.,1.,1.,1.);
-                    
+
                     color = mix(v_color,foreground, chevron(st) - xMargin(st,.25) );
                     color = mix(v_color,foreground, stripes(st) );
                     //color = mix(v_color,foreground, clamp(stripes(st)-xMargin(st,.9),0.,1.) ) ;
@@ -472,10 +472,10 @@ styles:
                     // GridTile
                     //=============================
                     varying vec3 v_pos;
-                    
+
                     #ifdef TANGRAM_FRAGMENT_SHADER
-                    
-                    vec2 TileCoords() { 
+
+                    vec2 TileCoords() {
                         return fract(v_pos.xy*0.0002445);
                     }
 
@@ -503,7 +503,7 @@ styles:
                         return smoothstep(threshold-afwidth, threshold+afwidth, value);
                       #else
                         return step(threshold, value);
-                      #endif  
+                      #endif
                     }
 
                     vec2 tile(vec2 _st, float _zoom){
@@ -597,17 +597,17 @@ styles:
                 position: |
                     // GridTile
                     v_pos = a_position.xyz * 32767.;
-                    
+
     grid:
         base: polygons
         mix: tools
         shaders:
             blocks:
                 filter: |
-                    vec2 st = (TileCoords()+vec2(.4))*1000.; 
+                    vec2 st = (TileCoords()+vec2(.4))*1000.;
                     color.rgb = mix(vec3(0.899,0.95,1.0), vec3(0.899,0.95,1.0), gl_FragCoord.x / u_resolution.x);
                     color.rgb -= grain(gl_FragCoord.xy)*0.1;
-                    
+
                     color.rgb = mix(color.rgb, vec3(0.639,0.886,0.906), TileGrid());
                     //float g = grain(st);
                     //color.rgb = mix(color.rgb, vec3(0.475,0.853,0.853),pow(g,3.5));
@@ -617,7 +617,7 @@ styles:
         texcoords: true
         shaders:
             extensions: OES_standard_derivatives
-            blocks: 
+            blocks:
                 global: |
                     float pulse(float x,float p, float w){
                         x = abs(x - p);
@@ -634,7 +634,7 @@ styles:
                         return smoothstep(threshold-afwidth, threshold+afwidth, value);
                       #else
                         return step(threshold, value);
-                      #endif  
+                      #endif
                     }
                     #endif
                 width: |
@@ -660,7 +660,7 @@ styles:
             defines:
                 BACKGROUND: vec3(0.850,0.850,0.850)
                 SIZE: 2.
-            blocks: 
+            blocks:
                 color: |
                     // color.rgb = mix(BACKGROUND, color.rgb,TileDots(SIZE,0.2));
                     color.rgb = mix(BACKGROUND, color.rgb,TileDotsDF(35.,.21));
@@ -695,7 +695,7 @@ styles:
                                 return smoothstep(threshold-afwidth, threshold+afwidth, value);
                             #else
                                 return step(threshold, value);
-                            #endif  
+                            #endif
                         #else
                             return step(threshold, value);
                         #endif
@@ -727,7 +727,7 @@ styles:
     pattern-dots:
         mix: [space-tile, tiling-brick, shapes-circle]
         shaders:
-            blocks: 
+            blocks:
                 global: |
                     float TileDots(float scale, float size) {
                         vec2 IN = brick(getTileCoords()*scale,2.);
@@ -762,195 +762,107 @@ styles:
             defines:
                 BACKGROUND: vec3(0.850,0.850,0.850)
                 SIZE: 2.
-            blocks: 
+            blocks:
                 color: |
                     color.rgb = mix(color.rgb, BACKGROUND,TileDotsDF(35.,.21));
 
-    buildings_grid:
-        base: polygons
-        texcoords: true
+    # HSV/RGB functions
+    hsv:
         shaders:
             blocks:
-                color: |
-                    vec2 st = v_texcoord.xy;
-                    vec2 f_st = fract(st*10.);
-                    vec2 i_st = floor(st*10.);
-                    // color.rg = f_st;
-                    
-                    vec2 pct = step(vec2(0.09),f_st);;
-                    color.rgb -= mix(vec3(0.0), vec3(0.35),(1.0-(pct.x * pct.y)));
-                    
-                    if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
-                        // If it's a roof
-                        color.rgb = vec3(.870);
+                global: |
+                    vec3 rgb2hsv(vec3 c)
+                    {
+                        vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+                        vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
+                        vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+
+                        float d = q.x - min(q.w, q.y);
+                        float e = 1.0e-10;
+                        return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
                     }
 
+                    vec3 hsv2rgb(vec3 c)
+                    {
+                        vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+                        vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+                        return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+                    }
+
+    scale-buildings:
+        shaders:
+            blocks:
                 position: |
                     // scale buildings based on zoom
-                    float e = 2.71828; // natural log
                     float zoom = u_map_position.z;
-
                     float min = .1;         // minimum building scale
                     float midpoint = 16.; // middle of zoom range
                     float speed = 2.;  // number of zoom levels to transition over
 
-                    float exp = (zoom - midpoint)/(speed * .2);
-                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
+                    float e = (zoom - midpoint)/(speed * .2);
+                    position.z *= ((1.-min) / (1.+(exp(e)))) + min;
 
-    buildings_grid-univ:
+    building-grid:
         base: polygons
+        mix: [hsv, scale-buildings]
         texcoords: true
         shaders:
+            defines:
+                # ROOF_COLOR: vec3(.870, .870, .870)
+                # WALL_COLOR: vec3(0.658, 0.617, 0.576)
+                WALL_FACTOR: vec3(1., 3., .8) # modifies roof color HSV
+                GRID_COLOR: vec3(0.25)
             blocks:
                 color: |
-                    
-                    if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
-                        // If it's a roof
-                        color.rgb = vec3(0.922,0.894,0.862);
-                    } else {
-                        // is a wall
-                        //color.rgb = vec3(1.0,0.0,0.0);
+                   if (dot(vec3(0.,0.,1.) ,normal) < 1.0) {
+                        // If it's a wall
                         vec2 st = v_texcoord.xy;
                         vec2 f_st = fract(st*10.);
-                        vec2 i_st = floor(st*10.);
-                        // color.rg = f_st;
-                    
-                        vec2 pct = step(vec2(0.09),f_st);;
-                        color.rgb = mix(vec3(0.658,0.617,0.576), vec3(0.35),(1.0-(pct.x * pct.y)));
+                        vec2 pct = step(vec2(0.09),f_st);
+
+                        vec3 wall = hsv2rgb(
+                            rgb2hsv(color.rgb) *
+                            WALL_FACTOR //*
+                            //vec3(1., color.a, color.a)
+                        );
+                        // vec3 wall = hsv2rgb(rgb2hsv(ROOF_COLOR) * WALL_FACTOR);
+                        color.rgb = mix(wall, GRID_COLOR, (1.0-(pct.x * pct.y)));
+                        //color.a = 1.;
+                        // color.rgb = mix(ROOF_COLOR * WALL_FACTOR, GRID_COLOR,(1.0-(pct.x * pct.y)));
                     }
 
-                position: |
-                    // scale buildings based on zoom
-                    float e = 2.71828; // natural log
-                    float zoom = u_map_position.z;
+    # building-grid-univ:
+    #     mix: building-grid
+    #     shaders:
+    #         defines:
+    #             ROOF_COLOR: vec3(0.922,0.894,0.862)
+    #             WALL_COLOR: vec3(0.658,0.617,0.576)
 
-                    float min = .1;         // minimum building scale
-                    float midpoint = 16.; // middle of zoom range
-                    float speed = 2.;  // number of zoom levels to transition over
+    # building-grid-parks:
+    #     mix: building-grid
+    #     shaders:
+    #         defines:
+    #             ROOF_COLOR: vec3(0.847,0.886,0.882)
+    #             WALL_COLOR: vec3(0.627,0.722,0.718)
 
-                    float exp = (zoom - midpoint)/(speed * .2);
-                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
+    # building-grid-hospital:
+    #     mix: building-grid
+    #     shaders:
+    #         defines:
+    #             ROOF_COLOR: vec3(0.941,0.894,0.898)
+    #             WALL_COLOR: vec3(0.692,0.575,0.586)
 
-    buildings_grid-parks:
-        base: polygons
-        texcoords: true
-        shaders:
-            blocks:
-                color: |
-                    
-                    if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
-                        // If it's a roof
-                        color.rgb = vec3(0.847,0.886,0.882);
-                    } else {
-                        // is a wall
-                        //color.rgb = vec3(1.0,0.0,0.0);
-                        vec2 st = v_texcoord.xy;
-                        vec2 f_st = fract(st*10.);
-                        vec2 i_st = floor(st*10.);
-                        // color.rg = f_st;
-                    
-                        vec2 pct = step(vec2(0.09),f_st);;
-                        color.rgb = mix(vec3(0.627,0.722,0.718), vec3(0.35),(1.0-(pct.x * pct.y)));
-                    }
+    # building-grid-retail:
+    #     mix: building-grid
+    #     shaders:
+    #         defines:
+    #             ROOF_COLOR: vec3(0.945,0.898,0.878)
+    #             WALL_COLOR: vec3(0.725,0.694,0.678)
 
-                position: |
-                    // scale buildings based on zoom
-                    float e = 2.71828; // natural log
-                    float zoom = u_map_position.z;
-
-                    float min = .1;         // minimum building scale
-                    float midpoint = 16.; // middle of zoom range
-                    float speed = 2.;  // number of zoom levels to transition over
-
-                    float exp = (zoom - midpoint)/(speed * .2);
-                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
-
-    buildings_grid-hospital:
-        base: polygons
-        texcoords: true
-        shaders:
-            blocks:
-                color: |
-                    
-                    if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
-                        // If it's a roof
-                        color.rgb = vec3(0.941,0.894,0.898);
-                    } else {
-                        // is a wall
-                        //color.rgb = vec3(1.0,0.0,0.0);
-                        vec2 st = v_texcoord.xy;
-                        vec2 f_st = fract(st*10.);
-                        vec2 i_st = floor(st*10.);
-                        // color.rg = f_st;
-                    
-                        vec2 pct = step(vec2(0.09),f_st);;
-                        color.rgb = mix(vec3(0.692,0.575,0.586), vec3(0.35),(1.0-(pct.x * pct.y)));
-                    }
-
-                position: |
-                    // scale buildings based on zoom
-                    float e = 2.71828; // natural log
-                    float zoom = u_map_position.z;
-
-                    float min = .1;         // minimum building scale
-                    float midpoint = 16.; // middle of zoom range
-                    float speed = 2.;  // number of zoom levels to transition over
-
-                    float exp = (zoom - midpoint)/(speed * .2);
-                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
-
-    buildings_grid-retail:
-        base: polygons
-        texcoords: true
-        shaders:
-            blocks:
-                color: |
-                    
-                    if ( dot(vec3(0.,0.,1.),normal) == 1.0 ) {
-                        // If it's a roof
-                        color.rgb = vec3(0.945,0.898,0.878);
-                    } else {
-                        // is a wall
-                        //color.rgb = vec3(1.0,0.0,0.0);
-                        vec2 st = v_texcoord.xy;
-                        vec2 f_st = fract(st*10.);
-                        vec2 i_st = floor(st*10.);
-                        // color.rg = f_st;
-                    
-                        vec2 pct = step(vec2(0.09),f_st);;
-                        color.rgb = mix(vec3(0.725,0.694,0.678), vec3(0.35),(1.0-(pct.x * pct.y)));
-                    }
-
-                position: |
-                    // scale buildings based on zoom
-                    float e = 2.71828; // natural log
-                    float zoom = u_map_position.z;
-
-                    float min = .1;         // minimum building scale
-                    float midpoint = 16.; // middle of zoom range
-                    float speed = 2.;  // number of zoom levels to transition over
-
-                    float exp = (zoom - midpoint)/(speed * .2);
-                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
-
-
-    buildings_lines:
+    building-lines:
         base: lines
+        mix: scale-buildings
         texcoords: true
-        shaders:
-            blocks:
-                position: |
-                    // scale buildings based on zoom
-                    float e = 2.71828; // natural log
-                    float zoom = u_map_position.z;
-
-                    float min = .1;         // minimum building scale
-                    float midpoint = 16.; // middle of zoom range
-                    float speed = 2.;  // number of zoom levels to transition over
-
-                    float exp = (zoom - midpoint)/(speed * .2);
-                    position.z *= ((1.-min) / (1.+(pow(e, exp)))) + min;
-
 
     icons:
         base: points
@@ -1000,7 +912,7 @@ layers:
                 order: 4
                 color: *water1
         lakes:
-            filter: 
+            filter:
                 all:
                     - kind: [ocean, lake, water, reservoir, playa]
                 any:
@@ -1083,19 +995,19 @@ layers:
         rail:
             filter: { kind: railway }
             draw:
-                lines: 
+                lines:
                     color: grey
                     width: [[14,1px],[16,2px],[18,5m]]
         subway:
             filter: { kind: subway }
             draw:
-                lines: 
+                lines:
                     color: black
                     width: [[14,0.5px],[16,1px],[18,3m]]
         light_rail:
             filter: { kind: light_rail, $zoom: { min: 15 } }
             draw:
-                lines: 
+                lines:
                     color: red
                     order: 30
 
@@ -1251,7 +1163,7 @@ layers:
                             size: 10px
                             # stroke: { color: [0.976,0.541,0.490], width: 1 }
             labels-highway-z10:
-                filter: 
+                filter:
                     $zoom: 10
                 draw:
                     text:
@@ -1384,7 +1296,7 @@ layers:
                                 outline:
                                     order: 23 # 15 is the starting aboveground level, plus 8
 #                labels-trunk_primary-early2:
-#                    filter: 
+#                    filter:
 #                        all:
 #                            - $zoom: { min: 9, max: 10 }
 #                            - function() { if( feature.ref.startsWith('I') ||  feature.ref.startsWith('US') ) { return true } else { return false } }
@@ -2073,147 +1985,115 @@ layers:
                             # except bridges and tunnels, their outlines should also self-sort
                             order: function() { return 6 + feature.sort_key; }
 
-    buildings-early:
-        data: { source: osm, layer: buildings }
-        filter: 
-            any:
-                # limit show smaller landuse areas to higher zooms
-                - { $zoom: { min: 12 }, area: { min: 200000 }, name: true }
-                - { $zoom: { min: 13 }, area: { min: 100000 }, name: true }
-                - { $zoom: { min: 14 }, area: { min: 500 }, name: true }
-                - { $zoom: { min: 15 }, area: { min: 500 } }
-                - { $zoom: { min: 16 }, area: { min: 100 } }
-                - { $zoom: { min: 17 }, area: { max: 500 } }
-            all:
-                - not: { location: underground }
-                - { $zoom: { max: 18 } }
-        draw:
-            #filter: { not: { location: underground } }
-            polygons:
-                order: 7
-                color: *building2
-            outline:
-                style: lines
-                order: 8
-                color: [0.600, 0.600, 0.600]
-                width: [[14,0.6px], [15,0.65px], [16,1px],[18,1.25px]]
-                extrude: false
-        in_park:
-            filter: { landuse_kind: [park,nature_reserve,conservation,golf_course,garden] }
-            draw:
-                polygons:
-                    color: *building2
-                outline:
-                    color: [0.600, 0.600, 0.600]
-            golf_course:
-                filter: { landuse_kind: golf_course }
-                draw:
-                    lines:
-                        outline:
-                            color: [0.600, 0.600, 0.600]
-            nature_reserve:
-                filter: { landuse_kind: nature_reserve }
-                draw:
-                    lines:
-                        outline:
-                            color: [0.600, 0.600, 0.600]
-            conservation:
-                filter: { landuse_kind: conservation }
-                draw:
-                    lines:
-                        outline:
-                            color: [0.600, 0.600, 0.600]
-            zoo:
-                filter: { landuse_kind: zoo }
-                draw:
-                    lines:
-                        outline:
-                            color: [0.600, 0.600, 0.600]
-        in_university:
-            filter: { landuse_kind: [university,school] }
-            draw:
-                polygons:
-                    color: *building2
-        in_hospital:
-            filter: { landuse_kind: hospital }
-            draw:
-                polygons:
-                    color: *building2
-#        in_retail:
-#            filter: { landuse_kind: retail }
-#            draw:
-#                polygons:
-#                    color: orange
     buildings:
-        data: { source: osm, layer: buildings }
-        filter: 
-            all:
-                - { $zoom: { min: 16 } }
-                - not: { location: underground }
-            any:
-                # limit show smaller landuse areas to higher zooms
-                - { $zoom: { min: 15 }, height: { min: 190 } }
-                - { $zoom: { min: 16 }, height: { min: 100 } }
-                - { $zoom: { min: 15 }, area: { min: 5000 } }
-                - { $zoom: { min: 16 }, area: { min: 3500 } }
-                - { $zoom: { min: 17 }, area: { min: 500 } }
-                - { $zoom: { min: 18 } }
+        data: { source: osm }
 
+        filter:
+            not: { location: underground }
+
+        # set default footprint and extrusion draw properties, but don't draw by default (rules below will turn visibility on)
         draw:
             polygons:
+                visible: false
                 order: 50
-                color: [.65, .65, .65]
+                color: *building2
+            lines:
+                visible: false
+                style: lines
+                order: 51
+                color: [0.6, 0.6, 0.6]
+                width: [[14, 0.6px], [15, 0.65px], [16, 1px], [18, 1.25px]]
 
         # turn interactive feature selection on for buildings with names
         interactive:
             filter: { name: true }
             draw: { polygons: { interactive: true } }
 
-        # extrude 3d buildings
-        extruded:
-            filter: { $zoom: { min: 15 } }
+        # building footprints, pre-extrusion
+        footprints:
+            filter:
+                $zoom: { max: 18 }
+                any:
+                    # show footprints for buildings at least one zoom level before they will be extruded
+                    - { $zoom: { min: 17 } }
+                    - { $zoom: { min: 14 }, height: { min: 190 } }
+                    - { $zoom: { min: 14 }, area: { min: 5000 } }
+                    - { $zoom: { min: 15 }, height: { min: 100 } }
+                    - { $zoom: { min: 15 }, area: { min: 500 } }
+                    - { $zoom: { min: 16 }, area: { min: 100 } }
             draw:
                 polygons:
-                    style: buildings_grid
+                    visible: true
+                lines:
+                    visible: true
+
+        # 3d buildings
+        extrude:
+            filter:
+                any:
+                    - { $zoom: { min: 18 } }
+                    - { $zoom: { min: 15 }, height: { min: 190 } }
+                    - { $zoom: { min: 15 }, area: { min: 5000 } }
+                    - { $zoom: { min: 16 }, height: { min: 100 } }
+                    - { $zoom: { min: 16 }, area: { min: 3500 } }
+                    - { $zoom: { min: 17 }, area: { min: 500 } }
+            draw:
+                polygons:
+                    visible: true
+                    style: building-grid
                     extrude: true
-                outline:
-                    style: buildings_lines
-                    order: 51
-                    color: [0.600, 0.600, 0.600]
-                    width: [[14,0.1px],[16,1px],[18,1.25px]]
+                    color: [.870, .870, .870]
+                lines:
+                    visible: true
+                    style: building-lines
                     extrude: true
 
-        # high-line:
-        #     filter: { roof_material: grass }
-        #     draw:
-        #         polygons:
-        #             color: red
-
+        # landuse-specific rules
         in_park:
             filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
             draw:
                 polygons:
-                    style: buildings_grid-parks
+                    color: [0.847,0.886,0.882]
+
+            # golf_course:
+            #     filter: { landuse_kind: golf_course }
+            #     draw:
+            #         polygons:
+            #             color: *building2
+            # nature_reserve:
+            #     filter: { landuse_kind: nature_reserve }
+            #     draw:
+            #         polygons:
+            #             color: *building2
+            # conservation:
+            #     filter: { landuse_kind: conservation }
+            #     draw:
+            #         polygons:
+            #             color: *building2
+            # zoo:
+            #     filter: { landuse_kind: zoo }
+            #     draw:
+            #         polygons:
+            #             color: *building2
         in_university:
             filter: { landuse_kind: [university,school] }
             draw:
                 polygons:
-                    order: 52
-                    style: buildings_grid-univ
-                    # color: red
+                    color: [0.922, 0.894, 0.862]
         in_hospital:
             filter: { landuse_kind: hospital }
             draw:
                 polygons:
-                    style: buildings_grid-hospital
+                    color: [0.941, 0.894, 0.898]
         in_retail:
-            filter: { landuse_kind: retail }
-            draw:
+           filter: { landuse_kind: retail }
+           draw:
                 polygons:
-                    style: buildings_grid-retail
+                    color: [0.945, 0.898, 0.878]
+
     buildings-labels:
         data: { source: osm, layer: buildings }
-        filter: 
+        filter:
             all:
                 - label_placement: yes
                 - { $zoom: { min: 16 } }
@@ -2242,6 +2122,7 @@ layers:
             filter: function() { if( $zoom == 17 && feature.name.length > 24 ) { return true; } else { return false; } }
             text:
                 visible: false
+
     boundaries:
         data: { source: osm, layer: boundaries }
         # country subdivisions (states, provinces)
@@ -2251,7 +2132,7 @@ layers:
 #                color: red
 #                width: [[9, 1px], [14, 2px], [16, 3px], [17, 8m]]
         country:
-            filter: 
+            filter:
                 any:
                     - type: country
                     - kind: nation
@@ -2269,7 +2150,7 @@ layers:
                         order: 9
                         color: blue
         region:
-            filter: 
+            filter:
                 any:
                     - type: state
                     # territorial here is probably a hack
@@ -2648,13 +2529,13 @@ layers:
                             fill: [0.315,0.315,0.315]
                             transform: uppercase
 
-                            
+
 
 
     pois_and_landuse_labels:
         data: { source: osm, layer: [pois, landuse_labels] }
         visible: *label_visible_poi_landuse
-        filter: 
+        filter:
             not: { kind: [farm, peak, tree, gate] }
             any:
                 - area: false
@@ -2677,7 +2558,7 @@ layers:
             sports-pitch:
                 filter: { kind: [grass, pitch], label_placement: yes, area: true, $zoom: { min: 17 } }
                 draw:
-                    icons: 
+                    icons:
                         sprite: function() { return feature.sport }
                         visible: true
                 baseball:
@@ -2767,11 +2648,11 @@ layers:
                    filter: function() { return $zoom < 10 && feature.name && (feature.name.includes("Wilderness") || feature.name.includes("BLM")) }
                    draw:
                        text: { visible: false }
-                       icons: { visible: false }                
+                       icons: { visible: false }
                 park:
                     filter: function() { return feature.name && feature.name.includes("Park") && !feature.name.includes("National Park")}
                     draw:
-                        icons: 
+                        icons:
                             sprite: park
                     early:
                         filter: { $zoom: { max: 8 } }
@@ -2781,7 +2662,7 @@ layers:
                 national-park:
                     filter: function() { return feature.name && feature.name.includes("National Park") }
                     draw:
-                        icons: 
+                        icons:
                             sprite: park
                         text:
                             font:
@@ -2797,7 +2678,7 @@ layers:
                         text: { visible: false }
                         icons: { visible: false }
             airport:
-                filter: 
+                filter:
                     all:
                         - kind: [airport, aerodrome]
                         - area: true
@@ -2809,7 +2690,7 @@ layers:
                         - { $zoom: { min: 11 }, area: { min: 5000000 } }
                         - { $zoom: { min: 12 }, area: { min: 5000000 } }
                         - { $zoom: { min: 13 }, area: { min: 1000000 } }
-                        - { $zoom: { min: 14 }, area: { min: 100000 } }                    
+                        - { $zoom: { min: 14 }, area: { min: 100000 } }
                         # show labels for smaller landuse areas at higher zooms
                         - { $zoom: { min: 15 }, area: { min: 10000 } }
                         - { $zoom: { min: 15 }, area: { min: 5000 } }
@@ -2831,7 +2712,7 @@ layers:
                     filter: { $zoom: { max: 12 } }
                     draw: { text: { visible: false } }
             university:
-                filter: 
+                filter:
                     all:
                         - kind: university
                         - area: true
@@ -2843,7 +2724,7 @@ layers:
                         - { $zoom: { min: 11 }, area: { min: 5000000 } }
                         - { $zoom: { min: 12 }, area: { min: 1000000 } }
                         - { $zoom: { min: 13 }, area: { min: 500000 } }
-                        - { $zoom: { min: 14 }, area: { min: 100000 } }                    
+                        - { $zoom: { min: 14 }, area: { min: 100000 } }
                         # show labels for smaller landuse areas at higher zooms
                         - { $zoom: { min: 15 }, area: { min: 10000 } }
                         - { $zoom: { min: 15 }, area: { min: 5000 } }
@@ -2880,7 +2761,7 @@ layers:
                         - { $zoom: { min: 11 }, area: { min: 25000000 } }
                         - { $zoom: { min: 12 }, area: { min: 5000000 } }
                         - { $zoom: { min: 13 }, area: { min: 1000000 } }
-                        - { $zoom: { min: 14 }, area: { min: 100000 } }                    
+                        - { $zoom: { min: 14 }, area: { min: 100000 } }
                         # show labels for smaller landuse areas at higher zooms
                         - { $zoom: { min: 15 }, area: { min: 10000 } }
                         - { $zoom: { min: 15 }, area: { min: 5000 } }
@@ -3351,7 +3232,7 @@ layers:
     water-area-labels:
         data: { source: osm, layer: [water] }
         visible: *text_visible_water_labels
-        filter: 
+        filter:
             all:
                 - name: true
                 - label_placement: yes
@@ -3385,7 +3266,7 @@ layers:
 
     landuse:
         data: { source: osm }
-        filter: 
+        filter:
             any:
                 # limit show smaller landuse areas to higher zooms
                 - { $zoom: { min: 9 },  area: { min: 10000000 } }
@@ -3599,7 +3480,7 @@ layers:
                 kind: military
             draw:
                 dots2:
-                    color: [0.624,0.709,0.800]   
+                    color: [0.624,0.709,0.800]
 #        man-made:
 #            filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline] }
 #            draw: { polygons: { color: *grey3 } }
@@ -3608,8 +3489,8 @@ layers:
 #                draw: { polygons: { color: *earth1 } }
 
         z-order:
-            draw: 
-                polygons: 
+            draw:
+                polygons:
                     order: function() { feature.sort_key; }
 
     landuse-not-filtered:
