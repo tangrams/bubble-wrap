@@ -408,9 +408,9 @@ sources:
     osm:
         # EraserMaps the app only supports MVT format tiles
         type: MVT
-        # url:   //vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.mvt
+        url:   //vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.mvt
         #url:  //localhost:8080//osm/all/{z}/{x}/{y}.mvt
-        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-HqUVidw
+        # url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-HqUVidw
 
 cameras:
     isometric:
@@ -1101,11 +1101,11 @@ layers:
                     outline:
                         color: [[9, *highway_casing1], [13, *highway_casing1], [15,[0.988,0.495,0.439]], [17, [0.988,0.495,0.439]]]
                         width: [[9, 0.5px], [12, 1px], [15, 2px], [16, 2.25px], [17, 3px], [18, 3px]]
-            round:
-                filter: { $zoom: { min: 17 } }
-                draw:
-                    lines:
-                        cap: round
+            # round:
+            #     filter: { $zoom: { min: 17 } }
+            #     draw:
+            #         lines:
+            #             cap: round
             not_link:
                 filter: { not: { is_link: yes }, $zoom: {max: 15} }
                 draw:
@@ -1652,12 +1652,13 @@ layers:
                         lines:
                             outline:
                                 color: pink
-            residential:
-                filter: { landuse_kind: residential }
-                draw:
-                    lines:
-                        outline:
-                            color: red
+
+            # residential:
+            #     filter: { landuse_kind: residential }
+            #     draw:
+            #         lines:
+            #             outline:
+            #                 color: red
             in_university:
                 filter: { landuse_kind: university }
                 draw:
