@@ -1,4 +1,4 @@
-Author: Geraldine Sarmiento, Nathaniel V. Kelso, Patricio Gonzalez Vivo
+Author: Geraldine Sarmiento, Nathaniel V. Kelso, Patricio Gonzalez Vivo, Brett Camper, Peter Richardson
 
 labels-global:
     - &text_visible_continent         true
@@ -3177,6 +3177,9 @@ layers:
                 buddhist:
                     filter: { kind: place_of_worship, religion: buddhist }
                     draw:   { icons: { sprite: buddhism } }
+                mosque:
+                    filter: { kind: place_of_worship, religion: muslim }
+                    draw:   { icons: { sprite: mosque } }
                 sporting-goods-shop:
                     filter: { kind: [sporting_goods, sporting-goods-shop, sports, outdoor] }
                     draw:   { icons: { sprite: sporting-goods-shop } }
