@@ -403,6 +403,9 @@ textures:
             winery: [792, 216, 36, 38]
             wings-joint: [756, 216, 36, 38]
             zoo: [612, 144, 36, 38]
+    grid:
+        url: images/building-grid.gif
+        filtering: mipmap
 
 sources:
     osm:
@@ -806,29 +809,28 @@ styles:
         base: polygons
         mix: [hsv, scale-buildings]
         texcoords: true
+        material:
+            diffuse:
+                texture: grid
+                mapping: uv
         shaders:
             defines:
                 # ROOF_COLOR: vec3(.870, .870, .870)
                 # WALL_COLOR: vec3(0.658, 0.617, 0.576)
                 WALL_FACTOR: vec3(1., 3., .8) # modifies roof color HSV
-                GRID_COLOR: vec3(0.25)
+                # GRID_COLOR: vec3(0.25)
             blocks:
-                color: |
-                   if (dot(vec3(0.,0.,1.) ,normal) < 1.0) {
+                filter: |
+                    if (dot(vec3(0.,0.,1.) ,normal) < 1.0) {
                         // If it's a wall
-                        vec2 st = v_texcoord.xy;
-                        vec2 f_st = fract(st*10.);
-                        vec2 pct = step(vec2(0.09),f_st);
-
                         vec3 wall = hsv2rgb(
-                            rgb2hsv(color.rgb) *
-                            WALL_FACTOR //*
-                            //vec3(1., color.a, color.a)
+                            rgb2hsv(v_color.rgb) *
+                            WALL_FACTOR
                         );
-                        // vec3 wall = hsv2rgb(rgb2hsv(ROOF_COLOR) * WALL_FACTOR);
-                        color.rgb = mix(wall, GRID_COLOR, (1.0-(pct.x * pct.y)));
-                        //color.a = 1.;
-                        // color.rgb = mix(ROOF_COLOR * WALL_FACTOR, GRID_COLOR,(1.0-(pct.x * pct.y)));
+                        color.rgb = mix(color.rgb, wall, 1. - color.a);
+                    } else {
+                        // it's a roof, use vertex color without texture
+                        color = v_color;
                     }
 
     # building-grid-univ:
