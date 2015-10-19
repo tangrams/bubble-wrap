@@ -403,7 +403,7 @@ textures:
             winery: [792, 216, 36, 38]
             wings-joint: [756, 216, 36, 38]
             zoo: [612, 144, 36, 38]
-    grid:
+    building-grid:
         url: images/building-grid.gif
         filtering: mipmap
 
