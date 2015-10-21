@@ -811,7 +811,7 @@ styles:
         texcoords: true
         material:
             diffuse:
-                texture: grid
+                texture: building-grid
                 mapping: uv
         shaders:
             defines:
