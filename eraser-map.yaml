@@ -2576,7 +2576,7 @@ layers:
                     filter: { sport: football }
                     draw: { icons: { sprite: football-stadium } }
                 hockey:
-                    filter: { sport: basketball }
+                    filter: { sport: hockey-field }
                     draw: { icons: { sprite: hockey-field } }
                 soccer:
                     filter: { sport: soccer }
