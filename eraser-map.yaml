@@ -461,7 +461,14 @@ styles:
                     color = mix(v_color,foreground, stripes(st) );
                     //color = mix(v_color,foreground, clamp(stripes(st)-xMargin(st,.9),0.,1.) ) ;
 
-
+    tools-world-space-normal:
+        base: polygons
+        shaders:
+            blocks:
+                global: |
+                    varying vec3 v_worldSpaceNormal;
+                position: |
+                    v_worldSpaceNormal = a_normal;
 
     tools:
         base: polygons
@@ -808,7 +815,7 @@ styles:
 
     building-grid:
         base: polygons
-        mix: [hsv, scale-buildings]
+        mix: [hsv, scale-buildings, tools-world-space-normal]
         texcoords: true
         shaders:
             defines:
@@ -818,7 +825,7 @@ styles:
                 GRID_COLOR: vec3(0.25)
             blocks:
                 color: |
-                   if (dot(vec3(0.,0.,1.) ,normal) < 1.0) {
+                   if (dot(vec3(0.,0.,1.), v_worldSpaceNormal) < 1.0) {
                         // If it's a wall
                         vec2 st = v_texcoord.xy;
                         vec2 f_st = fract(st*10.);
