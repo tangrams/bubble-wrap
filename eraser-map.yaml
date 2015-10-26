@@ -649,7 +649,7 @@ styles:
                     width *= 1.0-v_texcoord.x;
                 color: |
                     vec2 st = v_texcoord.xy;
-                    float pattern = aastep(.5,pulse(st.x,.8,.25)+pulse(st.x,.5,.12)+pulse(st.x,.1,.1));
+                    float pattern = aastep(.5,pulse(st.x,.8,.15)+pulse(st.x,.5,.12)+pulse(st.x,.1,.1));
                     color.rgb = mix(color.rgb,vec3(0.396,0.833,0.920),pattern);
 
     ground:
@@ -981,20 +981,25 @@ layers:
                     color: [0.886,0.937,0.988]
                     width: 20px
         water_boundaries-not-ocean:
-            filter: { boundary: yes, not: { kind: ocean }, $zoom: { min: 16 } }
+            filter: { boundary: yes, not: { kind: ocean }, $zoom: { min: 14 } }
             draw:
+                line3:
+                    style: lines
+                    order: 5
+                    width: [[14,3px],[16,4px],[18,6.0px]]
+                    color: [0.886,0.937,0.988]
                 lines:
                     order: 5
-                    color: [0.886,0.937,0.988]
-                    width: [[14,1.0px],[16,1.5px],[18,2m]]
+                    color: [0.396,0.833,0.920]
+                    width: [[14,1.0px],[16,1.0px],[18,1.1px]]
                     join: round
         river:
-            filter: { kind: [river,canal,stream,dam,ditch,drain], $zoom: { min: 13 } }
+            filter: { kind: [river,canal,stream,dam,ditch,drain], $zoom: { min: 12 } }
             draw:
                 lines:
                     order: 3
-                    color: [0.886,0.937,0.988]
-                    width: [[13,0.5px],[14,1.0px],[16,1.5px],[18,4m]]
+                    color: [[12,[0.396,0.833,0.920]], [15,[0.725,0.902,0.965]]]
+                    width: [[12,0.5px],[13,2px],[14,2.0px],[16,2.25px],[18,4m]]
                     join: round
     railway-early:
         data: { source: osm, layer: transit }
