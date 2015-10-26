@@ -79,7 +79,7 @@ map = (function () {
         selection_info.style.display = 'block';
 
         // Show selected feature on hover
-        scene.container.addEventListener('mousemove', function (event) {
+        map.getContainer().addEventListener('mousemove', function (event) {
             var pixel = { x: event.clientX, y: event.clientY };
 
             scene.getFeatureAt(pixel).then(function(selection) {
@@ -99,7 +99,7 @@ map = (function () {
                         selection_info.style.left = (pixel.x + 5) + 'px';
                         selection_info.style.top = (pixel.y + 15) + 'px';
                         selection_info.innerHTML = '<span class="labelInner">' + label + '</span>';
-                        scene.container.appendChild(selection_info);
+                        map.getContainer().appendChild(selection_info);
                     }
                     else if (selection_info.parentNode != null) {
                         selection_info.parentNode.removeChild(selection_info);
@@ -119,7 +119,7 @@ map = (function () {
         });
         
         // Show selected feature on hover
-        scene.container.addEventListener('click', function (event) {
+        map.getContainer().addEventListener('click', function (event) {
             var pixel = { x: event.clientX, y: event.clientY };
 
 			scene.getFeatureAt(pixel).then(function(selection) {    
@@ -144,7 +144,7 @@ map = (function () {
 						selection_info.style.left = (pixel.x + 5) + 'px';
 						selection_info.style.top = (pixel.y + 15) + 'px';
 						selection_info.innerHTML = '<span class="labelInner">' + label + '</span>';
-						scene.container.appendChild(selection_info);
+						map.getContainer().appendChild(selection_info);
 					}
 					else if (selection_info.parentNode != null) {
 						selection_info.parentNode.removeChild(selection_info);
