@@ -11,9 +11,9 @@ labels-global:
     - &icon_visible_poi_landuse       true
     - &text_visible_poi_landuse       true
     - &text_visible_water_labels      true
-    - &text_visible_highway           false
-    - &text_visible_highway_e         false
-    - &text_visible_trunk_primary     false
+    - &text_visible_highway           true
+    - &text_visible_highway_e         true
+    - &text_visible_trunk_primary     true
     - &text_visible_trunk_primary_e   false
     - &text_visible_secondary         false
     - &text_visible_secondary_e       false
@@ -136,7 +136,7 @@ settings:
         - &text_fill   black
         - &text_fill2        '#555'             # WHITE
         - &text_fill_water   '#4c89b5'          # blue
-        - &text_fill_park    [0.0,0.0,0.0]      # black
+        - &text_fill_park    [0.35,0.35,0.35]   # black
         - &text_stroke [0.870,0.870,0.870]      # land color
         - &townspot_sprite   townspot-m-rev     # depends on land color and text settings
 
@@ -148,261 +148,261 @@ textures:
         filtering: mipmap
         sprites:
             # define sprites: [x origin, y origin, width, height]
-            adult-boutique: [252, 108, 36, 38]
-            airport: [180, 36, 36, 38]
-            animal-shelter: [432, 0, 36, 38]
-            antique-shop: [216, 108, 36, 38]
-            aquarium: [720, 252, 36, 38]
-            arcade: [612, 252, 36, 38]
-            art-gallery: [576, 252, 36, 38]
-            arts-crafts: [180, 108, 36, 38]
-            athletics-sports: [324, 216, 36, 38]
-            atm: [72, 216, 36, 38]
-            automotive-shop: [144, 216, 36, 38]
-            bagel-shop: [504, 288, 36, 38]
-            bakery: [180, 252, 36, 38]
-            bank: [108, 216, 36, 38]
-            bar: [504, 216, 36, 38]
-            baseball-field: [72, 144, 36, 38]
-            basketball-court: [36, 144, 36, 38]
-            basketball-stadium: [396, 252, 36, 38]
-            bathroom: [216, 144, 36, 38]
-            battlefield: [360, 144, 36, 38]
-            bbq: [72, 288, 36, 38]
-            beach: [288, 144, 36, 38]
-            beach-resort: [252, 144, 36, 38]
-            beer-garden: [612, 288, 36, 38]
-            bench: [756, 0, 36, 38]
-            bicycle-parking: [684, 180, 36, 38]
-            bike-shop: [36, 216, 36, 38]
-            boat-ferry: [144, 36, 36, 38]
-            boat-ramp: [360, 108, 36, 38]
-            bookstore: [0, 216, 36, 38]
-            bowling-alley: [540, 252, 36, 38]
-            breakfast: [144, 288, 36, 38]
-            bridal-shop: [144, 72, 36, 38]
-            bridge: [576, 144, 36, 38]
-            buddhism: [504, 144, 36, 38]
-            building: [720, 216, 36, 38]
-            burger: [396, 288, 36, 38]
-            bus-station: [72, 36, 36, 38]
-            butcher: [900, 72, 36, 38]
-            camera-store: [937, 180, 36, 38]
-            campground: [540, 144, 36, 38]
-            candy-store: [216, 288, 36, 38]
-            capital-l: [877, 288, 23, 23]
-            capital-m: [858, 288, 18, 18]
-            capital-s: [842, 288, 17, 17]
-            capital-xl: [900, 288, 25, 25]
-            capital-xs: [828, 288, 13, 13]
-            car-dealership: [901, 180, 36, 38]
-            car-wash: [864, 180, 36, 38]
-            carribean-restaurant: [72, 252, 36, 38]
-            casino: [504, 252, 36, 38]
-            castle: [180, 72, 36, 38]
-            cemetery: [468, 144, 36, 38]
-            cheese-shop: [180, 288, 36, 38]
-            chinese-restaurant: [108, 252, 36, 38]
-            church: [108, 180, 36, 38]
-            city: [756, 108, 36, 38]
-            clinic: [216, 0, 36, 38]
-            clothing-store: [792, 252, 36, 38]
-            cocktail-bar: [468, 216, 36, 38]
-            coffee-shop: [144, 252, 36, 38]
-            college-university: [901, 252, 36, 38]
-            comedy-club: [468, 252, 36, 38]
-            concert-hall: [432, 252, 36, 38]
-            convenience-store: [108, 108, 36, 38]
-            cosmetics-shop: [72, 108, 36, 38]
-            courthouse: [396, 0, 36, 38]
-            credit-union: [828, 180, 36, 38]
-            cupcake-shop: [0, 252, 36, 38]
-            daycare: [36, 108, 36, 38]
-            dentist: [252, 0, 36, 38]
-            department-store: [792, 180, 36, 38]
-            design-studio: [108, 72, 36, 38]
-            dessert: [36, 0, 36, 38]
-            dog-run: [252, 216, 36, 38]
-            donut: [288, 288, 36, 38]
-            electronics-store: [648, 180, 36, 38]
-            ev-charging-station: [756, 180, 36, 38]
-            factory: [684, 216, 36, 38]
-            farm: [432, 144, 36, 38]
-            farmers-market: [576, 180, 36, 38]
-            field: [396, 144, 36, 38]
-            financial-service: [612, 180, 36, 38]
-            fire-station: [360, 0, 36, 38]
-            fish-market: [540, 180, 36, 38]
-            fishing-spot: [684, 252, 36, 38]
-            fitness: [792, 72, 36, 38]
-            flea-market: [937, 72, 36, 38]
-            flower-shop: [0, 180, 36, 38]
-            food-court: [504, 180, 36, 38]
-            food-drink-shop: [864, 72, 36, 38]
-            football-stadium: [864, 252, 36, 38]
-            ford: [576, 0, 36, 38]
-            forest: [130, 324, 36, 38]
-            fountain: [180, 180, 36, 38]
-            fried-chicken-joint: [937, 216, 36, 38]
-            fun-fair: [648, 144, 36, 38]
-            furniture-store: [396, 180, 36, 38]
-            gaming-cafe: [901, 144, 36, 38]
-            garden: [324, 144, 36, 38]
-            garden-center: [828, 72, 36, 38]
-            gas-station: [36, 288, 36, 38]
-            gastropub: [36, 252, 36, 38]
-            gate: [684, 0, 36, 38]
-            gay-bar: [432, 216, 36, 38]
-            general-entertainment: [360, 252, 36, 38]
-            general-travel: [36, 36, 36, 38]
-            generic: [792, 288, 36, 38]
-            german-restaurant: [901, 216, 36, 38]
-            gift-shop: [864, 144, 36, 38]
-            golf-course: [0, 144, 36, 38]
-            gourmet-shop: [937, 144, 36, 38]
-            government-building: [288, 216, 36, 38]
-            grocery-store: [468, 180, 36, 38]
-            harbor-marina: [216, 216, 36, 38]
-            hardware-store: [756, 72, 36, 38]
-            hiking-trail: [720, 108, 36, 38]
-            historic-site: [828, 144, 36, 38]
-            hobby-shop: [684, 72, 36, 38]
-            hockey-field: [937, 108, 36, 38]
-            hospital: [180, 0, 36, 38]
-            hot-dog-joint: [648, 288, 36, 38]
-            hot-pot-restaurant: [252, 288, 36, 38]
-            hot-spring: [252, 72, 36, 38]
-            hotel: [0, 36, 36, 38]
-            hunting-supply: [648, 72, 36, 38]
-            ice-cream-shop: [684, 288, 36, 38]
-            information: [756, 288, 36, 38]
-            internet-cafe: [612, 72, 36, 38]
-            island: [684, 108, 36, 38]
-            jewelry-store: [576, 72, 36, 38]
-            karaoke: [36, 180, 36, 38]
-            lake: [648, 108, 36, 38]
-            landmark: [324, 0, 36, 38]
-            laundry: [540, 72, 36, 38]
+            adult-boutique: [560, 120, 36, 38]
+            airport: [320, 40, 36, 38]
+            animal-shelter: [480, 0, 36, 38]
+            antique-shop: [520, 120, 36, 38]
+            aquarium: [480, 320, 36, 38]
+            arcade: [360, 320, 36, 38]
+            art-gallery: [320, 320, 36, 38]
+            arts-crafts: [480, 120, 36, 38]
+            athletics-sports: [920, 240, 36, 38]
+            atm: [640, 240, 36, 38]
+            automotive-shop: [720, 240, 36, 38]
+            bagel-shop: [320, 360, 36, 38]
+            bakery: [840, 280, 36, 38]
+            bank: [680, 240, 36, 38]
+            bar: [120, 280, 36, 38]
+            baseball-field: [440, 160, 36, 38]
+            basketball-court: [400, 160, 36, 38]
+            basketball-stadium: [120, 320, 36, 38]
+            bathroom: [600, 160, 36, 38]
+            battlefield: [760, 160, 36, 38]
+            bbq: [840, 320, 36, 38]
+            beach: [680, 160, 36, 38]
+            beach-resort: [640, 160, 36, 38]
+            beer-garden: [440, 360, 36, 38]
+            bench: [840, 0, 36, 38]
+            bicycle-parking: [240, 240, 36, 38]
+            bike-shop: [600, 240, 36, 38]
+            boat-ferry: [280, 40, 36, 38]
+            boat-ramp: [680, 120, 36, 38]
+            bookstore: [560, 240, 36, 38]
+            bowling-alley: [280, 320, 36, 38]
+            breakfast: [920, 320, 36, 38]
+            bridal-shop: [360, 80, 36, 38]
+            bridge: [40, 200, 36, 38]
+            buddhism: [920, 160, 36, 38]
+            building: [360, 280, 36, 38]
+            burger: [200, 360, 36, 38]
+            bus-station: [200, 40, 36, 38]
+            butcher: [200, 120, 36, 38]
+            camera-store: [520, 240, 36, 38]
+            campground: [0, 200, 36, 38]
+            candy-store: [0, 360, 36, 38]
+            capital-l: [740, 360, 23, 25]
+            capital-m: [718, 360, 18, 20]
+            capital-s: [697, 360, 17, 19]
+            capital-xl: [767, 360, 25, 27]
+            capital-xs: [680, 360, 13, 15]
+            car-dealership: [480, 240, 36, 38]
+            car-wash: [440, 240, 36, 38]
+            carribean-restaurant: [720, 280, 36, 38]
+            casino: [240, 320, 36, 38]
+            castle: [400, 80, 36, 38]
+            cemetery: [880, 160, 36, 38]
+            cheese-shop: [960, 320, 36, 38]
+            chinese-restaurant: [760, 280, 36, 38]
+            church: [600, 200, 36, 38]
+            city: [120, 160, 36, 38]
+            clinic: [240, 0, 36, 38]
+            clothing-store: [560, 320, 36, 38]
+            cocktail-bar: [80, 280, 36, 38]
+            coffee-shop: [800, 280, 36, 38]
+            college-university: [680, 320, 36, 38]
+            comedy-club: [200, 320, 36, 38]
+            concert-hall: [160, 320, 36, 38]
+            convenience-store: [400, 120, 36, 38]
+            cosmetics-shop: [360, 120, 36, 38]
+            courthouse: [440, 0, 36, 38]
+            credit-union: [400, 240, 36, 38]
+            cupcake-shop: [640, 280, 36, 38]
+            daycare: [320, 120, 36, 38]
+            dentist: [280, 0, 36, 38]
+            department-store: [360, 240, 36, 38]
+            design-studio: [320, 80, 36, 38]
+            dessert: [40, 0, 36, 38]
+            dog-run: [840, 240, 36, 38]
+            donut: [80, 360, 36, 38]
+            electronics-store: [200, 240, 36, 38]
+            ev-charging-station: [320, 240, 36, 38]
+            factory: [320, 280, 36, 38]
+            farm: [840, 160, 36, 38]
+            farmers-market: [120, 240, 36, 38]
+            field: [800, 160, 36, 38]
+            financial-service: [160, 240, 36, 38]
+            fire-station: [400, 0, 36, 38]
+            fish-market: [80, 240, 36, 38]
+            fishing-spot: [440, 320, 36, 38]
+            fitness: [80, 120, 36, 38]
+            flea-market: [240, 120, 36, 38]
+            flower-shop: [480, 200, 36, 38]
+            food-court: [40, 240, 36, 38]
+            food-drink-shop: [160, 120, 36, 38]
+            football-stadium: [640, 320, 36, 38]
+            ford: [640, 0, 36, 38]
+            forest: [59, 400, 36, 38]
+            fountain: [680, 200, 36, 38]
+            fried-chicken-joint: [600, 280, 36, 38]
+            fun-fair: [120, 200, 36, 38]
+            furniture-store: [920, 200, 36, 38]
+            gaming-cafe: [400, 200, 36, 38]
+            garden: [720, 160, 36, 38]
+            garden-center: [120, 120, 36, 38]
+            gas-station: [800, 320, 36, 38]
+            gastropub: [680, 280, 36, 38]
+            gate: [760, 0, 36, 38]
+            gay-bar: [40, 280, 36, 38]
+            general-entertainment: [80, 320, 36, 38]
+            general-travel: [160, 40, 36, 38]
+            generic: [640, 360, 36, 38]
+            german-restaurant: [560, 280, 36, 38]
+            gift-shop: [360, 200, 36, 38]
+            golf-course: [360, 160, 36, 38]
+            gourmet-shop: [440, 200, 36, 38]
+            government-building: [880, 240, 36, 38]
+            grocery-store: [0, 240, 36, 38]
+            harbor-marina: [800, 240, 36, 38]
+            hardware-store: [40, 120, 36, 38]
+            hiking-trail: [80, 160, 36, 38]
+            historic-site: [320, 200, 36, 38]
+            hobby-shop: [960, 80, 36, 38]
+            hockey-field: [320, 160, 36, 38]
+            hospital: [200, 0, 36, 38]
+            hot-dog-joint: [480, 360, 36, 38]
+            hot-pot-restaurant: [40, 360, 36, 38]
+            hot-spring: [480, 80, 36, 38]
+            hotel: [120, 40, 36, 38]
+            hunting-supply: [920, 80, 36, 38]
+            ice-cream-shop: [520, 360, 36, 38]
+            information: [600, 360, 36, 38]
+            internet-cafe: [880, 80, 36, 38]
+            island: [40, 160, 36, 38]
+            jewelry-store: [840, 80, 36, 38]
+            karaoke: [520, 200, 36, 38]
+            lake: [0, 160, 36, 38]
+            landmark: [360, 0, 36, 38]
+            laundry: [800, 80, 36, 38]
             library: [0, 0, 36, 38]
-            light-rail: [937, 0, 36, 38]
-            lighthouse: [576, 108, 36, 38]
-            liquor-store: [432, 180, 36, 38]
-            lounge: [396, 216, 36, 38]
-            mall: [504, 72, 36, 38]
-            marijuana-dispensary: [468, 72, 36, 38]
-            market: [432, 72, 36, 38]
-            medical-center: [612, 216, 36, 38]
-            military-base: [180, 144, 36, 38]
-            mine: [720, 72, 36, 38]
-            miscellaneous-shop: [360, 72, 36, 38]
-            mobile-phone-shop: [324, 72, 36, 38]
-            molecular-gastronomy: [360, 288, 36, 38]
-            mosque: [108, 0, 36, 38]
-            motorcycle-shop: [72, 72, 36, 38]
-            mountain: [540, 108, 36, 38]
-            movie-theatre: [756, 252, 36, 38]
-            moving-target: [901, 0, 36, 38]
-            museum: [792, 144, 36, 38]
-            music-store: [36, 72, 36, 38]
-            music-venue: [324, 252, 36, 38]
-            nail-salon: [0, 72, 36, 38]
-            neighborhood: [504, 108, 36, 38]
-            newsstand: [937, 36, 36, 38]
-            nightlife: [216, 252, 36, 38]
-            noodle-shop: [468, 288, 36, 38]
-            office: [144, 144, 36, 38]
-            office-supplies: [864, 36, 36, 38]
-            optical-shop: [900, 36, 36, 38]
-            other-outdoors: [468, 108, 36, 38]
-            park: [144, 180, 36, 38]
-            parking: [720, 180, 36, 38]
-            performing-arts: [288, 252, 36, 38]
-            pet-store: [828, 36, 36, 38]
-            pharmacy: [0, 108, 36, 38]
-            photography-lab: [792, 36, 36, 38]
-            picnic-spot: [720, 0, 36, 38]
-            pier: [864, 0, 36, 38]
-            pizza: [720, 288, 36, 38]
-            playground: [288, 72, 36, 38]
-            police: [288, 0, 36, 38]
-            pool: [432, 108, 36, 38]
-            pool-hall: [756, 144, 36, 38]
-            post-office: [576, 216, 36, 38]
-            power-pylon: [648, 216, 36, 38]
-            public-art: [252, 252, 36, 38]
-            racetrack: [720, 144, 36, 38]
-            ramen: [432, 288, 36, 38]
-            real-estate: [756, 36, 36, 38]
-            record-shop: [720, 36, 36, 38]
-            recycling-facility: [684, 36, 36, 38]
-            rental-car: [828, 0, 36, 38]
-            rest-area: [792, 0, 36, 38]
-            restaurant: [324, 288, 36, 38]
-            river: [396, 108, 36, 38]
-            road: [612, 0, 36, 38]
-            ruin: [648, 0, 36, 38]
-            salon-barber: [648, 36, 36, 38]
-            school: [108, 144, 36, 38]
-            ship-wreck: [108, 36, 36, 38]
-            shoe-store: [396, 72, 36, 38]
-            skate-park: [900, 108, 36, 38]
-            skating-rink: [864, 108, 36, 38]
-            ski-area: [216, 180, 36, 38]
-            smoke-shop: [612, 36, 36, 38]
-            soccer-field: [828, 108, 36, 38]
-            soccer-stadium: [828, 252, 36, 38]
-            soup-place: [864, 216, 36, 38]
-            spa-massage: [576, 36, 36, 38]
-            spiritual-center: [540, 216, 36, 38]
-            sporting-goods-shop: [540, 36, 36, 38]
-            spring: [612, 108, 36, 38]
-            stable: [324, 108, 36, 38]
-            stadium: [324, 180, 36, 38]
-            steakhouse: [108, 288, 36, 38]
-            storage-facility: [504, 36, 36, 38]
-            subway: [540, 0, 36, 38]
-            surf-shop: [144, 108, 36, 38]
-            sushi-restaurant: [72, 180, 36, 38]
-            swimming: [360, 180, 36, 38]
-            synagogue: [72, 0, 36, 38]
-            tailor-shop: [468, 36, 36, 38]
-            tanning-salon: [432, 36, 36, 38]
-            tattoo-parlor: [396, 36, 36, 38]
-            taxi: [504, 0, 36, 38]
-            tea-room: [828, 216, 36, 38]
-            tennis: [252, 180, 36, 38]
-            theme-park: [684, 144, 36, 38]
-            thrift-vintage-store: [360, 36, 36, 38]
-            toll-booth: [0, 288, 36, 38]
-            townspot-l: [79, 324, 23, 23]
-            townspot-l-rev: [976, 288, 23, 23]
-            townspot-m: [59, 324, 20, 20]
-            townspot-m-rev: [956, 288, 20, 20]
-            townspot-s: [41, 324, 18, 18]
-            townspot-s-rev: [938, 288, 18, 18]
-            townspot-xl: [103, 324, 28, 28]
-            townspot-xl-rev: [0, 324, 28, 28]
-            townspot-xs: [28, 324, 13, 13]
-            townspot-xs-rev: [925, 288, 13, 13]
-            toy-game-store: [324, 36, 36, 38]
-            track: [288, 180, 36, 38]
-            traffic-signal: [937, 252, 36, 38]
-            train-station: [468, 0, 36, 38]
-            travel-agency: [288, 36, 36, 38]
-            veterinarian: [144, 0, 36, 38]
-            video-game-store: [252, 36, 36, 38]
-            video-store: [216, 36, 36, 38]
-            view-point: [648, 252, 36, 38]
-            vineyard: [180, 216, 36, 38]
-            volcano: [288, 108, 36, 38]
-            volleyball-court: [792, 108, 36, 38]
-            well: [216, 72, 36, 38]
-            whisky-bar: [360, 216, 36, 38]
-            wine-bar: [576, 288, 36, 38]
-            wine-shop: [540, 288, 36, 38]
-            winery: [792, 216, 36, 38]
-            wings-joint: [756, 216, 36, 38]
-            zoo: [612, 144, 36, 38]
+            light-rail: [80, 40, 36, 38]
+            lighthouse: [920, 120, 36, 38]
+            liquor-store: [960, 200, 36, 38]
+            lounge: [0, 280, 36, 38]
+            mall: [760, 80, 36, 38]
+            marijuana-dispensary: [720, 80, 36, 38]
+            market: [680, 80, 36, 38]
+            medical-center: [240, 280, 36, 38]
+            military-base: [560, 160, 36, 38]
+            mine: [0, 120, 36, 38]
+            miscellaneous-shop: [600, 80, 36, 38]
+            mobile-phone-shop: [560, 80, 36, 38]
+            molecular-gastronomy: [160, 360, 36, 38]
+            mosque: [120, 0, 36, 38]
+            motorcycle-shop: [280, 80, 36, 38]
+            mountain: [880, 120, 36, 38]
+            movie-theatre: [520, 320, 36, 38]
+            moving-target: [40, 40, 36, 38]
+            museum: [280, 200, 36, 38]
+            music-store: [240, 80, 36, 38]
+            music-venue: [40, 320, 36, 38]
+            nail-salon: [200, 80, 36, 38]
+            neighborhood: [840, 120, 36, 38]
+            newsstand: [160, 80, 36, 38]
+            nightlife: [880, 280, 36, 38]
+            noodle-shop: [280, 360, 36, 38]
+            office: [520, 160, 36, 38]
+            office-supplies: [80, 80, 36, 38]
+            optical-shop: [120, 80, 36, 38]
+            other-outdoors: [800, 120, 36, 38]
+            park: [640, 200, 36, 38]
+            parking: [280, 240, 36, 38]
+            performing-arts: [0, 320, 36, 38]
+            pet-store: [40, 80, 36, 38]
+            pharmacy: [280, 120, 36, 38]
+            photography-lab: [0, 80, 36, 38]
+            picnic-spot: [800, 0, 36, 38]
+            pier: [0, 40, 36, 38]
+            pizza: [560, 360, 36, 38]
+            playground: [520, 80, 36, 38]
+            police: [320, 0, 36, 38]
+            pool: [760, 120, 36, 38]
+            pool-hall: [240, 200, 36, 38]
+            post-office: [200, 280, 36, 38]
+            power-pylon: [280, 280, 36, 38]
+            public-art: [920, 280, 36, 38]
+            racetrack: [200, 200, 36, 38]
+            ramen: [240, 360, 36, 38]
+            real-estate: [960, 40, 36, 38]
+            record-shop: [920, 40, 36, 38]
+            recycling-facility: [880, 40, 36, 38]
+            rental-car: [920, 0, 36, 38]
+            rest-area: [880, 0, 36, 38]
+            restaurant: [120, 360, 36, 38]
+            river: [720, 120, 36, 38]
+            road: [680, 0, 36, 38]
+            ruin: [720, 0, 36, 38]
+            salon-barber: [840, 40, 36, 38]
+            school: [480, 160, 36, 38]
+            ship-wreck: [240, 40, 36, 38]
+            shoe-store: [640, 80, 36, 38]
+            skate-park: [280, 160, 36, 38]
+            skating-rink: [240, 160, 36, 38]
+            ski-area: [720, 200, 36, 38]
+            smoke-shop: [800, 40, 36, 38]
+            soccer-field: [200, 160, 36, 38]
+            soccer-stadium: [600, 320, 36, 38]
+            soup-place: [520, 280, 36, 38]
+            spa-massage: [760, 40, 36, 38]
+            spiritual-center: [160, 280, 36, 38]
+            sporting-goods-shop: [720, 40, 36, 38]
+            spring: [960, 120, 36, 38]
+            stable: [640, 120, 36, 38]
+            stadium: [840, 200, 36, 38]
+            steakhouse: [880, 320, 36, 38]
+            storage-facility: [680, 40, 36, 38]
+            subway: [600, 0, 36, 38]
+            surf-shop: [440, 120, 36, 38]
+            sushi-restaurant: [560, 200, 36, 38]
+            swimming: [880, 200, 36, 38]
+            synagogue: [80, 0, 36, 38]
+            tailor-shop: [640, 40, 36, 38]
+            tanning-salon: [600, 40, 36, 38]
+            tattoo-parlor: [560, 40, 36, 38]
+            taxi: [560, 0, 36, 38]
+            tea-room: [480, 280, 36, 38]
+            tennis: [760, 200, 36, 38]
+            theme-park: [160, 200, 36, 38]
+            thrift-vintage-store: [520, 40, 36, 38]
+            toll-booth: [760, 320, 36, 38]
+            townspot-l: [0, 400, 23, 25]
+            townspot-l-rev: [860, 360, 23, 25]
+            townspot-m: [958, 360, 20, 22]
+            townspot-m-rev: [836, 360, 20, 22]
+            townspot-s: [936, 360, 18, 20]
+            townspot-s-rev: [814, 360, 18, 20]
+            townspot-xl: [27, 400, 28, 30]
+            townspot-xl-rev: [887, 360, 28, 30]
+            townspot-xs: [919, 360, 13, 15]
+            townspot-xs-rev: [796, 360, 13, 15]
+            toy-game-store: [480, 40, 36, 38]
+            track: [800, 200, 36, 38]
+            traffic-signal: [720, 320, 36, 38]
+            train-station: [520, 0, 36, 38]
+            travel-agency: [440, 40, 36, 38]
+            veterinarian: [160, 0, 36, 38]
+            video-game-store: [400, 40, 36, 38]
+            video-store: [360, 40, 36, 38]
+            view-point: [400, 320, 36, 38]
+            vineyard: [760, 240, 36, 38]
+            volcano: [600, 120, 36, 38]
+            volleyball-court: [160, 160, 36, 38]
+            well: [440, 80, 36, 38]
+            whisky-bar: [960, 240, 36, 38]
+            wine-bar: [400, 360, 36, 38]
+            wine-shop: [360, 360, 36, 38]
+            winery: [440, 280, 36, 38]
+            wings-joint: [400, 280, 36, 38]
+            zoo: [80, 200, 36, 38]
 
 sources:
     osm:
@@ -1156,16 +1156,16 @@ layers:
                     lines:
                         cap: butt
             labels-highway-early:
-                filter: { $zoom: { min: 7, max: 9 } }
+                filter: { $zoom: [7,8,9] }
                 draw:
                     text:
                         priority: 2
                         visible: *text_visible_highway_e
                         text_source: ref
                         font:
-                            fill: [0.0,0.0,0.0]
-                            size: 10px
-                            # stroke: { color: [0.976,0.541,0.490], width: 1 }
+                            fill: [1.0,1.0,1.0]
+                            size: 8px
+                            stroke: { color: [0.976,0.541,0.490], width: 3 }
             labels-highway-z10:
                 filter:
                     $zoom: 10
@@ -2203,11 +2203,27 @@ layers:
                 text:
                     visible: *text_visible_continent
                     font:
-                        size: 16px
+                        size: 14px
                         weight: bold
                         # stroke: { color: *text_stroke, width: 4 }
                         transform: uppercase
 
+        country-z2:
+            filter: 
+                all:
+                    - kind: [country]
+                    - $zoom: [2]
+                    - name: ["United States of America","Brasil","中华人民共和国","Россия","Canada","Kalaallit Nunaat","Ísland","Australia","India","日本","Guam","Indonesia","South Africa","مصر","Nigeria","Kenya"]
+            draw:
+                text:
+                    priority: 2
+                    visible: *text_visible_admin
+                    text_source: function() { return feature["name:en"] || feature["name"]; }
+                    font:
+                        fill: [0.30,0.30,0.30]
+                        weight: 400
+                        size: 10px
+                        transform: uppercase
         country-z3:
             filter: { name: true, population: true, kind: [country], $zoom: [3] }
             draw:
@@ -2216,8 +2232,9 @@ layers:
                     visible: *text_visible_admin
                     text_source: function() { return feature["name:en"] || feature["name"]; }
                     font:
+                        fill: [0.20,0.20,0.20]
                         size: 11px
-                        weight: 200
+                        weight: 500
                         # stroke: { color: *text_stroke, width: 4 }
                         transform: uppercase
     #            icons:
@@ -2239,8 +2256,8 @@ layers:
                     text_source: function() { return feature["name:en"] || feature["name"]; }
                     font:
                         size: 12px
-                        weight: 200
-                        fill: [0.1,0.1,0.1]
+                        weight: 500
+                        fill: [0.20,0.20,0.20]
                         # stroke: { color: *text_stroke, width: 4 }
                         transform: uppercase
     #            icons:
@@ -2253,17 +2270,14 @@ layers:
                     text:
                         visible: false
         country-z5:
-            # filter: { name: true, population: true, kind: [country], $zoom: [5] }
-
             filter:
                 all:
                     - name: true
                     - population: true
                     - kind: [country]
+                    - $zoom: [5]
                 any:
                     - { population: { min: 5000000 } }
-
-
             draw:
                 text:
                     priority: 2
@@ -2391,9 +2405,9 @@ layers:
                             fill: *text_fill
                             stroke: { color: *text_stroke, width: 4 }
                     icons:
-                        size: [[13, 12px], [15, 18px]]
+                        size: 7px
                         interactive: true
-                        sprite: *townspot_sprite
+                        sprite: townspot-xs-rev
 
             populated-places-natural-earth-z4:
                 filter: { name: true, source: naturalearthdata.com, $zoom: {min: 4, max: 5}, scalerank: [0,1] }
@@ -2407,9 +2421,9 @@ layers:
                             fill: *text_fill
                             stroke: { color: *text_stroke, width: 4 }
                     icons:
-                        size: [[13, 12px], [15, 18px]]
+                        size: 9px
                         interactive: true
-                        sprite: *townspot_sprite
+                        sprite: townspot-s-rev
 
             populated-places-natural-earth-z5:
                 filter: { name: true, source: naturalearthdata.com, $zoom: {min: 5, max: 6}, scalerank: [0,1,2,3] }
@@ -2421,9 +2435,9 @@ layers:
                         font:
                             size: 10px
                     icons:
-                        size: [[13, 12px], [15, 18px]]
+                        size: 9px
                         interactive: true
-                        sprite: *townspot_sprite
+                        sprite: townspot-s-rev
 
             populated-places-natural-earth-z6-z7:
                 filter: { name: true, source: naturalearthdata.com, $zoom: {min: 6, max: 9} }
@@ -2437,7 +2451,7 @@ layers:
                     icons:
                         size: [[13, 12px], [15, 18px]]
                         interactive: true
-                        sprite: *townspot_sprite
+                        sprite: townspot-s-rev
 
             populated-places-osm:
                 filter: { name: true, source: openstreetmap, not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }, $zoom: {min: 8} }
@@ -2616,8 +2630,8 @@ layers:
                         visible: *text_visible_poi_landuse
                         interactive: true
                         font:
-                            fill: *text_fill
-                            size: 12px
+                            fill: [0.20,0.20,0.20] # *text_fill
+                            size: 11px
                             stroke: { color: *text_stroke, width: 4 }
             landuse-labels-green-areas:
                 filter:
@@ -2645,10 +2659,10 @@ layers:
                         interactive: true
                         offset: [0, 14px]
                         font:
-                            fill: *text_fill_park
-                            size: 12px
+                            fill: [0.254,0.334,0.331] #*text_fill_park
+                            size: 11px
                             style: italic
-                            # stroke: { color: '#d3f8dc', width: 4 }
+                            stroke: { color: [0.843,0.843,0.843], width: 4 }
                 wilderness-areas-early:
                    filter: function() { return $zoom < 10 && feature.name && (feature.name.includes("Wilderness") || feature.name.includes("BLM")) }
                    draw:
@@ -2671,7 +2685,7 @@ layers:
                             sprite: park
                         text:
                             font:
-                                stroke: { color: '#c2e9cb', width: 4 }
+                                stroke: { color: [0.843,0.843,0.843], width: 4 }
                 early-not-national-park:
                     filter: { not: { kind: national_park }, $zoom: { max: 6 } }
                     draw:
@@ -2706,8 +2720,8 @@ layers:
                         visible: *text_visible_poi_landuse
                         interactive: true
                         font:
-                            fill: *text_fill
-                            size: 12px
+                            fill: [0.20,0.20,0.20] # *text_fill
+                            size: 11px
                             stroke: { color: *text_stroke, width: 4 }
                     icons:
                         sprite: airport
@@ -2740,8 +2754,8 @@ layers:
                         visible: *text_visible_poi_landuse
                         interactive: true
                         font:
-                            fill: *text_fill
-                            size: 12px
+                            fill: [0.20,0.20,0.20] #*text_fill
+                            size: 11px
                             stroke: { color: *text_stroke, width: 4 }
                     icons:
                         sprite: university
@@ -2777,8 +2791,8 @@ layers:
                         visible: *text_visible_poi_landuse
                         interactive: true
                         font:
-                            fill: *text_fill
-                            size: 12px
+                            fill: [0.20,0.20,0.20] # *text_fill
+                            size: 11px
                             stroke: { color: *text_stroke, width: 4 }
                     icons:
                         sprite: function() { return feature.kind }
@@ -2822,8 +2836,8 @@ layers:
                         visible: *text_visible_poi_landuse
                         interactive: true
                         font:
-                            fill: *text_fill
-                            size: 12px
+                            fill: [0.20,0.20,0.20] #*text_fill
+                            size: 11px
                             stroke: { color: *text_stroke, width: 4 }
             landuse-funky:
                 filter: { kind: [commercial, residential, wood], $zoom: { max: 17 } }
@@ -2860,8 +2874,8 @@ layers:
                         visible: *text_visible_poi_landuse
                         interactive: true
                         font:
-                            fill: *text_fill
-                            size: 12px
+                            fill: [0.20,0.20,0.20] # *text_fill
+                            size: 11px
                             stroke: { color: *text_stroke, width: 4 }
 
             # examples of different icons mapped to feature properties
@@ -3261,7 +3275,7 @@ layers:
             draw:
                 text:
                     font:
-                        fill: *text_fill_water
+                        fill: [0.318,0.588,0.725] #*text_fill_water
                         family: Helvetica
                         style: italic
                         weight: 500
