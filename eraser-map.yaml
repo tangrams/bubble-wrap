@@ -912,7 +912,7 @@ layers:
     earth:
         data: { source: osm, layer: earth }
         draw:
-            ground:
+            polygons:
                 order: 0
                 color: [0.870,0.870,0.870]
 
@@ -998,7 +998,7 @@ layers:
             draw:
                 lines:
                     order: 3
-                    color: [[12,[0.396,0.833,0.920]], [15,[0.725,0.902,0.965]]]
+                    color: [[12,[0.396,0.833,0.920]], [13,[0.725,0.902,0.965]]]
                     width: [[12,0.5px],[13,2px],[14,2.0px],[16,2.25px],[18,4m]]
                     join: round
     railway-early:
