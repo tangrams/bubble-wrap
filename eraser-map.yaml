@@ -361,6 +361,7 @@ textures:
             steakhouse: [884, 1796, 36, 38]
             storage-facility: [1050, 1287, 36, 38]
             subway: [381, 102, 36, 38]
+            subway-entrance: [885, 103, 36, 38]
             surf-shop: [722, 1032, 36, 38]
             sushi-restaurant: [718, 1883, 36, 38]
             swimming: [296, 1539, 36, 38]
@@ -3039,7 +3040,7 @@ layers:
                     filter: { kind: [ticket, general_entertainment] }
                     draw:   { icons: { sprite: general-entertainment } }
                 generic:
-                    filter: { kind: [generic, subway_entrance] }
+                    filter: { kind: [generic] }
                     draw:   { icons: { sprite: generic } }
                 gift-shop:
                     filter: { kind: [gift, gift-shop] }
@@ -3218,6 +3219,9 @@ layers:
                 storage-facility:
                     filter: { kind: [storage, storage-facility] }
                     draw:   { icons: { sprite: storage-facility } }
+                subway-entrance:
+                    filter: { kind: [subway_entrance] }
+                    draw:   { icons: { sprite: subway-entrance } }
                 tailor-shop:
                     filter: { kind: [tailor, tailor-shop] }
                     draw:   { icons: { sprite: tailor-shop } }
