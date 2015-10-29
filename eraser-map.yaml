@@ -374,6 +374,7 @@ textures:
             tennis: [806, 1538, 36, 38]
             theme-park: [798, 529, 36, 38]
             thrift-vintage-store: [805, 864, 36, 38]
+            toilets: [1558, 192, 36, 38]
             toll-booth: [1056, 188, 36, 38]
             townspot-l: [558, 2143, 23, 25]
             townspot-l-rev: [558, 2216, 23, 25]
@@ -3240,6 +3241,9 @@ layers:
                 toy-game-store:
                     filter: { kind: [toys, toy-game-store, baby_goods] }
                     draw:   { icons: { sprite: toy-game-store } }
+                toilets:
+                    filter: { kind: [toilets] }
+                    draw:   { icons: { sprite: toilets } }
                 train-station:
                     filter: { kind: [station, train-staion] }
                     draw:   { icons: { sprite: train-station } }
