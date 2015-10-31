@@ -14,9 +14,9 @@ labels-global:
     - &text_visible_highway           true
     - &text_visible_highway_e         true
     - &text_visible_trunk_primary     true
-    - &text_visible_trunk_primary_e   false
-    - &text_visible_secondary         false
-    - &text_visible_secondary_e       false
+    - &text_visible_trunk_primary_e   true
+    - &text_visible_secondary         true
+    - &text_visible_secondary_e       true
     - &text_visible_tertiary          false
     - &text_visible_tertiary_e        false
     - &text_visible_minor_road        false
@@ -1244,7 +1244,7 @@ layers:
                         text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name } }
                         font:
                             fill: [0.0,0.0,0.0]
-                            size: 10px
+                            size: 11px
                             # stroke: { color: [0.976,0.541,0.490], width: 4 }
             labels-highway-z15:
                 filter:
@@ -1254,7 +1254,7 @@ layers:
                         visible: *text_visible_highway
                         font:
                             fill: [0.0,0.0,0.0]
-                            size: 12px
+                            size: 13px
                             # stroke: { color: [0.976,0.541,0.490], width: 4 }
             later2:
                 filter: { $zoom: { min: 16, max: 18 } }
@@ -1303,6 +1303,28 @@ layers:
                             outline:
                                 color: [[13, [0.870,0.870,0.870]], [15, [0.976,0.612,0.573]]]
                                 width: [[9, 0.0px], [12, 0px], [15, 2px], [16, 2px], [17, 3px]]
+                    labels-trunk_primary-route-z14:
+                        filter: { $zoom: [14] }
+                        draw:
+                            text:
+                                priority: 3
+                                visible: *text_visible_trunk_primary
+                                text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name } }
+                                font:
+                                    fill: [0.0,0.0,0.0]
+                                    size: 9px
+                                    stroke: { color: [0.95,0.95,0.95], width: 0.1px }
+                    labels-trunk_primary-route-z15:
+                        filter: { $zoom: [15] }
+                        draw:
+                            text:
+                                priority: 3
+                                visible: *text_visible_trunk_primary
+                                text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name } }
+                                font:
+                                    fill: [0.0,0.0,0.0]
+                                    size: 11px
+                                    stroke: { color: [0.95,0.95,0.95], width: 0.1px }
                     tunnel:
                         filter: {is_tunnel: yes, $zoom: {min: 13} }
                         draw:
@@ -1332,33 +1354,10 @@ layers:
 #                            font:
 #                                fill: white
 #                                size: 12px
-                labels-trunk_primary-z10:
-                    filter:
-                        $zoom: 10
-                    draw:
-                        text:
-                            priority: 3
-                            visible: *text_visible_trunk_primary_e
-                            text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
-                            font:
-                                fill: [0.3,0.3,0.3]
-                                size: 7px
-                                # stroke: { color: [1.000,0.631,0.590], width: 2 }
+
                 labels-trunk_primary-z11:
                     filter:
-                        $zoom: 11
-                    draw:
-                        text:
-                            priority: 3
-                            visible: *text_visible_trunk_primary_e
-                            text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
-                            font:
-                                fill: [0.3,0.3,0.3]
-                                size: 9px
-                                # stroke: { color: [1.000,0.631,0.590], width: 3 }
-                labels-trunk_primary-z12:
-                    filter:
-                        $zoom: 12
+                        $zoom: [11,12]
                     draw:
                         text:
                             priority: 3
@@ -1368,6 +1367,7 @@ layers:
                                 fill: [0.3,0.3,0.3]
                                 size: 8px
                                 # stroke: { color: [1.000,0.631,0.590], width: 3 }
+
                 labels-trunk_primary-z13-z14:
                     filter:
                         $zoom: [13,14]
@@ -1377,11 +1377,11 @@ layers:
                             visible: *text_visible_trunk_primary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
-                                fill: [0.3,0.3,0.3]
+                                fill: [0.15,0.15,0.15]
                                 size: 9px
-                                # stroke: { color: [1.000,0.631,0.590], width: 3 }
-                labels-trunk_primary-late:
-                    filter: { $zoom: { min: 15, max: 18 } }
+                                stroke: { color: *text_stroke, width: 2 }
+                labels-trunk_primary-z15:
+                    filter: { $zoom: [15], ref: false }
                     draw:
                         text:
                             priority: 3
@@ -1390,8 +1390,19 @@ layers:
                             font:
                                 fill: [0.15,0.15,0.15]
                                 size: 11px
+                                stroke: { color: [0.95,0.95,0.95], width: 2 }
+                labels-trunk_primary-z16:
+                    filter: { $zoom: { min: 16, max: 18 } }
+                    draw:
+                        text:
+                            priority: 3
+                            visible: *text_visible_trunk_primary
+                            text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name } }
+                            font:
+                                fill: [0.15,0.15,0.15]
+                                size: 12px
                                 # stroke: { color: *text_stroke, width: 4 }
-                labels-trunk_primary-late2:
+                labels-trunk_primary-z18:
                     filter: { $zoom: { min: 18 } }
                     draw:
                         text:
@@ -1400,7 +1411,7 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name } }
                             font:
                                 fill: [0.15,0.15,0.15]
-                                size: 18px
+                                size: 16px
             link:
                 filter: { is_link: yes } # on- and off-ramps, etc
                 draw:
@@ -1485,19 +1496,32 @@ layers:
                             lines:
                                 outline:
                                     color: pink
-                labels-secondary:
-                    filter: { $zoom: { min: 13, max: 15 } }
+                labels-secondary-z13:
+                    filter: 
+                        $zoom: [13,14]
                     draw:
                         text:
                             priority: 4
                             visible: *text_visible_secondary_e
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
-                                fill: [0.35,0.35,0.35]
+                                fill: [0.5,0.5,0.5]
+                                size: 9px
+                                stroke: { color: *text_stroke, width: 2 }
+                labels-secondary-z15:
+                    filter: 
+                        $zoom: [15]
+                    draw:
+                        text:
+                            priority: 4
+                            visible: *text_visible_secondary
+                            text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
+                            font:
+                                fill: [0.3,0.3,0.3]
                                 size: 10px
-                                # stroke: { color: *text_stroke, width: 4 }
+                                stroke: { color: [0.95,0.95,0.95], width: 2 }
                 labels-secondary2:
-                    filter: { $zoom: { min: 15, max: 18 } }
+                    filter: { $zoom: { min: 16, max: 18 } }
                     draw:
                         text:
                             priority: 4
