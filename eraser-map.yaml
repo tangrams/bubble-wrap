@@ -839,6 +839,10 @@ styles:
                             rgb2hsv(v_color.rgb) * WALL_TINT
                         );
                         color.rgb = mix(color.rgb, wall, 1. - color.a);
+
+                        // turn wall opaque, alpha was used to blend w/wall color,
+                        // but we don't want the wall itself to be transparent
+                        color.a = 1.;
                     } else {
                         // it's a roof, use vertex color without texture
                         color = v_color;
