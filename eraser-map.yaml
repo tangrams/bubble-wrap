@@ -19,8 +19,8 @@ labels-global:
     - &text_visible_secondary_e       true
     - &text_visible_tertiary          true
     - &text_visible_tertiary_e        true
-    - &text_visible_minor_road        false
-    - &text_visible_minor_road_e      false
+    - &text_visible_minor_road        true
+    - &text_visible_minor_road_e      true
     - &text_visible_service_road      false
     - &text_visible_path              false
     - &text_visible_steps             false
@@ -217,6 +217,7 @@ textures:
             courthouse: [632, 18, 36, 38]
             credit-union: [882, 1286, 36, 38]
             cupcake-shop: [717, 1965, 36, 38]
+            current-location: [959, 2281, 143, 145]
             daycare: [462, 444, 36, 38]
             dentist: [380, 355, 36, 38]
             department-store: [550, 863, 36, 38]
@@ -288,6 +289,8 @@ textures:
             light-rail: [298, 102, 36, 38]
             lighthouse: [384, 617, 36, 38]
             liquor-store: [715, 1627, 36, 38]
+            locate-off: [287, 2277, 143, 145]
+            locate-on: [455, 2277, 143, 145]
             lounge: [382, 1713, 36, 38]
             mall: [380, 862, 36, 38]
             marijuana-dispensary: [888, 1033, 36, 38]
@@ -341,9 +344,13 @@ textures:
             restaurant: [296, 1796, 36, 38]
             river: [716, 779, 36, 38]
             road: [1305, 190, 36, 38]
+            route-start: [1124, 2281, 148, 195]
+            route-stop: [1292, 2281, 148, 195]
             ruin: [888, 698, 36, 38]
             salon-barber: [297, 1201, 36, 38]
             school: [380, 442, 36, 38]
+            search-active: [783, 2278, 158, 222]
+            search-inactive: [615, 2278, 158, 222]
             ship-wreck: [1138, 616, 36, 38]
             shoe-store: [886, 862, 36, 38]
             skate-park: [634, 1539, 36, 38]
@@ -899,26 +906,26 @@ layers:
                 color: 'purple'
                 order: 50
                 width: [[0,2.5px],[8,3px],[9,3.5px],[10,4px],[11,5px],[16,8m]]
-    find_me:
+    current-location:
         data: { source: find_me }
         draw:
             icons:
                 priority: 1
-                sprite: capital-xl
+                sprite: current-location
                 size: 18px
     route_icon:
         data: { source: route_icon }
         draw:
             icons:
                 priority: 1
-                sprite: airport
+                sprite: route-start
                 size: 18px
     search:
         data: { source: search }
         draw:
             icons:
                 priority: 2
-                sprite: ice-cream-shop
+                sprite: search-active
                 size: 18px
 
     # Basemap styling
@@ -1764,7 +1771,7 @@ layers:
                         text_source: name
                         font:
                             fill: [0.15,0.15,0.15]
-                            size: 15px
+                            size: 11px
                             # stroke: { color: *text_stroke, width: 1 }
             labels-minor_road2:
                 filter: { $zoom: { min: 18 } }
