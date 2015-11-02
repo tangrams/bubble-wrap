@@ -912,21 +912,21 @@ layers:
             icons:
                 priority: 1
                 sprite: current-location
-                size: 18px
+                size: 72px
     route_icon:
         data: { source: route_icon }
         draw:
             icons:
                 priority: 1
                 sprite: route-start
-                size: 18px
+                size: [75px,97px]
     search:
         data: { source: search }
         draw:
             icons:
                 priority: 2
                 sprite: search-active
-                size: 18px
+                size: [80px,110px]
 
     # Basemap styling
     earth:
