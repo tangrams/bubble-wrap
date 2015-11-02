@@ -1767,7 +1767,7 @@ layers:
                         visible: *text_visible_minor_road_e
                         text_source: name
                         font:
-                            fill: [0.15,0.15,0.15]
+                            fill: [0.25,0.25,0.25]
                             size: 11px
                             # stroke: { color: *text_stroke, width: 1 }
             labels-minor_road2:
@@ -1779,7 +1779,8 @@ layers:
                         text_source: name
                         font:
                             # needs a fill color?
-                            size: 15px
+                            fill: [0.15,0.15,0.15]
+                            size: 14px
         service_road:
             filter: { kind: minor_road, highway: service }
             draw:
@@ -1854,8 +1855,9 @@ layers:
                         text_source: name
                         font:
                             # need fill color?
-                            size: 12px
-                            stroke: { color: *text_stroke, width: 4 }
+                            fill: [0.25,0.25,0.25]
+                            size: 11px
+                            # stroke: { color: *text_stroke, width: 4 }
             labels-service_road2:
                 filter: { $zoom: { min: 18 } }
                 draw:
@@ -1865,8 +1867,9 @@ layers:
                         text_source: name
                         font:
                             # need fill color?
+                            fill: [0.15,0.15,0.15]
                             size: 12px
-                            stroke: { color: *service_road1, width: 4 }
+                            # stroke: { color: *service_road1, width: 4 }
         path:
             filter: { kind: path, not: { highway: steps } }
             draw:
