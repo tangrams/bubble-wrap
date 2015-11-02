@@ -903,21 +903,27 @@ layers:
         data: { source: find_me }
         draw:
             icons:
-                priority: 1
+                collide: false
+                transition:
+                    [show, hide]:
+                        time: 0s
                 sprite: capital-xl
                 size: 18px
     route_icon:
         data: { source: route_icon }
         draw:
             icons:
-                priority: 1
+                collide: false
+                transition:
+                    [show, hide]:
+                        time: 0s
                 sprite: airport
                 size: 18px
     search:
         data: { source: search }
         draw:
             icons:
-                priority: 2
+                collide: false
                 sprite: ice-cream-shop
                 size: 18px
 
