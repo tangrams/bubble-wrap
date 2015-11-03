@@ -909,21 +909,21 @@ layers:
             icons:
                 priority: 1
                 sprite: current-location
-                size: 72px
+                size: 36px
     route_icon:
         data: { source: route_icon }
         draw:
             icons:
                 priority: 1
                 sprite: route-start
-                size: [75px,97px]
+                size: [38px,49px]
     search:
         data: { source: search }
         draw:
             icons:
                 priority: 2
                 sprite: search-active
-                size: [80px,110px]
+                size: [40px,55px]
 
     # Basemap styling
     earth:
@@ -2655,9 +2655,9 @@ layers:
                         priority: 2
                         visible: *text_visible_admin
                         font:
-                            size: 16px
-                            weight: 200
-                            fill: [0.315,0.315,0.315]
+                            size: 14px
+                            weight: 700
+                            fill: [0.515,0.515,0.515,0.20]
                             transform: uppercase
 
 
