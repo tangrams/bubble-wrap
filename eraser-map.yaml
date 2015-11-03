@@ -21,8 +21,8 @@ labels-global:
     - &text_visible_tertiary_e        true
     - &text_visible_minor_road        true
     - &text_visible_minor_road_e      true
-    - &text_visible_service_road      false
-    - &text_visible_path              false
+    - &text_visible_service_road      true
+    - &text_visible_path              true
     - &text_visible_steps             false
 
 settings:
@@ -1856,8 +1856,8 @@ layers:
                         font:
                             # need fill color?
                             fill: [0.25,0.25,0.25]
-                            size: 11px
-                            # stroke: { color: *text_stroke, width: 4 }
+                            size: 10px
+                            # stroke: { color: *text_stroke, width: 2 }
             labels-service_road2:
                 filter: { $zoom: { min: 18 } }
                 draw:
@@ -1955,8 +1955,9 @@ layers:
                         text_source: name
                         font:
                             # need a fill color?
-                            size: 12px
-                            stroke: { color: *text_stroke, width: 4 }
+                            fill: [0.25,0.25,0.25]
+                            size: 10px
+                            # stroke: { color: *text_stroke, width: 3 }
         steps:
             filter: { kind: path, highway: steps }
             draw:
@@ -2216,7 +2217,7 @@ layers:
                     interactive: true
                     order: 8
                     color: *country_boundary
-                    width: [[0, 1.5px], [5, 2.5px], [7, 3.5px], [9, 7px], [14, 10px], [16, 12px], [17, 14m]]
+                    width: [[0, 1.5px], [5, 2.5px], [7, 3.5px], [9, 7px]]
             water:
                 filter: { maritime: yes }
                 draw:
@@ -2472,7 +2473,7 @@ layers:
                         font:
                             size: 10px
                             fill: *text_fill
-                            stroke: { color: *text_stroke, width: 4 }
+                            # stroke: { color: *text_stroke, width: 4 }
                     icons:
                         size: 7px
                         interactive: true
@@ -2488,14 +2489,14 @@ layers:
                         font:
                             size: 10px
                             fill: *text_fill
-                            stroke: { color: *text_stroke, width: 4 }
+                            # stroke: { color: *text_stroke, width: 4 }
                     icons:
                         size: 9px
                         interactive: true
                         sprite: townspot-s-rev
 
-            populated-places-natural-earth-z5:
-                filter: { name: true, source: naturalearthdata.com, $zoom: {min: 5, max: 6}, scalerank: [0,1,2,3] }
+            populated-places-natural-earth-z5-1:
+                filter: { name: true, source: naturalearthdata.com, $zoom: [5], scalerank: [0,1] }
                 draw:
                     text:
                         priority: 1
@@ -2508,8 +2509,50 @@ layers:
                         interactive: true
                         sprite: townspot-s-rev
 
-            populated-places-natural-earth-z6-z7:
-                filter: { name: true, source: naturalearthdata.com, $zoom: {min: 6, max: 9} }
+            populated-places-natural-earth-z5-2:
+                filter: { name: true, source: naturalearthdata.com, $zoom: [5], scalerank: [2,3] }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 8px
+                    icons:
+                        size: 9px
+                        interactive: true
+                        sprite: townspot-s-rev
+
+            populated-places-natural-earth-z6-1:
+                filter: { name: true, source: naturalearthdata.com, $zoom: [6], scalerank: [0,1] }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 13px
+                    icons:
+                        size: [[13, 12px], [15, 18px]]
+                        interactive: true
+                        sprite: townspot-s-rev
+
+            populated-places-natural-earth-z6-2:
+                filter: { name: true, source: naturalearthdata.com, $zoom: [6], scalerank: [2,3,4,5] }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 10px
+                    icons:
+                        size: [[13, 12px], [15, 18px]]
+                        interactive: true
+                        sprite: townspot-s-rev
+
+            populated-places-natural-earth-z7:
+                filter: { name: true, source: naturalearthdata.com, $zoom: {min: 7, max: 9} }
                 draw:
                     text:
                         priority: 1
