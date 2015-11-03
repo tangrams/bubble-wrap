@@ -2327,7 +2327,7 @@ layers:
                     font:
                         size: 12px
                         weight: 500
-                        fill: [0.20,0.20,0.20]
+                        fill: [0.40,0.40,0.40]
                         # stroke: { color: *text_stroke, width: 4 }
                         transform: uppercase
     #            icons:
@@ -2354,9 +2354,9 @@ layers:
                     visible: *text_visible_admin
                     text_source: function() { return feature["name:en"] || feature["name"]; }
                     font:
-                        size: 15px
+                        size: 13px
                         weight: 400
-                        fill: [0.2,0.2,0.2]
+                        fill: [0.25,0.25,0.25]
                         # stroke: { color: *text_stroke, width: 4 }
                         transform: uppercase
     #            icons:
@@ -2377,9 +2377,9 @@ layers:
                     visible: *text_visible_admin
                     text_source: function() { return feature["name:en"] || feature["name"]; }
                     font:
-                        size: 18px
-                        weight: 400
-                        fill: [0.2,0.2,0.2]
+                        size: 14px
+                        weight: 600
+                        fill: [0.25,0.25,0.25]
                         # stroke: { color: *text_stroke, width: 4 }
                         transform: uppercase
             early-ones-z6:
@@ -2463,8 +2463,8 @@ layers:
                 text:
                     offset: [0, 8px]
 
-            populated-places-natural-earth-z2-z3:
-                filter: { name: true, source: naturalearthdata.com, $zoom: {min: 2, max: 4}, scalerank: 0 }
+            populated-places-natural-earth-z2:
+                filter: { name: true, source: naturalearthdata.com, $zoom: [2], scalerank: 0 }
                 draw:
                     text:
                         priority: 1
@@ -2479,15 +2479,47 @@ layers:
                         interactive: true
                         sprite: townspot-xs-rev
 
-            populated-places-natural-earth-z4:
-                filter: { name: true, source: naturalearthdata.com, $zoom: {min: 4, max: 5}, scalerank: [0,1] }
+            populated-places-natural-earth-z3:
+                filter: { name: true, source: naturalearthdata.com, $zoom: [3], scalerank: 0 }
                 draw:
                     text:
                         priority: 1
                         interactive: true
                         visible: *text_visible_populated_places
                         font:
-                            size: 10px
+                            size: 11px
+                            fill: *text_fill
+                            # stroke: { color: *text_stroke, width: 4 }
+                    icons:
+                        size: 7px
+                        interactive: true
+                        sprite: townspot-xs-rev
+
+            populated-places-natural-earth-z4-1:
+                filter: { name: true, source: naturalearthdata.com, $zoom: [4], scalerank: [0] }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 12px
+                            fill: *text_fill
+                            # stroke: { color: *text_stroke, width: 4 }
+                    icons:
+                        size: 9px
+                        interactive: true
+                        sprite: townspot-s-rev
+
+            populated-places-natural-earth-z4-2:
+                filter: { name: true, source: naturalearthdata.com, $zoom: [4], scalerank: [1] }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 9px
                             fill: *text_fill
                             # stroke: { color: *text_stroke, width: 4 }
                     icons:
@@ -2503,7 +2535,7 @@ layers:
                         interactive: true
                         visible: *text_visible_populated_places
                         font:
-                            size: 10px
+                            size: 13px
                     icons:
                         size: 9px
                         interactive: true
@@ -2517,7 +2549,7 @@ layers:
                         interactive: true
                         visible: *text_visible_populated_places
                         font:
-                            size: 8px
+                            size: 10px
                     icons:
                         size: 9px
                         interactive: true
@@ -2531,25 +2563,42 @@ layers:
                         interactive: true
                         visible: *text_visible_populated_places
                         font:
-                            size: 13px
+                            fill: *text_fill
+                            size: 14px
                     icons:
                         size: [[13, 12px], [15, 18px]]
                         interactive: true
-                        sprite: townspot-s-rev
+                        sprite: townspot-m-rev
 
             populated-places-natural-earth-z6-2:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [6], scalerank: [2,3,4,5] }
+                filter: { name: true, source: naturalearthdata.com, $zoom: [6], scalerank: [2,3,4] }
                 draw:
                     text:
                         priority: 1
                         interactive: true
                         visible: *text_visible_populated_places
                         font:
-                            size: 10px
+                            fill: *text_fill
+                            size: 11px
                     icons:
                         size: [[13, 12px], [15, 18px]]
                         interactive: true
                         sprite: townspot-s-rev
+
+            populated-places-natural-earth-z6-3:
+                filter: { name: true, source: naturalearthdata.com, $zoom: [6], scalerank: [5,6] }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            fill: [0.25,0.25,0.25]
+                            size: 9px
+                    icons:
+                        size: [[13, 12px], [15, 18px]]
+                        interactive: true
+                        sprite: townspot-xs-rev
 
             populated-places-natural-earth-z7:
                 filter: { name: true, source: naturalearthdata.com, $zoom: {min: 7, max: 9} }
