@@ -1119,8 +1119,8 @@ layers:
                 draw:
                     lines:
                         # order: 3
-                        color: red
-                        width: [[12, 1.0px], [14, 1.0px], [15, 1.0px], [16, 5m]]
+                        color: [0.702,0.843,0.933]
+                        width: 1.0px
                         outline:
                             width: [[12, 0px], [14, .5px], [17, 1px]]
         highway:
@@ -2368,9 +2368,9 @@ layers:
                 draw:
                     text:
                         visible: false
-        country:
+        country-z6:
             # South Ossetia and Abkhazia aren't countries (they are disputed areas)
-            filter: { name: true, kind: [country], $zoom: { min: 6 } }
+            filter: { name: true, kind: [country], $zoom: [6] }
             draw:
                 text:
                     priority: 2
@@ -2378,6 +2378,31 @@ layers:
                     text_source: function() { return feature["name:en"] || feature["name"]; }
                     font:
                         size: 14px
+                        weight: 600
+                        fill: [0.25,0.25,0.25]
+                        # stroke: { color: *text_stroke, width: 4 }
+                        transform: uppercase
+            early-ones-z6:
+                filter: { name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,België - Belgique - Belgien,Хуссар Ирыстон,Аҧсны - Абхазия], $zoom: {min: 6, max: 7} }
+                draw:
+                    text:
+                        visible: false
+            early-ones-z7:
+                filter: { name: [Liechtenstein,San Marino,Civitatis Vaticanæ,Хуссар Ирыстон,Аҧсны - Абхазия], $zoom: {min: 7, max: 8} }
+                draw:
+                    text:
+                        visible: false
+
+        country-z7:
+            # South Ossetia and Abkhazia aren't countries (they are disputed areas)
+            filter: { name: true, kind: [country], $zoom: {min: 7, max: 9} }
+            draw:
+                text:
+                    priority: 2
+                    visible: *text_visible_admin
+                    text_source: function() { return feature["name:en"] || feature["name"]; }
+                    font:
+                        size: 16px
                         weight: 600
                         fill: [0.25,0.25,0.25]
                         # stroke: { color: *text_stroke, width: 4 }
@@ -2537,9 +2562,9 @@ layers:
                         font:
                             size: 13px
                     icons:
-                        size: 9px
+                        size: 13px
                         interactive: true
-                        sprite: townspot-s-rev
+                        sprite: townspot-m-rev
 
             populated-places-natural-earth-z5-2:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [5], scalerank: [2,3] }
@@ -2566,7 +2591,7 @@ layers:
                             fill: *text_fill
                             size: 14px
                     icons:
-                        size: [[13, 12px], [15, 18px]]
+                        size: 13px
                         interactive: true
                         sprite: townspot-m-rev
 
@@ -2581,7 +2606,7 @@ layers:
                             fill: *text_fill
                             size: 11px
                     icons:
-                        size: [[13, 12px], [15, 18px]]
+                        size: 11px
                         interactive: true
                         sprite: townspot-s-rev
 
@@ -2596,33 +2621,132 @@ layers:
                             fill: [0.25,0.25,0.25]
                             size: 9px
                     icons:
-                        size: [[13, 12px], [15, 18px]]
+                        size: 9px
                         interactive: true
                         sprite: townspot-xs-rev
 
-            populated-places-natural-earth-z7:
-                filter: { name: true, source: naturalearthdata.com, $zoom: {min: 7, max: 9} }
+            populated-places-natural-earth-z7-1:
+                filter: { name: true, source: naturalearthdata.com, $zoom: [7], scalerank: [0,1,2] }
                 draw:
                     text:
                         priority: 1
                         interactive: true
                         visible: *text_visible_populated_places
                         font:
-                            size: 11px
+                            fill: *text_fill
+                            size: 16px
                     icons:
-                        size: [[13, 12px], [15, 18px]]
+                        size: 14px
+                        interactive: true
+                        sprite: townspot-m-rev
+
+            populated-places-natural-earth-z7-2:
+                filter: { name: true, source: naturalearthdata.com, $zoom: [7], scalerank: [3,4,5] }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            fill: *text_fill
+                            size: 13px
+                    icons:
+                        size: 11px
                         interactive: true
                         sprite: townspot-s-rev
 
-            populated-places-osm:
-                filter: { name: true, source: openstreetmap, not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }, $zoom: {min: 8} }
+            populated-places-natural-earth-z7-3:
+                filter: { name: true, source: naturalearthdata.com, $zoom: [7], scalerank: [6,7] }
                 draw:
                     text:
                         priority: 1
                         interactive: true
                         visible: *text_visible_populated_places
                         font:
-                            size: 13px
+                            fill: [0.25,0.25,0.25]
+                            size: 11px
+                    icons:
+                        size: 9px
+                        interactive: true
+                        sprite: townspot-s-rev
+
+            populated-places-osm-z8-1:
+                filter:
+                    all:
+                        - source: openstreetmap
+                        - name: true
+                        - population: true
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - $zoom: [8]
+                    any:
+                        - { population: { min: 1000000 } }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 16px
+                    icons:
+                        size: 14px
+                        interactive: true
+                        sprite: townspot-m-rev
+
+            populated-places-osm-z8-2:
+                filter:
+                    all:
+                        - source: openstreetmap
+                        - name: true
+                        - population: true
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - $zoom: [8]
+                    any:
+                        - { population: { min: 500000, max: 999999 } }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 16px
+                    icons:
+                        size: 11px
+                        interactive: true
+                        sprite: townspot-s-rev
+
+            populated-places-osm-z8-3:
+                filter:
+                    all:
+                        - source: openstreetmap
+                        - name: true
+                        - population: true
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - $zoom: [8]
+                    any:
+                        - { population: { min: 85000, max: 499999 } }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            fill: [0.25,0.25,0.25]
+                            size: 12px
+                    icons:
+                        size: 9x
+                        interactive: true
+                        sprite: townspot-s-rev
+
+
+            populated-places-osm:
+                filter: { name: true, source: openstreetmap, not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }, $zoom: {min: 9} }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 16px
                             # stroke: { color: *text_stroke, width: 4 }
                 # add townspots from zoom 0 thru zoom 11
                 townspots:
@@ -2639,7 +2763,7 @@ layers:
                     draw:
                         text:
                             font:
-                                size: 14px
+                                size: 13px
                 major-places:
                     filter: { kind: [city], $zoom: { min: 15 } }
                     visible: false
@@ -2648,9 +2772,15 @@ layers:
                             visible: false
                             font:
                                 size: 14px
-                medium-places:
+                medium-places-early:
                     filter: { kind: [town], $zoom: { max: 11 } }
                     visible: false
+                medium-places-late:
+                    filter: { kind: [town], $zoom: { min: 11 } }
+                    draw:
+                        text:
+                            font:
+                                size: 12px
                 # nix podunk burgs under z15
                 minor-places-village:
                     filter: { kind: [village], $zoom: { max: 12 } }
