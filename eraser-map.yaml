@@ -2708,7 +2708,7 @@ layers:
                         interactive: true
                         visible: *text_visible_populated_places
                         font:
-                            size: 13px
+                            size: 12px
                     icons:
                         size: 11px
                         interactive: true
@@ -2737,16 +2737,106 @@ layers:
                         interactive: true
                         sprite: townspot-s-rev
 
-            populated-places-osm-z8-4:
+            # populated-places-osm-z8-4:
+            #     filter:
+            #         all:
+            #             - source: openstreetmap
+            #             - name: true
+            #             - population: true
+            #             - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+            #             - $zoom: [8]
+            #         any:
+            #             - { population: { min: 50000, max: 84999 } }
+            #     draw:
+            #         text:
+            #             priority: 1
+            #             interactive: true
+            #             visible: *text_visible_populated_places
+            #             font:
+            #                 fill: [0.30,0.30,0.30]
+            #                 size: 8px
+            #         icons:
+            #             size: 8x
+            #             interactive: true
+            #             sprite: townspot-xs-rev
+
+            populated-places-osm-z9-1:
                 filter:
                     all:
                         - source: openstreetmap
                         - name: true
                         - population: true
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
-                        - $zoom: [8]
+                        - $zoom: [9]
                     any:
-                        - { population: { min: 50000, max: 84999 } }
+                        - { population: { min: 1000000 } }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 17px
+                    icons:
+                        size: 14px
+                        interactive: true
+                        sprite: townspot-m-rev
+
+            populated-places-osm-z9-2:
+                filter:
+                    all:
+                        - source: openstreetmap
+                        - name: true
+                        - population: true
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - $zoom: [9]
+                    any:
+                        - { population: { min: 150000, max: 999999 } }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 13px
+                    icons:
+                        size: 11px
+                        interactive: true
+                        sprite: townspot-s-rev
+
+            populated-places-osm-z9-3:
+                filter:
+                    all:
+                        - source: openstreetmap
+                        - name: true
+                        - population: true
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - $zoom: [9]
+                    any:
+                        - { population: { min: 85000, max: 149999 } }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            fill: [0.25,0.25,0.25]
+                            size: 11px
+                    icons:
+                        size: 9x
+                        interactive: true
+                        sprite: townspot-s-rev
+
+            populated-places-osm-z9-4:
+                filter:
+                    all:
+                        - source: openstreetmap
+                        - name: true
+                        - population: true
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - $zoom: [9]
+                    any:
+                        - { population: { min: 60000, max: 84999 } }
                 draw:
                     text:
                         priority: 1
@@ -2762,7 +2852,7 @@ layers:
 
 
             populated-places-osm:
-                filter: { name: true, source: openstreetmap, not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }, $zoom: {min: 9} }
+                filter: { name: true, source: openstreetmap, not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }, $zoom: {min: 10} }
                 draw:
                     text:
                         priority: 1
