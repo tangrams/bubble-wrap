@@ -2850,9 +2850,99 @@ layers:
                         interactive: true
                         sprite: townspot-xs-rev
 
+            populated-places-osm-z10-1:
+                filter:
+                    all:
+                        - source: openstreetmap
+                        - name: true
+                        - population: true
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - $zoom: [10]
+                    any:
+                        - { population: { min: 1000000 } }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 17px
+                    icons:
+                        size: 14px
+                        interactive: true
+                        sprite: townspot-m-rev
+
+            populated-places-osm-z10-2:
+                filter:
+                    all:
+                        - source: openstreetmap
+                        - name: true
+                        - population: true
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - $zoom: [10]
+                    any:
+                        - { population: { min: 150000, max: 999999 } }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            size: 13px
+                    icons:
+                        size: 11px
+                        interactive: true
+                        sprite: townspot-s-rev
+
+            populated-places-osm-z10-3:
+                filter:
+                    all:
+                        - source: openstreetmap
+                        - name: true
+                        - population: true
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - $zoom: [10]
+                    any:
+                        - { population: { min: 50000, max: 149999 } }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            fill: [0.25,0.25,0.25]
+                            size: 11px
+                    icons:
+                        size: 9x
+                        interactive: true
+                        sprite: townspot-s-rev
+
+            populated-places-osm-z10-4:
+                filter:
+                    all:
+                        - source: openstreetmap
+                        - name: true
+                        - population: true
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - $zoom: [10]
+                    any:
+                        - { population: { min: 35000, max: 49999 } }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            fill: [0.35,0.35,0.35]
+                            size: 9px
+                    icons:
+                        size: 8x
+                        interactive: true
+                        sprite: townspot-xs-rev
+
 
             populated-places-osm:
-                filter: { name: true, source: openstreetmap, not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }, $zoom: {min: 10} }
+                filter: { name: true, source: openstreetmap, not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }, $zoom: {min: 11} }
                 draw:
                     text:
                         priority: 1
