@@ -2626,7 +2626,7 @@ layers:
                         sprite: townspot-xs-rev
 
             populated-places-natural-earth-z7-1:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [7], scalerank: [0,1,2] }
+                filter: { name: true, source: naturalearthdata.com, $zoom: [7], scalerank: [0,1] }
                 draw:
                     text:
                         priority: 1
@@ -2641,7 +2641,7 @@ layers:
                         sprite: townspot-m-rev
 
             populated-places-natural-earth-z7-2:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [7], scalerank: [3,4,5] }
+                filter: { name: true, source: naturalearthdata.com, $zoom: [7], scalerank: [2,3,4,5] }
                 draw:
                     text:
                         priority: 1
@@ -2701,14 +2701,14 @@ layers:
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [8]
                     any:
-                        - { population: { min: 500000, max: 999999 } }
+                        - { population: { min: 150000, max: 999999 } }
                 draw:
                     text:
                         priority: 1
                         interactive: true
                         visible: *text_visible_populated_places
                         font:
-                            size: 16px
+                            size: 13px
                     icons:
                         size: 11px
                         interactive: true
@@ -2723,7 +2723,7 @@ layers:
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [8]
                     any:
-                        - { population: { min: 85000, max: 499999 } }
+                        - { population: { min: 85000, max: 149999 } }
                 draw:
                     text:
                         priority: 1
@@ -2731,11 +2731,34 @@ layers:
                         visible: *text_visible_populated_places
                         font:
                             fill: [0.25,0.25,0.25]
-                            size: 12px
+                            size: 10px
                     icons:
                         size: 9x
                         interactive: true
                         sprite: townspot-s-rev
+
+            populated-places-osm-z8-4:
+                filter:
+                    all:
+                        - source: openstreetmap
+                        - name: true
+                        - population: true
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - $zoom: [8]
+                    any:
+                        - { population: { min: 50000, max: 84999 } }
+                draw:
+                    text:
+                        priority: 1
+                        interactive: true
+                        visible: *text_visible_populated_places
+                        font:
+                            fill: [0.30,0.30,0.30]
+                            size: 9px
+                    icons:
+                        size: 8x
+                        interactive: true
+                        sprite: townspot-xs-rev
 
 
             populated-places-osm:
