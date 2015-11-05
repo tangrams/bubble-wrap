@@ -3377,30 +3377,170 @@ layers:
                         - area: true
     #                    - label_placement: yes
                         - kind: [park, national_park, "park or protected land",conservation, protected_area, nature_reserve, forest]
-                    any:
-                        # show labels for smaller landuse areas at higher zooms
-                        - { $zoom: { min: 5, max: 7 },  area: { min: 5000000000 } }
-                        - { $zoom: { min: 8 },  area: { min: 1000000000 } }
-                        - { $zoom: { min: 9 },  area: { min: 100000000 } }
-                        - { $zoom: { min: 10 }, area: { min: 50000000 } }
-                        - { $zoom: { min: 11 }, area: { min: 25000000 } }
-                        - { $zoom: { min: 12 }, area: { min: 5000000 } }
-                        - { $zoom: { min: 13 }, area: { min: 200000 } }
-                        - { $zoom: { min: 14 }, area: { min: 50000 } }
-                draw:
-                    icons:
-                        visible: *icon_visible_landuse_green
-                        sprite: forest
-                        interactive: true
-                    text:
-                        visible: *text_visible_poi_landuse
-                        interactive: true
-                        offset: [0, 14px]
-                        font:
-                            fill: [0.254,0.334,0.331] #*text_fill_park
-                            size: 11px
-                            style: italic
-                            stroke: { color: [0.843,0.843,0.843], width: 4 }
+                z6landuse:
+                    filter:
+                        any:
+                            # show labels for smaller landuse areas at higher zooms
+                            - { $zoom: [6],  area: { min: 5000000000 } }
+                    draw:
+                        icons:
+                            visible: *icon_visible_landuse_green
+                            sprite: forest
+                            interactive: true
+                        text:
+                            visible: *text_visible_poi_landuse
+                            interactive: true
+                            offset: [0, 14px]
+                            font:
+                                fill: [0.254,0.334,0.331] #*text_fill_park
+                                size: 8px
+                                style: italic
+                                stroke: { color: [0.843,0.843,0.843], width: 4 }
+                z7landuse:
+                    filter:
+                        any:
+                            - { $zoom: [7],  area: { min: 5000000000 } }
+                    draw:
+                        icons:
+                            visible: *icon_visible_landuse_green
+                            sprite: forest
+                            interactive: true
+                        text:
+                            visible: *text_visible_poi_landuse
+                            interactive: true
+                            offset: [0, 14px]
+                            font:
+                                fill: [0.254,0.334,0.331] #*text_fill_park
+                                size: 8px
+                                style: italic
+                                stroke: { color: [0.843,0.843,0.843], width: 4 }
+                z8landuse:
+                    filter:
+                        any:
+                             - { $zoom: [8],  area: { min: 1000000000 } }
+                    draw:
+                        icons:
+                            visible: *icon_visible_landuse_green
+                            sprite: forest
+                            interactive: true
+                        text:
+                            visible: *text_visible_poi_landuse
+                            interactive: true
+                            offset: [0, 14px]
+                            font:
+                                fill: [0.254,0.334,0.331] #*text_fill_park
+                                size: 10px
+                                style: italic
+                                stroke: { color: [0.843,0.843,0.843], width: 4 }
+                z9landuse:
+                    filter:
+                        any:
+                            - { $zoom: [9],  area: { min: 100000000 } }
+                    draw:
+                        icons:
+                            visible: *icon_visible_landuse_green
+                            sprite: forest
+                            interactive: true
+                        text:
+                            visible: *text_visible_poi_landuse
+                            interactive: true
+                            offset: [0, 14px]
+                            font:
+                                fill: [0.254,0.334,0.331] #*text_fill_park
+                                size: 11px
+                                style: italic
+                                stroke: { color: [0.843,0.843,0.843], width: 4 }
+                z10landuse:
+                    filter:
+                        any:
+                            - { $zoom: [10], area: { min: 50000000 } }
+                    draw:
+                        icons:
+                            visible: *icon_visible_landuse_green
+                            sprite: forest
+                            interactive: true
+                        text:
+                            visible: *text_visible_poi_landuse
+                            interactive: true
+                            offset: [0, 14px]
+                            font:
+                                fill: [0.254,0.334,0.331] #*text_fill_park
+                                size: 12px
+                                style: italic
+                                stroke: { color: [0.843,0.843,0.843], width: 4 }
+                z11landuse:
+                    filter:
+                        any:
+                            - { $zoom: [11], area: { min: 25000000 } }
+                    draw:
+                        icons:
+                            visible: *icon_visible_landuse_green
+                            sprite: forest
+                            interactive: true
+                        text:
+                            visible: *text_visible_poi_landuse
+                            interactive: true
+                            offset: [0, 14px]
+                            font:
+                                fill: [0.254,0.334,0.331] #*text_fill_park
+                                size: 13px
+                                style: italic
+                                stroke: { color: [0.843,0.843,0.843], width: 4 }
+                z12landuse:
+                    filter:
+                        any:
+                            - { $zoom: [12], area: { min: 5000000 } }
+                    draw:
+                        icons:
+                            visible: *icon_visible_landuse_green
+                            sprite: forest
+                            interactive: true
+                        text:
+                            visible: *text_visible_poi_landuse
+                            interactive: true
+                            offset: [0, 14px]
+                            font:
+                                fill: [0.254,0.334,0.331] #*text_fill_park
+                                size: 15px
+                                style: italic
+                                stroke: { color: [0.843,0.843,0.843], width: 4 }
+                z13landuse:
+                    filter:
+                        any:
+                            - { $zoom: [13], area: { min: 200000 } }
+                    draw:
+                        icons:
+                            visible: *icon_visible_landuse_green
+                            sprite: forest
+                            interactive: true
+                        text:
+                            visible: *text_visible_poi_landuse
+                            interactive: true
+                            offset: [0, 14px]
+                            font:
+                                fill: [0.254,0.334,0.331] #*text_fill_park
+                                size: 16px
+                                style: italic
+                                stroke: { color: [0.843,0.843,0.843], width: 4 }
+                z14landuse:
+                    filter:
+                        any:
+                            - { $zoom: [14], area: { min: 50000 } }
+                    draw:
+                        icons:
+                            visible: *icon_visible_landuse_green
+                            sprite: forest
+                            interactive: true
+                        text:
+                            visible: *text_visible_poi_landuse
+                            interactive: true
+                            offset: [0, 14px]
+                            font:
+                                fill: [0.254,0.334,0.331] #*text_fill_park
+                                size: 18px
+                                style: italic
+                                stroke: { color: [0.843,0.843,0.843], width: 4 }
+                
                 wilderness-areas-early:
                    filter: function() { return $zoom < 10 && feature.name && (feature.name.includes("Wilderness") || feature.name.includes("BLM")) }
                    draw:
@@ -4038,7 +4178,7 @@ layers:
         filter:
             any:
                 # limit show smaller landuse areas to higher zooms
-                - { $zoom: { min: 9 },  area: { min: 10000000 } }
+                - { $zoom: { min: 5 },  area: { min: 10000000 } }
                 - { $zoom: { min: 10 }, area: { min: 8000000 } }
                 - { $zoom: { min: 11 }, area: { min: 1000000 } }
                 - { $zoom: { min: 12 }, area: { min: 100000 } }
@@ -4055,27 +4195,43 @@ layers:
             # default for national forests and more?
             draw:
                 dots2:
-                    color: *green7
+                    color: [[5,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
             us_national_parks:
                 filter: { operator: [ "United States National Park Service", "US National Park Service" ] }
                 draw:
                     polygons:
-                      color: *green1
+                      color: [[5,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
         conservation:
             filter:
                 kind: [conservation, protected_area, nature_reserve]
             draw:
                 dots2:
-                    color: *green8
+                    # below utah, above santa fe, brazil, leticia, boa vista areas, france and germany
+                    color: [[5,[0.447,0.808,0.706]],[7,[0.271,0.788,0.639]],[9,*green8]]
             wilderness-areas:
                 filter: function() { return feature.name && feature.name.includes("Wilderness") }
                 draw:
                     dots2:
-                        color: *green7
-                    outline:
-                        style: lines
-                        color: *green1
-                        width: [[9,0px],[10,2px],[12,4px]]
+                        # in california, inyo national forest areas
+                        color: [[5,[0.271,0.788,0.639]],[9,*green8]]
+        forest:
+            filter:
+                kind: forest
+                operator: [ "United States Forest Service", "US Forest Service", "U.S. Forest Service", "USDA Forest Service" ]
+            draw:
+                polygons:
+                    color: [[6,[1.0,0.0,0.0]],[9,[0.562,0.750,0.741]],[10, [0.562,0.750,0.741]],[11,[0.392,0.700,0.685]],[12,[0.194,0.748,0.721]]]
+        nature_reserve:
+            filter:
+                kind: nature_reserve
+            draw:
+                dots2:
+                    color: [0.027,0.804,0.494]
+            wilderness-areas:
+                filter: function() { return feature.name && feature.name.includes("Wilderness") }
+                draw:
+                    polygons:
+                        color: [0.027,0.804,0.494]
         cemetery:
             filter:
                 kind: cemetery
@@ -4088,13 +4244,6 @@ layers:
             draw:
                 dots2:
                     color: [0.604,0.973,0.722]
-        forest:
-            filter:
-                kind: forest
-                operator: [ "United States Forest Service", "US Forest Service", "U.S. Forest Service", "USDA Forest Service" ]
-            draw:
-                dots2:
-                    color: [[9, [0.562,0.750,0.741]], [10, [0.562,0.750,0.741]], [11, [0.392,0.700,0.685]], [12, [0.194,0.748,0.721]]]
         recreation_ground:
             filter:
                 kind: recreation_ground
@@ -4115,21 +4264,6 @@ layers:
             draw:
                 dots2:
                     color: *green3
-        nature_reserve:
-            filter:
-                kind: nature_reserve
-            draw:
-                dots2:
-                    color: [0.027,0.804,0.494]
-            wilderness-areas:
-                filter: function() { return feature.name && feature.name.includes("Wilderness") }
-                draw:
-                    polygons:
-                        color: *green7
-                    outline:
-                        style: lines
-                        color: *green6
-                        width: [[9,0px],[10,2px],[12,4px]]
         stadium:
             filter:
                 kind: stadium
