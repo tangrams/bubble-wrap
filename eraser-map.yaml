@@ -3081,7 +3081,7 @@ layers:
                 z12places-3:
                     filter:
                         any:
-                        - { population: { min: 10000, max: 49999 } }
+                        - { population: { min: 7000, max: 49999 } }
                     draw:
                         text:
                             priority: 1
