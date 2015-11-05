@@ -2617,7 +2617,7 @@ layers:
                             visible: *text_visible_populated_places
                             font:
                                 fill: *text_fill
-                                size: 14px
+                                size: 15px
                         icons:
                             size: 13px
                             interactive: true
@@ -2627,7 +2627,7 @@ layers:
                         draw:
                             text:
                                 font:
-                                    size: 14px
+                                    size: 15px
                             icons:
                                 sprite: capital-m
 
@@ -2640,7 +2640,7 @@ layers:
                             visible: *text_visible_populated_places
                             font:
                                 fill: *text_fill
-                                size: 11px
+                                size: 12px
                         icons:
                             size: 11px
                             interactive: true
@@ -2650,7 +2650,7 @@ layers:
                         draw:
                             text:
                                 font:
-                                    size: 14px
+                                    size: 15px
                             icons:
                                 sprite: capital-s
                     state_capital:
@@ -2658,7 +2658,7 @@ layers:
                         draw:
                             text:
                                 font:
-                                    size: 11px
+                                    size: 12px
 
                 z6places-3:
                     filter: { scalerank: [5,6] }
@@ -2669,7 +2669,7 @@ layers:
                             visible: *text_visible_populated_places
                             font:
                                 fill: [0.25,0.25,0.25]
-                                size: 9px
+                                size: 10px
                         icons:
                             size: 9px
                             interactive: true
@@ -2814,7 +2814,7 @@ layers:
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
-                                size: 12px
+                                size: 13px
                         icons:
                             size: 11px
                             interactive: true
@@ -2832,7 +2832,7 @@ layers:
                         draw:
                             text:
                                 font:
-                                    size: 14px
+                                    size: 13px
             
                 z8places-3:
                     filter:
@@ -2845,7 +2845,7 @@ layers:
                             visible: *text_visible_populated_places
                             font:
                                 fill: [0.25,0.25,0.25]
-                                size: 10px
+                                size: 11px
                         icons:
                             size: 9x
                             interactive: true
