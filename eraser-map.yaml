@@ -2855,7 +2855,7 @@ layers:
                         draw:
                             text:
                                 font:
-                                    size: 14px
+                                    size: 15px
 
                 z9places-3:
                     filter:
@@ -2873,6 +2873,20 @@ layers:
                             size: 9x
                             interactive: true
                             sprite: townspot-s-rev
+                    capital:
+                        filter: { capital: yes }
+                        draw:
+                            text:
+                                font:
+                                    size: 15px
+                            icons:
+                                    sprite: capital-m
+                    state_capital:
+                        filter: { state_capital: yes }
+                        draw:
+                            text:
+                                font:
+                                    size: 13px
 
                 z9places-4:
                     filter:
@@ -2890,6 +2904,20 @@ layers:
                             size: 8x
                             interactive: true
                             sprite: townspot-xs-rev
+                    capital:
+                        filter: { capital: yes }
+                        draw:
+                            text:
+                                font:
+                                    size: 13px
+                            icons:
+                                    sprite: capital-s
+                    state_capital:
+                        filter: { state_capital: yes }
+                        draw:
+                            text:
+                                font:
+                                    size: 11px
 
             populated-places-osm-z10:
                 filter:
@@ -2992,31 +3020,68 @@ layers:
                 z11places-2:
                     filter:
                         any:
-                            - { population: { min: 150000, max: 999999 } }
+                            - { population: { min: 50000, max: 999999 } }
                     draw:
                         text:
                             priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
-                                size: 15px
+                                size: 14px
+
 
                 z11places-3:
                     filter:
                         any:
-                        - { population: { min: 50000, max: 149999 } }
+                        - { population: { min: 10000, max: 49999 } }
                     draw:
                         text:
                             priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
-                                size: 13px
+                                size: 10px
 
-                z11places-4:
+
+            populated-places-osm-z12:
+                filter: 
+                    all:
+                        - source: openstreetmap
+                        - name: true
+                        - population: true
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] } 
+                        - $zoom: [12]
+                        - kind: [city,town]
+
+                z12places-1:
                     filter:
                         any:
-                        - { population: { min: 20000, max: 49999 } }
+                            - { population: { min: 1000000 } }
+                        
+                    draw:
+                        text:
+                            priority: 1
+                            interactive: true
+                            visible: *text_visible_populated_places
+                            font:
+                                size: 18px
+
+                z12places-2:
+                    filter:
+                        any:
+                            - { population: { min: 50000, max: 999999 } }
+                    draw:
+                        text:
+                            priority: 1
+                            interactive: true
+                            visible: *text_visible_populated_places
+                            font:
+                                size: 14px
+
+                z12places-3:
+                    filter:
+                        any:
+                        - { population: { min: 10000, max: 49999 } }
                     draw:
                         text:
                             priority: 1
@@ -3025,17 +3090,6 @@ layers:
                             font:
                                 size: 11px
 
-                z11places-5:
-                    filter:
-                        any:
-                        - { population: { min: 10000, max: 19999 } }
-                    draw:
-                        text:
-                            priority: 1
-                            interactive: true
-                            visible: *text_visible_populated_places
-                            font:
-                                size: 9px
 
 
             # populated-places-osm:
@@ -3046,16 +3100,9 @@ layers:
             #             interactive: true
             #             visible: *text_visible_populated_places
             #             font:
-            #                 size: 16px
+            #                 size: 15px
             #                 # stroke: { color: *text_stroke, width: 4 }
-            #     # add townspots from zoom 0 thru zoom 11
-            #     townspots:
-            #         filter: { $zoom: { max: 11 } }
-            #         draw:
-            #             icons:
-            #                 size: [[13, 12px], [15, 18px]]
-            #                 interactive: true
-            #                 sprite: *townspot_sprite
+                
             #     # nix major cities under z15
             #     major-places:
             #         filter: { kind: [city], $zoom: { min: 13, max: 15 } }
@@ -3080,7 +3127,6 @@ layers:
             #         draw:
             #             text:
             #                 font:
-            #                     fill: [0.25,0.25,0.25]
             #                     size: 11px
             #     # nix podunk burgs under z15
             #     minor-places-village:
