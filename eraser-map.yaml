@@ -2520,37 +2520,39 @@ layers:
                         interactive: true
                         sprite: townspot-xs-rev
 
-            populated-places-natural-earth-z4-1:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [4], scalerank: [0] }
-                draw:
-                    text:
-                        priority: 1
-                        interactive: true
-                        visible: *text_visible_populated_places
-                        font:
-                            size: 12px
-                            fill: *text_fill
-                            # stroke: { color: *text_stroke, width: 4 }
-                    icons:
-                        size: 9px
-                        interactive: true
-                        sprite: townspot-s-rev
-
-            populated-places-natural-earth-z4-2:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [4], scalerank: [1] }
-                draw:
-                    text:
-                        priority: 1
-                        interactive: true
-                        visible: *text_visible_populated_places
-                        font:
+            populated-places-natural-earth-z4:
+                filter: { name: true, source: naturalearthdata.com, $zoom: [4] }
+                z4places-1:
+                    filter: { scalerank: [0] }
+                    draw:
+                        text:
+                            priority: 1
+                            interactive: true
+                            visible: *text_visible_populated_places
+                            font:
+                                size: 13px
+                                fill: *text_fill
+                                # stroke: { color: *text_stroke, width: 4 }
+                        icons:
                             size: 9px
-                            fill: *text_fill
-                            # stroke: { color: *text_stroke, width: 4 }
-                    icons:
-                        size: 9px
-                        interactive: true
-                        sprite: townspot-s-rev
+                            interactive: true
+                            sprite: townspot-s-rev
+
+                z4places-2:
+                    filter: { scalerank: [1] }
+                    draw:
+                        text:
+                            priority: 1
+                            interactive: true
+                            visible: *text_visible_populated_places
+                            font:
+                                size: 11px
+                                fill: *text_fill
+                                # stroke: { color: *text_stroke, width: 4 }
+                        icons:
+                            size: 9px
+                            interactive: true
+                            sprite: townspot-s-rev
 
             populated-places-natural-earth-z5:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [5] }
@@ -2584,7 +2586,7 @@ layers:
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
-                                size: 10px
+                                size: 11px
                         icons:
                             size: 9px
                             interactive: true
@@ -4178,7 +4180,7 @@ layers:
         filter:
             any:
                 # limit show smaller landuse areas to higher zooms
-                - { $zoom: { min: 5 },  area: { min: 10000000 } }
+                - { $zoom: { min: 4 },  area: { min: 10000000 } }
                 - { $zoom: { min: 10 }, area: { min: 8000000 } }
                 - { $zoom: { min: 11 }, area: { min: 1000000 } }
                 - { $zoom: { min: 12 }, area: { min: 100000 } }
@@ -4195,25 +4197,25 @@ layers:
             # default for national forests and more?
             draw:
                 dots2:
-                    color: [[5,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
+                    color: [[4,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
             us_national_parks:
                 filter: { operator: [ "United States National Park Service", "US National Park Service" ] }
                 draw:
                     polygons:
-                      color: [[5,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
+                      color: [[4,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
         conservation:
             filter:
                 kind: [conservation, protected_area, nature_reserve]
             draw:
                 dots2:
                     # below utah, above santa fe, brazil, leticia, boa vista areas, france and germany
-                    color: [[5,[0.447,0.808,0.706]],[7,[0.271,0.788,0.639]],[9,*green8]]
+                    color: [[4,[0.447,0.808,0.706]],[7,[0.271,0.788,0.639]],[9,*green8]]
             wilderness-areas:
                 filter: function() { return feature.name && feature.name.includes("Wilderness") }
                 draw:
                     dots2:
                         # in california, inyo national forest areas
-                        color: [[5,[0.271,0.788,0.639]],[9,*green8]]
+                        color: [[4,[0.271,0.788,0.639]],[9,*green8]]
         forest:
             filter:
                 kind: forest
