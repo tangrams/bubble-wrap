@@ -2505,7 +2505,7 @@ layers:
                         sprite: townspot-xs-rev
 
             populated-places-natural-earth-z3:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [3], scalerank: 0 }
+                filter: { name: true, source: naturalearthdata.com, $zoom: [3], scalerank: [0,1] }
                 draw:
                     text:
                         priority: 1
@@ -2539,7 +2539,7 @@ layers:
                             sprite: townspot-s-rev
 
                 z4places-2:
-                    filter: { scalerank: [1] }
+                    filter: { scalerank: [1,2] }
                     draw:
                         text:
                             priority: 1
@@ -2579,7 +2579,7 @@ layers:
                                 sprite: capital-m
 
                 z5places-2:
-                    filter: { scalerank: [2,3] }
+                    filter: { scalerank: [2,3,4] }
                     draw:
                         text:
                             priority: 1
