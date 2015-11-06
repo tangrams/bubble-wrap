@@ -3575,7 +3575,7 @@ layers:
                     weight: 500
                     fill: *text_fill
                     size: 12px
-                    stroke: { color: *text_stroke, width: 4 }
+                    # stroke: { color: *text_stroke, width: 4 }
         no-name:
             filter: { name: false }
             sports-pitch:
@@ -3639,39 +3639,98 @@ layers:
                         font:
                             fill: [0.20,0.20,0.20] # *text_fill
                             size: 11px
-                            stroke: { color: *text_stroke, width: 4 }
+                            # stroke: { color: *text_stroke, width: 4 }
             landuse-labels-green-areas-national-park:
                 filter:
                     all:
                         - area: true
                         - $geometry: point
                         - kind: [national_park, "park or protected land"]
-                    any:
-                        # show labels for smaller landuse areas at higher zooms
-                        - { $zoom: { min: 5 },  area: { min: 3000000000 } }
-                        - { $zoom: { min: 6 },  area: { min: 500000000 } }
-                        - { $zoom: { min: 9 },  area: { min: 100000000 } }
-                        - { $zoom: { min: 10 }, area: { min: 50000000 } }
-                        - { $zoom: { min: 11 }, area: { min: 25000000 } }
-                        - { $zoom: { min: 12 }, area: { min: 5000000 } }
-                        - { $zoom: { min: 13 }, area: { min: 200000 } }
-                        - { $zoom: { min: 14 }, area: { min: 50000 } }
+                    # any:
+                    #     # show labels for smaller landuse areas at higher zooms
+                    #     - { $zoom: { min: 5 },  area: { min: 3000000000 } }
+                    #     - { $zoom: { min: 6 },  area: { min: 500000000 } }
+                    #     - { $zoom: { min: 9 },  area: { min: 100000000 } }
+                    #     - { $zoom: { min: 10 }, area: { min: 50000000 } }
+                    #     - { $zoom: { min: 11 }, area: { min: 25000000 } }
+                    #     - { $zoom: { min: 12 }, area: { min: 5000000 } }
+                    #     - { $zoom: { min: 13 }, area: { min: 200000 } }
+                    #     - { $zoom: { min: 14 }, area: { min: 50000 } }
                 national-park:
                     filter: function() { return feature.name && feature.name.includes("National Park") }
-                    draw:
-                        icons:
-                            visible: *icon_visible_landuse_green
-                            sprite: park
-                            interactive: true
-                        text:
-                            visible: *text_visible_poi_landuse
-                            interactive: true
-                            offset: [0, 14px]
-                            font:
-                                fill: [0.254,0.334,0.331] #*text_fill_park
-                                size: 12px
-                                style: italic
-                                stroke: { color: *text_stroke_park, width: 4 }
+                    natl-park-labels-z7:
+                        filter:
+                            any:
+                                - { $zoom: [7],  area: { min: 500000000 } }
+                        draw:
+                            text:
+                                visible: *text_visible_poi_landuse
+                                interactive: true
+                                offset: [0, 14px]
+                                font:
+                                    fill: [0.200,0.409,0.398] #*text_fill_park
+                                    size: 10px
+                                    style: italic
+                                    stroke: { color: [0.870,0.870,0.870], width: 2 }
+                    natl-park-labels-z8:
+                        filter:
+                            any:
+                                - { $zoom: { min: 8 },  area: { min: 500000000 } }
+                                - { $zoom: { min: 9 },  area: { min: 100000000 } }
+                        draw:
+                            icons:
+                                visible: *icon_visible_landuse_green
+                                sprite: park
+                                interactive: true
+                            text:
+                                visible: *text_visible_poi_landuse
+                                interactive: true
+                                offset: [0, 14px]
+                                font:
+                                    fill: [0.214,0.437,0.426] #*text_fill_park
+                                    size: 11px
+                                    style: italic
+                                    stroke: { color: [0.870,0.870,0.870], width: 2 }
+                    natl-park-labels-z10:
+                        filter:
+                            any:
+                                - { $zoom: { min: 10 }, area: { min: 50000000 } }
+                                - { $zoom: { min: 11 }, area: { min: 25000000 } }
+                        draw:
+                            icons:
+                                visible: *icon_visible_landuse_green
+                                sprite: park
+                                interactive: true
+                            text:
+                                visible: *text_visible_poi_landuse
+                                interactive: true
+                                offset: [0, 14px]
+                                font:
+                                    fill: [0.214,0.437,0.426] #*text_fill_park
+                                    size: 12px
+                                    style: italic
+                                    stroke: { color: [0.870,0.870,0.870], width: 3 }
+                    natl-park-labels-z12:
+                        filter:
+                            any:
+                                - { $zoom: { min: 12 }, area: { min: 5000000 } }
+                                - { $zoom: { min: 13 }, area: { min: 200000 } }
+                                - { $zoom: { min: 14 }, area: { min: 50000 } }
+                        draw:
+                            icons:
+                                visible: *icon_visible_landuse_green
+                                sprite: park
+                                interactive: true
+                            text:
+                                visible: *text_visible_poi_landuse
+                                interactive: true
+                                offset: [0, 14px]
+                                font:
+                                    fill: [0.214,0.437,0.426] #*text_fill_park
+                                    size: 13px
+                                    style: italic
+                                    stroke: { color: [0.870,0.870,0.870], width: 3 }
+
             landuse-labels-green-areas-not-national-park:
                 filter:
                     all:
@@ -3702,7 +3761,7 @@ layers:
                             fill: *text_fill_park
                             size: 12px
                             style: italic
-                            stroke: { color: *text_stroke_park, width: 4 }
+                            # stroke: { color: *text_stroke_park, width: 4 }
                 wilderness-areas-early:
                    filter: function() { return $zoom < 10 && feature.name && (feature.name.includes("Wilderness") || feature.name.includes("BLM")) }
                    draw:
@@ -4503,14 +4562,14 @@ layers:
                 filter: { kind: [national_park, "park or protected land"], not: { operator: [ "United States Forest Service", "US Forest Service", "U.S. Forest Service", "USDA Forest Service" ] } }
                 draw:
                     dots2:
-                      color: [[4,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
-                      order: 0
-                      visible: false
+                        color: [[4,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
+                        order: 0
+                        # visible: false
                 us_national_park:
                     filter: { operator: [ "United States National Park Service", "US National Park Service" ] }
                     draw:
                         dots2:
-                            color: *green1
+                            color: [[4,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
         tier2:
             filter: 
                 any:
@@ -4541,20 +4600,13 @@ layers:
                     draw:
                         dots2:
                             color: [0.027,0.804,0.494]
-#                        outline:
-#                            style: lines
-#                            order: 3
-#                            color: *green1_ws
-#                            width: [[9,0px],[10,1px],[11,2px],[12,4px]]
+
                 national_forest_level_6:
                     filter: { protect_class: ["6",6] }
                     draw:
                         dots2:
                             color: *green7
-#                        lines:
-#                            order: 10
-#                            color: *earth1
-#                            width: 2px
+
             # gotta be a protected area to draw green, not just a landcover type
             farm:
                 filter:
@@ -4572,10 +4624,7 @@ layers:
                     draw:
                         dots2:
                             color: *green7
-#                        lines:
-#                            order: 10
-#                            color: *earth1
-#                            width: 2px
+
                 landuse-forest:
                     filter:
                         not: { operator: [ "United States Forest Service", "US Forest Service", "U.S. Forest Service", "USDA Forest Service" ] }
@@ -4594,21 +4643,15 @@ layers:
                     draw:
                         dots2:
                             color: *green7
-#                        outline:
-#                            style: lines
-#                            color: *green6
-#                            width: [[9,0px],[10,2px],[12,4px]]
+
             parks-and-national-forests-not-national-park:
                 filter: { $zoom: { min: 4 }, kind: [park, national_park, "park or protected land"], not: { operator: [ "United States National Park Service", "US National Park Service" ] } }
                 # default for national forests and more?
                 draw:
                     dots2:
-                        color: [[4,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
+                        color: [[4,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]],[9,[0.242,0.737,0.712]],[14,[0.224,0.682,0.659]]]
                         order: function() { return feature.sort_key + 1 || 1; }
-#                    lines:
-#                        order: 3
-#                        color: *earth1
-#                        width: [[7,0px],[8,1px],[10,2px]]
+
             urban:
                 filter: { kind: [urban, rural, residential] }
                 draw:
@@ -4795,7 +4838,7 @@ layers:
                 filter:
                     kind: playground
                 draw:
-                    dots2:
+                    dots-rev:
                         color: [0.306,0.804,0.713]
             school:
                 filter:
