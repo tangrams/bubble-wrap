@@ -3687,7 +3687,7 @@ layers:
                                 interactive: true
                                 offset: [0, 14px]
                                 font:
-                                    fill: [0.214,0.437,0.426] #*text_fill_park
+                                    fill: [0.214,0.437,0.426]
                                     size: 11px
                                     style: italic
                                     stroke: { color: [0.870,0.870,0.870], width: 2 }
@@ -3706,7 +3706,7 @@ layers:
                                 interactive: true
                                 offset: [0, 14px]
                                 font:
-                                    fill: [0.214,0.437,0.426] #*text_fill_park
+                                    fill: [0.214,0.437,0.426]
                                     size: 12px
                                     style: italic
                                     stroke: { color: [0.870,0.870,0.870], width: 3 }
@@ -3726,7 +3726,7 @@ layers:
                                 interactive: true
                                 offset: [0, 14px]
                                 font:
-                                    fill: [0.214,0.437,0.426] #*text_fill_park
+                                    fill: [0.214,0.437,0.426]
                                     size: 13px
                                     style: italic
                                     stroke: { color: [0.870,0.870,0.870], width: 3 }
@@ -3737,31 +3737,70 @@ layers:
                         - area: true
                         - $geometry: point
                         - kind: [park, national_park, "park or protected land",conservation, protected_area, nature_reserve, forest]
-                    any:
-                        # show labels for smaller landuse areas at higher zooms
-                        - { $zoom: { min: 5, max: 6 },  area: { min: 10000000000 } }
-                        - { $zoom: { min: 6, max: 8 },  area: { min: 5000000000 } }
-                        - { $zoom: { min: 8 },          area: { min: 1000000000 } }
-                        - { $zoom: { min: 9 },          area: { min: 100000000 } }
-                        - { $zoom: { min: 10 },         area: { min: 50000000 } }
-                        - { $zoom: { min: 11 },         area: { min: 25000000 } }
-                        - { $zoom: { min: 12 },         area: { min: 5000000 } }
-                        - { $zoom: { min: 13 },         area: { min: 200000 } }
-                        - { $zoom: { min: 14 },         area: { min: 50000 } }
-                draw:
-                    icons:
-                        visible: *icon_visible_landuse_green
-                        sprite: forest
-                        interactive: true
-                    text:
-                        visible: *text_visible_poi_landuse
-                        interactive: true
-                        offset: [0, 14px]
-                        font:
-                            fill: *text_fill_park
-                            size: 12px
-                            style: italic
-                            # stroke: { color: *text_stroke_park, width: 4 }
+                    # any:
+                    #     # show labels for smaller landuse areas at higher zooms
+                    #     - { $zoom: { min: 5, max: 6 },  area: { min: 10000000000 } }
+                    #     - { $zoom: { min: 6, max: 8 },  area: { min: 5000000000 } }
+                    #     - { $zoom: { min: 8 },          area: { min: 1000000000 } }
+                    #     - { $zoom: { min: 9 },          area: { min: 100000000 } }
+                    #     - { $zoom: { min: 10 },         area: { min: 50000000 } }
+                    #     - { $zoom: { min: 11 },         area: { min: 25000000 } }
+                    #     - { $zoom: { min: 12 },         area: { min: 5000000 } }
+                    #     - { $zoom: { min: 13 },         area: { min: 200000 } }
+                    #     - { $zoom: { min: 14 },         area: { min: 50000 } }
+                green-areas-z7:
+                    filter:
+                        any:
+                            - { $zoom: { min: 6, max: 8 },  area: { min: 5000000000 } }
+                    draw:
+                        icons: { visible: false }
+                        text:
+                            visible: *text_visible_poi_landuse
+                            interactive: true
+                            offset: [0, 14px]
+                            font:
+                                fill: [0.200,0.409,0.398]
+                                size: 10px
+                                style: italic
+                                stroke: { color: [0.870,0.870,0.870], width: 2 }
+                green-areas-z8:
+                    filter:
+                        any:
+                            - { $zoom: { min: 8 },          area: { min: 1000000000 } }
+                            - { $zoom: { min: 9 },          area: { min: 100000000 } }
+                    draw:
+                        icons:
+                            visible: *icon_visible_landuse_green
+                            sprite: forest
+                            interactive: true
+                        text:
+                            visible: *text_visible_poi_landuse
+                            interactive: true
+                            offset: [0, 14px]
+                            font:
+                                fill: [0.200,0.409,0.398]
+                                size: 11px
+                                style: italic
+                                stroke: { color: [0.870,0.870,0.870], width: 2 }
+                green-areas-z10:
+                    filter:
+                        any:
+                            - { $zoom: { min: 10 },         area: { min: 50000000 } }
+                            - { $zoom: { min: 11 },         area: { min: 25000000 } }
+                    draw:
+                        icons:
+                            visible: *icon_visible_landuse_green
+                            sprite: forest
+                            interactive: true
+                        text:
+                            visible: *text_visible_poi_landuse
+                            interactive: true
+                            offset: [0, 14px]
+                            font:
+                                fill: [0.200,0.409,0.398]
+                                size: 12px
+                                style: italic
+                                stroke: { color: [0.870,0.870,0.870], width: 2 }
                 wilderness-areas-early:
                    filter: function() { return $zoom < 10 && feature.name && (feature.name.includes("Wilderness") || feature.name.includes("BLM")) }
                    draw:
@@ -3774,9 +3813,9 @@ layers:
                         icons: { visible: false }
                 not-national-park:
                     filter: function() { return feature.name && feature.name.includes("Park") && !feature.name.includes("National Park")}
-                    draw:
-                        icons:
-                            sprite: park
+                    # draw:
+                    #     icons:
+                    #         sprite: park
                     early:
                         filter: { $zoom: { max: 8 } }
                         draw:
@@ -4455,7 +4494,7 @@ layers:
                         style: italic
                         weight: 500
                         size: 12px
-                        stroke: { color: *text_stroke_water, width: 3 }
+                        # stroke: { color: [0.878,0.929,0.980], width: 2 }
     ocean-sea-labels:
         data: { source: osm, layer: places }
         visible: *text_visible_water_labels
@@ -4463,12 +4502,12 @@ layers:
         draw:
             text:
                 font:
-                    fill: *text_fill_water
+                    fill: [0.364,0.607,0.650] #*text_fill_water
                     family: Helvetica
                     style: italic
                     weight: 500
                     size: 12px
-                    stroke: { color: *text_stroke_water, width: 3 }
+                    stroke: { color: [0.878,0.929,0.980], width: 3 }
         sea-early:
             filter: { $zoom: { max: 4 }, kind: sea }
             draw: { text: { visible: false } }
