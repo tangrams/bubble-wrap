@@ -683,11 +683,9 @@ styles:
         base: polygons
         mix: pattern-dots
         shaders:
-            defines:
-                BACKGROUND: vec3(0.850)
             blocks:
                 color: |
-                    color.rgb = mix(color.rgb, BACKGROUND, TileDots(35., .21));
+                    color.rgb = mix(vec3(0.850), color.rgb, TileDots(35., .21));
 
     # HSV/RGB functions
     hsv:
