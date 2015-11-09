@@ -500,15 +500,6 @@ styles:
                 position: |
                     v_pos = modelPosition().xy;
 
-    tools-world-space-normal:
-        base: polygons
-        shaders:
-            blocks:
-                global: |
-                    varying vec3 v_worldSpaceNormal;
-                position: |
-                    v_worldSpaceNormal = a_normal;
-
     tools-aastep:
         shaders:
             extensions: OES_standard_derivatives
@@ -724,7 +715,7 @@ styles:
 
     building-grid:
         base: polygons
-        mix: [hsv, scale-buildings, tools-world-space-normal]
+        mix: [hsv, scale-buildings]
         texcoords: true
         material:
             diffuse:
@@ -735,7 +726,7 @@ styles:
                 WALL_TINT: vec3(1., 3., .8) # modifies roof color HSV
             blocks:
                 filter: |
-                    if (dot(vec3(0., 0., 1.), v_worldSpaceNormal) < 1.0) {
+                    if (dot(vec3(0., 0., 1.), worldNormal()) < 1.0 - TANGRAM_EPSILON) {
                         // If it's a wall
                         vec3 wall = hsv2rgb(
                             rgb2hsv(v_color.rgb) * WALL_TINT
