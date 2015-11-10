@@ -4519,6 +4519,7 @@ layers:
                     filter: function() { return feature.name && feature.name.indexOf("Wilderness") > -1 }
                     draw:
                         dots2:
+                            order: 10
                             color: [0.027,0.804,0.494]
 
                 national_forest_level_6:
