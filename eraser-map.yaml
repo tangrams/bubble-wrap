@@ -491,12 +491,11 @@ styles:
                 global: |
                     // Varying to be added to both vertex and fragment shaders
                     varying vec2 v_pos;
-                    //
-                    // Get the coordinates in tile space
-                    // ================================
+                    #ifdef TANGRAM_FRAGMENT_SHADER
                     vec2 TileCoords() {
                         return fract(v_pos);
                     }
+                    #endif
                 position: |
                     v_pos = modelPosition().xy;
 
@@ -532,6 +531,7 @@ styles:
         shaders:
             blocks:
                 global: |
+                    #ifdef TANGRAM_FRAGMENT_SHADER
                     bool grid(vec2 st, float res, float press) {
                         vec2 grid = fract(st * res);
                         return (grid.x < res * press) || (grid.y < res * press);
@@ -547,6 +547,7 @@ styles:
                     float TileGrid() {
                         return mix(TileGrid(1.), TileGrid(2.), fract(u_map_position.z));
                     }
+                    #endif
 
     tools-grain:
         shaders:
