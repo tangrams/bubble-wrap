@@ -3615,71 +3615,44 @@ layers:
                     all:
                         - area: true
                         - $geometry: point
-                        - kind: [park, national_park, "park or protected land",conservation, protected_area, nature_reserve, forest]
-                    # any:
-                    #     # show labels for smaller landuse areas at higher zooms
-                    #     - { $zoom: { min: 5, max: 6 },  area: { min: 10000000000 } }
-                    #     - { $zoom: { min: 6, max: 8 },  area: { min: 5000000000 } }
-                    #     - { $zoom: { min: 8 },          area: { min: 1000000000 } }
-                    #     - { $zoom: { min: 9 },          area: { min: 100000000 } }
-                    #     - { $zoom: { min: 10 },         area: { min: 50000000 } }
-                    #     - { $zoom: { min: 11 },         area: { min: 25000000 } }
-                    #     - { $zoom: { min: 12 },         area: { min: 5000000 } }
-                    #     - { $zoom: { min: 13 },         area: { min: 200000 } }
-                    #     - { $zoom: { min: 14 },         area: { min: 50000 } }
+                        - kind: [park, national_park, "park or protected land",conservation, protected_area, nature_reserve, forest, grass]
+                    any:
+                        # show labels for smaller landuse areas at higher zooms
+                        - { $zoom: [5],    area: { min: 10000000000 } }
+                        - { $zoom: [6,7],  area: { min: 5000000000 } }
+                        - { $zoom: [8],    area: { min: 1000000000 } }
+                        - { $zoom: [9],    area: { min: 100000000 } }
+                        - { $zoom: [10],   area: { min: 50000000 } }
+                        - { $zoom: [11],   area: { min: 25000000 } }
+                        - { $zoom: [12],   area: { min: 5000000 } }
+                        - { $zoom: [13],   area: { min: 200000 } }
+                        - { $zoom: [14],   area: { min: 50000 } }
+                        - { $zoom: [15],   area: { min: 10000 } }
+                        - { $zoom: [16],   area: { min: 1000 } }
+                        - { $zoom: { min: 17 } }
+                visible: *label_visible_landuse_green
+                draw:
+                    icons:
+                        visible: *icon_visible_landuse_green
+                        sprite: forest
+                        interactive: true
+                    text:
+                        visible: *text_visible_landuse_green
+                        interactive: true
+                        offset: [0, 14px]
+                        font:
+                            fill: [0.200,0.409,0.398]
+                            size: 12px
+                            style: italic
+                            stroke: { color: [0.870,0.870,0.870], width: 2 }
                 green-areas-z7:
-                    filter:
-                        any:
-                            - { $zoom: { min: 6, max: 8 },  area: { min: 5000000000 } }
+                    filter: { $zoom: [5,6,7] }
                     draw:
-                        icons: { visible: false }
-                        text:
-                            visible: *text_visible_poi_landuse
-                            interactive: true
-                            offset: [0, 14px]
-                            font:
-                                fill: [0.200,0.409,0.398]
-                                size: 10px
-                                style: italic
-                                stroke: { color: [0.870,0.870,0.870], width: 2 }
-                green-areas-z8:
-                    filter:
-                        any:
-                            - { $zoom: { min: 8 },          area: { min: 1000000000 } }
-                            - { $zoom: { min: 9 },          area: { min: 100000000 } }
+                        text: { font: { size: 10px } }
+                green-areas-z8-z9:
+                    filter: { $zoom: { min: 8, max: 15 } }
                     draw:
-                        icons:
-                            visible: *icon_visible_landuse_green
-                            sprite: forest
-                            interactive: true
-                        text:
-                            visible: *text_visible_poi_landuse
-                            interactive: true
-                            offset: [0, 14px]
-                            font:
-                                fill: [0.200,0.409,0.398]
-                                size: 11px
-                                style: italic
-                                stroke: { color: [0.870,0.870,0.870], width: 2 }
-                green-areas-z10:
-                    filter:
-                        any:
-                            - { $zoom: { min: 10 },         area: { min: 50000000 } }
-                            - { $zoom: { min: 11 },         area: { min: 25000000 } }
-                    draw:
-                        icons:
-                            visible: *icon_visible_landuse_green
-                            sprite: forest
-                            interactive: true
-                        text:
-                            visible: *text_visible_poi_landuse
-                            interactive: true
-                            offset: [0, 14px]
-                            font:
-                                fill: [0.200,0.409,0.398]
-                                size: 12px
-                                style: italic
-                                stroke: { color: [0.870,0.870,0.870], width: 2 }
+                        text: { font: { size: 11px } }
                 wilderness-areas-early:
                    filter: function() { return $zoom < 10 && feature.name && (feature.name.indexOf("Wilderness") > -1 || feature.name.indexOf("BLM") > -1) }
                    draw:
