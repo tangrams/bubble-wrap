@@ -806,6 +806,10 @@ layers:
                 priority: 1
                 sprite: current-location
                 size: 36px
+                collide: false
+                transition:
+                    [show, hide]:
+                        time: 0s
     route_icon:
         data: { source: route_icon }
         draw:
@@ -813,6 +817,10 @@ layers:
                 priority: 1
                 sprite: route-start
                 size: [38px,49px]
+                collide: false
+                transition:
+                    [show, hide]:
+                        time: 0s
     search:
         data: { source: search }
         draw:
@@ -820,6 +828,7 @@ layers:
                 priority: 2
                 sprite: search-active
                 size: [40px,55px]
+                collide: false
 
     # Basemap styling
     earth:
