@@ -4809,6 +4809,10 @@ layers:
             filter: { $zoom: [5] }
             draw:
                 text: { font: { size: 9px } }
+        lakes-z6:
+            filter: { $zoom: [6] }
+            draw:
+                text: { font: { size: 11px } }
 
     ocean-sea-labels:
         data: { source: osm, layer: places }
@@ -4822,26 +4826,69 @@ layers:
                     weight: 500
                     size: 12px
                     transform: uppercase
-                    # stroke: { color: [0.051,0.455,0.525], width: 3 }
         sea-early:
             filter: { $zoom: [3], kind: sea }
             draw: { text: { visible: false } }
-        ocean-sea-labels-z4:
-            filter: { $zoom: [4] }
-            draw:
-                text: { font: { size: 16px }, transform: uppercase }
-            sea-labels-z4:
-                filter: { not: { kind: [ocean] } }
+        ocean-spacer:
+            filter: { kind: ocean }
+            ocean-spacer-z1-z4:
+                filter: { $zoom: { min: 1, max: 4 } }
                 draw:
-                    text: { font: { size: 8px } }
-        ocean-sea-labels-z5:
-            filter: { $zoom: [5] }
+                    text:
+                        text_source: function() { return feature.name.split('').join(' ') }
+                        text_wrap: false
+            ocean-spacer-z4-up:
+                filter: { $zoom: { min: 4 } }
+                draw:
+                    text:
+                        text_source: function() { return feature.name.split('').join('  ') }
+                        text_wrap: false
+        ocean-labels-z1:
+            filter: { $zoom: [1] }
+            draw:
+                text: { font: { size: 8px } }
+        ocean-labels-z2:
+            filter: { $zoom: [2] }
+            draw:
+                text: { font: { size: 10px } }  
+        ocean-labels-z3:
+            filter: { $zoom: [3] }
+            draw:
+                text: { font: { size: 13px } }  
+        ocean-sea-labels-z4-up:
+            filter: { $zoom: { min: 4} }
             draw:
                 text: { font: { size: 16px } }
+
+        sea-spacer:
+            filter: { not: { kind: [ocean] }, $zoom: { min: 5 } }
+            draw:
+                text:
+                    text_source: function() { return feature.name.split('').join(' ') }
+                    text_wrap: false
+
+        sea-labels:
+            filter: { not: { kind: [ocean] } }
             sea-labels-z4:
-                filter: { not: { kind: [ocean] } }
-                draw:
-                    text: { font: { size: 9px } }
+                    filter: { $zoom: [4] }
+                    draw:
+                        text: { font: { size: 9px } }
+            sea-labels-z5:
+                    filter: { $zoom: [5] }
+                    draw:
+                        text: { font: { size: 10px } }
+            sea-labels-z6:
+                    filter: { $zoom: [6] }
+                    draw:
+                        text: { font: { size: 11px } }
+            sea-labels-z7:
+                    filter: { $zoom: [7] }
+                    draw:
+                        text: { font: { size: 12px } }
+            sea-labels-z8:
+                    filter: { $zoom: { min: 8} }
+                    draw:
+                        text: { font: { size: 14px } }
 
     playa-labels:
         data: { source: osm, layer: [water] }
