@@ -814,7 +814,7 @@ layers:
         data: { source: route }
         draw:
             lines:
-                color: 'purple'
+                color: '#383A3A'
                 order: 50
                 width: [[0,2.5px],[8,3px],[9,3.5px],[10,4px],[11,5px],[16,8m]]
     current_location_gem:
