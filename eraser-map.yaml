@@ -812,6 +812,7 @@ layers:
     # Map overlays for styling the server response (using special source layer names) for route line, find_me location gem, and search result pins
     route:
         data: { source: route }
+        blend: overlay
         draw:
             lines:
                 color: '#383A3A'
@@ -819,6 +820,7 @@ layers:
                 width: [[0,2.5px],[8,3px],[9,3.5px],[10,4px],[11,5px],[16,8m]]
     current_location_gem:
         data: { source: find_me }
+        blend: overlay
         draw:
             icons:
                 priority: 1
@@ -830,6 +832,7 @@ layers:
                         time: 0s
     route_icon:
         data: { source: route_icon }
+        blend: overlay
         draw:
             icons:
                 priority: 1
@@ -841,6 +844,7 @@ layers:
                         time: 0s
     search:
         data: { source: search }
+        blend: overlay
         draw:
             icons:
                 priority: 2
