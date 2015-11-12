@@ -4983,13 +4983,14 @@ layers:
                         color: [[4,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
                         # todo: what is this?
                         order: 0
-                        # visible: false
+                        visible: true
                 us_national_park:
                     # yosemite national park, death valley national park, grand canyon national park
                     filter: { operator: [ "United States National Park Service", "US National Park Service" ] }
                     draw:
                         dots2:
                             color: [[4,[0.000,0.745,0.497]],[9,[0.000,0.631,0.421]]]
+                            visible: true
                             # color: [[4,[0.242,0.737,0.712]],[12,[0.224,0.682,0.659]]]
         tier2:
             filter: 
@@ -5016,18 +5017,21 @@ layers:
                 draw:
                     dots2:
                         color: *green8
+                        visible: true
                 wilderness-areas:
                     filter: function() { return feature.name && feature.name.indexOf("Wilderness") > -1 }
                     draw:
                         dots2:
                             order: 10
                             color: [0.027,0.804,0.494]
+                            visible: true
 
                 national_forest_level_6:
                     filter: { protect_class: ["6",6] }
                     draw:
                         dots2:
                             color: [0.442,0.960,0.865] #*green7
+                            visible: true
 
             # gotta be a protected area to draw green, not just a landcover type
             farm:
@@ -5046,6 +5050,7 @@ layers:
                     draw:
                         dots2:
                             color: *green7
+                            visible: true
 
                 landuse-forest:
                     filter:
@@ -5054,17 +5059,20 @@ layers:
                     draw:
                         dots2:
                             color: *green9
+                            visible: true
 
             nature_reserve:
                 filter: { kind: nature_reserve, $zoom: { min: 7 } }
                 draw:
                     dots2:
                         color: *green6
+                        visible: true
                 wilderness-areas:
                     filter: function() { return feature.name && feature.name.indexOf("Wilderness") > -1 }
                     draw:
                         dots2:
                             color: *green7
+                            visible: true
 
             parks-and-national-forests-not-national-park:
                 filter: { $zoom: { min: 4 }, kind: [park, national_park, "park or protected land"], not: { operator: [ "United States National Park Service", "US National Park Service" ] } }
@@ -5073,6 +5081,7 @@ layers:
                     dots2:
                         color: [[4,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]],[9,[0.242,0.737,0.712]],[14,[0.224,0.682,0.659]]]
                         order: function() { return feature.sort_key + 1 || 1; }
+                        visible: true
 
             urban:
                 filter: { kind: [urban, rural, residential] }
@@ -5108,6 +5117,7 @@ layers:
                 draw:
                     dots2:
                         color: [0.624,0.709,0.800]
+                        visible: true
             university:
                 filter:
                     kind: university
@@ -5115,6 +5125,7 @@ layers:
                     dots2:
                         color: *brown1
                         order: function() { return feature.sort_key - 2 || 1; }
+                        visible: true
         tier4:
             filter: 
                 any:
@@ -5134,6 +5145,7 @@ layers:
                     dots2:
                         order: 11
                         color: *green2
+                        visible: true
             commercial:
                 filter:
                     kind: commercial
@@ -5148,35 +5160,41 @@ layers:
                     dots2:
                         order: 11
                         color: *green3
+                        visible: true
             hospital:
                 filter:
                     kind: hospital
                 draw:
                     dots2:
                         color: *red1
+                        visible: true
             industrial:
                 filter:
                     kind: industrial
                 draw:
                     dots2:
                         color: *grey6
+                        visible: true
             power:
                 filter: { kind: [plant, generator, substation] }
                 draw:
                     dots2:
                         color: *grey3
+                        visible: true
             railway:
                 filter:
                     kind: railway
                 draw:
                     dots2:
                         color: *grey3
+                        visible: true
             recreation_ground:
                 filter:
                     kind: recreation_ground
                 draw:
                     dots2:
                         color: *green1
+                        visible: true
             retail:
                 filter:
                     kind: retail
@@ -5190,18 +5208,20 @@ layers:
                 draw:
                     dots2:
                         color: *orange1
+                        visible: true
             zoo:
                 filter:
                     kind: zoo
                 draw:
                     dots2:
                         color: [0.498,1.000,0.851]
+                        visible: true
             man-made:
                 filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline] }
-                draw: { dots2: { order: 2, color: *grey3 } }
+                draw: { dots2: { order: 2, color: *grey3, visible: true } }
                 pier:
                     filter: { kind: [pier,bridge,breakwater,groyne,dike,cutline] }
-                    draw: { dots2: { order: 5, color: *earth1 } }
+                    draw: { dots2: { order: 5, color: *earth1, visible: true } }
         tier5:
             filter: 
                 any:
@@ -5219,6 +5239,7 @@ layers:
                     dots2:
                         color: [0.604,0.973,0.722]
                         order: 4
+                        visible: true
             parking:
                 filter:
                     all:
@@ -5236,6 +5257,7 @@ layers:
                     draw:
                         dots2:
                             color: *grey1_e
+                            visible: true
             pedestrian:
                 filter:
                     kind: [pedestrian,common]
@@ -5249,6 +5271,7 @@ layers:
                     dots2:
                         order: 7
                         color: *orange2
+                        visible: true
 #                    outline:
 #                        style: lines
 #                        color: *green6
@@ -5266,14 +5289,22 @@ layers:
                 draw:
                     dots-rev:
                         color: [0.306,0.804,0.713]
+                        visible: true
             school:
                 filter:
                     kind: school
                 draw:
                     dots2:
                         color: [0.730,0.697,0.664]
+                        visible: true
         z-order:
             draw:
+                dots2:
+                    order: function() { return feature.sort_key || 1; }
+                    visible: false
+                dots-rev:
+                    order: function() { return feature.sort_key || 1; }
+                    visible: false
                 polygons:
                     order: function() { return feature.sort_key || 1; }
 
