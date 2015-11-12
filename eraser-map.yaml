@@ -3778,11 +3778,11 @@ layers:
                         priority: 2
                         visible: *text_visible_admin
                         font:
-                            size: 11px
-                            weight: 400
-                            fill: *text_fill
+                            size: 9px
+                            weight: 200
+                            fill: [0.25,0.25,0.25]
                             transform: uppercase
-                            stroke: { color: *text_stroke, width: 4 }
+                            # stroke: { color: *text_stroke, width: 2 }
             neighborhood-z13:
                 filter:
                     all:
@@ -3804,10 +3804,10 @@ layers:
                         visible: *text_visible_neighbourhoods_e
                         font:
                             size: 11px
-                            weight: 400
-                            fill: *text_fill
+                            weight: 200
+                            fill: [0.30,0.30,0.30]
                             transform: uppercase
-                            stroke: { color: *text_stroke, width: 4 }
+                            # stroke: { color: *text_stroke, width: 2 }
             neighborhood-z14:
                 filter:
                     all:
@@ -3828,11 +3828,11 @@ layers:
                         text_wrap: 12
                         visible: *text_visible_neighbourhoods
                         font:
-                            size: 12px
-                            weight: 400
-                            fill: *text_fill
+                            size: 13px
+                            weight: 200
+                            fill: [0.40,0.40,0.40]
                             transform: uppercase
-                            stroke: { color: *text_stroke, width: 3 }
+                            # stroke: { color: *text_stroke, width: 3 }
             neighborhood-z15:
                 filter:
                     all:
@@ -3855,9 +3855,9 @@ layers:
                         font:
                             size: 16px
                             weight: 200
-                            fill: *text_fill
+                            fill: [0.20,0.20,0.20]
                             transform: uppercase
-                            stroke: { color: *text_stroke, width: 3 }
+                            # stroke: { color: *text_stroke, width: 3 }
 
             neighborhood-z16:
                 filter:
@@ -3882,7 +3882,7 @@ layers:
                             weight: 200
                             fill: *text_fill
                             transform: uppercase
-                            stroke: { color: *text_stroke, width: 3 }
+                            # stroke: { color: *text_stroke, width: 3 }
 
 
     pois_and_landuse_labels:
@@ -4799,7 +4799,7 @@ layers:
             draw:
                 text:
                     font:
-                        fill: [0.102,0.533,0.612] #*text_fill_water
+                        fill: [0.314,0.591,0.640] #*text_fill_water
                         family: Helvetica
                         style: italic
                         weight: 500
@@ -4813,6 +4813,10 @@ layers:
             filter: { $zoom: [6] }
             draw:
                 text: { font: { size: 11px } }
+        lakes-z8:
+            filter: { $zoom: [8] }
+            draw:
+                text: { font: { size: 12px } }
 
     ocean-sea-labels:
         data: { source: osm, layer: places }
@@ -4821,7 +4825,7 @@ layers:
         draw:
             text:
                 font:
-                    fill: [0.102,0.533,0.612] #*text_fill_water
+                    fill: [0.314,0.591,0.640] #*text_fill_water
                     family: Helvetica
                     weight: 500
                     size: 12px
@@ -4855,7 +4859,7 @@ layers:
             filter: { $zoom: [3] }
             draw:
                 text: { font: { size: 13px } }  
-        ocean-sea-labels-z4-up:
+        ocean-labels-z4-up:
             filter: { $zoom: { min: 4} }
             draw:
                 text: { font: { size: 16px } }
