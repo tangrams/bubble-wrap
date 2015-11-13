@@ -917,7 +917,7 @@ layers:
                     color: [[0,[0.886,0.937,0.988]]]
                     width: 20px
         water_boundaries-not-ocean:
-            filter: { boundary: yes, not: { kind: ocean }, $zoom: { min: 8, max: 18 } }
+            filter: { boundary: yes, not: { kind: ocean }, $zoom: { min: 8 } }
             draw:
                 double-border-light:
                     style: lines
@@ -927,7 +927,7 @@ layers:
                 lines:
                     order: 30
                     color: [[8,[0.635,0.737,0.753]],[13,[0.635,0.737,0.753]],[14,[0.569,0.722,0.749]],[15,[0.397,0.743,0.809]]]
-                    width: [[8,0.5px],[10,0.5px],[11,0.5px],[12,0.75px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1.5px],[18,3px]]
+                    width: [[8,0.5px],[10,0.5px],[11,0.5px],[12,0.75px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1.5px]]
                     join: round
             riverbank:
                 # river boundaries like the thames in london, la seine in paris
