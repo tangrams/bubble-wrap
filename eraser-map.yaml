@@ -4067,7 +4067,7 @@ layers:
                         - { $zoom: { min: 17 } }
                 visible: *label_visible_landuse_green
                 not-national-park:
-                    filter: function() { return if( feature.name.indexOf("National Park") > -1 ) { return 0; } else { return 1;} }
+                    filter: function() { return !( feature.name.indexOf("National Park") > -1 ); }
                     draw:
                         icons:
                             visible: *icon_visible_landuse_green
