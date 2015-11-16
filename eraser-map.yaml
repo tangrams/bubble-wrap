@@ -821,7 +821,6 @@ layers:
         data: { source: find_me }
         draw:
             icons:
-                priority: 1
                 sprite: current-location
                 size: 36px
                 collide: false
@@ -832,10 +831,10 @@ layers:
         data: { source: route_icon }
         draw:
             icons:
-                priority: 1
                 sprite: route-start
                 size: [38px,49px]
                 collide: false
+                anchor: top
                 transition:
                     [show, hide]:
                         time: 0s
@@ -843,10 +842,10 @@ layers:
         data: { source: search }
         draw:
             icons:
-                priority: 2
                 sprite: search-active
                 size: [40px,55px]
                 collide: false
+                anchor: top
 
     # Basemap styling
     earth:
