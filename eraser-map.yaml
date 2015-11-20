@@ -2250,11 +2250,11 @@ layers:
                     text_source: function() { if( feature.addr_housenumber ) { return feature.name + '\n' + feature.addr_housenumber; } else { return feature.name; } }
     address-labels:
         data: { source: osm, layer: buildings }
-        filter:
+        filter: 
             $zoom: { min: 20 }
             any:
                 - kind: address
-                - { kind: true, addr_housenumber: true, name: false }
+                - { label_position: yes, addr_housenumber: true, name: false }
         draw:
             text:
                 interactive: true
