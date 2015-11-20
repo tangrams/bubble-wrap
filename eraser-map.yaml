@@ -2023,13 +2023,17 @@ layers:
                     color: '#444'
                     width: [[14, 0.5px], [15, 1.0px], [16, 2m]]
             gondola_cable_car:
-                lines:
-                    color: black
-                    width: [[12, 2.0px], [13, 1.75px], [14, 2.25px], [15, 3.0px], [16, 4m]]
+                filter: { kind: [gondola, cable_car] }
+                draw:
+                    lines:
+                        color: black
+                        width: [[12, 2.0px], [13, 1.75px], [14, 2.25px], [15, 3.0px], [16, 4m]]
             chair_lift:
-                lines:
-                    color: '#333'
-                    width: [[13, 0.75px], [14, 1.5px], [15, 2.5px], [16, 3m]]
+                filter: { kind: chair_lift }
+                draw:
+                    lines:
+                        color: '#333'
+                        width: [[13, 0.75px], [14, 1.5px], [15, 2.5px], [16, 3m]]
             aerialway-labels:
                 filter: { $zoom: { min: 14 } }
                 draw:
@@ -2247,9 +2251,10 @@ layers:
     address-labels:
         data: { source: osm, layer: buildings }
         filter: 
-            all:
-                - { $zoom: { min: 20 }, kind: address }
-                - { $zoom: { min: 20 }, [ kind: true, addr_housenumber: true, name: false ] }
+            $zoom: { min: 20 }
+            any:
+                - kind: address
+                - { label_position: yes, addr_housenumber: true, name: false }
         draw:
             text:
                 interactive: true
@@ -4062,7 +4067,7 @@ layers:
                         - { $zoom: { min: 17 } }
                 visible: *label_visible_landuse_green
                 not-national-park:
-                    filter: function() { return if( feature.name.indexOf("National Park") > -1 ) { return 0; } else { return 1;} }
+                    filter: function() { return !( feature.name.indexOf("National Park") > -1 ); }
                     draw:
                         icons:
                             visible: *icon_visible_landuse_green
@@ -4374,8 +4379,8 @@ layers:
                     draw:
                         text:
                             visible: false
-                    icons:
-                        size: [[13, 8px], [19, 18px]]
+                        icons:
+                            size: [[13, 8px], [19, 18px]]
 
             # examples of different icons mapped to feature properties
             icons:
