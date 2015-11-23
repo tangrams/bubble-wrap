@@ -834,7 +834,6 @@ layers:
                 sprite: route-start
                 size: [38px,49px]
                 collide: false
-                anchor: top
                 transition:
                     [show, hide]:
                         time: 0s
