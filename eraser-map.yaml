@@ -831,7 +831,7 @@ layers:
         data: { source: route_icon }
         draw:
             icons:
-                sprite: route-start
+                sprite: current-location
                 size: [38px,49px]
                 collide: false
                 transition:
