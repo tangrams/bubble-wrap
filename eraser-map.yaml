@@ -5080,7 +5080,7 @@ layers:
                 draw:
                     dots2:
                         color: [[4,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]],[9,[0.242,0.737,0.712]],[14,[0.224,0.682,0.659]]]
-                        order: function() { return feature.sort_key + 1 | 1; }
+                        order: function() { return feature.sort_key + 1 || 1; }
                         visible: true
 
             urban:
@@ -5124,7 +5124,7 @@ layers:
                 draw:
                     dots2:
                         color: *brown1
-                        order: function() { return (feature.sort_key - 2) | 1; }
+                        order: function() { return (feature.sort_key - 2) || 1; }
                         visible: true
         tier4:
             filter: 
