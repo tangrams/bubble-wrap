@@ -796,6 +796,16 @@ styles:
         base: points
         texture: pois
         interactive: true
+        
+    icons-overlay:
+        base: points
+        texture: pois
+        interactive: true
+        blend: overlay
+    
+    lines-overlay:
+        base: lines
+        blend: overlay
 
 scene:
     background:
@@ -806,14 +816,14 @@ layers:
     route:
         data: { source: route }
         draw:
-            lines:
+            lines-overlay:
                 color: '#383A3A'
                 order: 50
                 width: [[0,2.5px],[8,3px],[9,3.5px],[10,4px],[11,5px],[16,8m]]
     current_location_gem:
         data: { source: find_me }
         draw:
-            icons:
+            icons-overlay:
                 sprite: current-location
                 size: 36px
                 collide: false
@@ -823,7 +833,7 @@ layers:
     route_icon:
         data: { source: route_icon }
         draw:
-            icons:
+            icons-overlay:
                 sprite: current-location
                 size: [38px,49px]
                 collide: false
@@ -833,7 +843,7 @@ layers:
     search:
         data: { source: search }
         draw:
-            icons:
+            icons-overlay:
                 sprite: search-active
                 size: [40px,55px]
                 collide: false
