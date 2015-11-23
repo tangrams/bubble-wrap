@@ -252,7 +252,7 @@ textures:
             courthouse: [632, 18, 36, 38]
             credit-union: [882, 1286, 36, 38]
             cupcake-shop: [717, 1965, 36, 38]
-            current-location: [959, 2281, 143, 145]
+            current-location: [958, 2280, 144, 146]
             daycare: [462, 444, 36, 38]
             dentist: [380, 355, 36, 38]
             department-store: [550, 863, 36, 38]
@@ -379,13 +379,14 @@ textures:
             restaurant: [296, 1796, 36, 38]
             river: [716, 779, 36, 38]
             road: [1305, 190, 36, 38]
-            route-start: [1124, 2281, 148, 195]
-            route-stop: [1292, 2281, 148, 195]
+            route-arrow: [1468, 2305, 132, 162]
+            route-start: [1126, 2285, 144, 186]
+            route-stop: [1294, 2285, 144, 186]
             ruin: [888, 698, 36, 38]
             salon-barber: [297, 1201, 36, 38]
             school: [380, 442, 36, 38]
-            search-active: [783, 2278, 158, 222]
-            search-inactive: [615, 2278, 158, 222]
+            search-active: [790, 2295, 144, 186]
+            search-inactive: [622, 2295, 144, 186]
             ship-wreck: [1138, 616, 36, 38]
             shoe-store: [886, 862, 36, 38]
             skate-park: [634, 1539, 36, 38]
@@ -461,6 +462,35 @@ sources:
         #enforce_winding: true  #because Tangram v0.4 and tiles v0.5-pre don't play nice
         #url:  //localhost:8080//osm/all/{z}/{x}/{y}.mvt
         url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-HqUVidw
+
+    # 
+    # Only enable this for local debug, should not be enabled for prod (app inserts these at runtime)
+    # These are all in San Francisco, California
+    #
+    # Current location gem
+    # find_me:
+    #     type: GeoJSON
+    #     url: https://gist.githubusercontent.com/anonymous/9e9588228b0a604264a2/raw/b28be49bea0b7feb859eb65b588c28e9fee5ae2c/map.geojson
+    # # Route line
+    # route:
+    #     type: GeoJSON
+    #     url: https://gist.githubusercontent.com/anonymous/9a610ebda6fe4be7bccc/raw/8d217e43f2412d48d01534ba115f1e42dac72e68/map.geojson
+    # # Pin at start of route
+    # route_start:
+    #     type: GeoJSON
+    #     url: https://gist.githubusercontent.com/anonymous/5262969cb7549ea69221/raw/be03f233fa323d9b5cf50ef1d8e89a1faa3750f1/map.geojson
+    # # Pin at end of route
+    # route_stop:
+    #     type: GeoJSON
+    #     url: https://gist.githubusercontent.com/anonymous/dbae9635dfe46796490e/raw/df55c318635a7d91b309ed40754d4738a292fd38/map.geojson
+    # # Arrow for current route location
+    # route_icon:
+    #     type: GeoJSON
+    #     url: https://gist.githubusercontent.com/anonymous/36613092be6e2aa004fd/raw/f753d13069425199e1dea1b449ef67d723f6510e/map.geojson
+    # # Pins showing search result locations
+    # search:
+    #     type: GeoJSON
+    #     url: https://gist.githubusercontent.com/anonymous/57dc09eeb120919f76de/raw/43426217da3c2bae0522dc4257aaa61e4df3981e/map.geojson
 
 cameras:
     isometric:
@@ -833,21 +863,40 @@ layers:
     route_icon:
         data: { source: route_icon }
         draw:
-            icons-overlay:
-                sprite: current-location
-                size: [38px,49px]
+            icons:
+                sprite: route-arrow
+                size: [33px,40px]
                 collide: false
                 transition:
                     [show, hide]:
                         time: 0s
+    route_start:
+        data: { source: route_start }
+        draw:
+            icons:
+                priority: 1
+                sprite: route-start
+                size: [36px,46px]
+                collide: false
+                anchor: top
+    route_stop:
+        data: { source: route_stop }
+        draw:
+            icons:
+                priority: 1
+                sprite: route-stop
+                size: [36px,46px]
+                collide: false
+                anchor: top
     search:
         data: { source: search }
         draw:
-            icons-overlay:
+            icons:
                 sprite: search-active
-                size: [40px,55px]
+                size: [36px,46px]
                 collide: false
                 anchor: top
+
 
     # Basemap styling
     earth:
