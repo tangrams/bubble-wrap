@@ -946,7 +946,7 @@ layers:
         draw:
             lines:
                 interactive: true
-                order: function() { return (6 + feature.sort_key) | 6; }
+                order: function() { return (6 + feature.sort_key) || 6; }
         railway:
             filter: { kind: railway }
             draw:
@@ -986,7 +986,7 @@ layers:
             draw:
                 lines:
                     # let roads sort themselves past zoom 14
-                    order: function() { return 6 + feature.sort_key; }
+                    order: function() { return (6 + feature.sort_key) || 6; }
                     # but give them all the same outline
                     outline:
                         order: 21 # 15 is the starting aboveground level, plus 6
@@ -997,7 +997,7 @@ layers:
                     lines:
                         outline:
                             # except bridges and tunnels, their outlines should also self-sort
-                            order: function() { return 6 + feature.sort_key; }
+                            order: function() { return (6 + feature.sort_key) || 6; }
 
     roads:
         data: { source: osm, layer: roads }
@@ -1065,10 +1065,10 @@ layers:
                 filter: { not: { is_link: yes }, $zoom: {max: 15} }
                 draw:
                     lines:
-                        order: function() { return 7 + feature.sort_key; }
+                        order: function() { return (7 + feature.sort_key) || 7; }
                         outline:
                             # except bridges and tunnels, their outlines should also self-sort
-                            order: function() { return 7 + feature.sort_key; }
+                            order: function() { return (7 + feature.sort_key) || 7; }
             link:
                 filter: { is_link: yes } # on- and off-ramps, etc
                 draw:
@@ -1084,7 +1084,7 @@ layers:
                     draw:
                         lines:
                             # except bridges and tunnels, their outlines should also self-sort
-                            order: function() { return 7 + feature.sort_key; }
+                            order: function() { return (7 + feature.sort_key) || 7; }
                 tunnel-link:
                     filter: {is_tunnel: yes, $zoom: {min: 13} }
                     draw:
@@ -1249,7 +1249,7 @@ layers:
                         draw:
                             lines:
                                 # let roads sort themselves past zoom 14
-                                order: function() { return 8 + feature.sort_key; }
+                                order: function() { return (8 + feature.sort_key) || 8; }
                                 # but give them all the same outline
                                 outline:
                                     order: 23 # 15 is the starting aboveground level, plus 8
@@ -2049,7 +2049,7 @@ layers:
             draw:
                 lines:
                     # let roads sort themselves past zoom 14
-                    order: function() { return 6 + feature.sort_key; }
+                    order: function() { return (6 + feature.sort_key) || 6; }
                     # but give them all the same outline
                     outline:
                         order: 21 # 15 is the starting aboveground level, plus 6
@@ -2060,7 +2060,7 @@ layers:
                     lines:
                         outline:
                             # except bridges and tunnels, their outlines should also self-sort
-                            order: function() { return 6 + feature.sort_key; }
+                            order: function() { return (6 + feature.sort_key) || 6; }
 
     city_walls:
         data: { source: osm, layer: boundaries }
@@ -5142,7 +5142,7 @@ layers:
                 draw:
                     dots2:
                         color: *brown1
-                        order: function() { return feature.sort_key - 2 || 1; }
+                        order: function() { return (feature.sort_key - 2) || 1; }
                         visible: true
         tier4:
             filter: 
