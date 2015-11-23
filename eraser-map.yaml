@@ -803,6 +803,16 @@ styles:
         base: points
         texture: pois
         interactive: true
+        
+    icons-overlay:
+        base: points
+        texture: pois
+        interactive: true
+        blend: overlay
+    
+    lines-overlay:
+        base: lines
+        blend: overlay
 
 scene:
     background:
@@ -812,17 +822,15 @@ layers:
     # Map overlays for styling the server response (using special source layer names) for route line, find_me location gem, and search result pins
     route:
         data: { source: route }
-        blend: overlay
         draw:
-            lines:
+            lines-overlay:
                 color: '#383A3A'
                 order: 50
                 width: [[0,2.5px],[8,3px],[9,3.5px],[10,4px],[11,5px],[16,8m]]
     current_location_gem:
         data: { source: find_me }
-        blend: overlay
         draw:
-            icons:
+            icons-overlay:
                 priority: 1
                 sprite: current-location
                 size: 36px
@@ -832,9 +840,8 @@ layers:
                         time: 0s
     route_icon:
         data: { source: route_icon }
-        blend: overlay
         draw:
-            icons:
+            icons-overlay:
                 priority: 1
                 sprite: route-start
                 size: [38px,49px]
@@ -844,9 +851,8 @@ layers:
                         time: 0s
     search:
         data: { source: search }
-        blend: overlay
         draw:
-            icons:
+            icons-overlay:
                 priority: 2
                 sprite: search-active
                 size: [40px,55px]
