@@ -516,15 +516,6 @@ styles:
                 position: |
                     v_pos = modelPosition().xy;
 
-    tools-world-space-normal:
-        base: polygons
-        shaders:
-            blocks:
-                global: |
-                    varying vec3 v_worldSpaceNormal;
-                position: |
-                    v_worldSpaceNormal = a_normal;
-
     tools-aastep:
         shaders:
             extensions: OES_standard_derivatives
@@ -740,7 +731,7 @@ styles:
 
     building-grid:
         base: polygons
-        mix: [hsv, scale-buildings, tools-world-space-normal]
+        mix: [hsv, scale-buildings]
         texcoords: true
         material:
             diffuse:
@@ -751,7 +742,7 @@ styles:
                 WALL_TINT: vec3(1., 3., .8) # modifies roof color HSV
             blocks:
                 filter: |
-                    if (dot(vec3(0., 0., 1.), v_worldSpaceNormal) < 1.0) {
+                    if (dot(vec3(0., 0., 1.), worldNormal()) < 1.0 - TANGRAM_EPSILON) {
                         // If it's a wall
                         vec3 wall = hsv2rgb(
                             rgb2hsv(v_color.rgb) * WALL_TINT
@@ -831,7 +822,6 @@ layers:
         data: { source: find_me }
         draw:
             icons-overlay:
-                priority: 1
                 sprite: current-location
                 size: 36px
                 collide: false
@@ -842,8 +832,7 @@ layers:
         data: { source: route_icon }
         draw:
             icons-overlay:
-                priority: 1
-                sprite: route-start
+                sprite: current-location
                 size: [38px,49px]
                 collide: false
                 transition:
@@ -853,10 +842,10 @@ layers:
         data: { source: search }
         draw:
             icons-overlay:
-                priority: 2
                 sprite: search-active
                 size: [40px,55px]
                 collide: false
+                anchor: top
 
     # Basemap styling
     earth:
@@ -917,35 +906,48 @@ layers:
                     color: [[9,[0.396,0.833,0.920]],[10,[0.886,0.937,0.988]]]
                 lines:
                     order: 10
+                    color: [0.543,0.740,0.780]
                     width: [[1,0.25px],[6,0.5px],[7,0.75px],[9,0.75px],[10,1px]]
-                    color: [0.396,0.833,0.920]
         water-boundary-ocean-late:
             filter: { boundary: yes, kind: ocean, $zoom: {min: 17} }
             draw:
                 water_border:
                     order: 10
-                    color: [0.886,0.937,0.988]
+                    color: [[0,[0.886,0.937,0.988]]]
                     width: 20px
         water_boundaries-not-ocean:
-            filter: { boundary: yes, not: { kind: ocean }, $zoom: { min: 9 } }
+            filter: { boundary: yes, not: { kind: ocean }, $zoom: { min: 8 } }
             draw:
-                line3:
+                double-border-light:
                     style: lines
-                    order: 5
-                    width: [[9,0px],[10,2px],[12,3px],[14,3px],[16,4px],[18,6.0px]]
+                    order: 30
                     color: [0.886,0.937,0.988]
+                    width: [[9,0px],[10,2px],[11,1.5px],[12,3px],[13,3.5px],[14,4px],[15,4px],[16,4px],[18,8px]]
                 lines:
-                    order: 5
-                    color: [0.396,0.833,0.920]
-                    width: [[9,0.25px],[10,0.5px],[12,0.75px],[14,1.0px],[16,1.0px],[18,1.1px]]
+                    order: 30
+                    color: [[8,[0.635,0.737,0.753]],[13,[0.635,0.737,0.753]],[14,[0.569,0.722,0.749]],[15,[0.397,0.743,0.809]]]
+                    width: [[8,0.5px],[10,0.5px],[11,0.5px],[12,0.75px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1.5px]]
                     join: round
+            early:
+                filter: { $zoom: { min: 14 } }
+                draw:
+                    double-border-light: { order: 23 }
+                    lines: { order: 23 }
+            riverbank:
+                # river boundaries like the thames in london, la seine in paris
+                filter: { kind: riverbank }
+                draw:
+                    lines:
+                        color: [0.397,0.743,0.809]
+                        width: [[9,0.5px],[10,0.75px],[11,0.75px],[12,0.8px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1.5px]]
         river:
-            filter: { kind: [river,canal,stream,dam,ditch,drain], $zoom: { min: 12 } }
+            #river center lines, not boundaries for polygons
+            filter: { kind: [river,canal,stream,dam,ditch,drain], $zoom: { min: 11 } }
             draw:
                 lines:
                     order: 3
-                    color: [[12,[0.396,0.833,0.920]], [13,[0.725,0.902,0.965]]]
-                    width: [[12,0.5px],[13,2px],[14,2.0px],[16,2.25px],[18,4m]]
+                    color: [0.397,0.743,0.809]
+                    width: [[11,0.3px],[12,0.5px],[13,0.75px],[14,1px],[16,1.25px]]
                     join: round
 
     subway-light-rail:
@@ -954,7 +956,7 @@ layers:
         draw:
             lines:
                 interactive: true
-                order: function() { return (6 + feature.sort_key) | 6; }
+                order: function() { return (6 + feature.sort_key) || 6; }
         railway:
             filter: { kind: railway }
             draw:
@@ -994,7 +996,7 @@ layers:
             draw:
                 lines:
                     # let roads sort themselves past zoom 14
-                    order: function() { return 6 + feature.sort_key; }
+                    order: function() { return (6 + feature.sort_key) || 6; }
                     # but give them all the same outline
                     outline:
                         order: 21 # 15 is the starting aboveground level, plus 6
@@ -1005,7 +1007,7 @@ layers:
                     lines:
                         outline:
                             # except bridges and tunnels, their outlines should also self-sort
-                            order: function() { return 6 + feature.sort_key; }
+                            order: function() { return (6 + feature.sort_key) || 6; }
 
     roads:
         data: { source: osm, layer: roads }
@@ -1073,10 +1075,10 @@ layers:
                 filter: { not: { is_link: yes }, $zoom: {max: 15} }
                 draw:
                     lines:
-                        order: function() { return 7 + feature.sort_key; }
+                        order: function() { return (7 + feature.sort_key) || 7; }
                         outline:
                             # except bridges and tunnels, their outlines should also self-sort
-                            order: function() { return 7 + feature.sort_key; }
+                            order: function() { return (7 + feature.sort_key) || 7; }
             link:
                 filter: { is_link: yes } # on- and off-ramps, etc
                 draw:
@@ -1092,7 +1094,7 @@ layers:
                     draw:
                         lines:
                             # except bridges and tunnels, their outlines should also self-sort
-                            order: function() { return 7 + feature.sort_key; }
+                            order: function() { return (7 + feature.sort_key) || 7; }
                 tunnel-link:
                     filter: {is_tunnel: yes, $zoom: {min: 13} }
                     draw:
@@ -1257,7 +1259,7 @@ layers:
                         draw:
                             lines:
                                 # let roads sort themselves past zoom 14
-                                order: function() { return 8 + feature.sort_key; }
+                                order: function() { return (8 + feature.sort_key) || 8; }
                                 # but give them all the same outline
                                 outline:
                                     order: 23 # 15 is the starting aboveground level, plus 8
@@ -2025,13 +2027,17 @@ layers:
                     color: '#444'
                     width: [[14, 0.5px], [15, 1.0px], [16, 2m]]
             gondola_cable_car:
-                lines:
-                    color: black
-                    width: [[12, 2.0px], [13, 1.75px], [14, 2.25px], [15, 3.0px], [16, 4m]]
+                filter: { kind: [gondola, cable_car] }
+                draw:
+                    lines:
+                        color: black
+                        width: [[12, 2.0px], [13, 1.75px], [14, 2.25px], [15, 3.0px], [16, 4m]]
             chair_lift:
-                lines:
-                    color: '#333'
-                    width: [[13, 0.75px], [14, 1.5px], [15, 2.5px], [16, 3m]]
+                filter: { kind: chair_lift }
+                draw:
+                    lines:
+                        color: '#333'
+                        width: [[13, 0.75px], [14, 1.5px], [15, 2.5px], [16, 3m]]
             aerialway-labels:
                 filter: { $zoom: { min: 14 } }
                 draw:
@@ -2053,7 +2059,7 @@ layers:
             draw:
                 lines:
                     # let roads sort themselves past zoom 14
-                    order: function() { return 6 + feature.sort_key; }
+                    order: function() { return (6 + feature.sort_key) || 6; }
                     # but give them all the same outline
                     outline:
                         order: 21 # 15 is the starting aboveground level, plus 6
@@ -2064,7 +2070,7 @@ layers:
                     lines:
                         outline:
                             # except bridges and tunnels, their outlines should also self-sort
-                            order: function() { return 6 + feature.sort_key; }
+                            order: function() { return (6 + feature.sort_key) || 6; }
 
     city_walls:
         data: { source: osm, layer: boundaries }
@@ -2249,9 +2255,10 @@ layers:
     address-labels:
         data: { source: osm, layer: buildings }
         filter: 
-            all:
-                - { $zoom: { min: 20 }, kind: address }
-                - { $zoom: { min: 20 }, [ kind: true, addr_housenumber: true, name: false ] }
+            $zoom: { min: 20 }
+            any:
+                - kind: address
+                - { label_position: yes, addr_housenumber: true, name: false }
         draw:
             text:
                 interactive: true
@@ -3788,11 +3795,11 @@ layers:
                         priority: 2
                         visible: *text_visible_admin
                         font:
-                            size: 11px
-                            weight: 400
-                            fill: *text_fill
+                            size: 9px
+                            weight: 200
+                            fill: [0.25,0.25,0.25]
                             transform: uppercase
-                            stroke: { color: *text_stroke, width: 4 }
+                            # stroke: { color: *text_stroke, width: 2 }
             neighborhood-z13:
                 filter:
                     all:
@@ -3814,10 +3821,10 @@ layers:
                         visible: *text_visible_neighbourhoods_e
                         font:
                             size: 11px
-                            weight: 400
-                            fill: *text_fill
+                            weight: 200
+                            fill: [0.30,0.30,0.30]
                             transform: uppercase
-                            stroke: { color: *text_stroke, width: 4 }
+                            # stroke: { color: *text_stroke, width: 2 }
             neighborhood-z14:
                 filter:
                     all:
@@ -3838,11 +3845,11 @@ layers:
                         text_wrap: 12
                         visible: *text_visible_neighbourhoods
                         font:
-                            size: 12px
-                            weight: 400
-                            fill: *text_fill
+                            size: 13px
+                            weight: 200
+                            fill: [0.40,0.40,0.40]
                             transform: uppercase
-                            stroke: { color: *text_stroke, width: 3 }
+                            # stroke: { color: *text_stroke, width: 3 }
             neighborhood-z15:
                 filter:
                     all:
@@ -3865,9 +3872,9 @@ layers:
                         font:
                             size: 16px
                             weight: 200
-                            fill: *text_fill
+                            fill: [0.20,0.20,0.20]
                             transform: uppercase
-                            stroke: { color: *text_stroke, width: 3 }
+                            # stroke: { color: *text_stroke, width: 3 }
 
             neighborhood-z16:
                 filter:
@@ -3892,7 +3899,7 @@ layers:
                             weight: 200
                             fill: *text_fill
                             transform: uppercase
-                            stroke: { color: *text_stroke, width: 3 }
+                            # stroke: { color: *text_stroke, width: 3 }
 
 
     pois_and_landuse_labels:
@@ -4064,7 +4071,7 @@ layers:
                         - { $zoom: { min: 17 } }
                 visible: *label_visible_landuse_green
                 not-national-park:
-                    filter: function() { return if( feature.name.indexOf("National Park") > -1 ) { return 0; } else { return 1;} }
+                    filter: function() { return !( feature.name.indexOf("National Park") > -1 ); }
                     draw:
                         icons:
                             visible: *icon_visible_landuse_green
@@ -4376,8 +4383,8 @@ layers:
                     draw:
                         text:
                             visible: false
-                    icons:
-                        size: [[13, 8px], [19, 18px]]
+                        icons:
+                            size: [[13, 8px], [19, 18px]]
 
             # examples of different icons mapped to feature properties
             icons:
@@ -4809,7 +4816,7 @@ layers:
             draw:
                 text:
                     font:
-                        fill: [0.102,0.533,0.612] #*text_fill_water
+                        fill: [0.314,0.591,0.640] #*text_fill_water
                         family: Helvetica
                         style: italic
                         weight: 500
@@ -4823,6 +4830,10 @@ layers:
             filter: { $zoom: [6] }
             draw:
                 text: { font: { size: 11px } }
+        lakes-z8:
+            filter: { $zoom: [8] }
+            draw:
+                text: { font: { size: 12px } }
 
     ocean-sea-labels:
         data: { source: osm, layer: places }
@@ -4831,7 +4842,7 @@ layers:
         draw:
             text:
                 font:
-                    fill: [0.102,0.533,0.612] #*text_fill_water
+                    fill: [0.314,0.591,0.640] #*text_fill_water
                     family: Helvetica
                     weight: 500
                     size: 12px
@@ -4865,7 +4876,7 @@ layers:
             filter: { $zoom: [3] }
             draw:
                 text: { font: { size: 13px } }  
-        ocean-sea-labels-z4-up:
+        ocean-labels-z4-up:
             filter: { $zoom: { min: 4} }
             draw:
                 text: { font: { size: 16px } }
@@ -4948,12 +4959,19 @@ layers:
         draw:
             text:
                 font:
-                    fill: *text_fill_water
+                    fill: [0.314,0.591,0.640]
                     family: Helvetica
                     style: italic
                     weight: 500
                     size: 12px
-                    stroke: { color: *text_stroke_water, width: 3 }
+        water-line-labels-z14:
+            filter: { $zoom: [14] }
+            draw:
+                text: { font: { size: 10px } } 
+        water-line-labels-z17:
+            filter: { $zoom: [17] }
+            draw:
+                text: { font: { size: 14px } }
         not-river-not-stream:
             filter: { kind: [canal,dam,ditch,drain], $zoom: { max: 16 } }
             draw:
@@ -5075,7 +5093,7 @@ layers:
                 filter: { kind: nature_reserve, $zoom: { min: 7 } }
                 draw:
                     dots2:
-                        color: *green6
+                        color: [0.327,0.710,0.384]
                         visible: true
                 wilderness-areas:
                     filter: function() { return feature.name && feature.name.indexOf("Wilderness") > -1 }
@@ -5134,7 +5152,7 @@ layers:
                 draw:
                     dots2:
                         color: *brown1
-                        order: function() { return feature.sort_key - 2 || 1; }
+                        order: function() { return (feature.sort_key - 2) || 1; }
                         visible: true
         tier4:
             filter: 
