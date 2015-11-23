@@ -920,6 +920,11 @@ layers:
                     color: [[8,[0.635,0.737,0.753]],[13,[0.635,0.737,0.753]],[14,[0.569,0.722,0.749]],[15,[0.397,0.743,0.809]]]
                     width: [[8,0.5px],[10,0.5px],[11,0.5px],[12,0.75px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1.5px]]
                     join: round
+            early:
+                filter: { $zoom: { min: 14 } }
+                draw:
+                    double-border-light: { order: 23 }
+                    lines: { order: 23 }
             riverbank:
                 # river boundaries like the thames in london, la seine in paris
                 filter: { kind: riverbank }
@@ -5080,7 +5085,7 @@ layers:
                 filter: { kind: nature_reserve, $zoom: { min: 7 } }
                 draw:
                     dots2:
-                        color: [0.425,0.680,0.367]
+                        color: [0.327,0.710,0.384]
                         visible: true
                 wilderness-areas:
                     filter: function() { return feature.name && feature.name.indexOf("Wilderness") > -1 }
