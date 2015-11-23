@@ -161,12 +161,14 @@ settings:
         - &text_fill   black
         - &text_fill2        '#555'             # WHITE
         - &text_fill_building '#ccc'            # WHITE
+        - &text_fill_address  '#aaa'            # HUH
         - &text_fill_water   '#4c89b5'          # blue
         - &text_fill_park    [0.35,0.35,0.35]   # black
         - &text_stroke [0.870,0.870,0.870]      # land color
         - &text_stroke_water [0.9, 0.9, 0.9]    # water stroke color
         - &text_stroke_park  '#bddec5'          # park stroke color
         - &text_stroke_building  [0.83, 0.83, 0.83] # building stroke color
+        - &text_stroke_address   [0.85, 0.85, 0.85]    # address stroke color
         - &text_stroke_road1  [0.9, 0.9, 0.9]   # road stroke color highway
         - &text_stroke_road2  [0.9, 0.9, 0.9]   # road stroke color major road
         - &text_stroke_road3  [0.9, 0.9, 0.9]   # road stroke color major road route
@@ -2225,7 +2227,7 @@ layers:
                     family: Helvetica
                     style: italic
                     size: 12px
-                    stroke: { color: *text_stroke_building, width: 4 }
+                    stroke: { color: *text_stroke_address, width: 4 }
         # Hack for no text wrap in Tangram
         building-labels-z16:
             filter: function() { if( $zoom == 16 && feature.name.length > 10 ) { return true; } else { return false; } }
@@ -2255,11 +2257,11 @@ layers:
                 order: 7
                 text_source: addr_housenumber
                 font:
-                    fill: *text_fill_building
+                    fill: *text_fill_address
                     family: Helvetica
                     style: italic
                     size: 10px
-                    stroke: { color: *building1, width: 4 }
+                    stroke: { color: *text_stroke_address, width: 4 }
 
     boundaries:
         data: { source: osm, layer: boundaries }
