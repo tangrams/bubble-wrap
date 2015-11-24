@@ -1747,7 +1747,17 @@ layers:
                             fill: [0.45,0.45,0.45]
                             size: 9px
             labels-minor_road-z16:
-                filter: { $zoom: { min: 16, max: 18 } }
+                filter: { $zoom: 16 }
+                draw:
+                    text:
+                        priority: 6
+                        visible: *text_visible_minor_road_e
+                        text_source: name
+                        font:
+                            fill: [0.35,0.35,0.35]
+                            size: 10px
+            labels-minor_road-z17:
+                filter: { $zoom: { min: 17, max: 18 } }
                 draw:
                     text:
                         priority: 6
