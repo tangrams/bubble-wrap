@@ -5320,7 +5320,7 @@ layers:
                 draw: { dots2: { order: 2, color: *grey3, visible: true } }
                 pier:
                     filter: { kind: [pier,bridge,breakwater,groyne,dike,cutline] }
-                    draw: { dots2: { order: 5, color: *earth1, visible: true } }
+                    draw: { dots2: { order: 5, color: [0.679,0.679,0.679], visible: true } }
         tier5:
             filter: 
                 any:
