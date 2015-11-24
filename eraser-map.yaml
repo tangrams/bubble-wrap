@@ -1783,9 +1783,9 @@ layers:
             draw:
                 lines:
                     # order: 3
-                    color: [1.0,1.0,1.0]
+                    color: [[12, [0.9,0.9,0.9]], [14, [0.9,0.9,0.9]], [15, [1.0,1.0,1.0]]]
                     # todo: consider starting at z13 with 0.5px
-                    width: [[15, 1.25px], [16, 2.0px], [18, 6m]]
+                    width: [[12, 0.65px], [13, 0.75px], [14, 0.85px], [15, 1.25px], [16, 2.0px], [18, 6m]]
                     outline:
                         color: [0.827,0.827,0.827]
                         width: [[15, 0px], [16, 0.5px], [17, 1.0px], [18, 1.75px]]
