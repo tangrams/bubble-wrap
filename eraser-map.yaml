@@ -982,8 +982,8 @@ layers:
             early:
                 filter: { $zoom: { min: 14 } }
                 draw:
-                    double-border-light: { order: 23 }
-                    lines: { order: 23 }
+                    double-border-light: { order: 19 }
+                    lines: { order: 19 }
             riverbank:
                 # river boundaries like the thames in london, la seine in paris
                 filter: { kind: riverbank }
@@ -5362,14 +5362,14 @@ layers:
                     kind: [pedestrian,common]
                 draw:
                     dots2:
-                        color: *grey1
+                        color: [0.679,0.679,0.679]
                         visible: *grey1_v
             pitch:
                 filter: { kind: pitch }
                 draw:
                     dots2:
                         order: 7
-                        color: *orange2
+                        color: [0.067,0.761,0.369]
                         visible: true
 #                    outline:
 #                        style: lines
