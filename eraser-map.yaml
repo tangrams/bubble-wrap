@@ -153,7 +153,7 @@ settings:
         - &purple_v    false                    # airport
         - &mystry1     '#bfb08e'                # recreation ground
         - &building1   [0.784, 0.784, 0.784]    # building
-        - &building2   [.81, .81, .81]          # building stroke
+        - &building2   [.85, .85, .85]          # building stroke
         - &building_o  5                        # building stroke order
         - &building_e  true                     # building stroke order
 
