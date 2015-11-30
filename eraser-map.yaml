@@ -957,7 +957,7 @@ layers:
                     color: [[9,[0.396,0.833,0.920]],[10,[0.886,0.937,0.988]]]
                 lines:
                     order: 10
-                    color: [0.543,0.740,0.780]
+                    color: [[1,[0.698,0.800,0.820]],[11,[0.631,0.773,0.800]],[14,[0.543,0.740,0.780]]]
                     width: [[1,0.25px],[6,0.5px],[7,0.75px],[9,0.75px],[10,1px]]
         water-boundary-ocean-late:
             filter: { boundary: yes, kind: ocean, $zoom: {min: 17} }
@@ -989,7 +989,8 @@ layers:
                 filter: { kind: riverbank }
                 draw:
                     lines:
-                        color: [0.397,0.743,0.809]
+                        # color: [0.397,0.743,0.809]
+                        color: [[8,[0.635,0.737,0.753]],[14,[0.397,0.743,0.809]]]
                         width: [[9,0.5px],[10,0.75px],[11,0.75px],[12,0.8px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1.5px]]
         river:
             #river center lines, not boundaries for polygons
