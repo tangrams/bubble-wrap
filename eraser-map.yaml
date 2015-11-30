@@ -653,8 +653,8 @@ styles:
                     width *= 1.0 - v_texcoord.x;
                 color: |
                     vec2 st = v_texcoord.xy;
-                    float pattern = aastep(.5, pulse(st.x, .8, .15) + pulse(st.x, .5, .12) + pulse(st.x, .1, .1));
-                    color.rgb = mix(color.rgb, vec3(0.396, 0.833, 0.920), pattern);
+                    float pattern = aastep(.5, pulse(st.x, .75, .15) + pulse(st.x, .4, .10) + pulse(st.x, .1, .1));
+                    color.rgb = mix(color.rgb, vec3(0.675,0.855,0.886), pattern);
 
     ground:
         base: polygons
@@ -977,8 +977,8 @@ layers:
                 lines:
                     order: 30
                     # color: [[8,[0.635,0.737,0.753]],[13,[0.635,0.737,0.753]],[14,[0.569,0.722,0.749]],[15,[0.397,0.743,0.809]]]
-                    color: [[8,[0.635,0.737,0.753]],[13,[0.635,0.737,0.753]],[14,[0.543,0.740,0.780]]]
-                    width: [[8,0.5px],[10,0.5px],[11,0.5px],[12,0.75px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1.5px]]
+                    color: [[8,[0.635,0.737,0.753]],[13,[0.635,0.737,0.753]],[14,[0.543,0.740,0.780]],[17,[0.643,0.824,0.851]]]
+                    width: [[8,0.5px],[10,0.5px],[11,0.5px],[12,0.75px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1px]]
                     join: round
             early:
                 filter: { $zoom: { min: 14 } }
