@@ -991,7 +991,7 @@ layers:
                 draw:
                     lines:
                         # color: [0.397,0.743,0.809]
-                        color: [[8,[0.635,0.737,0.753]],[14,[0.397,0.743,0.809]]]
+                        color: [[8,[0.635,0.737,0.753]],[11,[0.631,0.773,0.800]],[13,[0.635,0.737,0.753]],[14,[0.397,0.743,0.809]]]
                         width: [[9,0.5px],[10,0.75px],[11,0.75px],[12,0.8px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1.5px]]
         river:
             #river center lines, not boundaries for polygons
@@ -4113,7 +4113,7 @@ layers:
                                 fill: [0.200,0.409,0.398] #*text_fill_park
                                 size: 13px
                                 style: italic
-                                stroke: { color: [0.870,0.870,0.870], width: 3px }
+                                # stroke: { color: [0.870,0.870,0.870], width: 3px }
                     natl-park-labels-z4-z6:
                         filter: { $zoom: [4,5,6] }
                         draw:
@@ -4169,7 +4169,7 @@ layers:
                                 fill: [0.200,0.409,0.398]
                                 size: 12px
                                 style: italic
-                                stroke: { color: [0.870,0.870,0.870], width: 2 }
+                                # stroke: { color: [0.870,0.870,0.870], width: 2 }
                     green-areas-z6:
                         # mojave national preserve
                         filter: { $zoom: [6] }
