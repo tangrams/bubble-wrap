@@ -5297,8 +5297,8 @@ layers:
                 filter:
                     kind: railway
                 draw:
-                    dots2:
-                        color: [0.788,0.804,0.824]
+                    dots-rev:
+                        color: [0.898,0.910,0.918]
                         visible: true
             recreation_ground:
                 filter:
