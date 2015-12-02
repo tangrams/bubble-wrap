@@ -92,7 +92,7 @@ settings:
         - &region_boundary            [1.0,1.0,1.0]
         - &subregion_boundary         '#bbb'
         - &city_wall                  '#ccb38f'
-        - &retaining_wall             '#d9c4a5'
+        - &retaining_wall             [0.827,0.808,0.780]
 
     areas:
         - &scene1      '#eee'                   # map background, water
@@ -531,7 +531,7 @@ styles:
                     }
                 color: |
                     vec2 st = v_texcoord;
-                    vec4 foreground = vec4(1.);
+                    vec4 foreground = vec4(0.867,0.867,0.867,1.0);
                     color = mix(v_color, foreground, stripes(st));
 
     tools-tilecoords:
@@ -2021,32 +2021,32 @@ layers:
             draw:
                 dashedline:
                     order: 23
-                    color: *earth1
-                    width: [[14, 0.6px], [16, 1px], [17, 2.5m]]
+                    color: [0.97,0.97,0.97]
+                    width: [[14,0.6px],[16,2px],[17,4px],[18,5px],[19,8px],[20,10px]]
                     outline:
-                        color: *path_steps1
-                        width: [[14, 1.0], [15, 1.5], [18, 3m]]
+                        color: [0.867,0.867,0.867]
+                        width: 2px
             in_park:
                 filter: { landuse_kind: [park,nature_reserve,conservation,golf_course,garden] }
                 draw:
                     dashedline:
-                        color: [[14,*green1_r],[16,*minor_road3]]
+                        color: [1.0,1.0,1.0]
                         outline:
-                            color: *green1_r
+                            color: [0.867,0.867,0.867]
             in_university:
                 filter: { landuse_kind: university }
                 draw:
                     dashedline:
-                        color: [[14,*brown1_r],[16,*minor_road3]]
+                        color: [1.0,1.0,1.0]
                         outline:
-                            color: *brown1_r
+                            color: [0.867,0.867,0.867]
             in_hospital:
                 filter: { landuse_kind: hospital }
                 draw:
                     dashedline:
-                        color: [[14,*red1_r],[16,*minor_road3]]
+                        color: [1.0,1.0,1.0]
                         outline:
-                            color: *red1_r
+                            color: [0.867,0.867,0.867]
             labels-steps:
                 filter: { $zoom: { min: 17 } }
                 draw:
