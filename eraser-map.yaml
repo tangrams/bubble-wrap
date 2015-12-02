@@ -1048,13 +1048,13 @@ layers:
             lines:
                 interactive: true
                 color: [0.588,0.671,0.698]
-                width: [[15,0.5px],[16,0.75px],[18,1px]]
+                width: [[15,0.75px],[16,0.75px],[18,1px]]
         service:
             filter: { service: true }
             draw:
                 lines:
                     color: [0.588,0.671,0.698]
-                    width: [[14,0px],[15,0.4px],[16,0.6px],[18,0.7m]]
+                    width: [[14,0px],[15,0.5px],[16,0.75px],[17,1px],[18,0.7m]]
         z-order:
             #filter: { $zoom: {min: 12} }
             draw:
