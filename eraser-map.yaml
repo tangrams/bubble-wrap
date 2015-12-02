@@ -5400,7 +5400,7 @@ layers:
                     kind: playground
                 draw:
                     dots-rev:
-                        color: [0.306,0.804,0.713]
+                        color: [0.451,0.820,0.749]
                         visible: true
             school:
                 filter:
