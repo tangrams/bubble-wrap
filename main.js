@@ -9,7 +9,7 @@ map = (function () {
 
     // leaflet-style URL hash pattern:
     // #[zoom],[lat],[lng]
-    var map_start_location = [37.8044, -122.2708, 15]; // Oakland
+    var map_start_location = [37.7926, -122.4003, 15]; // San Francisco
     var url_hash = window.location.hash.slice(1, window.location.hash.length).split('/');
 
     if (url_hash.length == 3) {
