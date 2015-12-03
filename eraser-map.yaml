@@ -2067,7 +2067,9 @@ layers:
                     cap: butt
                     width: [[9,0px],[10,0.75px],[11,1.25px],[12,2px],[13,4px],[14,8px],[15,16px],[16,32px],[17,60m]]
                     # outline:
-                    #     color: [0.778,0.778,0.797]
+                    #     order: 10
+                    #     color: [17,[0.95,0.95,0.95]]
+                    #     width: [17,[60m]]
             # Features come in at zoom 9, but include mostly minor airports without POIs until z13
             early:
                 filter: { $zoom: { max: 12 }, not: { landuse_kind: [aerodrome, runway, taxiway] } }
@@ -2085,7 +2087,7 @@ layers:
                     lines:
                         order: 9
                         color: [[13,[0.913,0.913,0.913]],[15,[0.923,0.923,0.923]],[16,[0.95,0.95,0.95]]]
-                        width: [[13,1px],[14,2px],[15,3px],[16,7px],[17,25m]]
+                        width: [[13,1px],[14,2px],[15,3px],[16,7px],[17,20m]]
                         outline:
                             color: [0.778,0.778,0.797]
                 early:
