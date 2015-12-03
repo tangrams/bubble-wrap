@@ -5284,8 +5284,8 @@ layers:
                 filter:
                     kind: industrial
                 draw:
-                    dots2:
-                        color: *grey6
+                    dots-rev:
+                        color: [[8,[0.845,0.845,0.845]],[14,[0.835,0.835,0.835]],[15,[0.780,0.780,0.780]]]
                         visible: true
             power:
                 filter: { kind: [plant, generator, substation] }
