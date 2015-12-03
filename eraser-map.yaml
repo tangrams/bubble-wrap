@@ -1409,10 +1409,10 @@ layers:
                 filter: { is_link: yes } # on- and off-ramps, etc
                 draw:
                     lines:
-                        width: [[10, 0.5px], [14, 2px], [16, 4m], [17, 5m], [18, 6m]]
+                        width: [[9, 0px], [10, 0.5px], [14, 2px], [16, 4m], [17, 5m], [18, 6m]]
                         outline:
-                            color: [[13, [0.827,0.827,0.827]], [15, [1.000,0.739,0.710]]]
-                            width: [[10, 1px], [14, 1px], [16, 1.5px], [17, 2px]]
+                            color: [[9, [0.827,0.827,0.827]], [13, [0.827,0.827,0.827]], [15, [1.000,0.739,0.710]]]
+                            width: [[9, 0px], [10, 1px], [14, 1px], [16, 1.5px], [17, 2px]]
             tunnel:
                 filter: {is_tunnel: yes, $zoom: {min: 13} }
                 draw:
