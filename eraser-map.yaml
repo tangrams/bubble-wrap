@@ -2063,11 +2063,11 @@ layers:
             draw:
                 lines:
                     order: 10
-                    color: white
+                    color: [[10,[0.4,0.4,0.4]],[11,[0.50,0.50,0.50]],[12,[0.7,0.7,0.7]],[13,[0.75,0.75,0.75]],[14,[0.95,0.95,0.95]]]
                     cap: butt
-                    width: [[10, 1px], [11, 1.5px], [12, 2px], [13, 4px], [14, 8px], [15, 16px], [16, 32px], [17, 60m]]
-                    outline:
-                        color: [0.778,0.778,0.797]
+                    width: [[9,0px],[10,0.75px],[11,1.25px],[12,2px],[13,4px],[14,8px], [15, 16px], [16, 32px], [17, 60m]]
+                    # outline:
+                    #     color: [0.778,0.778,0.797]
             # Features come in at zoom 9, but include mostly minor airports without POIs until z13
             early:
                 filter: { $zoom: { max: 12 }, not: { landuse_kind: [aerodrome, runway, taxiway] } }
@@ -5430,15 +5430,15 @@ layers:
             draw:
                 polygons:
                     order: 10
-                    color: white
+                    color: [[10,[0.4,0.4,0.4]],[11,[0.50,0.50,0.50]],[12,[0.7,0.7,0.7]],[13,[0.75,0.75,0.75]],[14,[0.95,0.95,0.95]]]
         apron:
             filter:
                 kind: apron
                 $zoom: { min: 15}
             draw:
-                polygons:
+                dots-rev:
                     order: 3
-                    color: [0.778,0.778,0.797]
+                    color: [0.820,0.820,0.820]
                     visible: *grey1_v
 
     landuse_urban_area-early:
