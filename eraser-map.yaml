@@ -1889,7 +1889,7 @@ layers:
             filter: { kind: path, not: { highway: [steps,track] } }
             draw:
                 lines:
-                    color: [[14, [0.97,0.97,0.97]], [16,[0.96,0.96,0.96]]]
+                    color: [[14, [0.97,0.97,0.97]],[16,[0.96,0.96,0.96]]]
                     order: 6
                     width: [[14, 0.6px], [16, 1px], [17, 2.5m]]
                     outline:
@@ -1968,9 +1968,9 @@ layers:
                 filter: { landuse_kind: hospital }
                 draw:
                     lines:
-                        color: [[14,*red1_r],[16,*minor_road3]]
+                        color: [[14,[0.90,0.90,0.90]],[16,[0.96,0.96,0.96]]]
                         outline:
-                            color: *red1_r
+                            color: [0.847,0.788,0.796]
                             # todo: consider starting 14 at 0px so z15 has a little width
                             width: [[15, 0px], [16, 0.5px], [18, 3px]]
             labels-path:
@@ -5278,7 +5278,7 @@ layers:
                     kind: hospital
                 draw:
                     dots2:
-                        color: *red1
+                        color: [0.843,0.624,0.647]
                         visible: true
             industrial:
                 filter:
@@ -5319,7 +5319,7 @@ layers:
                     kind: stadium
                 draw:
                     dots2:
-                        color: *orange1
+                        color: [0.518,0.616,0.714]
                         visible: true
             zoo:
                 filter:
@@ -5382,7 +5382,7 @@ layers:
                 draw:
                     dots2:
                         order: 7
-                        color: [0.067,0.761,0.369]
+                        color: [0.333,0.792,0.533]
                         visible: true
 #                    outline:
 #                        style: lines
