@@ -174,6 +174,7 @@ settings:
         - &text_stroke_road3  [0.9, 0.9, 0.9]   # road stroke color major road route
         - &text_stroke_road4  [0.9, 0.9, 0.9]   # road stroke color minor road
         - &townspot_sprite   townspot-m-rev     # depends on land color and text settings
+        - &text_font_family  'Open Sans'        # branding in asperational Unicode, yo (or Helvetica)
 
 
 
@@ -1082,7 +1083,7 @@ layers:
             text:
                 visible: false    # labels are enabled by each layer below
                 font:
-                    family: Helvetica
+                    family: *text_font_family
                     weight: 500
                     fill: *text_fill
 
@@ -2318,7 +2319,7 @@ layers:
                 order: 7
                 font:
                     fill: '#666'
-                    family: Helvetica
+                    family: *text_font_family
                     style: italic
                     size: 12px
                     stroke: { color: *text_stroke_address, width: 4 }
@@ -2352,7 +2353,7 @@ layers:
                 text_source: addr_housenumber
                 font:
                     fill: *text_fill_address
-                    family: Helvetica
+                    family: *text_font_family
                     style: italic
                     size: 10px
                     stroke: { color: *text_stroke_address, width: 4 }
@@ -2424,7 +2425,7 @@ layers:
             text:
                 visible: false    # labels are enabled by each layer below
                 font:
-                    family: Helvetica
+                    family: *text_font_family
                     # weight: 500
                     fill: *text_fill
 
@@ -4012,7 +4013,7 @@ layers:
                 offset: [[13,13px],[14,15px],[16,19px]]
                 interactive: true
                 font:
-                    family: Helvetica
+                    family: *text_font_family
                     weight: 500
                     fill: *text_fill
                     size: 12px
@@ -4903,7 +4904,7 @@ layers:
                 text:
                     font:
                         fill: [0.314,0.591,0.640] #*text_fill_water
-                        family: Helvetica
+                        family: *text_font_family
                         style: italic
                         weight: 500
                         size: 12px
@@ -4929,7 +4930,7 @@ layers:
             text:
                 font:
                     fill: [0.314,0.591,0.640] #*text_fill_water
-                    family: Helvetica
+                    family: *text_font_family
                     weight: 500
                     size: 12px
                     transform: uppercase
@@ -5024,7 +5025,7 @@ layers:
             text:
                 font:
                     fill: grey
-                    family: Helvetica
+                    family: *text_font_family
                     style: italic
                     weight: 500
                     size: 12px
@@ -5046,7 +5047,7 @@ layers:
             text:
                 font:
                     fill: [0.314,0.591,0.640]
-                    family: Helvetica
+                    family: *text_font_family
                     style: italic
                     weight: 500
                     size: 12px
