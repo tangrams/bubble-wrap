@@ -1081,7 +1081,7 @@ layers:
                 visible: false    # labels are enabled by each layer below
                 font:
                     family: *text_font_family
-                    weight: 600
+                    weight: 400
                     fill: *text_fill
 
         natural_earth_highways:
@@ -1187,7 +1187,8 @@ layers:
                         text_source: ref
                         font:
                             fill: [1.0,1.0,1.0]
-                            size: 8px
+                            weight: 600
+                            size: 9px
                             stroke: { color: [0.976,0.541,0.490], width: 3 }
             labels-highway-z10:
                 filter:
@@ -1198,7 +1199,8 @@ layers:
                         text_source: ref
                         font:
                             fill: [1.0,1.0,1.0]
-                            size: 9px
+                            weight: 600
+                            size: 10px
                             stroke: { color: [0.976,0.541,0.490], width: 3 }
             labels-highway-z11:
                 filter:
@@ -1209,7 +1211,8 @@ layers:
                         text_source: ref
                         font:
                             fill: [1.0,1.0,1.0]
-                            size: 10px
+                            weight: 600
+                            size: 11px
                             stroke: { color: [0.976,0.541,0.490], width: 3 }
             labels-highway-z12:
                 filter:
@@ -1220,7 +1223,8 @@ layers:
                         text_source: ref
                         font:
                             fill: [1.0,1.0,1.0]
-                            size: 10px
+                            weight: 600
+                            size: 12px
                             stroke: { color: [0.976,0.541,0.490], width: 3 }
             labels-highway-z13:
                 filter:
@@ -1233,7 +1237,8 @@ layers:
                         text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                         font:
                             fill: [0.0,0.0,0.0]
-                            size: 10px
+                            weight: 600
+                            size: 12px
                             # stroke: { color: [0.976,0.541,0.490], width: 4 }
             labels-highway-z14:
                 filter:
@@ -1347,17 +1352,29 @@ layers:
                                     fill: [0.0,0.0,0.0]
                                     size: 11px
                                     stroke: { color: [0.95,0.95,0.95], width: 0.1px }
-                labels-trunk_primary-z11-z12:
+                labels-trunk_primary-z11:
                     filter:
-                        $zoom: [11,12]
+                        $zoom: [11]
                     draw:
                         text:
                             priority: 23
                             visible: *text_visible_trunk_primary_e
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
-                                fill: [0.3,0.3,0.3]
-                                size: 8px
+                                fill: [0.4,0.4,0.4]
+                                size: 10px
+                                # stroke: { color: [1.000,0.631,0.590], width: 3 }
+                labels-trunk_primary-z12:
+                    filter:
+                        $zoom: [12]
+                    draw:
+                        text:
+                            priority: 23
+                            visible: *text_visible_trunk_primary_e
+                            text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
+                            font:
+                                fill: [0.4,0.4,0.4]
+                                size: 11px
                                 # stroke: { color: [1.000,0.631,0.590], width: 3 }
                 labels-trunk_primary-z13-z14:
                     filter:
@@ -1369,7 +1386,7 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
                                 fill: [0.15,0.15,0.15]
-                                size: 9px
+                                size: 12px
                                 stroke: { color: *text_stroke, width: 2 }
                 labels-trunk_primary-z15:
                     filter: { $zoom: [15], ref: false }
@@ -1490,7 +1507,7 @@ layers:
                                     color: pink
                 labels-secondary-z13:
                     filter:
-                        $zoom: [13,14]
+                        $zoom: [13]
                     draw:
                         text:
                             priority: 24
@@ -1498,7 +1515,19 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
                                 fill: [0.5,0.5,0.5]
-                                size: 9px
+                                size: 11px
+                                stroke: { color: *text_stroke, width: 2 }
+                labels-secondary-z14:
+                    filter:
+                        $zoom: [14]
+                    draw:
+                        text:
+                            priority: 24
+                            visible: *text_visible_secondary_e
+                            text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
+                            font:
+                                fill: [0.5,0.5,0.5]
+                                size: 12px
                                 stroke: { color: *text_stroke, width: 2 }
                 labels-secondary-z15:
                     filter:
@@ -3835,9 +3864,9 @@ layers:
                         priority: 7
                         visible: *text_visible_admin
                         font:
-                            size: 9px
-                            weight: 200
-                            fill: [0.25,0.25,0.25]
+                            size: 10px
+                            weight: 400
+                            fill: [0.15,0.15,0.15]
                             transform: uppercase
                             # stroke: { color: *text_stroke, width: 2 }
             neighborhood-z13:
