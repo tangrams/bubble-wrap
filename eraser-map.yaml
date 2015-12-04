@@ -1185,7 +1185,7 @@ layers:
                 filter: { $zoom: [7,8,9] }
                 draw:
                     text:
-                        priority: 2
+                        priority: 20
                         visible: *text_visible_highway_e
                         text_source: ref
                         font:
@@ -1230,7 +1230,7 @@ layers:
                     $zoom: 13
                 draw:
                     text:
-                        priority: 2
+                        priority: 20
                         visible: *text_visible_highway
                         #text_source: ref
                         text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
@@ -1243,7 +1243,7 @@ layers:
                     $zoom: 14
                 draw:
                     text:
-                        priority: 2
+                        priority: 20
                         visible: *text_visible_highway
                         #text_source: ref
                         text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
@@ -1265,7 +1265,7 @@ layers:
                 filter: { $zoom: { min: 16, max: 18 } }
                 draw:
                     text:
-                        priority: 2
+                        priority: 20
                         visible: *text_visible_highway
                         font:
                             fill: [0.0,0.0,0.0]
@@ -1275,7 +1275,7 @@ layers:
                 filter: { $zoom: { min: 18 } }
                 draw:
                     text:
-                        priority: 2
+                        priority: 20
                         visible: *text_visible_highway
                         font:
                             fill: [0.0,0.0,0.0]
@@ -1332,7 +1332,7 @@ layers:
                         filter: { $zoom: [14] }
                         draw:
                             text:
-                                priority: 3
+                                priority: 23
                                 visible: *text_visible_trunk_primary
                                 text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                                 font:
@@ -1343,7 +1343,7 @@ layers:
                         filter: { $zoom: [15] }
                         draw:
                             text:
-                                priority: 3
+                                priority: 23
                                 visible: *text_visible_trunk_primary
                                 text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                                 font:
@@ -1355,7 +1355,7 @@ layers:
                         $zoom: [11,12]
                     draw:
                         text:
-                            priority: 3
+                            priority: 23
                             visible: *text_visible_trunk_primary_e
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
@@ -1367,7 +1367,7 @@ layers:
                         $zoom: [13,14]
                     draw:
                         text:
-                            priority: 3
+                            priority: 23
                             visible: *text_visible_trunk_primary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
@@ -1378,7 +1378,7 @@ layers:
                     filter: { $zoom: [15], ref: false }
                     draw:
                         text:
-                            priority: 3
+                            priority: 23
                             visible: *text_visible_trunk_primary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
@@ -1389,7 +1389,7 @@ layers:
                     filter: { $zoom: { min: 16, max: 18 } }
                     draw:
                         text:
-                            priority: 3
+                            priority: 23
                             visible: *text_visible_trunk_primary
                             text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                             font:
@@ -1400,7 +1400,7 @@ layers:
                     filter: { $zoom: { min: 18 } }
                     draw:
                         text:
-                            priority: 3
+                            priority: 23
                             visible: *text_visible_trunk_primary
                             text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                             font:
@@ -1452,7 +1452,7 @@ layers:
                         filter: { $zoom: [13] }
                         draw:
                             text:
-                                priority: 4
+                                priority: 24
                                 visible: *text_visible_secondary_e
                                 text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                                 font:
@@ -1496,7 +1496,7 @@ layers:
                         $zoom: [13,14]
                     draw:
                         text:
-                            priority: 4
+                            priority: 24
                             visible: *text_visible_secondary_e
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
@@ -1508,7 +1508,7 @@ layers:
                         $zoom: [15]
                     draw:
                         text:
-                            priority: 4
+                            priority: 24
                             visible: *text_visible_secondary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
@@ -1519,7 +1519,7 @@ layers:
                     filter: { $zoom: { min: 16, max: 18 } }
                     draw:
                         text:
-                            priority: 4
+                            priority: 24
                             visible: *text_visible_secondary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
@@ -1530,7 +1530,7 @@ layers:
                     filter: { $zoom: { min: 18 } }
                     draw:
                         text:
-                            priority: 4
+                            priority: 24
                             visible: *text_visible_secondary
                             #text_source: ref
                             text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
@@ -1611,7 +1611,7 @@ layers:
                     filter: { $zoom: [14] }
                     draw:
                         text:
-                            priority: 5
+                            priority: 25
                             visible: *text_visible_tertiary_e
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
@@ -1622,7 +1622,7 @@ layers:
                     filter: { $zoom: [15] }
                     draw:
                         text:
-                            priority: 5
+                            priority: 25
                             visible: *text_visible_tertiary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
@@ -1633,7 +1633,7 @@ layers:
                     filter: { $zoom: { min: 16, max: 18 } }
                     draw:
                         text:
-                            priority: 5
+                            priority: 25
                             visible: *text_visible_tertiary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
@@ -1644,7 +1644,7 @@ layers:
                     filter: { $zoom: { min: 18 } }
                     draw:
                         text:
-                            priority: 5
+                            priority: 25
                             visible: *text_visible_tertiary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
@@ -1754,7 +1754,7 @@ layers:
                 filter: { $zoom: 15 }
                 draw:
                     text:
-                        priority: 6
+                        priority: 26
                         visible: *text_visible_minor_road_e
                         text_source: name
                         font:
@@ -1764,7 +1764,7 @@ layers:
                 filter: { $zoom: 16 }
                 draw:
                     text:
-                        priority: 6
+                        priority: 26
                         visible: *text_visible_minor_road_e
                         text_source: name
                         font:
@@ -1774,7 +1774,7 @@ layers:
                 filter: { $zoom: { min: 17, max: 18 } }
                 draw:
                     text:
-                        priority: 6
+                        priority: 26
                         visible: *text_visible_minor_road_e
                         text_source: name
                         font:
@@ -1785,7 +1785,7 @@ layers:
                 filter: { $zoom: { min: 18 } }
                 draw:
                     text:
-                        priority: 6
+                        priority: 26
                         visible: *text_visible_minor_road
                         text_source: name
                         font:
@@ -1866,7 +1866,7 @@ layers:
                 filter: { $zoom: { min: 17, min: 18 } }
                 draw:
                     text:
-                        priority: 7
+                        priority: 27
                         visible: *text_visible_service_road
                         text_source: name
                         font:
@@ -1878,7 +1878,7 @@ layers:
                 filter: { $zoom: { min: 18 } }
                 draw:
                     text:
-                        priority: 7
+                        priority: 27
                         visible: *text_visible_service_road
                         text_source: name
                         font:
@@ -1978,7 +1978,7 @@ layers:
                 filter: { $zoom: { min: 17 } }
                 draw:
                     text:
-                        priority: 8
+                        priority: 28
                         visible: *text_visible_path
                         text_source: name
                         font:
@@ -2052,7 +2052,7 @@ layers:
                 filter: { $zoom: { min: 17 } }
                 draw:
                     text:
-                        priority: 9
+                        priority: 29
                         visible: *text_visible_steps
                         text_source: name
                         font:
@@ -2129,7 +2129,7 @@ layers:
                 filter: { $zoom: { min: 14 } }
                 draw:
                     text:
-                        priority: 9
+                        priority: 29
                         visible: *text_visible_steps
                         text_source: name
                         font:
@@ -2448,7 +2448,7 @@ layers:
                     - name: ["United States of America","Brasil","中华人民共和国","Россия","Canada","Kalaallit Nunaat","Ísland","Australia","India","日本","Guam","Indonesia","South Africa","مصر","Nigeria","Kenya"]
             draw:
                 text:
-                    priority: 2
+                    priority: 3
                     visible: *text_visible_admin
                     text_source: function() { return feature["name:en"] || feature["name"]; }
                     font:
@@ -2460,7 +2460,7 @@ layers:
             filter: { name: true, population: true, kind: [country], $zoom: [3] }
             draw:
                 text:
-                    priority: 2
+                    priority: 3
                     visible: *text_visible_admin
                     text_source: function() { return feature["name:en"] || feature["name"]; }
                     font:
@@ -2483,7 +2483,7 @@ layers:
             filter: { name: true, population: true, kind: [country], $zoom: [4] }
             draw:
                 text:
-                    priority: 2
+                    priority: 3
                     visible: *text_visible_admin
                     text_source: function() { return feature["name:en"] || feature["name"]; }
                     font:
@@ -2512,7 +2512,7 @@ layers:
                     - { population: { min: 5000000 } }
             draw:
                 text:
-                    priority: 2
+                    priority: 3
                     visible: *text_visible_admin
                     text_source: function() { return feature["name:en"] || feature["name"]; }
                     font:
@@ -2535,7 +2535,7 @@ layers:
             filter: { name: true, kind: [country], $zoom: [6] }
             draw:
                 text:
-                    priority: 2
+                    priority: 3
                     visible: *text_visible_admin
                     text_source: function() { return feature["name:en"] || feature["name"]; }
                     font:
@@ -2555,7 +2555,7 @@ layers:
             filter: { name: true, kind: [country], $zoom: { min: 7, max: 9 } }
             draw:
                 text:
-                    priority: 2
+                    priority: 3
                     visible: *text_visible_admin
                     text_source: function() { return feature["name:en"] || feature["name"]; }
                     font:
@@ -2574,7 +2574,7 @@ layers:
             filter: { name: true, kind: [state], $zoom: [4], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text:
-                    priority: 2
+                    priority: 3
                     visible: *text_visible_admin
                     text_source: 'name:short'
                     font:
@@ -2586,7 +2586,7 @@ layers:
             filter: { name: true, kind: [state], $zoom: [5], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text:
-                    priority: 2
+                    priority: 4
                     visible: *text_visible_admin
                     text_source: 'name:short'
                     font:
@@ -2598,7 +2598,7 @@ layers:
             filter: { name: true, kind: [state], $zoom: [6], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text:
-                    priority: 2
+                    priority: 4
                     visible: *text_visible_admin
                     text_source: 'name:short'
                     font:
@@ -2610,7 +2610,7 @@ layers:
             filter: { name: true, kind: [state], $zoom: {min: 6, max: 9} }
             draw:
                 text:
-                    priority: 2
+                    priority: 4
                     visible: *text_visible_admin
                     text_source: function() { if(feature["name:short"]) { return feature["name"]; } else { return "" } }
                     font:
@@ -2637,14 +2637,16 @@ layers:
 
         populated-places:
             draw:
+                icons:
+                    priority: 5
                 text:
                     offset: [0, 8px]
+                    priority: 6
 
             populated-places-natural-earth-z2:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [2], scalerank: 0 }
                 draw:
                     text:
-                        priority: 1
                         interactive: true
                         visible: *text_visible_populated_places
                         font:
@@ -2662,7 +2664,6 @@ layers:
                     filter: { scalerank: [0] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -2677,7 +2678,6 @@ layers:
                     filter: { scalerank: [1] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -2695,7 +2695,6 @@ layers:
                     filter: { scalerank: [0] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -2711,7 +2710,6 @@ layers:
                     filter: { scalerank: [1,2] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -2729,7 +2727,6 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -2751,7 +2748,6 @@ layers:
                     filter: { scalerank: [2] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -2779,7 +2775,6 @@ layers:
                     filter: { scalerank: [3,4] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -2810,7 +2805,6 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -2833,7 +2827,6 @@ layers:
                     filter: { scalerank: [2,3,4] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -2862,7 +2855,6 @@ layers:
                     filter: { scalerank: [5,6] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -2879,7 +2871,7 @@ layers:
                                 font:
                                     size: 12px
                             icons:
-                                    sprite: capital-s
+                                sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -2893,7 +2885,6 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -2916,7 +2907,6 @@ layers:
                     filter: { scalerank: [2,3,4,5] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -2945,7 +2935,6 @@ layers:
                     filter: { scalerank: [6,7] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -2962,7 +2951,7 @@ layers:
                                 font:
                                     size: 14px
                             icons:
-                                    sprite: capital-s
+                                sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -2985,7 +2974,6 @@ layers:
                             - { population: { min: 1000000 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3008,7 +2996,6 @@ layers:
                             - { population: { min: 150000, max: 999999 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3038,7 +3025,6 @@ layers:
                             - { population: { min: 85000, max: 149999 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3055,7 +3041,7 @@ layers:
                                 font:
                                     size: 14px
                             icons:
-                                    sprite: capital-m
+                                sprite: capital-m
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -3069,7 +3055,6 @@ layers:
                             - { population: { min: 50000, max: 84999 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3086,7 +3071,7 @@ layers:
                                 font:
                                     size: 12px
                             icons:
-                                    sprite: capital-s
+                                sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -3101,7 +3086,6 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3123,7 +3107,6 @@ layers:
                     filter: { scalerank: [2,3,4,5] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3151,7 +3134,6 @@ layers:
                     filter: { scalerank: [6,7] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3167,7 +3149,7 @@ layers:
                                 font:
                                     size: 14px
                             icons:
-                                    sprite: capital-s
+                                sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -3190,7 +3172,6 @@ layers:
                             - { population: { min: 1000000 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3214,7 +3195,6 @@ layers:
                             - { population: { min: 150000, max: 999999 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3244,7 +3224,6 @@ layers:
                             - { population: { min: 85000, max: 149999 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3261,7 +3240,7 @@ layers:
                                 font:
                                     size: 15px
                             icons:
-                                    sprite: capital-m
+                                sprite: capital-m
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -3275,7 +3254,6 @@ layers:
                             - { population: { min: 50000, max: 84999 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3307,7 +3285,6 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3329,7 +3306,6 @@ layers:
                     filter: { scalerank: [2,3,4,5] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3357,7 +3333,6 @@ layers:
                     filter: { scalerank: [6,7,8,9] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3396,7 +3371,6 @@ layers:
                             - { population: { min: 1000000 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3412,7 +3386,6 @@ layers:
                             - { population: { min: 150000, max: 999999 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3428,7 +3401,6 @@ layers:
                             - { population: { min: 50000, max: 149999 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3445,7 +3417,6 @@ layers:
                             - { population: { min: 35000, max: 49999 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3463,7 +3434,6 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3485,7 +3455,6 @@ layers:
                     filter: { scalerank: [2,3,4,5] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3513,7 +3482,6 @@ layers:
                     filter: { scalerank: [6,7,8,9,10] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3554,7 +3522,6 @@ layers:
                         
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3566,7 +3533,6 @@ layers:
                             - { population: { min: 50000, max: 999999 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3579,7 +3545,6 @@ layers:
                         - { population: { min: 10000, max: 49999 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3592,7 +3557,6 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3614,7 +3578,6 @@ layers:
                     filter: { scalerank: [2,3,4,5] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3642,7 +3605,6 @@ layers:
                     filter: { scalerank: [6,7,8,9,10,11] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3683,7 +3645,6 @@ layers:
                         
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3695,7 +3656,6 @@ layers:
                             - { population: { min: 50000, max: 999999 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3707,7 +3667,6 @@ layers:
                         - { population: { min: 7000, max: 49999 } }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3720,7 +3679,6 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3742,7 +3700,6 @@ layers:
                     filter: { scalerank: [2,3,4,5] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3770,7 +3727,6 @@ layers:
                     filter: { scalerank: [6,7,8,9,10,11,12] }
                     draw:
                         text:
-                            priority: 1
                             interactive: true
                             visible: *text_visible_populated_places
                             font:
@@ -3855,7 +3811,7 @@ layers:
                             #- kind_tile_rank: { max: 6 }
                 draw:
                     text:
-                        priority: 2
+                        priority: 7
                         visible: *text_visible_admin
                         font:
                             size: 11px
@@ -3879,7 +3835,7 @@ layers:
                             #- kind_tile_rank: { max: 8 }
                 draw:
                     text:
-                        priority: 2
+                        priority: 7
                         visible: *text_visible_admin
                         font:
                             size: 9px
@@ -3903,7 +3859,7 @@ layers:
                             - kind_tile_rank: { max: 8 }
                 draw:
                     text:
-                        priority: 2
+                        priority: 7
                         text_wrap: 10
                         visible: *text_visible_neighbourhoods_e
                         font:
@@ -3928,7 +3884,7 @@ layers:
                             - kind_tile_rank: { max: 8 }
                 draw:
                     text:
-                        priority: 2
+                        priority: 7
                         text_wrap: 12
                         visible: *text_visible_neighbourhoods
                         font:
@@ -3953,7 +3909,7 @@ layers:
                             - kind_tile_rank: { max: 8 }
                 draw:
                     text:
-                        priority: 2
+                        priority: 7
                         text_wrap: 12
                         visible: *text_visible_neighbourhoods
                         font:
@@ -3979,7 +3935,7 @@ layers:
                             - kind_tile_rank: { max: 8 }
                 draw:
                     text:
-                        priority: 2
+                        priority: 7
                         visible: *text_visible_neighbourhoods
                         font:
                             size: 16px
@@ -4007,11 +3963,13 @@ layers:
                 size: [[13, 12px], [16, 16px], [19, 20px]]
                 interactive: true
                 visible: false
+                priority: 10
             text:
                 visible: false    # labels are enabled by each layer below
                 move_into_tile: false
                 offset: [[13,13px],[14,15px],[16,19px]]
                 interactive: true
+                priority: 11
                 font:
                     family: *text_font_family
                     weight: 500
@@ -4070,6 +4028,7 @@ layers:
                         sprite_default: generic
                         visible: *icon_visible_poi_landuse
                         interactive: true
+                        priority: 12
 
             # add generic icon at high zoom
             default-label-text:
@@ -4078,6 +4037,7 @@ layers:
                     text:
                         visible: *text_visible_poi_landuse
                         interactive: true
+                        priority: 13
                         font:
                             fill: [0.20,0.20,0.20] # *text_fill
                             size: 11px
@@ -4093,7 +4053,7 @@ layers:
                         - { $zoom: [4],  area: { min: 3000000000 } }
                         - { $zoom: [5],  area: { min: 3000000000 } }
                         - { $zoom: [6],  area: { min: 500000000 } }
-                        - { $zoom: [9],  area: { min: 100000000 } }
+                        - { $zoom: [7,8,9],  area: { min: 100000000 } }
                         - { $zoom: [10], area: { min: 50000000 } }
                         - { $zoom: [11], area: { min: 25000000 } }
                         - { $zoom: [12], area: { min: 5000000 } }
