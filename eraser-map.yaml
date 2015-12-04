@@ -4282,9 +4282,10 @@ layers:
                         visible: *text_visible_landuse_green
                         interactive: true
                         font:
-                            fill: [0.20,0.20,0.20] #*text_fill
-                            size: 11px
-                            stroke: { color: *text_stroke, width: 4 }
+                            weight: 600
+                            fill: [0.20,0.20,0.20]
+                            size: 9px
+                            # stroke: { color: *text_stroke, width: 4 }
                     icons:
                         sprite: college-university
                         visible: *icon_visible_landuse_green
@@ -4319,7 +4320,8 @@ layers:
                         interactive: true
                         font:
                             fill: [0.20,0.20,0.20] # *text_fill
-                            size: 11px
+                            size: 9px
+                            weight: 600
                             stroke: { color: *text_stroke, width: 4 }
                     icons:
                         sprite: function() { return feature.kind; }
@@ -4399,7 +4401,7 @@ layers:
                         interactive: true
                         font:
                             fill: [0.20,0.20,0.20] #*text_fill
-                            size: 11px
+                            size: 9px
                             stroke: { color: *text_stroke, width: 4 }
             landuse-funky:
                 filter: { kind: [commercial, residential, wood], $zoom: { max: 17 } }
