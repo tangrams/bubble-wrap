@@ -464,7 +464,7 @@ sources:
         #url:  //localhost:8080//osm/all/{z}/{x}/{y}.mvt
         url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-HqUVidw
 
-    # 
+    #
     # Only enable this for local debug, should not be enabled for prod (app inserts these at runtime)
     # These are all in San Francisco, California
     #
@@ -827,13 +827,13 @@ styles:
         base: points
         texture: pois
         interactive: true
-        
+
     icons-overlay:
         base: points
         texture: pois
         interactive: true
         blend: overlay
-    
+
     lines-overlay:
         base: lines
         blend: overlay
@@ -1084,7 +1084,7 @@ layers:
                 visible: false    # labels are enabled by each layer below
                 font:
                     family: *text_font_family
-                    weight: 500
+                    weight: 600
                     fill: *text_fill
 
         natural_earth_highways:
@@ -1492,7 +1492,7 @@ layers:
                                 outline:
                                     color: pink
                 labels-secondary-z13:
-                    filter: 
+                    filter:
                         $zoom: [13,14]
                     draw:
                         text:
@@ -1504,7 +1504,7 @@ layers:
                                 size: 9px
                                 stroke: { color: *text_stroke, width: 2 }
                 labels-secondary-z15:
-                    filter: 
+                    filter:
                         $zoom: [15]
                     draw:
                         text:
@@ -2341,7 +2341,7 @@ layers:
                     text_source: function() { if( feature.addr_housenumber ) { return feature.name + '\n' + feature.addr_housenumber; } else { return feature.name; } }
     address-labels:
         data: { source: osm, layer: buildings }
-        filter: 
+        filter:
             $zoom: { min: 20 }
             any:
                 - kind: address
@@ -2436,7 +2436,7 @@ layers:
                     visible: *text_visible_continent
                     font:
                         size: 14px
-                        weight: bold
+                        weight: 700
                         # stroke: { color: *text_stroke, width: 4 }
                         transform: uppercase
 
@@ -3018,7 +3018,7 @@ layers:
                             text:
                                 font:
                                     size: 13px
-            
+
                 z8places-3:
                     filter:
                         any:
@@ -3156,7 +3156,7 @@ layers:
                             text:
                                 font:
                                     size: 12px
-                                    
+
             populated-places-osm-z9:
                 filter:
                     all:
@@ -3355,7 +3355,7 @@ layers:
                             text:
                                 font:
                                     size: 12px
-                                    
+
             populated-places-osm-z10:
                 filter:
                     all:
@@ -3364,7 +3364,7 @@ layers:
                         - population: true
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [10]
-                
+
                 z10places-1:
                     filter:
                         any:
@@ -3504,14 +3504,14 @@ layers:
                             text:
                                 font:
                                     size: 12px
-                                    
+
             populated-places-osm-z11:
-                filter: 
+                filter:
                     all:
                         - source: openstreetmap
                         - name: true
                         - population: true
-                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] } 
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [11]
                         - kind: [city,town]
 
@@ -3519,7 +3519,7 @@ layers:
                     filter:
                         any:
                             - { population: { min: 1000000 } }
-                        
+
                     draw:
                         text:
                             interactive: true
@@ -3629,12 +3629,12 @@ layers:
                                     size: 12px
 
             populated-places-osm-z12:
-                filter: 
+                filter:
                     all:
                         - source: openstreetmap
                         - name: true
                         - population: true
-                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] } 
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [12]
                         - kind: [city,town]
 
@@ -3642,7 +3642,7 @@ layers:
                     filter:
                         any:
                             - { population: { min: 1000000 } }
-                        
+
                     draw:
                         text:
                             interactive: true
@@ -3760,7 +3760,7 @@ layers:
             #             font:
             #                 size: 15px
             #                 # stroke: { color: *text_stroke, width: 4 }
-                
+
             #     # nix major cities under z15
             #     major-places:
             #         filter: { kind: [city], $zoom: { min: 13, max: 15 } }
@@ -3948,7 +3948,7 @@ layers:
     pois_and_landuse_labels:
         data: { source: osm, layer: [pois,landuse,buildings] }
         visible: *label_visible_poi_landuse
-        filter: 
+        filter:
             not: { kind: [building,farm,peak,tree,gate,address] }
             any:
                 - area: false
@@ -3972,7 +3972,7 @@ layers:
                 priority: 11
                 font:
                     family: *text_font_family
-                    weight: 500
+                    weight: 600
                     fill: *text_fill
                     size: 12px
                     # stroke: { color: *text_stroke, width: 4 }
@@ -4196,7 +4196,7 @@ layers:
                         - { $zoom: [11], area: { min: 5000000 } }
                         - { $zoom: [12], area: { min: 5000000 } }
                         - { $zoom: [13], area: { min: 500000 } }
-                        - { $zoom: [14], area: { min: 20000 } }                    
+                        - { $zoom: [14], area: { min: 20000 } }
                         # show labels for smaller landuse areas at higher zooms
                         - { $zoom: [15], area: { min: 10000 } }
                         - { $zoom: [16], area: { min: 5000 } }
@@ -4313,7 +4313,7 @@ layers:
                     text:  { visible: false }
                     icons: { visible: false }
             office-early:
-                filter: 
+                filter:
                     any:
                         - { kind: [insurance, office, company], $zoom: [15], area: { max: 10000 } }
                         - { kind: [insurance, office, company], $zoom: [16], area: { max: 5000 } }
@@ -4388,14 +4388,14 @@ layers:
                         icons:
                             visible: false
                             #size: [[12, 10px], [14, 10px], [15, 16px]]
-                        text: { visible: false } 
+                        text: { visible: false }
                 low-priority-early-z14:
                     filter: { kind_tile_rank: { min: 7 }, area: false, $zoom: { min: 14, max: 15 } }
                     draw:
                         icons:
                             size: [[12, 10px], [14, 10px], [15, 16px]]
                             #visible: false
-                        text: { visible: false } 
+                        text: { visible: false }
             tram-stop-early:
                 filter: { kind: tram_stop, $zoom: { max: 15 } }
                 draw:
@@ -4866,7 +4866,7 @@ layers:
                         fill: [0.314,0.591,0.640] #*text_fill_water
                         family: *text_font_family
                         style: italic
-                        weight: 500
+                        weight: 600
                         size: 12px
                         # stroke: { color: [0.878,0.929,0.980], width: 2 }
         lakes-z5:
@@ -4891,7 +4891,7 @@ layers:
                 font:
                     fill: [0.314,0.591,0.640] #*text_fill_water
                     family: *text_font_family
-                    weight: 500
+                    weight: 600
                     size: 12px
                     transform: uppercase
         sea-early:
@@ -4918,11 +4918,11 @@ layers:
         ocean-labels-z2:
             filter: { $zoom: [2] }
             draw:
-                text: { font: { size: 10px } }  
+                text: { font: { size: 10px } }
         ocean-labels-z3:
             filter: { $zoom: [3] }
             draw:
-                text: { font: { size: 13px } }  
+                text: { font: { size: 13px } }
         ocean-labels-z4-up:
             filter: { $zoom: { min: 4} }
             draw:
@@ -4961,7 +4961,7 @@ layers:
     playa-labels:
         data: { source: osm, layer: [water] }
         visible: *text_visible_water_labels
-        filter: 
+        filter:
             all:
                 - name: true
                 - $geometry: point
@@ -4987,7 +4987,7 @@ layers:
                     fill: grey
                     family: *text_font_family
                     style: italic
-                    weight: 500
+                    weight: 600
                     size: 12px
                     stroke: { color: *text_stroke_water, width: 3 }
         # debug only
@@ -5009,12 +5009,12 @@ layers:
                     fill: [0.314,0.591,0.640]
                     family: *text_font_family
                     style: italic
-                    weight: 500
+                    weight: 600
                     size: 12px
         water-line-labels-z14:
             filter: { $zoom: [14] }
             draw:
-                text: { font: { size: 10px } } 
+                text: { font: { size: 10px } }
         water-line-labels-z17:
             filter: { $zoom: [17] }
             draw:
@@ -5029,11 +5029,11 @@ layers:
             draw:
                 text:
                     visible: false
-                 
+
     landuse:
         data: { source: osm }
         tier1:
-            filter: 
+            filter:
                 any:
                     # limit show smaller landuse areas to higher zooms
                     - { $zoom: { min: 3 },  area: { min: 300000000 } }
@@ -5068,7 +5068,7 @@ layers:
                             visible: true
                             # color: [[4,[0.242,0.737,0.712]],[12,[0.224,0.682,0.659]]]
         tier2:
-            filter: 
+            filter:
                 any:
                     # limit show smaller landuse areas to higher zooms
                     - { $zoom: { min: 4 },  area: { min: 1000000000 } }
@@ -5166,7 +5166,7 @@ layers:
                         color: [[0,*earth2],[9,*earth2]]
                         visible: *earth2_v
         tier3:
-            filter: 
+            filter:
                 any:
                     # limit show smaller landuse areas to higher zooms
                     - { $zoom: { min: 8 },  area: { min: 10000000 } }
@@ -5202,7 +5202,7 @@ layers:
                         order: function() { return (feature.sort_key - 2) || 1; }
                         visible: true
         tier4:
-            filter: 
+            filter:
                 any:
                     # limit show smaller landuse areas to higher zooms
                     - { $zoom: { min: 10 }, area: { min: 1000000 } }
@@ -5298,7 +5298,7 @@ layers:
                     filter: { kind: [pier,bridge,breakwater,groyne,dike,cutline] }
                     draw: { dots2: { order: 5, color: [0.679,0.679,0.679], visible: true } }
         tier5:
-            filter: 
+            filter:
                 any:
                     # limit show smaller landuse areas to higher zooms
                     - { $zoom: { min: 12 }, area: { min: 500000 } }
