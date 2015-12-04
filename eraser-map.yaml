@@ -1084,7 +1084,7 @@ layers:
                 visible: false    # labels are enabled by each layer below
                 font:
                     family: *text_font_family
-                    weight: 500
+                    weight: 600
                     fill: *text_fill
 
         natural_earth_highways:
@@ -2436,7 +2436,7 @@ layers:
                     visible: *text_visible_continent
                     font:
                         size: 14px
-                        weight: bold
+                        weight: 700
                         # stroke: { color: *text_stroke, width: 4 }
                         transform: uppercase
 
@@ -4014,7 +4014,7 @@ layers:
                 interactive: true
                 font:
                     family: *text_font_family
-                    weight: 500
+                    weight: 600
                     fill: *text_fill
                     size: 12px
                     # stroke: { color: *text_stroke, width: 4 }
@@ -4906,7 +4906,7 @@ layers:
                         fill: [0.314,0.591,0.640] #*text_fill_water
                         family: *text_font_family
                         style: italic
-                        weight: 500
+                        weight: 600
                         size: 12px
                         # stroke: { color: [0.878,0.929,0.980], width: 2 }
         lakes-z5:
@@ -4931,7 +4931,7 @@ layers:
                 font:
                     fill: [0.314,0.591,0.640] #*text_fill_water
                     family: *text_font_family
-                    weight: 500
+                    weight: 600
                     size: 12px
                     transform: uppercase
         sea-early:
@@ -5027,7 +5027,7 @@ layers:
                     fill: grey
                     family: *text_font_family
                     style: italic
-                    weight: 500
+                    weight: 600
                     size: 12px
                     stroke: { color: *text_stroke_water, width: 3 }
         # debug only
@@ -5049,7 +5049,7 @@ layers:
                     fill: [0.314,0.591,0.640]
                     family: *text_font_family
                     style: italic
-                    weight: 500
+                    weight: 600
                     size: 12px
         water-line-labels-z14:
             filter: { $zoom: [14] }
