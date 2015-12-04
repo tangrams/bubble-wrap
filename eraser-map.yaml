@@ -153,7 +153,7 @@ settings:
         - &purple_v    false                    # airport
         - &mystry1     '#bfb08e'                # recreation ground
         - &building1   [0.784, 0.784, 0.784]    # building
-        - &building2   [.85, .85, .85]          # building stroke
+        - &building2   [.860, .860, .860]          # building stroke
         - &building_o  5                        # building stroke order
         - &building_e  true                     # building stroke order
 
@@ -822,18 +822,16 @@ styles:
         base: lines
         mix: scale-buildings
         texcoords: true
-
     icons:
         base: points
         texture: pois
         interactive: true
-        
+
     icons-overlay:
         base: points
         texture: pois
         interactive: true
         blend: overlay
-    
     lines-overlay:
         base: lines
         blend: overlay
@@ -2194,8 +2192,8 @@ layers:
                 visible: false
                 style: lines
                 order: 51
-                color: [[14,[0.70,0.70,0.70]],[15,[0.65, 0.65, 0.65]],[17,[0.60, 0.60, 0.60]]]
-                width: [[14, 0.6px], [15, 0.65px], [16, 1px], [18, 1.25px]]
+                color: [[14,[0.70,0.70,0.70]],[17,[0.65, 0.65, 0.65]]]
+                width: [[14, 0.6px], [15, 0.65px], [16,0.75px], [18, 1.25px]]
 
         # turn interactive feature selection on for buildings with names
         interactive:
