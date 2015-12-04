@@ -2607,12 +2607,12 @@ layers:
                         fill: [0.4,0.4,0.4]
 
         region:
-            filter: { name: true, kind: [state], $zoom: {min: 6, max: 9} }
+            filter: { name: true, kind: [state], $zoom: {min: 7, max: 9} }
             draw:
                 text:
                     priority: 4
                     visible: *text_visible_admin
-                    text_source: function() { if(feature["name:short"]) { return feature["name"]; } else { return "" } }
+                    text_source: function() { if(feature["name:short"]) { return feature["name"]; } else { return ""; } }
                     font:
                         size: 14px
                         weight: 200
@@ -2624,12 +2624,12 @@ layers:
     #                interactive: true
     #                sprite: *townspot_sprite
             pesky:
-                filter: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"], $zoom: {min: 6, max: 8} }
+                filter: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"], $zoom: {min: 7, max: 8} }
                 draw:
                     text:
                         visible: false
             small-ones:
-                filter: { name: ["Delaware","New Jersey","Connecticut","Rhode Island","Massachusetts","New Hampshire","Vermont"], $zoom: {min: 6, max: 8} }
+                filter: { name: ["Delaware","New Jersey","Connecticut","Rhode Island","Massachusetts","New Hampshire","Vermont"], $zoom: {min: 7, max: 8} }
                 draw:
                     text:
                         text_source: function() { return feature["name:abbreviation"] || feature["name"]; }
