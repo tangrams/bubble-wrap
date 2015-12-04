@@ -3889,9 +3889,9 @@ layers:
                         text_wrap: 10
                         visible: *text_visible_neighbourhoods_e
                         font:
-                            size: 11px
-                            weight: 200
-                            fill: [0.30,0.30,0.30]
+                            size: 10px
+                            weight: 400
+                            fill: [0.35,0.35,0.35]
                             transform: uppercase
                             # stroke: { color: *text_stroke, width: 2 }
             neighborhood-z14:
@@ -4155,8 +4155,9 @@ layers:
                             interactive: true
                             offset: [0, 14px]
                             font:
-                                fill: [0.200,0.409,0.398]
+                                fill: [0.181,0.370,0.361]
                                 size: 12px
+                                weight: 400
                                 style: italic
                                 # stroke: { color: [0.870,0.870,0.870], width: 2 }
                     green-areas-z6:
