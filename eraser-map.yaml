@@ -3926,9 +3926,9 @@ layers:
                         text_wrap: 12
                         visible: *text_visible_neighbourhoods
                         font:
-                            size: 13px
-                            weight: 200
-                            fill: [0.40,0.40,0.40]
+                            size: 11px
+                            weight: 400
+                            fill: [0.35,0.35,0.35]
                             transform: uppercase
                             # stroke: { color: *text_stroke, width: 3 }
             neighborhood-z15:
@@ -4011,8 +4011,8 @@ layers:
                 font:
                     family: *text_font_family
                     weight: 600
-                    fill: *text_fill
-                    size: 12px
+                    fill: [0.20,0.20,0.20]
+                    size: 9px
                     # stroke: { color: *text_stroke, width: 4 }
         no-name:
             filter: { name: false }
@@ -4078,7 +4078,8 @@ layers:
                         priority: 13
                         font:
                             fill: [0.20,0.20,0.20] # *text_fill
-                            size: 11px
+                            size: 9px
+                            weight: 600
                             # stroke: { color: *text_stroke, width: 4 }
             landuse-labels-green-areas-national-park:
                 filter:
