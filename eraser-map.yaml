@@ -1261,7 +1261,7 @@ layers:
                         visible: *text_visible_highway
                         font:
                             fill: [0.0,0.0,0.0]
-                            size: 13px
+                            size: 14px
                             # stroke: { color: [0.976,0.541,0.490], width: 4 }
             later2:
                 filter: { $zoom: { min: 16, max: 18 } }
@@ -1350,7 +1350,7 @@ layers:
                                 text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                                 font:
                                     fill: [0.0,0.0,0.0]
-                                    size: 11px
+                                    size: 14px
                                     stroke: { color: [0.95,0.95,0.95], width: 0.1px }
                 labels-trunk_primary-z11:
                     filter:
@@ -1408,8 +1408,8 @@ layers:
                             visible: *text_visible_trunk_primary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
-                                fill: [0.15,0.15,0.15]
-                                size: 11px
+                                fill: [0.0,0.0,0.0]
+                                size: 14px
                                 stroke: { color: [0.95,0.95,0.95], width: 2 }
                 labels-trunk_primary-z16-z17:
                     filter: { $zoom: { min: 16, max: 18 } }
@@ -1485,6 +1485,17 @@ layers:
                                     # need fill here?
                                     size: 12px
                                     stroke: { color: *text_stroke, width: 4 }
+                    labels-secondary-routes-z15:
+                        filter: { $zoom: [15] }
+                        draw:
+                            text:
+                                priority: 24
+                                visible: *text_visible_secondary_e
+                                text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
+                                font:
+                                    # need fill here?
+                                    size: 14px
+                                    stroke: { color: *text_stroke, width: 4 }
                 in_park:
                     filter: { landuse_kind: [park,nature_reserve,conservation,golf_course,garden] }
                     draw:
@@ -1550,8 +1561,8 @@ layers:
                             visible: *text_visible_secondary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
-                                fill: [0.2,0.2,0.2]
-                                size: 11px
+                                fill: [0.10,0.10,0.10]
+                                size: 12px
                                 stroke: { color: [0.95,0.95,0.95], width: 2 }
                 labels-secondary2:
                     filter: { $zoom: { min: 16, max: 18 } }
@@ -1665,7 +1676,7 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
                                 fill: [0.3,0.3,0.3]
-                                size: 10px
+                                size: 12px
                                 stroke: { color: [0.95,0.95,0.95], width: 2 }
                 labels-tertiary2:
                     filter: { $zoom: { min: 16, max: 18 } }
@@ -1796,8 +1807,8 @@ layers:
                         visible: *text_visible_minor_road_e
                         text_source: name
                         font:
-                            fill: [0.45,0.45,0.45]
-                            size: 9px
+                            fill: [0.40,0.40,0.40]
+                            size: 11px
             labels-minor_road-z16:
                 filter: { $zoom: 16 }
                 draw:
@@ -3952,7 +3963,7 @@ layers:
                         visible: *text_visible_neighbourhoods
                         font:
                             size: 16px
-                            weight: 200
+                            weight: 300
                             fill: [0.20,0.20,0.20]
                             transform: uppercase
                             # stroke: { color: *text_stroke, width: 3 }
