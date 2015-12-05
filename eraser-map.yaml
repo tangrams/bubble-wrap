@@ -772,7 +772,7 @@ styles:
                 mapping: uv
         shaders:
             defines:
-                WALL_TINT: vec3(1., 3., .8) # modifies roof color HSV
+                WALL_TINT: vec3(1., 3., .800) # modifies roof color HSV
             blocks:
                 filter: |
                     if (dot(vec3(0., 0., 1.), worldNormal()) < 1.0 - TANGRAM_EPSILON) {
@@ -1419,8 +1419,8 @@ layers:
                             visible: *text_visible_trunk_primary
                             text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                             font:
-                                fill: [0.15,0.15,0.15]
-                                size: 12px
+                                fill: [0.0,0.0,0.0]
+                                size: 14px
                                 # stroke: { color: *text_stroke, width: 4 }
                 labels-trunk_primary-z18:
                     filter: { $zoom: { min: 18 } }
@@ -1430,7 +1430,7 @@ layers:
                             visible: *text_visible_trunk_primary
                             text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                             font:
-                                fill: [0.15,0.15,0.15]
+                                fill: [0.0,0.0,0.0]
                                 size: 16px
             link:
                 filter: { is_link: yes } # on- and off-ramps, etc
@@ -1572,8 +1572,8 @@ layers:
                             visible: *text_visible_secondary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
-                                fill: [0.15,0.15,0.15]
-                                size: 11px
+                                fill: [0.0,0.0,0.0]
+                                size: 12px
                                 # stroke: { color: *text_stroke, width: 4 }
                 labels-secondary3:
                     filter: { $zoom: { min: 18 } }
@@ -2293,7 +2293,7 @@ layers:
                     visible: true
                     style: building-grid
                     extrude: true
-                    color: [.870, .870, .870]
+                    color: [.885, .870, .870]
                 lines:
                     visible: true
                     style: building-lines
