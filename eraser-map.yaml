@@ -3988,7 +3988,7 @@ layers:
                         visible: *text_visible_neighbourhoods
                         font:
                             size: 16px
-                            weight: 200
+                            weight: 300
                             fill: *text_fill
                             transform: uppercase
                             # stroke: { color: *text_stroke, width: 3 }
