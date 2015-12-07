@@ -719,7 +719,7 @@ styles:
         shaders:
             blocks:
                 color: |
-                    color.rgb = mix(color.rgb, vec3(0.850), TileDots(35., 0.1));
+                    color.rgb = mix(color.rgb, vec3(0.850), TileDots(45., 0.1));
 
     dots-rev:
         base: polygons
