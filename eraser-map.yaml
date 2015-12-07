@@ -2292,12 +2292,20 @@ layers:
                 polygons:
                     visible: true
                     style: building-grid
-                    extrude: true
+                    extrude: function() { return feature.height || 20; }
                     color: [.885, .870, .870]
                 lines:
                     visible: true
                     style: building-lines
-                    extrude: true
+                    extrude: function() { return feature.height || 20; }
+                    
+            buildings-z17-boost:
+                filter: { $zoom: { min: 17, max: 18 }, height: false }
+                draw:
+                    polygons:
+                        extrude: 30
+                    lines:
+                        extrude: 30
 
         # landuse-specific rules
         in_park:
