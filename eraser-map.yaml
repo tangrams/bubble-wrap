@@ -1807,7 +1807,7 @@ layers:
                         visible: *text_visible_minor_road_e
                         text_source: name
                         font:
-                            fill: [0.40,0.40,0.40]
+                            fill: [0.30,0.30,0.30]
                             size: 11px
             labels-minor_road-z16:
                 filter: { $zoom: 16 }
