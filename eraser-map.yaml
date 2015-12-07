@@ -1189,7 +1189,7 @@ layers:
                             fill: [1.0,1.0,1.0]
                             weight: 600
                             size: 9px
-                            stroke: { color: [0.976,0.541,0.490], width: 3 }
+                            stroke: { color: [0.976,0.541,0.490], width: 5 }
             labels-highway-z10:
                 filter:
                     $zoom: 10
@@ -1201,7 +1201,7 @@ layers:
                             fill: [1.0,1.0,1.0]
                             weight: 600
                             size: 10px
-                            stroke: { color: [0.976,0.541,0.490], width: 3 }
+                            stroke: { color: [0.976,0.541,0.490], width: 5 }
             labels-highway-z11:
                 filter:
                     $zoom: 11
@@ -1213,7 +1213,7 @@ layers:
                             fill: [1.0,1.0,1.0]
                             weight: 600
                             size: 11px
-                            stroke: { color: [0.976,0.541,0.490], width: 3 }
+                            stroke: { color: [0.976,0.541,0.490], width: 5 }
             labels-highway-z12:
                 filter:
                     $zoom: 12
@@ -1225,7 +1225,7 @@ layers:
                             fill: [1.0,1.0,1.0]
                             weight: 600
                             size: 12px
-                            stroke: { color: [0.976,0.541,0.490], width: 3 }
+                            stroke: { color: [0.976,0.541,0.490], width: 5 }
             labels-highway-z13:
                 filter:
                     $zoom: 13
