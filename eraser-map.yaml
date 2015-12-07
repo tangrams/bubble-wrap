@@ -720,6 +720,7 @@ styles:
             blocks:
                 color: |
                     color.rgb = mix(color.rgb, vec3(0.850), TileDots(45., 0.1));
+                    // size was set to 35 previously, now 45
 
     dots-rev:
         base: polygons
@@ -727,7 +728,7 @@ styles:
         shaders:
             blocks:
                 color: |
-                    color.rgb = mix(vec3(0.850), color.rgb, TileDots(35., .21));
+                    color.rgb = mix(vec3(0.850), color.rgb, TileDots(45., .21));
 
     # HSV/RGB functions
     hsv:
@@ -5207,7 +5208,7 @@ layers:
                 # default for national forests and more?
                 draw:
                     dots2:
-                        color: [[4,[0.655,0.800,0.796]],[11,[0.588,0.780,0.773]],[12,[0.242,0.737,0.712]],[15,[0.412,0.733,0.718]]]
+                        color: [[4,[0.655,0.800,0.796]],[11,[0.588,0.780,0.773]],[12,[0.242,0.737,0.712]],[15,[0.412,0.733,0.718]],[16,[0.549,0.769,0.761]]]
                         order: function() { return feature.sort_key + 1 || 1; }
                         visible: true
 
@@ -5416,7 +5417,7 @@ layers:
                     kind: playground
                 draw:
                     dots-rev:
-                        color: [0.451,0.820,0.749]
+                        color: [0.584,0.843,0.792]
                         visible: true
             school:
                 filter:
