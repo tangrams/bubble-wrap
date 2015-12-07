@@ -5288,7 +5288,7 @@ layers:
                 draw:
                     dots2:
                         order: 11
-                        color: *green3
+                        color: [0.353,0.812,0.545]
                         visible: true
             hospital:
                 filter:
