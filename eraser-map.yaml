@@ -2299,13 +2299,13 @@ layers:
                     style: building-lines
                     extrude: function() { return feature.height || 20; }
                     
-            buildings-z17-boost:
-                filter: { $zoom: { min: 17, max: 18 }, height: false }
-                draw:
-                    polygons:
-                        extrude: 30
-                    lines:
-                        extrude: 30
+        extrude-buildings-z17-boost:
+            filter: { $zoom: { min: 17, max: 18 }, height: false }
+            draw:
+                polygons:
+                    extrude: 30
+                lines:
+                    extrude: 30
 
         # landuse-specific rules
         in_park:
