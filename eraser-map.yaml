@@ -5337,7 +5337,7 @@ layers:
                     kind: stadium
                 draw:
                     dots2:
-                        color: [0.518,0.616,0.714]
+                        color: [0.624,0.690,0.761]
                         visible: true
             zoo:
                 filter:
