@@ -5348,7 +5348,7 @@ layers:
                         visible: true
             man-made:
                 filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline] }
-                draw: { dots2: { order: 2, color: *grey3, visible: true } }
+                draw: { dots2: { order: 2, color: [0.690,0.690,0.690], visible: true } }
                 pier:
                     filter: { kind: [pier,bridge,breakwater,groyne,dike,cutline] }
                     draw: { dots2: { order: 5, color: [0.679,0.679,0.679], visible: true } }
