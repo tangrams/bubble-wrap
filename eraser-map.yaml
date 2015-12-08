@@ -5145,7 +5145,7 @@ layers:
                     $zoom: { min: 4 }
                 draw:
                     dots2:
-                        color: *green8
+                        color: [0.420,0.808,0.698]
                         visible: true
                 wilderness-areas:
                     filter: function() { return feature.name && feature.name.indexOf("Wilderness") > -1 }
