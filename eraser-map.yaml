@@ -4920,7 +4920,7 @@ layers:
                         fill: [0.314,0.591,0.640] #*text_fill_water
                         family: *text_font_family
                         style: italic
-                        weight: 600
+                        weight: 400
                         size: 12px
                         # stroke: { color: [0.878,0.929,0.980], width: 2 }
         lakes-z5:
@@ -4945,7 +4945,7 @@ layers:
                 font:
                     fill: [0.314,0.591,0.640] #*text_fill_water
                     family: *text_font_family
-                    weight: 600
+                    weight: 400
                     size: 12px
                     transform: uppercase
         sea-early:
@@ -5041,7 +5041,7 @@ layers:
                     fill: grey
                     family: *text_font_family
                     style: italic
-                    weight: 600
+                    weight: 400
                     size: 12px
                     stroke: { color: *text_stroke_water, width: 3 }
         # debug only
@@ -5063,7 +5063,7 @@ layers:
                     fill: [0.314,0.591,0.640]
                     family: *text_font_family
                     style: italic
-                    weight: 600
+                    weight: 400
                     size: 12px
         water-line-labels-z14:
             filter: { $zoom: [14] }
