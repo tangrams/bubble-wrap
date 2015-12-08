@@ -5393,7 +5393,7 @@ layers:
                     kind: [pedestrian,common]
                 draw:
                     dots2:
-                        color: [0.679,0.679,0.679]
+                        color: [0.740,0.740,0.740]
                         visible: *grey1_v
             pitch:
                 filter: { kind: pitch }
