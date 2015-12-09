@@ -2331,7 +2331,7 @@ layers:
             filter: { landuse_kind: [university,school] }
             draw:
                 polygons:
-                    color: [0.922, 0.894, 0.862]
+                    color: [0.950,0.917,0.883]
                 lines:
                     outline:
                         color: *brown1_bo
