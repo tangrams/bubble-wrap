@@ -5194,7 +5194,7 @@ layers:
                 filter: { kind: nature_reserve, $zoom: { min: 7 } }
                 draw:
                     dots2:
-                        color: [0.327,0.710,0.384]
+                        color: [0.596,0.788,0.624]
                         visible: true
                 wilderness-areas:
                     filter: function() { return feature.name && feature.name.indexOf("Wilderness") > -1 }
