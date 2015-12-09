@@ -5411,7 +5411,7 @@ layers:
                     kind: place_of_worship
                 draw:
                     dots2:
-                        color: *grey1
+                        color: [0.910,0.972,1.000]
                         visible: *grey1_v
             playground:
                 filter:
