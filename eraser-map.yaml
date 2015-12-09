@@ -2294,7 +2294,7 @@ layers:
                     visible: true
                     style: building-grid
                     extrude: true
-                    color: [.885, .870, .870]
+                    color: [0.898,0.882,0.878]
                 lines:
                     visible: true
                     style: building-lines
@@ -2305,7 +2305,7 @@ layers:
             filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
             draw:
                 polygons:
-                    color: [0.847,0.886,0.882]
+                    color: [0.864,0.910,0.905]
 
             # golf_course:
             #     filter: { landuse_kind: golf_course }
@@ -2339,7 +2339,7 @@ layers:
             filter: { landuse_kind: hospital }
             draw:
                 polygons:
-                    color: [0.941, 0.894, 0.898]
+                    color: [0.976,0.908,0.913]
         in_retail:
            filter: { landuse_kind: retail }
            draw:
