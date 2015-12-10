@@ -2045,7 +2045,7 @@ layers:
                         font:
                             # need a fill color?
                             fill: [0.25,0.25,0.25]
-                            size: 10px
+                            size: 12px
                             # stroke: { color: *text_stroke, width: 3 }
         track:
             filter: { kind: path, highway: track }
