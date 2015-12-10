@@ -1355,7 +1355,7 @@ layers:
                                     size: 14px
                                     stroke: { color: [0.95,0.95,0.95], width: 0.1px }
                     labels-trunk_primary-route-z16:
-                        filter: { $zoom: [16] }
+                        filter: { $zoom: { min: 16 } }
                         draw:
                             text:
                                 priority: 23
@@ -1363,6 +1363,7 @@ layers:
                                 text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                                 font:
                                     fill: [0.0,0.0,0.0]
+                                    weight: 600
                                     size: 15px
                                     stroke: { color: [0.95,0.95,0.95], width: 0.1px }
                 labels-trunk_primary-z11:
@@ -1434,6 +1435,7 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                             font:
                                 fill: [0.0,0.0,0.0]
+                                weight: 600
                                 size: 15px
                                 # stroke: { color: *text_stroke, width: 4 }
                 labels-trunk_primary-z18:
@@ -1445,6 +1447,7 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                             font:
                                 fill: [0.0,0.0,0.0]
+                                weight: 600
                                 size: 16px
             link:
                 filter: { is_link: yes } # on- and off-ramps, etc
@@ -1500,7 +1503,7 @@ layers:
                                     size: 12px
                                     stroke: { color: *text_stroke, width: 4 }
                     labels-secondary-routes-z15:
-                        filter: { $zoom: [15] }
+                        filter: { $zoom: { min: 15 } }
                         draw:
                             text:
                                 priority: 24
@@ -1589,6 +1592,7 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
                                 fill: [0.0,0.0,0.0]
+                                weight: 600
                                 size: 14px
                                 # stroke: { color: *text_stroke, width: 4 }
                 labels-secondary3:
@@ -1602,6 +1606,7 @@ layers:
                             font:
                                 # need a fill color here?
                                 fill: [0.15,0.15,0.15]
+                                weight: 600
                                 size: 16px
             tertiary:
                 filter: { highway: [tertiary, tertiary_link] }
