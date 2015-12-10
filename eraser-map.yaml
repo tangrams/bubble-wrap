@@ -1840,7 +1840,7 @@ layers:
                         text_source: name
                         font:
                             fill: [0.25,0.25,0.25]
-                            size: 11px
+                            size: 13px
                             # stroke: { color: *text_stroke, width: 1 }
             labels-minor_road2:
                 filter: { $zoom: { min: 18 } }
@@ -1933,7 +1933,7 @@ layers:
                         font:
                             # need fill color?
                             fill: [0.25,0.25,0.25]
-                            size: 10px
+                            size: 11px
                             # stroke: { color: *text_stroke, width: 2 }
             labels-service_road2:
                 filter: { $zoom: { min: 18 } }
