@@ -1415,7 +1415,7 @@ layers:
                                 size: 12px
                                 stroke: { color: *text_stroke, width: 2 }
                 labels-trunk_primary-z15:
-                    filter: { $zoom: [15], ref: false }
+                    filter: { $zoom: [15] }
                     draw:
                         text:
                             priority: 23
