@@ -1351,7 +1351,6 @@ layers:
                                 text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                                 font:
                                     fill: [0.0,0.0,0.0]
-                                    weight: 600
                                     size: 14px
                                     stroke: { color: [0.95,0.95,0.95], width: 0.1px }
                     labels-trunk_primary-route-z16:
@@ -1422,6 +1421,7 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
                                 fill: [0.0,0.0,0.0]
+                                weight: 600
                                 size: 14px
                                 stroke: { color: [0.95,0.95,0.95], width: 2 }
                 labels-trunk_primary-z16-z17:
@@ -1575,6 +1575,7 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
                                 fill: [0.10,0.10,0.10]
+                                weight: 600
                                 size: 12px
                                 stroke: { color: [0.95,0.95,0.95], width: 2 }
                 labels-secondary2:
@@ -2306,7 +2307,7 @@ layers:
                     visible: true
                     style: building-grid
                     extrude: true
-                    color: [0.898,0.882,0.878]
+                    color: [0.892,0.880,0.878]
                 lines:
                     visible: true
                     style: building-lines
@@ -4038,6 +4039,12 @@ layers:
                     fill: [0.20,0.20,0.20]
                     size: 9px
                     # stroke: { color: *text_stroke, width: 4 }
+            poi_labels-z15:
+                filter: { $zoom: [15] }
+                draw:
+                    text:
+                        font:
+                            size: 14px
         no-name:
             filter: { name: false }
             sports-pitch:
