@@ -2393,17 +2393,6 @@ layers:
                     style: italic
                     size: 12px
                     stroke: { color: *text_stroke_address, width: 4 }
-        # Hack for no text wrap in Tangram
-        building-labels-z16:
-            filter: function() { if( $zoom == 16 && feature.name.length > 10 ) { return true; } else { return false; } }
-            draw:
-                text:
-                    visible: false
-        building-labels-z17:
-            filter: function() { if( $zoom == 17 && feature.name.length > 20 ) { return true; } else { return false; } }
-            draw:
-                text:
-                    visible: false
         building-labels-z20+:
             filter: { $zoom: { min: 20 } }
             draw:
