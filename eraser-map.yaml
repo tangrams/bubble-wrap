@@ -4046,12 +4046,12 @@ layers:
                     fill: [0.20,0.20,0.20]
                     size: 9px
                     # stroke: { color: *text_stroke, width: 4 }
-            poi_labels-z15:
-                filter: { $zoom: [15] }
-                draw:
-                    text:
-                        font:
-                            size: 14px
+        poi_labels-z15:
+            filter: { $zoom: [15] }
+            draw:
+                text:
+                    font:
+                        size: 14px
         no-name:
             filter: { name: false }
             sports-pitch:
