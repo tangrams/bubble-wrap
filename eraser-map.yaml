@@ -1677,6 +1677,17 @@ layers:
                             lines:
                                 outline:
                                     color: pink
+                labels-tertiary-z13:
+                    filter: { $zoom: [13] }
+                    draw:
+                        text:
+                            priority: 25
+                            visible: *text_visible_tertiary_e
+                            text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
+                            font:
+                                fill: [0.5,0.5,0.5]
+                                size: 10px
+                                stroke: { color: *text_stroke_road4, width: 2 }
                 labels-tertiary-z14:
                     filter: { $zoom: [14] }
                     draw:
@@ -2391,8 +2402,17 @@ layers:
                     fill: '#666'
                     family: *text_font_family
                     style: italic
-                    size: 12px
-                    stroke: { color: *text_stroke_address, width: 4 }
+                    size: 11px
+                    stroke: { color: *text_stroke_address, width: 1 }
+        building_labels-z15:
+            filter: { $zoom: [15,16,17] }
+            draw: { text: { font: { size: 12px, stroke: { width: 2 } } } }
+        building_labels-z18:
+            filter: { $zoom: [18,19] }
+            draw: { text: { font: { size: 12px, weight: 600, stroke: { width: 3 } } } }
+        building_labels-z20-up:
+            filter: { $zoom: { min: 20 } }
+            draw: { text: { font: { size: 14px, weight: 600, stroke: { width: 3 }  } } }
         # Hack for no text wrap in Tangram
         building-labels-z16:
             filter: function() { if( $zoom == 16 && feature.name.length > 10 ) { return true; } else { return false; } }
@@ -4095,7 +4115,7 @@ layers:
                         text_wrap: 12
                         visible: *text_visible_neighbourhoods
                         font:
-                            size: 11px
+                            size: 12px
                             weight: 400
                             fill: [0.35,0.35,0.35]
                             transform: uppercase
@@ -4180,16 +4200,22 @@ layers:
                 priority: 11
                 font:
                     family: *text_font_family
-                    weight: 600
+                    weight: 400
                     fill: [0.20,0.20,0.20]
-                    size: 9px
-                    # stroke: { color: *text_stroke, width: 4 }
+                    size: 10px
+                    stroke: { color: *text_stroke, width: 1 }
+        poi_labels-z14:
+            filter: { $zoom: [14] }
+            draw: { text: { font: { size: 11px } } }
         poi_labels-z15:
-            filter: { $zoom: [15] }
-            draw:
-                text:
-                    font:
-                        size: 14px
+            filter: { $zoom: [15,16,17] }
+            draw: { text: { font: { size: 12px, stroke: { width: 2 } } } }
+        poi_labels-z18:
+            filter: { $zoom: [18,19] }
+            draw: { text: { font: { size: 12px, weight: 600, stroke: { width: 3 } } } }
+        poi_labels-z20-up:
+            filter: { $zoom: { min: 20 } }
+            draw: { text: { font: { size: 14px, weight: 600, stroke: { width: 3 }  } } }
         no-name:
             filter: { name: false }
             sports-pitch:
@@ -4252,11 +4278,7 @@ layers:
                         visible: *text_visible_poi_landuse
                         interactive: true
                         priority: 13
-                        font:
-                            fill: [0.20,0.20,0.20] # *text_fill
-                            size: 9px
-                            weight: 600
-                            # stroke: { color: *text_stroke, width: 4 }
+
             landuse-labels-green-areas-national-park:
                 filter:
                     all:
@@ -4288,7 +4310,6 @@ layers:
                             interactive: true
                             font:
                                 fill: [0.200,0.409,0.398] #*text_fill_park
-                                size: 13px
                                 style: italic
                                 # stroke: { color: [0.870,0.870,0.870], width: 3px }
                     natl-park-labels-z4-z6:
@@ -4296,7 +4317,7 @@ layers:
                         draw:
                             icons:
                                 visible: false
-                            text: { font: { size: 9px, stroke: { width: 2px } } }
+                            text: { font: { size: 10px, stroke: { width: 2px } } }
                     natl-park-labels-z7:
                         filter: { $zoom: [7] }
                         draw:
@@ -4306,7 +4327,7 @@ layers:
                         draw:
                             text: { font: { size: 11px, stroke: { width: 2px } } }
                     natl-park-labels-z10:
-                        filter: { $zoom: [10,11] }
+                        filter: { $zoom: {min: 10, max: 14 } }
                         draw:
                             text: { font: { size: 12px } }
 
@@ -4343,8 +4364,8 @@ layers:
                             interactive: true
                             font:
                                 fill: [0.181,0.370,0.361]
-                                size: 12px
-                                weight: 400
+#                                size: 12px
+#                                weight: 400
                                 style: italic
                                 # stroke: { color: [0.870,0.870,0.870], width: 2 }
                     green-areas-z6:
@@ -4352,14 +4373,14 @@ layers:
                         filter: { $zoom: [6] }
                         draw:
                             icons: { visible: false }
-                            text: { font: { size: 9px, stroke: { width: 2px } } }
+                            text: { font: { size: 10px, stroke: { width: 2px } } }
                     green-areas-z7:
                         filter: { $zoom: [7] }
                         draw:
                             icons: { visible: false }
                             text: { font: { size: 10px } }
                     green-areas-z8-z9:
-                        filter: { $zoom: { min: 8, max: 15 } }
+                        filter: { $zoom: { min: 8, max: 14 } }
                         draw:
                             text: { font: { size: 11px } }
                     wilderness-areas-early:
@@ -4422,7 +4443,7 @@ layers:
                         interactive: true
                         font:
                             fill: [0.20,0.20,0.20] # *text_fill
-                            size: 11px
+                            #size: 11px
                             stroke: { color: *text_stroke, width: 4 }
                     icons:
                         sprite: airport
@@ -4431,6 +4452,9 @@ layers:
                 early:
                     filter: { $zoom: { max: 12 } }
                     draw: { text: { visible: false } }
+                early2:
+                    filter: { $zoom: { min: 12, max: 14 } }
+                    draw: { text: { size: 11px } }
             university:
                 filter:
                     all:
@@ -4458,7 +4482,7 @@ layers:
                         font:
                             weight: 600
                             fill: [0.20,0.20,0.20]
-                            size: 9px
+                            #size: 10px
                             # stroke: { color: *text_stroke, width: 4 }
                     icons:
                         sprite: college-university
@@ -4467,6 +4491,9 @@ layers:
                 early:
                     filter: { $zoom: { max: 12 } }
                     draw: { text: { visible: false } }
+                early2:
+                    filter: { $zoom: { min: 12, max: 14 } }
+                    draw: { text: { size: 11px } }
             landuse-labels-not-green-areas:
                 filter:
                     all:
@@ -4494,7 +4521,7 @@ layers:
                         interactive: true
                         font:
                             fill: [0.20,0.20,0.20] # *text_fill
-                            size: 9px
+#                            size: 10px
                             weight: 600
                             stroke: { color: *text_stroke, width: 4 }
                     icons:
@@ -4502,6 +4529,9 @@ layers:
                         sprite_default: generic
                         visible: *icon_visible_poi_landuse
                         interactive: true
+                early-sizing:
+                    filter: { $zoom: { max: 14 } }
+                    draw: { text: { size: 11px } }
                 building-like:
                     filter: { kind: [commercial,residential,warehouse,public,dormitory], osm_relation: false }
                     draw:
@@ -4575,7 +4605,7 @@ layers:
                         interactive: true
                         font:
                             fill: [0.20,0.20,0.20] #*text_fill
-                            size: 9px
+                            size: 10px
                             stroke: { color: *text_stroke, width: 4 }
             landuse-funky:
                 filter: { kind: [commercial, residential, wood], $zoom: { max: 17 } }
@@ -4616,7 +4646,7 @@ layers:
                     filter: { kind_tile_rank: { min: 7 }, area: false, $zoom: { min: 14, max: 15 } }
                     draw:
                         icons:
-                            size: [[12, 10px], [14, 10px], [15, 16px]]
+                            size: [[12, 10px], [14, 11px], [15, 16px]]
                             #visible: false
                         text: { visible: false }
             tram-stop-early:
