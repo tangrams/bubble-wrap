@@ -846,7 +846,7 @@ layers:
         data: { source: route }
         draw:
             lines-overlay:
-                color: '#383A3A'
+                color: '#71bf7c'
                 order: 50
                 width: [[0,2.5px],[8,3px],[9,3.5px],[10,4px],[11,5px],[16,8m]]
     current_location_gem:
@@ -1415,7 +1415,7 @@ layers:
                                 size: 12px
                                 stroke: { color: *text_stroke, width: 2 }
                 labels-trunk_primary-z15:
-                    filter: { $zoom: [15], ref: false }
+                    filter: { $zoom: [15] }
                     draw:
                         text:
                             priority: 23
@@ -1677,6 +1677,17 @@ layers:
                             lines:
                                 outline:
                                     color: pink
+                labels-tertiary-z13:
+                    filter: { $zoom: [13] }
+                    draw:
+                        text:
+                            priority: 25
+                            visible: *text_visible_tertiary_e
+                            text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
+                            font:
+                                fill: [0.5,0.5,0.5]
+                                size: 10px
+                                stroke: { color: *text_stroke_road4, width: 2 }
                 labels-tertiary-z14:
                     filter: { $zoom: [14] }
                     draw:
@@ -2391,8 +2402,29 @@ layers:
                     fill: '#666'
                     family: *text_font_family
                     style: italic
-                    size: 12px
-                    stroke: { color: *text_stroke_address, width: 4 }
+                    size: 11px
+                    stroke: { color: *text_stroke_address, width: 1 }
+        building_labels-z15:
+            filter: { $zoom: [15,16,17] }
+            draw: { text: { font: { size: 12px, stroke: { width: 2 } } } }
+        building_labels-z18:
+            filter: { $zoom: [18,19] }
+            draw: { text: { font: { size: 12px, weight: 600, stroke: { width: 3 } } } }
+        building_labels-z20-up:
+            filter: { $zoom: { min: 20 } }
+            draw: { text: { font: { size: 14px, weight: 600, stroke: { width: 3 }  } } }
+        # Hack for no text wrap in Tangram
+        building-labels-z16:
+            filter: function() { if( $zoom == 16 && feature.name.length > 10 ) { return true; } else { return false; } }
+            draw:
+                text:
+                    visible: false
+        building-labels-z17:
+            filter: function() { if( $zoom == 17 && feature.name.length > 20 ) { return true; } else { return false; } }
+            draw:
+                text:
+                    visible: false
+>>>>>>> gh-pages
         building-labels-z20+:
             filter: { $zoom: { min: 20 } }
             draw:
@@ -2699,7 +2731,7 @@ layers:
                 icons:
                     priority: 5
                 text:
-                    offset: [0, 8px]
+                    anchor: bottom
                     priority: 6
 
             populated-places-natural-earth-z2:
@@ -2708,6 +2740,7 @@ layers:
                     text:
                         interactive: true
                         visible: *text_visible_populated_places
+                        offset: [0, 1px] # half icon size
                         font:
                             size: 10px
                             fill: *text_fill
@@ -2725,6 +2758,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 size: 11px
                                 fill: *text_fill
@@ -2739,6 +2773,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 size: 9px
                                 fill: *text_fill
@@ -2756,6 +2791,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 2px] # half icon size
                             font:
                                 size: 13px
                                 fill: *text_fill
@@ -2771,6 +2807,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 size: 10px
                                 fill: *text_fill
@@ -2788,6 +2825,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 13px
                         icons:
@@ -2809,6 +2847,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 2px] # half icon size
                             font:
                                 size: 11px
                         icons:
@@ -2836,6 +2875,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 2px] # half icon size
                             font:
                                 fill: [0.25,0.25,0.25]
                                 size: 9px
@@ -2866,6 +2906,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 3px] # half icon size
                             font:
                                 fill: *text_fill
                                 size: 15px
@@ -2888,6 +2929,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 2px] # half icon size
                             font:
                                 fill: *text_fill
                                 size: 12px
@@ -2916,6 +2958,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 2px] # half icon size
                             font:
                                 fill: [0.25,0.25,0.25]
                                 size: 10px
@@ -2946,6 +2989,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 2px] # half icon size
                             font:
                                 fill: *text_fill
                                 size: 16px
@@ -2968,6 +3012,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 fill: *text_fill
                                 size: 13px
@@ -2996,6 +3041,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 2px] # half icon size
                             font:
                                 fill: [0.25,0.25,0.25]
                                 size: 11px
@@ -3035,6 +3081,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 2px] # half icon size
                             font:
                                 size: 16px
                         icons:
@@ -3057,6 +3104,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 2px] # half icon size
                             font:
                                 size: 13px
                         icons:
@@ -3086,6 +3134,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 fill: [0.25,0.25,0.25]
                                 size: 11px
@@ -3116,6 +3165,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 fill: [0.30,0.30,0.30]
                                 size: 8px
@@ -3147,6 +3197,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 2px] # half icon size
                             font:
                                 size: 16px
                         icons:
@@ -3168,6 +3219,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 size: 13px
                         icons:
@@ -3195,6 +3247,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 size: 11px
                         icons:
@@ -3233,6 +3286,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 2px] # half icon size
                             font:
                                 size: 17px
                         icons:
@@ -3256,6 +3310,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 size: 13px
                         icons:
@@ -3285,6 +3340,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 fill: [0.25,0.25,0.25]
                                 size: 11px
@@ -3315,6 +3371,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 fill: [0.30,0.30,0.30]
                                 size: 9px
@@ -3346,6 +3403,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 2px] # half icon size
                             font:
                                 size: 16px
                         icons:
@@ -3367,6 +3425,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 size: 13px
                         icons:
@@ -3394,6 +3453,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 size: 11px
                         icons:
@@ -3432,6 +3492,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 2px] # half icon size
                             font:
                                 size: 17px
                         icons:
@@ -3447,6 +3508,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 size: 13px
                         icons:
@@ -3462,6 +3524,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 fill: [0.25,0.25,0.25]
                                 size: 11px
@@ -3478,6 +3541,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 fill: [0.35,0.35,0.35]
                                 size: 9px
@@ -3495,6 +3559,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 2px] # half icon size
                             font:
                                 size: 16px
                         icons:
@@ -3516,6 +3581,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 size: 13px
                         icons:
@@ -3543,6 +3609,7 @@ layers:
                         text:
                             interactive: true
                             visible: *text_visible_populated_places
+                            offset: [0, 1px] # half icon size
                             font:
                                 size: 11px
                         icons:
@@ -3573,7 +3640,10 @@ layers:
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [11]
                         - kind: [city,town]
-
+                draw:
+                    text:
+                        anchor: center
+                        
                 z11places-1:
                     filter:
                         any:
@@ -3611,7 +3681,11 @@ layers:
 
             populated-places-natural-earth-z11-backfill:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [11], population: { max: 10000 } }
-                draw: { text: { font: { fill: *text_fill } } }
+                draw:
+                    text:
+                        anchor: center
+                        font:
+                            fill: *text_fill
                 z11places-1-ne:
                     filter: { scalerank: [0,1] }
                     draw:
@@ -3679,7 +3753,7 @@ layers:
                                 font:
                                     size: 14px
                             icons:
-                                    sprite: capital-s
+                                sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -3696,6 +3770,9 @@ layers:
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [12]
                         - kind: [city,town]
+                draw:
+                    text:
+                        anchor: center
 
                 z12places-1:
                     filter:
@@ -3733,7 +3810,12 @@ layers:
 
             populated-places-natural-earth-z12-backfill:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [12], population: { max: 7000 } }
-                draw: { text: { font: { fill: *text_fill } } }
+                draw:
+                    text:
+                        anchor: center
+                        font:
+                            fill: *text_fill
+
                 z12places-1-ne:
                     filter: { scalerank: [0,1] }
                     draw:
@@ -3801,13 +3883,100 @@ layers:
                                 font:
                                     size: 14px
                             icons:
-                                    sprite: capital-s
+                                sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
                             text:
                                 font:
                                     size: 12px
+
+            populated-places-osm-z13-z14:
+                filter:
+                    all:
+                        - source: openstreetmap
+                        - name: true
+                        - population: true
+                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - $zoom: [13,14]
+                        - kind: [city,town]
+                draw:
+                    text:
+                        anchor: center
+                        font:
+                            weight: 600
+                            fill: *text_fill
+                z14:
+                    filter: 
+                        $zoom: [14]
+                    draw:
+                        text:
+                            font:
+                                weight: 600
+
+                z13places-1:
+                    filter:
+                        any:
+                            - { population: { min: 200000 } }
+                    draw:
+                        text:
+                            visible: false
+
+                z13places-2:
+                    filter:
+                        any:
+                            - { population: { min: 50000, max: 199999 } }
+                    draw:
+                        text:
+                            interactive: true
+                            visible: *text_visible_populated_places
+                            font:
+                                size: 14px
+
+                z13places-3:
+                    filter:
+                        any:
+                        - { population: { min: 7000, max: 49999 } }
+                    draw:
+                        text:
+                            interactive: true
+                            visible: *text_visible_populated_places
+                            font:
+                                size: 12px
+
+            populated-places-natural-earth-z13-z14-backfill:
+                filter: { name: true, source: naturalearthdata.com, $zoom: [13,14], population: { max: 7000 } }
+                draw:
+                    text:
+                        anchor: center
+                        font:
+                            fill: *text_fill
+                            weight: 400
+                            fill: *text_fill
+
+                z13places-1-ne:
+                    filter: { scalerank: [0,1] }
+                    draw:
+                        text:
+                            visible: false
+
+                z13places-2-ne:
+                    filter: { scalerank: [2,3,4,5] }
+                    draw:
+                        text:
+                            interactive: true
+                            visible: *text_visible_populated_places
+                            font:
+                                size: 13px
+
+                z13places-3-ne:
+                    filter: { scalerank: [6,7,8,9,10,11,12] }
+                    draw:
+                        text:
+                            interactive: true
+                            visible: *text_visible_populated_places
+                            font:
+                                size: 12px
 
             # populated-places-osm:
             #     filter: { name: true, source: openstreetmap, not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }, $zoom: {min: 12} }
@@ -3947,7 +4116,7 @@ layers:
                         text_wrap: 12
                         visible: *text_visible_neighbourhoods
                         font:
-                            size: 11px
+                            size: 12px
                             weight: 400
                             fill: [0.35,0.35,0.35]
                             transform: uppercase
@@ -4025,22 +4194,29 @@ layers:
                 priority: 10
             text:
                 visible: false    # labels are enabled by each layer below
-                move_into_tile: false
-                offset: [[13,13px],[14,15px],[16,19px]]
+                move_into_tile: false # preserves text alignment w/icons in JS
+                anchor: bottom
+                offset: [[13, [0, 6px]], [16, [0, 8px]], [19, [0, 10px]]] # offset tracks alongside icon size (half icon height)
                 interactive: true
                 priority: 11
                 font:
                     family: *text_font_family
-                    weight: 600
+                    weight: 400
                     fill: [0.20,0.20,0.20]
-                    size: 9px
-                    # stroke: { color: *text_stroke, width: 4 }
+                    size: 10px
+                    stroke: { color: *text_stroke, width: 1 }
+        poi_labels-z14:
+            filter: { $zoom: [14] }
+            draw: { text: { font: { size: 11px } } }
         poi_labels-z15:
-            filter: { $zoom: [15] }
-            draw:
-                text:
-                    font:
-                        size: 14px
+            filter: { $zoom: [15,16,17] }
+            draw: { text: { font: { size: 12px, stroke: { width: 2 } } } }
+        poi_labels-z18:
+            filter: { $zoom: [18,19] }
+            draw: { text: { font: { size: 12px, weight: 600, stroke: { width: 3 } } } }
+        poi_labels-z20-up:
+            filter: { $zoom: { min: 20 } }
+            draw: { text: { font: { size: 14px, weight: 600, stroke: { width: 3 }  } } }
         no-name:
             filter: { name: false }
             sports-pitch:
@@ -4103,11 +4279,7 @@ layers:
                         visible: *text_visible_poi_landuse
                         interactive: true
                         priority: 13
-                        font:
-                            fill: [0.20,0.20,0.20] # *text_fill
-                            size: 9px
-                            weight: 600
-                            # stroke: { color: *text_stroke, width: 4 }
+
             landuse-labels-green-areas-national-park:
                 filter:
                     all:
@@ -4137,10 +4309,8 @@ layers:
                         text:
                             visible: *text_visible_poi_landuse
                             interactive: true
-                            offset: [0, 14px]
                             font:
                                 fill: [0.200,0.409,0.398] #*text_fill_park
-                                size: 13px
                                 style: italic
                                 # stroke: { color: [0.870,0.870,0.870], width: 3px }
                     natl-park-labels-z4-z6:
@@ -4148,7 +4318,7 @@ layers:
                         draw:
                             icons:
                                 visible: false
-                            text: { font: { size: 9px, stroke: { width: 2px } } }
+                            text: { font: { size: 10px, stroke: { width: 2px } } }
                     natl-park-labels-z7:
                         filter: { $zoom: [7] }
                         draw:
@@ -4158,7 +4328,7 @@ layers:
                         draw:
                             text: { font: { size: 11px, stroke: { width: 2px } } }
                     natl-park-labels-z10:
-                        filter: { $zoom: [10,11] }
+                        filter: { $zoom: {min: 10, max: 14 } }
                         draw:
                             text: { font: { size: 12px } }
 
@@ -4193,11 +4363,10 @@ layers:
                         text:
                             visible: *text_visible_landuse_green
                             interactive: true
-                            offset: [0, 14px]
                             font:
                                 fill: [0.181,0.370,0.361]
-                                size: 12px
-                                weight: 400
+#                                size: 12px
+#                                weight: 400
                                 style: italic
                                 # stroke: { color: [0.870,0.870,0.870], width: 2 }
                     green-areas-z6:
@@ -4205,14 +4374,14 @@ layers:
                         filter: { $zoom: [6] }
                         draw:
                             icons: { visible: false }
-                            text: { font: { size: 9px, stroke: { width: 2px } } }
+                            text: { font: { size: 10px, stroke: { width: 2px } } }
                     green-areas-z7:
                         filter: { $zoom: [7] }
                         draw:
                             icons: { visible: false }
                             text: { font: { size: 10px } }
                     green-areas-z8-z9:
-                        filter: { $zoom: { min: 8, max: 15 } }
+                        filter: { $zoom: { min: 8, max: 14 } }
                         draw:
                             text: { font: { size: 11px } }
                     wilderness-areas-early:
@@ -4275,7 +4444,7 @@ layers:
                         interactive: true
                         font:
                             fill: [0.20,0.20,0.20] # *text_fill
-                            size: 11px
+                            #size: 11px
                             stroke: { color: *text_stroke, width: 4 }
                     icons:
                         sprite: airport
@@ -4284,6 +4453,9 @@ layers:
                 early:
                     filter: { $zoom: { max: 12 } }
                     draw: { text: { visible: false } }
+                early2:
+                    filter: { $zoom: { min: 12, max: 14 } }
+                    draw: { text: { size: 11px } }
             university:
                 filter:
                     all:
@@ -4311,7 +4483,7 @@ layers:
                         font:
                             weight: 600
                             fill: [0.20,0.20,0.20]
-                            size: 9px
+                            #size: 10px
                             # stroke: { color: *text_stroke, width: 4 }
                     icons:
                         sprite: college-university
@@ -4320,6 +4492,9 @@ layers:
                 early:
                     filter: { $zoom: { max: 12 } }
                     draw: { text: { visible: false } }
+                early2:
+                    filter: { $zoom: { min: 12, max: 14 } }
+                    draw: { text: { size: 11px } }
             landuse-labels-not-green-areas:
                 filter:
                     all:
@@ -4347,7 +4522,7 @@ layers:
                         interactive: true
                         font:
                             fill: [0.20,0.20,0.20] # *text_fill
-                            size: 9px
+#                            size: 10px
                             weight: 600
                             stroke: { color: *text_stroke, width: 4 }
                     icons:
@@ -4355,6 +4530,9 @@ layers:
                         sprite_default: generic
                         visible: *icon_visible_poi_landuse
                         interactive: true
+                early-sizing:
+                    filter: { $zoom: { max: 14 } }
+                    draw: { text: { size: 11px } }
                 building-like:
                     filter: { kind: [commercial,residential,warehouse,public,dormitory], osm_relation: false }
                     draw:
@@ -4428,7 +4606,7 @@ layers:
                         interactive: true
                         font:
                             fill: [0.20,0.20,0.20] #*text_fill
-                            size: 9px
+                            size: 10px
                             stroke: { color: *text_stroke, width: 4 }
             landuse-funky:
                 filter: { kind: [commercial, residential, wood], $zoom: { max: 17 } }
@@ -4450,7 +4628,14 @@ layers:
             station-train-subway:
                 filter: { kind: [station, train-station, train_station], $zoom: { min: 11 } }
                 visible: *label_visible_station
-                draw:   { icons: { visible: *icon_visible_station, sprite: train-station, size: [[13,12px],[14,14px],[15,16px],[17,20px]] }, text: { visible: *text_visible_station } }
+                draw:
+                    icons:
+                        visible: *icon_visible_station
+                        sprite: train-station
+                        size: [[13, 12px], [14, 14px], [15, 16px], [17, 20px]]
+                    text:
+                        visible: *text_visible_station
+                        offset: [[13, [0, 6px]], [14, [0, 7px]],[15, [0, 8px]], [17, [0, 10px]]]
                 low-priority-early:
                     filter: { kind_tile_rank: { min: 5 }, area: false, $zoom: { min: 0, max: 14 } }
                     draw:
@@ -4462,7 +4647,7 @@ layers:
                     filter: { kind_tile_rank: { min: 7 }, area: false, $zoom: { min: 14, max: 15 } }
                     draw:
                         icons:
-                            size: [[12, 10px], [14, 10px], [15, 16px]]
+                            size: [[12, 10px], [14, 11px], [15, 16px]]
                             #visible: false
                         text: { visible: false }
             tram-stop-early:
@@ -4480,6 +4665,8 @@ layers:
                 draw:
                     icons:
                         size: [[13, 12px], [16, 18px]]
+                    text:
+                        offset: [[13, [0, 6px]], [16, [0, 9px]]]
             bus-stop-bus-station-labels:
                 filter:
                     kind: [bus_stop, bus_station]
@@ -4497,12 +4684,11 @@ layers:
                         kind: [bus_stop]
                         $zoom: { max: 19 }
                     draw:
-                        text:
-                            visible: false
                         icons:
                             size: [[13, 8px], [19, 18px]]
+                        text:
+                            visible: false
 
-            # examples of different icons mapped to feature properties
             icons:
                 adult-boutique:
                     filter: { kind: [erotic, adult_boutique] }
@@ -5126,7 +5312,7 @@ layers:
                     dots2:
                         color: [[4,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
                         # todo: what is this?
-                        order: 0
+                        order: 1
                         visible: true
                 us_national_park:
                     # yosemite national park, death valley national park, grand canyon national park
