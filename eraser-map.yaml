@@ -2556,7 +2556,7 @@ layers:
                     font:
                         fill: [0.20,0.20,0.20]
                         size: 11px
-                        weight: 500
+                        weight: 600
                         # stroke: { color: *text_stroke, width: 4 }
                         transform: uppercase
     #            icons:
@@ -2578,7 +2578,7 @@ layers:
                     text_source: function() { return feature["name:en"] || feature["name"]; }
                     font:
                         size: 12px
-                        weight: 500
+                        weight: 600
                         fill: [0.40,0.40,0.40]
                         # stroke: { color: *text_stroke, width: 4 }
                         transform: uppercase
@@ -2669,7 +2669,7 @@ layers:
                     text_source: 'name:short'
                     font:
                         size: 10px
-                        weight: 200
+                        weight: 300
                         fill: [0.3,0.3,0.3]
 
         region-z5:
@@ -2681,7 +2681,7 @@ layers:
                     text_source: 'name:short'
                     font:
                         size: 13px
-                        weight: 200
+                        weight: 300
                         fill: [0.3,0.3,0.3]
 
         region-z6:
@@ -2693,7 +2693,7 @@ layers:
                     text_source: 'name:short'
                     font:
                         size: 15px
-                        weight: 200
+                        weight: 300
                         fill: [0.4,0.4,0.4]
 
         region:
@@ -2705,7 +2705,7 @@ layers:
                     text_source: function() { if(feature["name:short"]) { return feature["name"]; } else { return ""; } }
                     font:
                         size: 14px
-                        weight: 200
+                        weight: 300
                         fill: [0.3,0.3,0.3]
                         #stroke: { color: *text_stroke, width: 4 }
                         transform: uppercase
@@ -3644,7 +3644,7 @@ layers:
                 draw:
                     text:
                         anchor: center
-                        
+
                 z11places-1:
                     filter:
                         any:
@@ -3908,7 +3908,7 @@ layers:
                             weight: 600
                             fill: *text_fill
                 z14:
-                    filter: 
+                    filter:
                         $zoom: [14]
                     draw:
                         text:
