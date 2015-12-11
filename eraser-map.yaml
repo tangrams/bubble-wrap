@@ -226,11 +226,11 @@ textures:
             camera-store: [298, 945, 36, 38]
             campground: [1220, 533, 36, 38]
             candy-store: [1053, 1627, 36, 38]
-            capital-l: [982, 2147, 15, 17]
-            capital-m: [1067, 2149, 12, 14]
-            capital-s: [1152, 2150, 10, 12]
-            capital-xl: [896, 2145, 18, 20]
-            capital-xs: [1237, 2151, 7, 9]
+            capital-l: [982, 2147, 15, 15]
+            capital-m: [1067, 2149, 14, 14]
+            capital-s: [1152, 2150, 12, 12]
+            capital-xl: [896, 2145, 20, 20]
+            capital-xs: [1237, 2151, 9, 9]
             car-dealership: [380, 187, 36, 38]
             car-wash: [545, 186, 36, 38]
             carribean-restaurant: [1050, 1876, 36, 38]
@@ -421,16 +421,16 @@ textures:
             thrift-vintage-store: [805, 864, 36, 38]
             toilets: [1558, 192, 36, 38]
             toll-booth: [1056, 188, 36, 38]
-            townspot-l: [562, 2147, 15, 17]
-            townspot-l-rev: [562, 2221, 15, 17]
-            townspot-m: [648, 2149, 12, 14]
-            townspot-m-rev: [648, 2222, 12, 14]
-            townspot-s: [732, 2150, 10, 12]
-            townspot-s-rev: [732, 2223, 9, 11]
-            townspot-xl: [476, 2145, 18, 20]
-            townspot-xl-rev: [476, 2219, 18, 20]
-            townspot-xs: [818, 2151, 7, 9]
-            townspot-xs-rev: [819, 2225, 5, 7]
+            townspot-l: [562, 2147, 17, 17]
+            townspot-l-rev: [562, 2221, 17, 17]
+            townspot-m: [648, 2149, 14, 14]
+            townspot-m-rev: [648, 2222, 14, 14]
+            townspot-s: [732, 2150, 12, 12]
+            townspot-s-rev: [732, 2223, 11, 11]
+            townspot-xl: [476, 2145, 20, 20]
+            townspot-xl-rev: [476, 2219, 20, 20]
+            townspot-xs: [818, 2151, 9, 9]
+            townspot-xs-rev: [819, 2225, 7, 7]
             toy-game-store: [886, 947, 36, 38]
             track: [886, 1455, 36, 38]
             traffic-signal: [1138, 188, 36, 38]
@@ -2910,7 +2910,7 @@ layers:
                                 fill: *text_fill
                                 size: 15px
                         icons:
-                            size: 13px
+                            size: 9px
                             interactive: true
                             sprite: townspot-m-rev
                     capital:
@@ -2933,7 +2933,7 @@ layers:
                                 fill: *text_fill
                                 size: 12px
                         icons:
-                            size: 11px
+                            size: 8px
                             interactive: true
                             sprite: townspot-s-rev
                     capital:
@@ -2943,6 +2943,7 @@ layers:
                                 font:
                                     size: 15px
                             icons:
+                                size: 10px
                                 sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
@@ -2962,7 +2963,7 @@ layers:
                                 fill: [0.25,0.25,0.25]
                                 size: 10px
                         icons:
-                            size: 9px
+                            size: 7px
                             interactive: true
                             sprite: townspot-xs-rev
                     capital:
@@ -2972,6 +2973,7 @@ layers:
                                 font:
                                     size: 12px
                             icons:
+                                size: 5px
                                 sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
@@ -3138,7 +3140,7 @@ layers:
                                 fill: [0.25,0.25,0.25]
                                 size: 11px
                         icons:
-                            size: 9x
+                            size: 9px
                             interactive: true
                             sprite: townspot-s-rev
                     capital:
@@ -3169,7 +3171,7 @@ layers:
                                 fill: [0.30,0.30,0.30]
                                 size: 8px
                         icons:
-                            size: 8x
+                            size: 8px
                             interactive: true
                             sprite: townspot-xs-rev
                     capital:
@@ -3344,7 +3346,7 @@ layers:
                                 fill: [0.25,0.25,0.25]
                                 size: 11px
                         icons:
-                            size: 9x
+                            size: 9px
                             interactive: true
                             sprite: townspot-s-rev
                     capital:
@@ -3375,7 +3377,7 @@ layers:
                                 fill: [0.30,0.30,0.30]
                                 size: 9px
                         icons:
-                            size: 8x
+                            size: 8px
                             interactive: true
                             sprite: townspot-xs-rev
                     capital:
@@ -3528,7 +3530,7 @@ layers:
                                 fill: [0.25,0.25,0.25]
                                 size: 11px
                         icons:
-                            size: 9x
+                            size: 9px
                             interactive: true
                             sprite: townspot-s-rev
 
