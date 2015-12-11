@@ -3545,7 +3545,7 @@ layers:
                                 fill: [0.35,0.35,0.35]
                                 size: 9px
                         icons:
-                            size: 8x
+                            size: 8px
                             interactive: true
                             sprite: townspot-xs-rev
 
