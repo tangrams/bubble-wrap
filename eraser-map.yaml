@@ -2324,12 +2324,12 @@ layers:
                 polygons:
                     visible: true
                     style: building-grid
-                    extrude: true
+                    extrude: function() { return feature.height || 20; }
                     color: [0.892,0.880,0.878]
                 lines:
                     visible: true
                     style: building-lines
-                    extrude: true
+                    extrude: function() { return feature.height || 20; }
 
         # landuse-specific rules
         in_park:
