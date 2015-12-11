@@ -2424,7 +2424,6 @@ layers:
             draw:
                 text:
                     visible: false
->>>>>>> gh-pages
         building-labels-z20+:
             filter: { $zoom: { min: 20 } }
             draw:
