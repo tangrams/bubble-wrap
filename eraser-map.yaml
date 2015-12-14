@@ -1403,7 +1403,7 @@ layers:
                             visible: *text_visible_trunk_primary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
-                                fill: [0.15,0.15,0.15]
+                                fill: [0.25,0.25,0.25]
                                 size: 12px
                                 stroke: { color: *text_stroke, width: 2 }
                 labels-trunk_primary-z14:
@@ -1415,7 +1415,7 @@ layers:
                             visible: *text_visible_trunk_primary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
-                                fill: [0.05,0.05,0.05]
+                                fill: [0.15,0.15,0.15]
                                 size: 12px
                                 stroke: { color: *text_stroke, width: 2 }
                 labels-trunk_primary-z15:
@@ -1427,7 +1427,6 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
                                 fill: [0.0,0.0,0.0]
-                                weight: 600
                                 size: 14px
                                 stroke: { color: [0.95,0.95,0.95], width: 2 }
                 labels-trunk_primary-z16-z17:
@@ -1439,7 +1438,6 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                             font:
                                 fill: [0.0,0.0,0.0]
-                                weight: 600
                                 size: 15px
                                 # stroke: { color: *text_stroke, width: 4 }
                 labels-trunk_primary-z18:
@@ -1451,7 +1449,6 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                             font:
                                 fill: [0.0,0.0,0.0]
-                                weight: 600
                                 size: 16px
             link:
                 filter: { is_link: yes } # on- and off-ramps, etc
@@ -1584,7 +1581,6 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
                                 fill: [0.10,0.10,0.10]
-                                weight: 600
                                 size: 12px
                                 stroke: { color: [0.95,0.95,0.95], width: 2 }
                 labels-secondary2:
@@ -1596,7 +1592,6 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
                                 fill: [0.0,0.0,0.0]
-                                weight: 600
                                 size: 14px
                                 # stroke: { color: *text_stroke, width: 4 }
                 labels-secondary3:
@@ -1610,7 +1605,6 @@ layers:
                             font:
                                 # need a fill color here?
                                 fill: [0.15,0.15,0.15]
-                                weight: 600
                                 size: 16px
             tertiary:
                 filter: { highway: [tertiary, tertiary_link] }
