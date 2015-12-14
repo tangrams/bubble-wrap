@@ -895,7 +895,11 @@ layers:
                 size: [36px,46px]
                 collide: false
                 anchor: top
-
+        inactive:
+            filter: { state: inactive }
+            draw:
+                icons:
+                    sprite: search-inactive
 
     # Basemap styling
     earth:
