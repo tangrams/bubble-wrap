@@ -1698,7 +1698,7 @@ layers:
                                 size: 11px
                                 stroke: { color: [1.00,1.00,1.00], width: 1 }
                 labels-tertiary-z15:
-                    filter: { $zoom: [15,16] }
+                    filter: { $zoom: [15] }
                     draw:
                         text:
                             priority: 25
@@ -1708,6 +1708,17 @@ layers:
                                 fill: [0.3,0.3,0.3]
                                 size: 12px
                                 stroke: { color: [1.00,1.00,1.00], width: 1 }
+                labels-tertiary-z16:
+                    filter: { $zoom: [16] }
+                    draw:
+                        text:
+                            priority: 25
+                            visible: *text_visible_tertiary
+                            text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
+                            font:
+                                fill: [0.3,0.3,0.3]
+                                size: 12px
+                                stroke: { color: [1.00,1.00,1.00], width: 2 }
                 labels-tertiary-z17:
                     filter: { $zoom: { min: 17, max: 18 } }
                     draw:
@@ -1850,7 +1861,7 @@ layers:
                         font:
                             fill: [0.35,0.35,0.35]
                             size: 13px
-                            stroke: { color: [1.00,1.00,1.00], width: 1 }
+                            stroke: { color: [1.00,1.00,1.00], width: 2 }
             labels-minor_road-z17:
                 filter: { $zoom: { min: 17, max: 18 } }
                 draw:
