@@ -1707,7 +1707,7 @@ layers:
                             font:
                                 fill: [0.3,0.3,0.3]
                                 size: 12px
-                                stroke: { color: [0.95,0.95,0.95], width: 2 }
+                                stroke: { color: [1.00,1.00,1.00], width: 1 }
                 labels-tertiary2:
                     filter: { $zoom: { min: 16, max: 18 } }
                     draw:
@@ -1839,6 +1839,7 @@ layers:
                         font:
                             fill: [0.30,0.30,0.30]
                             size: 12px
+                            stroke: { color: [1.00,1.00,1.00], width: 1 }
             labels-minor_road-z16:
                 filter: { $zoom: 16 }
                 draw:
