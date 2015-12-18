@@ -1109,8 +1109,6 @@ layers:
                     #join: round
                     color: *highway1
                     width: [[5, 1px], [7, 1.4px], [9, 1.5px], [14, 3px], [16, 4px], [17, 10m]]
-                    outline:
-                        color: *highway_casing1
             major_road:
                 filter: { type: ['Secondary Highway','Road'] }
                 draw:
