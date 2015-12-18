@@ -962,8 +962,8 @@ layers:
                 line2:
                     style: lines
                     order: 7
-                    width: [[9,0.25px],[10,2px],[11,3px],[13,4px],[15,6px]]
                     color: [[9,[0.396,0.833,0.920]],[10,[0.886,0.937,0.988]]]
+                    width: [[9,0.25px],[10,2px],[11,3px],[13,4px],[15,6px]]
                 lines:
                     order: 10
                     color: [[1,[0.698,0.800,0.820]],[11,[0.631,0.773,0.800]],[14,[0.543,0.740,0.780]]]
@@ -978,21 +978,18 @@ layers:
         water_boundaries-not-ocean:
             filter: { boundary: yes, not: { kind: ocean }, $zoom: { min: 8 } }
             draw:
-                double-border-light:
-                    style: lines
-                    order: 30
-                    color: [0.886,0.937,0.988]
-                    width: [[9,0px],[10,2px],[11,1.5px],[12,3px],[13,3.5px],[14,4px],[15,5px],[16,6px],[18,8px]]
                 lines:
                     order: 30
                     # color: [[8,[0.635,0.737,0.753]],[13,[0.635,0.737,0.753]],[14,[0.569,0.722,0.749]],[15,[0.397,0.743,0.809]]]
                     color: [[8,[0.749,0.831,0.867]],[12,[0.698,0.788,0.816]],[13,[0.698,0.784,0.812]],[14,[0.627,0.788,0.831]],[17,[0.643,0.824,0.851]]]
                     width: [[8,0.5px],[10,0.5px],[11,0.5px],[12,0.75px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1px]]
                     join: round
+                    outline:
+                        color: [0.886,0.937,0.988]
+                        width: [[9,0px],[10,1.5px],[11,1px],[12,2.25px],[13,2.5px],[14,3px],[15,4px],[16,5px],[18,7px]]
             early:
                 filter: { $zoom: { min: 14 } }
                 draw:
-                    double-border-light: { order: 19 }
                     lines: { order: 19 }
             riverbank:
                 # river boundaries like the thames in london, la seine in paris
@@ -1011,17 +1008,15 @@ layers:
                 #     color: [0.397,0.743,0.809]
                 #     width: [[11,0.3px],[12,0.5px],[13,0.75px],[14,1px],[16,1.25px]]
                 #     join: round
-                double-border-light:
-                    style: lines
-                    order: 3
-                    color: [[11,[0.671,0.788,0.812]],[13,[0.710,0.800,0.824]],[14,[0.543,0.740,0.780]]]
-                    width: [[9,0px],[11,0px],[12,0px],[13,2.5px],[14,3.25px],[15,4px],[16,5px],[17,6px]]
                 lines:
-                    order: 3
+                    order: 18
                     # color: [[8,[0.635,0.737,0.753]],[13,[0.635,0.737,0.753]],[14,[0.569,0.722,0.749]],[15,[0.397,0.743,0.809]]]
                     color: [[11,[0.753,0.820,0.835]],[12,[0.710,0.800,0.824]],[13,[0.886,0.937,0.988]]]
                     width: [[8,0px],[10,0px],[11,0.75px],[12,1px],[13,1px],[14,2px],[15,3px],[16,4px],[17,5px]]
                     join: round
+                    outline:
+                        color: [[11,[0.671,0.788,0.812]],[13,[0.710,0.800,0.824]],[14,[0.543,0.740,0.780]]]
+                        width: [[9,0px],[11,0px],[12,0px],[13,1.5px],[14,1.25px],[15,1px],[16,1px],[17,1px]]
 
     subway-light-rail:
         data: { source: osm, layer: transit }
@@ -5582,7 +5577,7 @@ layers:
                 draw: { dots2: { order: 2, color: [0.690,0.690,0.690], visible: true } }
                 pier:
                     filter: { kind: [pier,bridge,breakwater,groyne,dike,cutline] }
-                    draw: { dots2: { order: 5, color: [0.679,0.679,0.679], visible: true } }
+                    draw: { dots2: { order: 6, color: [0.679,0.679,0.679], visible: true } }
         tier5:
             filter:
                 any:
