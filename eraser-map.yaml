@@ -1302,8 +1302,6 @@ layers:
                 lines:
                     color: [[8, *major_road4], [13, *major_road2], [17, *major_road1]]
                     width: [[13, 0px], [14, 2px], [16, 2.5px], [19, 8m]]
-                    outline:
-                        width: [[12, 0px], [13, .5px], [15, 1px]]
             trunk_primary:
                 filter: { highway: [trunk, primary] }
                 draw:
