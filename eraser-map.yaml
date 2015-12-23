@@ -758,10 +758,17 @@ styles:
                 position: |
                     // scale buildings based on zoom
                     float zoom = u_map_position.z;
-                    float min = .1;         // minimum building scale
+                    float min = .1;       // minimum building scale
                     float midpoint = 16.; // middle of zoom range
-                    float speed = 2.;  // number of zoom levels to transition over
-                    float e = (zoom - midpoint) / (speed * .2);
+                    float inspeed = .1;   // number of zooms to scale buildings up
+                    float outspeed = 2.;  // number of zooms to scale buildings back down
+                    float e = 0.;
+
+                    if (zoom >= midpoint) {
+                        e = (zoom - midpoint) / (outspeed * .2);
+                    } else {
+                        e = abs(zoom - midpoint) / inspeed;
+                    }
                     position.z *= ((1. - min) / (1. + (exp(e)))) + min;
 
     building-grid:
