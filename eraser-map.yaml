@@ -1275,9 +1275,9 @@ layers:
                         visible: *text_visible_highway
                         font:
                             fill: [0.0,0.0,0.0]
-                            size: 14px
+                            size: 15px
                             # stroke: { color: [0.976,0.541,0.490], width: 4 }
-            later2:
+            labels-highway-z16:
                 filter: { $zoom: { min: 16, max: 18 } }
                 draw:
                     text-blend-order:
@@ -1285,9 +1285,9 @@ layers:
                         visible: *text_visible_highway
                         font:
                             fill: [0.0,0.0,0.0]
-                            size: 15px
+                            size: 16px
                             # stroke: { color: *text_stroke, width: 4 }
-            later3:
+            labels-highway-z18:
                 filter: { $zoom: { min: 18 } }
                 draw:
                     text-blend-order:
@@ -1365,7 +1365,7 @@ layers:
                                 font:
                                     fill: [0.0,0.0,0.0]
                                     weight: 600
-                                    size: 14px
+                                    size: 15px
                                     stroke: { color: [0.95,0.95,0.95], width: 0.1px }
                     labels-trunk_primary-route-z16:
                         filter: { $zoom: { min: 16 } }
@@ -1377,7 +1377,7 @@ layers:
                                 font:
                                     fill: [0.0,0.0,0.0]
                                     weight: 600
-                                    size: 15px
+                                    size: 16px
                                     stroke: { color: [0.95,0.95,0.95], width: 0.1px }
                 labels-trunk_primary-z11:
                     filter:
@@ -1436,7 +1436,7 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
                                 fill: [0.0,0.0,0.0]
-                                size: 14px
+                                size: 15px
                                 stroke: { color: [1.00,1.00,1.00], width: 3 }
                 labels-trunk_primary-z16-z17:
                     filter: { $zoom: { min: 16, max: 18 } }
@@ -1447,7 +1447,7 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                             font:
                                 fill: [0.0,0.0,0.0]
-                                size: 15px
+                                size: 16px
                                 stroke: { color: [1.00,1.00,1.00], width: 3 }
                 labels-trunk_primary-z18:
                     filter: { $zoom: { min: 18 } }
@@ -1590,9 +1590,9 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
                                 fill: [0.10,0.10,0.10]
-                                size: 12px
+                                size: 13px
                                 stroke: { color: [1.00,1.00,1.00], width: 2 }
-                labels-secondary2:
+                labels-secondary-z16:
                     filter: { $zoom: { min: 16, max: 18 } }
                     draw:
                         text-blend-order:
@@ -1601,9 +1601,9 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
                                 fill: [0.0,0.0,0.0]
-                                size: 14px
+                                size: 15px
                                 stroke: { color: [1.00,1.00,1.00], width: 3 }
-                labels-secondary3:
+                labels-secondary-z18:
                     filter: { $zoom: { min: 18 } }
                     draw:
                         text-blend-order:
@@ -1726,7 +1726,7 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
                                 fill: [0.3,0.3,0.3]
-                                size: 12px
+                                size: 14px
                                 stroke: { color: [1.00,1.00,1.00], width: 2 }
                 labels-tertiary-z17:
                     filter: { $zoom: { min: 17, max: 18 } }
@@ -1739,7 +1739,7 @@ layers:
                                 fill: [0.15,0.15,0.15]
                                 size: 13px
                                 stroke: { color: [1.00,1.00,1.00], width: 2 }
-                labels-tertiary3:
+                labels-tertiary-z18:
                     filter: { $zoom: { min: 18 } }
                     draw:
                         text-blend-order:
@@ -1869,7 +1869,7 @@ layers:
                         text_source: name
                         font:
                             fill: [0.35,0.35,0.35]
-                            size: 13px
+                            size: 14px
                             stroke: { color: [1.00,1.00,1.00], width: 2 }
             labels-minor_road-z17:
                 filter: { $zoom: { min: 17, max: 18 } }
@@ -1880,9 +1880,9 @@ layers:
                         text_source: name
                         font:
                             fill: [0.25,0.25,0.25]
-                            size: 13px
+                            size: 14px
                             stroke: { color: [1.00,1.00,1.00], width: 2 }
-            labels-minor_road2:
+            labels-minor_road-z18:
                 filter: { $zoom: { min: 18 } }
                 draw:
                     text-blend-order:
@@ -1892,7 +1892,7 @@ layers:
                         font:
                             # needs a fill color?
                             fill: [0.15,0.15,0.15]
-                            size: 14px
+                            size: 15px
         service_road:
             filter: { kind: minor_road, highway: service }
             draw:
