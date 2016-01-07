@@ -1265,7 +1265,7 @@ layers:
                         text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                         font:
                             fill: [0.0,0.0,0.0]
-                            size: 12px
+                            size: 13px
                             # stroke: { color: [0.976,0.541,0.490], width: 4 }
             labels-highway-z15:
                 filter:
@@ -1353,7 +1353,7 @@ layers:
                                 text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                                 font:
                                     fill: [0.0,0.0,0.0]
-                                    size: 12px
+                                    size: 13px
                                     stroke: { color: [0.95,0.95,0.95], width: 0.1px }
                     labels-trunk_primary-route-z15:
                         filter: { $zoom: [15] }
@@ -1424,8 +1424,8 @@ layers:
                             visible: *text_visible_trunk_primary
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
-                                fill: [0.15,0.15,0.15]
-                                size: 12px
+                                fill: [0.10,0.10,0.10]
+                                size: 13px
                                 stroke: { color: [1.00,1.00,1.00], width: 2 }
                 labels-trunk_primary-z15:
                     filter: { $zoom: [15] }
@@ -1458,7 +1458,7 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                             font:
                                 fill: [0.0,0.0,0.0]
-                                size: 16px
+                                size: 18px
             link:
                 filter: { is_link: yes } # on- and off-ramps, etc
                 draw:
@@ -1704,7 +1704,7 @@ layers:
                             text_source: function() { if( feature.ref && feature.name ) { if( feature.ref.length < 6 ) { return feature.ref + " " + feature.name; } else { return feature.name; } } else { return feature.name; } }
                             font:
                                 fill: [0.5,0.5,0.5]
-                                size: 11px
+                                size: 12px
                                 stroke: { color: [1.00,1.00,1.00], width: 1 }
                 labels-tertiary-z15:
                     filter: { $zoom: [15] }
