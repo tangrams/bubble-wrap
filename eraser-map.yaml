@@ -1109,8 +1109,6 @@ layers:
                     #join: round
                     color: *highway1
                     width: [[5, 1px], [7, 1.4px], [9, 1.5px], [14, 3px], [16, 4px], [17, 10m]]
-                    outline:
-                        color: *highway_casing1
             major_road:
                 filter: { type: ['Secondary Highway','Road'] }
                 draw:
@@ -1140,8 +1138,8 @@ layers:
                     color: [[8, *highway1], [14, *highway1], [15, [1.0,1.0,1.0]], [17, [1.0,1.0,1.0]]]
                     width: [[8, 1px], [9, 1.25px], [11, 1.2px], [12, 1.3px], [13, 1.5px], [14, 2.25px], [15, 0.15px], [16, 5.5px], [17, 12m]]
                     outline:
-                        color: [[9, *highway_casing1], [13, *highway_casing1], [15,[0.988,0.495,0.439]], [17, [0.988,0.495,0.439]]]
-                        width: [[9, 0.5px], [12, 1px], [15, 2px], [16, 2.25px], [17, 3px], [18, 3px]]
+                        color: [[11, *highway_casing1], [15,[0.988,0.495,0.439]], [17, [0.988,0.495,0.439]]]
+                        width: [[11, 0], [12, 1px], [13, 1.33px], [15, 2px], [16, 2.25px], [17, 3px], [18, 3px]]
             # round:
             #     filter: { $zoom: { min: 17 } }
             #     draw:
@@ -1304,8 +1302,6 @@ layers:
                 lines:
                     color: [[8, *major_road4], [13, *major_road2], [17, *major_road1]]
                     width: [[13, 0px], [14, 2px], [16, 2.5px], [19, 8m]]
-                    outline:
-                        width: [[12, 0px], [13, .5px], [15, 1px]]
             trunk_primary:
                 filter: { highway: [trunk, primary] }
                 draw:
@@ -1315,7 +1311,7 @@ layers:
                         outline:
                             color: [[13, [0.827,0.827,0.827]], [15, [1.000,0.739,0.710]]]
                             # todo: investigate width optimizations
-                            width: [[9, 0.0px], [11, 0px], [12, 0px], [14, 0px], [15, 1.75px], [16, 2px], [17, 3px]]
+                            width: [[14, 0px], [15, 1.75px], [16, 2px], [17, 3px]]
                 routes:
                     filter: { ref: true }
                     draw:
@@ -1325,7 +1321,7 @@ layers:
                             width: [[9, 1.0px], [10, 1.0px], [11, 1.2px], [12, 1.25px], [13, 1.5px], [14, 1.6px], [15, 0.15px], [16, 5.25px], [17, 12m]]
                             outline:
                                 color: [[13, [0.870,0.870,0.870]], [15, [0.976,0.612,0.573]]]
-                                width: [[9, 0.0px], [12, 0px], [15, 2px], [16, 2px], [17, 3px]]
+                                width: [[13, 0], [15, 2px], [16, 2px], [17, 3px]]
                     # no national-routes layer because it's not different than the basic style
                     tunnel:
                         filter: {is_tunnel: yes, $zoom: {min: 13} }
@@ -1476,8 +1472,8 @@ layers:
                     lines:
                         width: [[9, 0px], [10, 0.5px], [14, 2px], [16, 4m], [17, 5m], [18, 6m]]
                         outline:
-                            color: [[9, [0.827,0.827,0.827]], [13, [0.827,0.827,0.827]], [15, [1.000,0.739,0.710]]]
-                            width: [[9, 0px], [10, 1px], [14, 1px], [16, 1.5px], [17, 2px]]
+                            color: [[10, [0.827,0.827,0.827]], [13, [0.827,0.827,0.827]], [15, [1.000,0.739,0.710]]]
+                            width: [[10, 0], [11, 1px], [14, 1px], [16, 1.5px], [17, 2px]]
             tunnel:
                 filter: {is_tunnel: yes, $zoom: {min: 13} }
                 draw:
@@ -1494,7 +1490,7 @@ layers:
                         width: [[11, 0.65px], [12, 0.75px], [13, 1.25px], [14, 2px], [15, 5px], [16, 10m], [17, 10m]]
                         outline:
                             color: [[15, [1.000,0.739,0.710]]]
-                            width: [[11, 0px], [14, 0px], [15, 1.75px], [16, 2px], [17, 3px]]
+                            width: [[14, 0], [15, 1.75px], [16, 2px], [17, 3px]]
                 routes:
                     filter: { ref: true, $zoom: { min: 12} }
                     draw:
@@ -1503,7 +1499,7 @@ layers:
                             width: [[11, 0.65px], [12, 0.75px], [13, 1.25px], [14, 2px], [15, 5px], [16, 12m], [17, 12m]]
                             outline:
                                 color: [0.827,0.827,0.827]
-                                width: [[11, 0px], [14, 0px], [15,  1.75px], [16, 2px], [17, 3px]]
+                                width: [[14, 0px], [15,  1.75px], [16, 2px], [17, 3px]]
                     tunnel:
                         filter: {is_tunnel: yes, $zoom: {min: 13} }
                         draw:
@@ -1635,7 +1631,7 @@ layers:
                         outline:
                             color: [0.827,0.827,0.827]
                             # todo: look at zoom 13 width
-                            width: [[12, 0px], [13, 0px], [14, 0px], [15, 0px], [16, 1.0px], [18, 3.5px]]
+                            width: [[15, 0], [16, 1.0px], [18, 3.5px]]
                 routes:
                     filter: { ref: true, $zoom: { min: 12} }
                     draw:
@@ -1644,7 +1640,7 @@ layers:
                             width: [[11, 0.5px], [12, 0.5px], [13, 0.65px], [14, 1.0px], [15, 2px], [16, 8m], [19, 10m]]
                             outline:
                                 color: [0.827,0.827,0.827]
-                                width: [[12, 0px], [13, 0px], [14, 0px], [15, 0px], [16, 1.0px], [18, 3.5px]]
+                                width: [[15, 0], [16, 1.0px], [18, 3.5px]]
                     tunnel:
                         filter: {is_tunnel: yes, $zoom: {min: 13} }
                         draw:
@@ -1661,7 +1657,7 @@ layers:
                             width: [[10, 0.5px], [14, 2px], [16, 4m], [17, 5m], [18, 6m]]
                             outline:
                                 color: [[12,*major_casing2]]
-                                width: [[12, 0px], [14, 1px], [16, 1.5px], [17, 2px]]
+                                width: [[12, 0], [14, 1px], [16, 1.5px], [17, 2px]]
                 in_park:
                     filter: { landuse_kind: [park,nature_reserve,conservation,golf_course,garden] }
                     draw:
@@ -1771,7 +1767,7 @@ layers:
                     #width: [[11, 0.5px], [12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.5px], [16, 8m]]
                     outline:
                         color: [0.843,0.843,0.843]
-                        width: [[12, 0.0px], [13, 0px], [15, 0px], [16, 2px], [17, 3px]]
+                        width: [[15, 0], [16, 2px], [17, 3px]]
             # Force minor roads to draw under everything else early (server bug?)
             early:
                 filter: { $zoom: { max: 14 } }
@@ -2007,7 +2003,7 @@ layers:
                     width: [[14, 0.6px], [16, 1px], [17, 2.5m]]
                     outline:
                         color: [0.799,0.799,0.799]
-                        width: [[14, 0.0], [16, 0.5px], [18, 3px]]
+                        width: [[14, 0], [16, 0.5px], [18, 3px]]
             pedestrian:
                 filter: { highway: pedestrian }
                 draw:
@@ -2111,7 +2107,7 @@ layers:
                     join: round
                     outline:
                         color: *minor_casing1
-                        width: [[14, 0px], [15, 0px], [16, 0.5px], [17, 1.0px], [18, 2.0px]]
+                        width: [[15, 0px], [16, 0.5px], [17, 1.0px], [18, 2.0px]]
             bridge:
                 filter: { is_bridge: yes }
                 draw:
@@ -2128,7 +2124,7 @@ layers:
                         width: [[13, 0.5px], [14, 0.5px], [15, 1.0px], [16, 6m]]
                         outline:
                             color: [[16,*green1_r],[17,*major_casing1]]
-                            width: [[14, 0px], [15, 0px], [16, 0.25px], [17, 0.5px], [18, 1.0px], [19, 2.0px]]
+                            width: [[15, 0px], [16, 0.25px], [17, 0.5px], [18, 1.0px], [19, 2.0px]]
         steps:
             filter: { kind: path, highway: steps }
             draw:
@@ -2216,7 +2212,7 @@ layers:
                     color: [0.702,0.843,0.933]
                     width: [[12, 0.5px], [14, 1.0px], [15, 1.0px], [16, 1.25px]]
                     outline:
-                        width: 0px
+                        width: 0
         aerialway:
             filter: { kind: aerialway }
             draw:
