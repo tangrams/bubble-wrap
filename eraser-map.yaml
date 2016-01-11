@@ -4586,6 +4586,14 @@ layers:
                     draw:
                         text-blend-order:
                             visible: false
+            tower:
+                filter: { kind: [tower], label_placement: yes }
+                draw:
+                    icons:
+                        visible: false
+                    text-blend-order:
+                        font:
+                            style: italic
             station-train-subway:
                 filter: { kind: [station, train-station, train_station], $zoom: { min: 11 } }
                 visible: *label_visible_station
