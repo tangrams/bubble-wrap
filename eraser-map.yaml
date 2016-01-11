@@ -1975,7 +1975,7 @@ layers:
                             color: [0.818,0.702,0.713]
                             width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
             labels-service_road:
-                filter: { $zoom: { min: 17, min: 18 } }
+                filter: { $zoom: 17 }
                 draw:
                     text-blend-order:
                         priority: 27
@@ -3908,7 +3908,6 @@ layers:
                         font:
                             fill: *text_fill
                             weight: 400
-                            fill: *text_fill
 
                 z13places-1-ne:
                     filter: { scalerank: [0,1] }
@@ -4869,9 +4868,6 @@ layers:
                 tower:
                     filter: { kind: [tower], label_placement: false }
                     draw:   { icons: { sprite: landmark } }
-                tower:
-                    filter: { kind: [tower], label_placement: yes }
-                    draw:   { icons: { visible: false }, text-blend-order: { font: { style: italic } } }
                 laundry:
                     filter: { kind: [laundry] }
                     draw:   { icons: { sprite: laundry } }
