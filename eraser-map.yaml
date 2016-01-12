@@ -912,7 +912,7 @@ layers:
         inactive:
             filter: { state: inactive }
             draw:
-                icons:
+                icons-overlay:
                     sprite: search-inactive
 
     # Basemap styling
