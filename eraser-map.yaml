@@ -2276,8 +2276,8 @@ layers:
             filter: { kind: path, man_made: pier }
             draw:
                 lines:
-                    color: [[13,*path2],[16,*path1]]
-                    width: [[13, 1.5], [15, 2.0], [17, 3m]]
+                    color: white
+                    width: [[13, 0.5px], [15, 1.5px], [17, 3m]]
         racetrack:
             filter: { kind: racetrack }
             draw:
