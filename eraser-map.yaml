@@ -4613,7 +4613,7 @@ layers:
                 early:
                     filter: { $zoom: [9,10,11] }
                     # todo: huh?
-                    draw: { text-blend-order: { text_source: iata, { font: { size: 11px } } } }
+                    draw: { text-blend-order: { text_source: iata, font: { size: 11px } } }
                 early2:
                     filter: { $zoom: { min: 12, max: 14 } }
                     draw: { text-blend-order: { font: { size: 11px } } }
