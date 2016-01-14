@@ -861,7 +861,6 @@ styles:
     icons:
         base: points
         texture: pois
-        interactive: true
         blend_order: 1
     text-blend-order:
         base: text
@@ -869,7 +868,6 @@ styles:
     icons-overlay:
         base: points
         texture: pois
-        interactive: true
         blend: overlay
         blend_order: 2
     lines-overlay:
@@ -894,6 +892,7 @@ layers:
         data: { source: find_me }
         draw:
             icons-overlay:
+                interactive: true
                 sprite: current-location
                 size: 36px
                 collide: false
@@ -904,6 +903,7 @@ layers:
         data: { source: route_icon }
         draw:
             icons-overlay:
+                interactive: true
                 sprite: route-arrow
                 size: [33px,40px]
                 collide: false
@@ -914,6 +914,7 @@ layers:
         data: { source: route_start }
         draw:
             icons-overlay:
+                interactive: true
                 priority: 1
                 sprite: route-start
                 size: [36px,46px]
@@ -923,6 +924,7 @@ layers:
         data: { source: route_stop }
         draw:
             icons-overlay:
+                interactive: true
                 priority: 1
                 sprite: route-stop
                 size: [36px,46px]
@@ -932,6 +934,7 @@ layers:
         data: { source: search }
         draw:
             icons-overlay:
+                interactive: true
                 sprite: search-active
                 size: [36px,46px]
                 collide: false
