@@ -858,6 +858,15 @@ styles:
         base: lines
         mix: scale-buildings
         texcoords: true
+    lines_transparent:
+        base: lines
+        blend: overlay
+    outline_transparent:
+        base: lines
+        blend: overlay
+    polygons_transparent:
+        base: polygons
+        blend: overlay
     icons:
         base: points
         texture: pois
