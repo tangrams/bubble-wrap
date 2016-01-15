@@ -4386,7 +4386,7 @@ layers:
                     draw: { icons: { sprite: tennis } }
             toilets:
                 filter: { kind: toilets, $zoom: { min: 18 }  }
-                draw: { icons: { sprite: bathroom, visible: *icon_visible_poi_landuse_e } }
+                draw: { icons: { sprite: toilets, visible: *icon_visible_poi_landuse_e } }
             picnic_site:
                 filter: { kind: picnic_site, $zoom: { min: 18 }  }
                 draw: { icons: { sprite: picnic-spot, visible: *icon_visible_poi_landuse_e } }
