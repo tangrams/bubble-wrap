@@ -2572,19 +2572,25 @@ layers:
                 - { $zoom: { min: 16 } }
                 - $geometry: point
                 - not: { location: underground }
-                - kind: [false,building]
+                - kind: [false, building, university, college, school, kindergarten]
             any:
                 - { $zoom: [16], area: { min: 5000 }, name: true }
                 - { $zoom: [16], area: { min: 5000 }, kind: true }
                 - { $zoom: [16], area: { min: 10000 }, landuse_kind: true }
+                - { $zoom: [16], area: { min: 7000 }, kind: [university, college, school, kindergarten] }
                 - { $zoom: [16], volume: { min: 50000 }, name: true }
                 - { $zoom: [17], area: { min: 3000 }, name: true }
+                - { $zoom: [17], area: { min: 2000 }, kind: [university, college, school, kindergarten] }
                 - { $zoom: [18], area: { min: 1000 }, name: true }
+                - { $zoom: [18], kind: [university, college, school, kindergarten] }
                 - { $zoom: [19], area: { min: 200 }, name: true }
+                - { $zoom: { min: 19 }, kind: [university, college, school, kindergarten] }
                 - { $zoom: { min: 20 }, name: true }
         draw:
             text-blend-order:
                 interactive: true
+                move_into_tile: true
+                priority: 21
                 order: 7
                 font:
                     fill: '#666'
@@ -2601,14 +2607,13 @@ layers:
         building_labels-z20-up:
             filter: { $zoom: { min: 20 } }
             draw: { text-blend-order: { font: { size: 14px, weight: 600, stroke: { width: 3 }  } } }
-        # Hack for no text wrap in Tangram
         building-labels-z16:
-            filter: function() { if( $zoom == 16 && feature.name.length > 10 ) { return true; } else { return false; } }
+            filter: function() { if( $zoom == 16 && feature.name.length > 20 ) { return true; } else { return false; } }
             draw:
                 text-blend-order:
                     visible: false
         building-labels-z17:
-            filter: function() { if( $zoom == 17 && feature.name.length > 20 ) { return true; } else { return false; } }
+            filter: function() { if( $zoom == 17 && feature.name.length > 30 ) { return true; } else { return false; } }
             draw:
                 text-blend-order:
                     visible: false
@@ -4177,12 +4182,19 @@ layers:
                         text_wrap: 12
                         visible: *text_visible_neighbourhoods
                         font:
-                            size: 16px
+                            size: 15px
                             weight: 300
                             fill: [0.20,0.20,0.20]
                             transform: uppercase
                             # stroke: { color: *text_stroke, width: 3 }
-
+                z15-new:
+                    filter: 
+                        all:
+                            - min_zoom: 15
+                    draw:
+                        text-blend-order:
+                            font:
+                                size: 13px
             neighborhood-z16:
                 filter:
                     all:
@@ -4530,6 +4542,7 @@ layers:
                         - kind: [university,college]
                         - area: true
                         - $geometry: point
+                        - not: { $layer: buildings }
                     any:
                         # show labels for smaller landuse areas at higher zooms
                         - { $zoom: [9],   area: { min: 10000000 } }
@@ -4569,6 +4582,7 @@ layers:
                         - kind: [school, kindergarten]
                         - area: true
                         - $geometry: point
+                        - not: { $layer: buildings }
                     any:
                         # show labels for smaller landuse areas at higher zooms
                         - { $zoom: [13], area: { min: 100000 } }
