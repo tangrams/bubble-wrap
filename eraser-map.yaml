@@ -953,6 +953,15 @@ layers:
             draw:
                 icons-overlay:
                     sprite: search-inactive
+    reverse_geocode:
+        data: { source: reverse_geocode }
+        draw:
+            icons-overlay:
+                interactive: true
+                sprite: search-active
+                size: [36px,46px]
+                collide: false
+                anchor: top
 
     # Basemap styling
     earth:
