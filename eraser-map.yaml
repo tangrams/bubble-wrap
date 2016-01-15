@@ -858,10 +858,18 @@ styles:
         base: lines
         mix: scale-buildings
         texcoords: true
+    lines_transparent:
+        base: lines
+        blend: overlay
+    outline_transparent:
+        base: lines
+        blend: overlay
+    polygons_transparent:
+        base: polygons
+        blend: overlay
     icons:
         base: points
         texture: pois
-        interactive: true
         blend_order: 1
     text-blend-order:
         base: text
@@ -869,7 +877,6 @@ styles:
     icons-overlay:
         base: points
         texture: pois
-        interactive: true
         blend: overlay
         blend_order: 2
     lines-overlay:
@@ -894,6 +901,7 @@ layers:
         data: { source: find_me }
         draw:
             icons-overlay:
+                interactive: true
                 sprite: current-location
                 size: 36px
                 collide: false
@@ -904,6 +912,7 @@ layers:
         data: { source: route_icon }
         draw:
             icons-overlay:
+                interactive: true
                 sprite: route-arrow
                 size: [33px,40px]
                 collide: false
@@ -914,6 +923,7 @@ layers:
         data: { source: route_start }
         draw:
             icons-overlay:
+                interactive: true
                 priority: 1
                 sprite: route-start
                 size: [36px,46px]
@@ -923,6 +933,7 @@ layers:
         data: { source: route_stop }
         draw:
             icons-overlay:
+                interactive: true
                 priority: 1
                 sprite: route-stop
                 size: [36px,46px]
@@ -932,6 +943,7 @@ layers:
         data: { source: search }
         draw:
             icons-overlay:
+                interactive: true
                 sprite: search-active
                 size: [36px,46px]
                 collide: false
@@ -941,6 +953,15 @@ layers:
             draw:
                 icons-overlay:
                     sprite: search-inactive
+    reverse_geocode:
+        data: { source: reverse_geocode }
+        draw:
+            icons-overlay:
+                interactive: true
+                sprite: search-active
+                size: [36px,46px]
+                collide: false
+                anchor: top
 
     # Basemap styling
     earth:
@@ -2533,8 +2554,7 @@ layers:
                 polygons:
                     color: [0.950,0.917,0.883]
                 lines:
-                    outline:
-                        color: *brown1_bo
+                    color: *brown1_bo
         in_hospital:
             filter: { landuse_kind: hospital }
             draw:
@@ -2545,7 +2565,7 @@ layers:
             draw:
                 polygons:
                     color: *purple_b
-                outline:
+                lines:
                     color: *purple_bo
                     width: [[14,0.5px],[15,0.5px],[17,0.5px],[18,0.75px],[19,0.25m]]
         in_retail:
@@ -2561,19 +2581,25 @@ layers:
                 - { $zoom: { min: 16 } }
                 - $geometry: point
                 - not: { location: underground }
-                - kind: [false,building]
+                - kind: [false, building, university, college, school, kindergarten]
             any:
                 - { $zoom: [16], area: { min: 5000 }, name: true }
                 - { $zoom: [16], area: { min: 5000 }, kind: true }
                 - { $zoom: [16], area: { min: 10000 }, landuse_kind: true }
+                - { $zoom: [16], area: { min: 7000 }, kind: [university, college, school, kindergarten] }
                 - { $zoom: [16], volume: { min: 50000 }, name: true }
                 - { $zoom: [17], area: { min: 3000 }, name: true }
+                - { $zoom: [17], area: { min: 2000 }, kind: [university, college, school, kindergarten] }
                 - { $zoom: [18], area: { min: 1000 }, name: true }
+                - { $zoom: [18], kind: [university, college, school, kindergarten] }
                 - { $zoom: [19], area: { min: 200 }, name: true }
+                - { $zoom: { min: 19 }, kind: [university, college, school, kindergarten] }
                 - { $zoom: { min: 20 }, name: true }
         draw:
             text-blend-order:
                 interactive: true
+                move_into_tile: true
+                priority: 21
                 order: 7
                 font:
                     fill: '#666'
@@ -2590,14 +2616,13 @@ layers:
         building_labels-z20-up:
             filter: { $zoom: { min: 20 } }
             draw: { text-blend-order: { font: { size: 14px, weight: 600, stroke: { width: 3 }  } } }
-        # Hack for no text wrap in Tangram
         building-labels-z16:
-            filter: function() { if( $zoom == 16 && feature.name.length > 10 ) { return true; } else { return false; } }
+            filter: function() { if( $zoom == 16 && feature.name.length > 20 ) { return true; } else { return false; } }
             draw:
                 text-blend-order:
                     visible: false
         building-labels-z17:
-            filter: function() { if( $zoom == 17 && feature.name.length > 20 ) { return true; } else { return false; } }
+            filter: function() { if( $zoom == 17 && feature.name.length > 30 ) { return true; } else { return false; } }
             draw:
                 text-blend-order:
                     visible: false
@@ -2906,8 +2931,10 @@ layers:
         populated-places:
             draw:
                 icons:
+                    interactive: true
                     priority: 5
                 text-blend-order:
+                    interactive: true
                     anchor: bottom
                     priority: 6
 
@@ -2915,7 +2942,6 @@ layers:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [2], scalerank: 0 }
                 draw:
                     text-blend-order:
-                        interactive: true
                         visible: *text_visible_populated_places
                         offset: [0, 1px] # half icon size
                         font:
@@ -2924,7 +2950,6 @@ layers:
                             # stroke: { color: *text_stroke, width: 4 }
                     icons:
                         size: 5px
-                        interactive: true
                         visible: *icon_visible_populated_places
                         sprite: townspot-s-rev
 
@@ -2934,7 +2959,6 @@ layers:
                     filter: { scalerank: [0] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
@@ -2943,13 +2967,11 @@ layers:
                                 # stroke: { color: *text_stroke, width: 4 }
                         icons:
                             size: 6px
-                            interactive: true
                             sprite: townspot-s-rev
                 z3places-2:
                     filter: { scalerank: [1] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
@@ -2958,7 +2980,6 @@ layers:
                                 # stroke: { color: *text_stroke, width: 4 }
                         icons:
                             size: 6px
-                            interactive: true
                             sprite: townspot-s-rev
 
             populated-places-natural-earth-z4:
@@ -2967,7 +2988,6 @@ layers:
                     filter: { scalerank: [0] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 2px] # half icon size
                             font:
@@ -2976,7 +2996,6 @@ layers:
                                 # stroke: { color: *text_stroke, width: 4 }
                         icons:
                             size: 6px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
 
@@ -2984,7 +3003,6 @@ layers:
                     filter: { scalerank: [1,2] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
@@ -2993,7 +3011,6 @@ layers:
                                 # stroke: { color: *text_stroke, width: 4 }
                         icons:
                             size: 6px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
 
@@ -3003,14 +3020,12 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 3px] # half icon size
                             font:
                                 size: 13px
                         icons:
                             size: 7px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3024,14 +3039,12 @@ layers:
                     filter: { scalerank: [2] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 2px] # half icon size
                             font:
                                 size: 11px
                         icons:
                             size: 6px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3045,7 +3058,6 @@ layers:
                     filter: { scalerank: [3,4] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 2px] # half icon size
                             font:
@@ -3053,7 +3065,6 @@ layers:
                                 size: 10px
                         icons:
                             size: 6px
-                            interactive: true
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -3068,7 +3079,6 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 3px] # half icon size
                             font:
@@ -3076,7 +3086,6 @@ layers:
                                 size: 15px
                         icons:
                             size: 8px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-l-rev
                     capital:
@@ -3089,7 +3098,6 @@ layers:
                     filter: { scalerank: [2,3,4] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 2px] # half icon size
                             font:
@@ -3097,7 +3105,6 @@ layers:
                                 size: 12px
                         icons:
                             size: 6px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3111,7 +3118,6 @@ layers:
                     filter: { scalerank: [5,6] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 2px] # half icon size
                             font:
@@ -3119,7 +3125,6 @@ layers:
                                 size: 10px
                         icons:
                             size: 6px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3135,7 +3140,6 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 2px] # half icon size
                             font:
@@ -3143,7 +3147,6 @@ layers:
                                 size: 16px
                         icons:
                             size: 8px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-l-rev
                     capital:
@@ -3156,7 +3159,6 @@ layers:
                     filter: { scalerank: [2,3,4,5] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
@@ -3164,7 +3166,6 @@ layers:
                                 size: 13px
                         icons:
                             size: 7px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3178,7 +3179,6 @@ layers:
                     filter: { scalerank: [6,7] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 2px] # half icon size
                             font:
@@ -3186,7 +3186,6 @@ layers:
                                 size: 11px
                         icons:
                             size: 6px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3211,14 +3210,12 @@ layers:
                             - { population: { min: 1000000 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 2px] # half icon size
                             font:
                                 size: 16px
                         icons:
                             size: 8px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3232,14 +3229,12 @@ layers:
                             - { population: { min: 150000, max: 999999 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 2px] # half icon size
                             font:
                                 size: 13px
                         icons:
                             size: 7px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3254,7 +3249,6 @@ layers:
                             - { population: { min: 85000, max: 149999 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
@@ -3262,7 +3256,6 @@ layers:
                                 size: 11px
                         icons:
                             size: 7px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3277,7 +3270,6 @@ layers:
                             - { population: { min: 50000, max: 84999 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
@@ -3285,7 +3277,6 @@ layers:
                                 size: 10px
                         icons:
                             size: 6px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3301,14 +3292,12 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 2px] # half icon size
                             font:
                                 size: 16px
                         icons:
                             size: 8px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-l-rev
                     capital:
@@ -3321,14 +3310,12 @@ layers:
                     filter: { scalerank: [2,3,4,5] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
                                 size: 13px
                         icons:
                             size: 7px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3341,14 +3328,12 @@ layers:
                     filter: { scalerank: [6,7] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
                                 size: 11px
                         icons:
                             size: 6px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3373,7 +3358,6 @@ layers:
                     draw:
                         text-blend-order:
                             anchor: center
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 2px] # half icon size
                             font:
@@ -3386,7 +3370,6 @@ layers:
                     draw:
                         text-blend-order:
                             anchor: center
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
@@ -3398,14 +3381,12 @@ layers:
                             - { population: { min: 150000, max: 350000 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
                                 size: 13px
                         icons:
                             size: 7px
-                            interactive: true
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
@@ -3419,7 +3400,6 @@ layers:
                             - { population: { min: 85000, max: 149999 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
@@ -3427,7 +3407,6 @@ layers:
                                 size: 11px
                         icons:
                             size: 7px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3445,7 +3424,6 @@ layers:
                             - { population: { min: 50000, max: 84999 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
@@ -3453,7 +3431,6 @@ layers:
                                 size: 9px
                         icons:
                             size: 6px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3474,7 +3451,6 @@ layers:
                 draw:
                     text-blend-order:
                         anchor: center
-                        interactive: true
                         visible: *text_visible_populated_places
                         font:
                             size: 10px
@@ -3486,14 +3462,12 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 2px] # half icon size
                             font:
                                 size: 16px
                         icons:
                             size: 8px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-l-rev
                     capital:
@@ -3506,14 +3480,12 @@ layers:
                     filter: { scalerank: [2,3,4,5] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
                                 size: 13px
                         icons:
                             size: 7px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3526,14 +3498,12 @@ layers:
                     filter: { scalerank: [6,7,8,9] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
                                 size: 11px
                         icons:
                             size: 7px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3558,7 +3528,6 @@ layers:
                     draw:
                         text-blend-order:
                             anchor: center
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 2px] # half icon size
                             font:
@@ -3571,7 +3540,6 @@ layers:
                     draw:
                         text-blend-order:
                             anchor: center
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
@@ -3583,14 +3551,12 @@ layers:
                             - { population: { min: 150000, max: 350000 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
                                 size: 13px
                         icons:
                             size: 7px
-                            interactive: true
                             sprite: townspot-m-rev
 
                 z10places-3:
@@ -3599,7 +3565,6 @@ layers:
                             - { population: { min: 50000, max: 149999 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
@@ -3607,7 +3572,6 @@ layers:
                                 size: 11px
                         icons:
                             size: 7px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
 
@@ -3617,7 +3581,6 @@ layers:
                             - { population: { min: 20000, max: 49999 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
@@ -3625,7 +3588,6 @@ layers:
                                 size: 9px
                         icons:
                             size: 6px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
 
@@ -3641,7 +3603,6 @@ layers:
                 draw:
                     text-blend-order:
                         anchor: center
-                        interactive: true
                         visible: *text_visible_populated_places
                         font:
                             size: 10px
@@ -3653,7 +3614,6 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 2px] # half icon size
                             font:
@@ -3663,14 +3623,12 @@ layers:
                     filter: { scalerank: [2,3,4,5] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
                                 size: 13px
                         icons:
                             size: 7px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3683,14 +3641,12 @@ layers:
                     filter: { scalerank: [6,7,8,9,10] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
                                 size: 11px
                         icons:
                             size: 6px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3719,7 +3675,6 @@ layers:
                             - { population: { min: 1000000 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 18px
@@ -3730,7 +3685,6 @@ layers:
                             - { population: { min: 50000, max: 999999 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 14px
@@ -3741,7 +3695,6 @@ layers:
                         - { population: { min: 5000, max: 49999 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 10px
@@ -3758,7 +3711,6 @@ layers:
                 draw:
                     text-blend-order:
                         anchor: center
-                        interactive: true
                         visible: *text_visible_populated_places
                         font:
                             size: 11px
@@ -3774,13 +3726,11 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 16px
                         icons:
                             size: 14px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3796,13 +3746,11 @@ layers:
                     filter: { scalerank: [2,3,4,5] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 13px
                         icons:
                             size: 11px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3824,13 +3772,11 @@ layers:
                     filter: { scalerank: [6,7,8,9,10,11] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 11px
                         icons:
                             size: 9px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3862,7 +3808,6 @@ layers:
 
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 18px
@@ -3873,7 +3818,6 @@ layers:
                             - { population: { min: 50000, max: 999999 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 14px
@@ -3884,7 +3828,6 @@ layers:
                         - { population: { min: 5000, max: 49999 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 11px
@@ -3895,7 +3838,6 @@ layers:
                         - { population: { max: 5000 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 10px
@@ -3912,7 +3854,6 @@ layers:
                 draw:
                     text-blend-order:
                         anchor: center
-                        interactive: true
                         visible: *text_visible_populated_places
                         font:
                             size: 11px
@@ -3929,13 +3870,11 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 16px
                         icons:
                             size: 14px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3951,13 +3890,11 @@ layers:
                     filter: { scalerank: [2,3,4,5] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 13px
                         icons:
                             size: 11px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3973,13 +3910,11 @@ layers:
                     filter: { scalerank: [6,7,8,9,10,11,12] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 11px
                         icons:
                             size: 9px
-                            interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -4003,7 +3938,6 @@ layers:
                 draw:
                     text-blend-order:
                         anchor: center
-                        interactive: true
                         visible: *text_visible_populated_places
                         font:
                             weight: 600
@@ -4030,7 +3964,6 @@ layers:
                             - { population: { min: 50000, max: 199999 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 14px
@@ -4041,7 +3974,6 @@ layers:
                         - { population: { min: 5000, max: 49999 } }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 12px
@@ -4058,7 +3990,6 @@ layers:
                 draw:
                     text-blend-order:
                         anchor: center
-                        interactive: true
                         visible: *text_visible_populated_places
                         font:
                             size: 11px
@@ -4076,13 +4007,13 @@ layers:
                     filter: { scalerank: [0,1] }
                     draw:
                         text-blend-order:
+                            interactive: false
                             visible: false
 
                 z13places-2-ne:
                     filter: { scalerank: [2,3,4,5] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 13px
@@ -4091,7 +4022,6 @@ layers:
                     filter: { scalerank: [6,7,8,9,10,11,12] }
                     draw:
                         text-blend-order:
-                            interactive: true
                             visible: *text_visible_populated_places
                             font:
                                 size: 12px
@@ -4261,12 +4191,19 @@ layers:
                         text_wrap: 12
                         visible: *text_visible_neighbourhoods
                         font:
-                            size: 16px
+                            size: 15px
                             weight: 300
                             fill: [0.20,0.20,0.20]
                             transform: uppercase
                             # stroke: { color: *text_stroke, width: 3 }
-
+                z15-new:
+                    filter: 
+                        all:
+                            - min_zoom: 15
+                    draw:
+                        text-blend-order:
+                            font:
+                                size: 13px
             neighborhood-z16:
                 filter:
                     all:
@@ -4412,7 +4349,6 @@ layers:
                         # sprite_source: kind
                         sprite: function() { return feature.kind; }
                         visible: *icon_visible_poi_landuse
-                        interactive: true
 
             # add generic icon at high zoom, if direct match fails
             generic-icons:
@@ -4421,7 +4357,6 @@ layers:
                     icons:
                         sprite_default: generic
                         visible: *icon_visible_poi_landuse
-                        interactive: true
                         priority: 17
 
             # add generic icon at high zoom
@@ -4430,7 +4365,6 @@ layers:
                 draw:
                     text-blend-order:
                         visible: *text_visible_poi_landuse
-                        interactive: true
                         priority: 18
 
             landuse-labels-green-areas-national-park:
@@ -4459,11 +4393,9 @@ layers:
                         icons:
                             visible: *icon_visible_landuse_green
                             sprite: park
-                            interactive: true
                             priority: 11
                         text-blend-order:
                             visible: *text_visible_landuse_green
-                            interactive: true
                             priority: 12
                             font:
                                 fill: [0.200,0.409,0.398] #*text_fill_park
@@ -4514,11 +4446,9 @@ layers:
                         icons:
                             visible: *icon_visible_landuse_green
                             sprite: park
-                            interactive: true
                             priority: 11
                         text-blend-order:
                             visible: *text_visible_landuse_green
-                            interactive: true
                             priority: 12
                             font:
                                 fill: [0.181,0.370,0.361]
@@ -4599,11 +4529,9 @@ layers:
                     icons:
                         sprite: airport
                         visible: *icon_visible_landuse_green
-                        interactive: true
                         priority: 12
                     text-blend-order:
                         visible: *text_visible_landuse_green
-                        interactive: true
                         priority: 11
                         text_source: function() { if(feature.iata) { return feature.name + ' (' + feature.iata + ')'; } else { return feature.name; } }
                         font:
@@ -4613,7 +4541,7 @@ layers:
                 early:
                     filter: { $zoom: [9,10,11] }
                     # todo: huh?
-                    draw: { text-blend-order: { text_source: iata, { font: { size: 11px } } } }
+                    draw: { text-blend-order: { text_source: iata, font: { size: 11px } } }
                 early2:
                     filter: { $zoom: { min: 12, max: 14 } }
                     draw: { text-blend-order: { font: { size: 11px } } }
@@ -4623,6 +4551,7 @@ layers:
                         - kind: [university,college]
                         - area: true
                         - $geometry: point
+                        - not: { $layer: buildings }
                     any:
                         # show labels for smaller landuse areas at higher zooms
                         - { $zoom: [9],   area: { min: 10000000 } }
@@ -4641,11 +4570,9 @@ layers:
                     icons:
                         sprite: college-university
                         visible: *icon_visible_landuse_green
-                        interactive: true
                         priority: 11
                     text-blend-order:
                         visible: *text_visible_landuse_green
-                        interactive: true
                         priority: 12
                         font:
                             weight: 600
@@ -4664,6 +4591,7 @@ layers:
                         - kind: [school, kindergarten]
                         - area: true
                         - $geometry: point
+                        - not: { $layer: buildings }
                     any:
                         # show labels for smaller landuse areas at higher zooms
                         - { $zoom: [13], area: { min: 100000 } }
@@ -4678,11 +4606,9 @@ layers:
                     icons:
                         sprite: school
                         visible: *icon_visible_landuse_green
-                        interactive: true
                         priority: 11
                     text-blend-order:
                         visible: *text_visible_landuse_green
-                        interactive: true
                         font:
                             fill: *text_fill
                             size: 12px
@@ -4711,7 +4637,6 @@ layers:
                 draw:
                     text-blend-order:
                         visible: *text_visible_landuse_green
-                        interactive: true
                         font:
                             fill: *text_fill
                             size: 12px
@@ -4719,7 +4644,6 @@ layers:
                     icons:
                         sprite: ski-area
                         visible: *icon_visible_landuse_green
-                        interactive: true
                         priority: 11
                 early:
                     filter: { $zoom: { max: 14 } }
@@ -4750,11 +4674,9 @@ layers:
                         sprite: function() { return feature.kind; }
                         sprite_default: generic
                         visible: *icon_visible_poi_landuse
-                        interactive: true
                         priority: 13
                     text-blend-order:
                         visible: *text_visible_poi_landuse
-                        interactive: true
                         priority: 14
                         font:
                             fill: [0.20,0.20,0.20] # *text_fill
@@ -4834,7 +4756,6 @@ layers:
                 draw:
                     text-blend-order:
                         visible: *text_visible_poi_landuse
-                        interactive: true
                         font:
                             fill: [0.20,0.20,0.20] #*text_fill
                             size: 10px
@@ -4922,7 +4843,6 @@ layers:
                 draw:
                     text-blend-order:
                         visible: *text_visible_poi_landuse
-                        interactive: true
                         font:
                             fill: [0.20,0.20,0.20] # *text_fill
                             size: 11px
