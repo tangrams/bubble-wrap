@@ -5843,9 +5843,9 @@ layers:
                 kind: beach
             draw:
                 dots2:
-                    color: *yellow1
+                    color: [0.780,0.740,0.538]
                     order: 4
-                    
+
     landuse_urban_area-early:
         data: { source: osm, layer: landuse }
         filter:
