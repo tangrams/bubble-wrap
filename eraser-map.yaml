@@ -1137,14 +1137,14 @@ layers:
         filter: { kind: platform }
         draw:
             lines_transparent:
-                color: *grey9
+                color: [0.569,0.690,0.722,0.5]
                 width: 5m
                 visible: *grey9_v
         polygon_geom:
             filter: { $geometry: polygon }
             draw:
                 polygons_transparent:
-                    color: *grey9
+                    color: [0.592,0.671,0.694,0.5]
                     visible: *grey9_v
                 lines_transparent:
                     visible: false
