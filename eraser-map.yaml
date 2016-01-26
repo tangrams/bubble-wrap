@@ -1042,7 +1042,7 @@ layers:
                     join: round
                     outline:
                         color: [0.886,0.937,0.988]
-                        width: [[9,0px],[10,1.5px],[11,1px],[12,2.25px],[13,2.5px],[14,3px],[15,4px],[16,5px],[18,7px]]
+                        width: [[9,0px],[10,1.5px],[11,1px],[12,1.5px],[13,1.6px],[14,2px],[15,2px],[16,3px],[18,4px]]
             early:
                 filter: { $zoom: { min: 14 } }
                 draw:
