@@ -5621,7 +5621,7 @@ layers:
                     kind: military
                 draw:
                     dots2:
-                        color: [0.624,0.709,0.800]
+                        color: [0.722,0.769,0.827]
                         visible: true
             university:
                 filter:
