@@ -100,7 +100,7 @@ settings:
         - &country_boundary           [1.0,1.0,1.0]
         - &region_boundary            [1.0,1.0,1.0]
         - &subregion_boundary         '#bbb'
-        - &city_wall                  '#ccb38f'
+        - &city_wall                  [0.682,0.682,0.682]
         - &retaining_wall             [0.827,0.808,0.780]
         - &snow_fence                 [0.827,0.808,0.780]
 
