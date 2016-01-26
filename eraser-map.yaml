@@ -183,7 +183,7 @@ settings:
         - &text_fill   black
         - &text_fill2        '#555'             # WHITE
         - &text_fill_road_e   '#555'            # WHITE
-        - &text_fill_exits    '#d84445'         # motorway junctions, highway_casing1
+        - &text_fill_exits    [0.769,0.386,0.340]         # motorway junctions, highway_casing1
         - &text_fill_building '#ccc'            # WHITE
         - &text_fill_address  '#aaa'            # HUH
         - &text_fill_water   '#4c89b5'          # blue
@@ -1072,8 +1072,8 @@ layers:
                     join: round
                     outline:
                         order: 5
-                        color: [[11,[0.671,0.788,0.812]],[13,[0.710,0.800,0.824]],[14,[0.543,0.740,0.780]]]
-                        width: [[9,0px],[11,0px],[12,0px],[13,1.5px],[14,1.25px],[15,1px],[16,1px],[17,1px]]
+                        color: [[11,[0.671,0.788,0.812]],[13,[0.710,0.800,0.824]],[14,[0.635,0.812,0.843]]]
+                        width: [[9,0px],[11,0px],[12,0px],[13,0.5px],[14,0.75px],[15,0.75px],[16,0.75px],[17,1px]]
 
     subway-light-rail:
         data: { source: osm, layer: transit }
