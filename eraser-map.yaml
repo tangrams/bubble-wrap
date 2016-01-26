@@ -183,7 +183,7 @@ settings:
         - &text_fill   black
         - &text_fill2        '#555'             # WHITE
         - &text_fill_road_e   '#555'            # WHITE
-        - &text_fill_exits    [0.769,0.386,0.340]         # motorway junctions, highway_casing1
+        - &text_fill_exits    [0.920,0.398,0.340]         # motorway junctions, highway_casing1
         - &text_fill_building '#ccc'            # WHITE
         - &text_fill_address  '#aaa'            # HUH
         - &text_fill_water   '#4c89b5'          # blue
