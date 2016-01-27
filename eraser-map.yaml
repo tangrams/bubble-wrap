@@ -288,6 +288,7 @@ textures:
             dessert: [799, 1967, 36, 38]
             dog-run: [549, 1371, 36, 38]
             donut: [546, 1968, 36, 38]
+            drinking-water: [1053, 1711, 36, 38]
             dry-cleaning: [802, 1199, 36, 38]
             electronics-store: [806, 945, 36, 38]
             ev-charging-station: [799, 187, 36, 38]
@@ -4342,7 +4343,7 @@ layers:
                 draw: { icons: { sprite: information, visible: *icon_visible_poi_landuse_e } }
             drinking-water:
                 filter: { kind: drinking_water, $zoom: { min: 18 }  }
-                draw: { icons: { sprite: generic, visible: *icon_visible_poi_landuse_e } }
+                draw: { icons: { sprite: drinking-water, visible: *icon_visible_poi_landuse_e } }
             traffic-signal:
                 filter: { kind: traffic_signals, $zoom: { min: 18 } }
                 draw:   { icons: { sprite: traffic-signal, visible: *icon_visible_poi_landuse_e } }
