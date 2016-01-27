@@ -975,7 +975,7 @@ layers:
         data: { source: osm, layer: water }
         draw:
             grid:
-                order: 5
+                order: 12
                 #color: *water1
         lakes:
             filter:
