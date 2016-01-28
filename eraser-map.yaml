@@ -4885,7 +4885,7 @@ layers:
                     filter: { kind: [antiques, antique-shop] }
                     draw:   { icons: { sprite: antique-shop } }
                 art-gallery:
-                    filter: { kind: [art_gallery, art-gallery, art] }
+                    filter: { kind: [art_gallery, art-gallery, art, artwork] }
                     draw:   { icons: { sprite: art-gallery } }
                 athletics-sports:
                     filter: { kind: [athletic_sports, recreation_ground, sports_centre] }
