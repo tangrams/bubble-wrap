@@ -930,6 +930,9 @@ layers:
                 size: [36px,46px]
                 collide: false
                 anchor: top
+                transition:
+                    [show, hide]:
+                        time: 0s
     route_stop:
         data: { source: route_stop }
         draw:
@@ -940,6 +943,9 @@ layers:
                 size: [36px,46px]
                 collide: false
                 anchor: top
+                transition:
+                    [show, hide]:
+                        time: 0s
     search:
         data: { source: search }
         draw:
@@ -949,6 +955,9 @@ layers:
                 size: [36px,46px]
                 collide: false
                 anchor: top
+                transition:
+                    [show, hide]:
+                        time: 0s
         inactive:
             filter: { state: inactive }
             draw:
@@ -963,6 +972,9 @@ layers:
                 size: [36px,46px]
                 collide: false
                 anchor: top
+                transition:
+                    [show, hide]:
+                        time: 0s
 
     # Basemap styling
     earth:
