@@ -895,7 +895,7 @@ layers:
         data: { source: route }
         draw:
             lines-overlay:
-                color: '#1183A3'
+                color: '#06a6d4'
                 order: 50
                 width: [[0,2.5px],[8,3px],[9,3.5px],[10,4px],[11,5px],[16,8m]]
     current_location_gem:
