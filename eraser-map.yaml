@@ -875,6 +875,10 @@ styles:
     text-blend-order:
         base: text
         blend_order: 1
+    text-blend-order-overlay:
+        base: text
+        blend_order: 1
+        blend: overlay
     icons-overlay:
         base: points
         texture: pois
@@ -4114,7 +4118,7 @@ layers:
                         text_wrap: 10
                         visible: *text_visible_neighbourhoods_e
                         font:
-                            size: 11px
+                            size: 9px
                             weight: 400
                             fill: *text_fill
                             transform: uppercase
@@ -4141,7 +4145,7 @@ layers:
                         font:
                             size: 10px
                             weight: 400
-                            fill: [0.15,0.15,0.15]
+                            fill: [0.300,0.300,0.300]
                             transform: uppercase
                             # stroke: { color: *text_stroke, width: 2 }
             neighborhood-z13:
@@ -4164,7 +4168,7 @@ layers:
                         text_wrap: 10
                         visible: *text_visible_neighbourhoods_e
                         font:
-                            size: 10px
+                            size: 11px
                             weight: 400
                             fill: [0.35,0.35,0.35]
                             transform: uppercase
@@ -4184,14 +4188,14 @@ layers:
                             - is_landuse_aoi: false
                             - kind_tile_rank: { max: 8 }
                 draw:
-                    text-blend-order:
+                    text-blend-order-overlay:
                         priority: 7
                         text_wrap: 12
                         visible: *text_visible_neighbourhoods
                         font:
-                            size: 12px
+                            size: 13px
                             weight: 400
-                            fill: [0.35,0.35,0.35]
+                            fill: [0.000,0.000,0.000,0.500]
                             transform: uppercase
                             # stroke: { color: *text_stroke, width: 3 }
             neighborhood-z15:
@@ -4209,14 +4213,14 @@ layers:
                             - is_landuse_aoi: false
                             - kind_tile_rank: { max: 8 }
                 draw:
-                    text-blend-order:
+                    text-blend-order-overlay:
                         priority: 7
                         text_wrap: 12
                         visible: *text_visible_neighbourhoods
                         font:
-                            size: 15px
+                            size: 16px
                             weight: 300
-                            fill: [0.20,0.20,0.20]
+                            fill: [0.000,0.000,0.000,0.480]
                             transform: uppercase
                             # stroke: { color: *text_stroke, width: 3 }
                 z15-new:
@@ -4242,13 +4246,13 @@ layers:
                             - is_landuse_aoi: false
                             - kind_tile_rank: { max: 8 }
                 draw:
-                    text-blend-order:
+                    text-blend-order-overlay:
                         priority: 7
                         visible: *text_visible_neighbourhoods
                         font:
-                            size: 16px
+                            size: 17px
                             weight: 300
-                            fill: *text_fill
+                            fill: [0.000,0.000,0.000,0.400]
                             transform: uppercase
                             # stroke: { color: *text_stroke, width: 3 }
 
