@@ -4188,7 +4188,7 @@ layers:
                             - is_landuse_aoi: false
                             - kind_tile_rank: { max: 8 }
                 draw:
-                    text-blend-order-overlay:
+                    text-blend-order:
                         priority: 7
                         text_wrap: 12
                         visible: *text_visible_neighbourhoods
@@ -4213,7 +4213,7 @@ layers:
                             - is_landuse_aoi: false
                             - kind_tile_rank: { max: 8 }
                 draw:
-                    text-blend-order-overlay:
+                    text-blend-order:
                         priority: 7
                         text_wrap: 12
                         visible: *text_visible_neighbourhoods
@@ -4246,7 +4246,7 @@ layers:
                             - is_landuse_aoi: false
                             - kind_tile_rank: { max: 8 }
                 draw:
-                    text-blend-order-overlay:
+                    text-blend-order:
                         priority: 7
                         visible: *text_visible_neighbourhoods
                         font:
