@@ -1362,6 +1362,7 @@ layers:
                         text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                         font:
                             fill: [0.0,0.0,0.0]
+                            weight: 600
                             size: 13px
                             # stroke: { color: [0.976,0.541,0.490], width: 4 }
             labels-highway-z15:
@@ -1372,8 +1373,9 @@ layers:
                         visible: *text_visible_highway
                         font:
                             fill: [0.0,0.0,0.0]
+                            weight: 600
                             size: 15px
-                            # stroke: { color: [0.976,0.541,0.490], width: 4 }
+                            stroke: { color: [1.000,1.000,1.000], width: 2 }
             labels-highway-z16:
                 filter: { $zoom: { min: 16, max: 18 } }
                 draw:
@@ -1383,7 +1385,7 @@ layers:
                         font:
                             fill: [0.0,0.0,0.0]
                             size: 16px
-                            # stroke: { color: *text_stroke, width: 4 }
+                            stroke: { color: [1.000,1.000,1.000], width: 4 }
             labels-highway-z18:
                 filter: { $zoom: { min: 18 } }
                 draw:
@@ -1393,6 +1395,7 @@ layers:
                         font:
                             fill: [0.0,0.0,0.0]
                             size: 17px
+                            stroke: { color: [1.000,1.000,1.000], width: 4 }
 
         major_road:
             filter: { kind: major_road }
@@ -1473,7 +1476,7 @@ layers:
                                     fill: [0.0,0.0,0.0]
                                     weight: 600
                                     size: 16px
-                                    stroke: { color: [0.95,0.95,0.95], width: 0.1px }
+                                    stroke: { color: [1.000,1.000,1.000], width: 4px }
                 labels-trunk_primary-z11:
                     filter:
                         $zoom: [11]
@@ -1565,6 +1568,7 @@ layers:
                             font:
                                 fill: [0.0,0.0,0.0]
                                 size: 17px
+                                stroke: { color: [1.00,1.00,1.00], width: 3 }
             link:
                 filter: { is_link: yes } # on- and off-ramps, etc
                 draw:
