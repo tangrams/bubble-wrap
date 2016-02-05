@@ -925,7 +925,7 @@ layers:
             ui-location-gem-overlay:
                 interactive: true
                 sprite: route-arrow
-                size: [40px,40px]
+                size: [80px,80px]
                 collide: false
                 transition:
                     [show, hide]:
