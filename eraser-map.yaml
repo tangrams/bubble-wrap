@@ -492,10 +492,10 @@ sources:
         #url:  //localhost:8080//osm/all/{z}/{x}/{y}.mvt
         url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-HqUVidw
 
-    #
+
     # Only enable this for local debug, should not be enabled for prod (app inserts these at runtime)
     # These are all in San Francisco, California
-    #
+
     # Current location gem
     # find_me:
     #     type: GeoJSON
@@ -503,7 +503,10 @@ sources:
     # # Route line
     # route:
     #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/9a610ebda6fe4be7bccc/raw/8d217e43f2412d48d01534ba115f1e42dac72e68/map.geojson
+    #     # sf to ny
+    #     url: https://gist.githubusercontent.com/anonymous/30c6c1a75c168d91d90c/raw/92bfe55e622766d250b1f2f5d17bdc7c26acb956/map.geojson
+    #     # local sf trip
+    #     # url: https://gist.githubusercontent.com/anonymous/9a610ebda6fe4be7bccc/raw/8d217e43f2412d48d01534ba115f1e42dac72e68/map.geojson
     # # Pin at start of route
     # route_start:
     #     type: GeoJSON
@@ -904,7 +907,7 @@ layers:
             ui-lines-overlay:
                 color: '#06a6d4'
                 order: 50
-                width: [[0,2.5px],[8,3px],[9,3.5px],[10,4px],[11,5px],[16,8m]]
+                width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
     current_location_gem:
         data: { source: find_me }
         draw:
