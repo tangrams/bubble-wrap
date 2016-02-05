@@ -1725,6 +1725,7 @@ layers:
                                 # need a fill color here?
                                 fill: [0.15,0.15,0.15]
                                 size: 16px
+                                stroke: { color: [1.00,1.00,1.00], width: 3 }
             tertiary:
                 filter: { highway: [tertiary, tertiary_link] }
                 draw:
@@ -1859,7 +1860,7 @@ layers:
                             font:
                                 fill: [0.15,0.15,0.15]
                                 size: 15px
-                                # stroke: { color: *major_road1, width: 4 }
+                                stroke: { color: [1.00,1.00,1.00], width: 2 }
         minor_road:
             filter: { kind: minor_road, not: { highway: service, aeroway: [runway, taxiway] } }
             draw:
@@ -2003,6 +2004,7 @@ layers:
                             # needs a fill color?
                             fill: [0.15,0.15,0.15]
                             size: 15px
+                            stroke: { color: [1.00,1.00,1.00], width: 2 }
         service_road:
             filter: { kind: minor_road, highway: service }
             draw:
@@ -2084,7 +2086,7 @@ layers:
                             # need fill color?
                             fill: [0.25,0.25,0.25]
                             size: 13px
-                            # stroke: { color: *text_stroke, width: 2 }
+                            stroke: { color: [1.00,1.00,1.00], width: 2 }
             labels-service_road-z18:
                 filter: { $zoom: { min: 18 } }
                 draw:
@@ -2096,7 +2098,7 @@ layers:
                             # need fill color?
                             fill: [0.15,0.15,0.15]
                             size: 14px
-                            # stroke: { color: *service_road1, width: 4 }
+                            stroke: { color: [1.00,1.00,1.00], width: 2 }
         path:
             filter: { kind: path, not: { highway: [steps,track], man_made: [pier] } }
             draw:
