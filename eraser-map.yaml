@@ -408,7 +408,7 @@ textures:
             restaurant: [296, 1796, 36, 38]
             river: [716, 779, 36, 38]
             road: [1305, 190, 36, 38]
-            route-arrow: [284, 2520, 322, 322]
+            route-arrow: [324, 2560, 240, 242]
             route-start: [1126, 2285, 144, 186]
             route-stop: [1294, 2285, 144, 186]
             ruin: [888, 698, 36, 38]
@@ -925,7 +925,7 @@ layers:
             ui-location-gem-overlay:
                 interactive: true
                 sprite: route-arrow
-                size: [80px,80px]
+                size: [60px,60px]
                 collide: false
                 transition:
                     [show, hide]:
