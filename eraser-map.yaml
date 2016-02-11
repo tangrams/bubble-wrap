@@ -4745,11 +4745,11 @@ layers:
                     icons:
                         visible: *icon_visible_station
                         sprite: train-station
-                        size: [[13, 12px], [14, 14px], [15, 16px], [17, 20px]]
+                        size: [[13, 12px], [14, 12px], [15, 16px], [17, 18px], [18, 20px]]
                         priority: 11
                     text-blend-order:
                         visible: *text_visible_station
-                        offset: [[13, [0, 6px]], [14, [0, 7px]],[15, [0, 8px]], [17, [0, 10px]]]
+                        offset: [[13, [0, 6px]], [14, [0, 6px]],[15, [0, 8px]], [17, [0, 9px]], [18, [0, 10px]]]
                         priority: 12
                 low-priority-early:
                     filter: { kind_tile_rank: { min: 5 }, $zoom: { min: 0, max: 13 } }
@@ -4766,10 +4766,10 @@ layers:
                             #size: [[12, 10px], [14, 10px], [15, 16px]]
                         text-blend-order: { visible: false } 
                 low-priority-early-z14:
-                    filter: { kind_tile_rank: { min: 7 }, $zoom: { min: 14, max: 15 } }
+                    filter: { kind_tile_rank: { min: 7 }, $zoom: [14] }
                     draw:
-                        icons:
-                            size: [[12, 10px], [14, 11px], [15, 16px]]
+                        #icons:
+                            #size: [[14, 11px], [15, 16px], [17, 18px], [18, 20px]]
                             #visible: false
                         text-blend-order: { visible: false }
             tram-stop-early:
