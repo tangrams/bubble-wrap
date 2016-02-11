@@ -4207,7 +4207,7 @@ layers:
         data: { source: osm, layer: [pois,landuse,buildings] }
         visible: *label_visible_poi_landuse
         filter: 
-            not: { kind: [building,farm,peak,tree,gate,address,apron] }
+            not: { kind: [building,farm,tree,gate,address,apron] }
             any:
                 - area: false
                   all:
@@ -4695,6 +4695,11 @@ layers:
                     icons: { visible: false }
             yes-early:
                 filter: { kind: [yes], $zoom: { max: 18 } }
+                draw:
+                    text-blend-order:  { visible: false }
+                    icons: { visible: false }
+            peak-early:
+                filter: { kind: [peak], $zoom: { max: 16 } }
                 draw:
                     text-blend-order:  { visible: false }
                     icons: { visible: false }
