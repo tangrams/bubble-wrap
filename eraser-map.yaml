@@ -4688,6 +4688,21 @@ layers:
                 draw:
                     text-blend-order:  { visible: false }
                     icons: { visible: false }
+            bicycle-parking-early:
+                filter: { kind: [bicycle_parking], $zoom: { max: 19 } }
+                draw:
+                    text-blend-order:  { visible: false }
+                    icons: { visible: false }
+            yes-early:
+                filter: { kind: [yes], $zoom: { max: 18 } }
+                draw:
+                    text-blend-order:  { visible: false }
+                    icons: { visible: false }
+            drinking-water-early:
+                filter: { kind: [drinking_water], $zoom: { max: 18 } }
+                draw:
+                    text-blend-order:  { visible: false }
+                    icons: { visible: false }
             memorial-early:
                 filter: { kind: [memorial], $zoom: { max: 13 } }
                 draw:
@@ -4847,6 +4862,9 @@ layers:
                 bike-shop:
                     filter: { kind: [bicycle, bicycle_rental, bike, bike_shop] }
                     draw:   { icons: { sprite: bike-shop } }
+                bicycle-parking:
+                    filter: { kind: [bicycle_parking] }
+                    draw:   { icons: { sprite: bicycle-parking } }
                 boat-ferry:
                     filter: { kind: [ferry_terminal, boat-ferry, ferry-boat, ferry] }
                     draw:   { icons: { sprite: boat-ferry } }
@@ -4932,6 +4950,9 @@ layers:
                 dog-run:
                     filter: { kind: [dog_park, dog_run, dog-run] }
                     draw:   { icons: { sprite: dog-run } }
+                drinking-water:
+                    filter: { kind: drinking_water }
+                    draw: { icons: { sprite: drinking-water } }
                 dry-cleaning:
                     filter: { kind: [dry_cleaning] }
                     draw:   { icons: { sprite: dry-cleaning } }
