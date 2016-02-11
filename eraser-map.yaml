@@ -4277,6 +4277,9 @@ layers:
             toilets:
                 filter: { kind: toilets, $zoom: { min: 18 }  }
                 draw: { icons: { sprite: toilets, visible: *icon_visible_poi_landuse_e } }
+            playground:
+                filter: { kind: playground, $zoom: { min: 18 }  }
+                draw: { icons: { sprite: playground, visible: *icon_visible_poi_landuse_e } }
             picnic_site:
                 filter: { kind: picnic_site, $zoom: { min: 18 }  }
                 draw: { icons: { sprite: picnic-spot, visible: *icon_visible_poi_landuse_e } }
