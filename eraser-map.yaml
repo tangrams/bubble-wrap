@@ -211,273 +211,149 @@ textures:
         filtering: mipmap
         sprites:
             # define sprites: [x origin, y origin, width, height]
-            adult-boutique: [802, 1116, 36, 38]
-            airport: [631, 105, 36, 38]
-            animal-shelter: [380, 1364, 36, 38]
-            antique-shop: [1048, 861, 36, 38]
-            aquarium: [630, 530, 36, 38]
-            arcade: [964, 530, 36, 38]
-            art-gallery: [968, 2052, 36, 38]
-            arts-crafts: [1052, 948, 36, 38]
-            athletics-sports: [1054, 1541, 36, 38]
-            atm: [1138, 1285, 36, 38]
-            automotive-shop: [630, 187, 36, 38]
-            bagel-shop: [716, 1796, 36, 38]
-            bakery: [461, 1964, 36, 38]
-            bank: [802, 1285, 36, 38]
-            bar: [634, 1713, 36, 38]
-            baseball-field: [632, 1455, 36, 38]
-            basketball-court: [886, 1539, 36, 38]
-            basketball-stadium: [716, 1456, 36, 38]
-            bathroom: [1557, 615, 36, 38]
-            battlefield: [973, 696, 36, 38]
-            bbq: [800, 1796, 36, 38]
-            beach: [382, 531, 36, 38]
-            beach-resort: [1389, 531, 36, 38]
-            beer-garden: [885, 1711, 36, 38]
-            bench: [719, 698, 36, 38]
-            bicycle-parking: [970, 187, 36, 38]
-            bike-shop: [470, 1033, 36, 38]
-            boat-ferry: [716, 104, 36, 38]
-            boat-ramp: [1472, 694, 36, 38]
-            bookstore: [636, 1117, 36, 38]
-            bowling-alley: [1222, 1541, 36, 38]
-            breakfast: [968, 1796, 36, 38]
-            bridal-shop: [550, 1118, 36, 38]
-            bridge: [1392, 192, 36, 38]
-            buddhism: [719, 275, 36, 38]
-            building: [465, 693, 36, 38]
-            burger: [464, 1796, 36, 38]
-            bus-station: [548, 103, 36, 38]
-            butcher: [1220, 1627, 36, 38]
-            camera-store: [298, 945, 36, 38]
-            campground: [1220, 533, 36, 38]
-            candy-store: [1053, 1627, 36, 38]
-            capital-l: [982, 2147, 15, 15]
-            capital-m: [1067, 2149, 14, 14]
-            capital-s: [1152, 2150, 12, 12]
-            capital-xl: [896, 2145, 20, 20]
-            capital-xs: [1237, 2151, 9, 9]
-            car-dealership: [380, 187, 36, 38]
-            car-wash: [545, 186, 36, 38]
-            carribean-restaurant: [1050, 1876, 36, 38]
-            casino: [800, 2052, 36, 38]
-            castle: [1223, 616, 36, 38]
-            cemetery: [632, 275, 36, 38]
-            cheese-shop: [969, 1627, 36, 38]
-            chinese-restaurant: [800, 1880, 36, 38]
-            church: [464, 275, 36, 38]
-            city: [296, 695, 36, 38]
-            clinic: [462, 355, 36, 38]
-            clothing-store: [718, 864, 36, 38]
-            cocktail-bar: [550, 1713, 36, 38]
-            coffee-shop: [300, 1965, 36, 38]
-            college-university: [296, 444, 36, 38]
-            comedy-club: [716, 2052, 36, 38]
-            concert-hall: [382, 2052, 36, 38]
-            convenience-store: [461, 1626, 36, 38]
-            cosmetics-shop: [718, 1199, 36, 38]
-            courthouse: [632, 18, 36, 38]
-            credit-union: [882, 1286, 36, 38]
-            cupcake-shop: [717, 1965, 36, 38]
-            current-location: [994, 2286, 72, 72]
-            daycare: [462, 444, 36, 38]
-            dentist: [380, 355, 36, 38]
-            department-store: [550, 863, 36, 38]
-            design-studio: [632, 1284, 36, 38]
-            dessert: [799, 1967, 36, 38]
-            dog-run: [549, 1371, 36, 38]
-            donut: [546, 1968, 36, 38]
-            drinking-water: [1053, 1711, 36, 38]
-            dry-cleaning: [802, 1199, 36, 38]
-            electronics-store: [806, 945, 36, 38]
-            ev-charging-station: [799, 187, 36, 38]
-            factory: [1055, 693, 36, 38]
-            farm: [1305, 696, 36, 38]
-            farmers-market: [884, 1627, 36, 38]
-            field: [885, 780, 36, 38]
-            financial-service: [966, 1286, 36, 38]
-            fire-station: [384, 18, 36, 38]
-            fish-market: [800, 1627, 36, 38]
-            fishing-spot: [1390, 611, 36, 38]
-            fitness: [966, 1538, 36, 38]
-            flea-market: [969, 863, 36, 38]
-            flower-shop: [633, 1628, 36, 38]
-            food-court: [295, 1880, 36, 38]
-            food-drink-shop: [1136, 1627, 36, 38]
-            football-stadium: [548, 1454, 36, 38]
-            ford: [1223, 191, 36, 38]
-            forest: [973, 780, 36, 38]
-            fountain: [720, 615, 36, 38]
-            fried-chicken-joint: [548, 1880, 36, 38]
-            fun-fair: [880, 529, 36, 38]
-            furniture-store: [632, 864, 36, 38]
-            gaming-cafe: [1050, 532, 36, 38]
-            garden: [296, 616, 36, 38]
-            garden-center: [381, 1033, 36, 38]
-            gas-station: [295, 188, 36, 38]
-            gastropub: [632, 1880, 36, 38]
-            gate: [803, 698, 36, 38]
-            gay-bar: [466, 1713, 36, 38]
-            general-entertainment: [632, 2052, 36, 38]
-            general-travel: [464, 1284, 36, 38]
-            generic: [294, 2137, 36, 38]
-            german-restaurant: [464, 1880, 36, 38]
-            gift-shop: [718, 1115, 36, 38]
-            golf-course: [296, 1457, 36, 38]
-            gourmet-shop: [549, 1628, 36, 38]
-            government-building: [802, 18, 36, 38]
-            grocery-store: [298, 1627, 36, 38]
-            harbor-marina: [1306, 532, 36, 38]
-            hardware-store: [298, 1033, 36, 38]
-            hiking-trail: [886, 617, 36, 38]
-            historic-site: [888, 18, 36, 38]
-            hobby-shop: [968, 949, 36, 38]
-            hockey-field: [718, 1539, 36, 38]
-            hospital: [295, 356, 36, 38]
-            hot-dog-joint: [886, 1879, 36, 38]
-            hot-pot-restaurant: [1052, 1796, 36, 38]
-            hot-spring: [630, 778, 36, 38]
-            hotel: [631, 694, 36, 38]
-            hunting-supply: [388, 1118, 36, 38]
-            ice-cream-shop: [632, 1964, 36, 38]
-            information: [385, 2137, 36, 38]
-            internet-cafe: [546, 1288, 36, 38]
-            island: [462, 777, 36, 38]
-            jewelry-store: [468, 1118, 36, 38]
-            karaoke: [888, 2052, 36, 38]
-            lake: [550, 777, 36, 38]
-            landmark: [468, 617, 36, 38]
-            laundry: [381, 1200, 36, 38]
-            library: [554, 18, 36, 38]
-            light-rail: [298, 102, 36, 38]
-            lighthouse: [384, 617, 36, 38]
-            liquor-store: [715, 1627, 36, 38]
-            locate-off: [323, 2287, 72, 72]
-            locate-on: [491, 2287, 72, 72]
-            lounge: [382, 1713, 36, 38]
-            mall: [380, 862, 36, 38]
-            marijuana-dispensary: [888, 1033, 36, 38]
-            market: [296, 862, 36, 38]
-            medical-center: [632, 356, 36, 38]
-            military-base: [972, 18, 36, 38]
-            mine: [1307, 615, 36, 38]
-            miscellaneous-shop: [464, 862, 36, 38]
-            mobile-phone-shop: [718, 947, 36, 38]
-            molecular-gastronomy: [383, 1796, 36, 38]
-            mosque: [382, 273, 36, 38]
-            motorcycle-shop: [715, 186, 36, 38]
-            mountain: [296, 779, 36, 38]
-            movie-theatre: [468, 2052, 36, 38]
-            moving-target: [1051, 617, 36, 38]
-            museum: [718, 18, 36, 38]
-            music-store: [552, 943, 36, 38]
-            music-venue: [296, 2052, 36, 38]
-            nail-salon: [631, 1199, 36, 38]
-            neighborhood: [379, 693, 36, 38]
-            newsstand: [1134, 864, 36, 38]
-            nightlife: [968, 1712, 36, 38]
-            noodle-shop: [632, 1796, 36, 38]
-            office: [547, 698, 36, 38]
-            office-supplies: [548, 1032, 36, 38]
-            optical-shop: [716, 358, 36, 38]
-            other-outdoors: [966, 614, 36, 38]
-            park: [296, 529, 36, 38]
-            parking: [883, 187, 36, 38]
-            performing-arts: [546, 2051, 36, 38]
-            pet-store: [464, 1366, 36, 38]
-            pharmacy: [545, 354, 36, 38]
-            photography-lab: [716, 1285, 36, 38]
-            picnic-spot: [1222, 698, 36, 38]
-            pier: [546, 617, 36, 38]
-            pizza: [969, 1874, 36, 38]
-            playground: [470, 531, 36, 38]
-            police: [300, 18, 36, 38]
-            pool: [716, 533, 36, 38]
-            pool-hall: [1138, 1540, 36, 38]
-            post-office: [468, 18, 36, 38]
-            power-pylon: [1139, 693, 36, 38]
-            public-art: [1050, 2054, 36, 38]
-            racetrack: [1134, 529, 36, 38]
-            ramen: [548, 1796, 36, 38]
-            real-estate: [297, 1285, 36, 38]
-            record-shop: [467, 945, 36, 38]
-            recycling-facility: [1054, 18, 36, 38]
-            rental-car: [464, 185, 36, 38]
-            rest-area: [1473, 194, 36, 38]
-            restaurant: [296, 1796, 36, 38]
-            river: [716, 779, 36, 38]
-            road: [1305, 190, 36, 38]
-            route-arrow: [1472, 2294, 120, 120]
-            route-start: [1162, 2287, 72, 94]
-            route-stop: [1330, 2287, 72, 94]
-            ruin: [888, 698, 36, 38]
-            salon-barber: [297, 1201, 36, 38]
-            school: [380, 442, 36, 38]
-            search-active: [826, 2285, 72, 94]
-            search-inactive: [658, 2285, 72, 94]
-            ship-wreck: [1138, 616, 36, 38]
-            shoe-store: [886, 862, 36, 38]
-            skate-park: [634, 1539, 36, 38]
-            skating-rink: [550, 1539, 36, 38]
-            ski-area: [802, 1458, 36, 38]
-            smoke-shop: [804, 1033, 36, 38]
-            soccer-field: [466, 1539, 36, 38]
-            soccer-stadium: [464, 1454, 36, 38]
-            soup-place: [380, 1880, 36, 38]
-            spa-massage: [548, 1199, 36, 38]
-            spiritual-center: [552, 273, 36, 38]
-            sporting-goods-shop: [638, 1033, 36, 38]
-            spring: [803, 776, 36, 38]
-            stable: [804, 617, 36, 38]
-            stadium: [380, 1455, 36, 38]
-            steakhouse: [884, 1796, 36, 38]
-            storage-facility: [1050, 1287, 36, 38]
-            subway: [381, 102, 36, 38]
-            subway-entrance: [885, 103, 36, 38]
-            surf-shop: [722, 1032, 36, 38]
-            sushi-restaurant: [718, 1883, 36, 38]
-            swimming: [296, 1539, 36, 38]
-            synagogue: [296, 271, 36, 38]
-            tailor-shop: [882, 1116, 36, 38]
-            tanning-salon: [462, 1203, 36, 38]
-            tattoo-parlor: [298, 1116, 36, 38]
-            taxi: [799, 103, 36, 38]
-            tea-room: [380, 1963, 36, 38]
-            tennis: [806, 1538, 36, 38]
-            theme-park: [798, 529, 36, 38]
-            thrift-vintage-store: [805, 864, 36, 38]
-            toilets: [1558, 192, 36, 38]
-            toll-booth: [1056, 188, 36, 38]
-            townspot-l: [562, 2147, 17, 17]
-            townspot-l-rev: [562, 2221, 17, 17]
-            townspot-m: [648, 2149, 14, 14]
-            townspot-m-rev: [648, 2222, 14, 14]
-            townspot-s: [732, 2150, 12, 12]
-            townspot-s-rev: [732, 2223, 11, 11]
-            townspot-xl: [476, 2145, 20, 20]
-            townspot-xl-rev: [476, 2219, 20, 20]
-            townspot-xs: [818, 2151, 9, 9]
-            townspot-xs-rev: [819, 2225, 7, 7]
-            toy-game-store: [886, 947, 36, 38]
-            track: [886, 1455, 36, 38]
-            traffic-signal: [1138, 188, 36, 38]
-            train-station: [464, 102, 36, 38]
-            travel-agency: [383, 1285, 36, 38]
-            veterinarian: [293, 1368, 36, 38]
-            video-game-store: [634, 946, 36, 38]
-            video-store: [380, 944, 36, 38]
-            view-point: [1474, 611, 36, 38]
-            vineyard: [1390, 695, 36, 38]
-            volcano: [381, 778, 36, 38]
-            volleyball-court: [382, 1539, 36, 38]
-            well: [635, 617, 36, 38]
-            whisky-bar: [298, 1713, 36, 38]
-            wine-bar: [801, 1711, 36, 38]
-            wine-shop: [378, 1628, 36, 38]
-            winery: [715, 1713, 36, 38]
-            wings-joint: [1139, 1795, 36, 38]
-            zoo: [550, 529, 36, 38]
+            airport: [870, 0, 38, 38]
+            aquarium: [732, 168, 38, 38]
+            art-gallery: [640, 168, 38, 38]
+            athletics-sports: [184, 168, 38, 38]
+            atm: [918, 126, 38, 38]
+            automotive-shop: [0, 168, 38, 38]
+            bakery: [548, 168, 38, 38]
+            bank: [964, 126, 38, 38]
+            bar: [230, 168, 38, 38]
+            baseball-field: [506, 84, 38, 38]
+            basketball-court: [460, 84, 38, 38]
+            beach: [644, 84, 38, 38]
+            beer-garden: [276, 210, 38, 38]
+            bench: [548, 0, 38, 38]
+            bicycle-parking: [644, 126, 38, 38]
+            bike-shop: [872, 126, 38, 38]
+            boat-ferry: [824, 0, 38, 38]
+            boat-ramp: [138, 84, 40, 38]
+            bookstore: [826, 126, 38, 38]
+            bridge: [920, 84, 38, 38]
+            buddhism: [782, 84, 38, 38]
+            building: [414, 168, 34, 34]
+            burger: [138, 210, 38, 38]
+            bus-station: [778, 0, 38, 38]
+            butcher: [920, 42, 38, 38]
+            campground: [828, 84, 38, 38]
+            candy-store: [0, 210, 38, 38]
+            capital-l: [514, 210, 16, 16]
+            capital-m: [494, 210, 12, 12]
+            capital-s: [474, 210, 10, 10]
+            capital-xl: [538, 210, 20, 20]
+            capital-xs: [460, 210, 8, 8]
+            car-dealership: [780, 126, 38, 38]
+            castle: [414, 42, 38, 38]
+            cemetery: [736, 84, 38, 38]
+            church: [230, 126, 38, 38]
+            clothing-store: [824, 168, 38, 38]
+            coffee-shop: [502, 168, 38, 38]
+            college-university: [870, 168, 38, 38]
+            convenience-store: [46, 84, 38, 38]
+            courthouse: [364, 0, 38, 38]
+            current-location: [80, 334, 72, 72]
+            department-store: [734, 126, 38, 38]
+            drinking-water: [230, 210, 38, 38]
+            dry-cleaning: [0, 84, 38, 38]
+            electronics-store: [598, 126, 38, 38]
+            factory: [368, 168, 38, 38]
+            fire-station: [318, 0, 38, 38]
+            fitness: [874, 42, 38, 38]
+            flower-shop: [184, 126, 38, 38]
+            forest: [46, 210, 38, 38]
+            fountain: [322, 126, 38, 38]
+            garden: [690, 84, 38, 38]
+            gas-station: [960, 168, 38, 38]
+            generic: [414, 210, 38, 38]
+            gift-shop: [138, 126, 38, 38]
+            golf-course: [414, 84, 38, 38]
+            government-building: [138, 168, 38, 38]
+            grocery-store: [552, 126, 38, 38]
+            harbor-marina: [92, 168, 40, 38]
+            hardware-store: [828, 42, 38, 38]
+            historic-site: [92, 126, 38, 38]
+            hospital: [184, 0, 34, 34]
+            hotel: [732, 0, 38, 38]
+            ice-cream-shop: [322, 210, 38, 38]
+            information: [368, 210, 38, 38]
+            jewelry-store: [736, 42, 38, 38]
+            landmark: [272, 0, 38, 38]
+            laundry: [690, 42, 38, 38]
+            library: [0, 0, 38, 38]
+            light-rail: [686, 0, 38, 38]
+            lighthouse: [276, 84, 38, 38]
+            liquor-store: [506, 126, 38, 38]
+            locate-off: [400, 334, 72, 70]
+            locate-on: [320, 334, 72, 70]
+            mall: [644, 42, 38, 38]
+            market: [598, 42, 38, 38]
+            mine: [782, 42, 40, 38]
+            mobile-phone-shop: [506, 42, 38, 38]
+            mosque: [92, 0, 38, 38]
+            mountain: [230, 84, 38, 38]
+            movie-theatre: [778, 168, 38, 38]
+            museum: [46, 126, 38, 38]
+            music-store: [368, 42, 38, 38]
+            newsstand: [322, 42, 38, 38]
+            office: [598, 84, 38, 38]
+            optical-shop: [276, 42, 38, 38]
+            park: [276, 126, 38, 38]
+            parking: [690, 126, 38, 38]
+            performing-arts: [594, 168, 38, 38]
+            pet-store: [230, 42, 38, 38]
+            pharmacy: [966, 42, 38, 38]
+            photography-lab: [184, 42, 38, 38]
+            pier: [640, 0, 38, 38]
+            playground: [460, 42, 38, 38]
+            police: [226, 0, 38, 38]
+            pool: [184, 84, 38, 38]
+            post-office: [322, 168, 38, 38]
+            real-estate: [138, 42, 38, 38]
+            recycling-facility: [92, 42, 38, 38]
+            rental-car: [594, 0, 38, 38]
+            restaurant: [92, 210, 38, 38]
+            route-arrow: [776, 210, 120, 120]
+            route-start: [0, 334, 72, 92]
+            route-stop: [904, 210, 72, 92]
+            ruin: [502, 0, 38, 38]
+            salon-barber: [46, 42, 38, 38]
+            school: [552, 84, 38, 38]
+            search-active: [160, 334, 72, 92]
+            search-inactive: [240, 334, 72, 92]
+            shoe-store: [552, 42, 38, 38]
+            ski-area: [368, 126, 38, 38]
+            soccer-field: [368, 84, 38, 38]
+            spiritual-center: [276, 168, 38, 38]
+            sporting-goods-shop: [0, 42, 38, 38]
+            spring: [322, 84, 38, 38]
+            stadium: [460, 126, 38, 38]
+            subway-entrance: [456, 0, 38, 38]
+            synagogue: [46, 0, 38, 38]
+            tailor-shop: [962, 0, 38, 38]
+            tennis: [414, 126, 38, 38]
+            theme-park: [0, 126, 38, 38]
+            toilets: [874, 84, 38, 38]
+            townspot-l: [724, 210, 16, 16]
+            townspot-l-rev: [618, 210, 16, 16]
+            townspot-m: [704, 210, 12, 12]
+            townspot-m-rev: [598, 210, 12, 12]
+            townspot-s: [686, 210, 10, 10]
+            townspot-s-rev: [580, 210, 10, 10]
+            townspot-xl: [748, 210, 20, 20]
+            townspot-xl-rev: [642, 210, 20, 20]
+            townspot-xs: [670, 210, 8, 8]
+            townspot-xs-rev: [566, 210, 6, 6]
+            toy-game-store: [916, 0, 38, 38]
+            traffic-signal: [916, 168, 36, 34]
+            train-station: [410, 0, 38, 38]
+            veterinarian: [138, 0, 38, 38]
+            view-point: [686, 168, 40, 38]
+            vineyard: [46, 168, 40, 38]
+            volcano: [92, 84, 38, 38]
+            wine-bar: [184, 210, 38, 38]
+            winery: [456, 168, 38, 38]
+            zoo: [966, 84, 38, 38]
 
     building-grid:
         url: images/building-grid.gif
@@ -2982,7 +2858,7 @@ layers:
                 draw:
                     text-blend-order:
                         visible: *text_visible_populated_places
-                        offset: [0, 1px] # half icon size
+                        offset: [0, 3px] # half icon size
                         font:
                             size: 10px
                             fill: *text_fill
@@ -2999,26 +2875,26 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 11px
                                 fill: *text_fill
                                 # stroke: { color: *text_stroke, width: 4 }
                         icons:
-                            size: 6px
+                            size: 5px
                             sprite: townspot-s-rev
                 z3places-2:
                     filter: { scalerank: [1] }
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 9px
                                 fill: *text_fill
                                 # stroke: { color: *text_stroke, width: 4 }
                         icons:
-                            size: 6px
+                            size: 5px
                             sprite: townspot-s-rev
 
             populated-places-natural-earth-z4:
@@ -3028,13 +2904,13 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 2px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 13px
                                 fill: *text_fill
                                 # stroke: { color: *text_stroke, width: 4 }
                         icons:
-                            size: 6px
+                            size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
 
@@ -3043,13 +2919,13 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 10px
                                 fill: *text_fill
                                 # stroke: { color: *text_stroke, width: 4 }
                         icons:
-                            size: 6px
+                            size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
 
@@ -3064,12 +2940,14 @@ layers:
                             font:
                                 size: 13px
                         icons:
-                            size: 7px
+                            size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
                         draw:
+                            text-blend-order:
+                                offset: [0, 4px] # half icon size
                             icons:
                                 size: 8px
                                 sprite: capital-l
@@ -3079,18 +2957,20 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 2px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 11px
                         icons:
-                            size: 6px
+                            size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
                         draw:
+                            text-blend-order:
+                                offset: [0, 3px] # half icon size
                             icons:
-                                size: 7px
+                                size: 6px
                                 sprite: capital-m
 
                 z5places-3:
@@ -3098,18 +2978,20 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 2px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 fill: [0.25,0.25,0.25]
                                 size: 10px
                         icons:
-                            size: 6px
+                            size: 5px
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
                         draw:
+                            text-blend-order:
+                                offset: [0, 3px] # half icon size
                             icons:
-                                size: 7px
+                                size: 6px
                                 sprite: capital-m
 
             populated-places-natural-earth-z6:
@@ -3119,7 +3001,7 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
+                            offset: [0, 4px] # half icon size
                             font:
                                 fill: *text_fill
                                 size: 15px
@@ -3130,15 +3012,18 @@ layers:
                     capital:
                         filter: { capital: yes }
                         draw:
+                            text-blend-order:
+                                offset: [0, 4px] # half icon size
                             icons:
                                 sprite: capital-l
+                                size: 8px
 
                 z6places-2:
                     filter: { scalerank: [2,3,4] }
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 2px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 fill: *text_fill
                                 size: 12px
@@ -3149,8 +3034,10 @@ layers:
                     capital:
                         filter: { capital: yes }
                         draw:
+                            text-blend-order:
+                                offset: [0, 3px] # half icon size
                             icons:
-                                size: 7px
+                                size: 6px
                                 sprite: capital-m
 
                 z6places-3:
@@ -3158,19 +3045,21 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 2px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 fill: [0.25,0.25,0.25]
                                 size: 10px
                         icons:
-                            size: 6px
+                            size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
                         draw:
+                            text-blend-order:
+                                offset: [0, 3px] # half icon size
                             icons:
-                                size: 7px
+                                size: 6px
                                 sprite: capital-m
 
             populated-places-natural-earth-z7:
@@ -3180,7 +3069,7 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 2px] # half icon size
+                            offset: [0, 4px] # half icon size
                             font:
                                 fill: *text_fill
                                 size: 16px
@@ -3191,7 +3080,10 @@ layers:
                     capital:
                         filter: { capital: yes }
                         draw:
+                            text-blend-order:
+                                offset: [0, 4px] # half icon size
                             icons:
+                                size: 8px
                                 sprite: capital-l
 
                 z7places-2:
@@ -3199,17 +3091,19 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 fill: *text_fill
                                 size: 13px
                         icons:
-                            size: 7px
+                            size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
                         draw:
+                            text-blend-order:
+                                offset: [0, 4px] # half icon size
                             icons:
                                 size: 8px
                                 sprite: capital-l
@@ -3219,19 +3113,21 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 2px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 fill: [0.25,0.25,0.25]
                                 size: 11px
                         icons:
-                            size: 6px
+                            size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
                         draw:
+                            text-blend-order:
+                                offset: [0, 3px] # half icon size
                             icons:
-                                size: 7px
+                                size: 6px
                                 sprite: capital-m
 
             populated-places-osm-z8:
@@ -3250,17 +3146,20 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 2px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 16px
                         icons:
-                            size: 8px
+                            size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
                         draw:
+                            text-blend-order:
+                                offset: [0, 4px] # half icon size
                             icons:
+                                size: 8px
                                 sprite: capital-l
                 z8places-2:
                     filter:
@@ -3269,17 +3168,20 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 2px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 13px
                         icons:
-                            size: 7px
+                            size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
                         draw:
+                            text-blend-order:
+                                offset: [0, 3px] # half icon size
                             icons:
+                                size: 6px
                                 sprite: capital-m
 
                 z8places-3:
@@ -3289,18 +3191,21 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 fill: [0.25,0.25,0.25]
                                 size: 11px
                         icons:
-                            size: 7px
+                            size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
                         draw:
+                            text-blend-order:
+                                offset: [0, 3px] # half icon size
                             icons:
+                                size: 6px
                                 sprite: capital-m
 
                 z8places-4:
@@ -3310,19 +3215,22 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 fill: [0.30,0.30,0.30]
                                 size: 10px
                         icons:
-                            size: 6px
+                            size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
                         draw:
+                            text-blend-order:
+                                offset: [0, 3px] # half icon size
                             icons:
-                                sprite: capital-s
+                                size: 5px
+                                sprite: capital-m
 
             populated-places-natural-earth-z8-backfill:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [8], population: { max: 50000 } }
@@ -3332,7 +3240,7 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 2px] # half icon size
+                            offset: [0, 4px] # half icon size
                             font:
                                 size: 16px
                         icons:
@@ -3342,7 +3250,10 @@ layers:
                     capital:
                         filter: { capital: yes }
                         draw:
+                            text-blend-order:
+                                offset: [0, 4px] # half icon size
                             icons:
+                                size: 8px
                                 sprite: capital-l
 
                 z8places-2-ne:
@@ -3350,11 +3261,11 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 13px
                         icons:
-                            size: 7px
+                            size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3368,11 +3279,11 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 11px
                         icons:
-                            size: 6px
+                            size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3398,7 +3309,6 @@ layers:
                         text-blend-order:
                             anchor: center
                             visible: *text_visible_populated_places
-                            offset: [0, 2px] # half icon size
                             font:
                                 size: 17px
 
@@ -3410,7 +3320,6 @@ layers:
                         text-blend-order:
                             anchor: center
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
                             font:
                                 size: 13px
                                     
@@ -3421,11 +3330,11 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 13px
                         icons:
-                            size: 7px
+                            size: 6px
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
@@ -3440,12 +3349,12 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 fill: [0.25,0.25,0.25]
                                 size: 11px
                         icons:
-                            size: 7px
+                            size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3464,12 +3373,12 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 fill: [0.30,0.30,0.30]
                                 size: 9px
                         icons:
-                            size: 6px
+                            size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3484,15 +3393,18 @@ layers:
                         - source: openstreetmap
                         - name: true
                         - population: false
-                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [9]
                         - kind: [city,town]
                 draw:
                     text-blend-order:
-                        anchor: center
                         visible: *text_visible_populated_places
+                        offset: [0, 3px] # half icon size
                         font:
                             size: 10px
+                    icons:
+                        size: 5px
+                        visible: *icon_visible_populated_places
+                        sprite: townspot-s-rev
 
             populated-places-natural-earth-z9-backfill:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [9], population: { max: 50000 } }
@@ -3502,7 +3414,7 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 2px] # half icon size
+                            offset: [0, 4px] # half icon size
                             font:
                                 size: 16px
                         icons:
@@ -3520,11 +3432,11 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 13px
                         icons:
-                            size: 7px
+                            size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3538,11 +3450,11 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 11px
                         icons:
-                            size: 7px
+                            size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3568,7 +3480,6 @@ layers:
                         text-blend-order:
                             anchor: center
                             visible: *text_visible_populated_places
-                            offset: [0, 2px] # half icon size
                             font:
                                 size: 17px
 
@@ -3580,7 +3491,6 @@ layers:
                         text-blend-order:
                             anchor: center
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
                             font:
                                 size: 13px
 
@@ -3591,11 +3501,11 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 13px
                         icons:
-                            size: 7px
+                            size: 6px
                             sprite: townspot-m-rev
 
                 z10places-3:
@@ -3605,12 +3515,12 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 fill: [0.25,0.25,0.25]
                                 size: 11px
                         icons:
-                            size: 7px
+                            size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
 
@@ -3621,12 +3531,12 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 fill: [0.35,0.35,0.35]
                                 size: 9px
                         icons:
-                            size: 6px
+                            size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
 
@@ -3641,13 +3551,17 @@ layers:
                         - kind: [city,town]
                 draw:
                     text-blend-order:
-                        anchor: center
                         visible: *text_visible_populated_places
+                        offset: [0, 3px] # half icon size
                         font:
                             size: 10px
+                    icons:
+                        size: 5px
+                        visible: *icon_visible_populated_places
+                        sprite: townspot-s-rev
 
             populated-places-natural-earth-z10-backfill:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [10], population: { max: 20000 } }
+                filter: { name: true, source: naturalearthdata.com, $zoom: [10], population: { max: 30000 } }
                 draw: { text-blend-order: { font: { fill: *text_fill } } }
                 z10places-1-ne:
                     filter: { scalerank: [0,1] }
@@ -3667,7 +3581,7 @@ layers:
                             font:
                                 size: 13px
                         icons:
-                            size: 7px
+                            size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3683,9 +3597,9 @@ layers:
                             visible: *text_visible_populated_places
                             offset: [0, 1px] # half icon size
                             font:
-                                size: 11px
+                                size: 12px
                         icons:
-                            size: 6px
+                            size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3736,7 +3650,7 @@ layers:
                         text-blend-order:
                             visible: *text_visible_populated_places
                             font:
-                                size: 10px
+                                size: 12px
 
             populated-places-osm-z11-no-population:
                 filter:
@@ -3769,7 +3683,7 @@ layers:
                             font:
                                 size: 16px
                         icons:
-                            size: 14px
+                            size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3789,7 +3703,7 @@ layers:
                             font:
                                 size: 13px
                         icons:
-                            size: 11px
+                            size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3815,7 +3729,7 @@ layers:
                             font:
                                 size: 11px
                         icons:
-                            size: 9px
+                            size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3913,7 +3827,7 @@ layers:
                             font:
                                 size: 16px
                         icons:
-                            size: 14px
+                            size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
@@ -3933,7 +3847,7 @@ layers:
                             font:
                                 size: 13px
                         icons:
-                            size: 11px
+                            size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -3953,7 +3867,7 @@ layers:
                             font:
                                 size: 11px
                         icons:
-                            size: 9px
+                            size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
@@ -4304,7 +4218,7 @@ layers:
                       - kind: true
         draw:
             icons:
-                size: [[13, 12px], [16, 16px], [19, 20px]]
+                size: [[13, 12px], [16, 16px], [18, 19px]]
                 interactive: true
                 visible: false
                 priority: 15
@@ -4312,7 +4226,7 @@ layers:
                 visible: false    # labels are enabled by each layer below
                 move_into_tile: false # preserves text alignment w/icons in JS
                 anchor: bottom
-                offset: [[13, [0, 6px]], [16, [0, 8px]], [19, [0, 10px]]] # offset tracks alongside icon size (half icon height)
+                offset: [[13, [0, 6px]], [16, [0, 8px]], [18, [0, 10px]]] # offset tracks alongside icon size (half icon height)
                 interactive: true
                 priority: 16
                 font:
