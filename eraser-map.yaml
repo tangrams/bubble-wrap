@@ -3577,7 +3577,7 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 13px
                         icons:
@@ -3595,7 +3595,7 @@ layers:
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
-                            offset: [0, 1px] # half icon size
+                            offset: [0, 3px] # half icon size
                             font:
                                 size: 12px
                         icons:
