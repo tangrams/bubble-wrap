@@ -4366,6 +4366,9 @@ layers:
             bicycle-parking:
                 filter: { kind: [bicycle_parking], $zoom: { min: 19 } }
                 draw:   { icons: { sprite: bicycle-parking, visible: *icon_visible_poi_landuse_e } }
+            car-parking:
+                filter: { kind: [parking], $zoom: { min: 17 } }
+                draw:   { icons: { sprite: parking, visible: *icon_visible_poi_landuse_e } }
         has-name:
             filter: { name: true }
             # match 1:1 correlations between data and sprite name
@@ -4575,7 +4578,7 @@ layers:
             university:
                 filter:
                     all:
-                        - kind: [university,college]
+                        - kind: [university, college]
                         - area: true
                         - $geometry: point
                         - not: { $layer: buildings }
@@ -4735,7 +4738,7 @@ layers:
                         text-blend-order: { font: { style: italic } }
                         icons: { visible: false }
             university-poi:
-                filter: { kind: [university], area: false, $zoom: { max: 16 } }
+                filter: { kind: [university, college], area: false, $zoom: { max: 16 } }
                 draw:
                     text-blend-order:  { visible: false }
                     icons: { visible: false }
@@ -5669,7 +5672,7 @@ layers:
                         visible: true
             university:
                 filter:
-                    kind: university
+                    kind: [university, college]
                 draw:
                     dots2:
                         color: [0.827,0.753,0.682]
