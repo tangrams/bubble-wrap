@@ -1164,7 +1164,9 @@ layers:
                 filter: {is_bridge: yes}
                 draw:
                     lines:
-                        cap: butt
+                        cap: round
+                        outline:
+                            cap: butt
             labels-highway-early:
                 filter: { $zoom: [7,8,9] }
                 draw:
@@ -1832,10 +1834,12 @@ layers:
                         outline:
                             color: [0.790,0.790,0.790]
             minor_road_bridge:
-                filter: {is_bridge: yes}
+                filter: { is_bridge: yes }
                 draw:
                     lines:
-                        cap: butt
+                        cap: round
+                        outline:
+                            cap: butt
             labels-minor_road-z15:
                 filter: { $zoom: 15 }
                 draw:
@@ -2001,9 +2005,11 @@ layers:
                     lines:
                         color: [[15, [1.0,1.0,1.0]], [18, [1.0,1.0,1.0]]]
                         width: [[15, 1.5px], [16, 4m], [17, 2m], [18, 2m]]
+                        cap: round
                         outline:
                             color: [[15,*path_bridge_casing2],[16,*path_bridge_casing1]]
                             width: [[15, 0px], [16, 1.0px], [18, 3px]]
+                            cap: butt
             in_park:
                 # should `forest` and `wood` be included?
                 filter: { landuse_kind: [park,nature_reserve,conservation,golf_course,garden] }
@@ -2095,9 +2101,11 @@ layers:
                     lines:
                         cap: butt
                         width: [[15, 3.5], [17, 3m]]
+                        cap: round
                         outline:
                             color: [[15,*minor_casing2],[16,*minor_casing1]]
                             width: [[15, 0.5px], [16, 1.0px], [18, 2px]]
+                            cap: butt
             in_park:
                 filter: { landuse_kind: [park,national_park,nature_reserve,conservation,golf_course,garden] }
                 draw:
