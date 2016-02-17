@@ -4,8 +4,15 @@
 map = (function () {
     'use strict';
 
-
     /*** URL parsing ***/
+
+    // convert tile coordinates to lat-lng
+    // from http://gis.stackexchange.com/questions/17278/calculate-lat-lon-bounds-for-individual-tile-generated-from-gdal2tiles
+    function tile2long(x,z) { return (x/Math.pow(2,z)*360-180); }
+    function tile2lat(y,z) {
+        var n=Math.PI-2*Math.PI*y/Math.pow(2,z);
+        return (180/Math.PI*Math.atan(0.5*(Math.exp(n)-Math.exp(-n))));
+    }
 
     // leaflet-style URL hash pattern:
     // #[zoom],[lat],[lng]
@@ -13,7 +20,14 @@ map = (function () {
     var url_hash = window.location.hash.slice(1, window.location.hash.length).split('/');
 
     if (url_hash.length == 3) {
-        map_start_location = [url_hash[1],url_hash[2], url_hash[0]];
+        if (url_hash[1] > 180) { // parse hash as tile coordinates
+            // example: http://localhost:9001/#15/5242/12663
+            // add .5 to coords to center tile on screen
+            map_start_location = [tile2lat(parseFloat(url_hash[2]) + .5, url_hash[0]), tile2long(parseFloat(url_hash[1]) + .5, url_hash[0]), url_hash[0]];
+        }
+        else { // parse hash as lat/lng coordinates
+            map_start_location = [url_hash[1],url_hash[2], url_hash[0]];
+        }
         // convert from strings
         map_start_location = map_start_location.map(Number);
     }
