@@ -838,7 +838,7 @@ layers:
             ui-icons-overlay:
                 interactive: true
                 sprite: search-active
-                size: [36px,46px]
+                size: [36px,54px]
                 collide: false
                 anchor: top
                 transition:
