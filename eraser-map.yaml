@@ -5052,6 +5052,22 @@ layers:
                             size: [[13, 8px], [19, 18px]]
                         text-blend-order:
                             visible: false
+            minor-z17-early:
+                filter:
+                    kind: [accountant, administrative, advertising_agency, architect, association, atm, bakery, bed_and_breakfast, bicycle, bicycle_parking, bicycle_rental, books, bus_stop, bus_stop, butcher, car, car_repair, chalet, clothes, company, computer, consulting, convenience, doityourself, drinking_water, dry_cleaning, educational_institution, emergency_phone, employment_agency, estate_agent, fashion, financial, florist, foundation, gate, gift, government, greengrocer, guest_house, hairdresser, hostel, hotel, insurance, it, jewelry, lawyer, mast, memorial, mobile_phone, motel, newspaper, ngo, notary, optician, parking, pet, physician, playground, political_party, post_box, religion, research, slipway, subway_entrance, tax_advisor, telecommunication, telephone, theatre, therapist, toilets, traffic_signals, travel_agent, water_tower, yes]
+                    area: false
+                    $zoom: { max: 17 }
+                draw:
+                    text-blend-order:  { visible: false }
+                    icons: { visible: false }
+            minor-z18-early:
+                filter:
+                    kind: [bench, waste_basket]
+                    area: false
+                    $zoom: { max: 18 }
+                draw:
+                    text-blend-order:  { visible: false }
+                    icons: { visible: false }
 
             icons:
                 adult-boutique:
