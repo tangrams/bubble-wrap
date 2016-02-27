@@ -2104,7 +2104,6 @@ layers:
                 filter: { is_bridge: yes }
                 draw:
                     lines:
-                        cap: butt
                         width: [[15, 3.5], [17, 3m]]
                         cap: round
                         outline:
@@ -4325,7 +4324,6 @@ layers:
                             - kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
-                        priority: 7
                         visible: *text_visible_neighbourhoods
                         priority: 18
                         font:
