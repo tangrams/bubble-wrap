@@ -363,10 +363,11 @@ sources:
     osm:
         # EraserMaps the app only supports MVT format tiles
         type:  MVT #TopoJSONTiles topojson
-        #url:  //vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.mvt
+        url:  //vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.mvt
         #enforce_winding: true  #because Tangram v0.4 and tiles v0.5-pre don't play nice
         #url:  //localhost:8080//osm/all/{z}/{x}/{y}.mvt
-        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-HqUVidw
+        #url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-HqUVidw
+        max_zoom: 16
 
 
     # Only enable this for local debug, should not be enabled for prod (app inserts these at runtime)
@@ -782,7 +783,7 @@ layers:
         draw:
             ui-lines-overlay:
                 color: '#06a6d4'
-                order: 50
+                order: 500
                 width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
     current_location_gem:
         data: { source: find_me }
@@ -867,19 +868,25 @@ layers:
         data: { source: osm, layer: earth }
         draw:
             polygons:
-                order: 0
+                order: 10
                 color: [0.870,0.870,0.870]
 
     water:
         data: { source: osm, layer: water }
         draw:
             grid:
-                order: 5
+                order: 200
                 #color: *water1
-        lakes:
+        ocean:
+            filter:
+                kind: ocean
+            draw:
+                grid:
+                    color: *water1
+        inland-water:
             filter:
                 all:
-                    - kind: [ocean, lake, water, riverbank, reservoir, swimming_pool]
+                    - kind: [lake, water, riverbank, reservoir, swimming_pool]
                 any:
                     # limit show smaller landuse areas to higher zooms
                     - { $zoom: { min: 1 },  area: { min: 40000000000 } }
@@ -894,15 +901,16 @@ layers:
                     - { $zoom: { min: 9 },  area: { min: 10000000 } }
                     - { $zoom: { min: 10 }, area: { min: 8000000 } }
                     - { $zoom: { min: 11 }, area: { min: 2000000 } }
-                    - { $zoom: { min: 12 }, area: { min: 500000 } }
+                    - { $zoom: { min: 12 }, area: { min: 200000 } }
                     - { $zoom: { min: 13 }, area: { min: 100000 } }
                     - { $zoom: { min: 14 }, area: { min: 2000 } }
                     - { $zoom: { min: 15 } }
             draw:
                 grid:
+                    order: 204
                     color: *water1
         other-water-areas:
-            filter: { not: { kind: [ocean, lake, water, reservoir, playa] }, $zoom: { min: 11 }, area: { min: 100 } }
+            filter: { not: { kind: [ocean, lake, water, reservoir, playa, swimming_pool] }, $zoom: { min: 11 }, area: { min: 100 } }
             draw:
                 grid:
                     color: *water1
@@ -910,36 +918,37 @@ layers:
             filter: { kind: playa, $zoom: {min: 6} }
             draw:
                 polygons:
+                    order: 203
                     color: [0.870,0.870,0.870]
         swimming_pool:
             filter: { kind: swimming_pool }
             draw:
                 grid:
-                    order: 8
+                    order: 206
         water-boundary-ocean-early:
             filter: { boundary: yes, kind: ocean, $zoom: {min: 1, max: 17} }
             draw:
                 line2:
                     style: lines
-                    order: 7
+                    order: 205
                     color: [[9,[0.396,0.833,0.920]],[10,[0.886,0.937,0.988]]]
                     width: [[9,0.25px],[10,2px],[11,3px],[13,4px],[15,6px]]
                 lines:
-                    order: 10
+                    order: 240
                     color: [[1,[0.698,0.800,0.820]],[11,[0.631,0.773,0.800]],[14,[0.543,0.740,0.780]]]
                     width: [[1,0.25px],[6,0.5px],[7,0.75px],[9,0.75px],[10,1px]]
         water-boundary-ocean-late:
             filter: { boundary: yes, kind: ocean, $zoom: {min: 17} }
             draw:
                 water_border:
-                    order: 10
+                    order: 240
                     color: [[0,[0.886,0.937,0.988]]]
                     width: 20px
         water_boundaries-not-ocean:
             filter: { boundary: yes, not: { kind: ocean }, $zoom: { min: 8 } }
             draw:
                 lines:
-                    order: 30
+                    order: 367
                     # color: [[8,[0.635,0.737,0.753]],[13,[0.635,0.737,0.753]],[14,[0.569,0.722,0.749]],[15,[0.397,0.743,0.809]]]
                     color: [[8,[0.749,0.831,0.867]],[12,[0.698,0.788,0.816]],[13,[0.698,0.784,0.812]],[14,[0.627,0.788,0.831]],[17,[0.643,0.824,0.851]]]
                     width: [[8,0.5px],[10,0.5px],[11,0.5px],[12,0.75px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1px]]
@@ -950,85 +959,80 @@ layers:
             early:
                 filter: { $zoom: { min: 14 } }
                 draw:
-                    lines: { order: 19 }
+                    lines:
+                        order: 241
             riverbank:
                 # river boundaries like the thames in london, la seine in paris
                 filter: { kind: riverbank }
                 draw:
                     lines:
-                        # color: [0.397,0.743,0.809]
                         color: [[8,[0.667,0.792,0.824]],[11,[0.698,0.808,0.835]],[13,[0.710,0.796,0.824]],[14,[0.522,0.792,0.855]]]
                         width: [[9,0.5px],[10,0.75px],[11,0.75px],[12,0.8px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1.5px]]
         river:
             #river center lines, not boundaries for polygons
-            filter: { kind: [river,canal,stream,dam,ditch,drain], $zoom: { min: 11 } }
+            filter: { kind: [river,canal,stream,dam,ditch,drain], $zoom: { min: 11 }, not: { is_tunnel: true } }
             draw:
-                # lines:
-                #     order: 3
-                #     color: [0.397,0.743,0.809]
-                #     width: [[11,0.3px],[12,0.5px],[13,0.75px],[14,1px],[16,1.25px]]
-                #     join: round
                 lines:
                     # order: 18
-                    order: 5
+                    order: 201
                     color: [[11,[0.753,0.820,0.835]],[12,[0.710,0.800,0.824]],[13,[0.886,0.937,0.988]]]
                     width: [[8,0px],[10,0px],[11,0.75px],[12,1px],[13,1px],[14,2px],[15,3px],[16,4px],[17,5px]]
                     join: round
                     outline:
-                        order: 5
+#                        order: 5
                         color: [[11,[0.671,0.788,0.812]],[13,[0.710,0.800,0.824]],[14,[0.635,0.812,0.843]]]
                         width: [[9,0px],[11,0px],[12,0px],[13,0.5px],[14,0.75px],[15,0.75px],[16,0.75px],[17,1px]]
 
     subway-light-rail:
         data: { source: osm, layer: transit }
-        filter: { kind: [railway,subway,light_rail], $zoom: { min: 14 } }
+        filter: { not: { kind: [platform] }, $zoom: { min: 14 } }
         draw:
             lines:
                 interactive: true
-                order: function() { return (6 + feature.sort_key) || 6; }
+                order: 275
         railway:
-            filter: { kind: railway }
+            filter: { kind: [railway,train] }
             draw:
                 lines:
-                    color: [0.644,0.686,0.700]
-                    width: [[14,1px],[16,2px],[18,2px]]
+                    color: [0.588,0.671,0.698]
+                    width: [[14,0.4px],[15,0.75px],[16,1.1px],[18,2px],[19,1m]]
         subway:
             filter: { kind: subway }
             draw:
                 lines:
-                    color: *rail1
-                    width: [[14,0.5px],[16,1px],[17,1.5px],[18,2m]]
+                    color: [0.588,0.671,0.698]
+                    width: [[14,0.4px],[15,0.75px],[16,1.3px],[17,1.5px],[18,2m]]
         light_rail:
-            filter: { kind: light_rail, $zoom: { min: 15 } }
+            filter: { kind: [light_rail,tram], $zoom: { min: 15 } }
             draw:
                 lines:
+                    order: 415
                     color: [0.588,0.671,0.698]
-                    width: [[14,0px],[15,0.6px],[16,1px],[17,1.5px],[19,1m]]
-                    order: 30
+                    width: [[14,0px],[15,0.6px],[16,0.75px],[17,1.5px],[19,1m]]
 
     railway-late:
         data: { source: osm, layer: roads }
-        filter: { kind: rail, not: { railway: [subway,light_rail] } }
+        filter: { kind: rail, not: { railway: [subway,light_rail,tram] } }
         draw:
             lines:
                 interactive: true
                 color: [0.588,0.671,0.698]
-                width: [[12,0px],[13,0.25px],[14,0.4px],[15,0.75px],[16,0.75px],[18,1px]]
+                width: [[12,0px],[13,0.25px],[14,0.4px],[15,0.75px],[16,0.75px],[18,1m]]
         service:
             filter: { service: true }
             draw:
                 lines:
                     color: [0.588,0.671,0.698]
-                    width: [[14,0px],[15,0.5px],[16,0.75px],[17,1px],[18,0.7m]]
+                    width: [[14,0px],[15,0.3px],[16,0.5px],[18,0.75px],[19,0.5m]]
         z-order:
             #filter: { $zoom: {min: 12} }
             draw:
                 lines:
                     # let roads sort themselves past zoom 14
-                    order: function() { return (6 + feature.sort_key) || 6; }
+                    order: sort_key
                     # but give them all the same outline
                     outline:
-                        order: 21 # 15 is the starting aboveground level, plus 6
+                        order: 355
 
             bridges-tunnels:
                 filter: { any: [is_bridge: yes, is_tunnel: yes] }
@@ -1036,7 +1040,8 @@ layers:
                     lines:
                         outline:
                             # except bridges and tunnels, their outlines should also self-sort
-                            order: function() { return (6 + feature.sort_key) || 6; }
+                            order: sort_key
+                            
     platforms:
         data: { source: osm, layer: transit }
         filter: { kind: platform }
@@ -1055,15 +1060,15 @@ layers:
                     visible: false
                 outline_transparent:
                     color: *grey9_o
-                    width: [[15,0px],[16,0.5px],[17,1px],[19,2px]]
+                    width: [[16,0px],[17,0.5px],[19,2px]]
         z-order:
             draw:
                 lines_transparent:
-                    order: function() { if($zoom<17) { return 10; } else { return 100; } }
+                    order: function() { if($zoom<17) { return 385; } else { return 435; } }
                 polygons_transparent:
-                    order: function() { if($zoom<17) { return 10; } else { return 100; } }
+                    order: function() { if($zoom<17) { return 385; } else { return 435; } }
                 outline_transparent:
-                    order: function() { if($zoom<17) { return 11; } else { return 101; } }
+                    order: function() { if($zoom<17) { return 386; } else { return 436; } }
 
     roads:
         data: { source: osm, layer: roads }
@@ -1083,7 +1088,7 @@ layers:
             draw:
                 lines:
                     # put highways on top of all other roads
-                    order: 8
+                    order: sort_key
                     # Perf impact (too many vertices)
                     #cap: round
                     #join: round
@@ -1114,7 +1119,7 @@ layers:
             draw:
                 lines:
                     # put highways on top of all other roads
-                    order: 8
+                    order: sort_key
                     color: [[8, *highway1], [14, *highway1], [15, [1.0,1.0,1.0]], [17, [1.0,1.0,1.0]]]
                     width: [[8, 1px], [9, 1.25px], [11, 1.2px], [12, 1.3px], [13, 1.5px], [14, 2.25px], [15, 0.15px], [16, 5.5px], [17, 12m]]
                     outline:
@@ -1125,14 +1130,14 @@ layers:
             #     draw:
             #         lines:
             #             cap: round
-            not_link:
-                filter: { not: { is_link: yes }, $zoom: {max: 15} }
-                draw:
-                    lines:
-                        order: function() { return (7 + feature.sort_key) || 7; }
-                        outline:
-                            # except bridges and tunnels, their outlines should also self-sort
-                            order: function() { return (7 + feature.sort_key) || 7; }
+#            not_link:
+#                filter: { not: { is_link: yes }, $zoom: {max: 15} }
+#                draw:
+#                    lines:
+#                        order: function() { return (7 + feature.sort_key) || 7; }
+#                        outline:
+#                            # except bridges and tunnels, their outlines should also self-sort
+#                            order: function() { return (7 + feature.sort_key) || 7; }
             link:
                 filter: { is_link: yes } # on- and off-ramps, etc
                 draw:
@@ -1143,12 +1148,12 @@ layers:
                         outline:
                             color: [[10, *highway_casing1], [16, [0.988,0.495,0.439]], [17, [0.988,0.495,0.439]]]
                             width: [[14, 0px], [15, 0.85px], [17, 1.125px], [18, 1.5px]]
-                early_link:
-                    filter: { $zoom: {min: 13, max: 15} }
-                    draw:
-                        lines:
-                            # except bridges and tunnels, their outlines should also self-sort
-                            order: function() { return (7 + feature.sort_key) || 7; }
+#                early_link:
+#                    filter: { $zoom: {min: 13, max: 15} }
+#                    draw:
+#                        lines:
+#                            # except bridges and tunnels, their outlines should also self-sort
+#                            order: function() { return (7 + feature.sort_key) || 7; }
                 tunnel-link:
                     filter: {is_tunnel: yes, $zoom: {min: 13} }
                     draw:
@@ -1160,7 +1165,7 @@ layers:
                 filter: {is_tunnel: yes, $zoom: {min: 13} }
                 draw:
                     lines:
-                        order: 6
+#                        order: 6
                         # color: [[16, [0.843,0.843,0.843]]]
                         color: [[16, [0.85,0.85,0.85]]]
                         outline:
@@ -1312,19 +1317,19 @@ layers:
                         filter: {is_tunnel: yes, $zoom: {min: 13} }
                         draw:
                             lines:
-                                order: 6
+#                                order: 6
                                 color: *major_tunnel1
                                 outline:
                                     color: *major_tunnel_casing1
-                    z-order:
-                        #filter: { $zoom: {min: 12} }
-                        draw:
-                            lines:
-                                # let roads sort themselves past zoom 14
-                                order: function() { return (8 + feature.sort_key) || 8; }
-                                # but give them all the same outline
-                                outline:
-                                    order: 23 # 15 is the starting aboveground level, plus 8
+#                    z-order:
+#                        #filter: { $zoom: {min: 12} }
+#                        draw:
+#                            lines:
+#                                # let roads sort themselves past zoom 14
+#                                order: sort_key
+#                                # but give them all the same outline
+#                                outline:
+#                                    order: 23 # 15 is the starting aboveground level, plus 8
                     labels-trunk_primary-route-z14:
                         filter: { $zoom: [14] }
                         draw:
@@ -1464,7 +1469,7 @@ layers:
                 filter: {is_tunnel: yes, $zoom: {min: 13} }
                 draw:
                     lines:
-                        order: 6
+#                        order: 6
                         color: *major_tunnel1
                         outline:
                             color: *major_tunnel_casing1
@@ -1490,7 +1495,7 @@ layers:
                         filter: {is_tunnel: yes, $zoom: {min: 13} }
                         draw:
                             lines:
-                                order: 6
+#                                order: 6
                                 color: *major_tunnel1
                                 outline:
                                     color: *major_tunnel_casing1
@@ -1632,7 +1637,7 @@ layers:
                         filter: {is_tunnel: yes, $zoom: {min: 13} }
                         draw:
                             lines:
-                                order: 6
+#                                order: 6
                                 color: *major_tunnel1
                                 outline:
                                     color: *major_tunnel_casing1
@@ -1756,11 +1761,11 @@ layers:
                         color: [0.843,0.843,0.843]
                         width: [[15, 0], [16, 2px], [17, 3px]]
             # Force minor roads to draw under everything else early (server bug?)
-            early:
-                filter: { $zoom: { max: 14 } }
-                draw:
-                    lines:
-                        order: 15
+#            early:
+#                filter: { $zoom: { max: 14 } }
+#                draw:
+#                    lines:
+#                        order: 15
 
             # Is this junk code?
             round:
@@ -1834,7 +1839,7 @@ layers:
                 filter: {is_tunnel: yes, $zoom: {min: 13} }
                 draw:
                     lines:
-                        order: 6
+#                        order: 6
                         color: [0.870,0.870,0.870]
                         outline:
                             color: [0.790,0.790,0.790]
@@ -1894,7 +1899,7 @@ layers:
             filter: { kind: minor_road, highway: service }
             draw:
                 lines:
-                    # order: 3
+                    order: sort_key
                     color: [[12, [0.9,0.9,0.9]], [14, [0.9,0.9,0.9]], [15, [1.0,1.0,1.0]]]
                     # todo: consider starting at z13 with 0.5px
                     width: [[12, 0.65px], [13, 0.75px], [14, 0.85px], [15, 1.25px], [16, 2.0px], [18, 6m]]
@@ -1985,13 +1990,20 @@ layers:
                             size: 14px
                             stroke: { color: [1.00,1.00,1.00], width: 2 }
         path:
-            filter: { kind: path, not: { highway: [steps,track], man_made: [pier] } }
+            filter: 
+                all:
+                    - kind: path
+                not: 
+                    any: 
+                        - highway: [steps, track]
+                        - man_made: [pier]
             draw:
                 lines:
+                    order: sort_key
                     color: [[14, [0.97,0.97,0.97]],[16,[0.96,0.96,0.96]]]
-                    order: 6
                     width: [[14, 0.6px], [16, 1px], [17, 2.5m]]
                     outline:
+                        order: 355
                         color: [0.799,0.799,0.799]
                         width: [[14, 0], [16, 0.5px], [18, 3px]]
             pedestrian:
@@ -2000,7 +2012,7 @@ layers:
                     lines:
                         color: [[13, [0.97,0.97,0.97]], [16,[0.96,0.96,0.96]]]
                         width: [[13, 1.5], [15, 1.5], [17, 3m]]
-                        order: 6
+#                        order: 6
                         outline:
                             color: [0.799,0.799,0.799]
                             width: [[17, 0.5], [18, 1]]
@@ -2012,6 +2024,7 @@ layers:
                         width: [[15, 1.5px], [16, 4m], [17, 2m], [18, 2m]]
                         cap: round
                         outline:
+                            order: sort_key
                             color: [[15,*path_bridge_casing2],[16,*path_bridge_casing1]]
                             width: [[15, 0px], [16, 1.0px], [18, 3px]]
                             cap: butt
@@ -2094,10 +2107,11 @@ layers:
                     width: [[13, 0.5px], [14, 1.0px], [15, 1.0px], [16, 6m]]
                     #color: [[13,*minor_road4],[16,*minor_road3]]
                     #width: [[13, 1.0], [15, 1.5], [17, 3m]]
-                    order: 6
+                    order: sort_key
                     cap: butt
                     join: round
                     outline:
+                        order: 355
                         color: *minor_casing1
                         width: [[15, 0px], [16, 0.5px], [17, 1.0px], [18, 2.0px]]
             bridge:
@@ -2107,6 +2121,7 @@ layers:
                         width: [[15, 3.5], [17, 3m]]
                         cap: round
                         outline:
+                            order: sort_key
                             color: [[15,*minor_casing2],[16,*minor_casing1]]
                             width: [[15, 0.5px], [16, 1.0px], [18, 2px]]
                             cap: butt
@@ -2119,14 +2134,16 @@ layers:
                             color: [[16,*green1_r],[17,*major_casing1]]
                             width: [[15, 0px], [16, 0.25px], [17, 0.5px], [18, 1.0px], [19, 2.0px]]
         steps:
-            filter: { kind: path, highway: steps }
+            filter: 
+                all:
+                    - kind: path
+                    - highway: steps
             draw:
                 dashedline:
-                    order: 23
+                    order: sort_key
                     color: [0.97,0.97,0.97]
                     width: [[14,0.6px],[16,2px],[17,4px],[18,5px],[19,8px],[20,10px]]
                     outline:
-                        order: 21
                         color: [0.867,0.867,0.867]
                         width: 2px
             in_park:
@@ -2165,6 +2182,7 @@ layers:
             filter: { kind: piste }
             draw:
                 lines:
+                    order: 368 #sort_key
                     cap: round
                     join: round
                     color: '#909090'
@@ -2216,6 +2234,7 @@ layers:
             filter: { kind: path, man_made: pier }
             draw:
                 lines:
+                    order: sort_key
                     color: [0.993,0.993,0.993]
                     width: [[13, 0px], [14, 0.5px],[15, 1.5px], [16, 2.5px],[17, 3px],[18, 3m]]
                     outline:
@@ -2226,7 +2245,7 @@ layers:
             draw:
                 lines:
                     interactive: true
-                    #order: 5
+                    order: sort_key
                     cap: round
                     join: round
                     color: [0.600,0.667,0.627]
@@ -2235,7 +2254,7 @@ layers:
             filter: { kind: minor_road, aeroway: [runway,taxiway] }
             draw:
                 lines:
-                    order: 10
+                    order: sort_key
                     color: [[10,[0.4,0.4,0.4]],[11,[0.50,0.50,0.50]],[12,[0.7,0.7,0.7]],[13,[0.75,0.75,0.75]],[14,[0.95,0.95,0.95]]]
                     cap: butt
                     width: [[9,0px],[10,0.75px],[11,1.25px],[12,2px],[13,4px],[14,8px],[15,16px],[16,32px],[17,60m]]
@@ -2258,7 +2277,7 @@ layers:
                 filter: { aeroway: taxiway }
                 draw:
                     lines:
-                        order: 9
+                        order: sort_key
                         color: [[13,[0.913,0.913,0.913]],[15,[0.923,0.923,0.923]],[16,[0.95,0.95,0.95]]]
                         width: [[13,1px],[14,2px],[15,3px],[16,7px],[17,20m]]
                         outline:
@@ -2272,7 +2291,7 @@ layers:
             filter: { kind: ferry }
             draw:
                 lines:
-                    # order: 3
+                    order: sort_key
                     color: [0.702,0.843,0.933]
                     width: [[12, 0.5px], [14, 1.0px], [15, 1.0px], [16, 1.25px]]
                     outline:
@@ -2281,7 +2300,7 @@ layers:
             filter: { kind: aerialway }
             draw:
                 lines:
-                    order: 20
+                    order: sort_key
                     interactive: true
                     color: '#444'
                     width: [[14, 0.5px], [15, 1.0px], [16, 2m]]
@@ -2336,10 +2355,10 @@ layers:
             draw:
                 lines:
                     # let roads sort themselves past zoom 14
-                    order: function() { return (6 + feature.sort_key) || 6; }
+                    order: sort_key
                     # but give them all the same outline
                     outline:
-                        order: 21 # 15 is the starting aboveground level, plus 6
+                        order: 355
 
             bridges-tunnels:
                 filter: { any: [is_bridge: yes, is_tunnel: yes] }
@@ -2347,7 +2366,7 @@ layers:
                     lines:
                         outline:
                             # except bridges and tunnels, their outlines should also self-sort
-                            order: function() { return (6 + feature.sort_key) || 6; }
+                            order: sort_key
 
     city_walls:
         data: { source: osm, layer: boundaries }
@@ -2355,7 +2374,7 @@ layers:
         draw:
             lines:
                 interactive: true
-                order: 8
+                order: 262
                 color: *city_wall
                 width: [[12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.0px], [16, 2.5px], [19, 6m]]
     retaining_wall:
@@ -2364,7 +2383,7 @@ layers:
         draw:
             lines:
                 interactive: true
-                order: 8
+                order: 261
                 color: *retaining_wall
                 width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 4m]]
     snow_fence:
@@ -2373,7 +2392,7 @@ layers:
         draw:
             lines:
                 interactive: true
-                order: 8
+                order: 264
                 color: *snow_fence
                 width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 4m]]
 
@@ -2387,12 +2406,12 @@ layers:
         draw:
             polygons:
                 visible: false
-                order: 50
+                order: 388
                 color: *building2
             lines:
                 visible: false
                 style: lines
-                order: 51
+                order: 389
                 color: [[14,[0.70,0.70,0.70]],[17,[0.65, 0.65, 0.65]]]
                 width: [[14, 0.6px], [15, 0.65px], [16,0.75px], [18, 1.25px]]
 
@@ -2585,7 +2604,7 @@ layers:
         draw:
             lines:
                 interactive: true
-                order: 11
+                order: 250
 #                color: red
 #                width: [[9, 1px], [14, 2px], [16, 3px], [17, 8m]]
         country:
@@ -2597,14 +2616,14 @@ layers:
             draw:
                 lines:
                     interactive: true
-                    order: 13
+                    order: 260
                     color: *country_boundary
                     width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [9, 2.5px], [14, 3.5px], [16, 4.5px], [17, 14m]]
             water:
                 filter: { maritime: yes }
                 draw:
                     lines:
-                        order: 9
+                        order: 258
                         color: blue
         region:
             filter:
@@ -2616,7 +2635,7 @@ layers:
             draw:
                 lines:
                     interactive: true
-                    order: 12
+                    order: 256
                     color: *region_boundary
                     width: [[0, 0.5px], [2, 1.0px], [5, 1.25px], [6, 1.5px], [7, 1.75px], [9, 3.5px], [14, 5.5px], [16, 6.5px], [17, 16m]]
             water:
@@ -5670,13 +5689,13 @@ layers:
         data: { source: osm }
         draw: 
             dots2:
-                order: function() { return feature.sort_key || 1; }
+                order: sort_key
                 visible: false
             dots-rev:
-                order: function() { return feature.sort_key || 1; }
+                order: sort_key
                 visible: false
             polygons:
-                order: function() { return feature.sort_key || 1; }
+                order: sort_key
         tier1:
             filter:
                 any:
@@ -5702,7 +5721,7 @@ layers:
                     dots2:
                         color: [[4,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
                         # todo: what is this?
-                        order: 1
+                        order: 19
                         visible: true
                 us_national_park:
                     # yosemite national park, death valley national park, grand canyon national park
@@ -5710,6 +5729,7 @@ layers:
                     draw:
                         dots2:
                             color: [[4,[0.525,0.765,0.686]],[9,[0.416,0.737,0.631]]]
+                            order: 20
                             visible: true
                             # color: [[4,[0.242,0.737,0.712]],[12,[0.224,0.682,0.659]]]
         tier2:
@@ -5742,7 +5762,7 @@ layers:
                     filter: function() { return feature.name && feature.name.indexOf("Wilderness") > -1 }
                     draw:
                         dots2:
-                            order: 10
+                            order: 21
                             color: [0.027,0.804,0.494]
                             visible: true
 
@@ -5801,7 +5821,7 @@ layers:
                     dots2:
                         # color: [[4,[0.655,0.800,0.796]],[11,[0.588,0.780,0.773]],[12,[0.242,0.737,0.712]],[14,[0.412,0.733,0.718]],[15,[0.635,0.792,0.788]]]
                         color: [[4,[0.655,0.800,0.796]],[11,[0.588,0.780,0.773]],[12,[0.635,0.792,0.788]]]
-                        order: function() { return feature.sort_key + 1 || 1; }
+#                        order: sort_key
                         visible: true
 
             urban:
@@ -5845,7 +5865,7 @@ layers:
                 draw:
                     dots2:
                         color: [0.827,0.753,0.682]
-                        order: function() { return (feature.sort_key - 2) || 1; }
+#                        order: sort_key
                         visible: true
         tier4:
             filter:
@@ -5864,7 +5884,7 @@ layers:
                     kind: cemetery
                 draw:
                     dots2:
-                        order: 11
+#                        order: 11
                         color: *green2
                         visible: true
             commercial:
@@ -5914,7 +5934,7 @@ layers:
                 draw:
                     dots2:
                         color: *green10
-                        order: function() { return (feature.sort_key + 1) || 1; }
+#                        order: function() { return (feature.sort_key + 1) || 1; }
             recreation_ground:
                 filter:
                     kind: recreation_ground
@@ -5952,10 +5972,18 @@ layers:
                         visible: *grey8_v
             man-made:
                 filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline] }
-                draw: { dots2: { order: 2, color: [0.690,0.690,0.690], visible: true } }
+                draw: 
+                    dots2:
+#                        order: 2
+                        color: [0.690,0.690,0.690]
+                        visible: true
                 pier:
                     filter: { kind: [pier,bridge,breakwater,groyne,dike,cutline] }
-                    draw: { dots2: { order: 7, color: [0.679,0.679,0.679], visible: true } }
+                    draw:
+                        dots2:
+#                            order: 7
+                            color: [0.679,0.679,0.679]
+                            visible: true
         tier5:
             filter:
                 any:
@@ -5972,7 +6000,7 @@ layers:
                 draw:
                     dots2:
                         color: [0.604,0.973,0.722]
-                        order: 4
+#                        order: 4
                         visible: true
             parking:
                 filter:
@@ -6003,7 +6031,7 @@ layers:
                 filter: { kind: pitch }
                 draw:
                     dots2:
-                        order: 7
+#                        order: 7
                         color: [0.490,0.812,0.631]
                         visible: true
 #                    outline:
@@ -6041,7 +6069,7 @@ layers:
                 kind: runway
             draw:
                 polygons:
-                    order: 10
+#                    order: 10
                     color: [[10,[0.4,0.4,0.4]],[11,[0.50,0.50,0.50]],[12,[0.7,0.7,0.7]],[13,[0.75,0.75,0.75]],[14,[0.95,0.95,0.95]]]
         apron:
             filter:
@@ -6049,7 +6077,7 @@ layers:
                 $zoom: { min: 15}
             draw:
                 dots-rev:
-                    order: 3
+#                    order: 3
                     color: [0.820,0.820,0.820]
                     visible: *grey1_v
         beach:
@@ -6058,7 +6086,7 @@ layers:
             draw:
                 dots2:
                     color: [0.780,0.740,0.538]
-                    order: 4
+#                    order: 4
 
     landuse_urban_area-early:
         data: { source: osm, layer: landuse }
@@ -6068,7 +6096,7 @@ layers:
         visible: *earth2_ev
         draw:
             dots2:
-                order: 1
+#                order: 1
                 color: [[4,[0.965,0.600,0.882]],[6,[0.965,0.600,0.882]],[7,[0.882,0.639,0.827]],[8,[0.757,0.729,0.753]]]
 
 
@@ -6077,5 +6105,5 @@ layers:
         draw:
             flat_lines:
                 width: 2px
-                order: 100
+                order: 1000
                 color: '#ff0000'
