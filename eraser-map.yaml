@@ -363,7 +363,7 @@ sources:
     osm:
         # EraserMaps the app only supports MVT format tiles
         type:  MVT #TopoJSONTiles topojson
-        url:  https://vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.mvt
+        url:  http://vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.mvt
         #enforce_winding: true  #because Tangram v0.4 and tiles v0.5-pre don't play nice
         #url:  //localhost:8080//osm/all/{z}/{x}/{y}.mvt
         #url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-HqUVidw
