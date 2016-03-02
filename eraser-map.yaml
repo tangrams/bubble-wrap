@@ -4364,7 +4364,7 @@ layers:
                 text_source: ref
                 priority: 52
                 font:
-                    fill: *text_fill_exits
+                    fill: black #*text_fill_exits
                     size: [[12,9px],[15,12px],[17,14px]]
                     stroke: { color: *text_stroke, width: [[12,2px],[14,3px],[15,3px]] }
         later:
