@@ -868,14 +868,14 @@ layers:
         data: { source: osm, layer: earth }
         draw:
             polygons:
-                order: 10
+                order: function() { return feature.sort_key || 10; }
                 color: [0.870,0.870,0.870]
 
     water:
         data: { source: osm, layer: water }
         draw:
             grid:
-                order: 200
+                order: function() { return feature.sort_key || 200; }
                 #color: *water1
         ocean:
             filter:
@@ -907,7 +907,7 @@ layers:
                     - { $zoom: { min: 15 } }
             draw:
                 grid:
-                    order: 204
+                    #order: 204
                     color: *water1
         other-water-areas:
             filter: { not: { kind: [ocean, lake, water, reservoir, playa, swimming_pool] }, $zoom: { min: 11 }, area: { min: 100 } }
@@ -918,19 +918,19 @@ layers:
             filter: { kind: playa, $zoom: {min: 6} }
             draw:
                 polygons:
-                    order: 203
+                    #order: 203
                     color: [0.870,0.870,0.870]
         swimming_pool:
             filter: { kind: swimming_pool }
             draw:
                 grid:
-                    order: 206
+                    #order: 206
         water-boundary-ocean-early:
             filter: { boundary: yes, kind: ocean, $zoom: {min: 1, max: 17} }
             draw:
                 line2:
                     style: lines
-                    order: 205
+                    #order: 205
                     color: [[9,[0.396,0.833,0.920]],[10,[0.886,0.937,0.988]]]
                     width: [[9,0.25px],[10,2px],[11,3px],[13,4px],[15,6px]]
                 lines:
@@ -948,7 +948,7 @@ layers:
             filter: { boundary: yes, not: { kind: ocean }, $zoom: { min: 8 } }
             draw:
                 lines:
-                    order: 367
+                    #order: 367
                     # color: [[8,[0.635,0.737,0.753]],[13,[0.635,0.737,0.753]],[14,[0.569,0.722,0.749]],[15,[0.397,0.743,0.809]]]
                     color: [[8,[0.749,0.831,0.867]],[12,[0.698,0.788,0.816]],[13,[0.698,0.784,0.812]],[14,[0.627,0.788,0.831]],[17,[0.643,0.824,0.851]]]
                     width: [[8,0.5px],[10,0.5px],[11,0.5px],[12,0.75px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1px]]
@@ -974,7 +974,7 @@ layers:
             draw:
                 lines:
                     # order: 18
-                    order: 201
+                    #order: 201
                     color: [[11,[0.753,0.820,0.835]],[12,[0.710,0.800,0.824]],[13,[0.886,0.937,0.988]]]
                     width: [[8,0px],[10,0px],[11,0.75px],[12,1px],[13,1px],[14,2px],[15,3px],[16,4px],[17,5px]]
                     join: round
@@ -989,7 +989,7 @@ layers:
         draw:
             lines:
                 interactive: true
-                order: 275
+                order: function() { return feature.sort_key || 275; }
         railway:
             filter: { kind: [railway,train] }
             draw:
@@ -1064,11 +1064,11 @@ layers:
         z-order:
             draw:
                 lines_transparent:
-                    order: function() { if($zoom<17) { return 385; } else { return 435; } }
+                    order: function() { if($zoom<17) { return feature.sort_key || 385; } else { return 435; } }
                 polygons_transparent:
-                    order: function() { if($zoom<17) { return 385; } else { return 435; } }
+                    order: function() { if($zoom<17) { return feature.sort_key || 385; } else { return 435; } }
                 outline_transparent:
-                    order: function() { if($zoom<17) { return 386; } else { return 436; } }
+                    order: function() { if($zoom<17) { return feature.sort_key || 385; } else { return 436; } }
 
     roads:
         data: { source: osm, layer: roads }
@@ -5822,7 +5822,11 @@ layers:
                         color: [[4,[0.655,0.800,0.796]],[11,[0.588,0.780,0.773]],[12,[0.635,0.792,0.788]]]
 #                        order: function() { return feature.sort_key || 11; }
                         visible: true
-
+                park:
+                    filter: { kind: [park] }
+                    draw:
+                        dots:
+                            order: 33
             urban:
                 filter: { kind: [urban, rural, residential] }
                 visible: *earth2_v
@@ -6026,6 +6030,12 @@ layers:
                     dots2:
                         color: [0.740,0.740,0.740]
                         visible: *grey1_v
+                green-stuff:
+                    filter:
+                        surface: [grass]
+                    draw:
+                        dots2:
+                            color: [0.584,0.843,0.792]
             pitch:
                 filter: { kind: pitch }
                 draw:
