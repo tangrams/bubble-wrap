@@ -25,6 +25,7 @@ labels-global:
     - &text_visible_highway           true
     - &text_visible_highway_e         true
     - &text_visible_trunk_primary     true
+    - &text_visible_trunk_primary_e2  false
     - &text_visible_trunk_primary_e   true
     - &text_visible_secondary         true
     - &text_visible_secondary_e       true
@@ -34,7 +35,11 @@ labels-global:
     - &text_visible_minor_road_e      true
     - &text_visible_service_road      true
     - &text_visible_path              true
-    - &text_visible_steps             false
+    - &text_visible_piste             true
+    - &text_visible_steps             true
+    - &text_visible_aerialway         true
+    - &text_visible_shields           true
+    - &text_visible_exits             true
 
 settings:
     cameras:
@@ -103,6 +108,7 @@ settings:
         - &city_wall                  [0.682,0.682,0.682]
         - &retaining_wall             [0.827,0.808,0.780]
         - &snow_fence                 [0.827,0.808,0.780]
+        - &fence                      [0.827,0.808,0.780]
 
     areas:
         - &scene1      '#eee'                   # map background, water
@@ -138,6 +144,8 @@ settings:
         - &green9_e    '#cfe3d4'                # forest (landcover) early
         - &green9_v    true                     # forest (landcover) visibility
         - &green10     '#c7d4c0'                # sports_centre
+        - &green11     '#d8ddd0'                # minor zoo related AOIs
+        - &green11_o   '#aec7b5'                # minor zoo related AOIs outline
         - &orange1     '#bfb08e'                # stadium
         - &orange2     '#d8ccb0'                # pitch (play field)
         - &orange3     '#b9a597'                # racetrack (play field)
@@ -168,6 +176,12 @@ settings:
         - &grey9       [.7, .0, .0, 0.5]        #[.7, .7, .7]        # transit platform
         - &grey9_o     [.5, .5, .5]             # transit platform outline
         - &grey9_v     true                     # transit platform visibility
+        - &grey10      '#d4cce6'                # generic major landuse (theme park, resort, aquarium, winery)
+        - &grey10_o    '#bcb9c5'                # generic major landuse outline
+        - &grey11      '#d7d7d7'                # generic minor landuse (attraction, artwork)
+        - &grey11_o    '#cccccc'                # generic minor landuse outline
+        - &grey12      '#cfcfcf'                # generic minor amusements (roller coasters, rides, slide, carousel)
+        - &grey12_o    '#c5c5c5'                # generic minor amusements
         - &purple      '#f0e1e1'                # airport
         - &purple_v    false                    # airport
         - &purple_b    '#c2c3c4'                # airport buildings
@@ -180,7 +194,7 @@ settings:
         - &building_e  true                     # building stroke order
 
     labels:
-        - &text_fill   black
+        - &text_fill          black
         - &text_fill2        '#555'             # WHITE
         - &text_fill_road_e   '#555'            # WHITE
         - &text_fill_exits    [0.920,0.398,0.340]         # motorway junctions, highway_casing1
@@ -191,6 +205,7 @@ settings:
         - &text_fill_beach    [0.35,0.35,0.35]  # black
         - &text_fill_piste    '#444'             # dark gray
         - &text_fill_piste_e  '#666'             # dark gray early
+        - &text_fill_shield   white              # road shield fill color 
         - &text_stroke [0.870,0.870,0.870]      # land color
         - &text_stroke_water [0.9, 0.9, 0.9]    # water stroke color
         - &text_stroke_park  '#bddec5'          # park stroke color
@@ -200,6 +215,7 @@ settings:
         - &text_stroke_road2  [0.9, 0.9, 0.9]   # road stroke color major road
         - &text_stroke_road3  [0.9, 0.9, 0.9]   # road stroke color major road route
         - &text_stroke_road4  [0.9, 0.9, 0.9]   # road stroke color minor road
+        - &text_stroke_shield  '#D16768'        # road shield stroke color &highway_casing1
         - &townspot_sprite   townspot-m-rev     # depends on land color and text settings
         - &text_font_family  'Open Sans'        # branding in asperational Unicode, yo (or Helvetica)
 
@@ -1009,6 +1025,7 @@ layers:
         draw:
             lines:
                 interactive: true
+                order: function() { return feature.sort_key; }
                 color: [0.588,0.671,0.698]
                 width: [[12,0px],[13,0.25px],[14,0.4px],[15,0.75px],[16,0.75px],[18,1m]]
         service:
@@ -1167,7 +1184,7 @@ layers:
                 draw:
                     text-blend-order:
                         priority: 50
-                        visible: *text_visible_highway_e
+                        visible: *text_visible_shields
                         text_source: ref
                         font:
                             fill: [1.0,1.0,1.0]
@@ -1179,7 +1196,7 @@ layers:
                     $zoom: 10
                 draw:
                     text-blend-order:
-                        visible: *text_visible_highway_e
+                        visible: *text_visible_shields
                         text_source: ref
                         font:
                             fill: [1.0,1.0,1.0]
@@ -1191,7 +1208,7 @@ layers:
                     $zoom: 11
                 draw:
                     text-blend-order:
-                        visible: *text_visible_highway_e
+                        visible: *text_visible_shields
                         text_source: ref
                         font:
                             fill: [1.0,1.0,1.0]
@@ -1203,7 +1220,7 @@ layers:
                     $zoom: 12
                 draw:
                     text-blend-order:
-                        visible: *text_visible_highway_e
+                        visible: *text_visible_shields
                         text_source: ref
                         font:
                             fill: [1.0,1.0,1.0]
@@ -1288,7 +1305,7 @@ layers:
                             # todo: investigate width optimizations
                             width: [[14, 0px], [15, 1.75px], [16, 2px], [17, 3px]]
                 early:
-                    filter: { $zoom: { max: 15 } }
+                    filter: { $zoom: { max: 16 } }
                     draw:
                         lines:
                             order: 352
@@ -1312,7 +1329,7 @@ layers:
                                 color: [[13, [0.870,0.870,0.870]], [15, [0.976,0.612,0.573]]]
                                 width: [[13, 0], [15, 2px], [16, 2px], [17, 3px]]
                     early:
-                        filter: { $zoom: { max: 15 } }
+                        filter: { $zoom: { max: 16 } }
                         draw:
                             lines:
                                 order: function() { return feature.sort_key + 2; }
@@ -1332,7 +1349,7 @@ layers:
                         draw:
                             text-blend-order:
                                 priority: 53
-                                visible: *text_visible_trunk_primary
+                                visible: *text_visible_trunk_primary_e2
                                 text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
                                 font:
                                     fill: [0.0,0.0,0.0]
@@ -1483,8 +1500,10 @@ layers:
                     draw:
                         lines:
                             order: 352
+                            visible: false
                             outline:
-                                order: function() { return feature.sort_key + 2; }
+                                order: 353 #function() { return feature.sort_key + 2; }
+                                visible: false
                 routes:
                     filter: { ref: true, $zoom: { min: 12} }
                     draw:
@@ -1784,12 +1803,12 @@ layers:
                         color: [0.843,0.843,0.843]
                         width: [[15, 0], [16, 2px], [17, 3px]]
             early:
-                filter: { $zoom: { max: 15 } }
+                filter: { $zoom: { max: 16 } }
                 draw:
                     lines:
-                        order: 352
+                        order: 350
                         outline:
-                            order: 353
+                            order: 351
             # Is this junk code?
             round:
                 filter: { $zoom: { min: 17 } }
@@ -2018,11 +2037,9 @@ layers:
                     - man_made: [pier]
             draw:
                 lines:
-                    order: 353
                     color: [[14, [0.97,0.97,0.97]],[16,[0.96,0.96,0.96]]]
                     width: [[14, 0.6px], [16, 1px], [17, 2.5m]]
                     outline:
-                        order: 353
                         color: [0.799,0.799,0.799]
                         width: [[14, 0], [16, 0.5px], [18, 3px]]
             pedestrian:
@@ -2334,12 +2351,12 @@ layers:
                 draw:
                     text-blend-order:
                         priority: 59
-                        visible: *text_visible_steps
+                        visible: *text_visible_aerialway
                         text_source: name
                         font:
                             fill: *text_fill
                             size: 12px
-                            stroke: { color: *text_stroke_park, width: 4 }
+                            stroke: { color: *grey8, width: 4 }
                 minor:
                     filter: { not: { aerialway: [gondola,cable_car,chair_lift] }, $zoom: { max: 17 } }
                     draw:
@@ -2364,32 +2381,6 @@ layers:
                     outline:
                         # except bridges and tunnels, their outlines should also self-sort
                         order: function() { return feature.sort_key; }
-
-    city_walls:
-        data: { source: osm, layer: boundaries }
-        filter: { kind: city_wall }
-        draw:
-            lines:
-                interactive: true
-                order: function() { return feature.sort_key; }
-                color: *city_wall
-                width: [[12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.0px], [16, 2.5px], [19, 6m]]
-    retaining_wall:
-        data: { source: osm, layer: boundaries }
-        filter: { kind: retaining_wall }
-        draw:
-            lines:
-                interactive: true
-                color: *retaining_wall
-                width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 4m]]
-    snow_fence:
-        data: { source: osm, layer: boundaries }
-        filter: { kind: snow_fence }
-        draw:
-            lines:
-                interactive: true
-                color: *snow_fence
-                width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 4m]]
 
     buildings:
         data: { source: osm, layer: buildings }
@@ -2641,6 +2632,30 @@ layers:
                 draw:
                     lines:
                         visible: false
+        city_walls:
+            filter: { kind: city_wall }
+            draw:
+                lines:
+                    color: *city_wall
+                    width: [[12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.0px], [16, 2.5px], [19, 6m]]
+        retaining_wall:
+            filter: { kind: retaining_wall }
+            draw:
+                lines:
+                    color: *retaining_wall
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 4m]]
+        snow_fence:
+            filter: { kind: snow_fence }
+            draw:
+                lines:
+                    color: *snow_fence
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1.5m]]
+        fence:
+            filter: { kind: fence }
+            draw:
+                lines:
+                    color: *fence
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1.5m]]
 
     places:
         data: { source: osm, layer: places }
@@ -4343,7 +4358,7 @@ layers:
             icons:
                 visible: false
             text-blend-order:
-                visible: true
+                visible: *text_visible_exits
                 interactive: true
                 text_source: ref
                 priority: 52
@@ -4763,7 +4778,6 @@ layers:
                         - { $zoom: [16], area: { min: 5000 } }
                         - { $zoom: [17], area: { min: 2000 } }
                         - { $zoom: { min: 18 } }
-                visible: *label_visible_landuse_green
                 draw:
                     icons:
                         sprite: school
@@ -4810,13 +4824,44 @@ layers:
                 early:
                     filter: { $zoom: { max: 14 } }
                     draw: { text-blend-order: { font: { size: 10px } } }
+            tourism-related:
+                filter:
+                    all:
+                        - kind: [zoo, theme_park, resort, aquarium, winery, maze, stadium]
+                        - area: true
+                        - $geometry: point
+                    any:
+                        # show labels for smaller landuse areas at higher zooms
+                        - { $zoom: { min: 11 }, area: { min: 400000 } }
+                        - { $zoom: { min: 12 }, area: { min: 200000 } }
+                        - { $zoom: { min: 13 }, area: { min: 50000 } }
+                        - { $zoom: { min: 14 }, area: { min: 20000 } }
+                        - { $zoom: { min: 15 }, area: { min: 10000 } }
+                        - { $zoom: { min: 15 }, area: { min: 2000 } }
+                        - { $zoom: { min: 16 } }
+                draw:
+                    icons:
+                        sprite: function() { return feature.kind; }
+                        sprite_default: generic
+                        visible: *icon_visible_poi_landuse
+                        priority: 43
+                    text-blend-order:
+                        visible: *text_visible_poi_landuse
+                        priority: 44
+                        font:
+                            fill: *text_fill
+                            size: 12px
+                            stroke: { color: *text_stroke, width: 4 }
+                early-sizing:
+                    filter: { $zoom: { max: 14 } }
+                    draw: { text-blend-order: { size: 11px } }
             landuse-labels-not-green-areas:
                 filter:
                     all:
                         - $zoom: { min: 6 }
                         - area: true
                         - $geometry: point
-                        - not: { kind: [park, national_park, "park or protected land",conservation, protected_area, nature_reserve, airport, aerodrome, university, college, school, kindergarten,winter_sports] }
+                        - not: { kind: [park, national_park, "park or protected land", conservation, protected_area, nature_reserve, airport, aerodrome, university, college, school, kindergarten, winter_sports, zoo, theme_park, resort, aquarium, winery, maze, stadium] }
                     any:
                         # show labels for smaller landuse areas at higher zooms
                         - { $zoom: [5,6,7], area: { min: 5000000000 } }
@@ -5639,7 +5684,7 @@ layers:
         filter:
             all:
                 - name: true
-                - area: false
+                - $geometry: line
                 - kind: [river,canal,stream,dam,ditch,drain]
                 - $zoom: { min: 14 }
         draw:
@@ -5965,6 +6010,45 @@ layers:
             filter:
                 any:
                     # limit show smaller landuse areas to higher zooms
+                    - { $zoom: { min: 10 }, area: { min: 1000000 } }
+                    - { $zoom: { min: 11 }, area: { min: 400000 } }
+                    - { $zoom: { min: 12 }, area: { min: 200000 } }
+                    - { $zoom: { min: 13 }, area: { min: 50000 } }
+                    - { $zoom: { min: 14 }, area: { min: 20000 } }
+                    - { $zoom: { min: 15 }, area: { min: 10000 } }
+                    - { $zoom: { min: 15 }, area: { min: 2000 } }
+                    - { $zoom: { min: 16 } }
+                all:
+                    - kind:
+                        - theme_park
+                        - resort
+                        - aquarium
+                        - winery
+                        - maze
+                        - beach
+            tourism-related:
+                filter:
+                    kind:
+                        - theme_park
+                        - resort
+                        - aquarium
+                        - winery
+                        - maze
+                draw:
+                    dots2:
+                        color: *grey10
+                        visible: true
+            beach:
+                filter:
+                    kind: beach
+                draw:
+                    dots2:
+                        color: [0.780,0.740,0.538]
+                        visible: true
+        tier6:
+            filter:
+                any:
+                    # limit show smaller landuse areas to higher zooms
                     - { $zoom: { min: 12 }, area: { min: 500000 } }
                     - { $zoom: { min: 13 }, area: { min: 100000 } }
                     - { $zoom: { min: 14 }, area: { min: 50000 } }
@@ -6036,14 +6120,37 @@ layers:
                     dots2:
                         color: [0.749,0.722,0.694]
                         visible: true
+            minor-landuse:
+                filter:
+                    kind:
+                        - attraction
+                        - artwork
+                        - wilderness_hut
+                        - hanami
+                draw:
+                    dots2:
+                        color: [0.765,0.765,0.765]
+                        visible: true
 
     landuse-not-filtered:
         data: { source: osm, layer: landuse }
         # runways and taxiways are also in the roads layer as lines
         # these ones are probably duplicate features, but have AREA (a good thing)
         filter:
-            # This is from Natural Earth and only shows up from zoom(0,9)
-            kind: [runway, apron, beach]
+            kind:
+                - runway
+                - apron
+                - beach
+                - roller_coaster
+                - amusement_ride
+                - summer_toboggan
+                - trail_riding_station
+                - water_slide
+                - carousel
+                - animal
+                - enclosure
+                - petting_zoo
+                - aviary
         draw: 
             dots2:
                 order: function() { return feature.sort_key; }
@@ -6069,14 +6176,30 @@ layers:
                 dots-rev:
                     visible: true
                     color: [0.820,0.820,0.820]
-        beach:
+        minor-amusement-park-landuse:
             filter:
-                kind: beach
+                kind:
+                    - roller_coaster
+                    - amusement_ride
+                    - summer_toboggan
+                    - trail_riding_station
+                    - water_slide
+                    - carousel
             draw:
                 dots2:
+                    color: *grey12
                     visible: true
-                    color: [0.780,0.740,0.538]
-
+        minor-zoo-landuse:
+            filter:
+                kind:
+                    - animal
+                    - enclosure
+                    - petting_zoo
+                    - aviary
+            draw:
+                dots2:
+                    color: *green11
+                    visible: true
     landuse_urban_area-early:
         data: { source: osm, layer: landuse }
         filter:
