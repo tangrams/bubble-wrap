@@ -564,14 +564,6 @@ styles:
                     float pattern = aastep(.5, pulse(st.x, .75, .15) + pulse(st.x, .4, .10) + pulse(st.x, .1, .1));
                     color.rgb = mix(color.rgb, vec3(0.675,0.855,0.886), pattern);
 
-    ground:
-        base: polygons
-        mix: tools-grain
-        shaders:
-            blocks:
-                filter: |
-                    color.rgb -= (0.22 - grain(gl_FragCoord.xy)) * 0.21;
-
     shapes-circle:
         shaders:
             blocks:
