@@ -383,6 +383,7 @@ sources:
         #enforce_winding: true  #because Tangram v0.4 and tiles v0.5-pre don't play nice
         #url:  //localhost:8080/osm/all/{z}/{x}/{y}.mvt
         url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-HqUVidw
+        # road labels in Tangram JS are broken when overzooming, set max_zoom: 18 to preview fix
         max_zoom: 16
 
 
@@ -2171,6 +2172,7 @@ layers:
                     - highway: steps
             draw:
                 dashedline:
+                    order: function() { return feature.sort_key; }
                     color: [0.97,0.97,0.97]
                     width: [[14,0.6px],[16,2px],[17,4px],[18,5px],[19,8px],[20,10px]]
                     outline:
@@ -2251,7 +2253,7 @@ layers:
                 draw: 
                     lines:
                         color: *piste_advanced
-                    text-blend-order: 
+                    text-blend-order:
                         text_source: function() { if( feature.name ){ return '◆ ' + feature.name; } else { return '◆'; } }
             expert:
                 filter: { piste_difficulty: expert }
@@ -2512,8 +2514,8 @@ layers:
             all:
                 - { $zoom: { min: 16 } }
                 - $geometry: point
-                - not: { location: underground }
-                - kind: [false, building, university, college, school, kindergarten]
+                - not: { location: underground, kind: address }
+#                - kind: [false, building, university, college, school, kindergarten]
             any:
                 - { $zoom: [16], area: { min: 5000 }, name: true }
                 - { $zoom: [16], area: { min: 5000 }, kind: true }
@@ -2604,7 +2606,7 @@ layers:
                     color: *country_boundary
                     width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [9, 2.5px], [14, 3.5px], [16, 4.5px], [17, 14m]]
             water:
-                filter: { maritime: yes }
+                filter: { maritime_boundary: yes }
                 draw:
                     lines:
                         order: function() { return (feature.sort_key - 2); }
@@ -4393,10 +4395,10 @@ layers:
                         weight: 600
 
     pois_and_landuse_labels:
-        data: { source: osm, layer: [pois,landuse,buildings] }
+        data: { source: osm, layer: [pois,landuse] }
         visible: *label_visible_poi_landuse
         filter: 
-            not: { kind: [building,farm,tree,gate,address,apron] }
+            not: { kind: [building,farm,tree,gate,apron] }
             any:
                 - area: false
                   all:
@@ -4410,14 +4412,14 @@ layers:
                 size: [[13, 12px], [16, 16px], [18, 19px]]
                 interactive: true
                 visible: false
-                priority: 45
+                priority: 65
             text-blend-order:
                 visible: false    # labels are enabled by each layer below
                 move_into_tile: false # preserves text alignment w/icons in JS
                 anchor: bottom
                 offset: [[13, [0, 6px]], [16, [0, 8px]], [18, [0, 10px]]] # offset tracks alongside icon size (half icon height)
                 interactive: true
-                priority: 46
+                priority: 66
                 font:
                     family: *text_font_family
                     weight: 400
@@ -4444,7 +4446,7 @@ layers:
                     icons:
                         sprite: function() { return feature.sport }
                         visible: *icon_visible_poi_landuse_e
-                        priority: 49
+                        priority: 69
                 baseball:
                     filter: { sport: baseball }
                     draw: { icons: { sprite: baseball-field } }
@@ -4505,7 +4507,7 @@ layers:
                     icons:
                         sprite_default: generic
                         visible: *icon_visible_poi_landuse
-                        priority: 47
+                        priority: 67
 
             # add generic icon at high zoom
             default-label-names:
@@ -4513,7 +4515,7 @@ layers:
                 draw:
                     text-blend-order:
                         visible: *text_visible_poi_landuse
-                        priority: 48
+                        priority: 68
 
             landuse-labels-green-areas-national-park:
                 filter:
@@ -5034,11 +5036,11 @@ layers:
                         visible: *icon_visible_station
                         sprite: train-station
                         size: [[13, 12px], [14, 12px], [15, 16px], [17, 18px], [18, 20px]]
-                        priority: 41
+                        priority: 61
                     text-blend-order:
                         visible: *text_visible_station
                         offset: [[13, [0, 6px]], [14, [0, 6px]],[15, [0, 8px]], [17, [0, 9px]], [18, [0, 10px]]]
-                        priority: 42
+                        priority: 62
                 low-priority-early:
                     filter: { kind_tile_rank: { min: 5 }, $zoom: { min: 0, max: 13 } }
                     draw:
