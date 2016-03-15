@@ -1489,14 +1489,12 @@ layers:
                             color: [[15, [1.000,0.739,0.710]]]
                             width: [[14, 0], [15, 1.75px], [16, 2px], [17, 3px]]
                 early:
-                    filter: { $zoom: { max: 15 } }
+                    filter: { $zoom: { max: 16 } }
                     draw:
                         lines:
                             order: 352
-                            visible: false
                             outline:
                                 order: 353 #function() { return feature.sort_key + 2; }
-                                visible: false
                 routes:
                     filter: { ref: true, $zoom: { min: 12} }
                     draw:
