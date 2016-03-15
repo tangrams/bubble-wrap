@@ -30,17 +30,25 @@
 
 
     .label {
-        /*width: 200px;*/
+        width: auto;
         /*margin-left: -100px;*/
         position: absolute;
-        z-index: 1000;
+        z-index: 500;
         text-align: left;
-        margin: 0px;
+        margin: 10px;
         background: #E1E1E1;
         opacity: 0.9;
         padding: 2px;
+        visibility: hidden;
         /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
         /*word-wrap: break-word;*/
+    }
+    .label a {
+        color: white;
+    }
+
+    .label a:hover {
+        color: lightblue;
     }
 
     .labelInner {
@@ -58,20 +66,29 @@
     }
 
     .labelLine:hover {
-        border: 2px solid gold;
+        /* border: 2px solid gold; */
+        -webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		cursor: default;
     }
 
     </style>
   </head>
 
   <body>
+    <div class="label" id="popup"></div>
     <div id="map"></div>
 
-    <!-- Leaflet -->
+    <!-- 3rd party libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2/leaflet.js"></script>
+    <!-- bog-standard leaflet URL hash -->
     <script src="lib/leaflet-hash.js"></script>
 
-    <!-- Keymaster handles keyboard input -->
+	<!-- Keymaster handles keyboard input -->
     <script src="lib/keymaster.js"></script>
 
     <!-- Main tangram library -->
@@ -82,21 +99,29 @@
 
     <!-- Adding a script block to post message to the parent container (think iframed demos) -->
     <script type="text/javascript">
-      window.addEventListener("hashchange",function(){
-      	parent.postMessage(window.location.hash, "*")
-      });
+      window.addEventListener("hashchange",function(){parent.postMessage(window.location.hash, "*")});
     </script>
 
     <!-- Mapzen map UI -->
-    <script src='//mapzen.com/common/ui/mapzen-ui.min.js'></script>
+    <script src='https://mapzen.com/common/ui/mapzen-ui.min.js'></script>
     <script>
       MPZN.bug({
-      name: 'Tangram',
-      link: 'https://mapzen.com/projects/tangram',
-      tweet: 'Tangram highways-rendering demo from @mapzen',
+      name: 'Mapzen Eraser Map cartography',
+      link: 'https://tangrams.github.io/eraser-map/',
+      tweet: 'Eraser Map cartography from @mapzen',
       repo: 'https://github.com/tangrams/eraser-map/'
     });
     </script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-47035811-1', 'auto');
+	  ga('send', 'pageview');
+	</script>
+
 
   </body>
 </html>
