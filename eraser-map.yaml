@@ -2503,7 +2503,7 @@ layers:
         data: { source: osm, layer: buildings }
         filter:
             all:
-                - { $zoom: { min: 16 } }
+                - { $zoom: { min: 17 } }
                 - $geometry: point
                 - not: { location: underground, kind: address }
 #                - kind: [false, building, university, college, school, kindergarten]
@@ -2524,7 +2524,7 @@ layers:
             text-blend-order:
                 interactive: true
                 move_into_tile: true
-                priority: 51
+                priority: 70
                 order: 7
                 font:
                     fill: '#666'
