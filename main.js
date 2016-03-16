@@ -175,6 +175,11 @@ map = (function () {
             } else {
                 var url = 'https://www.openstreetmap.org/edit?';
                 scene.getFeatureAt(pixel).then(function(selection) {
+                    if (!selection || selection.feature == null || selection.feature.properties == null) {
+                        picking = false;
+                        popup.style.visibility = 'hidden';
+                        return;
+                    }
                     //console.log(selection.feature, selection.changed);
                     // enable iD to show properties sidebar for selected feature
                     osm_type = 'node';
@@ -198,11 +203,6 @@ map = (function () {
                     if( key.shift ) {
                         window.open(url, '_blank');
                     } else {
-                        if (!selection || selection.feature == null || selection.feature.properties == null) {
-                            picking = false;
-                            popup.style.visibility = 'hidden';
-                            return;
-                        }
                         var properties = selection.feature.properties;
 
                         var label = '';
