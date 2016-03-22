@@ -103,7 +103,11 @@ map = (function () {
                 popup.style.left = (pixel.x + 0) + 'px';
                 popup.style.top = (pixel.y + 0) + 'px';
                 popup.style.margin = '10px';
-                popup.innerHTML = '<span class="labelInner">' + properties.name + '</span><br>';
+                if (properties.name) {
+                    popup.innerHTML = '<span class="labelInner">' + properties.name + '</span><br>';
+                } else {
+                    popup.innerHTML = '<span class="labelInner">' + 'unnamed ' + properties.kind + '</span><br>';
+                }
                 popup.innerHTML += '<span class="labelInner" style="font-size:10px;">' + 'Click to view more...' + '</span><br>';
                 popup.style.visibility = 'visible';
             });
@@ -245,8 +249,6 @@ map = (function () {
     window.addEventListener('load', function () {
         // Scene initialized
         layer.on('init', function() {
-            addGUI();
-            initFeatureSelection();
             var camera = scene.config.cameras[scene.getActiveCamera()];
             // if a camera position is set in the scene file, use that
             if (defaultpos && typeof camera.position != "undefined") {
@@ -256,6 +258,8 @@ map = (function () {
         });
         if (!inIframe()) {
             map.scrollWheelZoom.enable();
+            addGUI();
+            initFeatureSelection();
         }
         layer.addTo(map);
     });
