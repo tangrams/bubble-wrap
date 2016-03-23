@@ -169,71 +169,84 @@ map = (function () {
     
     function addGUI() {
         // Link to edit in OSM - hold 'e' and click
+        map.getContainer().addEventListener('dblclick', function (event) {
+            console.log( 'dblclick was had' );
+            if( timer ) { clearTimeout( timer ); timer = null; }
+            popup.style.visibility = 'hidden';
+        });
+        
+        var timer;
+        
         map.getContainer().addEventListener('click', function (event) {
-            picking = true;
-            latlng = map.mouseEventToLatLng(event);
-            var pixel = { x: event.clientX, y: event.clientY };
+            console.log( 'click was had' );
+            if( timer ) { clearTimeout( timer ); timer = null; }
+            timer = setTimeout( function(){ 
+                picking = true;
+                latlng = map.mouseEventToLatLng(event);
+                var pixel = { x: event.clientX, y: event.clientY };
             
-            if( key.cmd || key.alt ) {
-                window.open( mapzenTileURL(), '_blank' );
-            } else {
-                var url = 'https://www.openstreetmap.org/edit?';
-                scene.getFeatureAt(pixel).then(function(selection) {
-                    if (!selection || selection.feature == null || selection.feature.properties == null) {
-                        picking = false;
-                        popup.style.visibility = 'hidden';
-                        return;
-                    }
-                    //console.log(selection.feature, selection.changed);
-                    // enable iD to show properties sidebar for selected feature
-                    osm_type = 'node';
-                    osm_zoom = '19'
-                    if( selection.feature.properties.sort_key ) {
-                        osm_type = 'way';
-                        osm_zoom = Math.max( 17, map.getZoom() );
-                    }
-                    osm_id = selection.feature.properties.id;
-                    if( osm_id < 0 ) {
-                        osm_type = 'relation'
-                        osm_id = Math.abs( osm_id );
-                        osm_zoom = Math.max( 16, map.getZoom() );
-                    }
-                    url += osm_type + '=' + osm_id;
-                    // and position the map so it's at a similar zoom to Tangram
-                    if (latlng) {
-                        url += '#map=' + osm_zoom + '/' + latlng.lat + '/' + latlng.lng;
-                    }
-    
-                    if( key.shift ) {
-                        window.open(url, '_blank');
-                    } else {
-                        var properties = selection.feature.properties;
-
-                        var label = '';
-                        //console.log(properties);
-                        for (var x in properties) {
-                            var val = properties[x]
-                            label += "<span class='labelLine' key="+x+" value="+val+"'>"+x+" : "+val+"</span><br>"
+                if( key.cmd || key.alt ) {
+                    window.open( mapzenTileURL(), '_blank' );
+                } else {
+                    var url = 'https://www.openstreetmap.org/edit?';
+                    scene.getFeatureAt(pixel).then(function(selection) {
+                        if (!selection || selection.feature == null || selection.feature.properties == null) {
+                            picking = false;
+                            popup.style.visibility = 'hidden';
+                            return;
                         }
-
-                        if (label != '') {
-                            popup.style.left = (pixel.x) + 'px';
-                            popup.style.top = (pixel.y) + 'px';
-                            popup.style.margin = '0px';
-                            popup.innerHTML = '<span class="labelInner">' + label + '</span>';
+                        //console.log(selection.feature, selection.changed);
+                        // enable iD to show properties sidebar for selected feature
+                        osm_type = 'node';
+                        osm_zoom = '19'
+                        if( selection.feature.properties.sort_key ) {
+                            osm_type = 'way';
+                            osm_zoom = Math.max( 17, map.getZoom() );
                         }
-
-                        // JOSM editor link
-                        var position = '19' + '/' + latlng.lat + '/' + latlng.lng;
-                        var josmUrl = 'http://www.openstreetmap.org/edit?editor=remote#map='+position;
+                        osm_id = selection.feature.properties.id;
+                        if( osm_id < 0 ) {
+                            osm_type = 'relation'
+                            osm_id = Math.abs( osm_id );
+                            osm_zoom = Math.max( 16, map.getZoom() );
+                        }
+                        url += osm_type + '=' + osm_id;
+                        // and position the map so it's at a similar zoom to Tangram
+                        if (latlng) {
+                            url += '#map=' + osm_zoom + '/' + latlng.lat + '/' + latlng.lng;
+                        }
     
-                        popup.appendChild(createEditLinkElement( url, 'iD', 'Edit with iD ➹') );
-                        popup.appendChild(createEditLinkElement( mapzenTileURL(), 'rawTile', 'View tile data ➹') );
-                        //popup.appendChild(createEditLinkElement( josmUrl, 'JOSM', 'Edit with JOSM ➹') );
-                        popup.style.visibility = 'visible';
-                    }
-                });
-            }
+                        if( key.shift ) {
+                            window.open(url, '_blank');
+                        } else {
+                            var properties = selection.feature.properties;
+
+                            var label = '';
+                            //console.log(properties);
+                            for (var x in properties) {
+                                var val = properties[x]
+                                label += "<span class='labelLine' key="+x+" value="+val+"'>"+x+" : "+val+"</span><br>"
+                            }
+
+                            if (label != '') {
+                                popup.style.left = (pixel.x) + 'px';
+                                popup.style.top = (pixel.y) + 'px';
+                                popup.style.margin = '0px';
+                                popup.innerHTML = '<span class="labelInner">' + label + '</span>';
+                            }
+
+                            // JOSM editor link
+                            var position = '19' + '/' + latlng.lat + '/' + latlng.lng;
+                            var josmUrl = 'http://www.openstreetmap.org/edit?editor=remote#map='+position;
+    
+                            popup.appendChild(createEditLinkElement( url, 'iD', 'Edit with iD ➹') );
+                            popup.appendChild(createEditLinkElement( mapzenTileURL(), 'rawTile', 'View tile data ➹') );
+                            //popup.appendChild(createEditLinkElement( josmUrl, 'JOSM', 'Edit with JOSM ➹') );
+                            popup.style.visibility = 'visible';
+                        }
+                    });
+                }
+                timer = null;
+            }, 200 );
         });
     }
 
