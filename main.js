@@ -7,7 +7,7 @@ map = (function () {
 
     // defaults
     var map_start_location = [37.7926, -122.4003, 15]; // San Francisco
-    var style_file = 'eraser-map.yaml';
+    var style_file = 'bubble-wrap.yaml';
 
     /*** URL parsing ***/
 
