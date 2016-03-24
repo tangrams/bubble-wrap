@@ -1,2 +1,2 @@
-# eraser-map
+# bubble-wrap
 Basemap style for Eraser Map app
