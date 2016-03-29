@@ -274,7 +274,15 @@ map = (function () {
             addGUI();
             initFeatureSelection();
         }
-        layer.addTo(map);
+
+        function addToMap () {
+            layer.addTo(map);
+        }
+
+        // Wait for Open Sans to load (or timeout). First argument is success callback, second is failure callback.
+        // In both cases we want to continue to render (is font fails to load, it will fallback on Helvetica).
+        // See https://github.com/bramstein/fontfaceobserver
+        (new FontFaceObserver('Open Sans')).load().then(addToMap, addToMap);
     });
 
     return map;
