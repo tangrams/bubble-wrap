@@ -427,38 +427,18 @@ styles:
         base: lines
         texcoords: true
         shaders:
+            defines:
+                background: vec3(0.867, 0.867, 0.867)
             blocks:
-                global: |
-                    vec2 mirrorTile(vec2 _st, vec2 _zoom){
-                        _st *= _zoom;
-                        if (fract(_st.y * 0.5) > 0.5){
-                            _st.x = _st.x + 0.5;
-                            _st.y = 1.0 - _st.y;
-                        }
-                        return fract(_st);
-                    }
-                    float fillY(vec2 _st, float _pct,float _antia){
-                      return smoothstep( _pct - _antia, _pct, _st.y);
-                    }
-                    float chevron(vec2 st){
-                        st = mirrorTile(st, vec2(1., 6.));
-                        float x = st.x * 2.;
-                        float a = floor(1. + sin(x * 3.14159));
-                        float b = floor(1. - sin(x * 3.14159));
-                        float f = fract(x);
-                        return fillY(st, mix(a, b, f), 0.01);
-                    }
-                    float stripes(vec2 st){
-                        st = st * 10.;
-                        return step(.5, 1.0 - smoothstep(.3, 1., abs(sin(st.y * 3.14159))));
-                    }
-                    float xMargin(vec2 st, float margin){
-                        return 1.0 - clamp(step(margin * .5, st.x) * step(margin * .5, 1.0 - st.x), 0., 1.);
-                    }
-                color: |
-                    vec2 st = v_texcoord;
-                    vec4 foreground = vec4(0.867,0.867,0.867,1.0);
-                    color = mix(v_color, foreground, stripes(st));
+                color: | 
+                    // blend line 50/50 between two colors
+                    float t = fract(v_texcoord.y);
+                    float e = 0.1; // edge feather
+                    vec3 v = vec3(
+                        smoothstep(.0, e, t) * 
+                        (1. - smoothstep(.5, .5 + e, t))
+                    );
+                    color.rgb = mix(color.rgb, background, v);
 
     tools-tilecoords:
         shaders:
