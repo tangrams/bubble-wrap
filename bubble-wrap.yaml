@@ -391,30 +391,30 @@ sources:
     # These are all in San Francisco, California
 
     # Current location gem
-    # find_me:
+    # mz_current_location:
     #     type: GeoJSON
     #     url: https://gist.githubusercontent.com/anonymous/9e9588228b0a604264a2/raw/b28be49bea0b7feb859eb65b588c28e9fee5ae2c/map.geojson
     # # Route line
-    # route:
+    # mz_route_line:
     #     type: GeoJSON
     #     # sf to ny
     #     url: https://gist.githubusercontent.com/anonymous/30c6c1a75c168d91d90c/raw/92bfe55e622766d250b1f2f5d17bdc7c26acb956/map.geojson
     #     # local sf trip
     #     # url: https://gist.githubusercontent.com/anonymous/9a610ebda6fe4be7bccc/raw/8d217e43f2412d48d01534ba115f1e42dac72e68/map.geojson
     # # Pin at start of route
-    # route_start:
+    # mz_route_start:
     #     type: GeoJSON
     #     url: https://gist.githubusercontent.com/anonymous/5262969cb7549ea69221/raw/be03f233fa323d9b5cf50ef1d8e89a1faa3750f1/map.geojson
     # # Pin at end of route
-    # route_stop:
+    # mz_route_stop:
     #     type: GeoJSON
     #     url: https://gist.githubusercontent.com/anonymous/dbae9635dfe46796490e/raw/df55c318635a7d91b309ed40754d4738a292fd38/map.geojson
     # # Arrow for current route location
-    # route_icon:
+    # mz_route_location::
     #     type: GeoJSON
     #     url: https://gist.githubusercontent.com/anonymous/36613092be6e2aa004fd/raw/f753d13069425199e1dea1b449ef67d723f6510e/map.geojson
     # # Pins showing search result locations
-    # search:
+    # mz_search_result:
     #     type: GeoJSON
     #     url: https://gist.githubusercontent.com/anonymous/57dc09eeb120919f76de/raw/43426217da3c2bae0522dc4257aaa61e4df3981e/map.geojson
 
@@ -787,16 +787,16 @@ scene:
         color: *scene1
 
 layers:
-    # Map overlays for styling the server response (using special source layer names) for route line, find_me location gem, and search result pins
-    route:
-        data: { source: route }
+    # Map overlays for styling the server response (using special source layer names) for mz_route_line, mz_current_location location gem, and mz_search_result result pins
+    mz_route_line:
+        data: { source: mz_route_line }
         draw:
             ui-lines-overlay:
                 color: '#06a6d4'
                 order: 500
                 width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
     current_location_gem:
-        data: { source: find_me }
+        data: { source: mz_current_location }
         draw:
             ui-location-gem-overlay:
                 interactive: true
@@ -806,8 +806,8 @@ layers:
                 transition:
                     [show, hide]:
                         time: 0s
-    route_icon:
-        data: { source: route_icon }
+    mz_route_location:
+        data: { source: mz_route_location }
         draw:
             ui-location-gem-overlay:
                 interactive: true
@@ -817,8 +817,8 @@ layers:
                 transition:
                     [show, hide]:
                         time: 0s
-    route_start:
-        data: { source: route_start }
+    mz_route_start:
+        data: { source: mz_route_start }
         draw:
             ui-icons-overlay:
                 interactive: true
@@ -830,8 +830,8 @@ layers:
                 transition:
                     [show, hide]:
                         time: 0s
-    route_stop:
-        data: { source: route_stop }
+    mz_route_stop:
+        data: { source: mz_route_stop }
         draw:
             ui-icons-overlay:
                 interactive: true
@@ -843,8 +843,8 @@ layers:
                 transition:
                     [show, hide]:
                         time: 0s
-    search:
-        data: { source: search }
+    mz_search_result:
+        data: { source: mz_search_result }
         draw:
             ui-icons-overlay:
                 interactive: true
@@ -860,8 +860,8 @@ layers:
             draw:
                 ui-icons-overlay:
                     sprite: search-inactive
-    reverse_geocode:
-        data: { source: reverse_geocode }
+    mz_dropped_pin:
+        data: { source: mz_dropped_pin }
         draw:
             ui-icons-overlay:
                 interactive: true
