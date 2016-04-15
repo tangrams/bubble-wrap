@@ -787,7 +787,7 @@ scene:
         color: *scene1
 
 layers:
-    # Map overlays for styling the server response (using special source layer names) for mz_route_line, mz_current_location location gem, and mz_search_result result pins
+    # Map overlays for styling the server response (using special source layer names) for route line, current location, and search result pins
     mz_route_line:
         data: { source: mz_route_line }
         draw:
@@ -795,7 +795,7 @@ layers:
                 color: '#06a6d4'
                 order: 500
                 width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
-    current_location_gem:
+    mz_current_location_gem:
         data: { source: mz_current_location }
         draw:
             ui-location-gem-overlay:
