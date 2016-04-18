@@ -418,17 +418,17 @@ sources:
     #     type: GeoJSON
     #     url: https://gist.githubusercontent.com/anonymous/57dc09eeb120919f76de/raw/43426217da3c2bae0522dc4257aaa61e4df3981e/map.geojson
     # Default point styling (SDK)
-    mz_default_point:
-        type: GeoJSON
-        url: https://gist.githubusercontent.com/anonymous/16324c771edfce45be0721390389b878/raw/7dbaebf17da7da8562e6c6f8768bc8cff83efa88/map.geojson
-    # Default line styling (SDK)
-    mz_default_line:
-        type: GeoJSON
-        url: https://gist.githubusercontent.com/anonymous/26f4e8b6b34b2617b5d5533d89decb39/raw/df8e180ab4f7f19448014dccc4a755f7cfa20003/map.geojson
-    # Default polygon styling (SDK)
-    mz_default_polygon:
-        type: GeoJSON
-        url: https://gist.githubusercontent.com/anonymous/88235c795bb44b8c45150bdd5561f947/raw/71d4fab97b6513833bf1a589167119e6169ef86d/map.geojson
+    # mz_default_point:
+    #     type: GeoJSON
+    #     url: https://gist.githubusercontent.com/anonymous/16324c771edfce45be0721390389b878/raw/7dbaebf17da7da8562e6c6f8768bc8cff83efa88/map.geojson
+    # # Default line styling (SDK)
+    # mz_default_line:
+    #     type: GeoJSON
+    #     url: https://gist.githubusercontent.com/anonymous/26f4e8b6b34b2617b5d5533d89decb39/raw/df8e180ab4f7f19448014dccc4a755f7cfa20003/map.geojson
+    # # Default polygon styling (SDK)
+    # mz_default_polygon:
+    #     type: GeoJSON
+    #     url: https://gist.githubusercontent.com/anonymous/88235c795bb44b8c45150bdd5561f947/raw/71d4fab97b6513833bf1a589167119e6169ef86d/map.geojson
 
 cameras:
     isometric:
@@ -773,17 +773,17 @@ styles:
         interactive: true
         blend: overlay
         blend_order: 3
-    sdk-icons-overlay:
+    sdk-point-overlay:
         base: points
         texture: pois
         interactive: true
         blend: overlay
         blend_order: 3
-    sdk-lines-overlay:
+    sdk-line-overlay:
         base: lines
         blend: overlay
         blend_order: 0
-    sdk-polygons-overlay:
+    sdk-polygon-overlay:
         base: polygons
         blend: overlay
         blend_order: 0
@@ -883,7 +883,7 @@ layers:
     mz_default_point:
         data: { source: mz_default_point }
         draw:
-            sdk-icons-overlay:
+            sdk-point-overlay:
                 interactive: true
                 sprite: search-active
                 size: [36px,54px]
@@ -895,17 +895,17 @@ layers:
     mz_default_line:
         data: { source: mz_default_line }
         draw:
-            sdk-lines-overlay:
+            sdk-line-overlay:
                 color: '#06a6d4'
                 order: 503
                 width: 3px
     mz_default_polygon:
         data: { source: mz_default_polygon }
         draw:
-            sdk-polygons-overlay:
+            sdk-polygon-overlay:
                 color: [0.02,0.65,0.82,0.5]  #'#06b1e2'
                 order: 501
-            sdk-lines-overlay:
+            sdk-line-overlay:
                 color: '#06a6d4'
                 order: 502
                 width: 0px
