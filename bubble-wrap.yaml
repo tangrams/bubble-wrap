@@ -2059,7 +2059,7 @@ layers:
         path:
             filter: 
                 all:
-                    - kind: path
+                    - kind: [path,portage_way]
                 not: 
                     - highway: [steps, track]
                     - man_made: [pier]
@@ -2645,7 +2645,7 @@ layers:
                 any:
                     - type: state
                     # territorial here is probably a hack
-                    - kind: [state, department, region, provincial, territorial]
+                    - kind: [state, department, region, provincial, territorial, macroregion]
                     - admin_level: 4
             draw:
                 lines:
