@@ -682,32 +682,22 @@ styles:
 
     building-grid:
         base: polygons
-        lighting: vertex
+        lighting: false
         mix: [hsv, scale-buildings]
         texcoords: true
         shaders:
             uniforms:
                 u_tex_grid: building-grid
             defines:
-                WALL_TINT: vec3(1., 3., .800) # modifies roof color HSV
+                WALL_TINT: vec3(1., 3., .800)
             blocks:
-                # applied in vertex shader when using vertex lighting
                 color: |
                     if (dot(vec3(0., 0., 1.), worldNormal()) < 1.0 - TANGRAM_EPSILON) {
                         // If it's a wall
                         color.rgb = hsv2rgb(rgb2hsv(color.rgb) * WALL_TINT);
-                        color.a = 1.0;
-                    } else {
-                        // it's a roof, use vertex color without texture
-                        // using color alpha to differentiate roof/wall
-                        color.a = 0.0;
+                        color.rgb = mix(color.rgb, vec3(0.),
+                                        texture2D(u_tex_grid, v_texcoord).a);
                     }
-                # applied in fragment shader
-                filter: |
-                    // if it's roof then use original color (since color.a == 0)
-                    color.rgb = mix(v_color.rgb, vec3(0.),
-                                    color.a * texture2D(u_tex_grid, v_texcoord).a);
-                    color.a = 1.0;
 
     # building-grid-univ:
     #     mix: building-grid
