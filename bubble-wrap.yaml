@@ -345,6 +345,7 @@ textures:
             sporting-goods-shop: [0, 42, 38, 38]
             spring: [322, 84, 38, 38]
             stadium: [460, 126, 38, 38]
+            station-icon: [582, 208, 23, 23]
             subway-entrance: [456, 0, 38, 38]
             synagogue: [46, 0, 38, 38]
             tailor-shop: [962, 0, 38, 38]
@@ -752,7 +753,17 @@ styles:
         base: lines
         blend: overlay
         blend_order: 0
+    ui-transit-lines-overlay:
+        base: lines
+        blend: overlay
+        blend_order: 0
     ui-location-gem-overlay:
+        base: points
+        texture: pois
+        interactive: true
+        blend: overlay
+        blend_order: 2
+    ui-station-icon-overlay:
         base: points
         texture: pois
         interactive: true
@@ -792,6 +803,13 @@ layers:
                 color: '#06a6d4'
                 order: 500
                 width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
+    mz_transit_route_line:
+            data: { source: mz_transit_route_line }
+            draw:
+                ui-transit-lines-overlay:
+                    color: '#06a6d4'
+                    order: 500
+                    width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
     mz_current_location_gem:
         data: { source: mz_current_location }
         draw:
@@ -803,6 +821,17 @@ layers:
                 transition:
                     [show, hide]:
                         time: 0s
+    mz_station_icon:
+        data: { source: mz_station_icon }
+        draw:
+            ui-station-icon-overlay:
+                interactive: true
+                sprite: station-icon
+                size: 16px
+                collide: false
+                transition:
+                     [show, hide]:
+                         time: 0s
     mz_route_location:
         data: { source: mz_route_location }
         draw:
