@@ -205,7 +205,7 @@ settings:
         - &text_fill_beach    [0.35,0.35,0.35]  # black
         - &text_fill_piste    '#444'             # dark gray
         - &text_fill_piste_e  '#666'             # dark gray early
-        - &text_fill_shield   white              # road shield fill color 
+        - &text_fill_shield   white              # road shield fill color
         - &text_stroke [0.870,0.870,0.870]      # land color
         - &text_stroke_water [0.9, 0.9, 0.9]    # water stroke color
         - &text_stroke_park  '#bddec5'          # park stroke color
@@ -269,7 +269,6 @@ textures:
             college-university: [870, 168, 38, 38]
             convenience-store: [46, 84, 38, 38]
             courthouse: [364, 0, 38, 38]
-            current-location: [158, 342, 88, 88]
             department-store: [734, 126, 38, 38]
             drinking-water: [276, 210, 38, 38]
             dry-cleaning: [0, 84, 38, 38]
@@ -330,14 +329,9 @@ textures:
             recycling-facility: [92, 42, 38, 38]
             rental-car: [594, 0, 38, 38]
             restaurant: [92, 210, 38, 38]
-            route-arrow: [822, 210, 128, 128]
-            route-start: [78, 342, 72, 92]
-            route-stop: [0, 342, 72, 92]
             ruin: [502, 0, 38, 38]
             salon-barber: [46, 42, 38, 38]
             school: [552, 84, 38, 38]
-            search-active: [252, 342, 72, 108]
-            search-inactive: [332, 342, 72, 108]
             shoe-store: [552, 42, 38, 38]
             ski-area: [368, 126, 38, 38]
             soccer-field: [368, 84, 38, 38]
@@ -345,7 +339,6 @@ textures:
             sporting-goods-shop: [0, 42, 38, 38]
             spring: [322, 84, 38, 38]
             stadium: [460, 126, 38, 38]
-            station-icon: [582, 208, 23, 23]
             subway-entrance: [456, 0, 38, 38]
             synagogue: [46, 0, 38, 38]
             tailor-shop: [962, 0, 38, 38]
@@ -372,6 +365,17 @@ textures:
             wine-bar: [230, 210, 38, 38]
             winery: [456, 168, 38, 38]
             zoo: [966, 84, 38, 38]
+            #
+            # UX/UI icons for map interactivity & app chrome
+            #
+            ux-current-location: [158, 342, 88, 88]
+            ux-route-arrow: [822, 210, 128, 128]
+            ux-route-start: [78, 342, 72, 92]
+            ux-route-stop: [0, 342, 72, 92]
+            ux-search-active: [252, 342, 72, 108]
+            ux-search-inactive: [332, 342, 72, 108]
+            # ux-transit-stop is currently reusing capital-xl artwork, please customize
+            ux-transit-stop: [584, 210, 20, 20]
 
     building-grid:
         url: images/building-grid.gif
@@ -388,49 +392,56 @@ sources:
         # road labels in Tangram JS are broken when overzooming, set max_zoom: 18 to preview fix
         max_zoom: 16
 
-
-    # Only enable this for local debug, should not be enabled for prod (app inserts these at runtime)
-    # These are all in San Francisco, California
-    #
-    # Current location gem
-    # mz_current_location:
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/9e9588228b0a604264a2/raw/b28be49bea0b7feb859eb65b588c28e9fee5ae2c/map.geojson
-    # # Route line
-    # mz_route_line:
-    #     type: GeoJSON
-    #     # sf to ny
-    #     url: https://gist.githubusercontent.com/anonymous/30c6c1a75c168d91d90c/raw/92bfe55e622766d250b1f2f5d17bdc7c26acb956/map.geojson
-    #     # local sf trip
-    #     # url: https://gist.githubusercontent.com/anonymous/9a610ebda6fe4be7bccc/raw/8d217e43f2412d48d01534ba115f1e42dac72e68/map.geojson
-    # # Pin at start of route
-    # mz_route_start:
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/5262969cb7549ea69221/raw/be03f233fa323d9b5cf50ef1d8e89a1faa3750f1/map.geojson
-    # # Pin at end of route
-    # mz_route_stop:
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/dbae9635dfe46796490e/raw/df55c318635a7d91b309ed40754d4738a292fd38/map.geojson
-    # # Arrow for current route location
-    # mz_route_location::
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/36613092be6e2aa004fd/raw/f753d13069425199e1dea1b449ef67d723f6510e/map.geojson
-    # # Pins showing search result locations
-    # mz_search_result:
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/57dc09eeb120919f76de/raw/43426217da3c2bae0522dc4257aaa61e4df3981e/map.geojson
-    # Default point styling (SDK)
-    # mz_default_point:
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/16324c771edfce45be0721390389b878/raw/7dbaebf17da7da8562e6c6f8768bc8cff83efa88/map.geojson
-    # # Default line styling (SDK)
-    # mz_default_line:
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/26f4e8b6b34b2617b5d5533d89decb39/raw/df8e180ab4f7f19448014dccc4a755f7cfa20003/map.geojson
-    # # Default polygon styling (SDK)
-    # mz_default_polygon:
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/88235c795bb44b8c45150bdd5561f947/raw/71d4fab97b6513833bf1a589167119e6169ef86d/map.geojson
+#    # Only enable this for local debug, should not be enabled for prod (app inserts these at runtime)
+#    # These are all in San Francisco, California
+#    #
+#    # Current location gem
+#    mz_current_location:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/9e9588228b0a604264a2/raw/b28be49bea0b7feb859eb65b588c28e9fee5ae2c/map.geojson
+#    # Route line
+#    mz_route_line:
+#        type: GeoJSON
+#        # sf to ny
+#        url: https://gist.githubusercontent.com/anonymous/30c6c1a75c168d91d90c/raw/92bfe55e622766d250b1f2f5d17bdc7c26acb956/map.geojson
+#        # local sf trip
+#        # url: https://gist.githubusercontent.com/anonymous/9a610ebda6fe4be7bccc/raw/8d217e43f2412d48d01534ba115f1e42dac72e68/map.geojson
+#    # Transit route line
+#    mz_transit_route_line:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/71ae88cbc6d62c4d141ecd6a61060050/raw/2254bbc18243f5dc609e663a580c9412a7447936/map.geojson
+#    # Pin at start of route
+#    mz_route_start:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/5262969cb7549ea69221/raw/be03f233fa323d9b5cf50ef1d8e89a1faa3750f1/map.geojson
+#    # Pin at end of route
+#    mz_route_stop:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/dbae9635dfe46796490e/raw/df55c318635a7d91b309ed40754d4738a292fd38/map.geojson
+#    # Arrow for current route location
+#    mz_route_location:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/36613092be6e2aa004fd/raw/f753d13069425199e1dea1b449ef67d723f6510e/map.geojson
+#    # Dots for transit stops in route preview
+#    mz_transit_stop:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/b9f16bca4a804f50faf71277d52ee4ab/raw/db13e4e765fa1ac8844b8ba02f4a0f66fe772907/map.geojson
+#    # Pins showing search result locations
+#    mz_search_result:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/57dc09eeb120919f76de/raw/43426217da3c2bae0522dc4257aaa61e4df3981e/map.geojson
+#    # Default point styling (SDK)
+#    mz_default_point:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/16324c771edfce45be0721390389b878/raw/7dbaebf17da7da8562e6c6f8768bc8cff83efa88/map.geojson
+#    # Default line styling (SDK)
+#    mz_default_line:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/26f4e8b6b34b2617b5d5533d89decb39/raw/df8e180ab4f7f19448014dccc4a755f7cfa20003/map.geojson
+#    # Default polygon styling (SDK)
+#    mz_default_polygon:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/88235c795bb44b8c45150bdd5561f947/raw/71d4fab97b6513833bf1a589167119e6169ef86d/map.geojson
 
 cameras:
     isometric:
@@ -444,12 +455,12 @@ styles:
             defines:
                 background: vec3(0.867, 0.867, 0.867)
             blocks:
-                color: | 
+                color: |
                     // blend line 50/50 between two colors
                     float t = fract(v_texcoord.y);
                     float e = 0.1; // edge feather
                     vec3 v = vec3(
-                        smoothstep(.0, e, t) * 
+                        smoothstep(.0, e, t) *
                         (1. - smoothstep(.5, .5 + e, t))
                     );
                     color.rgb = mix(color.rgb, background, v);
@@ -749,27 +760,21 @@ styles:
     text-blend-order:
         base: text
         blend_order: 1
-    ui-lines-overlay:
+    ux-route-line-overlay:
         base: lines
         blend: overlay
         blend_order: 0
-    ui-transit-lines-overlay:
+    ux-transit-line-overlay:
         base: lines
         blend: overlay
         blend_order: 0
-    ui-location-gem-overlay:
+    ux-location-gem-overlay:
         base: points
         texture: pois
         interactive: true
         blend: overlay
         blend_order: 2
-    ui-station-icon-overlay:
-        base: points
-        texture: pois
-        interactive: true
-        blend: overlay
-        blend_order: 2
-    ui-icons-overlay:
+    ux-icons-overlay:
         base: points
         texture: pois
         interactive: true
@@ -799,45 +804,37 @@ layers:
     mz_route_line:
         data: { source: mz_route_line }
         draw:
-            ui-lines-overlay:
+            ux-route-line-overlay:
                 color: '#06a6d4'
                 order: 500
                 width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
-    mz_transit_route_line:
+    mz_route_line_transit:
             data: { source: mz_transit_route_line }
             draw:
-                ui-transit-lines-overlay:
-                    color: '#06a6d4'
+                ux-transit-line-overlay:
+                    # each transit route segment could be a different "line" each with it's own color
+                    # but some transit lines don't define a color, in those cases default to blue
+                    # and since the color is coming from Transit.land they call it "color" instead of "colour"
+                    color: function() { return feature.color || '#06a6d4'; }
                     order: 500
                     width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
     mz_current_location_gem:
         data: { source: mz_current_location }
         draw:
-            ui-location-gem-overlay:
+            ux-location-gem-overlay:
                 interactive: true
-                sprite: current-location
+                sprite: ux-current-location
                 size: 36px
                 collide: false
                 transition:
                     [show, hide]:
                         time: 0s
-    mz_station_icon:
-        data: { source: mz_station_icon }
-        draw:
-            ui-station-icon-overlay:
-                interactive: true
-                sprite: station-icon
-                size: 16px
-                collide: false
-                transition:
-                     [show, hide]:
-                         time: 0s
     mz_route_location:
         data: { source: mz_route_location }
         draw:
-            ui-location-gem-overlay:
+            ux-location-gem-overlay:
                 interactive: true
-                sprite: route-arrow
+                sprite: ux-route-arrow
                 size: [60px,60px]
                 collide: false
                 transition:
@@ -846,35 +843,46 @@ layers:
     mz_route_start:
         data: { source: mz_route_start }
         draw:
-            ui-icons-overlay:
+            ux-icons-overlay:
                 interactive: true
                 priority: 1
-                sprite: route-start
+                sprite: ux-route-start
                 size: [36px,46px]
                 collide: false
                 anchor: top
                 transition:
                     [show, hide]:
                         time: 0s
-    mz_route_stop:
+    mz_route_destination:
         data: { source: mz_route_stop }
         draw:
-            ui-icons-overlay:
+            ux-icons-overlay:
                 interactive: true
                 priority: 1
-                sprite: route-stop
+                sprite: ux-route-stop
                 size: [36px,46px]
                 collide: false
                 anchor: top
                 transition:
                     [show, hide]:
                         time: 0s
+    mz_route_transit_stop:
+        data: { source: mz_transit_stop }
+        draw:
+            ux-icons-overlay:
+                interactive: true
+                sprite: ux-transit-stop
+                size: [15px,15px]
+                collide: false
+                transition:
+                     [show, hide]:
+                         time: 0s
     mz_search_result:
         data: { source: mz_search_result }
         draw:
-            ui-icons-overlay:
+            ux-icons-overlay:
                 interactive: true
-                sprite: search-active
+                sprite: ux-search-active
                 size: [36px,54px]
                 collide: false
                 anchor: top
@@ -884,28 +892,28 @@ layers:
         inactive:
             filter: { state: inactive }
             draw:
-                ui-icons-overlay:
-                    sprite: search-inactive
+                ux-icons-overlay:
+                    sprite: ux-search-inactive
     mz_dropped_pin:
         data: { source: mz_dropped_pin }
         draw:
-            ui-icons-overlay:
+            ux-icons-overlay:
                 interactive: true
-                sprite: search-active
+                sprite: ux-search-active
                 size: [36px,54px]
                 collide: false
                 anchor: top
                 transition:
                     [show, hide]:
                         time: 0s
-                        
+
     # Used by the SDK to place point, line, and polygon overlays on the map
     mz_default_point:
         data: { source: mz_default_point }
         draw:
             sdk-point-overlay:
                 interactive: true
-                sprite: search-active
+                sprite: ux-search-active
                 size: [36px,54px]
                 collide: false
                 anchor: top
@@ -1102,7 +1110,7 @@ layers:
                         outline:
                             # except bridges and tunnels, their outlines should also self-sort
                             order: function() { return feature.sort_key || 305; }
-                            
+
     platforms:
         data: { source: osm, layer: transit }
         filter: { kind: platform }
@@ -2077,10 +2085,10 @@ layers:
                             size: 14px
                             stroke: { color: [1.00,1.00,1.00], width: 2 }
         path:
-            filter: 
+            filter:
                 all:
                     - kind: [path,portage_way]
-                not: 
+                not:
                     - highway: [steps, track]
                     - man_made: [pier]
             draw:
@@ -2214,7 +2222,7 @@ layers:
                             color: [[16,*green1_r],[17,*major_casing1]]
                             width: [[15, 0px], [16, 0.25px], [17, 0.5px], [18, 1.0px], [19, 2.0px]]
         steps:
-            filter: 
+            filter:
                 all:
                     - kind: path
                     - highway: steps
@@ -2274,12 +2282,12 @@ layers:
                         fill: *text_fill_piste
                         size: 12px
                         stroke: { color: *grey8, width: 4 }
-            early: 
+            early:
                 filter: { $zoom: { max: 15 } }
                 draw:
                     text-blend-order:
                         visible: false
-            early-z15: 
+            early-z15:
                 filter: { $zoom: [15] }
                 draw:
                     text-blend-order:
@@ -2298,14 +2306,14 @@ layers:
                         color: *piste_intermediate
             advanced:
                 filter: { piste_difficulty: advanced }
-                draw: 
+                draw:
                     lines:
                         color: *piste_advanced
                     text-blend-order:
                         text_source: function() { if( feature.name ){ return '◆ ' + feature.name; } else { return '◆'; } }
             expert:
                 filter: { piste_difficulty: expert }
-                draw: 
+                draw:
                     lines:
                         color: *piste_expert
                     text-blend-order:
@@ -3396,7 +3404,7 @@ layers:
                                 size: 5px
                                 sprite: capital-s
                                 priority: 17
-                                    
+
             populated-places-natural-earth-z8-backfill:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [8], population: { max: 50000 } }
                 draw: { text-blend-order: { font: { fill: *text_fill } } }
@@ -3498,7 +3506,7 @@ layers:
                             priority: 8
                             font:
                                 size: 13px
-                                    
+
                 z9places-2b:
                     filter:
                         any:
@@ -4367,7 +4375,7 @@ layers:
                             transform: uppercase
                             # stroke: { color: *text_stroke, width: 3 }
                 z15-new:
-                    filter: 
+                    filter:
                         all:
                             - min_zoom: 15
                     draw:
@@ -4445,7 +4453,7 @@ layers:
     pois_and_landuse_labels:
         data: { source: osm, layer: [pois,landuse] }
         visible: *label_visible_poi_landuse
-        filter: 
+        filter:
             not: { kind: [building,farm,tree,gate,apron] }
             any:
                 - area: false
@@ -5102,7 +5110,7 @@ layers:
                         icons:
                             visible: false
                             #size: [[12, 10px], [14, 10px], [15, 16px]]
-                        text-blend-order: { visible: false } 
+                        text-blend-order: { visible: false }
                 low-priority-early-z14:
                     filter: { kind_tile_rank: { min: 7 }, $zoom: [14] }
                     draw:
@@ -5768,7 +5776,7 @@ layers:
 
     landuse:
         data: { source: osm }
-        draw: 
+        draw:
             dots2:
                 order: function() { return feature.sort_key; }
                 visible: false
@@ -6048,7 +6056,7 @@ layers:
                         visible: *grey8_v
             man-made:
                 filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline] }
-                draw: 
+                draw:
                     dots2:
                         color: [0.690,0.690,0.690]
                         visible: true
@@ -6203,7 +6211,7 @@ layers:
                 - enclosure
                 - petting_zoo
                 - aviary
-        draw: 
+        draw:
             dots2:
                 order: function() { return feature.sort_key; }
                 visible: false
