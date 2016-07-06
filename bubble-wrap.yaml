@@ -809,15 +809,15 @@ layers:
                 order: 500
                 width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
     mz_route_line_transit:
-            data: { source: mz_transit_route_line }
-            draw:
-                ux-transit-line-overlay:
-                    # each transit route segment could be a different "line" each with it's own color
-                    # but some transit lines don't define a color, in those cases default to blue
-                    # and since the color is coming from Transit.land they call it "color" instead of "colour"
-                    color: function() { return feature.color || '#06a6d4'; }
-                    order: 500
-                    width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
+        data: { source: mz_transit_route_line }
+        draw:
+            ux-transit-line-overlay:
+                # each transit route segment could be a different "line" each with it's own color
+                # but some transit lines don't define a color, in those cases default to blue
+                # and since the color is coming from Transit.land they call it "color" instead of "colour"
+                color: function() { return feature.color || '#06a6d4'; }
+                order: 500
+                width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
     mz_current_location_gem:
         data: { source: mz_current_location }
         draw:
