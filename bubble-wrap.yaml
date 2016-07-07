@@ -407,7 +407,7 @@ sources:
 #        # local sf trip
 #        # url: https://gist.githubusercontent.com/anonymous/9a610ebda6fe4be7bccc/raw/8d217e43f2412d48d01534ba115f1e42dac72e68/map.geojson
 #    # Transit route line
-#    mz_transit_route_line:
+#    mz_route_line_transit:
 #        type: GeoJSON
 #        url: https://gist.githubusercontent.com/anonymous/71ae88cbc6d62c4d141ecd6a61060050/raw/2254bbc18243f5dc609e663a580c9412a7447936/map.geojson
 #    # Pin at start of route
@@ -415,7 +415,7 @@ sources:
 #        type: GeoJSON
 #        url: https://gist.githubusercontent.com/anonymous/5262969cb7549ea69221/raw/be03f233fa323d9b5cf50ef1d8e89a1faa3750f1/map.geojson
 #    # Pin at end of route
-#    mz_route_stop:
+#    mz_route_destination:
 #        type: GeoJSON
 #        url: https://gist.githubusercontent.com/anonymous/dbae9635dfe46796490e/raw/df55c318635a7d91b309ed40754d4738a292fd38/map.geojson
 #    # Arrow for current route location
@@ -423,7 +423,7 @@ sources:
 #        type: GeoJSON
 #        url: https://gist.githubusercontent.com/anonymous/36613092be6e2aa004fd/raw/f753d13069425199e1dea1b449ef67d723f6510e/map.geojson
 #    # Dots for transit stops in route preview
-#    mz_transit_stop:
+#    mz_route_transit_stop:
 #        type: GeoJSON
 #        url: https://gist.githubusercontent.com/anonymous/b9f16bca4a804f50faf71277d52ee4ab/raw/db13e4e765fa1ac8844b8ba02f4a0f66fe772907/map.geojson
 #    # Pins showing search result locations
@@ -809,7 +809,7 @@ layers:
                 order: 500
                 width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
     mz_route_line_transit:
-        data: { source: mz_transit_route_line }
+        data: { source: mz_route_line_transit }
         draw:
             ux-transit-line-overlay:
                 # each transit route segment could be a different "line" each with it's own color
@@ -854,7 +854,7 @@ layers:
                     [show, hide]:
                         time: 0s
     mz_route_destination:
-        data: { source: mz_route_stop }
+        data: { source: mz_route_destination }
         draw:
             ux-icons-overlay:
                 interactive: true
@@ -867,7 +867,7 @@ layers:
                     [show, hide]:
                         time: 0s
     mz_route_transit_stop:
-        data: { source: mz_transit_stop }
+        data: { source: mz_route_transit_stop }
         draw:
             ux-icons-overlay:
                 interactive: true
