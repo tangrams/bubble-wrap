@@ -125,6 +125,7 @@ map = (function () {
                 }
                 var properties = selection.feature.properties;
 
+                popup.style.width = 'auto';
                 popup.style.left = (pixel.x + 0) + 'px';
                 popup.style.top = (pixel.y + 0) + 'px';
                 popup.style.margin = '10px';
