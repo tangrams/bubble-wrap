@@ -6,12 +6,12 @@ global:
     ux_language_text_source: |
         function() {
             // Use preferred language label if available
-            return (global.language && feature['name:'+global.language]) || feature.name;
+            return (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
         }
     ux_language_text_source_ocean: |
         function() {
             // Use preferred language label if available
-            return (global.language && feature['name:'+global.language].split('').join('  ')) || feature.name.split('').join('  ');
+            return (global.ux_language && feature['name:'+global.ux_language].split('').join('  ')) || feature.name.split('').join('  ');
         }
     feature_order: function() { return feature.sort_key; }
     #
@@ -5779,7 +5779,7 @@ layers:
         default-label-text:
             draw:
                 text-blend-order:
-                    text_source: global.language_text_source
+                    text_source: global.ux_language_text_source
                     font:
                         fill: [0.314,0.591,0.640] #global.text_fill_water
                         family: global.text_font_family
@@ -5806,7 +5806,7 @@ layers:
         filter: { name: true, kind: [sea, ocean] }
         draw:
             text-blend-order:
-                text_source: global.language_text_source
+                text_source: global.ux_language_text_source
                 font:
                     fill: [0.314,0.591,0.640] #global.text_fill_water
                     family: global.text_font_family
