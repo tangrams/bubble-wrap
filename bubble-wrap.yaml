@@ -1,5 +1,19 @@
 Author: Geraldine Sarmiento, Nathaniel V. Kelso, Patricio Gonzalez Vivo, Brett Camper, Peter Richardson
 
+global:
+    ux_language: en # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
+    ux_language_text_source: |
+        function() {
+            // Use preferred language label if available
+            return (global.language && feature['name:'+global.language]) || feature.name;
+        }
+    ux_language_text_source_ocean: |
+        function() {
+            // Use preferred language label if available
+            return (global.language && feature['name:'+global.language].split('').join('  ')) || feature.name.split('').join('  ');
+        }
+    feature_order: function() { return feature.sort_key; }
+
 labels-global:
     - &text_visible_continent         true
     - &text_visible_admin             true
@@ -943,14 +957,14 @@ layers:
         data: { source: osm, layer: earth }
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
+                order: global.feature_order
                 color: [0.870,0.870,0.870]
 
     water:
         data: { source: osm, layer: water }
         draw:
             grid:
-                order: function() { return feature.sort_key; }
+                order: global.feature_order
                 #color: *water1
         ocean:
             filter:
@@ -992,14 +1006,14 @@ layers:
             filter: { kind: playa, $zoom: {min: 6} }
             draw:
                 polygons:
-                    order: function() { return feature.sort_key; }
+                    order: global.feature_order
                     color: [0.870,0.870,0.870]
         water-boundary-ocean-early:
             filter: { boundary: yes, kind: ocean, $zoom: {min: 1, max: 17} }
             draw:
                 line2:
                     style: lines
-                    order: function() { return feature.sort_key; }
+                    order: global.feature_order
                     color: [[9,[0.396,0.833,0.920]],[10,[0.886,0.937,0.988]]]
                     width: [[9,0.25px],[10,2px],[11,3px],[13,4px],[15,6px]]
                 lines:
@@ -1017,7 +1031,7 @@ layers:
             filter: { boundary: yes, not: { kind: ocean }, $zoom: { min: 8 } }
             draw:
                 lines:
-                    order: function() { return feature.sort_key; }
+                    order: global.feature_order
                     # color: [[8,[0.635,0.737,0.753]],[13,[0.635,0.737,0.753]],[14,[0.569,0.722,0.749]],[15,[0.397,0.743,0.809]]]
                     color: [[8,[0.749,0.831,0.867]],[12,[0.698,0.788,0.816]],[13,[0.698,0.784,0.812]],[14,[0.627,0.788,0.831]],[17,[0.643,0.824,0.851]]]
                     width: [[8,0.5px],[10,0.5px],[11,0.5px],[12,0.75px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1px]]
@@ -1043,7 +1057,7 @@ layers:
             filter: { kind: [river,canal,stream,dam,ditch,drain], $zoom: { min: 11 }, not: { is_tunnel: true } }
             draw:
                 lines:
-                    order: function() { return feature.sort_key; }
+                    order: global.feature_order
                     color: [[11,[0.753,0.820,0.835]],[12,[0.710,0.800,0.824]],[13,[0.886,0.937,0.988]]]
                     width: [[8,0px],[10,0px],[11,0.75px],[12,1px],[13,1px],[14,2px],[15,3px],[16,4px],[17,5px]]
                     join: round
@@ -1084,7 +1098,7 @@ layers:
         draw:
             lines:
                 interactive: true
-                order: function() { return feature.sort_key; }
+                order: global.feature_order
                 color: [0.588,0.671,0.698]
                 width: [[12,0px],[13,0.25px],[14,0.4px],[15,0.75px],[16,0.75px],[18,1m]]
         service:
@@ -1098,7 +1112,7 @@ layers:
             draw:
                 lines:
                     # let roads sort themselves past zoom 14
-                    order: function() { return feature.sort_key; }
+                    order: global.feature_order
                     # but give them all the same outline
                     outline:
                         order: 354
@@ -1146,11 +1160,12 @@ layers:
             lines:
                 interactive: true
                 # let roads sort themselves past zoom 14 (using server value)
-                order: function() { return feature.sort_key; }
+                order: global.feature_order
                 # but give them all the same outline
                 outline:
                     order: 352
             text-blend-order:
+                text_source: global.ux_language_text_source
                 visible: false    # labels are enabled by each layer below
                 font:
                     family: *text_font_family
@@ -2228,7 +2243,7 @@ layers:
                     - highway: steps
             draw:
                 dashedline:
-                    order: function() { return feature.sort_key; }
+                    order: global.feature_order
                     color: [0.97,0.97,0.97]
                     width: [[14,0.6px],[16,2px],[17,4px],[18,5px],[19,8px],[20,10px]]
                     outline:
@@ -2437,7 +2452,7 @@ layers:
                 lines:
                     outline:
                         # except bridges and tunnels, their outlines should also self-sort
-                        order: function() { return feature.sort_key; }
+                        order: global.feature_order
 
     buildings:
         data: { source: osm, layer: buildings }
@@ -2588,6 +2603,7 @@ layers:
                 - { $zoom: { min: 20 }, area: true }
         draw:
             text-blend-order:
+                text_source: global.ux_language_text_source
                 interactive: true
                 move_into_tile: true
                 priority: 70
@@ -2631,6 +2647,7 @@ layers:
                 - { label_position: yes, addr_housenumber: true, name: false }
         draw:
             text-blend-order:
+                text_source: global.ux_language_text_source
                 interactive: true
                 order: 7
                 visible: *text_visible_address
@@ -2648,7 +2665,7 @@ layers:
         draw:
             lines:
                 interactive: true
-                order: function() { return feature.sort_key; }
+                order: global.feature_order
 #                color: red
 #                width: [[9, 1px], [14, 2px], [16, 3px], [17, 8m]]
         country:
@@ -2719,6 +2736,7 @@ layers:
         filter: { not: { kind: [ocean, sea] } }
         draw:
             text-blend-order:
+                text_source: global.ux_language_text_source
                 visible: false    # labels are enabled by each layer below
                 font:
                     family: *text_font_family
@@ -4415,6 +4433,7 @@ layers:
             icons:
                 visible: false
             text-blend-order:
+                text_source: global.ux_language_text_source
                 visible: *text_visible_exits
                 interactive: true
                 text_source: ref
@@ -4436,6 +4455,7 @@ layers:
             icons:
                 visible: false
             text-blend-order:
+                text_source: global.ux_language_text_source
                 visible: true
                 interactive: true
                 text_source: ref
@@ -4470,6 +4490,7 @@ layers:
                 visible: false
                 priority: 65
             text-blend-order:
+                text_source: global.ux_language_text_source
                 visible: false    # labels are enabled by each layer below
                 move_into_tile: false # preserves text alignment w/icons in JS
                 anchor: bottom
@@ -5606,6 +5627,7 @@ layers:
         default-label-text:
             draw:
                 text-blend-order:
+                    text_source: global.language_text_source
                     font:
                         fill: [0.314,0.591,0.640] #*text_fill_water
                         family: *text_font_family
@@ -5632,6 +5654,7 @@ layers:
         filter: { name: true, kind: [sea, ocean] }
         draw:
             text-blend-order:
+                text_source: global.language_text_source
                 font:
                     fill: [0.314,0.591,0.640] #*text_fill_water
                     family: *text_font_family
@@ -5647,13 +5670,13 @@ layers:
                 filter: { $zoom: { min: 1, max: 4 } }
                 draw:
                     text-blend-order:
-                        text_source: function() { return feature.name.split('').join(' ') }
+                        text_source: global.ux_language_text_source_ocean
                         text_wrap: false
             ocean-spacer-z4-up:
                 filter: { $zoom: { min: 4 } }
                 draw:
                     text-blend-order:
-                        text_source: function() { return feature.name.split('').join('  ') }
+                        text_source: global.ux_language_text_source_ocean
                         text_wrap: false
         ocean-labels-z1:
             filter: { $zoom: [1] }
@@ -5727,6 +5750,7 @@ layers:
                 - { $zoom: { min: 17 } }
         draw:
             text-blend-order:
+                text_source: global.ux_language_text_source
                 font:
                     fill: grey
                     family: *text_font_family
@@ -5749,6 +5773,7 @@ layers:
                 - $zoom: { min: 14 }
         draw:
             text-blend-order:
+                text_source: global.ux_language_text_source
                 font:
                     fill: [0.314,0.591,0.640]
                     family: *text_font_family
@@ -5778,13 +5803,13 @@ layers:
         data: { source: osm }
         draw:
             dots2:
-                order: function() { return feature.sort_key; }
+                order: global.feature_order
                 visible: false
             dots-rev:
-                order: function() { return feature.sort_key; }
+                order: global.feature_order
                 visible: false
             polygons:
-                order: function() { return feature.sort_key; }
+                order: global.feature_order
         tier1:
             filter:
                 any:
@@ -6213,14 +6238,14 @@ layers:
                 - aviary
         draw:
             dots2:
-                order: function() { return feature.sort_key; }
+                order: global.feature_order
                 visible: false
             dots-rev:
-                order: function() { return feature.sort_key; }
+                order: global.feature_order
                 visible: false
             polygons:
                 visible: false
-                order: function() { return feature.sort_key; }
+                order: global.feature_order
         runway:
             filter:
                 kind: runway
@@ -6268,7 +6293,7 @@ layers:
         draw:
             dots2:
                 visible: *earth2_ev
-                order: function() { return feature.sort_key; }
+                order: global.feature_order
                 color: [[4,[0.965,0.600,0.882]],[6,[0.965,0.600,0.882]],[7,[0.882,0.639,0.827]],[8,[0.757,0.729,0.753]]]
 
 
