@@ -2768,6 +2768,14 @@ layers:
         data: { source: mapzen, layer: places }
         filter: { not: { kind: [ocean, sea] } }
         draw:
+            icons:
+                text:
+                    text_source: global.ux_language_text_source
+                    visible: false    # labels are enabled by each layer below
+                    font:
+                        family: global.text_font_family
+                        # weight: 500
+                        fill: global.text_fill
             text-blend-order:
                 text_source: global.ux_language_text_source
                 visible: false    # labels are enabled by each layer below
@@ -2988,7 +2996,6 @@ layers:
                     priority: 5
                     text:
                         interactive: true
-                        anchor: bottom
 
             populated-places-natural-earth-z2:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [2], scalerank: 0 }
@@ -3458,7 +3465,6 @@ layers:
                             priority: 6
                             font:
                                 size: 17px
-                                # TODO: Is this meant to be missing?
 #                                fill: global.text_fill
 #                                stroke: { color: global.text_stroke, width: 4 }
 
@@ -3473,7 +3479,6 @@ layers:
                             priority: 8
                             font:
                                 size: 13px
-                                # TODO: is this meant to be missing?
 #                                fill: global.text_fill
 #                                stroke: { color: global.text_stroke, width: 4 }
 
@@ -3682,7 +3687,6 @@ layers:
                             priority: 6
                             font:
                                 size: 13px
-                                # TODO: Why isn't this here?
 #                                fill: global.text_fill
 #                                stroke: { color: global.text_stroke, width: 4 }
 
@@ -3826,7 +3830,6 @@ layers:
                             priority: 5
                             font:
                                 size: 18px
-                                # TODO: Why is this commented out?
 #                                fill: global.text_fill
 #                                stroke: { color: global.text_stroke, width: 4 }
 
@@ -3840,7 +3843,6 @@ layers:
                             priority: 6
                             font:
                                 size: 14px
-                                # TODO: Why is this commented out?
 #                                fill: global.text_fill
 #                                stroke: { color: global.text_stroke, width: 4 }
 
@@ -3854,7 +3856,6 @@ layers:
                             priority: 7
                             font:
                                 size: 12px
-                                # TODO: Why is this commented out?
 #                                fill: global.text_fill
 #                                stroke: { color: global.text_stroke, width: 4 }
 
@@ -3874,7 +3875,6 @@ layers:
                         priority: 8
                         font:
                             size: 11px
-                            # TODO: Why is this commented out?
                             #fill: global.text_fill
 #                            stroke: { color: global.text_stroke, width: 4 }
 
@@ -3893,7 +3893,6 @@ layers:
                             priority: 10
                             font:
                                 size: 16px
-                                # TODO: Why is this commented out?
                                 #stroke: { color: global.text_stroke, width: 4 }
                     capital:
                         filter: { capital: yes }
@@ -3902,7 +3901,6 @@ layers:
                                 priority: 9
                                 font:
                                     size: 16px
-                                    # TODO: Why is this commented out?
                                     #stroke: { color: global.text_stroke, width: 4 }
 
                 z11places-2-ne:
@@ -3913,7 +3911,6 @@ layers:
                             priority: 13
                             font:
                                 size: 13px
-                                # TODO: Why is this commented out?
                                 #stroke: { color: global.text_stroke, width: 4 }
                     capital:
                         filter: { capital: yes }
@@ -3922,7 +3919,6 @@ layers:
                                 priority: 11
                                 font:
                                     size: 16px
-                                    # TODO: Why is this commented out?
                                     #stroke: { color: global.text_stroke, width: 4 }
                     state_capital:
                         filter: { state_capital: yes }
@@ -3931,7 +3927,6 @@ layers:
                                 priority: 12
                                 font:
                                     size: 14px
-                                    # TODO: Why is this commented out?
                                     #stroke: { color: global.text_stroke, width: 4 }
 
                 z11places-3-ne:
@@ -3942,7 +3937,6 @@ layers:
                             priority: 15
                             font:
                                 size: 11px
-                                # TODO: Why is this commented out?
                                 #stroke: { color: global.text_stroke, width: 4 }
                     capital:
                         filter: { capital: yes }
@@ -3951,7 +3945,6 @@ layers:
                                 priority: 14
                                 font:
                                     size: 14px
-                                    # TODO: Why is this commented out?
                                     #stroke: { color: global.text_stroke, width: 4 }
 
             populated-places-osm-z12:
@@ -3978,7 +3971,6 @@ layers:
                             priority: 5
                             font:
                                 size: 18px
-                                # TODO: Why is this commented out?
                                 #fill: global.text_fill
 #                                stroke: { color: global.text_stroke, width: 4 }
 
@@ -3992,7 +3984,6 @@ layers:
                             priority: 6
                             font:
                                 size: 14px
-                                # TODO: Why is this commented out?
                                 #fill: global.text_fill
 #                                stroke: { color: global.text_stroke, width: 4 }
 
@@ -4006,7 +3997,6 @@ layers:
                             priority: 7
                             font:
                                 size: 11px
-                                # TODO: Why is this commented out?
                                 #fill: global.text_fill
 #                                stroke: { color: global.text_stroke, width: 4 }
 
@@ -4020,7 +4010,6 @@ layers:
                             priority: 8
                             font:
                                 size: 10px
-                                # TODO: Why is this commented out?
                                 #fill: global.text_fill
 #                                stroke: { color: global.text_stroke, width: 4 }
 
@@ -4040,7 +4029,6 @@ layers:
                         priority: 9
                         font:
                             size: 11px
-                            # TODO: Why is this commented out?
                             #fill: global.text_fill
 #                            stroke: { color: global.text_stroke, width: 4 }
 
@@ -4061,7 +4049,6 @@ layers:
                             priority: 12
                             font:
                                 size: 16px
-                                # TODO: Why is this commented out?
                                 #stroke: { color: global.text_stroke, width: 4 }
                     capital:
                         filter: { capital: yes }
@@ -4070,7 +4057,6 @@ layers:
                                 priority: 11
                                 font:
                                     size: 16px
-                                    # TODO: Why is this commented out?
                                     #stroke: { color: global.text_stroke, width: 4 }
 
                 z12places-2-ne:
@@ -4081,7 +4067,6 @@ layers:
                             priority: 14
                             font:
                                 size: 13px
-                                # TODO: Why is this commented out?
                                 #stroke: { color: global.text_stroke, width: 4 }
                     capital:
                         filter: { capital: yes }
@@ -4090,7 +4075,6 @@ layers:
                                 priority: 13
                                 font:
                                     size: 16px
-                                    # TODO: Why is this commented out?
                                     #stroke: { color: global.text_stroke, width: 4 }
 
                 z12places-3-ne:
@@ -4101,7 +4085,6 @@ layers:
                             priority: 16
                             font:
                                 size: 11px
-                                # TODO: Why is this commented out?
                                 #stroke: { color: global.text_stroke, width: 4 }
                     capital:
                         filter: { capital: yes }
@@ -4110,7 +4093,6 @@ layers:
                                 priority: 15
                                 font:
                                     size: 14px
-                                    # TODO: Why is this commented out?
                                     #stroke: { color: global.text_stroke, width: 4 }
 
             populated-places-osm-z13-z14:
@@ -4155,7 +4137,6 @@ layers:
                             priority: 5
                             font:
                                 size: 14px
-                                # TODO: Why is this commented out?
                                 #stroke: { color: global.text_stroke, width: 4 }
 
                 z13places-3:
@@ -4168,7 +4149,6 @@ layers:
                             priority: 6
                             font:
                                 size: 12px
-                                # TODO: Why is this commented out?
                                 #stroke: { color: global.text_stroke, width: 4 }
 
                 z13places-4:
@@ -4182,7 +4162,6 @@ layers:
                         text-blend-order:
                             font:
                                 size: 12px
-                                # TODO: Why is this commented out?
                                 #stroke: { color: global.text_stroke, width: 4 }
 
             populated-places-osm-z13-z14-no-population:
@@ -4201,7 +4180,6 @@ layers:
                         priority: 7
                         font:
                             size: 11px
-                            # TODO: Why is this commented out?
                             #stroke: { color: global.text_stroke, width: 4 }
 
             populated-places-natural-earth-z13-z14-backfill:
@@ -4229,7 +4207,6 @@ layers:
                             visible: global.text_visible_populated_places
                             font:
                                 size: 13px
-                                # TODO: Why is this commented out?
                                 #stroke: { color: global.text_stroke, width: 4 }
 
                 z13places-3-ne:
@@ -4240,7 +4217,6 @@ layers:
                             priority: 10
                             font:
                                 size: 12px
-                                # TODO: Why is this commented out?
                                 #stroke: { color: global.text_stroke, width: 4 }
 
             neighborhood-z11:
@@ -4453,6 +4429,9 @@ layers:
             all:
                 - not: { kind: [building,address,farm,tree,gate,apron,residential] }
                 - $geometry: point
+                # White list a few kinds to "always" show per the tile zoom inclusion, else test feature's min_zoom
+                #- function() { return feature.min_zoom <= $zoom }
+                - function() { if( feature.kind == 'restaurant' || feature.kind == 'landmark' || feature.kind == 'cafe' ) { return true } else { return feature.min_zoom <= $zoom } }
                 - any:
                     - area: false
                       all:
@@ -4471,8 +4450,6 @@ layers:
                     text_source: global.ux_language_text_source
                     visible: false    # labels are enabled by each layer below
                     move_into_tile: false # preserves text alignment w/icons in JS
-                    anchor: bottom
-                    #offset: [[13, [0, 6px]], [16, [0, 8px]], [18, [0, 10px]]] # offset tracks alongside icon size (half icon height)
                     interactive: true
                     priority: 66
                     font:
@@ -4485,8 +4462,6 @@ layers:
                 text_source: global.ux_language_text_source
                 visible: false    # labels are enabled by each layer below
                 move_into_tile: false # preserves text alignment w/icons in JS
-                anchor: bottom
-                #offset: [[13, [0, 6px]], [16, [0, 8px]], [18, [0, 10px]]] # offset tracks alongside icon size (half icon height)
                 interactive: true
                 priority: 66
                 font:
@@ -4834,7 +4809,6 @@ layers:
                                 stroke: { color: global.text_stroke, width: 4 }
                 early:
                     filter: { $zoom: [9,10,11] }
-                    # todo: huh?
                     draw: { icons: { text: { text_source: iata, font: { size: 11px } } } }
                 early2:
                     filter: { $zoom: { min: 12, max: 14 } }
@@ -4867,7 +4841,6 @@ layers:
                         priority: 41
                         text:
                             visible: global.text_visible_landuse_green
-                            priority: 42
                             font:
                                 weight: 600
                                 fill: [0.20,0.20,0.20]
@@ -4904,11 +4877,11 @@ layers:
                             visible: global.text_visible_landuse_green
                             font:
                                 fill: global.text_fill
-                                size: 12px
+                                #size: 12px
                                 stroke: { color: global.text_stroke, width: 4 }
-                early:
-                    filter: { $zoom: { max: 14 } }
-                    draw: { icons: { text: { font: { size: 11px } } } }
+                #early:
+#                    filter: { $zoom: { max: 14 } }
+#                    draw: { icons: { text: { font: { size: 11px } } } }
             winter_sports:
                 filter:
                     all:
@@ -4967,7 +4940,7 @@ layers:
                             priority: 44
                             font:
                                 fill: global.text_fill
-                                size: 12px
+                                #size: 12px
                                 stroke: { color: global.text_stroke, width: 4 }
                 enclosure:
                     filter: { kind: [enclosure, animal] }
@@ -5038,13 +5011,51 @@ layers:
                             weight: 400
                             style: italic
                             fill: '#4ba3c5'
+
+            station-train-subway:
+                filter: { kind: [station, train-station, train_station], $zoom: { min: 11 } }
+                visible: global.label_visible_station
+                draw:
+                    icons:
+                        visible: global.icon_visible_station
+                        sprite: train-station
+                        size: [[13, 12px], [14, 12px], [15, 16px], [17, 18px], [18, 20px]]
+                        priority: 42
+                        text:
+                            visible: global.text_visible_station
+                            fill: [0.20,0.20,0.20] # *text_fill
+#                            size: 10px
+                            weight: 600
+                            stroke: { color: global.text_stroke, width: 4 }
+                low-priority-early:
+                    filter: { kind_tile_rank: { min: 5 }, $zoom: { min: 0, max: 13 } }
+                    draw:
+                        icons:
+                            visible: false
+                            #size: [[12, 10px], [14, 10px], [15, 16px]]
+                            text: { visible: false }
+                low-priority-early-z13:
+                    filter: { kind_tile_rank: { min: 5 }, $zoom: [13] }
+                    draw:
+                        icons:
+                            visible: false
+                            #size: [[12, 10px], [14, 10px], [15, 16px]]
+                            text: { visible: false }
+                low-priority-early-z14:
+                    filter: { kind_tile_rank: { min: 7 }, $zoom: [14] }
+                    draw:
+                        icons:
+                            #size: [[14, 11px], [15, 16px], [17, 18px], [18, 20px]]
+                            #visible: false
+                            text: { visible: false }
+
             landuse-labels-not-any-above:
                 filter:
                     all:
                         - $zoom: { min: 6 }
                         - area: true
                         - $geometry: point
-                        - not: { kind: [park, national_park, "park or protected land", battlefield, conservation, protected_area, nature_reserve, forest, grass, beach, airport, aerodrome, university, college, school, kindergarten, winter_sports, zoo, theme_park, resort, aquarium, winery, maze, stadium, playground, allotments, attraction, landmark, glacier] }
+                        - not: { kind: [park, national_park, "park or protected land", battlefield, conservation, protected_area, nature_reserve, forest, grass, beach, airport, aerodrome, university, college, school, kindergarten, winter_sports, zoo, theme_park, resort, aquarium, winery, maze, stadium, playground, allotments, attraction, landmark, glacier, station] }
                     any:
                         # show labels for smaller landuse areas at higher zooms
                         - { $zoom: [5,6,7], area: { min: 5000000000 } }
@@ -5058,7 +5069,7 @@ layers:
                         # show labels for smaller landuse areas at higher zooms
                         - { $zoom: [15],    area: { min: 5000 } }
                         - { $zoom: [16],    area: { min: 2000 } }
-                        - { $zoom: { min: 17 } }
+                        - { $zoom: { min: 17 }, area: true }
                 draw:
                     icons:
                         sprite: function() { return feature.kind; }
@@ -5067,7 +5078,6 @@ layers:
                         priority: 43
                         text:
                             visible: global.text_visible_poi_landuse
-                            priority: 44
                             font:
                                 fill: [0.20,0.20,0.20] # *text_fill
     #                            size: 10px
@@ -5228,39 +5238,6 @@ layers:
                         text:
                             font:
                                 style: italic
-            station-train-subway:
-                filter: { kind: [station, train-station, train_station], $zoom: { min: 11 } }
-                visible: global.label_visible_station
-                draw:
-                    icons:
-                        visible: global.icon_visible_station
-                        sprite: train-station
-                        size: [[13, 12px], [14, 12px], [15, 16px], [17, 18px], [18, 20px]]
-                        priority: 61
-                        text:
-                            visible: global.text_visible_station
-                            #offset: [[13, [0, 6px]], [14, [0, 6px]],[15, [0, 8px]], [17, [0, 9px]], [18, [0, 10px]]]
-                low-priority-early:
-                    filter: { kind_tile_rank: { min: 5 }, $zoom: { min: 0, max: 13 } }
-                    draw:
-                        icons:
-                            visible: false
-                            #size: [[12, 10px], [14, 10px], [15, 16px]]
-                            text: { visible: false }
-                low-priority-early-z13:
-                    filter: { kind_tile_rank: { min: 5 }, $zoom: [13] }
-                    draw:
-                        icons:
-                            visible: false
-                            #size: [[12, 10px], [14, 10px], [15, 16px]]
-                            text: { visible: false }
-                low-priority-early-z14:
-                    filter: { kind_tile_rank: { min: 7 }, $zoom: [14] }
-                    draw:
-                        icons:
-                            #size: [[14, 11px], [15, 16px], [17, 18px], [18, 20px]]
-                            #visible: false
-                            text: { visible: false }
             tram-stop-early:
                 filter: { kind: tram_stop, $zoom: { max: 15 } }
                 draw:
@@ -6499,7 +6476,7 @@ layers:
         data: { source: mapzen, layer: landuse }
         filter:
             # This is from Natural Earth and only shows up from zoom(0,9)
-            kind: ['urban area']
+            kind: [urban_area, 'urban area']
         draw:
             dots2:
                 visible: global.earth2_ev
