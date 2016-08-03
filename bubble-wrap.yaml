@@ -2986,7 +2986,7 @@ layers:
                 icons:
                     interactive: true
                     priority: 5
-                    text-blend-order:
+                    text:
                         interactive: true
                         anchor: bottom
 
@@ -2997,7 +2997,7 @@ layers:
                         size: 5px
                         visible: global.icon_visible_populated_places
                         sprite: townspot-s-rev
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_populated_places
                             font:
                                 size: 10px
@@ -3013,7 +3013,7 @@ layers:
                             size: 5px
                             visible: global.icon_visible_populated_places
                             sprite: townspot-s-rev
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 11px
@@ -3026,7 +3026,7 @@ layers:
                             priority: 7
                             size: 5px
                             sprite: townspot-s-rev
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 9px
@@ -3042,7 +3042,7 @@ layers:
                             size: 5px
                             visible: global.icon_visible_populated_places
                             sprite: townspot-s-rev
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 13px
@@ -3057,7 +3057,7 @@ layers:
                             size: 5px
                             visible: global.icon_visible_populated_places
                             sprite: townspot-s-rev
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 10px
@@ -3074,7 +3074,7 @@ layers:
                             size: 6px
                             visible: global.icon_visible_populated_places
                             sprite: townspot-m-rev
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 13px
@@ -3094,7 +3094,7 @@ layers:
                             size: 5px
                             visible: global.icon_visible_populated_places
                             sprite: townspot-s-rev
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 11px
@@ -3113,7 +3113,7 @@ layers:
                             priority: 17
                             size: 5px
                             sprite: townspot-s-rev
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: [0.25,0.25,0.25]
@@ -3136,7 +3136,7 @@ layers:
                             size: 8px
                             visible: global.icon_visible_populated_places
                             sprite: townspot-l-rev
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: global.text_fill
@@ -3157,7 +3157,7 @@ layers:
                             size: 6px
                             visible: global.icon_visible_populated_places
                             sprite: townspot-m-rev
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: global.text_fill
@@ -3178,7 +3178,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 15
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: [0.25,0.25,0.25]
@@ -3201,7 +3201,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-l-rev
                             priority: 7
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: global.text_fill
@@ -3222,7 +3222,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 13
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: global.text_fill
@@ -3243,7 +3243,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 17
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: [0.25,0.25,0.25]
@@ -3275,7 +3275,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 7
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 16px
@@ -3296,7 +3296,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 11
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 13px
@@ -3318,7 +3318,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 15
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: [0.25,0.25,0.25]
@@ -3341,7 +3341,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 19
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: [0.30,0.30,0.30]
@@ -3366,7 +3366,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 19
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: [0.30,0.30,0.30]
@@ -3381,7 +3381,7 @@ layers:
 
             populated-places-natural-earth-z8-backfill:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [8], population: { max: 50000 } }
-                draw: { icons: { text-blend-order: { font: { fill: global.text_fill } } } }
+                draw: { icons: { text: { font: { fill: global.text_fill } } } }
                 z8places-1-ne:
                     filter: { scalerank: [0,1] }
                     draw:
@@ -3390,7 +3390,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-l-rev
                             priority: 23
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 16px
@@ -3409,7 +3409,7 @@ layers:
                             size: 6px
                             visible: global.icon_visible_populated_places
                             sprite: townspot-m-rev
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 13px
@@ -3427,7 +3427,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 27
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 11px
@@ -3486,7 +3486,7 @@ layers:
                             size: 6px
                             sprite: townspot-m-rev
                             priority: 11
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 13px
@@ -3507,7 +3507,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 15
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: [0.25,0.25,0.25]
@@ -3518,7 +3518,7 @@ layers:
                             icons:
                                 sprite: capital-m
                                 priority: 13
-                                text-blend-order:
+                                text:
                                     font:
                                         size: 15px
 
@@ -3532,7 +3532,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 19
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: [0.30,0.30,0.30]
@@ -3556,7 +3556,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 19
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: [0.30,0.30,0.30]
@@ -3583,14 +3583,14 @@ layers:
                         visible: global.icon_visible_populated_places
                         sprite: townspot-s-rev
                         priority: 21
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_populated_places
                             font:
                                 size: 10px
 
             populated-places-natural-earth-z9-backfill:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [9], population: { max: 50000 } }
-                draw: { icons: { text-blend-order: { font: { fill: global.text_fill } } } }
+                draw: { icons: { text: { font: { fill: global.text_fill } } } }
                 z9places-1-ne:
                     filter: { scalerank: [0,1] }
                     draw:
@@ -3599,7 +3599,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-l-rev
                             priority: 25
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 16px
@@ -3618,7 +3618,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 29
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 13px
@@ -3637,7 +3637,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 33
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 11px
@@ -3695,7 +3695,7 @@ layers:
                             size: 6px
                             sprite: townspot-m-rev
                             priority: 7
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 13px
@@ -3710,7 +3710,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 11
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: [0.25,0.25,0.25]
@@ -3726,7 +3726,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 13
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     fill: [0.35,0.35,0.35]
@@ -3747,19 +3747,19 @@ layers:
                         visible: global.icon_visible_populated_places
                         sprite: townspot-s-rev
                         priority: 15
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_populated_places
                             font:
                                 size: 10px
 
             populated-places-natural-earth-z10-backfill:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [10], population: { max: 20000 } }
-                draw: { icons: { text-blend-order: { font: { fill: global.text_fill } } } }
+                draw: { icons: { text: { font: { fill: global.text_fill } } } }
                 z10places-1-ne:
                     filter: { scalerank: [0,1] }
                     draw:
                         icons:
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 16px
@@ -3772,7 +3772,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 21
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 13px
@@ -3791,7 +3791,7 @@ layers:
                             visible: global.icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 25
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_populated_places
                                 font:
                                     size: 12px
