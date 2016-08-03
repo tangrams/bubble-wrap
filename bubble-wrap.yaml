@@ -4467,7 +4467,7 @@ layers:
                 visible: false
                 priority: 65
                 repeat_group: abc
-                text-blend-order:
+                text:
                     text_source: global.ux_language_text_source
                     visible: false    # labels are enabled by each layer below
                     move_into_tile: false # preserves text alignment w/icons in JS
@@ -4497,16 +4497,16 @@ layers:
                     stroke: { color: global.text_stroke, width: 1 }
         poi_labels-z14:
             filter: { $zoom: [14] }
-            draw: { icons: { text-blend-order: { font: { size: 11px } } } }
+            draw: { icons: { text: { font: { size: 11px } } } }
         poi_labels-z15:
             filter: { $zoom: [15,16,17] }
-            draw: { icons: { text-blend-order: { font: { size: 12px, stroke: { width: 2 } } } } }
+            draw: { icons: { text: { font: { size: 12px, stroke: { width: 2 } } } } }
         poi_labels-z18:
             filter: { $zoom: [18,19] }
-            draw: { icons: { text-blend-order: { font: { size: 12px, weight: 600, stroke: { width: 3 } } } } }
+            draw: { icons: { text: { font: { size: 12px, weight: 600, stroke: { width: 3 } } } } }
         poi_labels-z20-up:
             filter: { $zoom: { min: 20 } }
-            draw: { icons: { text-blend-order: { font: { size: 14px, weight: 600, stroke: { width: 3 }  } } } }
+            draw: { icons: { text: { font: { size: 14px, weight: 600, stroke: { width: 3 }  } } } }
         no-name:
             filter: { name: false }
             sports-pitch:
@@ -4585,7 +4585,7 @@ layers:
                 filter: { $zoom: { min: 13 }, area: false }
                 draw:
                     icons:
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_poi_landuse
 #                            priority: 68
 
@@ -4616,7 +4616,7 @@ layers:
                             visible: global.icon_visible_landuse_green
                             sprite: park
                             priority: 41
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_landuse_green
                                 #priority: 42
                                 font:
@@ -4628,22 +4628,22 @@ layers:
                         draw:
                             icons:
                                 visible: false
-                                text-blend-order: { font: { size: 10px, stroke: { width: 2px } } }
+                                text: { font: { size: 10px, stroke: { width: 2px } } }
                     natl-park-labels-z7:
                         filter: { $zoom: [7] }
                         draw:
                             icons:
-                                text-blend-order: { font: { size: 10px, stroke: { width: 2px } } }
+                                text: { font: { size: 10px, stroke: { width: 2px } } }
                     natl-park-labels-z8:
                         filter: { $zoom: [8,9] }
                         draw:
                             icons:
-                                text-blend-order: { font: { size: 11px, stroke: { width: 2px } } }
+                                text: { font: { size: 11px, stroke: { width: 2px } } }
                     natl-park-labels-z10:
                         filter: { $zoom: {min: 10, max: 14 } }
                         draw:
                             icons:
-                                text-blend-order: { font: { size: 12px } }
+                                text: { font: { size: 12px } }
 
             landuse-labels-green-areas-not-national-park:
                 filter:
@@ -4672,7 +4672,7 @@ layers:
                             visible: global.icon_visible_landuse_green
                             sprite: park
                             priority: 41
-                            text-blend-order:
+                            text:
                                 visible: global.text_visible_landuse_green
                                 priority: 42
                                 font:
@@ -4687,30 +4687,30 @@ layers:
                         draw:
                             icons:
                                 visible: false
-                                text-blend-order: { font: { size: 10px, stroke: { width: 2px } } }
+                                text: { font: { size: 10px, stroke: { width: 2px } } }
                     green-areas-z7:
                         filter: { $zoom: [7] }
                         draw:
                             icons:
                                 visible: false
-                                text-blend-order: { font: { size: 10px } }
+                                text: { font: { size: 10px } }
                     green-areas-z8-z9:
                         filter: { $zoom: { min: 8, max: 14 } }
                         draw:
                             icons:
-                                text-blend-order: { font: { size: 11px } }
+                                text: { font: { size: 11px } }
                     wilderness-areas-early:
                         filter: function() { return $zoom < 10 && feature.name && (feature.name.indexOf("Wilderness") > -1 || feature.name.indexOf("BLM") > -1) }
                         draw:
                             icons:
                                 visible: false
-                                text-blend-order: { visible: false }
+                                text: { visible: false }
                     early-not-national-park:
                         filter: { not: { kind: [national_park] }, $zoom: { max: 6 } }
                         draw:
                             icons:
                                 visible: false
-                                text-blend-order: { visible: false }
+                                text: { visible: false }
                     not-national-park:
                         filter: function() { return feature.name && !((feature.name.indexOf("National Park") > -1) || feature.name.indexOf("National Monument") > -1); }
                         # draw:
@@ -4721,25 +4721,25 @@ layers:
                             draw:
                                 icons:
                                     visible: false
-                                    text-blend-order: { visible: false }
+                                    text: { visible: false }
                     forest:
                         filter: function() { return ( (feature.name && feature.name.indexOf("Forest") > -1) || (feature.protect_class >=6 && feature.name.indexOf("Park") < 0) ) }
                         draw:
                             icons:
                                 visible: false
-                                text-blend-order: { visible: false }
+                                text: { visible: false }
                     hide-till-later:
                         filter: { kind: [grass], $zoom: { max: 16 } }
                         draw:
                             icons:
                                 visible: false
-                                text-blend-order: { visible: false }
+                                text: { visible: false }
                     only-text-later:
                         filter: { kind: [grass], $zoom: { min: 16 } }
                         draw:
                             icons:
                                 visible: false
-                                text-blend-order: { font: { style: italic } }
+                                text: { font: { style: italic } }
 
             battlefield:
                 filter:
@@ -4764,7 +4764,7 @@ layers:
                         visible: global.icon_visible_landuse_green
                         sprite: battlefield
                         priority: 41
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_landuse_green
                             font:
                                 #fill: [0.058,0.605,0.615]
@@ -4793,7 +4793,7 @@ layers:
                         visible: global.icon_visible_landuse_green
                         interactive: true
                         sprite: beach
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_landuse_green
                             interactive: true
                             font:
@@ -4824,7 +4824,7 @@ layers:
                         sprite: airport
                         visible: global.icon_visible_landuse_green
                         priority: 42
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_landuse_green
                             priority: 41
                             text_source: function() { if(feature.iata) { return feature.name + ' (' + feature.iata + ')'; } else { return feature.name; } }
@@ -4835,10 +4835,10 @@ layers:
                 early:
                     filter: { $zoom: [9,10,11] }
                     # todo: huh?
-                    draw: { icons: { text-blend-order: { text_source: iata, font: { size: 11px } } } }
+                    draw: { icons: { text: { text_source: iata, font: { size: 11px } } } }
                 early2:
                     filter: { $zoom: { min: 12, max: 14 } }
-                    draw: { icons: { text-blend-order: { font: { size: 11px } } } }
+                    draw: { icons: { text: { font: { size: 11px } } } }
             university:
                 filter:
                     all:
@@ -4865,7 +4865,7 @@ layers:
                         sprite: college-university
                         visible: global.icon_visible_landuse_green
                         priority: 41
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_landuse_green
                             priority: 42
                             font:
@@ -4878,7 +4878,7 @@ layers:
                     draw: { text-blend-order: { visible: false } }
                 early2:
                     filter: { $zoom: { min: 12, max: 14 } }
-                    draw: { icons: { text-blend-order: { size: 11px } } }
+                    draw: { icons: { text: { size: 11px } } }
             school:
                 filter:
                     all:
@@ -4900,7 +4900,7 @@ layers:
                         sprite: school
                         visible: global.icon_visible_landuse_green
                         priority: 41
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_landuse_green
                             font:
                                 fill: global.text_fill
@@ -4908,7 +4908,7 @@ layers:
                                 stroke: { color: global.text_stroke, width: 4 }
                 early:
                     filter: { $zoom: { max: 14 } }
-                    draw: { icons: { text-blend-order: { font: { size: 11px } } } }
+                    draw: { icons: { text: { font: { size: 11px } } } }
             winter_sports:
                 filter:
                     all:
@@ -4932,7 +4932,7 @@ layers:
                         sprite: ski-area
                         visible: global.icon_visible_landuse_green
                         priority: 41
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_landuse_green
                             font:
                                 fill: global.text_fill
@@ -4940,7 +4940,7 @@ layers:
                                 stroke: { color: global.text_stroke, width: 4 }
                 early:
                     filter: { $zoom: { max: 14 } }
-                    draw: { icons: { text-blend-order: { font: { size: 10px } } } }
+                    draw: { icons: { text: { font: { size: 10px } } } }
             tourism-related:
                 filter:
                     all:
@@ -4962,7 +4962,7 @@ layers:
                         sprite_default: generic
                         visible: global.icon_visible_poi_landuse
                         priority: 43
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_poi_landuse
                             priority: 44
                             font:
@@ -4982,7 +4982,7 @@ layers:
                                 weight: 400
                 early-sizing:
                     filter: { $zoom: { max: 14 } }
-                    draw: { icons: { text-blend-order: { size: 11px } } }
+                    draw: { icons: { text: { size: 11px } } }
             playgrounds_allotments_attraction_landmark_supermarket:
                 filter:
                     all:
@@ -4997,7 +4997,7 @@ layers:
                     icons:
                         visible: global.icon_visible_landuse_green
                         priority: 41
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_landuse_green
                             font:
                                 size: 10px
@@ -5065,7 +5065,7 @@ layers:
                         sprite_default: generic
                         visible: global.icon_visible_poi_landuse
                         priority: 43
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_poi_landuse
                             priority: 44
                             font:
@@ -5085,32 +5085,32 @@ layers:
 #                    filter: { kind: [residential], osm_relation: true }
 #                    draw:
 #                        icons:
-#                            text-blend-order: { visible: true, text_source: short_name, font: { fill: red } }
+#                            text: { visible: true, text_source: short_name, font: { fill: red } }
 #                            icons: { sprite: park, visible: true }
                 hide-till-later:
                     filter: { kind: [pedestrian,common,railway,ship,houseboat,common,grass,wetland,pitch], $zoom: { max: 17 } }
                     draw:
                         icons:
                             visible: false
-                            text-blend-order: { visible: false }
+                            text: { visible: false }
                 only-text-later:
                     filter: { kind: [pedestrian,common,railway,ship,houseboat,common,grass,wetland,pitch], $zoom: { min: 17 } }
                     draw:
                         icons:
                             visible: false
-                            text-blend-order: { font: { style: italic } }
+                            text: { font: { style: italic } }
                 burial_vault-early:
                     filter: { kind: [burial_vault], $zoom: { max: 19 } }
                     draw:
                         icons:
                             visible: false
-                            text-blend-order:  { visible: false }
+                            text:  { visible: false }
             university-poi:
                 filter: { kind: [university, college], area: false, $zoom: { max: 16 } }
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:  { visible: false }
+                        text:  { visible: false }
             office-early:
                 filter:
                     any:
@@ -5119,67 +5119,67 @@ layers:
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:  { visible: false }
+                        text:  { visible: false }
             bank-early:
                 filter: { kind: [bank], $zoom: { max: 17 } }
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:  { visible: false }
+                        text:  { visible: false }
             post-office-early:
                 filter: { kind: [post_office], $zoom: { max: 14 } }
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:  { visible: false }
+                        text:  { visible: false }
             atm-early:
                 filter: { kind: [atm], $zoom: { max: 18 } }
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:  { visible: false }
+                        text:  { visible: false }
             bicycle-parking-early:
                 filter: { kind: [bicycle_parking], $zoom: { max: 19 } }
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:  { visible: false }
+                        text:  { visible: false }
             yes-early:
                 filter: { kind: [yes], $zoom: { max: 18 } }
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:  { visible: false }
+                        text:  { visible: false }
             peak-early:
                 filter: { kind: [peak], $zoom: { max: 16 } }
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:  { visible: false }
+                        text:  { visible: false }
             drinking-water-early:
                 filter: { kind: [drinking_water], $zoom: { max: 18 } }
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:  { visible: false }
+                        text:  { visible: false }
             memorial-early:
                 filter: { kind: [memorial], $zoom: { max: 13 } }
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:  { visible: false }
+                        text:  { visible: false }
             animal-points-early:
                 filter: { kind: [animal], area: false, $zoom: { max: 18 } }
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:  { visible: false }
+                        text:  { visible: false }
 #            animal-areas-early:
 #                filter: { kind: [animal], area: { min: 500 }, $zoom: { max: 18 } }
 #                draw:
 #                    icons:
 #                       visible: false
-#                       text-blend-order:  { visible: false }
+#                       text:  { visible: false }
             parking-labels-early:
                 filter:
                     kind: [parking]
@@ -5187,7 +5187,7 @@ layers:
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:
+                        text:
                             visible: false
             parking-labels:
                 filter:
@@ -5195,7 +5195,7 @@ layers:
                     $zoom: { min: 18 }
                 draw:
                     icons:
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_poi_landuse
                             font:
                                 fill: [0.20,0.20,0.20] #*text_fill
@@ -5205,7 +5205,7 @@ layers:
                 filter: { kind: [commercial, residential, wood], $zoom: { max: 17 } }
                 draw:
                     icons:
-                        text-blend-order:
+                        text:
                             visible: false
             car-sharing:
                 filter: { kind: car_sharing }
@@ -5218,14 +5218,14 @@ layers:
                     filter: { $zoom: { max: 19 } }
                     draw:
                         icons:
-                            text-blend-order:
+                            text:
                                 visible: false
             tower:
                 filter: { kind: [tower], label_placement: yes }
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:
+                        text:
                             font:
                                 style: italic
             station-train-subway:
@@ -5237,7 +5237,7 @@ layers:
                         sprite: train-station
                         size: [[13, 12px], [14, 12px], [15, 16px], [17, 18px], [18, 20px]]
                         priority: 61
-                        text-blend-order:
+                        text:
                             visible: global.text_visible_station
                             #offset: [[13, [0, 6px]], [14, [0, 6px]],[15, [0, 8px]], [17, [0, 9px]], [18, [0, 10px]]]
                 low-priority-early:
@@ -5246,21 +5246,21 @@ layers:
                         icons:
                             visible: false
                             #size: [[12, 10px], [14, 10px], [15, 16px]]
-                            text-blend-order: { visible: false }
+                            text: { visible: false }
                 low-priority-early-z13:
                     filter: { kind_tile_rank: { min: 5 }, $zoom: [13] }
                     draw:
                         icons:
                             visible: false
                             #size: [[12, 10px], [14, 10px], [15, 16px]]
-                            text-blend-order: { visible: false }
+                            text: { visible: false }
                 low-priority-early-z14:
                     filter: { kind_tile_rank: { min: 7 }, $zoom: [14] }
                     draw:
                         icons:
                             #size: [[14, 11px], [15, 16px], [17, 18px], [18, 20px]]
                             #visible: false
-                            text-blend-order: { visible: false }
+                            text: { visible: false }
             tram-stop-early:
                 filter: { kind: tram_stop, $zoom: { max: 15 } }
                 draw:
@@ -5270,14 +5270,14 @@ layers:
                 filter: { kind: tram_stop, $zoom: [15] }
                 draw:
                     icons:
-                        text-blend-order:
+                        text:
                             visible: false
             tram-stop:
                 filter: { kind: tram_stop, $zoom: { min: 15 } }
                 draw:
                     icons:
                         size: [[13, 12px], [16, 18px]]
-                        #text-blend-order:
+                        #text:
                         #    offset: [[13, [0, 6px]], [16, [0, 9px]]]
             glaciers-pois:
                 filter: { $zoom: { min: 14 }, kind: glacier, area: false }
@@ -5313,7 +5313,7 @@ layers:
                     draw:
                         icons:
                             size: [[13, 8px], [19, 18px]]
-                            text-blend-order:
+                            text:
                                 visible: false
             minor-z17-early:
                 filter:
@@ -5323,7 +5323,7 @@ layers:
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:  { visible: false }
+                        text:  { visible: false }
             minor-z18-early:
                 filter:
                     kind: [bench, waste_basket]
@@ -5332,7 +5332,7 @@ layers:
                 draw:
                     icons:
                         visible: false
-                        text-blend-order:  { visible: false }
+                        text:  { visible: false }
 
             icons:
                 adult-boutique:
@@ -5403,7 +5403,7 @@ layers:
                         draw:
                             icons:
                                 visible: false
-                                text-blend-order:
+                                text:
                                     visible: false
                 burger:
                     filter: { kind: [fast_food, burger] }
