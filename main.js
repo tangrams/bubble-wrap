@@ -215,7 +215,7 @@ map = (function () {
         // use query language, else default to English
         gui.language = query.language || 'en';
         gui.add(gui, 'language', langs).onChange(function(value) {
-            scene.config.global.language = value;
+            scene.config.global.ux_language = value;
             scene.updateConfig();
             //window.location.search = 'language=' + value;
         });
