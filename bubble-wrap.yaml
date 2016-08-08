@@ -95,20 +95,6 @@ global:
                 return name;
             }
         }
-    ux_language_text_source_sea: |
-        function() {
-            // Use preferred language label if available
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
-            return name.split('').join(' ');
-            //return (global.language && feature['name:'+global.language].split('').join(' ')) || feature.name.split('').join(' ');
-        }
-    ux_language_text_source_continent: |
-        function() {
-            // Use preferred language label if available
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
-            return name.split('').join(' ');
-            //return (global.language && feature['name:'+global.language].split('').join(' ')) || feature.name.split('').join(' ');
-        }
     feature_order: function() { return feature.sort_key; }
     #
     #label visibility
