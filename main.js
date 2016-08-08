@@ -213,9 +213,15 @@ map = (function () {
             'Spanish': 'es'
         };
         // use query language, else default to English
-        gui.language = query.language || 'en';
+        gui.language = query.language || null;
         gui.add(gui, 'language', langs).onChange(function(value) {
             scene.config.global.ux_language = value;
+            scene.updateConfig();
+            //window.location.search = 'language=' + value;
+        });
+        gui.fallback_lang = query.language || null;
+        gui.add(gui, 'fallback_lang', langs).onChange(function(value) {
+            scene.config.global.ux_language_fallback = value;
             scene.updateConfig();
             //window.location.search = 'language=' + value;
         });

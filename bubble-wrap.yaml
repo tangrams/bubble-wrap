@@ -2,22 +2,26 @@ Author: Geraldine Sarmiento, Nathaniel V. Kelso, Patricio Gonzalez Vivo, Brett C
 
 global:
     #ux/ui
-    ux_language: en # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
+    ux_language: false                # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
+    ux_language_fallback: false    # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
     ux_language_text_source: |
         function() {
-            return (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
+            // if there is feature name in the fallback language then use that, else use the feature's default name
+            return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
         }
     ux_language_text_source_short: |
         function() {
-            return (global.ux_language && feature['name:short:'+global.ux_language]) || feature['name:short'];
+            // if there is feature name in the fallback language then use that, else use the feature's default name
+            return (global.ux_language && feature['name:short:'+global.ux_language]) || (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) || feature['name:short'];
         }
     ux_language_text_source_abbreviation: |
         function() {
-            return (global.ux_language && feature['name:abbreviation:'+global.ux_language]) || feature['name:abbreviation'];
+            return (global.ux_language && feature['name:abbreviation:'+global.ux_language]) || (global.ux_language_fallback && feature['name:abbreviation:'+global.ux_language_fallback]) || feature['name:abbreviation'];
         }
     ux_language_text_source_iata: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
+            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
+            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if(feature.iata) {
                 if (name) {
                     return name + ' (' + feature.iata + ')';
@@ -31,32 +35,36 @@ global:
         }
     ux_language_text_source_ocean: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name || '';
+            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name || '';
+            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
             return name.split('').join('  ');
         }
     ux_language_text_source_sea: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name || '';
+            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name || '';
+            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
             return name.split('').join(' ');
         }
     ux_language_text_source_continent: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name || '';
+            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name || '';
+            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
             return name.split('').join(' ');
         }
     ux_language_text_source_road_ref_and_name: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
-            if (feature.ref && name) {
-                return feature.ref + ' ' + name;
-            }
-            else {
+            // Use preferred language label if available
+            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
+            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+            if(feature.ref) {
+                return (global.language && (feature.ref + " " + name)) || name;
+            } else {
                 return name;
             }
-        }
     ux_language_text_source_road_ref_and_name_short: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
+            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
+            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if (feature.ref && feature.ref.length < 6 && name) {
                 return feature.ref + ' ' + name;
             }
@@ -66,17 +74,20 @@ global:
         }
     ux_language_text_source_piste_advanced: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
+            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
+            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             return name ? ('◆ ' + name) : name;
         }
     ux_language_text_source_piste_expert: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
+            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
+            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             return name ? ('◆◆ ' + name) : name;
         }
     ux_language_text_source_building: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
+            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
+            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if (name && feature.addr_housenumber) {
                 return name + '\n' + feature.addr_housenumber;
             }
@@ -87,21 +98,17 @@ global:
     ux_language_text_source_sea: |
         function() {
             // Use preferred language label if available
-            return (global.language && feature['name:'+global.language].split('').join(' ')) || feature.name.split('').join(' ');
+            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            return name.split('').join(' ');
+            //return (global.language && feature['name:'+global.language].split('').join(' ')) || feature.name.split('').join(' ');
         }
     ux_language_text_source_continent: |
         function() {
             // Use preferred language label if available
-            return (global.language && feature['name:'+global.language].split('').join(' ')) || feature.name.split('').join(' ');
+            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            return name.split('').join(' ');
+            //return (global.language && feature['name:'+global.language].split('').join(' ')) || feature.name.split('').join(' ');
         }
-    ux_language_text_source_road_ref_and_name: |
-        function() {
-            // Use preferred language label if available
-            if(feature.ref) {
-                return (global.language && (feature.ref + " " + feature['name:'+global.language])) || (feature['name'] );
-            } else {
-                return (global.language && feature['name:'+global.language]) || (feature['name'] );
-            }
     feature_order: function() { return feature.sort_key; }
     #
     #label visibility
@@ -1370,6 +1377,10 @@ layers:
                         cap: round
                         outline:
                             cap: butt
+            labels-highway-default:
+                draw:
+                    text-blend-order:
+                        text_source: global.ux_language_text_source_road_ref_and_name
             labels-highway-early:
                 filter: { $zoom: [7,8,9] }
                 draw:
@@ -1426,7 +1437,6 @@ layers:
                         priority: 50
                         visible: global.text_visible_highway
                         #text_source: ref
-                        text_source: global.ux_language_text_source_road_ref_and_name
                         font:
                             fill: [0.0,0.0,0.0]
                             weight: 600
@@ -1440,7 +1450,6 @@ layers:
                         priority: 50
                         visible: global.text_visible_highway
                         #text_source: ref
-                        text_source: global.ux_language_text_source_road_ref_and_name
                         font:
                             fill: [0.0,0.0,0.0]
                             weight: 600
@@ -1535,13 +1544,17 @@ layers:
                                 outline:
                                     color: global.major_tunnel_casing1
                                     width: [[13, 0.5px], [15, 2px], [16, 2px], [17, 3px]]
+                    labels-trunk_primary-route-default:
+                        draw:
+                            text-blend-order:
+                                text_source: global.ux_language_text_source_road_ref_and_name
                     labels-trunk_primary-route-z14:
                         filter: { $zoom: [14] }
                         draw:
                             text-blend-order:
                                 priority: 53
                                 visible: global.text_visible_trunk_primary_e2
-                                text_source: global.ux_language_text_source_road_ref_and_name
+                                #text_source: global.ux_language_text_source_road_ref_and_name
                                 font:
                                     fill: [0.0,0.0,0.0]
                                     size: 13px
@@ -1552,7 +1565,7 @@ layers:
                             text-blend-order:
                                 priority: 53
                                 visible: global.text_visible_trunk_primary
-                                text_source: global.ux_language_text_source_road_ref_and_name
+                                #text_source: global.ux_language_text_source_road_ref_and_name
                                 font:
                                     fill: [0.0,0.0,0.0]
                                     weight: 600
@@ -1564,7 +1577,7 @@ layers:
                             text-blend-order:
                                 priority: 53
                                 visible: global.text_visible_trunk_primary
-                                text_source: global.ux_language_text_source_road_ref_and_name
+                                #text_source: global.ux_language_text_source_road_ref_and_name
                                 font:
                                     fill: [0.0,0.0,0.0]
                                     weight: 600
@@ -1577,7 +1590,7 @@ layers:
                         text-blend-order:
                             priority: 53
                             visible: global.text_visible_trunk_primary_e
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.4,0.4,0.4]
                                 size: 10px
@@ -1589,7 +1602,7 @@ layers:
                         text-blend-order:
                             priority: 53
                             visible: global.text_visible_trunk_primary_e
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.4,0.4,0.4]
                                 size: 11px
@@ -1601,7 +1614,7 @@ layers:
                         text-blend-order:
                             priority: 53
                             visible: global.text_visible_trunk_primary
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.25,0.25,0.25]
                                 size: 12px
@@ -1613,7 +1626,7 @@ layers:
                         text-blend-order:
                             priority: 53
                             visible: global.text_visible_trunk_primary
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.10,0.10,0.10]
                                 size: 13px
@@ -1624,7 +1637,7 @@ layers:
                         text-blend-order:
                             priority: 53
                             visible: global.text_visible_trunk_primary
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.0,0.0,0.0]
                                 size: 14px
@@ -1635,7 +1648,7 @@ layers:
                         text-blend-order:
                             priority: 53
                             visible: global.text_visible_trunk_primary
-                            text_source: global.ux_language_text_source_road_ref_and_name
+                            #text_source: global.ux_language_text_source_road_ref_and_name
                             font:
                                 fill: [0.0,0.0,0.0]
                                 size: 15px
@@ -1646,7 +1659,7 @@ layers:
                         text-blend-order:
                             priority: 53
                             visible: global.text_visible_trunk_primary
-                            text_source: global.ux_language_text_source_road_ref_and_name
+                            #text_source: global.ux_language_text_source_road_ref_and_name
                             font:
                                 fill: [0.0,0.0,0.0]
                                 size: 16px
@@ -1657,7 +1670,7 @@ layers:
                         text-blend-order:
                             priority: 53
                             visible: global.text_visible_trunk_primary
-                            text_source: global.ux_language_text_source_road_ref_and_name
+                            #text_source: global.ux_language_text_source_road_ref_and_name
                             font:
                                 fill: [0.0,0.0,0.0]
                                 size: 17px
@@ -1717,13 +1730,17 @@ layers:
                                 color: global.major_tunnel1
                                 outline:
                                     color: global.major_tunnel_casing1
+                    labels-secondary-routes-default:
+                        draw:
+                            text-blend-order:
+                                text_source: global.ux_language_text_source_road_ref_and_name_short
                     labels-secondary-routes:
                         filter: { $zoom: [13] }
                         draw:
                             text-blend-order:
                                 priority: 54
                                 visible: global.text_visible_secondary_e
-                                text_source: global.ux_language_text_source_road_ref_and_name_short
+                                #text_source: global.ux_language_text_source_road_ref_and_name_short
                                 font:
                                     # need fill here?
                                     size: 12px
@@ -1734,7 +1751,7 @@ layers:
                             text-blend-order:
                                 priority: 54
                                 visible: global.text_visible_secondary_e
-                                text_source: global.ux_language_text_source_road_ref_and_name_short
+                                #text_source: global.ux_language_text_source_road_ref_and_name_short
                                 font:
                                     # need fill here?
                                     weight: 600
@@ -1772,6 +1789,10 @@ layers:
                             lines:
                                 outline:
                                     color: pink
+                labels-secondary-default:
+                    draw:
+                        text-blend-order:
+                            text_source: global.ux_language_text_source_road_ref_and_name_short
                 labels-secondary-z13:
                     filter:
                         $zoom: [13]
@@ -1779,7 +1800,7 @@ layers:
                         text-blend-order:
                             priority: 54
                             visible: global.text_visible_secondary_e
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.5,0.5,0.5]
                                 size: 11px
@@ -1791,7 +1812,7 @@ layers:
                         text-blend-order:
                             priority: 54
                             visible: global.text_visible_secondary_e
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.30,0.30,0.30]
                                 size: 12px
@@ -1803,7 +1824,7 @@ layers:
                         text-blend-order:
                             priority: 54
                             visible: global.text_visible_secondary
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.10,0.10,0.10]
                                 size: 13px
@@ -1814,7 +1835,7 @@ layers:
                         text-blend-order:
                             priority: 54
                             visible: global.text_visible_secondary
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.0,0.0,0.0]
                                 size: 14.5px
@@ -1914,13 +1935,17 @@ layers:
                             lines:
                                 outline:
                                     color: pink
+                labels-tertiary-default:
+                    draw:
+                        text-blend-order:
+                            text_source: global.ux_language_text_source_road_ref_and_name_short
                 labels-tertiary-z13:
                     filter: { $zoom: [13] }
                     draw:
                         text-blend-order:
                             priority: 55
                             visible: global.text_visible_tertiary_e
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.5,0.5,0.5]
                                 size: 10px
@@ -1931,7 +1956,7 @@ layers:
                         text-blend-order:
                             priority: 55
                             visible: global.text_visible_tertiary_e
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.5,0.5,0.5]
                                 size: 12px
@@ -1942,7 +1967,7 @@ layers:
                         text-blend-order:
                             priority: 55
                             visible: global.text_visible_tertiary
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.3,0.3,0.3]
                                 size: 12px
@@ -1953,7 +1978,7 @@ layers:
                         text-blend-order:
                             priority: 55
                             visible: global.text_visible_tertiary
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.3,0.3,0.3]
                                 size: 14px
@@ -1964,7 +1989,7 @@ layers:
                         text-blend-order:
                             priority: 55
                             visible: global.text_visible_tertiary
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.15,0.15,0.15]
                                 size: 15px
@@ -1975,7 +2000,7 @@ layers:
                         text-blend-order:
                             priority: 55
                             visible: global.text_visible_tertiary
-                            text_source: global.ux_language_text_source_road_ref_and_name_short
+                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.15,0.15,0.15]
                                 size: 15px
