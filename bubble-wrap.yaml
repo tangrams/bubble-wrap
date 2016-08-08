@@ -6,12 +6,11 @@ global:
     ux_language_fallback: false    # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
     ux_language_text_source: |
         function() {
-            // if there is feature name in the fallback language then use that, else use the feature's default name
+            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
             return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
         }
     ux_language_text_source_short: |
         function() {
-            // if there is feature name in the fallback language then use that, else use the feature's default name
             return (global.ux_language && feature['name:short:'+global.ux_language]) || (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) || feature['name:short'];
         }
     ux_language_text_source_abbreviation: |
@@ -20,7 +19,6 @@ global:
         }
     ux_language_text_source_iata: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if(feature.iata) {
                 if (name) {
@@ -35,26 +33,21 @@ global:
         }
     ux_language_text_source_ocean: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name || '';
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
             return name.split('').join('  ');
         }
     ux_language_text_source_sea: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name || '';
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
             return name.split('').join(' ');
         }
     ux_language_text_source_continent: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name || '';
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
             return name.split('').join(' ');
         }
     ux_language_text_source_road_ref_and_name: |
         function() {
-            // Use preferred language label if available
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if(feature.ref) {
                 return (global.language && (feature.ref + " " + name)) || name;
@@ -63,7 +56,6 @@ global:
             }
     ux_language_text_source_road_ref_and_name_short: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if (feature.ref && feature.ref.length < 6 && name) {
                 return feature.ref + ' ' + name;
@@ -74,19 +66,16 @@ global:
         }
     ux_language_text_source_piste_advanced: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             return name ? ('◆ ' + name) : name;
         }
     ux_language_text_source_piste_expert: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             return name ? ('◆◆ ' + name) : name;
         }
     ux_language_text_source_building: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if (name && feature.addr_housenumber) {
                 return name + '\n' + feature.addr_housenumber;
@@ -94,20 +83,6 @@ global:
             else {
                 return name;
             }
-        }
-    ux_language_text_source_sea: |
-        function() {
-            // Use preferred language label if available
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
-            return name.split('').join(' ');
-            //return (global.language && feature['name:'+global.language].split('').join(' ')) || feature.name.split('').join(' ');
-        }
-    ux_language_text_source_continent: |
-        function() {
-            // Use preferred language label if available
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
-            return name.split('').join(' ');
-            //return (global.language && feature['name:'+global.language].split('').join(' ')) || feature.name.split('').join(' ');
         }
     feature_order: function() { return feature.sort_key; }
     #
@@ -4492,56 +4467,12 @@ layers:
                             transform: uppercase
                             # stroke: { color: global.text_stroke, width: 3 }
 
-    highway-exit:
-        data: { source: mapzen, layer: [pois] }
-        filter: { kind: motorway_junction, $zoom: { min: 14 } }
-        draw:
-            icons:
-                visible: false
-            text-blend-order:
-                text_source: global.ux_language_text_source
-                visible: global.text_visible_exits
-                interactive: true
-                text_source: ref
-                priority: 52
-                font:
-                    fill: global.text_fill_exits
-                    size: [[12,9px],[15,12px],[17,14px]]
-                    stroke: { color: global.text_stroke, width: [[12,2px],[14,3px],[15,3px]] }
-        later:
-            filter: { $zoom: { min: 16 } }
-            draw:
-                text-blend-order:
-                    font:
-                        weight: 600
-    airport-gate:
-        data: { source: mapzen, layer: [pois] }
-        filter: { kind: gate, aeroway: gate }
-        draw:
-            icons:
-                visible: false
-            text-blend-order:
-                text_source: global.ux_language_text_source
-                visible: global.text_visible_airport_gate
-                interactive: true
-                text_source: ref
-                font:
-                    fill: global.text_fill_exits
-                    size: [[16,9px],[17,12px],[20,14px]]
-                    #stroke: { color: global.highway1, width: [[12,2px],[14,3px],[15,3px]] }
-        later:
-            filter: { $zoom: { min: 19 } }
-            draw:
-                text-blend-order:
-                    font:
-                        weight: 600
-
     pois_and_landuse_labels:
         data: { source: mapzen, layer: [pois,landuse] }
         visible: global.label_visible_poi_landuse
         filter:
             all:
-                - not: { kind: [building,address,farm,tree,gate,apron,residential] }
+                - not: { kind: [building,address,farm,tree,apron,residential] }
                 - $geometry: point
                 # White list a few kinds to "always" show per the tile zoom inclusion, else test feature's min_zoom
                 #- function() { return feature.min_zoom <= $zoom }
@@ -4596,6 +4527,7 @@ layers:
         poi_labels-z20-up:
             filter: { $zoom: { min: 20 } }
             draw: { icons: { text: { font: { size: 14px, weight: 600, stroke: { width: 3 }  } } } }
+
         no-name:
             filter: { name: false }
             sports-pitch:
@@ -5408,7 +5340,7 @@ layers:
                                 visible: false
             minor-z17-early:
                 filter:
-                    kind: [accountant, administrative, advertising_agency, architect, association, atm, bakery, bed_and_breakfast, bicycle, bicycle_parking, bicycle_rental_station, books, bus_stop, butcher, car, car_repair, chalet, clothes, company, computer, consulting, convenience, doityourself, drinking_water, dry_cleaning, educational_institution, emergency_phone, employment_agency, estate_agent, fashion, financial, florist, foundation, gate, gift, government, greengrocer, guest_house, hairdresser, hostel, hotel, insurance, it, jewelry, lawyer, mast, memorial, mobile_phone, motel, newspaper, ngo, notary, optician, parking, pet, physician, playground, political_party, post_box, religion, research, subway_entrance, tax_advisor, telecommunication, telephone, theatre, therapist, toilets, traffic_signals, travel_agent, water_tower, yes]
+                    kind: [accountant, administrative, advertising_agency, architect, association, atm, bakery, bed_and_breakfast, bicycle, bicycle_parking, bicycle_rental_station, books, bus_stop, butcher, car, car_repair, chalet, clothes, company, computer, consulting, convenience, doityourself, drinking_water, dry_cleaning, educational_institution, emergency_phone, employment_agency, estate_agent, fashion, financial, florist, foundation, gift, government, greengrocer, guest_house, hairdresser, hostel, hotel, insurance, it, jewelry, lawyer, mast, memorial, mobile_phone, motel, newspaper, ngo, notary, optician, parking, pet, physician, playground, political_party, post_box, religion, research, subway_entrance, tax_advisor, telecommunication, telephone, theatre, therapist, toilets, traffic_signals, travel_agent, water_tower, yes]
                     area: false
                     $zoom: { max: 17 }
                 draw:
@@ -5869,6 +5801,49 @@ layers:
                 winter_sport:
                     filter: { kind: [ski, ski_rental, ski_school, ski_jumping, skiing] }
                     draw:   { icons: { sprite: ski-area } }
+
+        airport-gate:
+            filter: { kind: gate, aeroway: gate }
+            draw:
+                icons:
+                    visible: false
+                text-blend-order:
+                    visible: global.text_visible_airport_gate
+                    interactive: true
+                    text_source: ref
+                    font:
+                        fill: global.text_fill_exits
+                        size: [[16,9px],[17,12px],[20,14px]]
+                        #stroke: { color: global.highway1, width: [[12,2px],[14,3px],[15,3px]] }
+            later:
+                filter: { $zoom: { min: 19 } }
+                draw:
+                    text-blend-order:
+                        font:
+                            weight: 600
+
+        highway-exit:
+            filter: { kind: motorway_junction, $zoom: { min: 14 } }
+            draw:
+                icons:
+                    visible: false
+                text-blend-order:
+                    visible: global.text_visible_exits
+                    interactive: true
+                    text_source: ref
+                    priority: 1
+                    font:
+                        fill: global.text_fill_exits
+                        size: [[12,9px],[15,12px],[17,14px]]
+                        stroke: { color: global.text_stroke, width: [[12,2px],[14,3px],[15,3px]] }
+            later:
+                filter: { $zoom: { min: 16 } }
+                draw:
+                    text-blend-order:
+                        font:
+                            weight: 600
+
+
     water-area-labels:
         data: { source: mapzen, layer: [water] }
         visible: global.text_visible_water_labels
