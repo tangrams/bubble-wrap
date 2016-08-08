@@ -20,7 +20,6 @@ global:
         }
     ux_language_text_source_iata: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if(feature.iata) {
                 if (name) {
@@ -35,26 +34,22 @@ global:
         }
     ux_language_text_source_ocean: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name || '';
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
             return name.split('').join('  ');
         }
     ux_language_text_source_sea: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name || '';
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
             return name.split('').join(' ');
         }
     ux_language_text_source_continent: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name || '';
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
             return name.split('').join(' ');
         }
     ux_language_text_source_road_ref_and_name: |
         function() {
             // Use preferred language label if available
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if(feature.ref) {
                 return (global.language && (feature.ref + " " + name)) || name;
@@ -63,7 +58,6 @@ global:
             }
     ux_language_text_source_road_ref_and_name_short: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if (feature.ref && feature.ref.length < 6 && name) {
                 return feature.ref + ' ' + name;
@@ -74,19 +68,16 @@ global:
         }
     ux_language_text_source_piste_advanced: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             return name ? ('◆ ' + name) : name;
         }
     ux_language_text_source_piste_expert: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             return name ? ('◆◆ ' + name) : name;
         }
     ux_language_text_source_building: |
         function() {
-            //var name = (global.ux_language && feature['name:'+global.ux_language]) || feature.name;
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if (name && feature.addr_housenumber) {
                 return name + '\n' + feature.addr_housenumber;
