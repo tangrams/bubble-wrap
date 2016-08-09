@@ -205,12 +205,14 @@ map = (function () {
             '(default)': false,
             'English': 'en',
             'Russian': 'ru',
+            'Chinese': 'zh',
             'Japanese': 'ja',
             'Korean': 'ko',
             'German': 'de',
             'French': 'fr',
             'Arabic': 'ar',
-            'Spanish': 'es'
+            'Spanish': 'es',
+            'Greek': 'gr'
         };
         // use query language, else default to English
         gui.language = query.language || false;
@@ -227,7 +229,7 @@ map = (function () {
         });
 
         // Take a screenshot and save to file
-        gui.screenshot = function () {
+        gui.save_screenshot = function () {
             return scene.screenshot().then(function(screenshot) {
                 // uses FileSaver.js: https://github.com/eligrey/FileSaver.js/
                 timestamp = new Date();
@@ -238,7 +240,7 @@ map = (function () {
                 saveAs(screenshot.blob, 'tangram-' + map_location + '-' + prettydate + '.png');
             });
         };
-        gui.add(gui, 'screenshot');
+        gui.add(gui, 'save_screenshot');
 
         // Link to edit in OSM - hold 'e' and click
         map.getContainer().addEventListener('dblclick', function (event) {
