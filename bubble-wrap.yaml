@@ -2,7 +2,7 @@ Author: Geraldine Sarmiento, Nathaniel V. Kelso, Patricio Gonzalez Vivo, Brett C
 
 global:
     #ux/ui
-    ux_language: false                # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
+    ux_language: false             # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
     ux_language_fallback: false    # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
     ux_language_text_source: |
         function() {
@@ -13,9 +13,17 @@ global:
         function() {
             return (global.ux_language && feature['name:short:'+global.ux_language]) || (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) || feature['name:short'];
         }
+    ux_language_text_source_short_proxy_name: |
+        function() {
+            var name  = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            var short = (global.ux_language && feature['name:short:'+global.ux_language]) || (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) || feature['name:short'];
+            return short ? name : '';
+        }
     ux_language_text_source_abbreviation: |
         function() {
-            return (global.ux_language && feature['name:abbreviation:'+global.ux_language]) || (global.ux_language_fallback && feature['name:abbreviation:'+global.ux_language_fallback]) || feature['name:abbreviation'];
+            var name  = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            var abbrev = (global.ux_language && feature['name:abbreviation:'+global.ux_language]) || (global.ux_language_fallback && feature['name:abbreviation:'+global.ux_language_fallback]) || feature['name:abbreviation'];
+            return abbrev || name;
         }
     ux_language_text_source_iata: |
         function() {
@@ -49,38 +57,37 @@ global:
     ux_language_text_source_road_ref_and_name: |
         function() {
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
-            if(feature.ref) {
-                return (global.language && (feature.ref + " " + name)) || name;
+            if(feature.ref && name) {
+                return (feature.ref + ' ' + name);
             } else {
                 return name;
             }
+        }
     ux_language_text_source_road_ref_and_name_short: |
         function() {
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
-            if (feature.ref && feature.ref.length < 6 && name) {
+            if (feature.ref && (feature.ref.length < 6) && name) {
                 return feature.ref + ' ' + name;
-            }
-            else {
+            } else {
                 return name;
             }
         }
     ux_language_text_source_piste_advanced: |
         function() {
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
-            return name ? ('◆ ' + name) : name;
+            return name ? ('◆ ' + name) : '◆';
         }
     ux_language_text_source_piste_expert: |
         function() {
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
-            return name ? ('◆◆ ' + name) : name;
+            return name ? ('◆◆ ' + name) : '◆◆';
         }
-    ux_language_text_source_building: |
+    ux_language_text_source_building_and_address: |
         function() {
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if (name && feature.addr_housenumber) {
                 return name + '\n' + feature.addr_housenumber;
-            }
-            else {
+            } else {
                 return name;
             }
         }
@@ -111,7 +118,7 @@ global:
     text_visible_highway: true
     text_visible_highway_e: true
     text_visible_trunk_primary: true
-    text_visible_trunk_primary_e2: false
+    text_visible_trunk_primary_e2: true
     text_visible_trunk_primary_e: true
     text_visible_secondary: true
     text_visible_secondary_e: true
@@ -1428,7 +1435,7 @@ layers:
                         font:
                             fill: [0.0,0.0,0.0]
                             weight: 600
-                            size: 13px
+                            size: 12px
                             # stroke: { color: [0.976,0.541,0.490], width: 4 }
             labels-highway-z15:
                 filter:
@@ -1439,7 +1446,7 @@ layers:
                         font:
                             fill: [0.0,0.0,0.0]
                             weight: 600
-                            size: 15px
+                            size: 14px
                             stroke: { color: [1.000,1.000,1.000], width: 2 }
             labels-highway-z16:
                 filter: { $zoom: { min: 16, max: 18 } }
@@ -1449,7 +1456,7 @@ layers:
                         visible: global.text_visible_highway
                         font:
                             fill: [0.0,0.0,0.0]
-                            size: 16px
+                            size: 15px
                             stroke: { color: [1.000,1.000,1.000], width: 4 }
             labels-highway-z18:
                 filter: { $zoom: { min: 18 } }
@@ -1523,16 +1530,26 @@ layers:
                         draw:
                             text-blend-order:
                                 text_source: global.ux_language_text_source_road_ref_and_name
+                    labels-trunk_primary-route-z13:
+                        filter: { $zoom: { max: 14 } }
+                        draw:
+                            text-blend-order:
+                                text_source: ref
+                                font:
+                                    fill: [1.0,1.0,1.0]
+                                    weight: 600
+                                    size: 11px
+                                    stroke: { color: [0.976,0.541,0.490], width: 2 }
                     labels-trunk_primary-route-z14:
                         filter: { $zoom: [14] }
                         draw:
                             text-blend-order:
                                 priority: 53
                                 visible: global.text_visible_trunk_primary_e2
-                                #text_source: global.ux_language_text_source_road_ref_and_name
+                                #text_source: ref
                                 font:
                                     fill: [0.0,0.0,0.0]
-                                    size: 13px
+                                    #size: 12px
                                     stroke: { color: [0.95,0.95,0.95], width: 0.1px }
                     labels-trunk_primary-route-z15:
                         filter: { $zoom: [15] }
@@ -1544,7 +1561,7 @@ layers:
                                 font:
                                     fill: [0.0,0.0,0.0]
                                     weight: 600
-                                    size: 15px
+                                    size: 14px
                                     stroke: { color: [0.95,0.95,0.95], width: 0.1px }
                     labels-trunk_primary-route-z16:
                         filter: { $zoom: { min: 16 } }
@@ -1556,8 +1573,12 @@ layers:
                                 font:
                                     fill: [0.0,0.0,0.0]
                                     weight: 600
-                                    size: 16px
+                                    size: 15px
                                     stroke: { color: [1.000,1.000,1.000], width: 4px }
+                labels-trunk_primary-default:
+                    draw:
+                        text-blend-order:
+                            text_source: global.ux_language_text_source_road_ref_and_name_short
                 labels-trunk_primary-z11:
                     filter:
                         $zoom: [11]
@@ -2085,7 +2106,7 @@ layers:
                     text-blend-order:
                         priority: 56
                         visible: global.text_visible_minor_road_e
-                        text_source: name
+                        text_source: global.ux_language_text_source
                         font:
                             fill: [0.30,0.30,0.30]
                             size: 12px
@@ -2096,7 +2117,7 @@ layers:
                     text-blend-order:
                         priority: 56
                         visible: global.text_visible_minor_road_e
-                        text_source: name
+                        text_source: global.ux_language_text_source
                         font:
                             fill: [0.35,0.35,0.35]
                             size: 14px
@@ -2107,7 +2128,7 @@ layers:
                     text-blend-order:
                         priority: 56
                         visible: global.text_visible_minor_road_e
-                        text_source: name
+                        text_source: global.ux_language_text_source
                         font:
                             fill: [0.25,0.25,0.25]
                             size: 14px
@@ -2118,7 +2139,7 @@ layers:
                     text-blend-order:
                         priority: 56
                         visible: global.text_visible_minor_road
-                        text_source: name
+                        text_source: global.ux_language_text_source
                         font:
                             # needs a fill color?
                             fill: [0.15,0.15,0.15]
@@ -2199,7 +2220,7 @@ layers:
                     text-blend-order:
                         priority: 57
                         visible: global.text_visible_service_road
-                        text_source: name
+                        text_source: global.ux_language_text_source
                         font:
                             # need fill color?
                             fill: [0.25,0.25,0.25]
@@ -2211,7 +2232,7 @@ layers:
                     text-blend-order:
                         priority: 57
                         visible: global.text_visible_service_road
-                        text_source: name
+                        text_source: global.ux_language_text_source
                         font:
                             # need fill color?
                             fill: [0.15,0.15,0.15]
@@ -2316,7 +2337,7 @@ layers:
                     text-blend-order:
                         priority: 58
                         visible: global.text_visible_path
-                        text_source: name
+                        text_source: global.ux_language_text_source
                         font:
                             # need a fill color?
                             fill: [0.25,0.25,0.25]
@@ -2394,7 +2415,7 @@ layers:
                     text-blend-order:
                         priority: 59
                         visible: global.text_visible_steps
-                        text_source: name
+                        text_source: global.ux_language_text_source
                         font:
                             # need fill color?
                             size: 12px
@@ -2542,7 +2563,7 @@ layers:
                     text-blend-order:
                         priority: 59
                         visible: global.text_visible_aerialway
-                        text_source: name
+                        text_source: global.ux_language_text_source
                         font:
                             fill: global.text_fill
                             size: 12px
@@ -2756,7 +2777,7 @@ layers:
             filter: { $zoom: { min: 20 } }
             draw:
                 text-blend-order:
-                    text_source: global.ux_language_text_source_building
+                    text_source: global.ux_language_text_source_building_and_address
     address-labels:
         data: { source: mapzen, layer: buildings }
         filter:
@@ -3019,7 +3040,7 @@ layers:
                 text-blend-order:
                     priority: 14
                     visible: global.text_visible_admin
-                    text_source: 'name:short'
+                    text_source: global.ux_language_text_source_short
                     font:
                         size: 10px
                         weight: 300
@@ -3031,7 +3052,7 @@ layers:
                 text-blend-order:
                     priority: 14
                     visible: global.text_visible_admin
-                    text_source: 'name:short'
+                    text_source: global.ux_language_text_source_short
                     font:
                         size: 13px
                         weight: 300
@@ -3043,19 +3064,19 @@ layers:
                 text-blend-order:
                     priority: 14
                     visible: global.text_visible_admin
-                    text_source: 'name:short'
+                    text_source: global.ux_language_text_source_short
                     font:
                         size: 15px
                         weight: 300
                         fill: [0.4,0.4,0.4]
 
         region:
-            filter: { name: true, kind: [state], $zoom: {min: 7, max: 9} }
+            filter: { name: true, kind: [state], $zoom: [7,8] }  # someday: province
             draw:
                 text-blend-order:
                     priority: 14
                     visible: global.text_visible_admin
-                    text_source: global.ux_language_text_source_short
+                    text_source: global.ux_language_text_source_short_proxy_name
                     font:
                         size: 14px
                         weight: 300
@@ -3067,12 +3088,17 @@ layers:
     #                interactive: true
     #                sprite: global.townspot_sprite
             pesky:
-                filter: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"], $zoom: {min: 7, max: 8} }
+                filter: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"], $zoom: [7] }
                 draw:
                     text-blend-order:
                         visible: false
+#            early-provinces:
+#                filter: { kind: province, $zoom: [7] }
+#                draw:
+#                    text-blend-order:
+#                        visible: false
             small-ones:
-                filter: { name: ["Delaware","New Jersey","Connecticut","Rhode Island","Massachusetts","New Hampshire","Vermont"], $zoom: {min: 7, max: 8} }
+                filter: { name: ["Delaware","New Jersey","Connecticut","Rhode Island","Massachusetts","New Hampshire","Vermont"], $zoom: [7] }
                 draw:
                     text-blend-order:
                         text_source: global.ux_language_text_source_abbreviation
@@ -4472,7 +4498,7 @@ layers:
         visible: global.label_visible_poi_landuse
         filter:
             all:
-                - not: { kind: [building,address,farm,tree,apron,residential] }
+                - not: { kind: [building,address,farm,tree,apron,residential,commercial,industrial] }
                 - $geometry: point
                 # White list a few kinds to "always" show per the tile zoom inclusion, else test feature's min_zoom
                 #- function() { return feature.min_zoom <= $zoom }
@@ -4744,11 +4770,10 @@ layers:
                                     visible: false
                                     text: { visible: false }
                     forest:
-                        filter: function() { return ( (feature.name && feature.name.indexOf("Forest") > -1) || (feature.protect_class >=6 && feature.name.indexOf("Park") < 0) ) }
+                        filter: function() { return ( (feature.name && feature.name.indexOf("Forest") > -1) || ((feature.protect_class == 6 || feature.protect_class == '6') && feature.name.indexOf("Park") < 0) ) }
                         draw:
                             icons:
-                                visible: false
-                                text: { visible: false }
+                                sprite: forest
                     hide-till-later:
                         filter: { kind: [grass], $zoom: { max: 16 } }
                         draw:
@@ -5321,15 +5346,22 @@ layers:
             bus-stop-bus-station-labels:
                 filter:
                     kind: [bus_stop, bus_station]
-                    $zoom: { min: 18 }
                 draw:
-                    text-blend-order:
-                        visible: global.text_visible_poi_landuse
-                        font:
-                            fill: [0.20,0.20,0.20] # *text_fill
-                            size: 11px
-                            stroke: { color: global.text_stroke, width: 4 }
-                bus_stop-early:
+                    icons:
+                        text:
+                            visible: global.text_visible_poi_landuse
+                            font:
+                                fill: [0.20,0.20,0.20] # *text_fill
+                                size: 11px
+                                stroke: { color: global.text_stroke, width: 4 }
+                bus-stop-early1:
+                    filter:
+                        kind: [bus_stop]
+                        $zoom: { max: 18 }
+                    draw:
+                        icons:
+                            visible: false
+                bus_stop-early2:
                     filter:
                         kind: [bus_stop]
                         $zoom: { max: 19 }
@@ -5340,7 +5372,7 @@ layers:
                                 visible: false
             minor-z17-early:
                 filter:
-                    kind: [accountant, administrative, advertising_agency, architect, association, atm, bakery, bed_and_breakfast, bicycle, bicycle_parking, bicycle_rental_station, books, bus_stop, butcher, car, car_repair, chalet, clothes, company, computer, consulting, convenience, doityourself, drinking_water, dry_cleaning, educational_institution, emergency_phone, employment_agency, estate_agent, fashion, financial, florist, foundation, gift, government, greengrocer, guest_house, hairdresser, hostel, hotel, insurance, it, jewelry, lawyer, mast, memorial, mobile_phone, motel, newspaper, ngo, notary, optician, parking, pet, physician, playground, political_party, post_box, religion, research, subway_entrance, tax_advisor, telecommunication, telephone, theatre, therapist, toilets, traffic_signals, travel_agent, water_tower, yes]
+                    kind: [accountant, administrative, advertising_agency, architect, association, atm, bakery, bed_and_breakfast, bicycle, bicycle_parking, bicycle_rental_station, books, butcher, car, car_repair, chalet, clothes, company, computer, consulting, convenience, doityourself, drinking_water, dry_cleaning, educational_institution, emergency_phone, employment_agency, estate_agent, fashion, financial, florist, foundation, gift, government, greengrocer, guest_house, hairdresser, hostel, hotel, insurance, it, jewelry, lawyer, mast, memorial, mobile_phone, motel, newspaper, ngo, notary, optician, parking, pet, physician, playground, political_party, post_box, religion, research, subway_entrance, tax_advisor, telecommunication, telephone, theatre, therapist, toilets, traffic_signals, travel_agent, water_tower, yes]
                     area: false
                     $zoom: { max: 17 }
                 draw:
