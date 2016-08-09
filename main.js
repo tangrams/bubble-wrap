@@ -11,13 +11,21 @@ map = (function () {
 
     /*** URL parsing ***/
 
+    // convert tile coordinates to lat-lng
+    // from http://gis.stackexchange.com/questions/17278/calculate-lat-lon-bounds-for-individual-tile-generated-from-gdal2tiles
+    function tile2long(x,z) { return (x/Math.pow(2,z)*360-180); }
+    function tile2lat(y,z) {
+        var n=Math.PI-2*Math.PI*y/Math.pow(2,z);
+        return (180/Math.PI*Math.atan(0.5*(Math.exp(n)-Math.exp(-n))));
+    }
+
     // leaflet-style URL hash pattern:
     // #[zoom],[lat],[lng]
     var url_hash = window.location.hash.slice(1).split('/');
 
     // location
     var defaultpos = true; // use default position
-    
+
     // location is passed through url
     if (url_hash.length == 3) {
         var defaultpos = false;
@@ -33,12 +41,29 @@ map = (function () {
         }
     }
 
-    // normal case, eg: http://tangrams.github.io/nameless-maps/?roads#4/0/0
-    var url_search = window.location.search.slice(1).split('/')[0];
-    // console.log('url_search', url_search);
-    if (url_search.length > 0) {
-        style_file = url_search + ".yaml";
-        // console.log('style_file', style_file);
+    // enable setting language by URL argument
+    // eg: '?language=en&this=no'
+
+    var query = splitQueryParams();
+    // { language: 'en', this: 'no'}
+
+    function splitQueryParams () {
+       var str = window.location.search;
+
+       var kvArray = str.slice(1).split('&');
+       // ['language=en', 'this=no']
+
+       var obj = {};
+
+       for (var i = 0, j=kvArray.length; i<j; i++) {
+           var value = kvArray[i].split('=');
+           var k = window.decodeURIComponent(value[0]);
+           var v = window.decodeURIComponent(value[1]);
+
+           obj[k] = v;
+       }
+
+       return obj;
     }
 
     /*** Map ***/
@@ -97,9 +122,10 @@ map = (function () {
                     picking = false;
                     popup.style.visibility = 'hidden';
                     return;
-                }                
+                }
                 var properties = selection.feature.properties;
 
+                popup.style.width = 'auto';
                 popup.style.left = (pixel.x + 0) + 'px';
                 popup.style.top = (pixel.y + 0) + 'px';
                 popup.style.margin = '10px';
@@ -146,7 +172,7 @@ map = (function () {
     }
 
     function long2tile(lon,zoom) { return (Math.floor((lon+180)/360*Math.pow(2,zoom))); }
-    function lat2tile(lat,zoom)  { return (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom))); }    
+    function lat2tile(lat,zoom)  { return (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom))); }
 
     function mapzenTileURL() {
         // find minimum max_zoom of all sources
@@ -166,25 +192,73 @@ map = (function () {
     }
 
     /***** Render loop *****/
-    
+
+    // Create dat GUI
+    var gui = new dat.GUI({ autoPlace: true });
+
     function addGUI() {
+        gui.domElement.parentNode.style.zIndex = 10000;
+        window.gui = gui;
+
+        // Language selector
+        var langs = {
+            '(default)': false,
+            'English': 'en',
+            'Russian': 'ru',
+            'Chinese': 'zh',
+            'Japanese': 'ja',
+            'Korean': 'ko',
+            'German': 'de',
+            'French': 'fr',
+            'Arabic': 'ar',
+            'Spanish': 'es',
+            'Greek': 'gr'
+        };
+        // use query language, else default to English
+        gui.language = query.language || false;
+        gui.add(gui, 'language', langs).onChange(function(value) {
+            scene.config.global.ux_language = value;
+            scene.updateConfig();
+            //window.location.search = 'language=' + value;
+        });
+        gui.fallback_lang = query.language || false;
+        gui.add(gui, 'fallback_lang', langs).onChange(function(value) {
+            scene.config.global.ux_language_fallback = value;
+            scene.updateConfig();
+            //window.location.search = 'language=' + value;
+        });
+
+        // Take a screenshot and save to file
+        gui.save_screenshot = function () {
+            return scene.screenshot().then(function(screenshot) {
+                // uses FileSaver.js: https://github.com/eligrey/FileSaver.js/
+                timestamp = new Date();
+                month = timestamp.getMonth()+1;
+                if( month < 10 ) { month = '0' + month; }
+                prettydate = timestamp.getFullYear() + month + timestamp.getDate() + timestamp.getHours() + timestamp.getMinutes();
+                map_location = map.getZoom() + '-' + map.getCenter().lat.toFixed(5) + '-' + map.getCenter().lng.toFixed(5);
+                saveAs(screenshot.blob, 'tangram-' + map_location + '-' + prettydate + '.png');
+            });
+        };
+        gui.add(gui, 'save_screenshot');
+
         // Link to edit in OSM - hold 'e' and click
         map.getContainer().addEventListener('dblclick', function (event) {
-            console.log( 'dblclick was had' );
+            //console.log( 'dblclick was had' );
             if( timer ) { clearTimeout( timer ); timer = null; }
             popup.style.visibility = 'hidden';
         });
-        
+
         var timer;
-        
+
         map.getContainer().addEventListener('click', function (event) {
-            console.log( 'click was had' );
+            //console.log( 'click was had' );
             if( timer ) { clearTimeout( timer ); timer = null; }
-            timer = setTimeout( function(){ 
+            timer = setTimeout( function(){
                 picking = true;
                 latlng = map.mouseEventToLatLng(event);
                 var pixel = { x: event.clientX, y: event.clientY };
-            
+
                 if( key.cmd || key.alt ) {
                     window.open( mapzenTileURL(), '_blank' );
                 } else {
@@ -214,7 +288,7 @@ map = (function () {
                         if (latlng) {
                             url += '#map=' + osm_zoom + '/' + latlng.lat + '/' + latlng.lng;
                         }
-    
+
                         if( key.shift ) {
                             window.open(url, '_blank');
                         } else {
@@ -237,7 +311,7 @@ map = (function () {
                             // JOSM editor link
                             var position = '19' + '/' + latlng.lat + '/' + latlng.lng;
                             var josmUrl = 'http://www.openstreetmap.org/edit?editor=remote#map='+position;
-    
+
                             popup.appendChild(createEditLinkElement( url, 'iD', 'Edit with iD ➹') );
                             popup.appendChild(createEditLinkElement( mapzenTileURL(), 'rawTile', 'View tile data ➹') );
                             //popup.appendChild(createEditLinkElement( josmUrl, 'JOSM', 'Edit with JOSM ➹') );
@@ -257,7 +331,7 @@ map = (function () {
             return true;
         }
     }
-    
+
     // Add map
     window.addEventListener('load', function () {
         // Scene initialized

@@ -78,6 +78,13 @@
     }
 
     </style>
+
+    <!-- A lightweight graphical user interface for changing variables in JavaScript.  -->
+    <script src="lib/dat.gui.min.js"></script>
+
+    <!-- FileSaver.js implements the HTML5 W3C saveAs(), used in the demo to save screenshots -->
+    <script src="lib/FileSaver.js"></script>
+
   </head>
 
   <body>
@@ -86,14 +93,19 @@
 
     <!-- 3rd party libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-rc.1/leaflet.js"></script>
+    <!-- bog-standard leaflet URL hash -->
     <script src="lib/leaflet-hash.js"></script>
-    <script src='lib/fontfaceobserver.js'></script>
-
     <!-- Keymaster handles keyboard input -->
     <script src="lib/keymaster.js"></script>
+    <!-- End of 3rd party libraries -->
 
     <!-- Main tangram library -->
-    <script src="https://mapzen.com/tangram/0.8/tangram.min.js"></script>
+    <!-- production -->
+    <script src="https://mapzen.com/tangram/0.9/tangram.min.js"></script>
+    <!-- production debug -->
+    <!-- <script src="https://mapzen.com/tangram/0.9/tangram.debug.js"></script> -->
+    <!-- dev -->
+    <!-- <script src="https://precog.mapzen.com/tangrams/tangram/master/dist/tangram.debug.js"></script> -->
 
     <!-- Demo module -->
     <script src="main.js"></script>
