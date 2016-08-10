@@ -529,9 +529,10 @@ sources:
         # EraserMaps the app only supports MVT format tiles
         type:  MVT #TopoJSONTiles topojson
         #url:  http://vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.mvt
+        url:  http://tile.dev.mapzen.com/vector/v1/all/{z}/{x}/{y}.mvt
         #enforce_winding: true  #because Tangram v0.4 and tiles v0.5-pre don't play nice
         #url:  //localhost:8080/osm/all/{z}/{x}/{y}.mvt
-        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-P6dkVl4
+        #url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-P6dkVl4
         # road labels in Tangram JS are broken when overzooming, set max_zoom: 18 to preview fix
         max_zoom: 16
 
@@ -595,6 +596,10 @@ cameras:
         type: isometric
 
 styles:
+    dashed:
+        base: lines
+        dash: [1.25, 1.25]
+        dash_background_color: [0.808,0.860,0.851]
     dashedline:
         base: lines
         texcoords: true
@@ -1154,7 +1159,7 @@ layers:
                     order: global.feature_order
                     color: [0.870,0.870,0.870]
         water-boundary-ocean-early:
-            filter: { boundary: yes, kind: ocean, $zoom: {min: 1, max: 17} }
+            filter: { boundary: true, kind: ocean, $zoom: {min: 1, max: 17} }
             draw:
                 line2:
                     style: lines
@@ -1166,14 +1171,14 @@ layers:
                     color: [[1,[0.698,0.800,0.820]],[11,[0.631,0.773,0.800]],[14,[0.543,0.740,0.780]]]
                     width: [[1,0.25px],[6,0.5px],[7,0.75px],[9,0.75px],[10,1px]]
         water-boundary-ocean-late:
-            filter: { boundary: yes, kind: ocean, $zoom: {min: 17} }
+            filter: { boundary: true, kind: ocean, $zoom: {min: 17} }
             draw:
                 water_border:
                     order: 240
                     color: [[0,[0.886,0.937,0.988]]]
                     width: 20px
         water_boundaries-not-ocean:
-            filter: { boundary: yes, not: { kind: ocean }, $zoom: { min: 8 } }
+            filter: { boundary: true, not: { kind: ocean }, $zoom: { min: 8 } }
             draw:
                 lines:
                     order: global.feature_order
@@ -1246,97 +1251,60 @@ layers:
                 text-blend-order:
                     visible: false
 
-    subway-light-rail:
+    transit:
         data: { source: mapzen, layer: transit }
-        filter: { not: { kind: [platform] }, $zoom: { min: 14 } }
-        draw:
-            lines:
-                interactive: true
-                order: function() { return feature.sort_key || 275; }
-        railway:
-            filter: { kind: [railway,train] }
+        filter: { $zoom: { min: 14 } }
+        transit_lines:
+            filter: { not: { kind: [platform] } }
             draw:
                 lines:
-                    color: [0.588,0.671,0.698]
-                    width: [[14,0.4px],[15,0.75px],[16,1.1px],[18,2px],[19,1m]]
-        subway:
-            filter: { kind: subway }
-            draw:
-                lines:
-                    color: [0.588,0.671,0.698]
-                    width: [[14,0.4px],[15,0.75px],[16,1.3px],[17,1.5px],[18,2m]]
-        light_rail:
-            filter: { kind: [light_rail,tram], $zoom: { min: 15 } }
-            draw:
-                lines:
-                    order: 415
-                    color: [0.588,0.671,0.698]
-                    width: [[14,0px],[15,0.6px],[16,0.75px],[17,1.5px],[19,1m]]
-
-    railway-late:
-        data: { source: mapzen, layer: roads }
-        filter: { kind: rail, not: { railway: [subway,light_rail,tram] } }
-        draw:
-            lines:
-                interactive: true
-                order: global.feature_order
-                color: [0.588,0.671,0.698]
-                width: [[12,0px],[13,0.25px],[14,0.4px],[15,0.75px],[16,0.75px],[18,1m]]
-        service:
-            filter: { service: true }
-            draw:
-                lines:
-                    color: [0.588,0.671,0.698]
-                    width: [[14,0px],[15,0.3px],[16,0.5px],[18,0.75px],[19,0.5m]]
-        z-order:
-            #filter: { $zoom: {min: 12} }
-            draw:
-                lines:
-                    # let roads sort themselves past zoom 14
-                    order: global.feature_order
-                    # but give them all the same outline
-                    outline:
-                        order: 354
-
-            bridges-tunnels:
-                filter: { any: [is_bridge: yes, is_tunnel: yes] }
+                    interactive: true
+                    order: function() { return feature.sort_key || 275; }
+            railway:
+                filter: { kind: [railway,train] }
                 draw:
                     lines:
-                        outline:
-                            # except bridges and tunnels, their outlines should also self-sort
-                            order: function() { return feature.sort_key || 305; }
-
-    platforms:
-        data: { source: mapzen, layer: transit }
-        filter: { kind: platform }
-        draw:
-            lines_transparent:
-                color: [0.569,0.690,0.722,0.5]
-                width: 5m
-                visible: global.grey9_v
-        polygon_geom:
-            filter: { $geometry: polygon }
-            draw:
-                polygons_transparent:
-                    color: [0.592,0.671,0.694,0.5]
-                    visible: global.grey9_v
-                lines_transparent:
-                    visible: false
-                outline_transparent:
-                    color: global.grey9_o
-                    width: [[16,0px],[17,0.5px],[19,2px]]
-        z-order:
+                        color: [0.588,0.671,0.698]
+                        width: [[14,0.4px],[15,0.75px],[16,1.1px],[18,2px],[19,1m]]
+            subway:
+                filter: { kind: subway }
+                draw:
+                    lines:
+                        color: [0.588,0.671,0.698]
+                        width: [[14,0.4px],[15,0.75px],[16,1.3px],[17,1.5px],[18,2m]]
+            light_rail:
+                filter: { kind: [light_rail,tram], $zoom: { min: 15 } }
+                draw:
+                    lines:
+                        order: 415
+                        color: [0.588,0.671,0.698]
+                        width: [[14,0px],[15,0.6px],[16,0.75px],[17,1.5px],[19,1m]]
+        platforms:
+            filter: { kind: platform }
             draw:
                 lines_transparent:
                     order: function() { if($zoom<17) { return feature.sort_key; } else { return 435; } }
+                    color: [0.569,0.690,0.722,0.5]
+                    width: 5m
+                    visible: global.grey9_v
                 polygons_transparent:
                     order: function() { if($zoom<17) { return feature.sort_key; } else { return 435; } }
                 outline_transparent:
                     order: function() { if($zoom<17) { return feature.sort_key; } else { return 436; } }
+            polygon_geom:
+                filter: { $geometry: polygon }
+                draw:
+                    polygons_transparent:
+                        color: [0.592,0.671,0.694,0.5]
+                        visible: global.grey9_v
+                    lines_transparent:
+                        visible: false
+                    outline_transparent:
+                        color: global.grey9_o
+                        width: [[16,0px],[17,0.5px],[19,2px]]
 
-    roads:
+    roads_and_transport:
         data: { source: mapzen, layer: roads }
-        filter: { not: { kind: rail } }
         draw:
             lines:
                 interactive: true
@@ -1353,8 +1321,41 @@ layers:
                     weight: 400
                     fill: global.text_fill
 
+        railway-late:
+            filter: { kind: rail, not: { railway: [subway,light_rail,tram] } }
+            draw:
+                lines:
+                    interactive: true
+                    order: global.feature_order
+                    color: [0.588,0.671,0.698]
+                    width: [[12,0px],[13,0.25px],[14,0.4px],[15,0.75px],[16,0.75px],[18,1m]]
+            service:
+                filter: { service: true }
+                draw:
+                    lines:
+                        color: [0.588,0.671,0.698]
+                        width: [[14,0px],[15,0.3px],[16,0.5px],[18,0.75px],[19,0.5m]]
+            z-order:
+                #filter: { $zoom: {min: 12} }
+                draw:
+                    lines:
+                        # let roads sort themselves past zoom 14
+                        order: global.feature_order
+                        # but give them all the same outline
+                        outline:
+                            order: 354
+
+                bridges-tunnels:
+                    filter: { any: [is_bridge: true, is_tunnel: true] }
+                    draw:
+                        lines:
+                            outline:
+                                # except bridges and tunnels, their outlines should also self-sort
+                                order: function() { return feature.sort_key || 305; }
+
         natural_earth_highways:
             filter: { source: 'naturalearthdata.com' }
+            # default is for kind: highway
             draw:
                 lines:
                     # Perf impact (too many vertices)
@@ -1363,19 +1364,19 @@ layers:
                     color: global.highway1
                     width: [[5, 1px], [7, 1.4px], [9, 1.5px], [14, 3px], [16, 4px], [17, 10m]]
             major_road:
-                filter: { type: ['Secondary Highway','Road'] }
+                filter: { kind: major_road }
                 draw:
                     lines:
                         color: [0.980,0.601,0.559]
                         width: [[5, 0.45px], [6, 0.75px], [7, 1.0px], [8, 1px]]
             minor_road:
-                filter: { type: 'Unknown' }
+                filter: { kind: minor_road }
                 draw:
                     lines:
                         color: [[12, global.minor_road1], [17, global.minor_road2]]
                         width: [[12, 1.0px], [14, 1.5px], [15, 3px], [16, 5m]]
             ferry:
-                filter: { kind: Ferry }
+                filter: { kind: [ferry] }
                 draw:
                     lines:
                         color: [0.702,0.843,0.933]
@@ -1396,7 +1397,7 @@ layers:
                         outline:
                             order: 353
             link:
-                filter: { is_link: yes } # on- and off-ramps, etc
+                filter: { is_link: true } # on- and off-ramps, etc
                 draw:
                     lines:
                         color: [[9, global.highway_link1], [14, global.highway_link1], [15, [1.0,1.0,1.0]], [17, [1.0,1.0,1.0]]]
@@ -1412,14 +1413,14 @@ layers:
                         lines:
                             order: 352
                 tunnel-link:
-                    filter: {is_tunnel: yes, $zoom: {min: 13} }
+                    filter: {is_tunnel: true, $zoom: {min: 13} }
                     draw:
                         lines:
                             color: global.highway_tunnel1
                             outline:
                                 color: global.highway_tunnel_casing1
             tunnel:
-                filter: {is_tunnel: yes, $zoom: {min: 13} }
+                filter: {is_tunnel: true, $zoom: {min: 13} }
                 draw:
                     lines:
                         # color: [[16, [0.843,0.843,0.843]]]
@@ -1427,7 +1428,7 @@ layers:
                         outline:
                             color: [[13, [0.890,0.890,0.890]], [14, [0.870,0.870,0.870]], [16, [0.824,0.753,0.741]]]
             highway_bridge:
-                filter: {is_bridge: yes}
+                filter: {is_bridge: true}
                 draw:
                     lines:
                         cap: round
@@ -1593,7 +1594,7 @@ layers:
                                     order: 353
                     # no national-routes layer because it's not different than the basic style
                     tunnel:
-                        filter: {is_tunnel: yes, $zoom: {min: 13} }
+                        filter: {is_tunnel: true, $zoom: {min: 13} }
                         draw:
                             lines:
                                 color: global.major_tunnel1
@@ -1746,7 +1747,7 @@ layers:
                                 size: 17px
                                 stroke: { color: [1.00,1.00,1.00], width: 3 }
             link:
-                filter: { is_link: yes } # on- and off-ramps, etc
+                filter: { is_link: true } # on- and off-ramps, etc
                 draw:
                     lines:
                         width: [[9, 0px], [10, 0.5px], [14, 2px], [16, 4m], [17, 5m], [18, 6m]]
@@ -1754,7 +1755,7 @@ layers:
                             color: [[10, [0.827,0.827,0.827]], [13, [0.827,0.827,0.827]], [15, [1.000,0.739,0.710]]]
                             width: [[10, 0], [11, 1px], [14, 1px], [16, 1.5px], [17, 2px]]
             tunnel:
-                filter: {is_tunnel: yes, $zoom: {min: 13} }
+                filter: {is_tunnel: true, $zoom: {min: 13} }
                 draw:
                     lines:
                         color: global.major_tunnel1
@@ -1794,7 +1795,7 @@ layers:
                                 outline:
                                     order: 353
                     tunnel:
-                        filter: {is_tunnel: yes, $zoom: {min: 13} }
+                        filter: {is_tunnel: true, $zoom: {min: 13} }
                         draw:
                             lines:
                                 color: global.major_tunnel1
@@ -1957,14 +1958,14 @@ layers:
                                 outline:
                                     order: 353
                     tunnel:
-                        filter: {is_tunnel: yes, $zoom: {min: 13} }
+                        filter: {is_tunnel: true, $zoom: {min: 13} }
                         draw:
                             lines:
                                 color: global.major_tunnel1
                                 outline:
                                     color: global.major_tunnel_casing1
                 link:
-                    filter: { is_link: yes } # on- and off-ramps, etc
+                    filter: { is_link: true } # on- and off-ramps, etc
                     draw:
                         lines:
                             color: global.major_road1
@@ -2076,7 +2077,7 @@ layers:
                                 size: 15px
                                 stroke: { color: [1.00,1.00,1.00], width: 2 }
         minor_road:
-            filter: { kind: minor_road, not: { highway: service, aeroway: [runway, taxiway] } }
+            filter: { kind: minor_road, not: { highway: service } }
             draw:
                 lines:
                     color: [[12, [0.9,0.9,0.9]], [13, [0.9,0.9,0.9]], [14, [1.0,1.0,1.0]]]
@@ -2102,7 +2103,7 @@ layers:
                         join: round
 
             in_park:
-                filter: { landuse_kind: [park,protected_area,nature_reserve,conservation,golf_course,garden,wood,farmland,farm] }
+                filter: { landuse_kind: [park,protected_area,nature_reserve,conservation,golf_course,garden,wood,natural_wood,farmland,farm] }
                 draw:
                     lines:
                         #todo: is the width here right?
@@ -2161,14 +2162,14 @@ layers:
                             width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
 
             tunnel:
-                filter: {is_tunnel: yes, $zoom: {min: 13} }
+                filter: {is_tunnel: true, $zoom: {min: 13} }
                 draw:
                     lines:
                         color: [0.870,0.870,0.870]
                         outline:
                             color: [0.790,0.790,0.790]
             minor_road_bridge:
-                filter: { is_bridge: yes }
+                filter: { is_bridge: true }
                 draw:
                     lines:
                         cap: round
@@ -2230,7 +2231,7 @@ layers:
                         color: [0.827,0.827,0.827]
                         width: [[15, 0px], [16, 0.5px], [17, 1.0px], [18, 1.75px]]
             in_park:
-                filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+                filter: { landuse_kind: [park,forest,natural_forest,nature_reserve,conservation,golf_course,garden] }
                 draw:
                     lines:
                         #todo: is the color necc here?
@@ -2335,8 +2336,18 @@ layers:
                         outline:
                             color: [0.799,0.799,0.799]
                             width: [[17, 0.5], [18, 1]]
+            corridor:
+                filter: { highway: corridor }
+                draw:
+                    lines:
+                        order: 1000
+                early:
+                    filter: { $zoom: { max: 17 } }
+                    draw:
+                        lines:
+                            visible: false
             bridge:
-                filter: { is_bridge: yes }
+                filter: { is_bridge: true }
                 draw:
                     lines:
                         color: [[15, [1.0,1.0,1.0]], [18, [1.0,1.0,1.0]]]
@@ -2432,7 +2443,7 @@ layers:
                         color: global.minor_casing1
                         width: [[15, 0px], [16, 0.5px], [17, 1.0px], [18, 2.0px]]
             bridge:
-                filter: { is_bridge: yes }
+                filter: { is_bridge: true }
                 draw:
                     lines:
                         width: [[15, 3.5], [17, 3m]]
@@ -2565,7 +2576,7 @@ layers:
                     color: [0.600,0.667,0.627]
                     width: [[13,0.5px],[14,1px],[15, 1px], [16, 1.5px], [18, 3px], [19, 5px]]
         airport-lines:
-            filter: { kind: minor_road, aeroway: [runway,taxiway] }
+            filter: { kind: aeroway }
             draw:
                 lines:
                     color: [[10,[0.4,0.4,0.4]],[11,[0.50,0.50,0.50]],[12,[0.7,0.7,0.7]],[13,[0.75,0.75,0.75]],[14,[0.95,0.95,0.95]]]
@@ -2660,7 +2671,7 @@ layers:
                             font:
                                 weight: 600
         bridges-tunnels:
-            filter: { any: [is_bridge: yes, is_tunnel: yes] }
+            filter: { any: [is_bridge: true, is_tunnel: true] }
             draw:
                 lines:
                     outline:
@@ -2741,7 +2752,7 @@ layers:
 
         # landuse-specific rules
         in_park:
-            filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+            filter: { landuse_kind: [park,forest,natural_forest,nature_reserve,conservation,golf_course,garden] }
             draw:
                 polygons:
                     color: [0.864,0.910,0.905]
@@ -2858,7 +2869,7 @@ layers:
             $zoom: { min: 20 }
             any:
                 - kind: address
-                - { label_position: yes, addr_housenumber: true, name: false }
+                - { label_position: true, addr_housenumber: true, name: false }
         draw:
             text-blend-order:
                 text_source: global.ux_language_text_source
@@ -2885,26 +2896,32 @@ layers:
         country:
             filter:
                 any:
-                    - type: country
-                    - kind: nation
-                    - admin_level: 2
+                    - kind: country
             draw:
                 lines:
                     interactive: true
                     color: global.country_boundary
                     width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [9, 2.5px], [14, 3.5px], [16, 4.5px], [17, 14m]]
             water:
-                filter: { maritime_boundary: yes }
+                filter: { maritime_boundary: true }
                 draw:
                     lines:
                         visible: false
+
+        other_country_boundary_disputed_etc:
+            filter: { kind: [disputed, indefinite, indeterminate, lease_limit, line_of_control, overlay_limit] }
+            draw:
+                dashed:
+                    interactive: true
+                    order: global.feature_order
+                    color: global.country_boundary
+                    width: [[1, 0.2px], [2, 0.5px], [4, 1.0px], [9, 1.5px], [14, 2.5px], [16, 3.5px], [17, 10m]]
+
         region:
             filter:
                 any:
-                    - type: state
-                    # territorial here is probably a hack
-                    - kind: [state, department, region, provincial, territorial, macroregion]
-                    - admin_level: 4
+                    - kind: region
+                    - kind_detail: 4
                 not:
                     # deal with bogus Hungary data
                     - scalerank: 0
@@ -2914,7 +2931,7 @@ layers:
                     color: global.region_boundary
                     width: [[0, 0.5px], [2, 1.0px], [5, 1.25px], [6, 1.5px], [7, 1.75px], [9, 3.5px], [14, 5.5px], [16, 6.5px], [17, 16m]]
             water:
-                filter: { maritime_boundary: yes }
+                filter: { maritime_boundary: true }
                 draw:
                     lines:
                         visible: false
@@ -2923,30 +2940,6 @@ layers:
                 draw:
                     lines:
                         visible: false
-        city_walls:
-            filter: { kind: city_wall }
-            draw:
-                lines:
-                    color: global.city_wall
-                    width: [[12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.0px], [16, 2.5px], [19, 6m]]
-        retaining_wall:
-            filter: { kind: retaining_wall }
-            draw:
-                lines:
-                    color: global.retaining_wall
-                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 4m]]
-        snow_fence:
-            filter: { kind: snow_fence }
-            draw:
-                lines:
-                    color: global.snow_fence
-                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1.5m]]
-        fence:
-            filter: { kind: fence }
-            draw:
-                lines:
-                    color: global.fence
-                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1.5m]]
 
     places:
         data: { source: mapzen, layer: places }
@@ -3109,7 +3102,7 @@ layers:
                         visible: false
 
         region-z4:
-            filter: { name: true, kind: [state], $zoom: [4], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+            filter: { name: true, kind: [region], $zoom: [4], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text-blend-order:
                     priority: 14
@@ -3121,7 +3114,7 @@ layers:
                         fill: [0.3,0.3,0.3]
 
         region-z5:
-            filter: { name: true, kind: [state], $zoom: [5], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+            filter: { name: true, kind: [region], $zoom: [5], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text-blend-order:
                     priority: 14
@@ -3133,7 +3126,7 @@ layers:
                         fill: [0.3,0.3,0.3]
 
         region-z6:
-            filter: { name: true, kind: [state], $zoom: [6], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+            filter: { name: true, kind: [region], $zoom: [6], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text-blend-order:
                     priority: 14
@@ -3145,7 +3138,7 @@ layers:
                         fill: [0.4,0.4,0.4]
 
         region:
-            filter: { name: true, kind: [state], $zoom: [7,8] }  # someday: province
+            filter: { name: true, kind: [region], $zoom: [7,8] }  # someday: province
             draw:
                 text-blend-order:
                     priority: 14
@@ -3275,7 +3268,7 @@ layers:
                                 font:
                                     size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 priority: 5
@@ -3295,7 +3288,7 @@ layers:
                                 font:
                                     size: 11px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 priority: 9
@@ -3315,7 +3308,7 @@ layers:
                                     fill: [0.25,0.25,0.25]
                                     size: 10px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 priority: 15
@@ -3338,7 +3331,7 @@ layers:
                                     fill: global.text_fill
                                     size: 15px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 sprite: capital-l
@@ -3359,7 +3352,7 @@ layers:
                                     fill: global.text_fill
                                     size: 12px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 size: 6px
@@ -3380,7 +3373,7 @@ layers:
                                     fill: [0.25,0.25,0.25]
                                     size: 10px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 size: 6px
@@ -3403,7 +3396,7 @@ layers:
                                     fill: global.text_fill
                                     size: 16px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 size: 8px
@@ -3424,7 +3417,7 @@ layers:
                                     fill: global.text_fill
                                     size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 size: 8px
@@ -3445,7 +3438,7 @@ layers:
                                     fill: [0.25,0.25,0.25]
                                     size: 11px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 size: 6px
@@ -3455,10 +3448,10 @@ layers:
             populated-places-osm-z8:
                 filter:
                     all:
-                        - source: [openstreetmap, openstreetmap.org]
+                        - source: openstreetmap.org
                         - name: true
                         - population: true
-                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - not: { kind: [country, county, region, neighbourhood] }
                         - $zoom: [8]
 
                 z8places-1:
@@ -3476,7 +3469,7 @@ layers:
                                 font:
                                     size: 16px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 size: 8px
@@ -3497,7 +3490,7 @@ layers:
                                 font:
                                     size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 size: 6px
@@ -3520,7 +3513,7 @@ layers:
                                     fill: [0.25,0.25,0.25]
                                     size: 11px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 size: 6px
@@ -3543,7 +3536,7 @@ layers:
                                     fill: [0.30,0.30,0.30]
                                     size: 10px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 size: 5px
@@ -3554,8 +3547,9 @@ layers:
                         all:
                             - { population: { max: 50000 } }
                         any:
-                            - { capital: yes }
-                            - { state_capital: yes }
+                            - capital: true
+                            - state_capital: true
+                            - region_capital: true
                     draw:
                         icons:
                             size: 5px
@@ -3568,7 +3562,7 @@ layers:
                                     fill: [0.30,0.30,0.30]
                                     size: 10px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 size: 5px
@@ -3591,7 +3585,7 @@ layers:
                                 font:
                                     size: 16px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 size: 8px
@@ -3610,7 +3604,7 @@ layers:
                                 font:
                                     size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 sprite: capital-m
@@ -3628,7 +3622,7 @@ layers:
                                 font:
                                     size: 11px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 sprite: capital-s
@@ -3637,10 +3631,10 @@ layers:
             populated-places-osm-z9:
                 filter:
                     all:
-                        - source: [openstreetmap, openstreetmap.org]
+                        - source: openstreetmap.org
                         - name: true
                         - population: true
-                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - not: { kind: [country, county, region, neighbourhood] }
                         - $zoom: [9]
 
                 z9places-1:
@@ -3685,7 +3679,7 @@ layers:
                                 font:
                                     size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 sprite: capital-m
@@ -3707,7 +3701,7 @@ layers:
                                     fill: [0.25,0.25,0.25]
                                     size: 11px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 sprite: capital-m
@@ -3732,7 +3726,7 @@ layers:
                                     fill: [0.30,0.30,0.30]
                                     size: 9px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 sprite: capital-s
@@ -3742,8 +3736,9 @@ layers:
                         all:
                             - { population: { max: 50000 } }
                         any:
-                            - { capital: yes }
-                            - { state_capital: yes }
+                            - capital: true
+                            - state_capital: true
+                            - region_capital: true
                     draw:
                         icons:
                             size: 5px
@@ -3756,7 +3751,7 @@ layers:
                                     fill: [0.30,0.30,0.30]
                                     size: 9px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 sprite: capital-s
@@ -3765,12 +3760,12 @@ layers:
             populated-places-osm-z9-no-population:
                 filter:
                     all:
-                        - source: [openstreetmap, openstreetmap.org]
+                        - source: openstreetmap.org
                         - name: true
                         - population: false
-                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - not: { kind: [country, county, region, neighbourhood] }
                         - $zoom: [9]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     icons:
                         size: 5px
@@ -3798,7 +3793,7 @@ layers:
                                 font:
                                     size: 16px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 sprite: capital-l
@@ -3817,7 +3812,7 @@ layers:
                                 font:
                                     size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 sprite: capital-m
@@ -3836,7 +3831,7 @@ layers:
                                 font:
                                     size: 11px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 sprite: capital-m
@@ -3845,10 +3840,10 @@ layers:
             populated-places-osm-z10:
                 filter:
                     all:
-                        - source: [openstreetmap, openstreetmap.org]
+                        - source: openstreetmap.org
                         - name: true
                         - population: true
-                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - not: { kind: [country, county, region, neighbourhood] }
                         - $zoom: [10]
 
                 z10places-1:
@@ -3928,12 +3923,12 @@ layers:
             populated-places-osm-z10-no-population:
                 filter:
                     all:
-                        - source: [openstreetmap, openstreetmap.org]
+                        - source: openstreetmap.org
                         - name: true
                         - population: false
-                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - not: { kind: [country, county, region, neighbourhood] }
                         - $zoom: [10]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     icons:
                         size: 5px
@@ -3970,7 +3965,7 @@ layers:
                                 font:
                                     size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 sprite: capital-m
@@ -3989,7 +3984,7 @@ layers:
                                 font:
                                     size: 12px
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             icons:
                                 size: 7px
@@ -3999,12 +3994,12 @@ layers:
             populated-places-osm-z11:
                 filter:
                     all:
-                        - source: [openstreetmap, openstreetmap.org]
+                        - source: openstreetmap.org
                         - name: true
                         - population: true
-                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - not: { kind: [country, county, region, neighbourhood] }
                         - $zoom: [11]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     text-blend-order:
                         anchor: center
@@ -4051,12 +4046,12 @@ layers:
             populated-places-osm-z11-no-population:
                 filter:
                     all:
-                        - source: [openstreetmap, openstreetmap.org]
+                        - source: openstreetmap.org
                         - name: true
                         - population: false
-                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - not: { kind: [country, county, region, neighbourhood] }
                         - $zoom: [11]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     text-blend-order:
                         anchor: center
@@ -4084,7 +4079,7 @@ layers:
                                 size: 16px
                                 #stroke: { color: global.text_stroke, width: 4 }
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             text-blend-order:
                                 priority: 9
@@ -4102,15 +4097,18 @@ layers:
                                 size: 13px
                                 #stroke: { color: global.text_stroke, width: 4 }
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             text-blend-order:
                                 priority: 11
                                 font:
                                     size: 16px
                                     #stroke: { color: global.text_stroke, width: 4 }
-                    state_capital:
-                        filter: { state_capital: yes }
+                    region_capital:
+                        filter:
+                            any:
+                                - state_capital: true
+                                - region_capital: true
                         draw:
                             text-blend-order:
                                 priority: 12
@@ -4128,7 +4126,7 @@ layers:
                                 size: 11px
                                 #stroke: { color: global.text_stroke, width: 4 }
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             text-blend-order:
                                 priority: 14
@@ -4139,12 +4137,12 @@ layers:
             populated-places-osm-z12:
                 filter:
                     all:
-                        - source: [openstreetmap, openstreetmap.org]
+                        - source: openstreetmap.org
                         - name: true
                         - population: true
-                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - not: { kind: [country, county, region, neighbourhood] }
                         - $zoom: [12]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     text-blend-order:
                         anchor: center
@@ -4205,12 +4203,12 @@ layers:
             populated-places-osm-z12-no-population:
                 filter:
                     all:
-                        - source: [openstreetmap, openstreetmap.org]
+                        - source: openstreetmap.org
                         - name: true
                         - population: false
-                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - not: { kind: [country, county, region, neighbourhood] }
                         - $zoom: [12]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     text-blend-order:
                         anchor: center
@@ -4240,7 +4238,7 @@ layers:
                                 size: 16px
                                 #stroke: { color: global.text_stroke, width: 4 }
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             text-blend-order:
                                 priority: 11
@@ -4258,7 +4256,7 @@ layers:
                                 size: 13px
                                 #stroke: { color: global.text_stroke, width: 4 }
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             text-blend-order:
                                 priority: 13
@@ -4276,7 +4274,7 @@ layers:
                                 size: 11px
                                 #stroke: { color: global.text_stroke, width: 4 }
                     capital:
-                        filter: { capital: yes }
+                        filter: { capital: true }
                         draw:
                             text-blend-order:
                                 priority: 15
@@ -4287,12 +4285,12 @@ layers:
             populated-places-osm-z13-z14:
                 filter:
                     all:
-                        - source: [openstreetmap, openstreetmap.org]
+                        - source: openstreetmap.org
                         - name: true
                         - population: true
-                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - not: { kind: [country, county, region, neighbourhood] }
                         - $zoom: [13,14]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     text-blend-order:
                         anchor: center
@@ -4356,12 +4354,12 @@ layers:
             populated-places-osm-z13-z14-no-population:
                 filter:
                     all:
-                        - source: [openstreetmap, openstreetmap.org]
+                        - source: openstreetmap.org
                         - name: true
                         - population: false
-                        - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
+                        - not: { kind: [country, county, region, neighbourhood] }
                         - $zoom: [13, 14]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     text-blend-order:
                         anchor: center
@@ -4412,11 +4410,11 @@ layers:
                 filter:
                     all:
                         - name: true
-                        - kind: [macrohood, neighbourhood]
+                        - kind: [macrohood, neighbourhood, borough]
                         - $zoom: [11]
                     any:
-                        - source: [openstreetmap, openstreetmap.org]
-                        - source: [whosonfirst, whosonfirst.mapzen.com]
+                        - source: openstreetmap.org
+                        - source: whosonfirst.mapzen.com
                           all:
                             - min_zoom: [11]
                             - max_zoom: { min: 12 }
@@ -4440,8 +4438,8 @@ layers:
                         - kind: [macrohood, neighbourhood]
                         - $zoom: [12]
                     any:
-                        - source: [openstreetmap, openstreetmap.org]
-                        - source: [whosonfirst, whosonfirst.mapzen.com]
+                        - source: openstreetmap.org
+                        - source: whosonfirst.mapzen.com
                           all:
                             - min_zoom: [11,12]
                             - max_zoom: { min: 13 }
@@ -4465,8 +4463,8 @@ layers:
                         - kind: [macrohood, neighbourhood]
                         - $zoom: [13]
                     any:
-                        - source: [openstreetmap, openstreetmap.org]
-                        - source: [whosonfirst, whosonfirst.mapzen.com]
+                        - source: openstreetmap.org
+                        - source: whosonfirst.mapzen.com
                           all:
                             - min_zoom: [11,12,13]
                             - max_zoom: { min: 14 }
@@ -4490,8 +4488,8 @@ layers:
                         - kind: [macrohood, neighbourhood]
                         - $zoom: [14]
                     any:
-                        - source: [openstreetmap, openstreetmap.org]
-                        - source: [whosonfirst, whosonfirst.mapzen.com]
+                        - source: openstreetmap.org
+                        - source: whosonfirst.mapzen.com
                           all:
                             - min_zoom: [11,12,13,14]
                             - max_zoom: { min: 15 }
@@ -4515,8 +4513,8 @@ layers:
                         - kind: [macrohood, neighbourhood]
                         - $zoom: [15]
                     any:
-                        - source: [openstreetmap, openstreetmap.org]
-                        - source: [whosonfirst, whosonfirst.mapzen.com]
+                        - source: openstreetmap.org
+                        - source: whosonfirst.mapzen.com
                           all:
                             - min_zoom: [11,12,13,14,15]
                             - max_zoom: { min: 16 }
@@ -4549,8 +4547,8 @@ layers:
                         - kind: [macrohood, neighbourhood]
                         - $zoom: [16]
                     any:
-                        - source: [openstreetmap, openstreetmap.org]
-                        - source: [whosonfirst, whosonfirst.mapzen.com]
+                        - source: openstreetmap.org
+                        - source: whosonfirst.mapzen.com
                           all:
                             - min_zoom: [11,12,13,14,15,16]
                             - max_zoom: { min: 17 }
@@ -4655,15 +4653,18 @@ layers:
                 tennis:
                     filter: { sport: tennis }
                     draw: { icons: { sprite: tennis } }
+            gate:
+                filter: { kind: gate, $zoom: { min: 19 }  }
+                draw: { icons: { sprite: generic, visible: global.icon_visible_poi_landuse_e } }
             toilets:
                 filter: { kind: toilets, $zoom: { min: 18 }  }
                 draw: { icons: { sprite: toilets, visible: global.icon_visible_poi_landuse_e } }
             playground:
                 filter: { kind: playground, $zoom: { min: 18 }  }
                 draw: { icons: { sprite: playground, visible: global.icon_visible_poi_landuse_e } }
-            picnic_site:
-                filter: { kind: picnic_site, $zoom: { min: 18 }  }
-                draw: { icons: { sprite: picnic-spot, visible: global.icon_visible_poi_landuse_e } }
+#            picnic_site:
+#                filter: { kind: [picnic_site,picnic_spot], $zoom: { min: 18 }  }
+#                draw: { icons: { sprite: generic, visible: global.icon_visible_poi_landuse_e } }
             information:
                 filter: { kind: information, $zoom: { min: 18 }  }
                 draw: { icons: { sprite: information, visible: global.icon_visible_poi_landuse_e } }
@@ -4673,6 +4674,9 @@ layers:
             traffic-signal:
                 filter: { kind: traffic_signals, $zoom: { min: 18 } }
                 draw:   { icons: { sprite: traffic-signal, visible: global.icon_visible_poi_landuse_e } }
+            toll-booth:
+                filter: { kind: [toll_booth, checkpoint, border_control], $zoom: { min: 16 } }
+                draw:   { icons: { sprite: generic } }
             bicycle-parking:
                 filter: { kind: [bicycle_parking], $zoom: { min: 19 } }
                 draw:   { icons: { sprite: bicycle-parking, visible: global.icon_visible_poi_landuse_e } }
@@ -5124,12 +5128,75 @@ layers:
                     filter: { kind: [attraction] }
                     draw:
                         icons:
-                            sprite: attraction
+                            sprite: generic
                 landmark:
                     filter: { kind: [landmark] }
                     draw:
                         icons:
                             sprite: landmark
+            rest-area:
+                filter:
+                    all:
+                        - kind: [rest_area, service_area, rest-area]
+                        - area: true
+                        - $geometry: point
+                    any:
+                        - { $zoom: [12], area: { min: 30000 } }
+                        - { $zoom: [13], area: { min: 10000 } }
+                        - { $zoom: [14], area: { min: 5000 } }
+                        - { $zoom: [15], area: { min: 2000 } }
+                        - { $zoom: [16], area: { min: 1000 } }
+                        - { $zoom: { min: 17, area: true } }
+                draw:
+                    icons:
+                        visible: global.icon_visible_landuse_green
+                        priority: 41
+                        sprite: generic
+                        text:
+                            visible: global.text_visible_landuse_green
+                            font:
+                                stroke: { color: global.text_stroke, width: 4 }
+            windmill:
+                filter:
+                    all:
+                        - kind: [windmill]
+                        - area: true
+                        - $geometry: point
+                    any:
+                        - { $zoom: [14], area: { min: 500 } }
+                        - { $zoom: [15], area: { min: 200 } }
+                        - { $zoom: [16], area: { min: 100 } }
+                        - { $zoom: { min: 17, area: true } }
+                draw:
+                    icons:
+                        visible: global.icon_visible_landuse_green
+                        priority: 41
+                        sprite: generic
+                        text:
+                            visible: global.text_visible_landuse_green
+                            font:
+                                stroke: { color: global.text_stroke, width: 4 }
+            campground:
+                filter:
+                    all:
+                        - kind: [campground, camp_site, caravan_site]
+                        - area: true
+                        - $geometry: point
+                    any:
+                        - { $zoom: [13], area: { min: 10000 } }
+                        - { $zoom: [14], area: { min: 5000 } }
+                        - { $zoom: [15], area: { min: 2000 } }
+                        - { $zoom: [16], area: { min: 1000 } }
+                        - { $zoom: { min: 17, area: true } }
+                draw:
+                    icons:
+                        visible: global.icon_visible_landuse_green
+                        priority: 41
+                        sprite: campground
+                        text:
+                            visible: global.text_visible_landuse_green
+                            font:
+                                stroke: { color: global.text_stroke, width: 4 }
             glacier:
                 filter:
                     all:
@@ -5376,7 +5443,7 @@ layers:
                             text:
                                 visible: false
             tower:
-                filter: { kind: [tower], label_placement: yes }
+                filter: { kind: [tower], label_placement: true }
                 draw:
                     icons:
                         visible: false
@@ -5468,7 +5535,7 @@ layers:
                     filter: { kind: [erotic, adult_boutique] }
                     draw:   { icons: { sprite: adult-boutique } }
                 allotments:
-                    filter: { kind: [allotments] }
+                    filter: { kind: [garden,allotments] }
                     draw:   { icons: { sprite: garden } }
                 airport:
                     filter: { kind: [airport, aerodrome] }
@@ -5758,7 +5825,7 @@ layers:
                     draw:   { icons: { sprite: photography-lab } }
                 picnic-spot:
                     filter: { kind: [picnic_site, picnic_spot, picnic-spot, picnic_table] }
-                    draw:   { icons: { sprite: picnic-spot } }
+                    draw:   { icons: { sprite: generic } }
                 pool:
                     filter: { kind: [pool, swimming_pool, water_park] }
                     draw:   { icons: { sprite: pool } }
@@ -5784,8 +5851,8 @@ layers:
                     filter: { kind: [rental-car, car_rental, car_sharing] }
                     draw:   { icons: { sprite: rental-car } }
                 rest-area:
-                    filter: { kind: [rest_area, rest-area] }
-                    draw:   { icons: { sprite: rest-area } }
+                    filter: { kind: [rest_area, service_area, rest-area] }
+                    draw:   { icons: { sprite: generic } }
                 restaurant:
                     filter: { kind: [restaurant, deli] }
                     draw:   { icons: { sprite: restaurant } }
@@ -5863,7 +5930,7 @@ layers:
                     draw:   { icons: { sprite: thrift-vintage-store } }
                 toll-booth:
                     filter: { kind: [toll_booth, checkpoint, border_control] }
-                    draw:   { icons: { sprite: toll-booth } }
+                    draw:   { icons: { sprite: generic } }
                 toy-game-store:
                     filter: { kind: [toys, toy-game-store, baby_goods] }
                     draw:   { icons: { sprite: toy-game-store } }
@@ -5909,7 +5976,7 @@ layers:
                     draw:   { icons: { sprite: ski-area } }
 
         airport-gate:
-            filter: { kind: gate, aeroway: gate }
+            filter: { kind: aeroway_gate }
             draw:
                 icons:
                     visible: false
@@ -6163,6 +6230,8 @@ layers:
                 visible: false
             polygons:
                 order: global.feature_order
+            lines:
+                order: global.feature_order
         tier1:
             filter:
                 any:
@@ -6250,7 +6319,7 @@ layers:
                         color: [0.600,0.790,0.714]
                         visible: global.green4_v
             forest:
-                filter: { kind: [forest,wood], $zoom: { min: 6 } }
+                filter: { kind: [forest, natural_forest, wood, natural_wood, natural_park], $zoom: { min: 6 } }
                 national-forest:
                     filter:
                         operator: [ "United States Forest Service", "US Forest Service", "U.S. Forest Service", "USDA Forest Service" ]
@@ -6579,108 +6648,154 @@ layers:
                         color: [0.765,0.765,0.765]
                         visible: true
 
-            # GO MELLOW
-            # 18/41.19776/-8.68722
-            tree_row:
-                filter:
-                    kind: tree_row
-                draw:
-                    lines:
-                        order: 501 # function() { return feature.sort_key; }
-                        color: [0.602,0.860,0.722]
-                        width: [[16,1px],[17,2px],[19,1.5m]]
-                        visible: true
-            # GO MELLOW
-            # 20/37.76779/-122.40096
-            hedge:
-                filter:
-                    kind: hedge
-                draw:
-                    lines:
-                        order: 500 # function() { return feature.sort_key; }
-                        color: [0.602,0.860,0.722]
-                        width: [[16,0.5px],[17,1px],[19,1m]]
-                        visible: true
-
-
-    landuse-not-filtered:
-        data: { source: mapzen, layer: landuse }
-        # runways and taxiways are also in the roads layer as lines
-        # these ones are probably duplicate features, but have AREA (a good thing)
-        filter:
-            kind:
-                - runway
-                - apron
-                - beach
-                - roller_coaster
-                - amusement_ride
-                - summer_toboggan
-                - trail_riding_station
-                - water_slide
-                - carousel
-                - animal
-                - enclosure
-                - petting_zoo
-                - aviary
-        draw:
-            dots2:
-                order: global.feature_order
-                visible: false
-            dots-rev:
-                order: global.feature_order
-                visible: false
-            polygons:
-                visible: false
-                order: global.feature_order
-        runway:
+        # GO MELLOW
+        # 18/41.19776/-8.68722
+        tree_row:
             filter:
-                kind: runway
+                kind: tree_row
             draw:
-                polygons:
-                    visible: true
-                    color: [[10,[0.4,0.4,0.4]],[11,[0.50,0.50,0.50]],[12,[0.7,0.7,0.7]],[13,[0.75,0.75,0.75]],[14,[0.95,0.95,0.95]]]
-        apron:
+                lines:
+                    order: 501 # function() { return feature.sort_key; }
+                    color: [0.602,0.860,0.722]
+                    width: [[16,1px],[17,2px],[19,1.5m]]
+
+        # GO MELLOW
+        # 20/37.76779/-122.40096
+        hedge:
             filter:
-                kind: apron
-                $zoom: { min: 15}
+                kind: hedge
             draw:
-                dots-rev:
-                    visible: true
-                    color: [0.820,0.820,0.820]
-        minor-amusement-park-landuse:
+                lines:
+                    order: 500 # function() { return feature.sort_key; }
+                    color: [0.602,0.860,0.722]
+                    width: [[16,0.5px],[17,1px],[19,1m]]
+
+        city_walls:
+            filter: { kind: city_wall }
+            draw:
+                lines:
+                    order: global.feature_order
+                    color: global.city_wall
+                    width: [[12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.0px], [16, 2.5px], [19, 6m]]
+        retaining_wall:
+            filter: { kind: retaining_wall }
+            draw:
+                lines:
+                    order: global.feature_order
+                    color: global.retaining_wall
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 4m]]
+        snow_fence:
+            filter: { kind: snow_fence }
+            draw:
+                lines:
+                    order: global.feature_order
+                    color: global.snow_fence
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1.5m]]
+        fence:
+            filter: { kind: fence }
+            draw:
+                lines:
+                    order: global.feature_order
+                    color: global.fence
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1.5m]]
+
+        landuse-not-filtered:
+            # runways and taxiways are also in the roads layer as lines
+            # these ones are probably duplicate features, but have AREA (a good thing)
             filter:
                 kind:
+                    - runway
+                    - apron
+                    - beach
                     - roller_coaster
                     - amusement_ride
                     - summer_toboggan
                     - trail_riding_station
                     - water_slide
                     - carousel
-            draw:
-                dots2:
-                    color: global.grey12
-                    visible: true
-        minor-zoo-landuse:
-            filter:
-                kind:
                     - animal
                     - enclosure
                     - petting_zoo
                     - aviary
+                    - rest_area
+                    - service_area
+                    - camp_site
+                    - caravan_site
             draw:
                 dots2:
-                    color: global.green11
-                    visible: true
-    landuse_urban_area-early:
-        data: { source: mapzen, layer: landuse }
-        filter:
-            # This is from Natural Earth and only shows up from zoom(0,9)
-            kind: [urban_area, 'urban area']
-        draw:
-            dots2:
-                visible: global.earth2_ev
-                order: global.feature_order
-                color: [[4,[0.965,0.600,0.882]],[6,[0.965,0.600,0.882]],[7,[0.882,0.639,0.827]],[8,[0.757,0.729,0.753]]]
+                    order: global.feature_order
+                    visible: false
+                dots-rev:
+                    order: global.feature_order
+                    visible: false
+                polygons:
+                    visible: false
+                    order: global.feature_order
+            runway:
+                filter:
+                    kind: runway
+                draw:
+                    polygons:
+                        visible: true
+                        color: [[10,[0.4,0.4,0.4]],[11,[0.50,0.50,0.50]],[12,[0.7,0.7,0.7]],[13,[0.75,0.75,0.75]],[14,[0.95,0.95,0.95]]]
+            apron:
+                filter:
+                    kind: apron
+                    $zoom: { min: 15}
+                draw:
+                    dots-rev:
+                        visible: true
+                        color: [0.820,0.820,0.820]
+            rest_area_service_area:
+                filter:
+                    kind: [rest_area, service_area]
+                    $zoom: { min: 13}
+                draw:
+                    dots-rev:
+                        visible: true
+                        color: [0.820,0.820,0.820]
+            camp_site_caravan_site:
+                filter:
+                    kind: [camp_site, caravan_site]
+                    $zoom: { min: 13}
+                draw:
+                    dots-rev:
+                        visible: true
+                        color: [0.820,0.820,0.820]
+            minor-amusement-park-landuse:
+                filter:
+                    kind:
+                        - roller_coaster
+                        - amusement_ride
+                        - summer_toboggan
+                        - trail_riding_station
+                        - water_slide
+                        - carousel
+                draw:
+                    dots2:
+                        color: global.grey12
+                        visible: true
+            minor-zoo-landuse:
+                filter:
+                    kind:
+                        - animal
+                        - enclosure
+                        - petting_zoo
+                        - aviary
+                draw:
+                    dots2:
+                        color: global.green11
+                        visible: true
+
+        landuse_urban_area-early:
+            filter:
+                # This is from Natural Earth and only shows up from zoom(0,9)
+                kind: [urban_area, 'urban area']
+            draw:
+                dots2:
+                    visible: global.earth2_ev
+                    order: global.feature_order
+                    color: [[4,[0.965,0.600,0.882]],[6,[0.965,0.600,0.882]],[7,[0.882,0.639,0.827]],[8,[0.757,0.729,0.753]]]
 
 
     debug:
