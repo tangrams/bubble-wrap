@@ -2943,7 +2943,6 @@ layers:
 
     places:
         data: { source: mapzen, layer: places }
-        filter: { not: { kind: [ocean, sea] } }
         draw:
             icons:
                 text:
