@@ -4996,7 +4996,7 @@ layers:
                     draw: { text-blend-order: { visible: false } }
                 early2:
                     filter: { $zoom: { min: 12, max: 14 } }
-                    draw: { icons: { text: { size: 11px } } }
+                    draw: { icons: { text: { font: { size: 11px } } } }
             school:
                 filter:
                     all:
@@ -5100,7 +5100,7 @@ layers:
                                 weight: 400
                 early-sizing:
                     filter: { $zoom: { max: 14 } }
-                    draw: { icons: { text: { size: 11px } } }
+                    draw: { icons: { text: { font: { size: 11px } } } }
             playgrounds_allotments_attraction_landmark_supermarket:
                 filter:
                     all:
@@ -5168,10 +5168,11 @@ layers:
                         priority: 42
                         text:
                             visible: global.text_visible_station
-                            fill: [0.20,0.20,0.20] # *text_fill
-#                            size: 10px
-                            weight: 600
-                            stroke: { color: global.text_stroke, width: 4 }
+                            font:
+                                fill: [0.20,0.20,0.20] # *text_fill
+                                # size: 10px
+                                weight: 600
+                                stroke: { color: global.text_stroke, width: 4 }
                 low-priority-early:
                     filter: { kind_tile_rank: { min: 5 }, $zoom: { min: 0, max: 13 } }
                     draw:
