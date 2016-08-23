@@ -203,18 +203,18 @@ map = (function () {
         // Language selector
         var langs = {
             '(default)': false,
-            'English': 'eng',
-            'Russian': 'rus',
-            'Chinese': 'zho',
-            'Japanese': 'jpn',
-            'Korean': 'kor',
-            'Vietnamese': 'vie',
-            'German': 'deu',
-            'French': 'fra',
-            'Arabic': 'ara',
-            'Spanish': 'spa',
-            'Italian': 'ita',
-            'Greek': 'gre'
+            'English': 'en',
+            'Russian': 'ru',
+            'Chinese': 'zh',
+            'Japanese': 'ja',
+            'Korean': 'ko',
+            'Vietnamese': 'vi',
+            'German': 'de',
+            'French': 'fr',
+            'Arabic': 'ar',
+            'Spanish': 'es',
+            'Italian': 'it',
+            'Greek': 'el'
         };
         // use query language, else default to English
         gui.language = query.language || false;
