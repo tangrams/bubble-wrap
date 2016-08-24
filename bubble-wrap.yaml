@@ -4733,7 +4733,7 @@ layers:
                         - { $zoom: { min: 15 } }
                 national-park:
                     # yosemite national park, joshua tree national park
-                    filter: function() { return feature.name && ((feature.name.indexOf("National Park") > -1) || feature.name.indexOf("National Monument") > -1); }
+                    filter: function() { return feature.name && ((feature.name.indexOf("National Park") > -1) || feature.name.indexOf("National Monument") > -1 || feature.protect_class == '2' || feature.protect_class == '3' || feature.protect_class == '5'); }
                     visible: global.label_visible_landuse_green
                     draw:
                         icons:
@@ -4824,7 +4824,7 @@ layers:
                             icons:
                                 text: { font: { size: 11px } }
                     wilderness-areas-early:
-                        filter: function() { return $zoom < 10 && feature.name && (feature.name.indexOf("Wilderness") > -1 || feature.name.indexOf("BLM") > -1) }
+                        filter: function() { return $zoom < 10 && feature.name && (feature.name.indexOf("Wilderness") > -1 || feature.name.indexOf("BLM") > -1 || feature.protect_class == '1' || feature.protect_class == '1a' || feature.protect_class == '1b' ); }
                         draw:
                             icons:
                                 visible: false
@@ -6251,16 +6251,24 @@ layers:
                     - { $zoom: { min: 15 }, area: { min: 2000 } }
                     - { $zoom: { min: 16 }, area: true }
             national_park:
-                filter: { kind: [national_park, "park or protected land", battlefield], not: { operator: [ "United States Forest Service", "US Forest Service", "U.S. Forest Service", "USDA Forest Service" ] } }
+                filter:
+                    all:
+                        - kind: [national_park, battlefield, protected_area]
+                    any:
+                        - not: { operator: [ "United States Forest Service" ] }
+                        - protect_class: ['2','3','5']
                 draw:
                     dots2:
-                        color: [[4,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
+                        color: orange #[[4,[0.655,0.800,0.796]],[8,[0.588,0.780,0.773]]]
                         # todo: what is this?
                         order: 18
                         visible: true
                 us_national_park:
                     # yosemite national park, death valley national park, grand canyon national park
-                    filter: { operator: [ "United States National Park Service", "US National Park Service" ] }
+                    filter:
+                        any:
+                            - operator: [ "United States National Park Service" ]
+                            - protect_class: ['2','3','5']
                     draw:
                         dots2:
                             color: [[4,[0.525,0.765,0.686]],[9,[0.416,0.737,0.631]]]
@@ -6287,25 +6295,47 @@ layers:
                     - { $zoom: { min: 16 }, area: true }
             conservation:
                 filter:
-                    kind: [conservation, protected_area, nature_reserve]
-                    $zoom: { min: 4 }
+                    all:
+                        - $zoom: { min: 4 }
+                        - kind: [conservation, protected_area, nature_reserve, national_park]
+                        - not: { protect_class: ['2','3','5'] }
                 draw:
                     dots2:
-                        color: [0.420,0.808,0.698]
+                        color: aqua #[0.420,0.808,0.698]
                         visible: true
-                wilderness-areas:
-                    filter: function() { return feature.name && feature.name.indexOf("Wilderness") > -1 }
-                    draw:
-                        dots2:
-                            order: 25
-                            color: [0.027,0.804,0.494]
-                            visible: true
+                #aa_wilderness-areas:
+#                    filter: function() { return feature.name && (feature.name.indexOf("Wilderness") > -1 || feature.protect_class == '1' || feature.protect_class == '1a' || feature.protect_class == '1b' ) }
+#                    draw:
+#                        dots2:
+#                            order: 25
+#                            color: slateblue #[0.027,0.804,0.494]
+#                            visible: true
 
                 national_forest_level_6:
-                    filter: { protect_class: ["6",6] }
+                    filter: { protect_class: ['6'] }
                     draw:
                         dots2:
-                            color: [0.442,0.960,0.865] #*green7
+                            color: red #[0.442,0.960,0.865] #*green7
+                            visible: true
+
+                    national_park:
+                        filter: { kind: national_park }
+                        draw:
+                            dots2:
+                                color: pink
+
+                #ab_protected_area:
+#                    filter: { kind: protected_area }
+#                    draw:
+#                        dots2:
+#                            color: chartreuse
+#                            visible: true
+
+                a_nature_reserve:
+                    filter: { kind: nature_reserve }
+                    draw:
+                        dots2:
+                            color: darkblue
                             visible: true
 
             # gotta be a protected area to draw green, not just a landcover type
@@ -6319,44 +6349,72 @@ layers:
                         visible: global.green4_v
             forest:
                 filter: { kind: [forest, natural_forest, wood, natural_wood, natural_park], $zoom: { min: 6 } }
-                national-forest:
-                    filter:
-                        operator: [ "United States Forest Service", "US Forest Service", "U.S. Forest Service", "USDA Forest Service" ]
-                    draw:
-                        dots2:
-                            color: global.green7
-                            visible: true
-
+#                national-forest:
+#                    filter:
+#                        operator: "United States Forest Service"
+#                    draw:
+#                        dots2:
+#                            color: blue #global.green7
+#                            visible: true
+#
                 landuse-forest:
                     filter:
-                        not: { operator: [ "United States Forest Service", "US Forest Service", "U.S. Forest Service", "USDA Forest Service" ] }
+                        not: { operator: "United States Forest Service" }
                         $zoom: { min: 10 }
                     draw:
                         dots2:
-                            color: [0.486,0.839,0.722]
+                            color: yellow #[0.486,0.839,0.722]
                             visible: true
 
-            nature_reserve:
-                filter: { kind: nature_reserve, $zoom: { min: 7 } }
-                draw:
-                    dots2:
-                        color: [0.596,0.788,0.624]
-                        visible: true
-                wilderness-areas:
-                    filter: function() { return feature.name && feature.name.indexOf("Wilderness") > -1 }
-                    draw:
-                        dots2:
-                            color: global.green7
-                            visible: true
+                    z-others:
+                        filter: { kind: [natural_forest, natural_wood, natural_park] }
+                        draw:
+                            dots2:
+                                color: gold
+                                visible: true
+
+#            nature_reserve:
+#                filter: { kind: nature_reserve, $zoom: { min: 7 } }
+#                draw:
+#                    dots2:
+#                        color: magenta #[0.596,0.788,0.624]
+#                        visible: true
+#                wilderness-areas:
+#                    filter: function() { return feature.name && (feature.name.indexOf("Wilderness") > -1 || feature.protect_class == '1' || feature.protect_class == '1a' || feature.protect_class == '1b' ) }
+#                    draw:
+#                        dots2:
+#                            color: orangered #global.green7
+#                            visible: true
 
             parks-and-national-forests-not-national-park:
-                filter: { $zoom: { min: 4 }, kind: [park, national_park, "park or protected land"], not: { operator: [ "United States National Park Service", "US National Park Service" ] } }
+#                filter: function() { return $zoom >= 4 && (feature.kind == 'park' || feature.kind == 'national_park') && (feature.name && feature.name.indexOf('National Park') < 0) && ( (feature.operator != 'United States National Park Service' && feature.operator != 'US National Park Service' ) || (feature.protect_class == '2' || feature.protect_class == '3' || feature.protect_class == '5' ) ) }
+                filter:
+                    all:
+                        - $zoom: { min: 4 }
+                        - kind: [park, national_park]
+                    any:
+                        - not: { operator: [ "United States National Park Service", "United States Forest Service" ] }
+                        - not: { protect_class: ['2','3','5','6'] }
                 # default for national forests and more?
                 draw:
                     dots2:
                         # color: [[4,[0.655,0.800,0.796]],[11,[0.588,0.780,0.773]],[12,[0.242,0.737,0.712]],[14,[0.412,0.733,0.718]],[15,[0.635,0.792,0.788]]]
-                        color: [[4,[0.655,0.800,0.796]],[11,[0.588,0.780,0.773]],[12,[0.635,0.792,0.788]]]
+                        color: greenyellow   #[[4,[0.655,0.800,0.796]],[11,[0.588,0.780,0.773]],[12,[0.635,0.792,0.788]]]
                         visible: true
+                #forest:
+#                    filter: { kind: forest }
+#                    draw:
+#                        dots2:
+#                            color: green
+                national_park:
+                    #filter: function() { return feature.name && (feature.name.indexOf('National Park') > -1); }
+                    filter:
+                        all:
+                            - kind: national_park
+                            - not: [ protect_class: ['2','3','5','6'], operator: [ "United States National Park Service"] ]
+                    draw:
+                        dots2:
+                            color: olivedrab
             urban:
                 filter: { kind: [urban, rural, residential] }
                 visible: global.earth2_v
