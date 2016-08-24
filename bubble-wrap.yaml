@@ -6302,7 +6302,7 @@ layers:
                 draw:
                     dots2:
                         # effectively the wilderness color
-                        color: [[0,[0.442,0.960,0.865]],[6,[0.2,0.850,0.765]]] #red #[0.420,0.808,0.698]
+                        color: [[0,[0.442,0.960,0.865]],[11,[0.2,0.850,0.765]]] #red #[0.420,0.808,0.698]
                         visible: true
                 #aa_wilderness-areas:
 #                    filter: function() { return feature.name && (feature.name.indexOf("Wilderness") > -1 || feature.protect_class == '1' || feature.protect_class == '1a' || feature.protect_class == '1b' ) }
