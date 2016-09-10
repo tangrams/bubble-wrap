@@ -362,6 +362,8 @@ global:
     building2: [.860, .860, .860]           # building stroke
     building_o:  5                          # building stroke order
     building_e: true                        # building stroke order
+    #building extrusion toggle
+    building_extrude: true
 
 
 textures:
@@ -2715,6 +2717,7 @@ layers:
 
         # 3d buildings
         extrude:
+            visible: global.building_extrude
             filter:
                 any:
                     - { $zoom: [15], height: { min: 190 } }
