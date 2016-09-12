@@ -363,6 +363,9 @@ global:
     building_o:  5                          # building stroke order
     building_e: true                        # building stroke order
 
+    # building extrusion
+    building_extrude_on: true
+
 
 textures:
     pois:
@@ -2692,7 +2695,6 @@ layers:
         # building footprints, pre-extrusion
         footprints:
             filter:
-                $zoom: { max: 18 }
                 any:
                     # show footprints for buildings at least one zoom level before they will be extruded
                     - { $zoom: [13], area: { min: 50000 } }
@@ -2715,6 +2717,7 @@ layers:
 
         # 3d buildings
         extrude:
+            visible: global.building_extrude_on
             filter:
                 any:
                     - { $zoom: [15], height: { min: 190 } }
@@ -2728,13 +2731,11 @@ layers:
                     - { $zoom: { min: 18 }, area: true }
             draw:
                 polygons:
-                    visible: true
                     order: 438
                     style: building-grid
                     extrude: function() { return feature.height || 20; }
                     color: [0.892,0.880,0.878]
                 lines:
-                    visible: true
                     order: 439
                     style: building-lines
                     extrude: function() { return feature.height || 20; }
