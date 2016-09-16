@@ -288,7 +288,6 @@ global:
     fence: [0.827,0.808,0.780]
     #
     #landuse
-    scene1: '#eee'                          # map background, water
     water1: [0.83, 0.83, 0.83]              # water
     water2: [.75,.75,.75]                   # playa
     water1_o: '#9dc3de'                     # water stroke
@@ -959,7 +958,7 @@ styles:
 
 scene:
     background:
-        color: global.scene1
+        color: [0.870,0.870,0.870]
 
 layers:
     # Map overlays for styling the server response (using special source layer names) for route line, current location, and search result pins
@@ -1108,13 +1107,6 @@ layers:
                 width: 0px
 
     # Basemap styling
-    earth:
-        data: { source: mapzen, layer: earth }
-        draw:
-            polygons:
-                order: global.feature_order
-                color: [0.870,0.870,0.870]
-
     water:
         data: { source: mapzen, layer: water }
         draw:
