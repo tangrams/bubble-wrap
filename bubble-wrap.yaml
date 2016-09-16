@@ -2666,6 +2666,7 @@ layers:
                     priority: 5
                     text:
                         interactive: true
+                        buffer: 4px
 
             populated-places-natural-earth-z2:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [2], scalerank: 0 }

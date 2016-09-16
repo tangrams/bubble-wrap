@@ -149,7 +149,7 @@ global:
     # TRANSIT OVERLAY
     # should default to "auto", with SDK overriding it to true or false,
     # or app logic sets other booleans that triggers auto behavior later
-    sdk_transit_overlay: true
+    sdk_transit_overlay: false
     #
     # default order for basemap features
     feature_order: function() { return feature.sort_key; }

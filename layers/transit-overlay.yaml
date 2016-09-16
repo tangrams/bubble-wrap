@@ -15,7 +15,7 @@ layers:
                 width: [[5,1.5px],[6,2px],[11,3px],[18,4px]]
                 interactive: true
                 outline:
-                    color: [0.,0.,0.,.1]
+                    color: [1.,1.,1.,.8]
                     width: [[7,0px],[8,0.25px],[9,0.5px],[12,1.0px],[13,1.75px],[14,2px]]
                     #width: [[12,1.0px],[13,1.75px],[14,2px]]
         train-sizing-color:
@@ -35,17 +35,18 @@ layers:
             filter: { kind: subway }
             draw:
                 lines:
-                    width: [[9,1px],[11,2.5px],[12,3px],[13,4px],[15,5px],[16,7px],[17,9px]]
+                    width: [[9,1px],[11,2px],[12,3px],[13,4px],[15,5px],[16,7px],[17,9px]]
                     outline:
-                        color: [[10,white],[11,black]]
-                        width: [[9,0px],[10,0.25px],[12,1.0px],[13,1.75px],[14,2px]]
+                        #color: [[10,white],[11,black]]
+                        width: [[9,0px],[10,0.5px],[12,1.25px],[13,1.5px],[15,2px]]
+                        #width: [[12,1.5px],[13,2.0px],[14,2.5px]]
         light-rail-and-tram-sizing:
             filter: { kind: [light_rail, tram] }
             draw:
                 lines:
                     width: [[10,1px],[12,1.5px],[15,2px],[18,3.5px]]
                     outline:
-                        color: [[11,white],[12,black]]
+                        #color: [[11,white],[12,black]]
                         width: [[12,0.25px],[13,0.5px],[14,1px],[16,2px]]
         has-data-color:
             filter: { colour: true }
@@ -54,8 +55,8 @@ layers:
                     order: 510
                     width: [[9,2px],[11,3px],[12,4px]]
                     color: function() { return feature.colour || 'purple'; }
-                    outline:
-                        color: function() { if(feature.colour == 'silver') { return 'black'; } else { return [0.,0.,0.,.1]; } }
+                    #outline:
+                        #color: function() { if(feature.colour == 'silver') { return 'black'; } else { return [0.,0.,0.,.1]; } }
                         #width: [[12,1.0px],[13,1.75px],[14,2px]]
             train-with-color:
                 filter: { kind: train }
@@ -85,8 +86,8 @@ layers:
                 draw:
                     lines:
                         order: 505
-                        outline:
-                            width: [[12,1.5px],[13,2.0px],[14,2.5px]]
+                        #outline:
+#                            width: [[12,1.5px],[13,2.0px],[14,2.5px]]
             light-rail-and-tram-missing-color:
                 filter: { kind: [light_rail, tram], colour: false }
                 draw:
@@ -157,9 +158,10 @@ layers:
                 interactive: true
                 priority: 15
                 text:
+                    buffer: 4px
                     move_into_tile: false # preserves text alignment w/icons in JS
-                    anchor: bottom
-                    offset: [[13, [0, 6px]], [16, [0, 8px]], [19, [0, 10px]]] # offset tracks alongside icon size (half icon height)
+                    #anchor: bottom
+                    #offset: [[13, [0, 6px]], [16, [0, 8px]], [19, [0, 10px]]] # offset tracks alongside icon size (half icon height)
                     interactive: true
                     priority: 16
                     font:
@@ -188,7 +190,7 @@ layers:
                     size: [[13, 12px], [14, 14px], [15, 16px], [17, 20px]]
                     priority: 11
                     text:
-                        offset: [[13, [0, 6px]], [14, [0, 7px]],[15, [0, 8px]], [17, [0, 10px]]]
+                        #offset: [[13, [0, 6px]], [14, [0, 7px]],[15, [0, 8px]], [17, [0, 10px]]]
                         priority: 12
             low-priority-early:
                 filter: { kind_tile_rank: { min: 3 }, $zoom: { min: 0, max: 12 } }
@@ -274,7 +276,7 @@ layers:
                     size: [[16, 12px], [17, 14px], [18, 18px]]
                     sprite: light-rail
                     text:
-                        offset: [[13, [0, 6px]], [16, [0, 9px]]]
+                        #offset: [[13, [0, 6px]], [16, [0, 9px]]]
         bus-like-labels:
             filter:
                 kind: [platform, stop_position]
@@ -322,7 +324,7 @@ layers:
                     size: [[17, 12px], [19, 14px]]
                     priority: 19
                     text:
-                        offset: [[17, [0, 6px]], [19, [0, 7px]]] # offset tracks alongside icon size (half icon height)
+                        #offset: [[17, [0, 6px]], [19, [0, 7px]]] # offset tracks alongside icon size (half icon height)
                         priority: 20
                         interactive: true
                         text_source: function() { if( feature.ref || feature.name ) { if( feature.ref && feature.name ) { return '[' + feature.ref + ']\n' + feature.name; } else { return feature.name; } } else { return "Entrance"; } }
@@ -350,30 +352,30 @@ layers:
                 width: [[14,0.1px],[15,0.5px],[17,0.5px],[18,0.75px],[19,0.25m]]
                 #extrude: function() { return feature.height || 20; }
 
-    transit-platforms:
-        data: { source: mapzen, layer: transit }
-        filter: { kind: platform, $zoom: { min: 15 }, $geometry: [polygon,line] }
-        draw:
-            lines:
-                visible: global.sdk_transit_overlay
-                color: '#bc8f96'
-                width: 10m          # something fishy here with the #include syntax in v0.7 tangram?
-                order: 1000         # this selection should sort above basemap, but grey Zinc color still applies
-                outline:
-                    order: 1002
-            polygons:
-                visible: global.sdk_transit_overlay
-                order: 1001
-        polygon_geom:
-            filter: { $geometry: polygon }
-            draw:
-                polygons:
-                    color: '#bc8f96'
-                    outline:
-                        color: '#bc8f96'
-                        width: [[15,0px],[16,0.5px],[17,1px],[19,2px]]
-                lines:
-                    visible: false
+#    transit-platforms:
+#        data: { source: mapzen, layer: transit }
+#        filter: { kind: platform, $zoom: { min: 15 }, $geometry: [polygon,line] }
+#        draw:
+#            lines:
+#                visible: global.sdk_transit_overlay
+#                color: '#bc8f96'
+#                width: 10m          # something fishy here with the #include syntax in v0.7 tangram?
+#                order: 1000         # this selection should sort above basemap, but grey Zinc color still applies
+#                outline:
+#                    order: 1002
+#            polygons:
+#                visible: global.sdk_transit_overlay
+#                order: 1001
+#        polygon_geom:
+#            filter: { $geometry: polygon }
+#            draw:
+#                polygons:
+#                    color: '#bc8f96'
+#                    outline:
+#                        color: '#bc8f96'
+#                        width: [[15,0px],[16,0.5px],[17,1px],[19,2px]]
+#                lines:
+#                    visible: false
 
     transit-basemap-railway-late:
         data: { source: mapzen, layer: roads }
