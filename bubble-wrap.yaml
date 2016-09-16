@@ -161,6 +161,7 @@ global:
     text_visible_building: true
     text_visible_address: true
     text_visible_water_labels: true
+    text_visible_island: true
     label_visible_landuse_green: true
     icon_visible_landuse_green: true
     text_visible_landuse_green: true
@@ -189,6 +190,7 @@ global:
     text_visible_piste: true
     text_visible_steps: true
     text_visible_aerialway: true
+    text_visible_airport_gate: true
     text_visible_shields: true
     text_visible_exits: true
     #
