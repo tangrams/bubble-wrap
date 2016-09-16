@@ -6905,7 +6905,8 @@ layers:
                     icons:
                         #visible: false
                         size: [[12, 8px], [14, 6px], [15, 16px]]
-                    text-blend-order: { visible: false }
+                        text:
+                            visible: false
             low-priority-early-z14:
                 filter: { kind_tile_rank: { min: 7 }, $zoom: [14] }
                 draw:
@@ -6934,7 +6935,7 @@ layers:
             draw:
                 icons:
                     size: [[15, 8px], [16, 18px]]
-                    visible: true
+                    visible: global.sdk_transit_overlay
                     sprite: light-rail
                     text:
                         visible: false
@@ -6943,7 +6944,7 @@ layers:
             draw:
                 icons:
                     size: [[15, 8px], [16, 18px]]
-                    visible: true
+                    visible: global.sdk_transit_overlay
                     sprite: generic
                     text:
                         visible: false
@@ -6952,7 +6953,7 @@ layers:
             draw:
                 icons:
                     size: [[13, 0px], [14, 7px], [15, 8px]]
-                    visible: true
+                    visible: global.sdk_transit_overlay
                     sprite: light-rail
                     text:
                         visible: false
