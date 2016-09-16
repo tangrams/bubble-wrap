@@ -2729,13 +2729,11 @@ layers:
                             - { $zoom: { min: 18 } }
                 draw:
                     polygons:
-                        # visible: true
                         order: 438
                         style: building-grid
                         extrude: global.building_extrude_height
                         color: [0.892,0.880,0.878]
                     lines:
-                        # visible: true
                         order: 439
                         style: building-lines
                         extrude: global.building_extrude_height
