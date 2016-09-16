@@ -361,9 +361,8 @@ global:
     building1: [0.784, 0.784, 0.784]        # building
     building2: [.860, .860, .860]           # building stroke
     building_o:  5                          # building stroke order
-    building_e: true                        # building stroke order
-    #building extrusion toggle
-    building_extrude: true
+    building_e: true                        # building stroke order early
+    building_extrude: false                 # building extrusion toggle
 
 
 textures:
@@ -2694,7 +2693,6 @@ layers:
         # building footprints, pre-extrusion
         footprints:
             filter:
-                $zoom: { max: 18 }
                 any:
                     # show footprints for buildings at least one zoom level before they will be extruded
                     - { $zoom: [13], area: { min: 50000 } }
@@ -2714,6 +2712,14 @@ layers:
                     visible: true
                 lines:
                     visible: true
+
+            footprints-late:
+                filter: { $zoom: { min: 18 } }
+                draw:
+                    polygons:
+                        visible: function() { if(global.building_extrude) { return false; } else { return true; } }
+                    lines:
+                        visible: function() { if(global.building_extrude) { return false; } else { return true; } }
 
         # 3d buildings
         extrude:
