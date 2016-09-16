@@ -362,7 +362,9 @@ global:
     building2: [.860, .860, .860]           # building stroke
     building_o:  5                          # building stroke order
     building_e: true                        # building stroke order early
-    building_extrude: false                 # building extrusion toggle
+    building_extrude: true                  # building extrusion toggle
+    building_extrude_height: |              # building extrude height logic
+        function() { return feature.height || 20; }
 
 
 textures:
@@ -2693,60 +2695,50 @@ layers:
         # building footprints, pre-extrusion
         footprints:
             filter:
-                any:
-                    # show footprints for buildings at least one zoom level before they will be extruded
-                    - { $zoom: [13], area: { min: 50000 } }
-                    - { $zoom: [13], height: { min: 250 } }
-                    - { $zoom: [13], volume: { min: 200000 } }
-                    - { $zoom: [14], area: { min: 5000 } }
-                    - { $zoom: [14], height: { min: 190 } }
-                    - { $zoom: [14], volume: { min: 150000 } }
-                    - { $zoom: [15], height: { min: 100 } }
-                    - { $zoom: [15], area: { min: 500 } }
-                    - { $zoom: [15], volume: { min: 100000 } }
-                    - { $zoom: [16], area: { min: 100 } }
-                    - { $zoom: [16], volume: { min: 50000 } }
-                    - { $zoom: { min: 17 }, area: true }
+                # show footprints for buildings at least one zoom level before they will be extruded
+                - { $zoom: 13, height: { min: 250 } }
+                - { $zoom: 13, area: { min: 50000 } }
+                - { $zoom: 13, volume: { min: 200000 } }
+                - { $zoom: 14, height: { min: 190 } }
+                - { $zoom: 14, area: { min: 5000 } }
+                - { $zoom: 14, volume: { min: 150000 } }
+                - { $zoom: 15, height: { min: 100 } }
+                - { $zoom: 15, area: { min: 500 } }
+                - { $zoom: 15, volume: { min: 100000 } }
+                - { $zoom: 16, area: { min: 100 } }
+                - { $zoom: 16, volume: { min: 50000 } }
+                - { $zoom: { min: 17 }, area: true }
             draw:
-                polygons:
-                    visible: true
-                lines:
-                    visible: true
+                polygons: { visible: true }
+                lines: { visible: true }
 
-            footprints-late:
-                filter: { $zoom: { min: 18 } }
+            # 3d buildings
+            extrude:
+                filter:
+                    all:
+                        - function() { return global.building_extrude; }
+                        - any:
+                            - { $zoom: 15, height: { min: 190 } }
+                            - { $zoom: 15, area: { min: 5000 } }
+                            - { $zoom: 15, volume: { min: 100000 } }
+                            - { $zoom: 16, height: { min: 100 } }
+                            - { $zoom: 16, area: { min: 3500 } }
+                            - { $zoom: 16, volume: { min: 50000 } }
+                            - { $zoom: 17, area: { min: 500 } }
+                            - { $zoom: 17, volume: { min: 15000 } }
+                            - { $zoom: { min: 18 } }
                 draw:
                     polygons:
-                        visible: function() { if(global.building_extrude) { return false; } else { return true; } }
+                        # visible: true
+                        order: 438
+                        style: building-grid
+                        extrude: global.building_extrude_height
+                        color: [0.892,0.880,0.878]
                     lines:
-                        visible: function() { if(global.building_extrude) { return false; } else { return true; } }
-
-        # 3d buildings
-        extrude:
-            visible: global.building_extrude
-            filter:
-                any:
-                    - { $zoom: [15], height: { min: 190 } }
-                    - { $zoom: [15], area: { min: 5000 } }
-                    - { $zoom: [15], volume: { min: 100000 } }
-                    - { $zoom: [16], height: { min: 100 } }
-                    - { $zoom: [16], area: { min: 3500 } }
-                    - { $zoom: [16], volume: { min: 50000 } }
-                    - { $zoom: [17], area: { min: 500 } }
-                    - { $zoom: [17], volume: { min: 15000 } }
-                    - { $zoom: { min: 18 }, area: true }
-            draw:
-                polygons:
-                    visible: true
-                    order: 438
-                    style: building-grid
-                    extrude: function() { return feature.height || 20; }
-                    color: [0.892,0.880,0.878]
-                lines:
-                    visible: true
-                    order: 439
-                    style: building-lines
-                    extrude: function() { return feature.height || 20; }
+                        # visible: true
+                        order: 439
+                        style: building-lines
+                        extrude: global.building_extrude_height
 
         # landuse-specific rules
         in_park:
