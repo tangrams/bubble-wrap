@@ -227,20 +227,20 @@ map = (function () {
             scene.updateConfig();
             //window.location.search = 'language=' + value;
         });
-//
-//         // Transit selector
-//         var transit_overlay = {
-//             '(default)': false,
-//             'Show': true,
-//             'Hide': false
-//         };
-//         // use transit ux, else default to false
-//         gui.transit_overlay = query.transit_overlay || false;
-//         gui.add(gui, 'transit_overlay', transit_overlay).onChange(function(value) {
-//             scene.config.global.sdk_transit_overlay = value;
-//             scene.updateConfig();
-//         });
-//
+
+        // Transit selector
+        var transit_overlay = {
+            '(default)': false,
+            'Show': true,
+            'Hide': false
+        };
+        // use transit ux, else default to false
+        gui.transit_overlay = query.transit_overlay || false;
+        gui.add(gui, 'transit_overlay', transit_overlay).onChange(function(value) {
+            scene.config.global.sdk_transit_overlay = value;
+            scene.updateConfig();
+        });
+
         // Take a screenshot and save to file
         gui.save_screenshot = function () {
             return scene.screenshot().then(function(screenshot) {
