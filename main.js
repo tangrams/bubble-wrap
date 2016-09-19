@@ -237,7 +237,7 @@ map = (function () {
         // use transit ux, else default to false
         gui.transit_overlay = query.transit_overlay || false;
         gui.add(gui, 'transit_overlay', transit_overlay).onChange(function(value) {
-            scene.config.global.sdk_transit_overlay = value;
+            scene.config.global.sdk_transit_overlay = (value === 'true' || value === true); // dat.gui passes a string
             scene.updateConfig();
         });
 
