@@ -292,7 +292,7 @@ global:
     water2: [.75,.75,.75]                   # playa
     water1_o: '#9dc3de'                     # water stroke
     water2_o: '#9dc3de'                     # water stroke 2
-    earth1: '#666'                          # land color
+    earth1: [0.870,0.870,0.870]             # land color
     earth1_r: '#666'                        # land color road
     earth2: '#e9e4e0'                       # urban
     earth2_v: false                         # urban
@@ -958,7 +958,7 @@ styles:
 
 scene:
     background:
-        color: [0.870,0.870,0.870]
+        color: global.earth1
 
 layers:
     # Map overlays for styling the server response (using special source layer names) for route line, current location, and search result pins
