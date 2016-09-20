@@ -292,7 +292,7 @@ global:
     water2: [.75,.75,.75]                   # playa
     water1_o: '#9dc3de'                     # water stroke
     water2_o: '#9dc3de'                     # water stroke 2
-    earth1: [0.870,0.870,0.870]             # land color
+    earth1: [0.870,0.870,0.870]             # land color, used to set scene background color
     earth1_r: '#666'                        # land color road
     earth2: '#e9e4e0'                       # urban
     earth2_v: false                         # urban
