@@ -4129,62 +4129,54 @@ layers:
                             any:
                                 - { population: { min: 150000, max: 350000 } }
                         draw:
-                            icons:
-                                size: 6px
-                                sprite: townspot-m-rev
+                            text-blend-order:
+                                anchor: center
                                 priority: 7
-                                text:
-                                    visible: global.text_visible_populated_places
-                                    font:
-                                        size: 13px
+                                visible: global.text_visible_populated_places
+                                font:
+                                    size: 13px
 
                     z11places-3:
                         filter:
                             any:
                                 - { population: { min: 50000, max: 149999 } }
                         draw:
-                            icons:
+                            text-blend-order:
+                                anchor: center
                                 size: 6px
-                                visible: global.icon_visible_populated_places
-                                sprite: townspot-m-rev
                                 priority: 11
-                                text:
-                                    visible: global.text_visible_populated_places
-                                    font:
-                                        fill: [0.25,0.25,0.25]
-                                        size: 11px
+                                visible: global.text_visible_populated_places
+                                font:
+                                    fill: [0.25,0.25,0.25]
+                                    size: 11px
 
                     z11places-4:
                         filter:
                             any:
                                 - { population: { min: 20000, max: 49999 } }
                         draw:
-                            icons:
+                            text-blend-order:
+                                anchor: center
                                 size: 5px
-                                visible: global.icon_visible_populated_places
-                                sprite: townspot-s-rev
                                 priority: 13
-                                text:
-                                    visible: global.text_visible_populated_places
-                                    font:
-                                        fill: [0.35,0.35,0.35]
-                                        size: 9px
+                                visible: global.text_visible_populated_places
+                                font:
+                                    fill: [0.35,0.35,0.35]
+                                    size: 9px
 
                     z11places-6:
                         filter:
                             any:
                                 - { population: { max: 20000 } }
                         draw:
-                            icons:
+                            text-blend-order:
+                                anchor: center
                                 size: 5px
-                                visible: global.icon_visible_populated_places
-                                sprite: townspot-s-rev
                                 priority: 14
-                                text:
-                                    visible: global.text_visible_populated_places
-                                    font:
-                                        fill: red #[0.35,0.35,0.35]
-                                        size: 8px
+                                visible: global.text_visible_populated_places
+                                font:
+                                    fill: [0.35,0.35,0.35]
+                                    size: 8px
 
             populated-places-osm-z11-no-population:
                 filter:
@@ -4206,7 +4198,7 @@ layers:
                     draw:
                         text-blend-order:
                             font:
-                                fill: green
+                                #fill: green
                                 size: 9px
 
             populated-places-natural-earth-z11-backfill:
@@ -4409,62 +4401,55 @@ layers:
                             any:
                                 - { population: { min: 150000, max: 350000 } }
                         draw:
-                            icons:
+                            text-blend-order:
+                                anchor: center
                                 size: 6px
-                                sprite: townspot-m-rev
                                 priority: 7
-                                text:
-                                    visible: global.text_visible_populated_places
-                                    font:
-                                        size: 13px
+                                visible: global.text_visible_populated_places
+                                font:
+                                    size: 13px
 
                     z12places-3:
                         filter:
                             any:
                                 - { population: { min: 50000, max: 149999 } }
                         draw:
-                            icons:
+                            text-blend-order:
+                                anchor: center
                                 size: 6px
-                                visible: global.icon_visible_populated_places
-                                sprite: townspot-m-rev
                                 priority: 11
-                                text:
-                                    visible: global.text_visible_populated_places
-                                    font:
-                                        fill: [0.25,0.25,0.25]
-                                        size: 11px
+                                visible: global.text_visible_populated_places
+                                font:
+                                    fill: [0.25,0.25,0.25]
+                                    size: 12px
 
                     z12places-4:
                         filter:
                             any:
                                 - { population: { min: 20000, max: 49999 } }
                         draw:
-                            icons:
+                            text-blend-order:
+                                anchor: center
                                 size: 5px
-                                visible: global.icon_visible_populated_places
-                                sprite: townspot-s-rev
                                 priority: 13
-                                text:
-                                    visible: global.text_visible_populated_places
-                                    font:
-                                        fill: [0.35,0.35,0.35]
-                                        size: 9px
+                                visible: global.text_visible_populated_places
+                                font:
+                                    fill: [0.35,0.35,0.35]
+                                    size: 11px
 
                     z12places-6:
                         filter:
                             any:
                                 - { population: { max: 20000 } }
                         draw:
-                            icons:
+                            text-blend-order:
+                                anchor: center
                                 size: 5px
-                                visible: global.icon_visible_populated_places
-                                sprite: townspot-s-rev
                                 priority: 14
-                                text:
-                                    visible: global.text_visible_populated_places
-                                    font:
-                                        fill: [0.35,0.35,0.35]
-                                        size: 8px
+                                visible: global.text_visible_populated_places
+                                font:
+                                    fill: [0.35,0.35,0.35]
+                                    size: 10px
 
                     hamlet:
                         filter: { kind_detail: [hamlet] }
@@ -4472,7 +4457,7 @@ layers:
                             text-blend-order:
                                 #visible: false
                                 font:
-                                    fill: magenta
+                                    #fill: magenta
                                     size: 9px
 
             populated-places-osm-z12-no-population:
@@ -4489,7 +4474,7 @@ layers:
                         priority: 9
                         font:
                             size: 11px
-                            fill: cyan
+                            #fill: cyan
                             #fill: global.text_fill
                             #stroke: { color: global.text_stroke, width: 4 }
                 hamlet:
@@ -4498,14 +4483,14 @@ layers:
                         text-blend-order:
                             visible: false
                             font:
-                                fill: magenta
+                                #fill: magenta
                                 size: 9px
                 village:
                     filter: { kind_detail: [village] }
                     draw:
                         text-blend-order:
                             font:
-                                fill: green
+                                #fill: green
                                 size: 9px
 
             populated-places-natural-earth-z12-backfill:
@@ -4647,49 +4632,49 @@ layers:
                         priority: 7
                         font:
                             size: 11px
-                            fill: orange
+                            #fill: orange
                             #stroke: { color: global.text_stroke, width: 4 }
 
-                city_town:
-                    filter:
-                        all:
-                            - kind_detail: [city,town]
-                    draw:
-                        text-blend-order:
-                            font:
-                                fill: yellow
-
-                hamlet:
-                    filter: { kind_detail: [hamlet] }
-                    draw:
-                        icons:
-                            text:
-                                font:
-                                    fill: brown
-
-                village:
-                    filter: { kind_detail: [village] }
-                    draw:
-                        icons:
-                            text:
-                                font:
-                                    fill: green
-
-                locality:
-                    filter: { kind_detail: [locality] }
-                    draw:
-                        icons:
-                            text:
-                                font:
-                                    fill: purple
-
-                isolated_dwelling_farm:
-                    filter: { kind_detail: [isolated_dwelling,farm] }
-                    draw:
-                        icons:
-                            text:
-                                font:
-                                    fill: pink
+#                city_town:
+#                    filter:
+#                        all:
+#                            - kind_detail: [city,town]
+#                    draw:
+#                        text-blend-order:
+#                            font:
+#                                fill: yellow
+#
+#                hamlet:
+#                    filter: { kind_detail: [hamlet] }
+#                    draw:
+#                        icons:
+#                            text:
+#                                font:
+#                                    fill: brown
+#
+#                village:
+#                    filter: { kind_detail: [village] }
+#                    draw:
+#                        icons:
+#                            text:
+#                                font:
+#                                    fill: green
+#
+#                locality:
+#                    filter: { kind_detail: [locality] }
+#                    draw:
+#                        icons:
+#                            text:
+#                                font:
+#                                    fill: purple
+#
+#                isolated_dwelling_farm:
+#                    filter: { kind_detail: [isolated_dwelling,farm] }
+#                    draw:
+#                        icons:
+#                            text:
+#                                font:
+#                                    fill: pink
 
 
             populated-places-natural-earth-z13-z14-backfill:
