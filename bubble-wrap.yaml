@@ -528,7 +528,7 @@ textures:
 sources:
     mapzen:
         # EraserMaps the app only supports MVT format tiles
-        type:  MVT #TopoJSONTiles topojson
+        type:  MVT #TopoJSON
         #url:  http://vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.mvt
         url:  http://tile.dev.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.mvt
         #enforce_winding: true  #because Tangram v0.4 and tiles v0.5-pre don't play nice
@@ -3262,7 +3262,7 @@ layers:
             populated-places-natural-earth-z3:
                 filter: { $zoom: [3] }
                 z3places-1:
-                    #filter: { min_zoom: [0] }
+                    filter: { min_zoom: [2] }
                     draw:
                         icons:
                             size: 5px
@@ -3275,7 +3275,7 @@ layers:
                                     fill: global.text_fill
                                     # stroke: { color: global.text_stroke, width: 4 }
                 z3places-2:
-                    #filter: { min_zoom: [1] }
+                    filter: { min_zoom: [3] }
                     draw:
                         icons:
                             priority: 7
@@ -3291,7 +3291,7 @@ layers:
             populated-places-natural-earth-z4:
                 filter: { $zoom: [4] }
                 z4places-1:
-                    #filter: { scalerank: [0] }
+                    filter: { min_zoom: [2] }
                     draw:
                         icons:
                             size: 5px
@@ -3305,7 +3305,7 @@ layers:
                                     # stroke: { color: global.text_stroke, width: 4 }
 
                 z4places-2:
-                    #filter: { scalerank: [1,2] }
+                    filter: { min_zoom: [3,4] }
                     draw:
                         icons:
                             priority: 7
@@ -3322,7 +3322,7 @@ layers:
             populated-places-natural-earth-z5:
                 filter: { $zoom: [5] }
                 z5places-1:
-                    #filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
                         icons:
                             priority: 7
@@ -3342,7 +3342,7 @@ layers:
                                 sprite: capital-l
 
                 z5places-2:
-                    #filter: { scalerank: [2] }
+                    filter: { min_zoom: [4] }
                     draw:
                         icons:
                             priority: 11
@@ -3362,7 +3362,7 @@ layers:
                                 sprite: capital-m
 
                 z5places-3:
-                    #filter: { scalerank: [3,4] }
+                    filter: { min_zoom: [5] }
                     draw:
                         icons:
                             priority: 17
@@ -3384,7 +3384,7 @@ layers:
             populated-places-natural-earth-z6:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [6] }
                 z6places-1:
-                    #filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
                         icons:
                             priority: 7
@@ -3405,7 +3405,7 @@ layers:
                                 priority: 5
 
                 z6places-2:
-                    #filter: { scalerank: [2,3,4] }
+                    filter: { min_zoom: [4,5] }
                     draw:
                         icons:
                             priority: 11
@@ -3426,7 +3426,7 @@ layers:
                                 priority: 9
 
                 z6places-3:
-                    #filter: { scalerank: [5,6] }
+                    filter: { min_zoom: [6] }
                     draw:
                         icons:
                             size: 5px
@@ -3449,7 +3449,7 @@ layers:
             populated-places-natural-earth-z7:
                 filter: { name: true, source: naturalearthdata.com, $zoom: [7] }
                 z7places-1:
-                    #filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
                         icons:
                             size: 8px
@@ -3470,7 +3470,7 @@ layers:
                                 priority: 5
 
                 z7places-2:
-                    #filter: { scalerank: [2,3,4,5] }
+                    filter: { min_zoom: [4,5,6] }
                     draw:
                         icons:
                             size: 6px
@@ -3491,7 +3491,7 @@ layers:
                                 priority: 11
 
                 z7places-3:
-                    #filter: { scalerank: [6,7] }
+                    filter: { min_zoom: [6,7] }
                     draw:
                         icons:
                             size: 5px
@@ -3635,7 +3635,7 @@ layers:
                 filter: { source: naturalearthdata.com, $zoom: [8], population: { max: 50000 } }
                 draw: { icons: { text: { font: { fill: global.text_fill } } } }
                 z8places-1-ne:
-                    #filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
                         icons:
                             size: 8px
@@ -3655,7 +3655,7 @@ layers:
                                 priority: 21
 
                 z8places-2-ne:
-                    #filter: { scalerank: [2,3,4,5] }
+                    filter: { min_zoom: [4,5,6] }
                     draw:
                         icons:
                             size: 6px
@@ -3672,7 +3672,7 @@ layers:
                                 sprite: capital-m
 
                 z8places-3-ne:
-                    #filter: { scalerank: [6,7] }
+                    filter: { min_zoom: [6,7] }
                     draw:
                         icons:
                             size: 5px
@@ -4217,7 +4217,7 @@ layers:
                         font:
                             fill: global.text_fill
                 z11places-1-ne:
-                    #filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
                         text-blend-order:
                             visible: global.text_visible_populated_places
@@ -4235,7 +4235,7 @@ layers:
                                     #stroke: { color: global.text_stroke, width: 4 }
 
                 z11places-2-ne:
-                    #filter: { scalerank: [2,3,4,5] }
+                    filter: { min_zoom: [4,5,6] }
                     draw:
                         text-blend-order:
                             visible: global.text_visible_populated_places
@@ -4264,7 +4264,7 @@ layers:
                                     #stroke: { color: global.text_stroke, width: 4 }
 
                 z11places-3-ne:
-                    #filter: { scalerank: [6,7,8,9,10,11] }
+                    filter: { min_zoom: [6,7,8,9,10] }
                     draw:
                         text-blend-order:
                             visible: global.text_visible_populated_places
@@ -4702,7 +4702,7 @@ layers:
                             weight: 400
 
                 z13places-1-ne:
-                    #filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
                         text-blend-order:
                             priority: 8
@@ -4710,7 +4710,7 @@ layers:
                             visible: false
 
                 z13places-2-ne:
-                    #filter: { scalerank: [2,3,4,5] }
+                    filter: { min_zoom: [4,5,6] }
                     draw:
                         text-blend-order:
                             priority: 9
@@ -4720,7 +4720,7 @@ layers:
                                 #stroke: { color: global.text_stroke, width: 4 }
 
                 z13places-3-ne:
-                    #filter: { scalerank: [6,7,8,9,10,11,12] }
+                    filter: { min_zoom: [7,8,9,10] }
                     draw:
                         text-blend-order:
                             visible: global.text_visible_populated_places
@@ -5641,34 +5641,38 @@ layers:
                         icons:
                             visible: false
                             text:  { visible: false }
+                hide-early:
+                   filter: { kind: [cafe, restaurant, nursing_home], $zoom: { max: 15 } }
+                   draw:
+                       icons:
+                           visible: false
                 garden-area-early:
-                    filter:
-                        all:
-                            - kind: [garden, allotments]
-                        any:
-                            # limit show smaller landuse areas to higher zooms
-                            - { $zoom: { min: 12 }, area: { max: 500000 } }
-                            - { $zoom: { min: 13 }, area: { max: 100000 } }
-                            - { $zoom: { min: 14 }, area: { max: 50000 } }
-                            - { $zoom: { min: 15 }, area: { max: 20000 } }
-                            - { $zoom: { min: 15 }, area: { max: 2000 } }
-                    draw:
-                        icons:
-                            visible: false
-                z-other-tier6-early:
-                    filter:
-                        all:
-                            - kind: [garden, allotments, parking, pedestrian, common, pitch, place_of_worship, playground, school, nursing_home]
-                        any:
-                            # limit show smaller landuse areas to higher zooms
-                            - { $zoom: { max: 12 } }
-                            - { $zoom: [12], area: { max: 500000 } }
-                            - { $zoom: [13], area: { max: 10000 } }
-                            - { $zoom: [14], area: { max: 4000 } }
-                            - { $zoom: [15], area: { max: 2000 } }
-                    draw:
-                        icons:
-                            visible: false
+                   filter:
+                       all:
+                           - kind: [garden, allotments]
+                       any:
+                           # limit show smaller landuse areas to higher zooms
+                           - { $zoom: [12], area: { max: 500000 } }
+                           - { $zoom: [13], area: { max: 100000 } }
+                           - { $zoom: [14], area: { max: 10000 } }
+                           - { $zoom: [15], area: { max: 5000 } }
+                   draw:
+                       icons:
+                           visible: false
+#                z-other-tier6-early:
+#                    filter:
+#                        all:
+#                            - kind: [garden, allotments, parking, pedestrian, common, pitch, place_of_worship, playground, school, nursing_home]
+#                        any:
+#                            # limit show smaller landuse areas to higher zooms
+#                            - { $zoom: { max: 12 } }
+#                            - { $zoom: [12], area: { max: 500000 } }
+#                            - { $zoom: [13], area: { max: 10000 } }
+#                            - { $zoom: [14], area: { max: 4000 } }
+#                            - { $zoom: [15], area: { max: 2000 } }
+#                    draw:
+#                        icons:
+#                            visible: false
 
             university-poi:
                 filter: { kind: [university, college], area: false, $zoom: { max: 16 } }
@@ -5691,16 +5695,23 @@ layers:
                     icons:
                         visible: false
                         text:  { visible: false }
-            garden-no-area-early:
-                filter: { kind: [garden], $zoom: [16], area: false }
+            garden-no-area-early2:
+                filter: { kind: [garden, allotments], $zoom: { max: 16 }, area: false }
                 draw:
                     icons:
+                        visible: false
+            garden-no-area-early:
+                filter: { kind: [garden, allotments], $zoom: [16], area: false }
+                draw:
+                    icons:
+                        priority: 45
                         size: 14px
                         text:  { font: { size: 10px, style: italic } }
             garden-no-area-later:
-                filter: { kind: [garden], $zoom: { min: 17 }, area: false }
+                filter: { kind: [garden, allotments], $zoom: { min: 17 }, area: false }
                 draw:
                     icons:
+                        priority: 45
                         size: 16px
                         text:  { font: { size: 11px, style: italic } }
             post-office-early:
@@ -6672,6 +6683,7 @@ layers:
                         style: italic
                         size: 11px
                         stroke: { color: global.text_stroke_address, width: 1 }
+
 #        tier1:
 #            filter:
 #                any:
@@ -6990,35 +7002,35 @@ layers:
                     color: global.grey10
                     visible: true
         beach:
-            filter:
-                kind: beach
-            draw:
-                dots2:
-                    color: [0.780,0.740,0.538]
-                    visible: true
-        tier6-early:
-            filter:
-                all:
-                    - kind: [garden, allotments, parking, pedestrian, common, pitch, place_of_worship, playground, school]
-                any:
-                    # limit show smaller landuse areas to higher zooms
-                    - { $zoom: { max: 13 } }
-#                    - { $zoom: [12], area: { max: 50000 } }
-            draw:
-                dots2:
-                    visible: false
+           filter:
+               kind: beach
+           draw:
+               dots2:
+                   color: [0.780,0.740,0.538]
+                   visible: true
+        #tier6-early:
+#            filter:
+#                all:
+#                    - kind: [garden, allotments, parking, pedestrian, common, pitch, place_of_worship, playground, school]
+#                any:
+#                    # limit show smaller landuse areas to higher zooms
+#                    - { $zoom: { max: 13 } }
+##                    - { $zoom: [12], area: { max: 50000 } }
+#            draw:
+#                dots2:
+#                    visible: false
         tier6:
             filter:
                 all:
                     - kind: [garden, allotments, parking, pedestrian, common, pitch, place_of_worship, playground, school]
-                any:
-                    # limit show smaller landuse areas to higher zooms
-                    #- { $zoom: { min: 12 }, area: { min: 500000 } }
-                    - { $zoom: { min: 13 }, area: { min: 100000 } }
-                    - { $zoom: { min: 14 }, area: { min: 50000 } }
-                    - { $zoom: { min: 15 }, area: { min: 20000 } }
-                    - { $zoom: { min: 15 }, area: { min: 2000 } }
-                    - { $zoom: { min: 16 }, area: true }
+                #any:
+#                    # limit show smaller landuse areas to higher zooms
+#                    #- { $zoom: { min: 12 }, area: { min: 500000 } }
+#                    - { $zoom: { min: 13 }, area: { min: 100000 } }
+#                    - { $zoom: { min: 14 }, area: { min: 50000 } }
+#                    - { $zoom: { min: 15 }, area: { min: 20000 } }
+#                    - { $zoom: { min: 15 }, area: { min: 2000 } }
+#                    - { $zoom: { min: 16 }, area: true }
             garden:
                 filter:
                     kind: [garden, allotments]
@@ -7163,7 +7175,6 @@ layers:
                 kind:
                     - runway
                     - apron
-                    - beach
                     - roller_coaster
                     - amusement_ride
                     - summer_toboggan
