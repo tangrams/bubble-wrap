@@ -148,6 +148,11 @@ global:
     sdk_order_under_everything_8: 8
     sdk_order_under_everything_9: 9
     #
+    # TRANSIT OVERLAY
+    # should default to "auto", with SDK overriding it to true or false,
+    # or app logic sets other booleans that triggers auto behavior later
+    sdk_transit_overlay: false
+    #
     # default order for basemap features
     feature_order: function() { return feature.sort_rank; }
     #
@@ -161,6 +166,7 @@ global:
     text_visible_building: true
     text_visible_address: true
     text_visible_water_labels: true
+    text_visible_island: true
     label_visible_landuse_green: true
     icon_visible_landuse_green: true
     text_visible_landuse_green: true
@@ -190,6 +196,7 @@ global:
     text_visible_piste: true
     text_visible_steps: true
     text_visible_aerialway: true
+    text_visible_airport_gate: true
     text_visible_shields: true
     text_visible_exits: true
     #
@@ -282,12 +289,11 @@ global:
     fence: [0.827,0.808,0.780]
     #
     #landuse
-    scene1: '#eee'                          # map background, water
     water1: [0.83, 0.83, 0.83]              # water
     water2: [.75,.75,.75]                   # playa
     water1_o: '#9dc3de'                     # water stroke
     water2_o: '#9dc3de'                     # water stroke 2
-    earth1: '#666'                          # land color
+    earth1: [0.870,0.870,0.870]             # land color, used to set scene background color
     earth1_r: '#666'                        # land color road
     earth2: '#e9e4e0'                       # urban
     earth2_v: false                         # urban
@@ -362,7 +368,10 @@ global:
     building1: [0.784, 0.784, 0.784]        # building
     building2: [.860, .860, .860]           # building stroke
     building_o:  5                          # building stroke order
-    building_e: true                        # building stroke order
+    building_e: true                        # building stroke order early
+    building_extrude: true                  # building extrusion toggle
+    building_extrude_height: |              # building extrude height logic
+        function() { return feature.height || 20; }
 
 
 textures:
@@ -533,8 +542,10 @@ sources:
         url:  http://tile.dev.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.mvt
         #enforce_winding: true  #because Tangram v0.4 and tiles v0.5-pre don't play nice
         #url:  //localhost:8080/osm/all/{z}/{x}/{y}.mvt
-        #url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-P6dkVl4
+        #url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
         # road labels in Tangram JS are broken when overzooming, set max_zoom: 18 to preview fix
+        url_params:
+            api_key: vector-tiles-P6dkVl4
         max_zoom: 16
 
 #    # Only enable this for local debug, should not be enabled for prod (app inserts these at runtime)
@@ -858,7 +869,7 @@ styles:
                 WALL_TINT: vec3(1., 3., .800)
             blocks:
                 color: |
-                    if (dot(vec3(0., 0., 1.), worldNormal()) < 1.0 - TANGRAM_EPSILON) {
+                    if (dot(vec3(0., 0., 1.), worldNormal()) < .5) {
                         // If it's a wall
                         color.rgb = hsv2rgb(rgb2hsv(color.rgb) * WALL_TINT);
                         color.rgb = mix(color.rgb, vec3(0.),
@@ -955,7 +966,7 @@ styles:
 
 scene:
     background:
-        color: global.scene1
+        color: global.earth1
 
 layers:
     # Map overlays for styling the server response (using special source layer names) for route line, current location, and search result pins
@@ -1104,13 +1115,6 @@ layers:
                 width: 0px
 
     # Basemap styling
-    earth:
-        data: { source: mapzen, layer: earth }
-        draw:
-            polygons:
-                order: global.feature_order
-                color: [0.870,0.870,0.870]
-
     water:
         data: { source: mapzen, layer: water }
         draw:
@@ -1252,15 +1256,14 @@ layers:
                 text-blend-order:
                     visible: false
 
-    transit:
+    transit-basemap:
         data: { source: mapzen, layer: transit }
-        filter: { $zoom: { min: 14 } }
-        transit_lines:
-            filter: { not: { kind: [platform] } }
+        subway-light-rail:
+            filter: { not: { kind: [platform] }, $zoom: { min: 14 } }
             draw:
                 lines:
                     interactive: true
-                    order: function() { return feature.sort_rank || 275; }
+                    order: function() { return feature.sort_key || 275; }
             railway:
                 filter: { kind: [railway,train] }
                 draw:
@@ -1284,14 +1287,9 @@ layers:
             filter: { kind: platform }
             draw:
                 lines_transparent:
-                    order: function() { if($zoom<17) { return feature.sort_rank; } else { return 435; } }
                     color: [0.569,0.690,0.722,0.5]
                     width: 5m
                     visible: global.grey9_v
-                polygons_transparent:
-                    order: function() { if($zoom<17) { return feature.sort_rank; } else { return 435; } }
-                outline_transparent:
-                    order: function() { if($zoom<17) { return feature.sort_rank; } else { return 436; } }
             polygon_geom:
                 filter: { $geometry: polygon }
                 draw:
@@ -1303,9 +1301,32 @@ layers:
                     outline_transparent:
                         color: global.grey9_o
                         width: [[16,0px],[17,0.5px],[19,2px]]
+            z-order:
+                draw:
+                    lines_transparent:
+                        order: function() { if($zoom<17) { return feature.sort_rank; } else { return 435; } }
+                        color: [0.569,0.690,0.722,0.5]
+                        width: 5m
+                        visible: global.grey9_v
+                    polygons_transparent:
+                        order: function() { if($zoom<17) { return feature.sort_rank; } else { return 435; } }
+                    outline_transparent:
+                        order: function() { if($zoom<17) { return feature.sort_rank; } else { return 436; } }
+                polygon_geom:
+                    filter: { $geometry: polygon }
+                    draw:
+                        polygons_transparent:
+                            color: [0.592,0.671,0.694,0.5]
+                            visible: global.grey9_v
+                        lines_transparent:
+                            visible: false
+                        outline_transparent:
+                            color: global.grey9_o
+                            width: [[16,0px],[17,0.5px],[19,2px]]
 
-    roads_and_transport:
+    roads:
         data: { source: mapzen, layer: roads }
+        filter: { not: { kind: rail } }
         draw:
             lines:
                 interactive: true
@@ -1322,41 +1343,8 @@ layers:
                     weight: 400
                     fill: global.text_fill
 
-        railway-late:
-            filter: { kind: rail, not: { kind_detail: [subway,light_rail,tram] } }
-            draw:
-                lines:
-                    interactive: true
-                    order: global.feature_order
-                    color: [0.588,0.671,0.698]
-                    width: [[12,0px],[13,0.25px],[14,0.4px],[15,0.75px],[16,0.75px],[18,1m]]
-            service:
-                filter: { service: true }
-                draw:
-                    lines:
-                        color: [0.588,0.671,0.698]
-                        width: [[14,0px],[15,0.3px],[16,0.5px],[18,0.75px],[19,0.5m]]
-            z-order:
-                #filter: { $zoom: {min: 12} }
-                draw:
-                    lines:
-                        # let roads sort themselves past zoom 14
-                        order: global.feature_order
-                        # but give them all the same outline
-                        outline:
-                            order: 354
-
-                bridges-tunnels:
-                    filter: { any: [is_bridge: true, is_tunnel: true] }
-                    draw:
-                        lines:
-                            outline:
-                                # except bridges and tunnels, their outlines should also self-sort
-                                order: function() { return feature.sort_rank || 305; }
-
         natural_earth_highways:
             filter: { source: 'naturalearthdata.com' }
-            # default is for kind: highway
             draw:
                 lines:
                     # Perf impact (too many vertices)
@@ -1365,19 +1353,19 @@ layers:
                     color: global.highway1
                     width: [[5, 1px], [7, 1.4px], [9, 1.5px], [14, 3px], [16, 4px], [17, 10m]]
             major_road:
-                filter: { kind: major_road }
+                filter: { type: ['Secondary Highway','Road'] }
                 draw:
                     lines:
                         color: [0.980,0.601,0.559]
                         width: [[5, 0.45px], [6, 0.75px], [7, 1.0px], [8, 1px]]
             minor_road:
-                filter: { kind: minor_road }
+                filter: { type: 'Unknown' }
                 draw:
                     lines:
                         color: [[12, global.minor_road1], [17, global.minor_road2]]
                         width: [[12, 1.0px], [14, 1.5px], [15, 3px], [16, 5m]]
             ferry:
-                filter: { kind: [ferry] }
+                filter: { kind: Ferry }
                 draw:
                     lines:
                         color: [0.702,0.843,0.933]
@@ -2104,7 +2092,7 @@ layers:
                         join: round
 
             in_park:
-                filter: { landuse_kind: [park,protected_area,nature_reserve,conservation,golf_course,garden,wood,natural_wood,farmland,farm] }
+                filter: { landuse_kind: [park,protected_area,nature_reserve,conservation,golf_course,garden,wood,farmland,farm] }
                 draw:
                     lines:
                         #todo: is the width here right?
@@ -2241,7 +2229,7 @@ layers:
                         join: round
 
             in_park:
-                filter: { landuse_kind: [park,forest,natural_forest,nature_reserve,conservation,golf_course,garden] }
+                filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
                 draw:
                     lines:
                         #todo: is the color necc here?
@@ -2585,7 +2573,7 @@ layers:
                     color: [0.600,0.667,0.627]
                     width: [[13,0.5px],[14,1px],[15, 1px], [16, 1.5px], [18, 3px], [19, 5px]]
         airport-lines:
-            filter: { kind: aeroway }
+            filter: { kind: minor_road, aeroway: [runway,taxiway] }
             draw:
                 lines:
                     color: [[10,[0.4,0.4,0.4]],[11,[0.50,0.50,0.50]],[12,[0.7,0.7,0.7]],[13,[0.75,0.75,0.75]],[14,[0.95,0.95,0.95]]]
@@ -2687,6 +2675,38 @@ layers:
                         # except bridges and tunnels, their outlines should also self-sort
                         order: global.feature_order
 
+        railway-late:
+            filter: { kind: rail, not: { railway: [subway,light_rail,tram] } }
+            draw:
+                lines:
+                    interactive: true
+                    order: global.feature_order
+                    color: [0.588,0.671,0.698]
+                    width: [[12,0px],[13,0.25px],[14,0.4px],[15,0.75px],[16,0.75px],[18,1m]]
+            service:
+                filter: { service: true }
+                draw:
+                    lines:
+                        color: [0.588,0.671,0.698]
+                        width: [[14,0px],[15,0.3px],[16,0.5px],[18,0.75px],[19,0.5m]]
+            z-order:
+                #filter: { $zoom: {min: 12} }
+                draw:
+                    lines:
+                        # let roads sort themselves past zoom 14
+                        order: global.feature_order
+                        # but give them all the same outline
+                        outline:
+                            order: 354
+
+                bridges-tunnels:
+                    filter: { any: [is_bridge: true, is_tunnel: true] }
+                    draw:
+                        lines:
+                            outline:
+                                # except bridges and tunnels, their outlines should also self-sort
+                                order: function() { return feature.sort_key || 305; }
+
     buildings:
         data: { source: mapzen, layer: buildings }
         filter:
@@ -2758,10 +2778,8 @@ layers:
 #                    - { $zoom: [16], volume: { min: 50000 } }
 #                    - { $zoom: { min: 17 }, area: true }
             draw:
-                polygons:
-                    visible: true
-                lines:
-                    visible: true
+                polygons: { visible: true }
+                lines: { visible: true }
 
         #z_early-not-important:
 #            filter: { scale_rank: [5,6] }
@@ -2822,10 +2840,9 @@ layers:
                     lines:
                         extrude: 8
 
-
         # landuse-specific rules
         in_park:
-            filter: { landuse_kind: [park,forest,natural_forest,nature_reserve,conservation,golf_course,garden] }
+            filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
             draw:
                 polygons:
                     color: [0.864,0.910,0.905]
@@ -2875,6 +2892,24 @@ layers:
            draw:
                 polygons:
                     color: [0.945, 0.898, 0.878]
+
+        transit-overlay-station-buildings:
+            filter:
+                any:
+                    - landuse_kind: [station]
+            draw:
+                polygons:
+                    visible: global.sdk_transit_overlay
+                    color: '#bdadbf'
+                    order: 500
+                    #extrude: function() { return feature.height || 20; }
+                outline:
+                    visible: global.sdk_transit_overlay
+                    style: lines
+                    order: 501
+                    color: '#d534df'
+                    width: [[14,0.1px],[15,0.5px],[17,0.5px],[18,0.75px],[19,0.25m]]
+                    #extrude: function() { return feature.height || 20; }
 
         buildings-labels:
             filter:
@@ -2968,9 +3003,9 @@ layers:
             filter:
                 any:
                     - kind: country
+                    - admin_level: 2
             draw:
                 lines:
-                    interactive: true
                     color: global.country_boundary
                     width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [9, 2.5px], [14, 3.5px], [16, 4.5px], [17, 14m]]
             water:
@@ -2978,27 +3013,20 @@ layers:
                 draw:
                     lines:
                         visible: false
-
         other_country_boundary_disputed_etc:
             filter: { kind: [disputed, indefinite, indeterminate, lease_limit, line_of_control, overlay_limit] }
             draw:
                 dashed:
-                    interactive: true
                     order: global.feature_order
                     color: global.country_boundary
                     width: [[1, 0.2px], [2, 0.5px], [4, 1.0px], [9, 1.5px], [14, 2.5px], [16, 3.5px], [17, 10m]]
-
         region:
             filter:
                 any:
                     - kind: [region,macroregion]
                     - kind_detail: [3,4]
-                not:
-                    # deal with bogus Hungary data
-                    - scalerank: 0
             draw:
                 lines:
-                    interactive: true
                     color: global.region_boundary
                     width: [[0, 0.5px], [2, 1.0px], [5, 1.25px], [6, 1.5px], [7, 1.75px], [9, 3.5px], [14, 5.5px], [16, 6.5px], [17, 16m]]
             water:
@@ -3011,6 +3039,30 @@ layers:
                 draw:
                     lines:
                         visible: false
+        city_walls:
+            filter: { kind: city_wall }
+            draw:
+                lines:
+                    color: global.city_wall
+                    width: [[12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.0px], [16, 2.5px], [19, 6m]]
+        retaining_wall:
+            filter: { kind: retaining_wall }
+            draw:
+                lines:
+                    color: global.retaining_wall
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 4m]]
+        snow_fence:
+            filter: { kind: snow_fence }
+            draw:
+                lines:
+                    color: global.snow_fence
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1.5m]]
+        fence:
+            filter: { kind: fence }
+            draw:
+                lines:
+                    color: global.fence
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1.5m]]
 
     places:
         data: { source: mapzen, layer: places }
@@ -3172,7 +3224,7 @@ layers:
                         visible: false
 
         region-z4:
-            filter: { name: true, kind: [region], $zoom: [4], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+            filter: { name: true, kind: [state], $zoom: [4], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text-blend-order:
                     priority: 14
@@ -3184,7 +3236,7 @@ layers:
                         fill: [0.3,0.3,0.3]
 
         region-z5:
-            filter: { name: true, kind: [region], $zoom: [5], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+            filter: { name: true, kind: [state], $zoom: [5], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text-blend-order:
                     priority: 14
@@ -3196,7 +3248,7 @@ layers:
                         fill: [0.3,0.3,0.3]
 
         region-z6:
-            filter: { name: true, kind: [region], $zoom: [6], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+            filter: { name: true, kind: [state], $zoom: [6], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text-blend-order:
                     priority: 14
@@ -3208,7 +3260,7 @@ layers:
                         fill: [0.4,0.4,0.4]
 
         region:
-            filter: { name: true, kind: [region], $zoom: [7,8] }  # someday: province
+            filter: { name: true, kind: [state], $zoom: [7,8] }  # someday: province
             draw:
                 text-blend-order:
                     priority: 14
@@ -3525,7 +3577,6 @@ layers:
                     all:
                         - source: openstreetmap.org
                         - $zoom: [8]
-
                 z8places-1:
                     filter:
                         any:
@@ -3829,7 +3880,7 @@ layers:
                     all:
                         - source: openstreetmap.org
                         - $zoom: [9]
-                        - kind_detail: [city,town]
+                        - kind: [city,town]
                 draw:
                     icons:
                         size: 5px
@@ -3986,7 +4037,7 @@ layers:
                     all:
                         - source: openstreetmap.org
                         - $zoom: [10]
-                        - kind_detail: [city,town]
+                        - kind: [city,town]
                 draw:
                     icons:
                         size: 5px
@@ -4056,7 +4107,6 @@ layers:
                         - source: openstreetmap.org
                         - $zoom: [11]
                         - population: true
-
                 no-townspots:
                     filter: { kind_detail: [city,town] }
 
@@ -4252,11 +4302,8 @@ layers:
                                 font:
                                     size: 16px
                                     #stroke: { color: global.text_stroke, width: 4 }
-                    region_capital:
-                        filter:
-                            any:
-                                - state_capital: true
-                                - region_capital: true
+                    state_capital:
+                        filter: { state_capital: true }
                         draw:
                             text-blend-order:
                                 priority: 12
@@ -4313,7 +4360,6 @@ layers:
                         - $zoom: [12]
                         - source: openstreetmap.org
                         - population: true
-
                 no-townspots:
                     filter: { kind_detail: [city,town] }
 
@@ -4961,18 +5007,15 @@ layers:
                 tennis:
                     filter: { sport: tennis }
                     draw: { icons: { sprite: tennis } }
-            gate:
-                filter: { kind: gate, $zoom: { min: 19 }  }
-                draw: { icons: { sprite: generic, visible: global.icon_visible_poi_landuse_e } }
             toilets:
                 filter: { kind: toilets, $zoom: { min: 18 }  }
                 draw: { icons: { sprite: toilets, visible: global.icon_visible_poi_landuse_e } }
             playground:
                 filter: { kind: playground, $zoom: { min: 18 }  }
                 draw: { icons: { sprite: playground, visible: global.icon_visible_poi_landuse_e } }
-#            picnic_site:
-#                filter: { kind: [picnic_site,picnic_spot], $zoom: { min: 18 }  }
-#                draw: { icons: { sprite: generic, visible: global.icon_visible_poi_landuse_e } }
+            picnic_site:
+                filter: { kind: picnic_site, $zoom: { min: 18 }  }
+                draw: { icons: { sprite: picnic-spot, visible: global.icon_visible_poi_landuse_e } }
             information:
                 filter: { kind: information, $zoom: { min: 18 }  }
                 draw: { icons: { sprite: information, visible: global.icon_visible_poi_landuse_e } }
@@ -4982,9 +5025,6 @@ layers:
             traffic-signal:
                 filter: { kind: traffic_signals, $zoom: { min: 18 } }
                 draw:   { icons: { sprite: traffic-signal, visible: global.icon_visible_poi_landuse_e } }
-            toll-booth:
-                filter: { kind: [toll_booth, checkpoint, border_control], $zoom: { min: 16 } }
-                draw:   { icons: { sprite: generic } }
             bicycle-parking:
                 filter: { kind: [bicycle_parking], $zoom: { min: 19 } }
                 draw:   { icons: { sprite: bicycle-parking, visible: global.icon_visible_poi_landuse_e } }
@@ -5308,7 +5348,7 @@ layers:
                     draw: { text-blend-order: { visible: false } }
                 early2:
                     filter: { $zoom: { min: 12, max: 14 } }
-                    draw: { icons: { text: { size: 11px } } }
+                    draw: { icons: { text: { font: { size: 11px } } } }
             school:
                 filter:
                     all:
@@ -5412,7 +5452,7 @@ layers:
                                 weight: 400
                 early-sizing:
                     filter: { $zoom: { max: 14 } }
-                    draw: { icons: { text: { size: 11px } } }
+                    draw: { icons: { text: { font: { size: 11px } } } }
             playgrounds_allotments_attraction_landmark_supermarket:
                 filter:
                     all:
@@ -5436,7 +5476,7 @@ layers:
                     filter: { kind: [attraction] }
                     draw:
                         icons:
-                            sprite: generic
+                            sprite: attraction
                 landmark:
                     filter: { kind: [landmark] }
                     draw:
@@ -5543,10 +5583,11 @@ layers:
                         priority: 42
                         text:
                             visible: global.text_visible_station
-                            fill: [0.20,0.20,0.20] # *text_fill
-#                            size: 10px
-                            weight: 600
-                            stroke: { color: global.text_stroke, width: 4 }
+                            font:
+                                fill: [0.20,0.20,0.20] # *text_fill
+                                # size: 10px
+                                weight: 600
+                                stroke: { color: global.text_stroke, width: 4 }
                 low-priority-early:
                     filter: { kind_tile_rank: { min: 5 }, $zoom: { min: 0, max: 13 } }
                     draw:
@@ -5898,7 +5939,7 @@ layers:
                     filter: { kind: [erotic, adult_boutique] }
                     draw:   { icons: { sprite: adult-boutique } }
                 allotments:
-                    filter: { kind: [garden,allotments] }
+                    filter: { kind: [allotments] }
                     draw:   { icons: { sprite: garden } }
                 airport:
                     filter: { kind: [airport, aerodrome] }
@@ -6211,7 +6252,7 @@ layers:
                     draw:   { icons: { sprite: photography-lab } }
                 picnic-spot:
                     filter: { kind: [picnic_site, picnic_spot, picnic-spot, picnic_table] }
-                    draw:   { icons: { sprite: generic } }
+                    draw:   { icons: { sprite: picnic-spot } }
                 pool:
                     filter: { kind: [pool, swimming_pool, water_park] }
                     draw:   { icons: { sprite: pool } }
@@ -6237,8 +6278,8 @@ layers:
                     filter: { kind: [rental-car, car_rental, car_sharing] }
                     draw:   { icons: { sprite: rental-car } }
                 rest-area:
-                    filter: { kind: [rest_area, service_area, rest-area] }
-                    draw:   { icons: { sprite: generic } }
+                    filter: { kind: [rest_area, rest-area] }
+                    draw:   { icons: { sprite: rest-area } }
                 restaurant:
                     filter: { kind: [restaurant, deli] }
                     draw:   { icons: { sprite: restaurant } }
@@ -6316,7 +6357,7 @@ layers:
                     draw:   { icons: { sprite: thrift-vintage-store } }
                 toll-booth:
                     filter: { kind: [toll_booth, checkpoint, border_control] }
-                    draw:   { icons: { sprite: generic } }
+                    draw:   { icons: { sprite: toll-booth } }
                 toy-game-store:
                     filter: { kind: [toys, toy-game-store, baby_goods] }
                     draw:   { icons: { sprite: toy-game-store } }
@@ -6362,7 +6403,7 @@ layers:
                     draw:   { icons: { sprite: ski-area } }
 
         airport-gate:
-            filter: { kind: aeroway_gate }
+            filter: { kind: gate, aeroway: gate }
             draw:
                 icons:
                     visible: false
@@ -7134,132 +7175,441 @@ layers:
                     color: [0.602,0.860,0.722]
                     width: [[16,0.5px],[17,1px],[19,1m]]
 
-        city_walls:
-            filter: { kind: city_wall }
+    landuse-not-filtered:
+        data: { source: mapzen, layer: landuse }
+        # runways and taxiways are also in the roads layer as lines
+        # these ones are probably duplicate features, but have AREA (a good thing)
+        filter:
+            kind:
+                - runway
+                - apron
+                - beach
+                - roller_coaster
+                - amusement_ride
+                - summer_toboggan
+                - trail_riding_station
+                - water_slide
+                - carousel
+                - animal
+                - enclosure
+                - petting_zoo
+                - aviary
+        draw:
+            dots2:
+                order: global.feature_order
+                visible: false
+            dots-rev:
+                order: global.feature_order
+                visible: false
+            polygons:
+                visible: false
+                order: global.feature_order
+        runway:
+            filter:
+                kind: runway
             draw:
-                lines:
-                    order: global.feature_order
-                    color: global.city_wall
-                    width: [[12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.0px], [16, 2.5px], [19, 6m]]
-        retaining_wall:
-            filter: { kind: retaining_wall }
+                polygons:
+                    visible: true
+                    color: [[10,[0.4,0.4,0.4]],[11,[0.50,0.50,0.50]],[12,[0.7,0.7,0.7]],[13,[0.75,0.75,0.75]],[14,[0.95,0.95,0.95]]]
+        apron:
+            filter:
+                kind: apron
+                $zoom: { min: 15}
             draw:
-                lines:
-                    order: global.feature_order
-                    color: global.retaining_wall
-                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 4m]]
-        snow_fence:
-            filter: { kind: snow_fence }
-            draw:
-                lines:
-                    order: global.feature_order
-                    color: global.snow_fence
-                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1.5m]]
-        fence:
-            filter: { kind: fence }
-            draw:
-                lines:
-                    order: global.feature_order
-                    color: global.fence
-                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1.5m]]
-
-        landuse-not-filtered:
-            # runways and taxiways are also in the roads layer as lines
-            # these ones are probably duplicate features, but have AREA (a good thing)
+                dots-rev:
+                    visible: true
+                    color: [0.820,0.820,0.820]
+        minor-amusement-park-landuse:
             filter:
                 kind:
-                    - runway
-                    - apron
                     - roller_coaster
                     - amusement_ride
                     - summer_toboggan
                     - trail_riding_station
                     - water_slide
                     - carousel
+            draw:
+                dots2:
+                    color: global.grey12
+                    visible: true
+        minor-zoo-landuse:
+            filter:
+                kind:
                     - animal
                     - enclosure
                     - petting_zoo
                     - aviary
-                    - rest_area
-                    - service_area
-                    - camp_site
-                    - caravan_site
             draw:
                 dots2:
-                    order: global.feature_order
-                    visible: false
-                dots-rev:
-                    order: global.feature_order
-                    visible: false
-                polygons:
-                    visible: false
-                    order: global.feature_order
-            runway:
-                filter:
-                    kind: runway
-                draw:
-                    polygons:
-                        visible: true
-                        color: [[10,[0.4,0.4,0.4]],[11,[0.50,0.50,0.50]],[12,[0.7,0.7,0.7]],[13,[0.75,0.75,0.75]],[14,[0.95,0.95,0.95]]]
-            apron:
-                filter:
-                    kind: apron
-                    $zoom: { min: 15}
-                draw:
-                    dots-rev:
-                        visible: true
-                        color: [0.820,0.820,0.820]
-            rest_area_service_area:
-                filter:
-                    kind: [rest_area, service_area]
-                    $zoom: { min: 13}
-                draw:
-                    dots-rev:
-                        visible: true
-                        color: [0.820,0.820,0.820]
-            camp_site_caravan_site:
-                filter:
-                    kind: [camp_site, caravan_site]
-                    $zoom: { min: 13}
-                draw:
-                    dots-rev:
-                        visible: true
-                        color: [0.820,0.820,0.820]
-            minor-amusement-park-landuse:
-                filter:
-                    kind:
-                        - roller_coaster
-                        - amusement_ride
-                        - summer_toboggan
-                        - trail_riding_station
-                        - water_slide
-                        - carousel
-                draw:
-                    dots2:
-                        color: global.grey12
-                        visible: true
-            minor-zoo-landuse:
-                filter:
-                    kind:
-                        - animal
-                        - enclosure
-                        - petting_zoo
-                        - aviary
-                draw:
-                    dots2:
-                        color: global.green11
-                        visible: true
+                    color: global.green11
+                    visible: true
+    landuse_urban_area-early:
+        data: { source: mapzen, layer: landuse }
+        filter:
+            # This is from Natural Earth and only shows up from zoom(0,9)
+            kind: [urban_area, 'urban area']
+        draw:
+            dots2:
+                visible: global.earth2_ev
+                order: global.feature_order
+                color: [[4,[0.965,0.600,0.882]],[6,[0.965,0.600,0.882]],[7,[0.882,0.639,0.827]],[8,[0.757,0.729,0.753]]]
 
-        landuse_urban_area-early:
+    transit-overlay-rail-lines:
+        data: { source: mapzen, layer: transit }
+        filter:
+            not: { kind: [platform, railway] }
+        draw:
+            lines:
+                order: 499
+                visible: global.sdk_transit_overlay
+                color: purple
+                width: [[5,1.5px],[6,2px],[11,3px],[18,4px]]
+                interactive: true
+                outline:
+                    color: [1.,1.,1.,.8]
+                    width: [[7,0px],[8,0.25px],[9,0.5px],[12,1.0px],[13,1.75px],[14,2px]]
+                    #width: [[12,1.0px],[13,1.75px],[14,2px]]
+        train-sizing-color:
+            filter: { kind: train }
+            draw:
+                lines:
+                    color: purple
+                    width: [[5,1.0px],[6,1.0px],[7,1.25px],[11,2.0px],[13,2.5px],[18,3.5px]]
+                    outline:
+                        width: [[12,1.0px],[13,1.75px],[14,2px]]
+            stack-below-other-transit-later-zooms:
+                filter: { $zoom: { min: 9 } }
+                draw:
+                    lines:
+                        order: 511
+        subway-sizing:
+            filter: { kind: subway }
+            draw:
+                lines:
+                    width: [[9,1px],[11,2px],[12,3px],[13,4px],[15,5px],[16,7px],[17,9px]]
+                    outline:
+                        #color: [[10,white],[11,black]]
+                        width: [[9,0px],[10,0.5px],[12,1.25px],[13,1.5px],[15,2px]]
+                        #width: [[12,1.5px],[13,2.0px],[14,2.5px]]
+        light-rail-and-tram-sizing:
+            filter: { kind: [light_rail, tram] }
+            draw:
+                lines:
+                    width: [[10,1px],[12,1.5px],[15,2px],[18,3.5px]]
+                    outline:
+                        #color: [[11,white],[12,black]]
+                        width: [[12,0.25px],[13,0.5px],[14,1px],[16,2px]]
+        has-data-color:
+            filter: { colour: true }
+            draw:
+                lines:
+                    order: 510
+                    width: [[9,2px],[11,3px],[12,4px]]
+                    color: function() { return feature.colour || 'purple'; }
+                    #outline:
+                        #color: function() { if(feature.colour == 'silver') { return 'black'; } else { return [0.,0.,0.,.1]; } }
+                        #width: [[12,1.0px],[13,1.75px],[14,2px]]
+            train-with-color:
+                filter: { kind: train }
+                draw:
+                    lines:
+                        order: 514
+            subway-with-color:
+                filter: { kind: subway }
+                draw:
+                    lines:
+                        order: 513
+            light-rail-and-tram-with-color:
+                filter: { kind: [light_rail, tram] }
+                draw:
+                    lines:
+                        order: 512
+        missing-colour:
+            filter: { colour: false }
+            train-missing-color:
+                filter: { kind: train, colour: false }
+                draw:
+                    lines:
+                        #width: [[5,1.25px],[6,1.75px],[11,2.0px],[13,2.5px],[18,2.5m]]
+                        order: 506
+            subway-missing-color:
+                filter: { kind: subway, colour: false }
+                draw:
+                    lines:
+                        order: 505
+                        #outline:
+#                            width: [[12,1.5px],[13,2.0px],[14,2.5px]]
+            light-rail-and-tram-missing-color:
+                filter: { kind: [light_rail, tram], colour: false }
+                draw:
+                    lines:
+                        order: 504
+        labels-transit-lines-early:
+            filter: { $zoom: [13,14], ref: true }
+            draw:
+                text:
+                    visible: global.sdk_transit_overlay
+                    priority: 20
+                    text_source: function() { if( feature.ref.length < 4 ) { return feature.ref; } else { return ''; } }
+                    font:
+                        fill: black
+                        size: 12px
+                        weight: bold
+                        stroke: { color: white, width: 2 }
+        labels-transit-lines:
+            filter: { $zoom: { min: 15 } }
+            draw:
+                text:
+                    visible: global.sdk_transit_overlay
+                    priority: 20
+                    text_source: ref
+                    font:
+                        fill: black
+                        size: 14px
+                        weight: bold
+                        stroke: { color: white, width: 2 }
+            z19-show-long-route-name:
+                filter: { $zoom: { min: 19 } }
+                draw:
+                    text:
+                        text_source: function() { return feature.route_name || feature.ref; }
+                        font:
+                            stroke: { color: white, width: 3px }
+
+#    transit-bus-roads:
+#        data: { source: mapzen, layer: roads }
+#        filter: { is_bus_route: true }
+#        draw:
+#            lines:
+#                visible: global.sdk_transit_overlay
+#                interactive: false
+#                color: [[13,[0,0,1,0.5]],[15,blue]]
+#                width: [[11,0.5px],[12,0.8px],[16,1.25px],[18,1m]]
+#                # let roads sort themselves past zoom 14
+#                order: 488
+#                # but give them all the same outline
+#                outline:
+#                    order: 487
+
+    transit-overlay-station-labels:
+        data: { source: mapzen, layer: [pois] }
+        filter:
+            kind: [station, tram_stop, bus_station, subway_entrance, halt, stop, platform, bus_stop, stop_position ]
+            any:
+                - area: false
+                  all:
+                - area: true
+                  all:
+                      - $geometry: point
+                      - kind: true
+        draw:
+            icons:
+                visible: global.sdk_transit_overlay
+                size: [[13, 12px], [16, 16px], [19, 20px]]
+                interactive: true
+                priority: 15
+                text:
+                    buffer: 4px
+                    move_into_tile: false # preserves text alignment w/icons in JS
+                    #anchor: bottom
+                    #offset: [[13, [0, 6px]], [16, [0, 8px]], [19, [0, 10px]]] # offset tracks alongside icon size (half icon height)
+                    interactive: true
+                    priority: 16
+                    font:
+                        weight: 500
+                        fill: black
+                        weight: 400
+                        size: 11px
+                        stroke: { color: white, width: 3 }
+        poi_labels-z14:
+            filter: { $zoom: [14] }
+            draw: { icons: { text: { font: { size: 11px } } } }
+        poi_labels-z15:
+            filter: { $zoom: [15,16,17] }
+            draw: { icons: { text: { font: { size: 12px, stroke: { width: 2 } } } } }
+        poi_labels-z18:
+            filter: { $zoom: [18,19] }
+            draw: { icons: { text: { font: { size: 12px, weight: 600, stroke: { width: 3 } } } } }
+        poi_labels-z20-up:
+            filter: { $zoom: { min: 20 } }
+            draw: { icons: { text: { font: { size: 14px, weight: 600, stroke: { width: 3 }  } } } }
+        station-train-subway:
+            filter: { kind: [station, train-station, train_station] } #, $zoom: { min: 13 }
+            draw:
+                icons:
+                    sprite: train-station
+                    size: [[13, 12px], [14, 14px], [15, 16px], [17, 20px]]
+                    priority: 11
+                    text:
+                        #offset: [[13, [0, 6px]], [14, [0, 7px]],[15, [0, 8px]], [17, [0, 10px]]]
+                        priority: 12
+            low-priority-early:
+                filter: { kind_tile_rank: { min: 3 }, $zoom: { min: 0, max: 12 } }
+                draw:
+                    icons:
+                        size: [[12, 5px], [14, 6px], [15, 16px]]
+                        text:
+                            visible: false
+                long-tail:
+                    filter: { kind_tile_rank: { min: 10 }, $zoom: [10] }
+                    draw:
+                        icons:
+                            visible: false
+            low-priority-early-z12:
+                filter: { kind_tile_rank: { min: 8 }, $zoom: [12] }
+                draw:
+                    icons:
+#                        visible: false
+                        size: [[12, 5px], [14, 6px], [15, 16px]]
+                        text:
+                            visible: false
+            low-priority-early-z13:
+                filter: { kind_tile_rank: { min: 8 }, $zoom: [13] }
+                draw:
+                    icons:
+                        #visible: false
+                        size: [[12, 8px], [14, 6px], [15, 16px]]
+                        text:
+                            visible: false
+            low-priority-early-z14:
+                filter: { kind_tile_rank: { min: 7 }, $zoom: [14] }
+                draw:
+                    icons:
+                        size: [[12, 10px], [14, 11px], [15, 16px]]
+                        #visible: false
+                        text:
+                            visible: false
+            late:
+                filter: { $zoom: { min: 16 } }
+                draw:
+                    icons:
+                        text:
+                            font:
+                                weight: 600
+                                size: 12px
+        subway-early:
+            filter: { is_subway: true, is_train: false, $zoom: { max: 12 } }
+            draw:
+                icons:
+                    visible: false
+                    text:
+                        visible: false
+        halt-early:
+            filter: { kind: [halt,stop], $zoom: { max: 15 } }
+            draw:
+                icons:
+                    size: [[15, 8px], [16, 18px]]
+                    visible: global.sdk_transit_overlay
+                    sprite: light-rail
+                    text:
+                        visible: false
+        platform-early:
+            filter: { kind: [platform] }
+            draw:
+                icons:
+                    size: [[15, 8px], [16, 18px]]
+                    visible: global.sdk_transit_overlay
+                    sprite: generic
+                    text:
+                        visible: false
+        tram-stop-early:
+            filter: { kind: [tram_stop], $zoom: { max: 16 } }
+            draw:
+                icons:
+                    size: [[13, 0px], [14, 7px], [15, 8px]]
+                    visible: global.sdk_transit_overlay
+                    sprite: light-rail
+                    text:
+                        visible: false
+        tram-stop:
+            filter: { kind: tram_stop, $zoom: { min: 16 } }
+            draw:
+                icons:
+                    size: [[16, 12px], [17, 14px], [18, 18px]]
+                    sprite: light-rail
+                    text:
+                        #offset: [[13, [0, 6px]], [16, [0, 9px]]]
+        bus-like-labels:
             filter:
-                # This is from Natural Earth and only shows up from zoom(0,9)
-                kind: [urban_area, 'urban area']
+                kind: [platform, stop_position]
             draw:
-                dots2:
-                    visible: global.earth2_ev
-                    order: global.feature_order
-                    color: [[4,[0.965,0.600,0.882]],[6,[0.965,0.600,0.882]],[7,[0.882,0.639,0.827]],[8,[0.757,0.729,0.753]]]
+                icons:
+                    size: [[13, 8px], [16, 10px], [17, 12px], [18, 18px]]
+                    sprite: bus-station
+                    text:
+                        interactive: true
+                        font:
+                            fill: black
+                            size: 12px
+                            stroke: { color: white, width: 4 }
+        bus-station-labels:
+            filter:
+                kind: [bus_station, bus_stop]
+                $zoom: { min: 16 }
+            draw:
+                icons:
+                    size: [[13, 12px], [16, 18px]]
+                    sprite: bus-station
+                    priority: 17
+                    text:
+                        interactive: true
+                        priority: 18
+                        font:
+                            fill: black
+                            size: 12px
+                            stroke: { color: white, width: 4 }
+            bus_stop:
+                filter:
+                    kind: [bus_stop]
+                    $zoom: { max: 19 }
+                draw:
+                    icons:
+                        size: [[13, 8px], [19, 18px]]
+                        text:
+                            visible: false
+        subway-entrance:
+            filter:
+                kind: [subway_entrance]
+            draw:
+                icons:
+                    sprite: subway-entrance
+                    size: [[17, 12px], [19, 14px]]
+                    priority: 19
+                    text:
+                        #offset: [[17, [0, 6px]], [19, [0, 7px]]] # offset tracks alongside icon size (half icon height)
+                        priority: 20
+                        interactive: true
+                        text_source: function() { if( feature.ref || feature.name ) { if( feature.ref && feature.name ) { return '[' + feature.ref + ']\n' + feature.name; } else { return feature.name; } } else { return "Entrance"; } }
+                        font:
+                            fill: black
+                            size: 12px
+                            stroke: { color: white, width: 4 }
 
+
+#    transit-platforms:
+#        data: { source: mapzen, layer: transit }
+#        filter: { kind: platform, $zoom: { min: 15 }, $geometry: [polygon,line] }
+#        draw:
+#            lines:
+#                visible: global.sdk_transit_overlay
+#                color: '#bc8f96'
+#                width: 10m          # something fishy here with the #include syntax in v0.7 tangram?
+#                order: 1000         # this selection should sort above basemap, but grey Zinc color still applies
+#                outline:
+#                    order: 1002
+#            polygons:
+#                visible: global.sdk_transit_overlay
+#                order: 1001
+#        polygon_geom:
+#            filter: { $geometry: polygon }
+#            draw:
+#                polygons:
+#                    color: '#bc8f96'
+#                    outline:
+#                        color: '#bc8f96'
+#                        width: [[15,0px],[16,0.5px],[17,1px],[19,2px]]
+#                lines:
+#                    visible: false
 
     debug:
         data: { source: mapzen }
