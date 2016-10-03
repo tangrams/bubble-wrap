@@ -2231,6 +2231,15 @@ layers:
                     outline:
                         color: [0.827,0.827,0.827]
                         width: [[15, 0px], [16, 0.5px], [17, 1.0px], [18, 1.75px]]
+
+            # Is this junk code?
+            round:
+                filter: { $zoom: { min: 17 } }
+                draw:
+                    lines:
+                        cap: round
+                        join: round
+
             in_park:
                 filter: { landuse_kind: [park,forest,natural_forest,nature_reserve,conservation,golf_course,garden] }
                 draw:
@@ -4886,7 +4895,7 @@ layers:
                 size: [[13, 12px], [16, 16px], [18, 19px]]
                 interactive: true
                 visible: false
-                priority: 65
+                priority: 65  #function() { return (feature.min_zoom && Math.floor(feature.min_zoom * 1000)) || 65; }
                 repeat_group: abc
                 text:
                     text_source: global.ux_language_text_source
@@ -6827,6 +6836,7 @@ layers:
                 dots2:
                     color: [0.805,0.805,0.825]
                     visible: global.purple_v
+                    visible: true
         military:
             filter:
                 kind: military
