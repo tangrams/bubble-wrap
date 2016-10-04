@@ -544,8 +544,8 @@ sources:
         #url:  //localhost:8080/osm/all/{z}/{x}/{y}.mvt
         #url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
         # road labels in Tangram JS are broken when overzooming, set max_zoom: 18 to preview fix
-        url_params:
-            api_key: vector-tiles-P6dkVl4
+        #url_params:
+#            api_key: vector-tiles-P6dkVl4
         max_zoom: 16
 
 #    # Only enable this for local debug, should not be enabled for prod (app inserts these at runtime)
@@ -3240,7 +3240,7 @@ layers:
                         visible: false
 
         region-z4:
-            filter: { name: true, kind: [state], $zoom: [4], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+            filter: { name: true, kind: [region], $zoom: [4], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text-blend-order:
                     priority: 14
@@ -3252,7 +3252,7 @@ layers:
                         fill: [0.3,0.3,0.3]
 
         region-z5:
-            filter: { name: true, kind: [state], $zoom: [5], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+            filter: { name: true, kind: [region], $zoom: [5], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text-blend-order:
                     priority: 14
@@ -3264,7 +3264,7 @@ layers:
                         fill: [0.3,0.3,0.3]
 
         region-z6:
-            filter: { name: true, kind: [state], $zoom: [6], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+            filter: { name: true, kind: [region], $zoom: [6], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text-blend-order:
                     priority: 14
@@ -3276,7 +3276,7 @@ layers:
                         fill: [0.4,0.4,0.4]
 
         region:
-            filter: { name: true, kind: [state], $zoom: [7,8] }  # someday: province
+            filter: { name: true, kind: [region], $zoom: [7,8] }  # someday: province
             draw:
                 text-blend-order:
                     priority: 14
@@ -4318,8 +4318,8 @@ layers:
                                 font:
                                     size: 16px
                                     #stroke: { color: global.text_stroke, width: 4 }
-                    state_capital:
-                        filter: { state_capital: true }
+                    region_capital:
+                        filter: { region_capital: true }
                         draw:
                             text-blend-order:
                                 priority: 12
@@ -4917,23 +4917,23 @@ layers:
                             transform: uppercase
                             # stroke: { color: global.text_stroke, width: 3 }
 
-    landuse_labels_debug:
-        data: { source: mapzen, layer: [landuse] }
-        #filter: { label_placement: true }
-        draw:
-            icons:
-                size: [[13, 12px], [16, 16px], [18, 19px]]
-                interactive: true
-                repeat_group: abc
-                text:
-                    interactive: true
-                    priority: 99
-                    font:
-                        family: global.text_font_family
-                        weight: 800
-                        fill: red #[0.20,0.20,0.20]
-                        size: 12px
-                        style: italic
+#    landuse_labels_debug:
+#        data: { source: mapzen, layer: [landuse] }
+#        #filter: { label_placement: true }
+#        draw:
+#            icons:
+#                size: [[13, 12px], [16, 16px], [18, 19px]]
+#                interactive: true
+#                repeat_group: abc
+#                text:
+#                    interactive: true
+#                    priority: 99
+#                    font:
+#                        family: global.text_font_family
+#                        weight: 800
+#                        fill: red #[0.20,0.20,0.20]
+#                        size: 12px
+#                        style: italic
 
     pois_and_landuse_labels:
         data: { source: mapzen, layer: [pois] }
