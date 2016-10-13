@@ -2762,99 +2762,50 @@ layers:
         # building footprints, pre-extrusion
         footprints:
             filter:
-                all:
-                    $zoom: { min: 13, max: 18 }
-                any:
-                    # show footprints for buildings at least one zoom level before they will be extruded
-#                    - { $zoom: [13], area: { min: 50000 } }
-#                    - { $zoom: [13], height: { min: 250 } }
-#                    - { $zoom: [13], volume: { min: 200000 } }
-                    - { $zoom: [13], scale_rank: [1,2] }
-#                    - { $zoom: [14], area: { min: 5000 } }
-#                    - { $zoom: [14], height: { min: 190 } }
-#                    - { $zoom: [14], volume: { min: 150000 } }
-                    - { $zoom: [14], scale_rank: [1,2,3] }
-                    - { $zoom: [15], height: { min: 100 } }
-                    - { $zoom: [15], area: { min: 500 } }
-                    - { $zoom: [15], volume: { min: 100000 } }
-#                    - { $zoom: [16], area: { min: 100 } }
-#                    - { $zoom: [16], volume: { min: 50000 } }
-                    - { $zoom: { min: 16 }, area: true }
-#                    - { $zoom: { min: 17 }, area: true }
+                # show footprints for buildings at least one zoom level before they will be extruded
+#                - { $zoom: [13], area: { min: 50000 } }
+#                - { $zoom: [13], height: { min: 250 } }
+#                - { $zoom: [13], volume: { min: 200000 } }
+                - { $zoom: [13], scale_rank: [1,2] }
+#                - { $zoom: [14], area: { min: 5000 } }
+#                - { $zoom: [14], height: { min: 190 } }
+#                - { $zoom: [14], volume: { min: 150000 } }
+                - { $zoom: [14], scale_rank: [1,2,3] }
+                - { $zoom: 15, height: { min: 100 } }
+                - { $zoom: 15, area: { min: 500 } }
+                - { $zoom: 15, volume: { min: 100000 } }
+                - { $zoom: 16, area: { min: 100 } }
+                - { $zoom: 16, volume: { min: 50000 } }
+                - { $zoom: { min: 17 }, area: true }
             draw:
                 polygons: { visible: true }
                 lines: { visible: true }
 
-        #z_early-not-important:
-#            filter: { scale_rank: [5,6] }
-#            draw:
-#                lines:
-#                    #visible: false
-#                    color: [[13,[0.7,0.7,0.7,0.5]],[17,[0.65, 0.65, 0.65]]]
-#                    width: [[13, 0.3px], [15, 0.4px], [16,0.7px], [18, 1.25px]]
-#            early-z13:
-#                filter: { $zoom: 13, not: { scale_rank: [0,1,2] } }
-#                draw:
-#                    polygons:
-#                        visible: false
-#                    lines:
-#                        visible: false
-#            early-z14:
-#                filter: { $zoom: 14, not: { scale_rank: [0,1,2,3] } }
-#                draw:
-#                    polygons:
-#                        visible: false
-#                    lines:
-#                        visible: false
-#            early-z15:
-#                filter: { $zoom: 15, scale_rank: [5,6] }
-#                draw:
-#                    lines:
-#                        color: red
-
-
-        # 3d buildings
-        extrude:
-            filter:
-                any:
-                    - { $zoom: [15], height: { min: 190 } }
-                    - { $zoom: [15], area: { min: 5000 } }
-                    - { $zoom: [15], volume: { min: 100000 } }
-                    - { $zoom: [16], height: { min: 100 } }
-                    - { $zoom: [16], area: { min: 3500 } }
-                    - { $zoom: [16], volume: { min: 50000 } }
-                    - { $zoom: [16], landuse_kind: true }
-                    - { $zoom: [17], area: { min: 500 } }
-                    - { $zoom: [17], volume: { min: 15000 } }
-                    - { $zoom: [17], landuse_kind: true }
-                    - { $zoom: { min: 18 }, area: true }
-            draw:
-                polygons:
-                    visible: true
-                    order: 438
-                    style: building-grid
-                    extrude: function() { return feature.height || 20; }
-                    color: [0.892,0.880,0.878]
-                lines:
-                    visible: true
-                    order: 439
-                    style: building-lines
-                    extrude: function() { return feature.height || 20; }
-            z16-landuse-only-early:
+            # 3d buildings
+            extrude:
                 filter:
                     all:
-                        - { $zoom: [16] }
+                        - function() { return global.building_extrude; }
                         - any:
-                            - { landuse_kind: true }
-                            - all:
-                                - { height: false }
-                                - { area: false }
-                                - { volume: false }
+                            - { $zoom: 15, height: { min: 190 } }
+                            - { $zoom: 15, area: { min: 5000 } }
+                            - { $zoom: 15, volume: { min: 100000 } }
+                            - { $zoom: 16, height: { min: 100 } }
+                            - { $zoom: 16, area: { min: 3500 } }
+                            - { $zoom: 16, volume: { min: 50000 } }
+                            - { $zoom: 17, area: { min: 500 } }
+                            - { $zoom: 17, volume: { min: 15000 } }
+                            - { $zoom: { min: 18 } }
                 draw:
                     polygons:
-                        extrude: 8
+                        order: 438
+                        style: building-grid
+                        extrude: global.building_extrude_height
+                        color: [0.892,0.880,0.878]
                     lines:
-                        extrude: 8
+                        order: 439
+                        style: building-lines
+                        extrude: global.building_extrude_height
 
         # landuse-specific rules
         in_park:
