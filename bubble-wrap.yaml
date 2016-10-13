@@ -539,7 +539,7 @@ sources:
         # EraserMaps the app only supports MVT format tiles
         type:  MVT #TopoJSON
         #url:  http://vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.mvt
-        url:  http://tile.dev.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.mvt
+        url:  https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.mvt
         #enforce_winding: true  #because Tangram v0.4 and tiles v0.5-pre don't play nice
         #url:  //localhost:8080/osm/all/{z}/{x}/{y}.mvt
         #url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
@@ -2763,24 +2763,24 @@ layers:
         footprints:
             filter:
                 all:
-                    $zoom: { max: 18 }
+                    $zoom: { min: 13, max: 18 }
                 any:
                     # show footprints for buildings at least one zoom level before they will be extruded
-                    - { $zoom: [13], area: { min: 50000 } }
-                    - { $zoom: [13], height: { min: 250 } }
-                    - { $zoom: [13], volume: { min: 200000 } }
-                    #- { $zoom: [13], not: { scale_rank: [0,1,2] } }
-                    #- { $zoom: [14], not: { scale_rank: [0,1,2,3] } }
-                    - { $zoom: [14], area: { min: 5000 } }
-                    - { $zoom: [14], height: { min: 190 } }
-                    - { $zoom: [14], volume: { min: 150000 } }
+#                    - { $zoom: [13], area: { min: 50000 } }
+#                    - { $zoom: [13], height: { min: 250 } }
+#                    - { $zoom: [13], volume: { min: 200000 } }
+                    - { $zoom: [13], scale_rank: [1,2] }
+#                    - { $zoom: [14], area: { min: 5000 } }
+#                    - { $zoom: [14], height: { min: 190 } }
+#                    - { $zoom: [14], volume: { min: 150000 } }
+                    - { $zoom: [14], scale_rank: [1,2,3] }
                     - { $zoom: [15], height: { min: 100 } }
                     - { $zoom: [15], area: { min: 500 } }
                     - { $zoom: [15], volume: { min: 100000 } }
-                    - { $zoom: [16], area: { min: 100 } }
-                    - { $zoom: [16], volume: { min: 50000 } }
-                    #- { $zoom: { min: 16 }, area: true }
-                    - { $zoom: { min: 17 }, area: true }
+#                    - { $zoom: [16], area: { min: 100 } }
+#                    - { $zoom: [16], volume: { min: 50000 } }
+                    - { $zoom: { min: 16 }, area: true }
+#                    - { $zoom: { min: 17 }, area: true }
             draw:
                 polygons: { visible: true }
                 lines: { visible: true }
