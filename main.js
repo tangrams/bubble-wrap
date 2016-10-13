@@ -243,6 +243,19 @@ map = (function () {
             scene.updateConfig();
         });
 
+        // Building extrusion selector
+        var building_3d = {
+            '(default)': true,
+            'Yes': true,
+            'No': false
+        };
+        // use transit ux, else default to false
+        gui.building_3d = query.building_3d || true;
+        gui.add(gui, 'building_3d', building_3d).onChange(function(value) {
+            scene.config.global.building_extrude = (value === 'true' || value === true); // dat.gui passes a string
+            scene.updateConfig();
+        });
+
         // Take a screenshot and save to file
         gui.save_screenshot = function () {
             return scene.screenshot().then(function(screenshot) {
