@@ -7486,7 +7486,7 @@ layers:
                 icons:
                     size: [[16, 12px], [17, 14px], [18, 18px]]
                     sprite: light-rail
-                    text:
+                    #text:
                         #offset: [[13, [0, 6px]], [16, [0, 9px]]]
         bus-like-labels:
             filter:
