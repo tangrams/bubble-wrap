@@ -6836,7 +6836,6 @@ layers:
             draw:
                 dots2:
                     color: [0.805,0.805,0.825]
-                    visible: global.purple_v
                     visible: true
         military:
             filter:
