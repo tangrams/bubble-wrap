@@ -208,11 +208,13 @@ map = (function () {
             'Chinese': 'zh',
             'Japanese': 'ja',
             'Korean': 'ko',
+            'Vietnamese': 'vi',
             'German': 'de',
             'French': 'fr',
             'Arabic': 'ar',
             'Spanish': 'es',
-            'Greek': 'gr'
+            'Italian': 'it',
+            'Greek': 'el'
         };
         // use query language, else default to English
         gui.language = query.language || false;
@@ -238,6 +240,19 @@ map = (function () {
         gui.transit_overlay = query.transit_overlay || false;
         gui.add(gui, 'transit_overlay', transit_overlay).onChange(function(value) {
             scene.config.global.sdk_transit_overlay = (value === 'true' || value === true); // dat.gui passes a string
+            scene.updateConfig();
+        });
+
+        // Building extrusion selector
+        var building_3d = {
+            '(default)': true,
+            'Yes': true,
+            'No': false
+        };
+        // use transit ux, else default to false
+        gui.building_3d = query.building_3d || true;
+        gui.add(gui, 'building_3d', building_3d).onChange(function(value) {
+            scene.config.global.building_extrude = (value === 'true' || value === true); // dat.gui passes a string
             scene.updateConfig();
         });
 
