@@ -2763,14 +2763,8 @@ layers:
         footprints:
             filter:
                 # show footprints for buildings at least one zoom level before they will be extruded
-#                - { $zoom: [13], area: { min: 50000 } }
-#                - { $zoom: [13], height: { min: 250 } }
-#                - { $zoom: [13], volume: { min: 200000 } }
-                - { $zoom: [13], scale_rank: [1,2] }
-#                - { $zoom: [14], area: { min: 5000 } }
-#                - { $zoom: [14], height: { min: 190 } }
-#                - { $zoom: [14], volume: { min: 150000 } }
-                - { $zoom: [14], scale_rank: [1,2,3] }
+                - { $zoom: 13, scale_rank: [1,2] }
+                - { $zoom: 14, scale_rank: [1,2,3] }
                 - { $zoom: 15, height: { min: 100 } }
                 - { $zoom: 15, area: { min: 500 } }
                 - { $zoom: 15, volume: { min: 100000 } }
