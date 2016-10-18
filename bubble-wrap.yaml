@@ -1327,7 +1327,7 @@ layers:
                     fill: global.text_fill
 
         natural_earth_highways:
-            filter: { source: 'naturalearthdata.com' }
+            filter: { source: 'naturalearthdata.com', not: { kind: ferry } }
             draw:
                 lines:
                     # Perf impact (too many vertices)
