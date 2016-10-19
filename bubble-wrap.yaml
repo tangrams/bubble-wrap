@@ -1327,7 +1327,7 @@ layers:
                     fill: global.text_fill
 
         natural_earth_highways:
-            filter: { source: 'naturalearthdata.com', not: { kind: ferry } }
+            filter: { source: 'naturalearthdata.com', $zoom: { max: 8 } }
             draw:
                 lines:
                     # Perf impact (too many vertices)
@@ -1336,25 +1336,25 @@ layers:
                     color: global.highway1
                     width: [[5, 1px], [7, 1.4px], [9, 1.5px], [14, 3px], [16, 4px], [17, 10m]]
             major_road:
-                filter: { type: ['Secondary Highway','Road'] }
+                filter: { kind: major_road }
                 draw:
                     lines:
                         color: [0.980,0.601,0.559]
                         width: [[5, 0.45px], [6, 0.75px], [7, 1.0px], [8, 1px]]
             minor_road:
-                filter: { type: 'Unknown' }
+                filter: { kind: minor_road }
                 draw:
                     lines:
                         color: [[12, global.minor_road1], [17, global.minor_road2]]
                         width: [[12, 1.0px], [14, 1.5px], [15, 3px], [16, 5m]]
             ferry:
-                filter: { kind: Ferry }
+                filter: { kind: ferry }
                 draw:
                     lines:
                         color: [0.702,0.843,0.933]
                         width: 1px
         highway:
-            filter: { kind: highway }
+            filter: { kind: highway, $zoom: { min: 8 } }
             draw:
                 lines:
                     color: [[8, global.highway1], [14, global.highway1], [15, [1.0,1.0,1.0]], [17, [1.0,1.0,1.0]]]
@@ -1517,7 +1517,7 @@ layers:
                             stroke: { color: [1.000,1.000,1.000], width: 4 }
 
         major_road:
-            filter: { kind: major_road }
+            filter: { kind: major_road, $zoom: { min: 8 } }
             # default style
             draw:
                 lines:
@@ -2049,7 +2049,7 @@ layers:
                                 size: 15px
                                 stroke: { color: [1.00,1.00,1.00], width: 2 }
         minor_road:
-            filter: { kind: minor_road, not: { kind_detail: service } }
+            filter: { kind: minor_road, not: { kind_detail: service }, $zoom: { min: 8 } }
             draw:
                 lines:
                     color: [[12, [0.9,0.9,0.9]], [13, [0.9,0.9,0.9]], [14, [1.0,1.0,1.0]]]
@@ -3824,7 +3824,7 @@ layers:
                     all:
                         - source: openstreetmap.org
                         - $zoom: [9]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     icons:
                         size: 5px
@@ -3981,7 +3981,7 @@ layers:
                     all:
                         - source: openstreetmap.org
                         - $zoom: [10]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     icons:
                         size: 5px
