@@ -535,9 +535,9 @@ textures:
             # # ux-transit-stop is currently reusing capital-xl artwork, please customize
             # ux-transit-stop: [584, 210, 20, 20]
 
-            US-CA: [756, 168, 108, 108]
-            US-I: [0, 280, 108, 108]
-            US-US: [872, 168, 108, 108]
+            'US:CA': [756, 168, 108, 108]
+            'US:I': [0, 280, 108, 108]
+            'US:US': [872, 168, 108, 108]
             airport: [870, 0, 38, 38]
             aerodrome: [870, 0, 38, 38]
             aquarium: [208, 280, 38, 38]
@@ -2628,8 +2628,7 @@ layers:
                 draw:
                     icons:
                         # you need to match any custom shield to the vector tile `network` values
-                        sprite: US-I
-                        # sprite_default: usi
+                        sprite: function() { return feature.network }
                         priority: 2
                         size: [[5,18px],[13,24px],[15,27px]]
                         cull_from_tile: true
@@ -2648,8 +2647,7 @@ layers:
                 draw:
                     icons:
                         # you need to match any custom shield to the vector tile `network` values
-                        sprite: US-US
-                        sprite_default: generic-shield
+                        sprite: function() { return feature.network }
                         priority: 2
                         size: [[8,18px],[13,24px],[15,27px]]
                         cull_from_tile: true
@@ -2665,14 +2663,18 @@ layers:
                     filter: { $zoom: [7] }
                     icons:
                         visible: false
-            US-CA:
-                filter:
-                    network: 'US:CA'
-                    shield_text: true    # some roads don't have shield text
+
+            US-states:
+                # Match state highways: `US:??`
+                filter: |
+                    function() {
+                        return feature.shield_text &&
+                            /^US:(?!US)\w\w$/.test(feature.network)
+                    }
                 draw:
                     icons:
                         # you need to match any custom shield to the vector tile `network` values
-                        sprite: US-CA
+                        sprite: function() { return feature.network }
                         sprite_default: generic-shield
                         priority: 8
                         size: [[5,15px],[13,17px],[15,20px]]
@@ -2689,26 +2691,26 @@ layers:
                     filter: { $zoom: [7,8,9,10] }
                     icons:
                         visible: false
-            US-Route:
-                filter:
-                    network: 'US:*'
-                    shield_text: true    # some roads don't have shield text
-                draw:
-                    icons:
-                        # you need to match any custom shield to the vector tile `network` values
-                        sprite: generic-shield
-                        sprite_default: generic-shield
-                        priority: 2
-                        size: [[5,16px],[12,16px],[15,20px]]
-                        cull_from_tile: true
-                        text:
-                            anchor: center
-                            text_source: shield_text
-                            font:
-                                family: Montserrat
-                                weight: 600
-                                fill: [1.00,0.00,0.00]
-                                size: [[5,7px],[12,8px],[15,10px]]
+            # US-Route:
+            #     filter:
+            #         network: 'US:*'
+            #         shield_text: true    # some roads don't have shield text
+            #     draw:
+            #         icons:
+            #             # you need to match any custom shield to the vector tile `network` values
+            #             sprite: generic-shield
+            #             sprite_default: generic-shield
+            #             priority: 2
+            #             size: [[5,16px],[12,16px],[15,20px]]
+            #             cull_from_tile: true
+            #             text:
+            #                 anchor: center
+            #                 text_source: shield_text
+            #                 font:
+            #                     family: Montserrat
+            #                     weight: 600
+            #                     fill: [1.00,0.00,0.00]
+            #                     size: [[5,7px],[12,8px],[15,10px]]
         path:
             filter:
                 all:
