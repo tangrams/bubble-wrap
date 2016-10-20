@@ -183,6 +183,7 @@ global:
     text_visible_highway: true
     text_visible_highway_e: true
     text_visible_trunk_primary: true
+    text_visible_trunk_primary_route: false
     text_visible_trunk_primary_e2: true
     text_visible_trunk_primary_e: true
     text_visible_secondary: true
@@ -530,15 +531,15 @@ textures:
             # # ux-transit-stop is currently reusing capital-xl artwork, please customize
             # ux-transit-stop: [584, 210, 20, 20]
 
-            US-CA: [640, 168, 36, 36]
-            US-I: [728, 168, 36, 36]
-            US-US: [684, 168, 36, 36]
+            US-CA: [684, 168, 36, 36]
+            US-I: [772, 168, 36, 36]
+            US-US: [728, 168, 36, 36]
             airport: [870, 0, 36, 36]
             aerodrome: [870, 0, 36, 36]
-            aquarium: [864, 168, 36, 36]
-            art-gallery: [772, 168, 36, 36]
-            art_gallery: [772, 168, 36, 36]
-            art: [772, 168, 36, 36]
+            aquarium: [908, 168, 36, 36]
+            art-gallery: [816, 168, 36, 36]
+            art_gallery: [816, 168, 36, 36]
+            art: [816, 168, 36, 36]
             athletics-sports: [184, 168, 36, 36]
             pitch: [184, 168, 36, 36]
             athletic_sports: [184, 168, 36, 36]
@@ -557,9 +558,9 @@ textures:
             baseball-field: [506, 84, 36, 36]
             basketball-court: [460, 84, 36, 36]
             beach: [644, 84, 36, 36]
-            beer-garden: [458, 210, 36, 36]
-            biergarten: [458, 210, 36, 36]
-            brewery: [458, 210, 36, 36]
+            beer-garden: [504, 210, 36, 36]
+            biergarten: [504, 210, 36, 36]
+            brewery: [504, 210, 36, 36]
             bench: [548, 0, 36, 36]
             bicycle-parking: [644, 126, 36, 36]
             bike-shop: [872, 126, 36, 36]
@@ -586,8 +587,8 @@ textures:
             manor: [414, 168, 36, 36]
             recreation_center: [414, 168, 36, 36]
             apartments: [414, 168, 36, 36]
-            burger: [320, 210, 36, 36]
-            fast_food: [320, 210, 36, 36]
+            burger: [366, 210, 36, 36]
+            fast_food: [366, 210, 36, 36]
             bus-station: [778, 0, 36, 36]
             bus_stop: [778, 0, 36, 36]
             bus_station: [778, 0, 36, 36]
@@ -595,14 +596,14 @@ textures:
             campground: [828, 84, 36, 36]
             camp_site: [828, 84, 36, 36]
             caravan_site: [828, 84, 36, 36]
-            candy-store: [136, 210, 36, 36]
-            candy: [136, 210, 36, 36]
-            confectionery: [136, 210, 36, 36]
-            capital-l: [696, 212, 16, 16]
-            capital-m: [676, 212, 12, 12]
-            capital-s: [656, 212, 10, 10]
-            capital-xl: [720, 212, 20, 20]
-            capital-xs: [642, 212, 8, 8]
+            candy-store: [182, 210, 36, 36]
+            candy: [182, 210, 36, 36]
+            confectionery: [182, 210, 36, 36]
+            capital-l: [742, 212, 16, 16]
+            capital-m: [722, 212, 12, 12]
+            capital-s: [702, 212, 10, 10]
+            capital-xl: [766, 212, 20, 20]
+            capital-xs: [688, 212, 8, 8]
             car-dealership: [780, 126, 36, 36]
             car: [780, 126, 36, 36]
             castle: [414, 42, 36, 36]
@@ -610,14 +611,14 @@ textures:
             cemetery: [736, 84, 36, 36]
             grave_yard: [736, 84, 36, 36]
             church: [230, 126, 36, 36]
-            clothing-store: [956, 168, 36, 36]
-            clothes: [956, 168, 36, 36]
-            fashion: [956, 168, 36, 36]
+            clothing-store: [0, 210, 36, 36]
+            clothes: [0, 210, 36, 36]
+            fashion: [0, 210, 36, 36]
             coffee-shop: [502, 168, 36, 36]
             cafe: [502, 168, 36, 36]
-            college-university: [0, 210, 36, 36]
-            university: [0, 210, 36, 36]
-            college: [0, 210, 36, 36]
+            college-university: [46, 210, 36, 36]
+            university: [46, 210, 36, 36]
+            college: [46, 210, 36, 36]
             convenience-store: [46, 84, 36, 36]
             convenience: [46, 84, 36, 36]
             convenience_store: [46, 84, 36, 36]
@@ -626,7 +627,7 @@ textures:
             current-location: [294, 252, 88, 88]
             department-store: [734, 126, 36, 36]
             department_store: [734, 126, 36, 36]
-            drinking-water: [412, 210, 36, 36]
+            drinking-water: [458, 210, 36, 36]
             dry-cleaning: [0, 84, 36, 36]
             dry_cleaning: [0, 84, 36, 36]
             electronics-store: [598, 126, 36, 36]
@@ -649,15 +650,16 @@ textures:
             fitness_center: [874, 42, 36, 36]
             flower-shop: [184, 126, 36, 36]
             florist: [184, 126, 36, 36]
-            forest: [182, 210, 36, 36]
-            conservation: [182, 210, 36, 36]
-            nature_reserve: [182, 210, 36, 36]
+            forest: [228, 210, 36, 36]
+            conservation: [228, 210, 36, 36]
+            nature_reserve: [228, 210, 36, 36]
             fountain: [322, 126, 36, 36]
             garden: [690, 84, 36, 36]
-            gas-station: [90, 210, 36, 36]
-            fuel: [90, 210, 36, 36]
-            generic: [596, 210, 36, 36]
-            subway_entrance: [596, 210, 36, 36]
+            gas-station: [136, 210, 36, 36]
+            fuel: [136, 210, 36, 36]
+            generic: [642, 210, 36, 36]
+            subway_entrance: [642, 210, 36, 36]
+            generic-shield: [640, 168, 36, 36]
             gift-shop: [138, 126, 36, 36]
             gift: [138, 126, 36, 36]
             golf-course: [414, 84, 36, 36]
@@ -685,10 +687,10 @@ textures:
             hotel: [732, 0, 36, 36]
             motel: [732, 0, 36, 36]
             hostel: [732, 0, 36, 36]
-            ice-cream-shop: [504, 210, 36, 36]
-            ice_cream: [504, 210, 36, 36]
-            information: [550, 210, 36, 36]
-            info: [550, 210, 36, 36]
+            ice-cream-shop: [550, 210, 36, 36]
+            ice_cream: [550, 210, 36, 36]
+            information: [596, 210, 36, 36]
+            info: [596, 210, 36, 36]
             jewelry-store: [736, 42, 36, 36]
             jewelry: [736, 42, 36, 36]
             jewelry_store: [736, 42, 36, 36]
@@ -725,9 +727,9 @@ textures:
             mosque: [92, 0, 36, 36]
             mountain: [230, 84, 36, 36]
             peak: [230, 84, 36, 36]
-            movie-theatre: [910, 168, 36, 36]
-            cinema: [910, 168, 36, 36]
-            movie-theater: [910, 168, 36, 36]
+            movie-theatre: [954, 168, 36, 36]
+            cinema: [954, 168, 36, 36]
+            movie-theater: [954, 168, 36, 36]
             museum: [46, 126, 36, 36]
             observatory: [46, 126, 36, 36]
             music-store: [368, 42, 36, 36]
@@ -773,8 +775,8 @@ textures:
             rental-car: [594, 0, 36, 36]
             car_rental: [594, 0, 36, 36]
             car_sharing: [594, 0, 36, 36]
-            restaurant: [228, 210, 36, 36]
-            deli: [228, 210, 36, 36]
+            restaurant: [274, 210, 36, 36]
+            deli: [274, 210, 36, 36]
             route-arrow: [0, 252, 128, 128]
             route-start: [214, 252, 72, 92]
             route-stop: [136, 252, 72, 92]
@@ -808,40 +810,40 @@ textures:
             synagogue: [46, 0, 36, 36]
             tailor-shop: [962, 0, 36, 36]
             tailor: [962, 0, 36, 36]
-            taqueria: [274, 210, 36, 36]
+            taqueria: [320, 210, 36, 36]
             tennis: [414, 126, 36, 36]
             theme-park: [0, 126, 36, 36]
             theme_park: [0, 126, 36, 36]
             miniature_golf: [0, 126, 36, 36]
             toilets: [874, 84, 36, 36]
-            townspot-l: [906, 210, 16, 16]
-            townspot-l-rev: [800, 212, 16, 16]
-            townspot-m: [886, 210, 12, 12]
-            townspot-m-rev: [780, 212, 12, 12]
-            townspot-s: [868, 210, 10, 10]
-            townspot-s-rev: [762, 212, 10, 10]
-            townspot-xl: [930, 210, 20, 20]
-            townspot-xl-rev: [824, 212, 20, 20]
-            townspot-xs: [852, 210, 8, 8]
-            townspot-xs-rev: [748, 212, 6, 6]
+            townspot-l: [952, 210, 16, 16]
+            townspot-l-rev: [846, 212, 16, 16]
+            townspot-m: [932, 210, 12, 12]
+            townspot-m-rev: [826, 212, 12, 12]
+            townspot-s: [914, 210, 10, 10]
+            townspot-s-rev: [808, 212, 10, 10]
+            townspot-xl: [976, 210, 20, 20]
+            townspot-xl-rev: [870, 212, 20, 20]
+            townspot-xs: [898, 210, 8, 8]
+            townspot-xs-rev: [794, 212, 6, 6]
             toy-game-store: [916, 0, 36, 36]
             toys: [916, 0, 36, 36]
             baby_goods: [916, 0, 36, 36]
-            traffic-signal: [46, 210, 36, 36]
-            traffic_signals: [46, 210, 36, 36]
+            traffic-signal: [92, 210, 36, 36]
+            traffic_signals: [92, 210, 36, 36]
             train-station: [410, 0, 36, 36]
             station: [410, 0, 36, 36]
             train-staion: [410, 0, 36, 36]
             veterinarian: [138, 0, 36, 36]
             pet_care: [138, 0, 36, 36]
             veterinary: [138, 0, 36, 36]
-            view-point: [818, 168, 38, 38]
-            viewpoint: [818, 168, 38, 38]
-            view_point: [818, 168, 38, 38]
-            vista: [818, 168, 38, 38]
+            view-point: [862, 168, 38, 38]
+            viewpoint: [862, 168, 38, 38]
+            view_point: [862, 168, 38, 38]
+            vista: [862, 168, 38, 38]
             vineyard: [46, 168, 38, 38]
             volcano: [92, 84, 36, 36]
-            wine-bar: [366, 210, 36, 36]
+            wine-bar: [412, 210, 36, 36]
             winery: [456, 168, 36, 36]
             wine: [456, 168, 36, 36]
             zoo: [966, 84, 36, 36]
@@ -1898,6 +1900,7 @@ layers:
                         draw:
                             text-blend-order:
                                 text_source: ref
+                                visible: global.text_visible_trunk_primary_route
                                 font:
                                     fill: [1.0,1.0,1.0]
                                     weight: 600
@@ -1908,7 +1911,7 @@ layers:
                         draw:
                             text-blend-order:
                                 priority: 53
-                                visible: global.text_visible_trunk_primary_e2
+                                visible: global.text_visible_trunk_primary_route
                                 #text_source: ref
                                 font:
                                     fill: [0.0,0.0,0.0]
@@ -1919,7 +1922,7 @@ layers:
                         draw:
                             text-blend-order:
                                 priority: 53
-                                visible: global.text_visible_trunk_primary
+                                visible: global.text_visible_trunk_primary_route
                                 #text_source: global.ux_language_text_source_road_ref_and_name
                                 font:
                                     fill: [0.0,0.0,0.0]
@@ -1931,7 +1934,7 @@ layers:
                         draw:
                             text-blend-order:
                                 priority: 53
-                                visible: global.text_visible_trunk_primary
+                                visible: global.text_visible_trunk_primary_route
                                 #text_source: global.ux_language_text_source_road_ref_and_name
                                 font:
                                     fill: [0.0,0.0,0.0]
@@ -2631,8 +2634,8 @@ layers:
                             font:
                                 family: global.text_font_family
                                 weight: 600
-                                fill: [0.200,0.200,0.200]
-                                size: [[5,7px],[13,9px],[15,11px]]
+                                fill: [0.100,0.100,0.100]
+                                size: [[5,7px],[13,9px],[15,12px]]
             US-US:
                 filter:
                     network: 'US:US'
@@ -2641,9 +2644,9 @@ layers:
                     icons:
                         # you need to match any custom shield to the vector tile `network` values
                         sprite: US-US
-                        # sprite_default: usi
+                        sprite_default: generic-shield
                         priority: 2
-                        size: [[5,18px],[13,24px],[15,28px]]
+                        size: [[8,18px],[13,24px],[15,28px]]
                         cull_from_tile: true
                         text:
                             anchor: center
@@ -2651,8 +2654,12 @@ layers:
                             font:
                                 family: global.text_font_family
                                 weight: 600
-                                fill: [0.200,0.200,0.200]
-                                size: [[5,7px],[13,9px],[15,10px]]
+                                fill: [0.300,0.300,0.300]
+                                size: [[5,7px],[13,9px],[15,12px]]
+                early:
+                    filter: { $zoom: [7] }
+                    icons:
+                        visible: false
             US-CA:
                 filter:
                     network: 'US:CA'
@@ -2661,9 +2668,9 @@ layers:
                     icons:
                         # you need to match any custom shield to the vector tile `network` values
                         sprite: US-CA
-                        # sprite_default: usi
+                        sprite_default: generic-shield
                         priority: 2
-                        size: [[5,16px],[12,16px],[15,20px]]
+                        size: [[5,14px],[12,14px],[15,20px]]
                         cull_from_tile: true
                         text:
                             anchor: center
@@ -2671,8 +2678,12 @@ layers:
                             font:
                                 family: global.text_font_family
                                 weight: 600
-                                fill: [0.200,0.200,0.200]
-                                size: [[5,7px],[12,9px],[15,10px]]
+                                fill: [0.300,0.300,0.300]
+                                size: [[5,5px],[12,9px],[15,10px]]
+                early:
+                    filter: { $zoom: [7,8,9,10] }
+                    icons:
+                        visible: false
             US-Route:
                 filter:
                     network: 'US:*'
@@ -2680,8 +2691,8 @@ layers:
                 draw:
                     icons:
                         # you need to match any custom shield to the vector tile `network` values
-                        sprite: US-CA
-                        # sprite_default: usi
+                        sprite: generic-shield
+                        sprite_default: generic-shield
                         priority: 2
                         size: [[5,16px],[12,16px],[15,20px]]
                         cull_from_tile: true
