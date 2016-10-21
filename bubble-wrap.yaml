@@ -603,10 +603,10 @@ textures:
             candy-store: [482, 280, 38, 38]
             candy: [482, 280, 38, 38]
             confectionery: [482, 280, 38, 38]
-            capital-l: [20, 394, 16, 16]
-            capital-m: [0, 394, 12, 12]
+            capital-l: [20, 392, 16, 16]
+            capital-m: [0, 392, 12, 12]
             capital-s: [1002, 282, 10, 10]
-            capital-xl: [44, 394, 20, 20]
+            capital-xl: [44, 392, 20, 20]
             capital-xs: [988, 282, 8, 8]
             car-dealership: [780, 126, 38, 38]
             car: [780, 126, 38, 38]
@@ -821,11 +821,11 @@ textures:
             miniature_golf: [0, 126, 38, 38]
             toilets: [874, 84, 38, 38]
             townspot-l: [230, 392, 16, 16]
-            townspot-l-rev: [124, 394, 16, 16]
+            townspot-l-rev: [124, 392, 16, 16]
             townspot-m: [210, 392, 12, 12]
-            townspot-m-rev: [104, 394, 12, 12]
+            townspot-m-rev: [104, 392, 12, 12]
             townspot-s: [192, 392, 10, 10]
-            townspot-s-rev: [86, 394, 10, 10]
+            townspot-s-rev: [86, 392, 10, 10]
             townspot-xl: [254, 392, 20, 20]
             townspot-xl-rev: [148, 394, 20, 20]
             townspot-xs: [176, 392, 8, 8]
@@ -2629,7 +2629,7 @@ layers:
                     icons:
                         # you need to match any custom shield to the vector tile `network` values
                         sprite: function() { return feature.network }
-                        priority: 2
+                        priority: 16
                         size: [[5,18px],[13,24px],[15,27px]]
                         cull_from_tile: true
                         text:
@@ -2637,7 +2637,6 @@ layers:
                             text_source: shield_text
                             font:
                                 family: Montserrat
-                                weight: 600
                                 fill: [0.408,0.408,0.408]
                                 size: [[5,7px],[13,9px],[15,10px]]
             US-US:
@@ -2648,7 +2647,7 @@ layers:
                     icons:
                         # you need to match any custom shield to the vector tile `network` values
                         sprite: function() { return feature.network }
-                        priority: 2
+                        priority: 16
                         size: [[8,18px],[13,24px],[15,27px]]
                         cull_from_tile: true
                         text:
@@ -2656,7 +2655,6 @@ layers:
                             text_source: shield_text
                             font:
                                 family: Montserrat
-                                weight: 600
                                 fill: [0.408,0.408,0.408]
                                 size: [[5,7px],[13,9px],[15,10px]]
                 early:
@@ -2676,7 +2674,7 @@ layers:
                         # you need to match any custom shield to the vector tile `network` values
                         sprite: function() { return feature.network }
                         sprite_default: generic-shield
-                        priority: 8
+                        priority: 16
                         size: [[5,15px],[13,17px],[15,20px]]
                         cull_from_tile: true
                         text:
@@ -2684,7 +2682,6 @@ layers:
                             text_source: shield_text
                             font:
                                 family: Montserrat
-                                weight: 600
                                 fill: [0.508,0.508,0.508]
                                 size: [[5,5px],[12,7px],[15,10px]]
                 early:
