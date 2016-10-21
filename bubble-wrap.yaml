@@ -2675,7 +2675,7 @@ layers:
                         sprite: function() { return feature.network }
                         sprite_default: generic-shield
                         priority: 16
-                        size: [[5,15px],[13,17px],[15,20px]]
+                        size: [[11,16px],[15,20px]]
                         cull_from_tile: true
                         text:
                             anchor: center
@@ -2683,7 +2683,7 @@ layers:
                             font:
                                 family: Montserrat
                                 fill: [0.508,0.508,0.508]
-                                size: [[5,5px],[12,7px],[15,10px]]
+                                size: [[11,7px],[15,10px]]
                 early:
                     filter: { $zoom: [7,8,9,10] }
                     icons:
