@@ -2637,7 +2637,7 @@ layers:
                             text_source: shield_text
                             font:
                                 family: Montserrat
-                                fill: [0.408,0.408,0.408]
+                                fill: [0.508,0.508,0.508]
                                 size: [[5,7px],[13,9px],[15,10px]]
             US-US:
                 filter:
