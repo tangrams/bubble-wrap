@@ -399,22 +399,27 @@ textures:
         filtering: mipmap
         sprites:
             # define sprites: [x origin, y origin, width, height]
-            'US:CA_1char': [286, 280, 72, 72]
-            'US:CA_2char': [478, 280, 88, 72]
-            'US:CA_3char': [366, 280, 104, 72]
-            'US:I_1char': [112, 384, 100, 100]
-            'US:I_2char': [338, 384, 102, 102]
-            'US:I_3char': [216, 384, 116, 100]
-            'US:US_1char': [826, 280, 88, 98]
-            'US:US_2char': [0, 384, 104, 98]
-            'US:US_3char': [706, 280, 114, 100]
-            'US:US_4char': [574, 280, 124, 100]
+            'US:CA_1char': [886, 280, 72, 72]
+            'US:CA_2char': [376, 356, 88, 72]
+            'US:CA_3char': [264, 356, 104, 72]
+            'US:CA_4char': [136, 356, 120, 72]
+            'US:CA_5char': [0, 356, 128, 72]
+            'US:I_1char': [110, 460, 90, 100]
+            'US:I_2char': [598, 460, 102, 102]
+            'US:I_3char': [476, 460, 116, 100]
+            'US:I_4char': [344, 460, 126, 100]
+            'US:I_5char': [208, 460, 128, 100]
+            'US:US_1char': [860, 356, 88, 98]
+            'US:US_2char': [0, 460, 104, 98]
+            'US:US_3char': [740, 356, 114, 100]
+            'US:US_4char': [608, 356, 124, 100]
+            'US:US_5char': [472, 356, 128, 100]
             airport: [870, 0, 38, 38]
             aerodrome: [870, 0, 38, 38]
-            aquarium: [540, 384, 38, 38]
-            art-gallery: [448, 384, 38, 38]
-            art_gallery: [448, 384, 38, 38]
-            art: [448, 384, 38, 38]
+            aquarium: [800, 460, 38, 38]
+            art-gallery: [708, 460, 38, 38]
+            art_gallery: [708, 460, 38, 38]
+            art: [708, 460, 38, 38]
             athletics-sports: [276, 204, 38, 38]
             pitch: [276, 204, 38, 38]
             athletic_sports: [276, 204, 38, 38]
@@ -433,9 +438,9 @@ textures:
             baseball-field: [506, 84, 38, 38]
             basketball-court: [460, 84, 38, 38]
             beach: [644, 84, 38, 38]
-            beer-garden: [138, 488, 38, 38]
-            biergarten: [138, 488, 38, 38]
-            brewery: [138, 488, 38, 38]
+            beer-garden: [412, 564, 38, 38]
+            biergarten: [412, 564, 38, 38]
+            brewery: [412, 564, 38, 38]
             bench: [548, 0, 38, 38]
             bicycle-parking: [726, 126, 38, 38]
             bike-shop: [954, 126, 38, 38]
@@ -462,8 +467,8 @@ textures:
             manor: [506, 204, 38, 38]
             recreation_center: [506, 204, 38, 38]
             apartments: [506, 204, 38, 38]
-            burger: [0, 488, 38, 38]
-            fast_food: [0, 488, 38, 38]
+            burger: [274, 564, 38, 38]
+            fast_food: [274, 564, 38, 38]
             bus-station: [778, 0, 38, 38]
             bus_stop: [778, 0, 38, 38]
             bus_station: [778, 0, 38, 38]
@@ -471,14 +476,14 @@ textures:
             campground: [828, 84, 38, 38]
             camp_site: [828, 84, 38, 38]
             caravan_site: [828, 84, 38, 38]
-            candy-store: [814, 384, 38, 38]
-            candy: [814, 384, 38, 38]
-            confectionery: [814, 384, 38, 38]
-            capital-l: [376, 490, 16, 16]
-            capital-m: [356, 490, 12, 12]
-            capital-s: [336, 490, 10, 10]
-            capital-xl: [400, 490, 20, 20]
-            capital-xs: [322, 490, 8, 8]
+            candy-store: [90, 564, 38, 38]
+            candy: [90, 564, 38, 38]
+            confectionery: [90, 564, 38, 38]
+            capital-l: [650, 566, 16, 16]
+            capital-m: [630, 566, 12, 12]
+            capital-s: [610, 566, 10, 10]
+            capital-xl: [674, 566, 20, 20]
+            capital-xs: [596, 566, 8, 8]
             car-dealership: [862, 126, 38, 38]
             car: [862, 126, 38, 38]
             castle: [414, 42, 38, 38]
@@ -486,26 +491,28 @@ textures:
             cemetery: [736, 84, 38, 38]
             grave_yard: [736, 84, 38, 38]
             church: [230, 126, 38, 38]
-            clothing-store: [632, 384, 38, 38]
-            clothes: [632, 384, 38, 38]
-            fashion: [632, 384, 38, 38]
+            clothing-store: [892, 460, 38, 38]
+            clothes: [892, 460, 38, 38]
+            fashion: [892, 460, 38, 38]
             coffee-shop: [594, 204, 38, 38]
             cafe: [594, 204, 38, 38]
-            college-university: [678, 384, 38, 38]
-            university: [678, 384, 38, 38]
-            college: [678, 384, 38, 38]
+            college-university: [938, 460, 38, 38]
+            university: [938, 460, 38, 38]
+            college: [938, 460, 38, 38]
             convenience-store: [46, 84, 38, 38]
             convenience: [46, 84, 38, 38]
             convenience_store: [46, 84, 38, 38]
             beverages: [46, 84, 38, 38]
             county_shield_1char: [732, 204, 72, 72]
-            county_shield_2char: [924, 204, 88, 72]
-            county_shield_3char: [812, 204, 104, 72]
+            county_shield_2char: [240, 280, 90, 72]
+            county_shield_3char: [128, 280, 104, 72]
+            county_shield_4char: [0, 280, 120, 72]
+            county_shield_5char: [812, 204, 128, 72]
             courthouse: [364, 0, 38, 38]
-            current-location: [0, 620, 88, 88]
+            current-location: [294, 606, 88, 88]
             department-store: [816, 126, 38, 38]
             department_store: [816, 126, 38, 38]
-            drinking-water: [92, 488, 38, 38]
+            drinking-water: [366, 564, 38, 38]
             dry-cleaning: [0, 84, 38, 38]
             dry_cleaning: [0, 84, 38, 38]
             electronics-store: [680, 126, 38, 38]
@@ -527,18 +534,20 @@ textures:
             fitness_center: [874, 42, 38, 38]
             flower-shop: [184, 126, 38, 38]
             florist: [184, 126, 38, 38]
-            forest: [860, 384, 38, 38]
-            conservation: [860, 384, 38, 38]
-            nature_reserve: [860, 384, 38, 38]
+            forest: [136, 564, 38, 38]
+            conservation: [136, 564, 38, 38]
+            nature_reserve: [136, 564, 38, 38]
             fountain: [404, 126, 38, 38]
             garden: [690, 84, 38, 38]
-            gas-station: [768, 384, 38, 38]
-            fuel: [768, 384, 38, 38]
-            generic: [276, 488, 38, 38]
-            subway_entrance: [276, 488, 38, 38]
-            generic_shield_1char: [0, 280, 72, 72]
-            generic_shield_2char: [192, 280, 88, 72]
-            generic_shield_3char: [80, 280, 104, 72]
+            gas-station: [44, 564, 38, 38]
+            fuel: [44, 564, 38, 38]
+            generic: [550, 564, 38, 38]
+            subway_entrance: [550, 564, 38, 38]
+            generic_shield_1char: [336, 280, 72, 72]
+            generic_shield_2char: [792, 280, 88, 72]
+            generic_shield_3char: [680, 280, 104, 72]
+            generic_shield_4char: [552, 280, 120, 72]
+            generic_shield_5char: [416, 280, 128, 72]
             gift-shop: [138, 126, 38, 38]
             gift: [138, 126, 38, 38]
             golf-course: [414, 84, 38, 38]
@@ -566,10 +575,10 @@ textures:
             hotel: [732, 0, 38, 38]
             motel: [732, 0, 38, 38]
             hostel: [732, 0, 38, 38]
-            ice-cream-shop: [184, 488, 38, 38]
-            ice_cream: [184, 488, 38, 38]
-            information: [230, 488, 38, 38]
-            info: [230, 488, 38, 38]
+            ice-cream-shop: [458, 564, 38, 38]
+            ice_cream: [458, 564, 38, 38]
+            information: [504, 564, 38, 38]
+            info: [504, 564, 38, 38]
             jewelry-store: [736, 42, 38, 38]
             jewelry: [736, 42, 38, 38]
             jewelry_store: [736, 42, 38, 38]
@@ -589,8 +598,8 @@ textures:
             liquor-store: [588, 126, 38, 38]
             alcohol: [588, 126, 38, 38]
             liquor: [588, 126, 38, 38]
-            locate-off: [334, 620, 72, 72]
-            locate-on: [254, 620, 72, 72]
+            locate-off: [628, 606, 72, 72]
+            locate-on: [548, 606, 72, 72]
             mall: [644, 42, 38, 38]
             market: [598, 42, 38, 38]
             variety_store: [598, 42, 38, 38]
@@ -606,9 +615,9 @@ textures:
             mosque: [92, 0, 38, 38]
             mountain: [230, 84, 38, 38]
             peak: [230, 84, 38, 38]
-            movie-theatre: [586, 384, 38, 38]
-            cinema: [586, 384, 38, 38]
-            movie-theater: [586, 384, 38, 38]
+            movie-theatre: [846, 460, 38, 38]
+            cinema: [846, 460, 38, 38]
+            movie-theater: [846, 460, 38, 38]
             museum: [46, 126, 38, 38]
             music-store: [368, 42, 38, 38]
             music: [368, 42, 38, 38]
@@ -653,11 +662,11 @@ textures:
             rental-car: [594, 0, 38, 38]
             car_rental: [594, 0, 38, 38]
             car_sharing: [594, 0, 38, 38]
-            restaurant: [906, 384, 38, 38]
-            deli: [906, 384, 38, 38]
-            route-arrow: [638, 488, 128, 128]
-            route-start: [852, 488, 72, 92]
-            route-stop: [774, 488, 72, 92]
+            restaurant: [182, 564, 38, 38]
+            deli: [182, 564, 38, 38]
+            route-arrow: [0, 606, 128, 128]
+            route-start: [214, 606, 72, 92]
+            route-stop: [136, 606, 72, 92]
             ruin: [502, 0, 38, 38]
             ruins: [502, 0, 38, 38]
             archaeological_site: [502, 0, 38, 38]
@@ -667,8 +676,8 @@ textures:
             beauty_salon: [46, 42, 38, 38]
             school: [552, 84, 38, 38]
             kindergarten: [552, 84, 38, 38]
-            search-active: [94, 620, 72, 108]
-            search-inactive: [174, 620, 72, 108]
+            search-active: [388, 606, 72, 108]
+            search-inactive: [468, 606, 72, 108]
             shoe-store: [552, 42, 38, 38]
             shoes: [552, 42, 38, 38]
             shoe_store: [552, 42, 38, 38]
@@ -688,40 +697,40 @@ textures:
             synagogue: [46, 0, 38, 38]
             tailor-shop: [962, 0, 38, 38]
             tailor: [962, 0, 38, 38]
-            taqueria: [952, 384, 38, 38]
+            taqueria: [228, 564, 38, 38]
             tennis: [496, 126, 38, 38]
             theme-park: [0, 126, 38, 38]
             theme_park: [0, 126, 38, 38]
             miniature_golf: [0, 126, 38, 38]
             toilets: [874, 84, 38, 38]
-            townspot-l: [586, 488, 16, 16]
-            townspot-l-rev: [480, 490, 16, 16]
-            townspot-m: [566, 488, 12, 12]
-            townspot-m-rev: [460, 490, 12, 12]
-            townspot-s: [548, 488, 10, 10]
-            townspot-s-rev: [442, 490, 10, 10]
-            townspot-xl: [610, 488, 20, 20]
-            townspot-xl-rev: [504, 490, 20, 20]
-            townspot-xs: [532, 488, 8, 8]
-            townspot-xs-rev: [428, 490, 6, 6]
+            townspot-l: [860, 564, 16, 16]
+            townspot-l-rev: [754, 566, 16, 16]
+            townspot-m: [840, 564, 12, 12]
+            townspot-m-rev: [734, 566, 12, 12]
+            townspot-s: [822, 564, 10, 10]
+            townspot-s-rev: [716, 566, 10, 10]
+            townspot-xl: [884, 564, 20, 20]
+            townspot-xl-rev: [778, 566, 20, 20]
+            townspot-xs: [806, 564, 8, 8]
+            townspot-xs-rev: [702, 566, 6, 6]
             toy-game-store: [916, 0, 38, 38]
             toys: [916, 0, 38, 38]
             baby_goods: [916, 0, 38, 38]
-            traffic-signal: [724, 384, 38, 38]
-            traffic_signals: [724, 384, 38, 38]
+            traffic-signal: [0, 564, 38, 38]
+            traffic_signals: [0, 564, 38, 38]
             train-station: [410, 0, 38, 38]
             station: [410, 0, 38, 38]
             train-staion: [410, 0, 38, 38]
             veterinarian: [138, 0, 38, 38]
             pet_care: [138, 0, 38, 38]
             veterinary: [138, 0, 38, 38]
-            view-point: [494, 384, 38, 38]
-            viewpoint: [494, 384, 38, 38]
-            view_point: [494, 384, 38, 38]
-            vista: [494, 384, 38, 38]
+            view-point: [754, 460, 38, 38]
+            viewpoint: [754, 460, 38, 38]
+            view_point: [754, 460, 38, 38]
+            vista: [754, 460, 38, 38]
             vineyard: [138, 204, 38, 38]
             volcano: [92, 84, 38, 38]
-            wine-bar: [46, 488, 38, 38]
+            wine-bar: [320, 564, 38, 38]
             winery: [548, 204, 38, 38]
             wine: [548, 204, 38, 38]
             zoo: [966, 84, 38, 38]
@@ -2546,12 +2555,12 @@ layers:
                 filter: function() { return (feature.shield_text.length === 4) }
                 draw:
                     icons:
-                        size: [[11,[23px,20px]],[15,[29px,25px]]]
+                        size: [[6,[22px,14px]],[13,[24px,15px]],[15,[30px,18px]]]
             width_5char:
                 filter: function() { return (feature.shield_text.length === 5) }
                 draw:
                     icons:
-                        size: [[11,[23px,20px]],[15,[29px,25px]]]
+                        size: [[6,[24px,14px]],[13,[26px,15px]],[15,[32px,18px]]]
             #
             # Now for the good stuff
             #
@@ -2573,7 +2582,7 @@ layers:
                     filter: function() { return (feature.shield_text.length === 1) }
                     draw:
                         icons:
-                            size: [[6,[17px,18px]],[13,[19px,20px]],[15,[24px,25px]]]
+                            size: [[6,[15px,18px]],[13,[17px,20px]],[15,[22px,25px]]]
                 width_2char:
                     filter: function() { return (feature.shield_text.length === 2) }
                     draw:
@@ -2588,12 +2597,12 @@ layers:
                     filter: function() { return (feature.shield_text.length === 4) }
                     draw:
                         icons:
-                            size: [[11,[23px,20px]],[15,[29px,25px]]]
+                            size: [[6,[22px,18px]],[13,[25px,20px]],[15,[31px,25px]]]
                 width_5char:
                     filter: function() { return (feature.shield_text.length === 5) }
                     draw:
                         icons:
-                            size: [[11,[23px,20px]],[15,[29px,25px]]]
+                            size: [[6,[23px,18px]],[13,[26px,20px]],[15,[32px,25px]]]
             # US Federal Routes
             US-US:
                 filter:
@@ -2632,12 +2641,12 @@ layers:
                     filter: function() { return (feature.shield_text.length === 4) }
                     draw:
                         icons:
-                            size: [[6,[19px,17px]],[13,[22px,19px]],[15,[28px,25px]]]
+                            size: [[6,[20px,17px]],[13,[23px,19px]],[15,[31px,25px]]]
                 width_5char:
                     filter: function() { return (feature.shield_text.length === 5) }
                     draw:
                         icons:
-                            size: [[6,[19px,17px]],[13,[22px,19px]],[15,[28px,25px]]]
+                            size: [[6,[21px,17px]],[13,[24px,19px]],[15,[32px,25px]]]
             # US State Routes
             US-states:
                 # Match state highways: `US:??`
@@ -2680,12 +2689,12 @@ layers:
                     filter: function() { return (feature.shield_text.length === 4) }
                     draw:
                         icons:
-                            size: [[11,16px],[15,20px]]
+                            size: [[6,[22px,14px]],[13,[24px,15px]],[15,[30px,18px]]]
                 width_5char:
                     filter: function() { return (feature.shield_text.length === 5) }
                     draw:
                         icons:
-                            size: [[11,16px],[15,20px]]
+                            size: [[6,[24px,14px]],[13,[26px,15px]],[15,[32px,18px]]]
             # USA County Routes
             US-counties:
                 # Match state highways: `US:??:*`
@@ -2740,12 +2749,12 @@ layers:
                     filter: function() { return (feature.shield_text.length === 4) }
                     draw:
                         icons:
-                            size: [[11,16px],[15,20px]]
+                            size: [[6,[22px,14px]],[13,[24px,15px]],[15,[30px,18px]]]
                 width_5char:
                     filter: function() { return (feature.shield_text.length === 5) }
                     draw:
                         icons:
-                            size: [[11,16px],[15,20px]]
+                            size: [[6,[24px,14px]],[13,[26px,15px]],[15,[32px,18px]]]
         path:
             filter:
                 all:
