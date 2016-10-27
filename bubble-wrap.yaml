@@ -499,7 +499,7 @@ textures:
             convenience_store: [46, 84, 38, 38]
             beverages: [46, 84, 38, 38]
             county_shield_1char: [732, 204, 72, 72]
-            county_shield_2char: [924, 204, 90, 72]
+            county_shield_2char: [924, 204, 88, 72]
             county_shield_3char: [812, 204, 104, 72]
             courthouse: [364, 0, 38, 38]
             current-location: [0, 620, 88, 88]
