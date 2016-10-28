@@ -371,6 +371,14 @@ map = (function () {
             }
             map.setView([map_start_location[0], map_start_location[1]], map_start_location[2]);
         });
+
+        // Set initial language on scene load
+        layer.scene.subscribe({
+            load: function (msg) {
+                msg.config.global.ux_language = query.language;
+            }
+        });
+
         if (!inIframe()) {
             map.scrollWheelZoom.enable();
             addGUI();
