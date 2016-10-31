@@ -399,27 +399,37 @@ textures:
         filtering: mipmap
         sprites:
             # define sprites: [x origin, y origin, width, height]
-            'US:CA_1char': [886, 280, 72, 72]
-            'US:CA_2char': [376, 356, 88, 72]
-            'US:CA_3char': [264, 356, 104, 72]
-            'US:CA_4char': [136, 356, 120, 72]
-            'US:CA_5char': [0, 356, 128, 72]
-            'US:I_1char': [110, 460, 90, 100]
-            'US:I_2char': [598, 460, 102, 102]
-            'US:I_3char': [476, 460, 116, 100]
-            'US:I_4char': [344, 460, 126, 100]
-            'US:I_5char': [208, 460, 128, 100]
-            'US:US_1char': [860, 356, 88, 98]
-            'US:US_2char': [0, 460, 104, 98]
-            'US:US_3char': [740, 356, 114, 100]
-            'US:US_4char': [608, 356, 124, 100]
-            'US:US_5char': [472, 356, 128, 100]
+            'US:CA_1char': [94, 464, 82, 92]
+            'US:CA_2char': [572, 464, 92, 92]
+            'US:CA_3char': [450, 464, 114, 92]
+            'US:CA_4char': [318, 464, 124, 92]
+            'US:CA_5char': [182, 464, 128, 92]
+            'US:I_1char': [326, 568, 90, 100]
+            'US:I_2char': [814, 568, 102, 102]
+            'US:I_3char': [692, 568, 116, 100]
+            'US:I_4char': [560, 568, 126, 100]
+            'US:I_5char': [424, 568, 128, 100]
+            'US:NY_1char': [412, 372, 72, 88]
+            'US:NY_2char': [700, 280, 88, 88]
+            'US:NY_3char': [588, 280, 104, 88]
+            'US:NY_4char': [464, 280, 116, 88]
+            'US:NY_5char': [336, 280, 120, 88]
+            'US:PA_1char': [332, 372, 72, 88]
+            'US:PA_2char': [236, 372, 88, 88]
+            'US:PA_3char': [124, 372, 104, 88]
+            'US:PA_4char': [0, 372, 116, 88]
+            'US:PA_5char': [796, 280, 120, 88]
+            'US:US_1char': [120, 568, 88, 98]
+            'US:US_2char': [216, 570, 104, 96]
+            'US:US_3char': [0, 568, 114, 100]
+            'US:US_4char': [808, 464, 124, 100]
+            'US:US_5char': [672, 464, 128, 100]
             airport: [870, 0, 38, 38]
             aerodrome: [870, 0, 38, 38]
-            aquarium: [800, 460, 38, 38]
-            art-gallery: [708, 460, 38, 38]
-            art_gallery: [708, 460, 38, 38]
-            art: [708, 460, 38, 38]
+            aquarium: [0, 672, 38, 38]
+            art-gallery: [924, 568, 38, 38]
+            art_gallery: [924, 568, 38, 38]
+            art: [924, 568, 38, 38]
             athletics-sports: [276, 204, 38, 38]
             pitch: [276, 204, 38, 38]
             athletic_sports: [276, 204, 38, 38]
@@ -438,9 +448,9 @@ textures:
             baseball-field: [506, 84, 38, 38]
             basketball-court: [460, 84, 38, 38]
             beach: [644, 84, 38, 38]
-            beer-garden: [412, 564, 38, 38]
-            biergarten: [412, 564, 38, 38]
-            brewery: [412, 564, 38, 38]
+            beer-garden: [596, 672, 38, 38]
+            biergarten: [596, 672, 38, 38]
+            brewery: [596, 672, 38, 38]
             bench: [548, 0, 38, 38]
             bicycle-parking: [726, 126, 38, 38]
             bike-shop: [954, 126, 38, 38]
@@ -467,8 +477,8 @@ textures:
             manor: [506, 204, 38, 38]
             recreation_center: [506, 204, 38, 38]
             apartments: [506, 204, 38, 38]
-            burger: [274, 564, 38, 38]
-            fast_food: [274, 564, 38, 38]
+            burger: [458, 672, 38, 38]
+            fast_food: [458, 672, 38, 38]
             bus-station: [778, 0, 38, 38]
             bus_stop: [778, 0, 38, 38]
             bus_station: [778, 0, 38, 38]
@@ -476,14 +486,14 @@ textures:
             campground: [828, 84, 38, 38]
             camp_site: [828, 84, 38, 38]
             caravan_site: [828, 84, 38, 38]
-            candy-store: [90, 564, 38, 38]
-            candy: [90, 564, 38, 38]
-            confectionery: [90, 564, 38, 38]
-            capital-l: [650, 566, 16, 16]
-            capital-m: [630, 566, 12, 12]
-            capital-s: [610, 566, 10, 10]
-            capital-xl: [674, 566, 20, 20]
-            capital-xs: [596, 566, 8, 8]
+            candy-store: [274, 672, 38, 38]
+            candy: [274, 672, 38, 38]
+            confectionery: [274, 672, 38, 38]
+            capital-l: [834, 674, 16, 16]
+            capital-m: [814, 674, 12, 12]
+            capital-s: [794, 674, 10, 10]
+            capital-xl: [858, 674, 20, 20]
+            capital-xs: [780, 674, 8, 8]
             car-dealership: [862, 126, 38, 38]
             car: [862, 126, 38, 38]
             castle: [414, 42, 38, 38]
@@ -491,28 +501,28 @@ textures:
             cemetery: [736, 84, 38, 38]
             grave_yard: [736, 84, 38, 38]
             church: [230, 126, 38, 38]
-            clothing-store: [892, 460, 38, 38]
-            clothes: [892, 460, 38, 38]
-            fashion: [892, 460, 38, 38]
+            clothing-store: [92, 672, 38, 38]
+            clothes: [92, 672, 38, 38]
+            fashion: [92, 672, 38, 38]
             coffee-shop: [594, 204, 38, 38]
             cafe: [594, 204, 38, 38]
-            college-university: [938, 460, 38, 38]
-            university: [938, 460, 38, 38]
-            college: [938, 460, 38, 38]
+            college-university: [138, 672, 38, 38]
+            university: [138, 672, 38, 38]
+            college: [138, 672, 38, 38]
             convenience-store: [46, 84, 38, 38]
             convenience: [46, 84, 38, 38]
             convenience_store: [46, 84, 38, 38]
             beverages: [46, 84, 38, 38]
-            county_shield_1char: [732, 204, 72, 72]
-            county_shield_2char: [240, 280, 90, 72]
-            county_shield_3char: [128, 280, 104, 72]
-            county_shield_4char: [0, 280, 120, 72]
-            county_shield_5char: [812, 204, 128, 72]
+            county_shield_1char: [492, 372, 72, 72]
+            county_shield_2char: [0, 464, 88, 72]
+            county_shield_3char: [836, 372, 104, 72]
+            county_shield_4char: [708, 372, 120, 72]
+            county_shield_5char: [572, 372, 128, 72]
             courthouse: [364, 0, 38, 38]
-            current-location: [294, 606, 88, 88]
+            current-location: [366, 714, 88, 88]
             department-store: [816, 126, 38, 38]
             department_store: [816, 126, 38, 38]
-            drinking-water: [366, 564, 38, 38]
+            drinking-water: [550, 672, 38, 38]
             dry-cleaning: [0, 84, 38, 38]
             dry_cleaning: [0, 84, 38, 38]
             electronics-store: [680, 126, 38, 38]
@@ -534,20 +544,20 @@ textures:
             fitness_center: [874, 42, 38, 38]
             flower-shop: [184, 126, 38, 38]
             florist: [184, 126, 38, 38]
-            forest: [136, 564, 38, 38]
-            conservation: [136, 564, 38, 38]
-            nature_reserve: [136, 564, 38, 38]
+            forest: [320, 672, 38, 38]
+            conservation: [320, 672, 38, 38]
+            nature_reserve: [320, 672, 38, 38]
             fountain: [404, 126, 38, 38]
             garden: [690, 84, 38, 38]
-            gas-station: [44, 564, 38, 38]
-            fuel: [44, 564, 38, 38]
-            generic: [550, 564, 38, 38]
-            subway_entrance: [550, 564, 38, 38]
-            generic_shield_1char: [336, 280, 72, 72]
-            generic_shield_2char: [792, 280, 88, 72]
-            generic_shield_3char: [680, 280, 104, 72]
-            generic_shield_4char: [552, 280, 120, 72]
-            generic_shield_5char: [416, 280, 128, 72]
+            gas-station: [228, 672, 38, 38]
+            fuel: [228, 672, 38, 38]
+            generic: [734, 672, 38, 38]
+            subway_entrance: [734, 672, 38, 38]
+            generic_shield_1char: [732, 204, 72, 72]
+            generic_shield_2char: [240, 280, 90, 72]
+            generic_shield_3char: [128, 280, 104, 72]
+            generic_shield_4char: [0, 280, 120, 72]
+            generic_shield_5char: [812, 204, 140, 72]
             gift-shop: [138, 126, 38, 38]
             gift: [138, 126, 38, 38]
             golf-course: [414, 84, 38, 38]
@@ -575,10 +585,10 @@ textures:
             hotel: [732, 0, 38, 38]
             motel: [732, 0, 38, 38]
             hostel: [732, 0, 38, 38]
-            ice-cream-shop: [458, 564, 38, 38]
-            ice_cream: [458, 564, 38, 38]
-            information: [504, 564, 38, 38]
-            info: [504, 564, 38, 38]
+            ice-cream-shop: [642, 672, 38, 38]
+            ice_cream: [642, 672, 38, 38]
+            information: [688, 672, 38, 38]
+            info: [688, 672, 38, 38]
             jewelry-store: [736, 42, 38, 38]
             jewelry: [736, 42, 38, 38]
             jewelry_store: [736, 42, 38, 38]
@@ -598,8 +608,8 @@ textures:
             liquor-store: [588, 126, 38, 38]
             alcohol: [588, 126, 38, 38]
             liquor: [588, 126, 38, 38]
-            locate-off: [628, 606, 72, 72]
-            locate-on: [548, 606, 72, 72]
+            locate-off: [700, 714, 72, 72]
+            locate-on: [620, 714, 72, 72]
             mall: [644, 42, 38, 38]
             market: [598, 42, 38, 38]
             variety_store: [598, 42, 38, 38]
@@ -615,9 +625,9 @@ textures:
             mosque: [92, 0, 38, 38]
             mountain: [230, 84, 38, 38]
             peak: [230, 84, 38, 38]
-            movie-theatre: [846, 460, 38, 38]
-            cinema: [846, 460, 38, 38]
-            movie-theater: [846, 460, 38, 38]
+            movie-theatre: [46, 672, 38, 38]
+            cinema: [46, 672, 38, 38]
+            movie-theater: [46, 672, 38, 38]
             museum: [46, 126, 38, 38]
             music-store: [368, 42, 38, 38]
             music: [368, 42, 38, 38]
@@ -662,11 +672,11 @@ textures:
             rental-car: [594, 0, 38, 38]
             car_rental: [594, 0, 38, 38]
             car_sharing: [594, 0, 38, 38]
-            restaurant: [182, 564, 38, 38]
-            deli: [182, 564, 38, 38]
-            route-arrow: [0, 606, 128, 128]
-            route-start: [214, 606, 72, 92]
-            route-stop: [136, 606, 72, 92]
+            restaurant: [366, 672, 38, 38]
+            deli: [366, 672, 38, 38]
+            route-arrow: [72, 714, 128, 128]
+            route-start: [286, 714, 72, 92]
+            route-stop: [208, 714, 72, 92]
             ruin: [502, 0, 38, 38]
             ruins: [502, 0, 38, 38]
             archaeological_site: [502, 0, 38, 38]
@@ -676,8 +686,8 @@ textures:
             beauty_salon: [46, 42, 38, 38]
             school: [552, 84, 38, 38]
             kindergarten: [552, 84, 38, 38]
-            search-active: [388, 606, 72, 108]
-            search-inactive: [468, 606, 72, 108]
+            search-active: [460, 714, 72, 108]
+            search-inactive: [540, 714, 72, 108]
             shoe-store: [552, 42, 38, 38]
             shoes: [552, 42, 38, 38]
             shoe_store: [552, 42, 38, 38]
@@ -697,40 +707,40 @@ textures:
             synagogue: [46, 0, 38, 38]
             tailor-shop: [962, 0, 38, 38]
             tailor: [962, 0, 38, 38]
-            taqueria: [228, 564, 38, 38]
+            taqueria: [412, 672, 38, 38]
             tennis: [496, 126, 38, 38]
             theme-park: [0, 126, 38, 38]
             theme_park: [0, 126, 38, 38]
             miniature_golf: [0, 126, 38, 38]
             toilets: [874, 84, 38, 38]
-            townspot-l: [860, 564, 16, 16]
-            townspot-l-rev: [754, 566, 16, 16]
-            townspot-m: [840, 564, 12, 12]
-            townspot-m-rev: [734, 566, 12, 12]
-            townspot-s: [822, 564, 10, 10]
-            townspot-s-rev: [716, 566, 10, 10]
-            townspot-xl: [884, 564, 20, 20]
-            townspot-xl-rev: [778, 566, 20, 20]
-            townspot-xs: [806, 564, 8, 8]
-            townspot-xs-rev: [702, 566, 6, 6]
+            townspot-l: [20, 714, 16, 16]
+            townspot-l-rev: [938, 674, 16, 16]
+            townspot-m: [0, 714, 12, 12]
+            townspot-m-rev: [918, 674, 12, 12]
+            townspot-s: [1006, 672, 10, 10]
+            townspot-s-rev: [900, 674, 10, 10]
+            townspot-xl: [44, 714, 20, 20]
+            townspot-xl-rev: [962, 674, 20, 20]
+            townspot-xs: [990, 672, 8, 8]
+            townspot-xs-rev: [886, 674, 6, 6]
             toy-game-store: [916, 0, 38, 38]
             toys: [916, 0, 38, 38]
             baby_goods: [916, 0, 38, 38]
-            traffic-signal: [0, 564, 38, 38]
-            traffic_signals: [0, 564, 38, 38]
+            traffic-signal: [184, 672, 38, 38]
+            traffic_signals: [184, 672, 38, 38]
             train-station: [410, 0, 38, 38]
             station: [410, 0, 38, 38]
             train-staion: [410, 0, 38, 38]
             veterinarian: [138, 0, 38, 38]
             pet_care: [138, 0, 38, 38]
             veterinary: [138, 0, 38, 38]
-            view-point: [754, 460, 38, 38]
-            viewpoint: [754, 460, 38, 38]
-            view_point: [754, 460, 38, 38]
-            vista: [754, 460, 38, 38]
+            view-point: [970, 568, 38, 38]
+            viewpoint: [970, 568, 38, 38]
+            view_point: [970, 568, 38, 38]
+            vista: [970, 568, 38, 38]
             vineyard: [138, 204, 38, 38]
             volcano: [92, 84, 38, 38]
-            wine-bar: [320, 564, 38, 38]
+            wine-bar: [504, 672, 38, 38]
             winery: [548, 204, 38, 38]
             wine: [548, 204, 38, 38]
             zoo: [966, 84, 38, 38]
@@ -2512,19 +2522,49 @@ layers:
         shields:
             filter:
                 $zoom: { min: 6 }
-                shield_text: true    # some roads don't have shield text, deal with that later
+                #
+                # United State looks great with shield_text alone, but...
+                #
+                #shield_text: true    # some roads don't have shield text, deal with that later
+                #
+                # Europe doesn't have many network relations set, so we could look for either
+                # shield_text or ref (with no shield_text) but...
+                # that makes United States look a bit funky with `(xxx)` and generic shields 
+                # showing up in fields of custom state shields like US:CA and US:NY
+                #
+                any:
+                    - shield_text: true    # some roads don't have shield text, deal with that later
+                    - all:
+                        - shield_text: false    # some roads don't have shield text, deal with that later
+                        - ref: true
+                        - kind: [highway, major_road, minor_road]
             # default
             draw:
                 icons:
                     # you need to match any custom shield to the vector tile `network` values
-                    sprite: function() { return 'generic_shield' }
+                    sprite: |
+                        function() { 
+                            if( feature.shield_text ) { 
+                                return ('generic_shield_' + feature.shield_text.length + 'char');
+                            } else {
+                                return ('generic_shield_' + feature.ref.length + 'char');
+                            }
+                        }
+                    sprite_default: generic_shield_5char
                     priority: 20
-                    size: [[11,16px],[15,20px]]
+                    size: [[6,[24px,14px]],[13,[26px,15px]],[15,[32px,18px]]]
                     cull_from_tile: true
                     visible: global.text_visible_shields
                     text:
                         anchor: center
-                        text_source: shield_text
+                        text_source: |
+                            function() { 
+                                if( feature.shield_text ) { 
+                                    return feature.shield_text;
+                                } else {
+                                    return feature.ref;
+                                }
+                            }
                         font:
                             family: Montserrat
                             fill: [0.308,0.308,0.308]
@@ -2537,224 +2577,377 @@ layers:
                     icons:
                         visible: false
             width_1char:
-                filter: function() { return (feature.shield_text.length === 1) }
+                filter: |
+                    function() { 
+                        if( feature.shield_text ) { 
+                            return (feature.shield_text.length === 1)
+                        } else {
+                            return (feature.ref.length === 1)
+                        }
+                    }
                 draw:
                     icons:
                         size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
             width_2char:
-                filter: function() { return (feature.shield_text.length === 2) }
+                filter: |
+                    function() { 
+                        if( feature.shield_text ) { 
+                            return (feature.shield_text.length === 2)
+                        } else {
+                            return (feature.ref.length === 2)
+                        }
+                    }
                 draw:
                     icons:
                         size: [[6,[16px,14px]],[13,[18px,16px]],[15,[22px,18px]]]
             width_3char:
-                filter: function() { return (feature.shield_text.length === 3) }
+                filter: |
+                    function() { 
+                        if( feature.shield_text ) { 
+                            return (feature.shield_text.length === 3)
+                        } else {
+                            return (feature.ref.length === 3)
+                        }
+                    }
                 draw:
                     icons:
                         size: [[6,[20px,14px]],[13,[21px,15px]],[15,[26px,18px]]]
             width_4char:
-                filter: function() { return (feature.shield_text.length === 4) }
+                filter: |
+                    function() { 
+                        if( feature.shield_text ) { 
+                            return (feature.shield_text.length === 4)
+                        } else {
+                            return (feature.ref.length === 4)
+                        }
+                    }
                 draw:
                     icons:
                         size: [[6,[22px,14px]],[13,[24px,15px]],[15,[30px,18px]]]
             width_5char:
-                filter: function() { return (feature.shield_text.length === 5) }
+                filter: |
+                    function() { 
+                        if( feature.shield_text ) { 
+                            return (feature.shield_text.length === 5)
+                        } else {
+                            return (feature.ref.length === 5)
+                        }
+                    }
                 draw:
                     icons:
                         size: [[6,[24px,14px]],[13,[26px,15px]],[15,[32px,18px]]]
+            # this is kinda a hack
+            width_longggggg:
+                filter: |
+                    function() { 
+                        if( feature.shield_text ) { 
+                            return (feature.shield_text.length > 5)
+                        } else {
+                            return (feature.ref.length > 5)
+                        }
+                    }
+                draw:
+                    icons:
+                        visible: false
             #
             # Now for the good stuff
             #
-            # US Interstate roads
-            US-I:
-                filter:
-                    network: 'US:I'
-                draw:
-                    icons:
-                        # you need to match any custom shield to the vector tile `network` values
-                        sprite: function() { return (feature.network + '_' + feature.shield_text.length + 'char'); }
-                        priority: 16
-                        text:
-                            offset: [0px, 0.5px]
-                            font:
-                                fill: [0.308,0.308,0.308]
-                                size: [[7,7px],[13,9px],[15,10px]]
-                width_1char:
-                    filter: function() { return (feature.shield_text.length === 1) }
+            legit-shields:
+                filter: { shield_text: true }
+                # US Interstate roads
+                US-I:
+                    filter:
+                        network: 'US:I'
                     draw:
                         icons:
-                            size: [[6,[15px,18px]],[13,[17px,20px]],[15,[22px,25px]]]
-                width_2char:
-                    filter: function() { return (feature.shield_text.length === 2) }
+                            # you need to match any custom shield to the vector tile `network` values
+                            sprite: function() { return (feature.network + '_' + feature.shield_text.length + 'char'); }
+                            priority: 16
+                            text:
+                                offset: [0px, 0.5px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    size: [[7,7px],[13,9px],[15,10px]]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            icons:
+                                size: [[6,[15px,18px]],[13,[17px,20px]],[15,[22px,25px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            icons:
+                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[25px,25px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            icons:
+                                size: [[6,[20px,18px]],[13,[23px,20px]],[15,[29px,25px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            icons:
+                                size: [[6,[22px,18px]],[13,[25px,20px]],[15,[31px,25px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            icons:
+                                size: [[6,[23px,18px]],[13,[26px,20px]],[15,[32px,25px]]]
+                # US Federal Routes
+                US-US:
+                    filter:
+                        network: ['US:US','US:US:Business', 'US:US:Truck', 'US:US:Alternate']
                     draw:
                         icons:
-                            size: [[6,[18px,18px]],[13,[20px,20px]],[15,[25px,25px]]]
-                width_3char:
-                    filter: function() { return (feature.shield_text.length === 3) }
+                            # you need to match any custom shield to the vector tile `network` values
+                            sprite: |
+                                function() { return ('US:US_' + feature.shield_text.length + 'char'); }
+                            priority: 17
+                            size: [[8,19px],[13,23px],[15,27px]]
+                            cull_from_tile: true
+                            text:
+                                font:
+                                    fill: [0.380,0.318,0.312]
+                                    size: [[7,7px],[13,9px],[15,10px]]
+                    early:
+                        filter: { $zoom: [7] }
+                        icons:
+                            visible: false
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            icons:
+                                size: [[6,[15px,17px]],[13,[16px,20px]],[15,[22px,25px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            icons:
+                                size: [[6,[18px,17px]],[13,[20px,19px]],[15,[26px,25px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            icons:
+                                size: [[6,[19px,17px]],[13,[22px,19px]],[15,[28px,25px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            icons:
+                                size: [[6,[20px,17px]],[13,[23px,19px]],[15,[31px,25px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            icons:
+                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[32px,25px]]]
+                # US State Routes
+                US-states:
+                    # Match state highways: `US:??`
+                    filter: |
+                        function() {
+                            return feature.shield_text &&
+                                /^US:(?!US)\w\w$/.test(feature.network)
+                        }
                     draw:
                         icons:
-                            size: [[6,[20px,18px]],[13,[23px,20px]],[15,[29px,25px]]]
-                width_4char:
-                    filter: function() { return (feature.shield_text.length === 4) }
+                            # you need to match any custom shield to the vector tile `network` values
+                            priority: 18
+                    early:
+                        filter: { $zoom: [7,8,9] }
+                        icons:
+                            visible: false
+                US-CA:
+                    # Match California state highways: `US:CA`
+                    filter: |
+                        function() {
+                            return feature.shield_text &&
+                                /^US:CA$/.test(feature.network)
+                        }
                     draw:
                         icons:
-                            size: [[6,[22px,18px]],[13,[25px,20px]],[15,[31px,25px]]]
-                width_5char:
-                    filter: function() { return (feature.shield_text.length === 5) }
+                            sprite: function() { return (feature.network + '_' + feature.shield_text.length + 'char'); }
+                            text:
+                                offset: [0px, 1px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    size: [[7,7px],[13,9px],[15,10px]]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            icons:
+                                size: [[6,[14px,16px]],[13,[15px,18px]],[15,[18px,21px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            icons:
+                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[23px,23px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            icons:
+                                size: [[6,[21px,18px]],[13,[24px,20px]],[15,[28px,23px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            icons:
+                                size: [[6,[24px,18px]],[13,[26px,20px]],[15,[31px,23px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            icons:
+                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[32px,23px]]]
+                US-NY:
+                    # Match New York state highways: `US:NY`
+                    filter: |
+                        function() {
+                            return feature.shield_text &&
+                                /^US:NY$/.test(feature.network)
+                                /* (/^US:NY$/.test(feature.network) || /^NY:US$/.test(feature.network)) */
+                        }
                     draw:
                         icons:
-                            size: [[6,[23px,18px]],[13,[26px,20px]],[15,[32px,25px]]]
-            # US Federal Routes
-            US-US:
-                filter:
-                    network: 'US:US'
-                draw:
-                    icons:
-                        # you need to match any custom shield to the vector tile `network` values
-                        sprite: function() { return (feature.network + '_' + feature.shield_text.length + 'char'); }
-                        priority: 17
-                        size: [[8,19px],[13,23px],[15,27px]]
-                        cull_from_tile: true
-                        text:
-                            font:
-                                fill: [0.870,0.452,0.473]
-                                size: [[8,6.5px],[13,8.5px],[15,10px]]
-                early:
-                    filter: { $zoom: [7] }
-                    icons:
-                        visible: false
-                width_1char:
-                    filter: function() { return (feature.shield_text.length === 1) }
+                            sprite: |
+                                function() { return ( 'US:NY_' + feature.shield_text.length + 'char'); }
+                            text:
+                                # offset: [0px, 1px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    size: [[7,7px],[13,9px],[15,10px]]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            icons:
+                                size: [[6,[13px,17px]],[13,[15px,19px]],[15,[18px,22px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            icons:
+                                size: [[6,[17px,17px]],[13,[19px,19px]],[15,[22px,22px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            icons:
+                                size: [[6,[20px,17px]],[13,[22px,19px]],[15,[27px,22px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            icons:
+                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[29px,22px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            icons:
+                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
+                US-PA:
+                    # Match Pennsylvania state highways
+                    filter: |
+                        function() {
+                            return feature.shield_text &&
+                                /^US:PA$/.test(feature.network)
+                        }
                     draw:
                         icons:
-                            size: [[6,[15px,17px]],[13,[16px,20px]],[15,[22px,25px]]]
-                width_2char:
-                    filter: function() { return (feature.shield_text.length === 2) }
+                            sprite: |
+                                function() { return ( 'US:PA_' + feature.shield_text.length + 'char'); }
+                            text:
+                                offset: [0px, 1px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    size: [[7,7px],[13,9px],[15,10px]]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            icons:
+                                size: [[6,[13px,17px]],[13,[15px,19px]],[15,[18px,22px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            icons:
+                                size: [[6,[17px,17px]],[13,[19px,19px]],[15,[22px,22px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            icons:
+                                size: [[6,[20px,17px]],[13,[22px,19px]],[15,[27px,22px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            icons:
+                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[29px,22px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            icons:
+                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
+                # USA County Routes
+                US-counties:
+                    # Match state highways: `US:??:*`
+                    #
+                    # this is very USA specific
+                    #
+                    # filter: |
+                    #     function() {
+                    #         return feature.shield_text &&
+                    #             /^US:(?!US)\w\w:.*$/.test(feature.network)
+                    #     }
+                    #
+                    # this generic for any country with 3rd level networks (like county routes in USA)
+                    # BEWARE: 
+                    # US:US:Business  about 150
+                    # US:US:Truck
+                    # US:US:Alternate
+    # 
+                    # STATE ROUTE
+                    # ??:??:Loop  about 200
+                    # ??:??:Spur  about 200
+                    # ??:??:Business   about 100
+    # 
+                    # STATE TEXAS SPECIAL ROUTE
+                    # US:TX:FM -- probably just state? there are 3k of these
+                    #
+                    #
+                    filter: |
+                        function() {
+                            return feature.shield_text &&
+                                /^\w+:\w+:(!Alternate).+$/.test(feature.network)
+                        }
                     draw:
                         icons:
-                            size: [[6,[18px,17px]],[13,[20px,19px]],[15,[26px,25px]]]
-                width_3char:
-                    filter: function() { return (feature.shield_text.length === 3) }
-                    draw:
-                        icons:
-                            size: [[6,[19px,17px]],[13,[22px,19px]],[15,[28px,25px]]]
-                width_4char:
-                    filter: function() { return (feature.shield_text.length === 4) }
-                    draw:
-                        icons:
-                            size: [[6,[20px,17px]],[13,[23px,19px]],[15,[31px,25px]]]
-                width_5char:
-                    filter: function() { return (feature.shield_text.length === 5) }
-                    draw:
-                        icons:
-                            size: [[6,[21px,17px]],[13,[24px,19px]],[15,[32px,25px]]]
-            # US State Routes
-            US-states:
-                # Match state highways: `US:??`
-                filter: |
-                    function() {
-                        return feature.shield_text &&
-                            /^US:(?!US)\w\w$/.test(feature.network)
-                    }
-                draw:
-                    icons:
-                        # you need to match any custom shield to the vector tile `network` values
-                        sprite: function() { return (feature.network + '_' + feature.shield_text.length + 'char'); }
-                        sprite_default: generic_shield
-                        priority: 18
-                        cull_from_tile: true
-                        text:
-                            font:
-                                fill: [0.508,0.508,0.508]
-                                size: [[8,6.5px],[13,8.5px],[15,10px]]
-                early:
-                    filter: { $zoom: [7,8,9] }
-                    icons:
-                        visible: false
-                width_1char:
-                    filter: function() { return (feature.shield_text.length === 1) }
-                    draw:
-                        icons:
-                            size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
-                width_2char:
-                    filter: function() { return (feature.shield_text.length === 2) }
-                    draw:
-                        icons:
-                            size: [[6,[16px,14px]],[13,[18px,16px]],[15,[22px,18px]]]
-                width_3char:
-                    filter: function() { return (feature.shield_text.length === 3) }
-                    draw:
-                        icons:
-                            size: [[6,[20px,14px]],[13,[21px,15px]],[15,[26px,18px]]]
-                width_4char:
-                    filter: function() { return (feature.shield_text.length === 4) }
-                    draw:
-                        icons:
-                            size: [[6,[22px,14px]],[13,[24px,15px]],[15,[30px,18px]]]
-                width_5char:
-                    filter: function() { return (feature.shield_text.length === 5) }
-                    draw:
-                        icons:
-                            size: [[6,[24px,14px]],[13,[26px,15px]],[15,[32px,18px]]]
-            # USA County Routes
-            US-counties:
-                # Match state highways: `US:??:*`
-                #
-                # this is very USA specific
-                #
-                # filter: |
-                #     function() {
-                #         return feature.shield_text &&
-                #             /^US:(?!US)\w\w:.*$/.test(feature.network)
-                #     }
-                #
-                # this generic for any country with 3rd level networks (like county routes in USA)
-                #
-                filter: |
-                    function() {
-                        return feature.shield_text &&
-                            /^\w+:\w+:.+$/.test(feature.network)
-                    }
-                draw:
-                    icons:
-                        # you need to match any custom shield to the vector tile `network` values
-                        sprite: function() { return ('county_shield_' + feature.shield_text.length + 'char'); }
-                        sprite_default: generic_shield
-                        priority: 19
-                        size: [[11,16px],[15,20px]]
-                        cull_from_tile: true
-                        text:
-                            font:
-                                fill: [0.508,0.508,0.508]
-                                #size: [[11,7px],[15,10px]]
-                early:
-                    filter: { $zoom: [7,8,9] }
-                    icons:
-                        visible: false
-                width_1char:
-                    filter: function() { return (feature.shield_text.length === 1) }
-                    draw:
-                        icons:
-                            size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
-                width_2char:
-                    filter: function() { return (feature.shield_text.length === 2) }
-                    draw:
-                        icons:
-                            size: [[6,[16px,14px]],[13,[18px,16px]],[15,[22px,18px]]]
-                width_3char:
-                    filter: function() { return (feature.shield_text.length === 3) }
-                    draw:
-                        icons:
-                            size: [[6,[20px,14px]],[13,[21px,15px]],[15,[26px,18px]]]
-                width_4char:
-                    filter: function() { return (feature.shield_text.length === 4) }
-                    draw:
-                        icons:
-                            size: [[6,[22px,14px]],[13,[24px,15px]],[15,[30px,18px]]]
-                width_5char:
-                    filter: function() { return (feature.shield_text.length === 5) }
-                    draw:
-                        icons:
-                            size: [[6,[24px,14px]],[13,[26px,15px]],[15,[32px,18px]]]
+                            # you need to match any custom shield to the vector tile `network` values
+                            sprite: function() { return ('county_shield_' + feature.shield_text.length + 'char'); }
+                            priority: 19
+                            text:
+                                font:
+                                    fill: [0.508,0.508,0.508]
+                                    #size: [[11,7px],[15,10px]]
+                    early:
+                        filter: { $zoom: { max: 11 } }
+                        draw:
+                            icons:
+                                visible: false
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            icons:
+                                size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            icons:
+                                size: [[6,[16px,14px]],[13,[18px,16px]],[15,[22px,18px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            icons:
+                                size: [[6,[20px,14px]],[13,[21px,15px]],[15,[26px,18px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            icons:
+                                size: [[6,[22px,14px]],[13,[24px,15px]],[15,[30px,18px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            icons:
+                                size: [[6,[24px,14px]],[13,[26px,15px]],[15,[32px,18px]]]
         path:
             filter:
                 all:
