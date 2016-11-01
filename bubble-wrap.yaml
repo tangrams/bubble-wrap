@@ -391,7 +391,9 @@ fonts:
     Varela:
         url: https://fonts.gstatic.com/s/varela/v7/maB5vWJo0EAVzvHPjBkLM-vvDin1pK8aKteLpeZ5c0A.woff
     Quicksand:
-        url: https://fonts.gstatic.com/s/quicksand/v5/sKd0EMYPAh5PYCRKSryvW7O3LdcAZYWl9Si6vvxL-qU.woff
+        # url: https://fonts.gstatic.com/s/quicksand/v5/sKd0EMYPAh5PYCRKSryvW7O3LdcAZYWl9Si6vvxL-qU.woff
+        url: https://fonts.gstatic.com/s/quicksand/v5/32nyIRHyCu6iqEka_hbKsqRDOzjiPcYnFooOUGCOsRk.woff
+
 
 textures:
     pois:
@@ -399,37 +401,37 @@ textures:
         filtering: mipmap
         sprites:
             # define sprites: [x origin, y origin, width, height]
-            'US:CA_1char': [94, 464, 82, 92]
+            'US:CA_1char': [94, 464, 82, 90]
             'US:CA_2char': [572, 464, 92, 92]
             'US:CA_3char': [450, 464, 114, 92]
             'US:CA_4char': [318, 464, 124, 92]
             'US:CA_5char': [182, 464, 128, 92]
-            'US:I_1char': [326, 568, 90, 100]
-            'US:I_2char': [814, 568, 102, 102]
-            'US:I_3char': [692, 568, 116, 100]
-            'US:I_4char': [560, 568, 126, 100]
-            'US:I_5char': [424, 568, 128, 100]
-            'US:NY_1char': [412, 372, 72, 88]
-            'US:NY_2char': [700, 280, 88, 88]
-            'US:NY_3char': [588, 280, 104, 88]
-            'US:NY_4char': [464, 280, 116, 88]
-            'US:NY_5char': [336, 280, 120, 88]
-            'US:PA_1char': [332, 372, 72, 88]
-            'US:PA_2char': [236, 372, 88, 88]
-            'US:PA_3char': [124, 372, 104, 88]
-            'US:PA_4char': [0, 372, 116, 88]
-            'US:PA_5char': [796, 280, 120, 88]
-            'US:US_1char': [120, 568, 88, 98]
-            'US:US_2char': [216, 570, 104, 96]
-            'US:US_3char': [0, 568, 114, 100]
-            'US:US_4char': [808, 464, 124, 100]
-            'US:US_5char': [672, 464, 128, 100]
+            'US:I_1char': [350, 568, 90, 100]
+            'US:I_2char': [896, 568, 100, 100]
+            'US:I_3char': [756, 568, 134, 100]
+            'US:I_4char': [608, 568, 140, 100]
+            'US:I_5char': [448, 568, 152, 100]
+            'US:NY_1char': [424, 372, 72, 88]
+            'US:NY_2char': [768, 280, 88, 88]
+            'US:NY_3char': [656, 280, 104, 86]
+            'US:NY_4char': [532, 280, 116, 88]
+            'US:NY_5char': [404, 280, 120, 86]
+            'US:PA_1char': [344, 372, 72, 88]
+            'US:PA_2char': [248, 372, 88, 88]
+            'US:PA_3char': [128, 372, 112, 88]
+            'US:PA_4char': [0, 372, 120, 88]
+            'US:PA_5char': [864, 280, 128, 88]
+            'US:US_1char': [144, 568, 88, 96]
+            'US:US_2char': [240, 570, 104, 94]
+            'US:US_3char': [0, 568, 138, 100]
+            'US:US_4char': [844, 464, 158, 100]
+            'US:US_5char': [672, 464, 164, 100]
             airport: [870, 0, 38, 38]
             aerodrome: [870, 0, 38, 38]
-            aquarium: [0, 672, 38, 38]
-            art-gallery: [924, 568, 38, 38]
-            art_gallery: [924, 568, 38, 38]
-            art: [924, 568, 38, 38]
+            aquarium: [92, 672, 38, 38]
+            art-gallery: [0, 672, 38, 38]
+            art_gallery: [0, 672, 38, 38]
+            art: [0, 672, 38, 38]
             athletics-sports: [276, 204, 38, 38]
             pitch: [276, 204, 38, 38]
             athletic_sports: [276, 204, 38, 38]
@@ -448,9 +450,9 @@ textures:
             baseball-field: [506, 84, 38, 38]
             basketball-court: [460, 84, 38, 38]
             beach: [644, 84, 38, 38]
-            beer-garden: [596, 672, 38, 38]
-            biergarten: [596, 672, 38, 38]
-            brewery: [596, 672, 38, 38]
+            beer-garden: [688, 672, 38, 38]
+            biergarten: [688, 672, 38, 38]
+            brewery: [688, 672, 38, 38]
             bench: [548, 0, 38, 38]
             bicycle-parking: [726, 126, 38, 38]
             bike-shop: [954, 126, 38, 38]
@@ -477,8 +479,8 @@ textures:
             manor: [506, 204, 38, 38]
             recreation_center: [506, 204, 38, 38]
             apartments: [506, 204, 38, 38]
-            burger: [458, 672, 38, 38]
-            fast_food: [458, 672, 38, 38]
+            burger: [550, 672, 38, 38]
+            fast_food: [550, 672, 38, 38]
             bus-station: [778, 0, 38, 38]
             bus_stop: [778, 0, 38, 38]
             bus_station: [778, 0, 38, 38]
@@ -486,14 +488,14 @@ textures:
             campground: [828, 84, 38, 38]
             camp_site: [828, 84, 38, 38]
             caravan_site: [828, 84, 38, 38]
-            candy-store: [274, 672, 38, 38]
-            candy: [274, 672, 38, 38]
-            confectionery: [274, 672, 38, 38]
-            capital-l: [834, 674, 16, 16]
-            capital-m: [814, 674, 12, 12]
-            capital-s: [794, 674, 10, 10]
-            capital-xl: [858, 674, 20, 20]
-            capital-xs: [780, 674, 8, 8]
+            candy-store: [366, 672, 38, 38]
+            candy: [366, 672, 38, 38]
+            confectionery: [366, 672, 38, 38]
+            capital-l: [926, 674, 16, 16]
+            capital-m: [906, 674, 12, 12]
+            capital-s: [886, 674, 10, 10]
+            capital-xl: [950, 674, 20, 20]
+            capital-xs: [872, 674, 8, 8]
             car-dealership: [862, 126, 38, 38]
             car: [862, 126, 38, 38]
             castle: [414, 42, 38, 38]
@@ -501,28 +503,28 @@ textures:
             cemetery: [736, 84, 38, 38]
             grave_yard: [736, 84, 38, 38]
             church: [230, 126, 38, 38]
-            clothing-store: [92, 672, 38, 38]
-            clothes: [92, 672, 38, 38]
-            fashion: [92, 672, 38, 38]
+            clothing-store: [184, 672, 38, 38]
+            clothes: [184, 672, 38, 38]
+            fashion: [184, 672, 38, 38]
             coffee-shop: [594, 204, 38, 38]
             cafe: [594, 204, 38, 38]
-            college-university: [138, 672, 38, 38]
-            university: [138, 672, 38, 38]
-            college: [138, 672, 38, 38]
+            college-university: [230, 672, 38, 38]
+            university: [230, 672, 38, 38]
+            college: [230, 672, 38, 38]
             convenience-store: [46, 84, 38, 38]
             convenience: [46, 84, 38, 38]
             convenience_store: [46, 84, 38, 38]
             beverages: [46, 84, 38, 38]
-            county_shield_1char: [492, 372, 72, 72]
+            county_shield_1char: [504, 372, 72, 72]
             county_shield_2char: [0, 464, 88, 72]
-            county_shield_3char: [836, 372, 104, 72]
-            county_shield_4char: [708, 372, 120, 72]
-            county_shield_5char: [572, 372, 128, 72]
+            county_shield_3char: [896, 372, 104, 72]
+            county_shield_4char: [752, 372, 136, 72]
+            county_shield_5char: [584, 372, 160, 72]
             courthouse: [364, 0, 38, 38]
-            current-location: [366, 714, 88, 88]
+            current-location: [472, 714, 88, 88]
             department-store: [816, 126, 38, 38]
             department_store: [816, 126, 38, 38]
-            drinking-water: [550, 672, 38, 38]
+            drinking-water: [642, 672, 38, 38]
             dry-cleaning: [0, 84, 38, 38]
             dry_cleaning: [0, 84, 38, 38]
             electronics-store: [680, 126, 38, 38]
@@ -544,20 +546,20 @@ textures:
             fitness_center: [874, 42, 38, 38]
             flower-shop: [184, 126, 38, 38]
             florist: [184, 126, 38, 38]
-            forest: [320, 672, 38, 38]
-            conservation: [320, 672, 38, 38]
-            nature_reserve: [320, 672, 38, 38]
+            forest: [412, 672, 38, 38]
+            conservation: [412, 672, 38, 38]
+            nature_reserve: [412, 672, 38, 38]
             fountain: [404, 126, 38, 38]
             garden: [690, 84, 38, 38]
-            gas-station: [228, 672, 38, 38]
-            fuel: [228, 672, 38, 38]
-            generic: [734, 672, 38, 38]
-            subway_entrance: [734, 672, 38, 38]
+            gas-station: [320, 672, 38, 38]
+            fuel: [320, 672, 38, 38]
+            generic: [826, 672, 38, 38]
+            subway_entrance: [826, 672, 38, 38]
             generic_shield_1char: [732, 204, 72, 72]
-            generic_shield_2char: [240, 280, 90, 72]
-            generic_shield_3char: [128, 280, 104, 72]
-            generic_shield_4char: [0, 280, 120, 72]
-            generic_shield_5char: [812, 204, 140, 72]
+            generic_shield_2char: [300, 280, 98, 72]
+            generic_shield_3char: [160, 280, 132, 72]
+            generic_shield_4char: [0, 280, 152, 72]
+            generic_shield_5char: [812, 204, 180, 72]
             gift-shop: [138, 126, 38, 38]
             gift: [138, 126, 38, 38]
             golf-course: [414, 84, 38, 38]
@@ -585,10 +587,10 @@ textures:
             hotel: [732, 0, 38, 38]
             motel: [732, 0, 38, 38]
             hostel: [732, 0, 38, 38]
-            ice-cream-shop: [642, 672, 38, 38]
-            ice_cream: [642, 672, 38, 38]
-            information: [688, 672, 38, 38]
-            info: [688, 672, 38, 38]
+            ice-cream-shop: [734, 672, 38, 38]
+            ice_cream: [734, 672, 38, 38]
+            information: [780, 672, 38, 38]
+            info: [780, 672, 38, 38]
             jewelry-store: [736, 42, 38, 38]
             jewelry: [736, 42, 38, 38]
             jewelry_store: [736, 42, 38, 38]
@@ -608,8 +610,8 @@ textures:
             liquor-store: [588, 126, 38, 38]
             alcohol: [588, 126, 38, 38]
             liquor: [588, 126, 38, 38]
-            locate-off: [700, 714, 72, 72]
-            locate-on: [620, 714, 72, 72]
+            locate-off: [806, 714, 72, 72]
+            locate-on: [726, 714, 72, 72]
             mall: [644, 42, 38, 38]
             market: [598, 42, 38, 38]
             variety_store: [598, 42, 38, 38]
@@ -625,9 +627,9 @@ textures:
             mosque: [92, 0, 38, 38]
             mountain: [230, 84, 38, 38]
             peak: [230, 84, 38, 38]
-            movie-theatre: [46, 672, 38, 38]
-            cinema: [46, 672, 38, 38]
-            movie-theater: [46, 672, 38, 38]
+            movie-theatre: [138, 672, 38, 38]
+            cinema: [138, 672, 38, 38]
+            movie-theater: [138, 672, 38, 38]
             museum: [46, 126, 38, 38]
             music-store: [368, 42, 38, 38]
             music: [368, 42, 38, 38]
@@ -672,11 +674,11 @@ textures:
             rental-car: [594, 0, 38, 38]
             car_rental: [594, 0, 38, 38]
             car_sharing: [594, 0, 38, 38]
-            restaurant: [366, 672, 38, 38]
-            deli: [366, 672, 38, 38]
-            route-arrow: [72, 714, 128, 128]
-            route-start: [286, 714, 72, 92]
-            route-stop: [208, 714, 72, 92]
+            restaurant: [458, 672, 38, 38]
+            deli: [458, 672, 38, 38]
+            route-arrow: [178, 714, 128, 128]
+            route-start: [392, 714, 72, 92]
+            route-stop: [314, 714, 72, 92]
             ruin: [502, 0, 38, 38]
             ruins: [502, 0, 38, 38]
             archaeological_site: [502, 0, 38, 38]
@@ -686,8 +688,8 @@ textures:
             beauty_salon: [46, 42, 38, 38]
             school: [552, 84, 38, 38]
             kindergarten: [552, 84, 38, 38]
-            search-active: [460, 714, 72, 108]
-            search-inactive: [540, 714, 72, 108]
+            search-active: [566, 714, 72, 108]
+            search-inactive: [646, 714, 72, 108]
             shoe-store: [552, 42, 38, 38]
             shoes: [552, 42, 38, 38]
             shoe_store: [552, 42, 38, 38]
@@ -707,40 +709,40 @@ textures:
             synagogue: [46, 0, 38, 38]
             tailor-shop: [962, 0, 38, 38]
             tailor: [962, 0, 38, 38]
-            taqueria: [412, 672, 38, 38]
+            taqueria: [504, 672, 38, 38]
             tennis: [496, 126, 38, 38]
             theme-park: [0, 126, 38, 38]
             theme_park: [0, 126, 38, 38]
             miniature_golf: [0, 126, 38, 38]
             toilets: [874, 84, 38, 38]
-            townspot-l: [20, 714, 16, 16]
-            townspot-l-rev: [938, 674, 16, 16]
-            townspot-m: [0, 714, 12, 12]
-            townspot-m-rev: [918, 674, 12, 12]
-            townspot-s: [1006, 672, 10, 10]
-            townspot-s-rev: [900, 674, 10, 10]
-            townspot-xl: [44, 714, 20, 20]
-            townspot-xl-rev: [962, 674, 20, 20]
-            townspot-xs: [990, 672, 8, 8]
-            townspot-xs-rev: [886, 674, 6, 6]
+            townspot-l: [126, 714, 16, 16]
+            townspot-l-rev: [18, 716, 16, 16]
+            townspot-m: [106, 714, 12, 12]
+            townspot-m-rev: [0, 716, 12, 12]
+            townspot-s: [88, 714, 10, 10]
+            townspot-s-rev: [992, 674, 10, 10]
+            townspot-xl: [150, 714, 20, 20]
+            townspot-xl-rev: [44, 716, 20, 20]
+            townspot-xs: [72, 714, 8, 8]
+            townspot-xs-rev: [978, 674, 6, 6]
             toy-game-store: [916, 0, 38, 38]
             toys: [916, 0, 38, 38]
             baby_goods: [916, 0, 38, 38]
-            traffic-signal: [184, 672, 38, 38]
-            traffic_signals: [184, 672, 38, 38]
+            traffic-signal: [276, 672, 38, 38]
+            traffic_signals: [276, 672, 38, 38]
             train-station: [410, 0, 38, 38]
             station: [410, 0, 38, 38]
             train-staion: [410, 0, 38, 38]
             veterinarian: [138, 0, 38, 38]
             pet_care: [138, 0, 38, 38]
             veterinary: [138, 0, 38, 38]
-            view-point: [970, 568, 38, 38]
-            viewpoint: [970, 568, 38, 38]
-            view_point: [970, 568, 38, 38]
-            vista: [970, 568, 38, 38]
+            view-point: [46, 672, 38, 38]
+            viewpoint: [46, 672, 38, 38]
+            view_point: [46, 672, 38, 38]
+            vista: [46, 672, 38, 38]
             vineyard: [138, 204, 38, 38]
             volcano: [92, 84, 38, 38]
-            wine-bar: [504, 672, 38, 38]
+            wine-bar: [596, 672, 38, 38]
             winery: [548, 204, 38, 38]
             wine: [548, 204, 38, 38]
             zoo: [966, 84, 38, 38]
@@ -2556,6 +2558,7 @@ layers:
                     cull_from_tile: true
                     visible: global.text_visible_shields
                     text:
+                        offset: [0px, -0.5px]
                         anchor: center
                         text_source: |
                             function() { 
@@ -2568,7 +2571,7 @@ layers:
                         font:
                             family: Montserrat
                             fill: [0.308,0.308,0.308]
-                            size: [[11,7px],[15,10px]]
+                            size: [[7,7px],[12,8px],[15,11px]]
             not-special:
                 filter:
                     not: { network: ['US:I','US:US'] }
@@ -2599,7 +2602,7 @@ layers:
                     }
                 draw:
                     icons:
-                        size: [[6,[16px,14px]],[13,[18px,16px]],[15,[22px,18px]]]
+                        size: [[6,[18px,14px]],[13,[20px,15px]],[15,[24px,18px]]]
             width_3char:
                 filter: |
                     function() { 
@@ -2611,7 +2614,7 @@ layers:
                     }
                 draw:
                     icons:
-                        size: [[6,[20px,14px]],[13,[21px,15px]],[15,[26px,18px]]]
+                        size: [[6,[25px,14px]],[13,[27px,15px]],[15,[33px,18px]]]
             width_4char:
                 filter: |
                     function() { 
@@ -2623,7 +2626,7 @@ layers:
                     }
                 draw:
                     icons:
-                        size: [[6,[22px,14px]],[13,[24px,15px]],[15,[30px,18px]]]
+                        size: [[6,[29px,14px]],[13,[31px,15px]],[15,[38px,18px]]]
             width_5char:
                 filter: |
                     function() { 
@@ -2635,7 +2638,7 @@ layers:
                     }
                 draw:
                     icons:
-                        size: [[6,[24px,14px]],[13,[26px,15px]],[15,[32px,18px]]]
+                        size: [[6,[34px,14px]],[13,[37px,15px]],[15,[45px,18px]]]
             # this is kinda a hack
             width_longggggg:
                 filter: |
@@ -2667,7 +2670,7 @@ layers:
                                 offset: [0px, 0.5px]
                                 font:
                                     fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
+                                    size: [[7,8px],[13,9px],[15,11px]]
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2682,17 +2685,17 @@ layers:
                         filter: function() { return (feature.shield_text.length === 3) }
                         draw:
                             icons:
-                                size: [[6,[20px,18px]],[13,[23px,20px]],[15,[29px,25px]]]
+                                size: [[6,[23px,18px]],[13,[26px,20px]],[15,[33px,25px]]]
                     width_4char:
                         filter: function() { return (feature.shield_text.length === 4) }
                         draw:
                             icons:
-                                size: [[6,[22px,18px]],[13,[25px,20px]],[15,[31px,25px]]]
+                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[35px,25px]]]
                     width_5char:
                         filter: function() { return (feature.shield_text.length === 5) }
                         draw:
                             icons:
-                                size: [[6,[23px,18px]],[13,[26px,20px]],[15,[32px,25px]]]
+                                size: [[6,[26px,18px]],[13,[30px,20px]],[15,[38px,25px]]]
                 # US Federal Routes
                 US-US:
                     filter:
@@ -2706,9 +2709,10 @@ layers:
                             size: [[8,19px],[13,23px],[15,27px]]
                             cull_from_tile: true
                             text:
+                                offset: [0px, -0.7px]
                                 font:
                                     fill: [0.380,0.318,0.312]
-                                    size: [[7,7px],[13,9px],[15,10px]]
+                                    size: [[7,8px],[13,9px],[15,11px]]
                     early:
                         filter: { $zoom: [7] }
                         icons:
@@ -2717,27 +2721,27 @@ layers:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
                             icons:
-                                size: [[6,[15px,17px]],[13,[16px,20px]],[15,[22px,25px]]]
+                                size: [[6,[15px,17px]],[13,[17px,19px]],[15,[22px,24px]]]
                     width_2char:
                         filter: function() { return (feature.shield_text.length === 2) }
                         draw:
                             icons:
-                                size: [[6,[18px,17px]],[13,[20px,19px]],[15,[26px,25px]]]
+                                size: [[6,[18px,17px]],[13,[20px,19px]],[15,[26px,24px]]]
                     width_3char:
                         filter: function() { return (feature.shield_text.length === 3) }
                         draw:
                             icons:
-                                size: [[6,[19px,17px]],[13,[22px,19px]],[15,[28px,25px]]]
+                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[34px,25px]]]
                     width_4char:
                         filter: function() { return (feature.shield_text.length === 4) }
                         draw:
                             icons:
-                                size: [[6,[20px,17px]],[13,[23px,19px]],[15,[31px,25px]]]
+                                size: [[6,[25px,17px]],[13,[29px,19px]],[15,[39px,25px]]]
                     width_5char:
                         filter: function() { return (feature.shield_text.length === 5) }
                         draw:
                             icons:
-                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[32px,25px]]]
+                                size: [[6,[27px,17px]],[13,[30px,19px]],[15,[41px,25px]]]
                 # US State Routes
                 US-states:
                     # Match state highways: `US:??`
@@ -2866,17 +2870,17 @@ layers:
                         filter: function() { return (feature.shield_text.length === 3) }
                         draw:
                             icons:
-                                size: [[6,[20px,17px]],[13,[22px,19px]],[15,[27px,22px]]]
+                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[28px,22px]]]
                     width_4char:
                         filter: function() { return (feature.shield_text.length === 4) }
                         draw:
                             icons:
-                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[29px,22px]]]
+                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30x,22px]]]
                     width_5char:
                         filter: function() { return (feature.shield_text.length === 5) }
                         draw:
                             icons:
-                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
+                                size: [[6,[24px,17px]],[13,[27px,19px]],[15,[32px,22px]]]
                 # USA County Routes
                 US-counties:
                     # Match state highways: `US:??:*`
@@ -2942,12 +2946,12 @@ layers:
                         filter: function() { return (feature.shield_text.length === 4) }
                         draw:
                             icons:
-                                size: [[6,[22px,14px]],[13,[24px,15px]],[15,[30px,18px]]]
+                                size: [[6,[25px,14px]],[13,[28px,15px]],[15,[34px,18px]]]
                     width_5char:
                         filter: function() { return (feature.shield_text.length === 5) }
                         draw:
                             icons:
-                                size: [[6,[24px,14px]],[13,[26px,15px]],[15,[32px,18px]]]
+                                size: [[6,[30px,14px]],[13,[33px,15px]],[15,[40px,18px]]]
         path:
             filter:
                 all:
@@ -5385,7 +5389,7 @@ layers:
                         text_wrap: 10
                         visible: global.text_visible_neighbourhoods_e
                         font:
-                            family: Quicksand
+                            family: Varela
                             size: 9px
                             weight: 400
                             fill: [0.225,0.561,0.415]
@@ -5407,7 +5411,7 @@ layers:
                         text_wrap: 10
                         visible: global.text_visible_neighbourhoods_e
                         font:
-                            family: Quicksand
+                            family: Varela
                             size: 10px
                             weight: 400
                             fill: [0.225,0.561,0.415]
@@ -5429,7 +5433,7 @@ layers:
                         text_wrap: 10
                         visible: global.text_visible_neighbourhoods_e
                         font:
-                            family: Quicksand
+                            family: Varela
                             size: 11px
                             weight: 400
                             fill: [0.225,0.561,0.415]
@@ -5451,7 +5455,7 @@ layers:
                         text_wrap: 12
                         visible: global.text_visible_neighbourhoods
                         font:
-                            family: Quicksand
+                            family: Varela
                             size: 13px
                             weight: 400
                             fill: [0.225,0.561,0.415]
@@ -5473,7 +5477,7 @@ layers:
                         text_wrap: 12
                         visible: global.text_visible_neighbourhoods
                         font:
-                            family: Quicksand
+                            family: Varela
                             size: 16px
                             weight: 300
                             fill: [0.225,0.561,0.415]
@@ -5488,7 +5492,7 @@ layers:
                         text-blend-order:
                             priority: 19
                             font:
-                                family: Quicksand
+                                family: Varela
                                 size: 13px
             neighborhood-z16:
                 filter:
@@ -5504,7 +5508,7 @@ layers:
                         visible: global.text_visible_neighbourhoods
                         priority: 18
                         font:
-                            family: Quicksand
+                            family: Varela
                             size: 17px
                             weight: 300
                             fill: [0.225,0.561,0.415]
