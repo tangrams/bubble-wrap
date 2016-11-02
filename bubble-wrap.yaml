@@ -2555,6 +2555,9 @@ layers:
                     sprite_default: generic_shield_5char
                     priority: 20
                     size: [[6,[24px,14px]],[13,[26px,15px]],[15,[32px,18px]]]
+                    repeat_group: shields
+                    repeat_distance: 60px
+                    placement: midpoint
                     cull_from_tile: true
                     visible: global.text_visible_shields
                     text:
