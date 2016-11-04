@@ -2558,6 +2558,14 @@ layers:
                     repeat_group: shields
                     repeat_distance: 60px
                     placement: midpoint
+                    placement_min_length_ratio:
+                        - [8, 0.1]
+                        - [9, 0.25]
+                        - [10, 0.5]
+                        - [11, 1]
+                        - [12, 1]
+                        - [13, 1.50]
+                        - [14, 2.0]
                     cull_from_tile: true
                     visible: false
                     text:
