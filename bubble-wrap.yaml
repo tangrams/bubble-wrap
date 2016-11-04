@@ -2555,6 +2555,9 @@ layers:
                     sprite_default: generic_shield_5char
                     priority: 58
                     # Size is specified below, and limited to 5 char in another filter
+                    repeat_group: shields
+                    repeat_distance: 60px
+                    placement: midpoint
                     cull_from_tile: true
                     visible: false
                     text:
