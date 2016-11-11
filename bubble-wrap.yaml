@@ -391,7 +391,6 @@ fonts:
     Varela:
         url: https://fonts.gstatic.com/s/varela/v7/maB5vWJo0EAVzvHPjBkLM-vvDin1pK8aKteLpeZ5c0A.woff
     Quicksand:
-        # url: https://fonts.gstatic.com/s/quicksand/v5/sKd0EMYPAh5PYCRKSryvW7O3LdcAZYWl9Si6vvxL-qU.woff
         url: https://fonts.gstatic.com/s/quicksand/v5/32nyIRHyCu6iqEka_hbKsqRDOzjiPcYnFooOUGCOsRk.woff
 
 
@@ -402,8 +401,8 @@ textures:
         sprites:
             # define sprites: [x origin, y origin, width, height]
             'US:CA_1char': [94, 464, 82, 90]
-            'US:CA_2char': [572, 464, 92, 92]
-            'US:CA_3char': [450, 464, 114, 92]
+            'US:CA_2char': [570, 464, 92, 92]
+            'US:CA_3char': [450, 464, 112, 92]
             'US:CA_4char': [318, 464, 124, 92]
             'US:CA_5char': [182, 464, 128, 92]
             'US:I_1char': [350, 568, 90, 100]
@@ -422,10 +421,10 @@ textures:
             'US:PA_4char': [0, 372, 120, 88]
             'US:PA_5char': [864, 280, 128, 88]
             'US:US_1char': [144, 568, 88, 96]
-            'US:US_2char': [240, 570, 104, 94]
+            'US:US_2char': [240, 568, 104, 94]
             'US:US_3char': [0, 568, 138, 100]
-            'US:US_4char': [844, 464, 158, 100]
-            'US:US_5char': [672, 464, 164, 100]
+            'US:US_4char': [842, 464, 158, 100]
+            'US:US_5char': [670, 466, 164, 98]
             airport: [870, 0, 38, 38]
             aerodrome: [870, 0, 38, 38]
             aquarium: [92, 672, 38, 38]
@@ -491,11 +490,11 @@ textures:
             candy-store: [366, 672, 38, 38]
             candy: [366, 672, 38, 38]
             confectionery: [366, 672, 38, 38]
-            capital-l: [926, 674, 16, 16]
-            capital-m: [906, 674, 12, 12]
-            capital-s: [886, 674, 10, 10]
-            capital-xl: [950, 674, 20, 20]
-            capital-xs: [872, 674, 8, 8]
+            capital-l: [926, 672, 16, 16]
+            capital-m: [906, 672, 12, 12]
+            capital-s: [886, 672, 10, 10]
+            capital-xl: [950, 672, 20, 20]
+            capital-xs: [872, 672, 8, 8]
             car-dealership: [862, 126, 38, 38]
             car: [862, 126, 38, 38]
             castle: [414, 42, 38, 38]
@@ -505,6 +504,8 @@ textures:
             church: [230, 126, 38, 38]
             clothing-store: [184, 672, 38, 38]
             clothes: [184, 672, 38, 38]
+            chothing-store: [184, 672, 38, 38]
+            "clothesstore": [184, 672, 38, 38]
             fashion: [184, 672, 38, 38]
             coffee-shop: [594, 204, 38, 38]
             cafe: [594, 204, 38, 38]
@@ -716,15 +717,15 @@ textures:
             miniature_golf: [0, 126, 38, 38]
             toilets: [874, 84, 38, 38]
             townspot-l: [126, 714, 16, 16]
-            townspot-l-rev: [18, 716, 16, 16]
+            townspot-l-rev: [20, 714, 16, 16]
             townspot-m: [106, 714, 12, 12]
-            townspot-m-rev: [0, 716, 12, 12]
+            townspot-m-rev: [0, 714, 12, 12]
             townspot-s: [88, 714, 10, 10]
-            townspot-s-rev: [992, 674, 10, 10]
+            townspot-s-rev: [992, 672, 10, 10]
             townspot-xl: [150, 714, 20, 20]
-            townspot-xl-rev: [44, 716, 20, 20]
+            townspot-xl-rev: [44, 714, 20, 20]
             townspot-xs: [72, 714, 8, 8]
-            townspot-xs-rev: [978, 674, 6, 6]
+            townspot-xs-rev: [978, 672, 6, 6]
             toy-game-store: [916, 0, 38, 38]
             toys: [916, 0, 38, 38]
             baby_goods: [916, 0, 38, 38]
@@ -2556,7 +2557,7 @@ layers:
                     priority: 58
                     # Size is specified below, and limited to 5 char in another filter
                     repeat_group: shields
-                    repeat_distance: 30px
+                    repeat_distance: [[8,90px],[10,40px],[13,30px]]
                     placement: midpoint
                     placement_min_length_ratio:
                         - [8, 0.1]
