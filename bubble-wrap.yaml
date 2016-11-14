@@ -753,6 +753,23 @@ textures:
         url: images/building-grid.gif
         filtering: mipmap
 
+fonts:
+    Open Sans:
+        - weight: 300 # Light
+          url: fonts/OpenSans-Light.woff
+        - weight: normal # Regular
+          url: fonts/OpenSans-Regular.woff
+        - weight: normal # Regular
+          style: italic
+          url: fonts/OpenSans-Italic.woff
+        - weight: 600 # Semi Bold
+          url: fonts/OpenSans-Semibold.woff
+        - weight: 600 # Semi Bold
+          style: italic
+          url: fonts/OpenSans-SemiboldItalic.woff
+        - weight: bold
+          url: fonts/OpenSans-Bold.woff
+
 sources:
     mapzen:
         # EraserMaps the app only supports MVT format tiles
@@ -1437,7 +1454,7 @@ layers:
                     fill: [0.314,0.591,0.640]
                     family: global.text_font_family
                     style: italic
-                    weight: 400
+                    weight: normal
                     size: 12px
         water-line-labels-z14:
             filter: { $zoom: [14] }
@@ -1542,7 +1559,7 @@ layers:
                 visible: false    # labels are enabled by each layer below
                 font:
                     family: global.text_font_family
-                    weight: 400
+                    weight: normal
                     fill: global.text_fill
 
         natural_earth_highways:
@@ -1573,7 +1590,7 @@ layers:
                         color: [0.702,0.843,0.933]
                         width: 1px
         highway:
-            filter: { kind: highway }
+            filter: { kind: highway, $zoom: { min: 8 } }
             draw:
                 lines:
                     color: [[8, global.highway1], [14, global.highway1], [15, [1.0,1.0,1.0]], [17, [1.0,1.0,1.0]]]
@@ -1741,7 +1758,7 @@ layers:
                             stroke: { color: [1.000,1.000,1.000], width: 4 }
 
         major_road:
-            filter: { kind: major_road }
+            filter: { kind: major_road, $zoom: { min: 8 } }
             # default style
             draw:
                 lines:
@@ -2276,7 +2293,7 @@ layers:
                                 size: 15px
                                 stroke: { color: [1.00,1.00,1.00], width: 2 }
         minor_road:
-            filter: { kind: minor_road, not: { kind_detail: service } }
+            filter: { kind: minor_road, not: { kind_detail: service }, $zoom: { min: 8 } }
             draw:
                 lines:
                     color: [[12, [0.9,0.9,0.9]], [13, [0.9,0.9,0.9]], [14, [1.0,1.0,1.0]]]
@@ -2532,7 +2549,7 @@ layers:
                 #
                 # Europe doesn't have many network relations set, so we could look for either
                 # shield_text or ref (with no shield_text) but...
-                # that makes United States look a bit funky with `(xxx)` and generic shields 
+                # that makes United States look a bit funky with `(xxx)` and generic shields
                 # showing up in fields of custom state shields like US:CA and US:NY
                 #
                 any:
@@ -2546,8 +2563,8 @@ layers:
                 icons:
                     # you need to match any custom shield to the vector tile `network` values
                     sprite: |
-                        function() { 
-                            if( feature.shield_text ) { 
+                        function() {
+                            if( feature.shield_text ) {
                                 return ('generic_shield_' + feature.shield_text.length + 'char');
                             } else {
                                 return ('generic_shield_' + feature.ref.length + 'char');
@@ -2574,8 +2591,8 @@ layers:
                         repeat_distance: 200px
                         anchor: center
                         text_source: |
-                            function() { 
-                                if( feature.shield_text ) { 
+                            function() {
+                                if( feature.shield_text ) {
                                     return feature.shield_text;
                                 } else {
                                     return feature.ref;
@@ -2587,7 +2604,7 @@ layers:
                             size: [[7,7px],[12,8px],[15,11px]]
 
             default_priority_highway:
-                filter: 
+                filter:
                     all:
                         - kind_detail: motorway
                         - $zoom: { min: 9 }
@@ -2598,7 +2615,7 @@ layers:
                         visible: global.text_visible_shields
 
             default_priority_trunk:
-                filter: 
+                filter:
                     all:
                         - kind_detail: [trunk]
                         - $zoom: { min: 10 }
@@ -2608,7 +2625,7 @@ layers:
                         #color: red
                         visible: global.text_visible_shields
             default_priority_primary:
-                filter: 
+                filter:
                     all:
                         - kind_detail: [primary]
                         - $zoom: { min: 12 }
@@ -2640,8 +2657,8 @@ layers:
 
             width_1char:
                 filter: |
-                    function() { 
-                        if( feature.shield_text ) { 
+                    function() {
+                        if( feature.shield_text ) {
                             return (feature.shield_text.length === 1)
                         } else {
                             return (feature.ref.length === 1)
@@ -2652,8 +2669,8 @@ layers:
                         size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
             width_2char:
                 filter: |
-                    function() { 
-                        if( feature.shield_text ) { 
+                    function() {
+                        if( feature.shield_text ) {
                             return (feature.shield_text.length === 2)
                         } else {
                             return (feature.ref.length === 2)
@@ -2664,8 +2681,8 @@ layers:
                         size: [[6,[18px,14px]],[13,[20px,15px]],[15,[24px,18px]]]
             width_3char:
                 filter: |
-                    function() { 
-                        if( feature.shield_text ) { 
+                    function() {
+                        if( feature.shield_text ) {
                             return (feature.shield_text.length === 3)
                         } else {
                             return (feature.ref.length === 3)
@@ -2676,8 +2693,8 @@ layers:
                         size: [[6,[25px,14px]],[13,[27px,15px]],[15,[33px,18px]]]
             width_4char:
                 filter: |
-                    function() { 
-                        if( feature.shield_text ) { 
+                    function() {
+                        if( feature.shield_text ) {
                             return (feature.shield_text.length === 4)
                         } else {
                             return (feature.ref.length === 4)
@@ -2694,8 +2711,8 @@ layers:
                             visible: false
             width_5char:
                 filter: |
-                    function() { 
-                        if( feature.shield_text ) { 
+                    function() {
+                        if( feature.shield_text ) {
                             return (feature.shield_text.length === 5)
                         } else {
                             return (feature.ref.length === 5)
@@ -2713,8 +2730,8 @@ layers:
             # this is kinda a hack
             width_longggggg:
                 filter: |
-                    function() { 
-                        if( feature.shield_text ) { 
+                    function() {
+                        if( feature.shield_text ) {
                             return (feature.shield_text.length > 5)
                         } else {
                             return (feature.ref.length > 5)
@@ -2980,16 +2997,16 @@ layers:
                     #     }
                     #
                     # this generic for any country with 3rd level networks (like county routes in USA)
-                    # BEWARE: 
+                    # BEWARE:
                     # US:US:Business  about 150
                     # US:US:Truck
                     # US:US:Alternate
-    # 
+    #
                     # STATE ROUTE
                     # ??:??:Loop  about 200
                     # ??:??:Spur  about 200
                     # ??:??:Business   about 100
-    # 
+    #
                     # STATE TEXAS SPECIAL ROUTE
                     # US:TX:FM -- probably just state? there are 3k of these
                     #
@@ -3776,7 +3793,7 @@ layers:
                     visible: global.text_visible_continent
                     font:
                         size: 14px
-                        weight: 700
+                        weight: bold
                         # stroke: { color: global.text_stroke, width: 4 }
                         transform: uppercase
 
@@ -3793,7 +3810,7 @@ layers:
                     text_source: global.ux_language_text_source
                     font:
                         fill: [0.30,0.30,0.30]
-                        weight: 400
+                        weight: normal
                         size: 10px
                         transform: uppercase
         country-z3:
@@ -3857,7 +3874,7 @@ layers:
                     text_source: global.ux_language_text_source
                     font:
                         size: 13px
-                        weight: 400
+                        weight: normal
                         fill: [0.25,0.25,0.25]
                         # stroke: { color: global.text_stroke, width: 4 }
                         transform: uppercase
@@ -4567,7 +4584,7 @@ layers:
                     all:
                         - source: openstreetmap.org
                         - $zoom: [9]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     icons:
                         size: 5px
@@ -4724,7 +4741,7 @@ layers:
                     all:
                         - source: openstreetmap.org
                         - $zoom: [10]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     icons:
                         size: 5px
@@ -5444,7 +5461,7 @@ layers:
                         anchor: center
                         font:
                             fill: global.text_fill
-                            weight: 400
+                            weight: normal
 
                 z13places-1-ne:
                     filter: { min_zoom: [2,3] }
@@ -5495,6 +5512,7 @@ layers:
                             family: Varela
                             size: 9px
                             weight: 400
+                            #weight: normal
                             fill: [0.225,0.561,0.415]
                             # fill: global.text_fill
                             transform: uppercase
@@ -5517,6 +5535,7 @@ layers:
                             family: Varela
                             size: 10px
                             weight: 400
+                            #weight: normal
                             fill: [0.225,0.561,0.415]
                             # fill: [0.300,0.300,0.300]
                             transform: uppercase
@@ -5539,6 +5558,7 @@ layers:
                             family: Varela
                             size: 11px
                             weight: 400
+                            #weight: normal
                             fill: [0.225,0.561,0.415]
                             # fill: [0.35,0.35,0.35]
                             transform: uppercase
@@ -5561,6 +5581,7 @@ layers:
                             family: Varela
                             size: 13px
                             weight: 400
+                            #weight: normal
                             fill: [0.225,0.561,0.415]
                             # fill: [0.000,0.000,0.000,0.500]
                             transform: uppercase
@@ -5669,7 +5690,7 @@ layers:
                     priority: 66
                     font:
                         family: global.text_font_family
-                        weight: 400
+                        weight: normal
                         fill: [0.20,0.20,0.20]
                         size: 10px
                         stroke: { color: global.text_stroke, width: 1 }
@@ -5681,7 +5702,7 @@ layers:
                 priority: 66
                 font:
                     family: global.text_font_family
-                    weight: 400
+                    weight: normal
                     fill: [0.20,0.20,0.20]
                     size: 10px
                     stroke: { color: global.text_stroke, width: 1 }
@@ -5875,7 +5896,7 @@ layers:
                                 font:
                                     fill: [0.181,0.370,0.361]
     #                                size: 12px
-    #                                weight: 400
+    #                                weight: normal
                                     style: italic
                                     # stroke: { color: [0.870,0.870,0.870], width: 2 }
                     green-areas-z6:
@@ -6173,7 +6194,7 @@ layers:
                             text_wrap: 10
                             font:
                                 style: italic
-                                weight: 400
+                                weight: normal
                 early-sizing:
                     filter: { $zoom: { max: 14 } }
                     draw: { icons: { text: { font: { size: 11px } } } }
@@ -6292,7 +6313,7 @@ layers:
                         interactive: true
                         text_wrap: 10
                         font:
-                            weight: 400
+                            weight: normal
                             style: italic
                             fill: '#4ba3c5'
 
@@ -6609,7 +6630,7 @@ layers:
                         interactive: true
                         text_wrap: 10
                         font:
-                            weight: 400
+                            weight: normal
                             style: italic
                             fill: '#4ba3c5'
             bus-stop-bus-station-labels:
@@ -7202,7 +7223,7 @@ layers:
                         fill: [0.314,0.591,0.640] #global.text_fill_water
                         family: global.text_font_family
                         style: italic
-                        weight: 400
+                        weight: normal
                         size: 12px
                         # stroke: { color: [0.878,0.929,0.980], width: 2 }
         lakes-z5:
@@ -7228,7 +7249,7 @@ layers:
                 font:
                     fill: [0.314,0.591,0.640] #global.text_fill_water
                     family: global.text_font_family
-                    weight: 400
+                    weight: normal
                     size: 12px
                     transform: uppercase
         sea-early:
@@ -7325,7 +7346,7 @@ layers:
                     fill: grey
                     family: global.text_font_family
                     style: italic
-                    weight: 400
+                    weight: normal
                     size: 12px
                     stroke: { color: global.text_stroke_water, width: 3 }
         # debug only
@@ -7367,7 +7388,7 @@ layers:
                         size: 12px
                         style: italic
                         fill: global.text_fill
-                        weight: 400
+                        weight: normal
                         stroke: { color: global.text_stroke, width: 4 }
                         #transform: uppercase
 
@@ -8140,9 +8161,8 @@ layers:
                     interactive: true
                     priority: 16
                     font:
-                        weight: 500
                         fill: black
-                        weight: 400
+                        weight: normal
                         size: 11px
                         stroke: { color: white, width: 3 }
         poi_labels-z14:
