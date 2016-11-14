@@ -534,6 +534,23 @@ textures:
         url: images/building-grid.gif
         filtering: mipmap
 
+fonts:
+    Open Sans:
+        - weight: 300 # Light
+          url: fonts/OpenSans-Light.woff
+        - weight: normal # Regular
+          url: fonts/OpenSans-Regular.woff
+        - weight: normal # Regular
+          style: italic
+          url: fonts/OpenSans-Italic.woff
+        - weight: 600 # Semi Bold
+          url: fonts/OpenSans-Semibold.woff
+        - weight: 600 # Semi Bold
+          style: italic
+          url: fonts/OpenSans-SemiboldItalic.woff
+        - weight: bold
+          url: fonts/OpenSans-Bold.woff
+
 sources:
     mapzen:
         # EraserMaps the app only supports MVT format tiles
@@ -1218,7 +1235,7 @@ layers:
                     fill: [0.314,0.591,0.640]
                     family: global.text_font_family
                     style: italic
-                    weight: 400
+                    weight: normal
                     size: 12px
         water-line-labels-z14:
             filter: { $zoom: [14] }
@@ -1323,7 +1340,7 @@ layers:
                 visible: false    # labels are enabled by each layer below
                 font:
                     family: global.text_font_family
-                    weight: 400
+                    weight: normal
                     fill: global.text_fill
 
         natural_earth_highways:
@@ -3017,14 +3034,12 @@ layers:
                     visible: false    # labels are enabled by each layer below
                     font:
                         family: global.text_font_family
-                        # weight: 500
                         fill: global.text_fill
             text-blend-order:
                 text_source: global.ux_language_text_source
                 visible: false    # labels are enabled by each layer below
                 font:
                     family: global.text_font_family
-                    # weight: 500
                     fill: global.text_fill
 
         continent:
@@ -3034,7 +3049,7 @@ layers:
                     visible: global.text_visible_continent
                     font:
                         size: 14px
-                        weight: 700
+                        weight: bold
                         # stroke: { color: global.text_stroke, width: 4 }
                         transform: uppercase
 
@@ -3051,7 +3066,7 @@ layers:
                     text_source: global.ux_language_text_source
                     font:
                         fill: [0.30,0.30,0.30]
-                        weight: 400
+                        weight: normal
                         size: 10px
                         transform: uppercase
         country-z3:
@@ -3115,7 +3130,7 @@ layers:
                     text_source: global.ux_language_text_source
                     font:
                         size: 13px
-                        weight: 400
+                        weight: normal
                         fill: [0.25,0.25,0.25]
                         # stroke: { color: global.text_stroke, width: 4 }
                         transform: uppercase
@@ -4683,7 +4698,7 @@ layers:
                         anchor: center
                         font:
                             fill: global.text_fill
-                            weight: 400
+                            weight: normal
 
                 z13places-1-ne:
                     filter: { min_zoom: [2,3] }
@@ -4732,7 +4747,7 @@ layers:
                         visible: global.text_visible_neighbourhoods_e
                         font:
                             size: 9px
-                            weight: 400
+                            weight: normal
                             fill: global.text_fill
                             transform: uppercase
                             stroke: { color: global.text_stroke, width: 4 }
@@ -4752,7 +4767,7 @@ layers:
                         visible: global.text_visible_neighbourhoods_e
                         font:
                             size: 10px
-                            weight: 400
+                            weight: normal
                             fill: [0.300,0.300,0.300]
                             transform: uppercase
                             # stroke: { color: global.text_stroke, width: 2 }
@@ -4772,7 +4787,7 @@ layers:
                         visible: global.text_visible_neighbourhoods_e
                         font:
                             size: 11px
-                            weight: 400
+                            weight: normal
                             fill: [0.35,0.35,0.35]
                             transform: uppercase
                             # stroke: { color: global.text_stroke, width: 2 }
@@ -4792,7 +4807,7 @@ layers:
                         visible: global.text_visible_neighbourhoods
                         font:
                             size: 13px
-                            weight: 400
+                            weight: normal
                             fill: [0.000,0.000,0.000,0.500]
                             transform: uppercase
                             # stroke: { color: global.text_stroke, width: 3 }
@@ -4895,7 +4910,7 @@ layers:
                     priority: 66
                     font:
                         family: global.text_font_family
-                        weight: 400
+                        weight: normal
                         fill: [0.20,0.20,0.20]
                         size: 10px
                         stroke: { color: global.text_stroke, width: 1 }
@@ -4907,7 +4922,7 @@ layers:
                 priority: 66
                 font:
                     family: global.text_font_family
-                    weight: 400
+                    weight: normal
                     fill: [0.20,0.20,0.20]
                     size: 10px
                     stroke: { color: global.text_stroke, width: 1 }
@@ -5095,7 +5110,7 @@ layers:
                                 font:
                                     fill: [0.181,0.370,0.361]
     #                                size: 12px
-    #                                weight: 400
+    #                                weight: normal
                                     style: italic
                                     # stroke: { color: [0.870,0.870,0.870], width: 2 }
                     green-areas-z6:
@@ -5393,7 +5408,7 @@ layers:
                             text_wrap: 10
                             font:
                                 style: italic
-                                weight: 400
+                                weight: normal
                 early-sizing:
                     filter: { $zoom: { max: 14 } }
                     draw: { icons: { text: { font: { size: 11px } } } }
@@ -5512,7 +5527,7 @@ layers:
                         interactive: true
                         text_wrap: 10
                         font:
-                            weight: 400
+                            weight: normal
                             style: italic
                             fill: '#4ba3c5'
 
@@ -5829,7 +5844,7 @@ layers:
                         interactive: true
                         text_wrap: 10
                         font:
-                            weight: 400
+                            weight: normal
                             style: italic
                             fill: '#4ba3c5'
             bus-stop-bus-station-labels:
@@ -6421,7 +6436,7 @@ layers:
                         fill: [0.314,0.591,0.640] #global.text_fill_water
                         family: global.text_font_family
                         style: italic
-                        weight: 400
+                        weight: normal
                         size: 12px
                         # stroke: { color: [0.878,0.929,0.980], width: 2 }
         lakes-z5:
@@ -6447,7 +6462,7 @@ layers:
                 font:
                     fill: [0.314,0.591,0.640] #global.text_fill_water
                     family: global.text_font_family
-                    weight: 400
+                    weight: normal
                     size: 12px
                     transform: uppercase
         sea-early:
@@ -6544,7 +6559,7 @@ layers:
                     fill: grey
                     family: global.text_font_family
                     style: italic
-                    weight: 400
+                    weight: normal
                     size: 12px
                     stroke: { color: global.text_stroke_water, width: 3 }
         # debug only
@@ -6586,7 +6601,7 @@ layers:
                         size: 12px
                         style: italic
                         fill: global.text_fill
-                        weight: 400
+                        weight: normal
                         stroke: { color: global.text_stroke, width: 4 }
                         #transform: uppercase
 
@@ -7359,9 +7374,8 @@ layers:
                     interactive: true
                     priority: 16
                     font:
-                        weight: 500
                         fill: black
-                        weight: 400
+                        weight: normal
                         size: 11px
                         stroke: { color: white, width: 3 }
         poi_labels-z14:
