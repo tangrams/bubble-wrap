@@ -600,8 +600,6 @@ textures:
             liquor-store: [588, 126, 38, 38]
             alcohol: [588, 126, 38, 38]
             liquor: [588, 126, 38, 38]
-            locate-off: [806, 714, 72, 72]
-            locate-on: [726, 714, 72, 72]
             mall: [644, 42, 38, 38]
             market: [598, 42, 38, 38]
             variety_store: [598, 42, 38, 38]
@@ -734,6 +732,8 @@ textures:
             ideo-store: [1070, 950, 38, 38]
 
             ux-current-location: [472, 714, 88, 88]
+            ux-locate-off: [806, 714, 72, 72]
+            ux-locate-on: [726, 714, 72, 72]
             ux-route-arrow: [178, 714, 128, 128]
             ux-route-start: [392, 714, 72, 92]
             ux-route-stop: [314, 714, 72, 92]
