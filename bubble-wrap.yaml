@@ -512,7 +512,6 @@ textures:
             county_shield_4char: [752, 372, 136, 72]
             county_shield_5char: [584, 372, 160, 72]
             courthouse: [364, 0, 38, 38]
-            current-location: [472, 714, 88, 88]
             department-store: [816, 126, 38, 38]
             department_store: [816, 126, 38, 38]
             drinking-water: [642, 672, 38, 38]
@@ -667,9 +666,6 @@ textures:
             car_sharing: [594, 0, 38, 38]
             restaurant: [458, 672, 38, 38]
             deli: [458, 672, 38, 38]
-            route-arrow: [178, 714, 128, 128]
-            route-start: [392, 714, 72, 92]
-            route-stop: [314, 714, 72, 92]
             ruin: [502, 0, 38, 38]
             ruins: [502, 0, 38, 38]
             archaeological_site: [502, 0, 38, 38]
@@ -679,8 +675,6 @@ textures:
             beauty_salon: [46, 42, 38, 38]
             school: [552, 84, 38, 38]
             kindergarten: [552, 84, 38, 38]
-            search-active: [566, 714, 72, 108]
-            search-inactive: [646, 714, 72, 108]
             shoe-store: [552, 42, 38, 38]
             shoes: [552, 42, 38, 38]
             shoe_store: [552, 42, 38, 38]
@@ -739,6 +733,16 @@ textures:
             zoo: [966, 84, 38, 38]
             ideo-store: [1070, 950, 38, 38]
 
+            ux-current-location: [472, 714, 88, 88]
+            ux-route-arrow: [178, 714, 128, 128]
+            ux-route-start: [392, 714, 72, 92]
+            ux-route-stop: [314, 714, 72, 92]
+            ux-search-active: [566, 714, 72, 108]
+            ux-search-inactive: [646, 714, 72, 108]
+            #
+            # reuse capital-xl
+            ux-transit-stop: [950, 672, 20, 20]
+
     building-grid:
         url: images/building-grid.gif
         filtering: mipmap
@@ -792,9 +796,9 @@ sources:
 #    mz_route_line:
 #        type: GeoJSON
 #        # sf to ny
-#        url: https://gist.githubusercontent.com/anonymous/30c6c1a75c168d91d90c/raw/92bfe55e622766d250b1f2f5d17bdc7c26acb956/map.geojson
+#        # url: https://gist.githubusercontent.com/anonymous/30c6c1a75c168d91d90c/raw/92bfe55e622766d250b1f2f5d17bdc7c26acb956/map.geojson
 #        # local sf trip
-#        # url: https://gist.githubusercontent.com/anonymous/9a610ebda6fe4be7bccc/raw/8d217e43f2412d48d01534ba115f1e42dac72e68/map.geojson
+#        url: https://gist.githubusercontent.com/anonymous/9a610ebda6fe4be7bccc/raw/8d217e43f2412d48d01534ba115f1e42dac72e68/map.geojson
 #    # Dashed route line
 #    mz_dash_line:
 #        type: GeoJSON
