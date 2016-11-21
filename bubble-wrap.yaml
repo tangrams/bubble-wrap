@@ -921,50 +921,23 @@ styles:
                     }
                     #endif
 
-    tools-grain:
+    tools-vignette:
         shaders:
             blocks:
                 global: |
-                    // Grain
-                    //=============================
-                    float random(vec2 p) {
-                        return fract(1e4 * sin(17.0 * p.x + p.y * 0.1) * (0.1 + abs(sin(p.y * 13.0 + p.x))));
-                    }
-                    float noise(vec2 x) {
-                        vec2 i = floor(x);
-                        vec2 f = fract(x);
-                        float a = random(i);
-                        float b = random(i + vec2(1.0, 0.0));
-                        float c = random(i + vec2(0.0, 1.0));
-                        float d = random(i + vec2(1.0, 1.0));
-                        vec2 u = f * f * (3.0 - 2.0 * f);
-                        return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
-                    }
-                    float fbm(in vec2 p) {
-                        float s = 0.0;
-                        float m = 0.0;
-                        float a = 0.5;
-                        for(int i = 0; i < 2; i++ ) {
-                            s += a * noise(p);
-                            m += a;
-                            a *= 0.5;
-                            p *= 2.0;
-                        }
-                        return s/m;
-                    }
-                    float grain(vec2 pos) {
+                    float vignette(vec2 pos) {
                         vec2 st = pos / u_resolution.xy - vec2(.5);
-                        return dot(st, st) + (fbm(pos * 0.6) * 0.1);
+                        return dot(st, st) + 0.05;
                     }
 
     grid:
         base: polygons
-        mix: [tools-grain, tools-grid]
+        mix: [tools-vignette, tools-grid]
         shaders:
             blocks:
                 filter: |
                     color.rgb = vec3(0.899, 0.95, 1.0);
-                    color.rgb -= grain(gl_FragCoord.xy) * 0.1;
+                    color.rgb -= vignette(gl_FragCoord.xy) * 0.1;
                     color.rgb = mix(color.rgb, vec3(0.639, 0.886, 0.906), TileGrid());
 
     water_border:
