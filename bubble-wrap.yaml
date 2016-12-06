@@ -4028,1496 +4028,286 @@ layers:
             filter: { kind: locality }
             draw:
                 icons:
+                    visible: global.icon_visible_populated_places
                     interactive: true
-                    priority: 5
+                    size: [[10,6px],[11,0px]]
+                    sprite: townspot-s-rev
+                    priority: 50
                     # debug testing
                     #collide: false
                     text:
+                        visible: global.text_visible_populated_places
                         interactive: true
                         buffer: 3px
                         # debug testing
                         #collide: false
+                        font:
+                            size: [[5,6px],[8,10px],[9,9px],[10,9px],[11,9px],[12,11px]]
 
-            populated-places-natural-earth-z2:
-                filter: { $zoom: [2] }
+            no-townspot:
+                filter: { $zoom: { min: 11 } }
                 draw:
                     icons:
-                        size: 5px
-                        visible: global.icon_visible_populated_places
-                        sprite: townspot-s-rev
                         text:
-                            visible: global.text_visible_populated_places
-                            font:
-                                size: 10px
-                                fill: global.text_fill
-                                # stroke: { color: global.text_stroke, width: 4 }
-
-            populated-places-natural-earth-z3:
-                filter: { $zoom: [3] }
-                z3places-1:
-                    filter: { min_zoom: [2] }
-                    draw:
-                        icons:
-                            size: 5px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-s-rev
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 11px
-                                    fill: global.text_fill
-                                    # stroke: { color: global.text_stroke, width: 4 }
-                z3places-2:
-                    filter: { min_zoom: [3] }
-                    draw:
-                        icons:
-                            priority: 7
-                            size: 5px
-                            sprite: townspot-s-rev
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 9px
-                                    fill: global.text_fill
-                                    # stroke: { color: global.text_stroke, width: 4 }
-
-            populated-places-natural-earth-z4:
-                filter: { $zoom: [4] }
-                z4places-1:
-                    filter: { min_zoom: [2] }
-                    draw:
-                        icons:
-                            size: 5px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-s-rev
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 13px
-                                    fill: global.text_fill
-                                    # stroke: { color: global.text_stroke, width: 4 }
-
-                z4places-2:
-                    filter: { min_zoom: [3,4] }
-                    draw:
-                        icons:
-                            priority: 7
-                            size: 5px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-s-rev
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 10px
-                                    fill: global.text_fill
-                                    # stroke: { color: global.text_stroke, width: 4 }
-
-            populated-places-natural-earth-z5:
-                filter: { $zoom: [5] }
-                z5places-1:
-                    filter: { min_zoom: [2,3] }
-                    draw:
-                        icons:
-                            priority: 7
-                            size: 6px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-m-rev
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 13px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                priority: 5
-                                size: 8px
-                                sprite: capital-l
-
-                z5places-2:
-                    filter: { min_zoom: [4] }
-                    draw:
-                        icons:
-                            priority: 11
-                            size: 5px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-s-rev
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 11px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                priority: 9
-                                size: 6px
-                                sprite: capital-m
-
-                z5places-3:
-                    filter: { min_zoom: [5] }
-                    draw:
-                        icons:
-                            priority: 17
-                            size: 5px
-                            sprite: townspot-s-rev
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.25,0.25,0.25]
-                                    size: 10px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                priority: 15
-                                size: 6px
-                                sprite: capital-m
-
-            populated-places-natural-earth-z6:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [6] }
-                z6places-1:
-                    filter: { min_zoom: [2,3] }
-                    draw:
-                        icons:
-                            priority: 7
-                            size: 8px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-l-rev
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: global.text_fill
-                                    size: 15px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                sprite: capital-l
-                                size: 8px
-                                priority: 5
-
-                z6places-2:
-                    filter: { min_zoom: [4,5] }
-                    draw:
-                        icons:
-                            priority: 11
-                            size: 6px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-m-rev
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: global.text_fill
-                                    size: 12px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                size: 6px
-                                sprite: capital-m
-                                priority: 9
-
-                z6places-3:
-                    filter: { min_zoom: [6] }
-                    draw:
-                        icons:
-                            size: 5px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-s-rev
-                            priority: 15
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.25,0.25,0.25]
-                                    size: 10px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                size: 6px
-                                sprite: capital-m
-                                priority: 13
-
-            populated-places-natural-earth-z7:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [7] }
-                z7places-1:
-                    filter: { min_zoom: [2,3] }
-                    draw:
-                        icons:
-                            size: 8px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-l-rev
-                            priority: 7
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: global.text_fill
-                                    size: 16px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                size: 8px
-                                sprite: capital-l
-                                priority: 5
-
-                z7places-2:
-                    filter: { min_zoom: [4,5,6] }
-                    draw:
-                        icons:
-                            size: 6px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-m-rev
-                            priority: 13
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: global.text_fill
-                                    size: 13px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                size: 8px
-                                sprite: capital-l
-                                priority: 11
-
-                z7places-3:
-                    filter: { min_zoom: [6,7] }
-                    draw:
-                        icons:
-                            size: 5px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-s-rev
-                            priority: 17
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.25,0.25,0.25]
-                                    size: 11px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                size: 6px
-                                sprite: capital-m
-                                priority: 15
-
-            populated-places-osm-z8:
-                filter:
-                    all:
-                        - source: openstreetmap.org
-                        - $zoom: [8]
-                z8places-1:
-                    filter:
-                        any:
-                            - { population: { min: 1000000 } }
-                    draw:
-                        icons:
-                            size: 6px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-m-rev
-                            priority: 7
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 16px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                size: 8px
-                                sprite: capital-l
-                                priority: 5
-                z8places-2:
-                    filter:
-                        any:
-                            - { population: { min: 150000, max: 999999 } }
-                    draw:
-                        icons:
-                            size: 6px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-m-rev
-                            priority: 11
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 13px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                size: 6px
-                                sprite: capital-m
-                                priority: 9
-
-                z8places-3:
-                    filter:
-                        any:
-                            - { population: { min: 85000, max: 149999 } }
-                    draw:
-                        icons:
-                            size: 6px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-m-rev
-                            priority: 15
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.25,0.25,0.25]
-                                    size: 11px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                size: 6px
-                                sprite: capital-m
-                                priority: 13
-
-                z8places-4:
-                    filter:
-                        any:
-                            - { population: { min: 50000, max: 84999 } }
-                    draw:
-                        icons:
-                            size: 5px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-s-rev
-                            priority: 19
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.30,0.30,0.30]
-                                    size: 10px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                size: 5px
-                                sprite: capital-m
-                                priority: 17
-                z8places-5:
-                    filter:
-                        all:
-                            - { population: { max: 50000 } }
-                        any:
-                            - country_capital: true
-                            - region_capital: true
-                    draw:
-                        icons:
-                            size: 5px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-s-rev
-                            priority: 19
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.30,0.30,0.30]
-                                    size: 10px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                size: 5px
-                                sprite: capital-s
-                                priority: 17
-
-            populated-places-natural-earth-z8-backfill:
-                filter: { source: naturalearthdata.com, $zoom: [8], population: { max: 50000 } }
-                draw: { icons: { text: { font: { fill: global.text_fill } } } }
-                z8places-1-ne:
-                    filter: { min_zoom: [2,3] }
-                    draw:
-                        icons:
-                            size: 8px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-l-rev
-                            priority: 23
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 16px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                size: 8px
-                                sprite: capital-l
-                                priority: 21
-
-                z8places-2-ne:
-                    filter: { min_zoom: [4,5,6] }
-                    draw:
-                        icons:
-                            size: 6px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-m-rev
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 13px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                sprite: capital-m
-
-                z8places-3-ne:
-                    filter: { min_zoom: [6,7] }
-                    draw:
-                        icons:
-                            size: 5px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-s-rev
-                            priority: 27
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 11px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                sprite: capital-s
-                                priority: 25
-
-            populated-places-osm-z9:
-                filter:
-                    all:
-                        - source: openstreetmap.org
-                        - $zoom: [9]
-
-                z9places-1:
-                    filter:
-                        any:
-                            - { population: { min: 1000000 } }
-                    draw:
-                        text-blend-order:
                             anchor: center
-                            visible: global.text_visible_populated_places
-                            priority: 6
-                            font:
-                                size: 17px
-#                                fill: global.text_fill
-#                                stroke: { color: global.text_stroke, width: 4 }
 
-                z9places-2a:
-                    filter:
-                        any:
-                            - { population: { min: 350000, max: 999999 } }
-                    draw:
-                        text-blend-order:
-                            anchor: center
-                            visible: global.text_visible_populated_places
-                            priority: 8
-                            font:
-                                size: 13px
-#                                fill: global.text_fill
-#                                stroke: { color: global.text_stroke, width: 4 }
-
-                z9places-2b:
-                    filter:
-                        any:
-                            - { population: { min: 150000, max: 350000 } }
-                    draw:
-                        icons:
-                            size: 6px
-                            sprite: townspot-m-rev
-                            priority: 11
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 13px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                sprite: capital-m
-                                priority: 9
-
-                z9places-3:
-                    filter:
-                        any:
-                            - { population: { min: 85000, max: 149999 } }
-                    draw:
-                        icons:
-                            size: 6px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-m-rev
-                            priority: 15
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.25,0.25,0.25]
-                                    size: 11px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                sprite: capital-m
-                                priority: 13
-                                text:
-                                    font:
-                                        size: 15px
-
-                z9places-4:
-                    filter:
-                        any:
-                            - { population: { min: 50000, max: 84999 } }
-                    draw:
-                        icons:
-                            size: 5px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-s-rev
-                            priority: 19
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.30,0.30,0.30]
-                                    size: 9px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                sprite: capital-s
-                                priority: 17
-                z9places-5:
-                    filter:
-                        all:
-                            - { population: { max: 50000 } }
-                        any:
-                            - country_capital: true
-                            - region_capital: true
-                    draw:
-                        icons:
-                            size: 5px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-s-rev
-                            priority: 19
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.30,0.30,0.30]
-                                    size: 9px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                sprite: capital-s
-                                priority: 17
-
-            populated-places-osm-z9-no-population:
+            population-10m-up:
                 filter:
-                    all:
-                        - source: openstreetmap.org
-                        - $zoom: [9]
-                        - kind_detail: [city,town]
+                    any:
+                        - { population: { min: 10000000 } }
                 draw:
                     icons:
-                        size: 5px
-                        visible: global.icon_visible_populated_places
+                        size: [[8,6px],[9,0px]]
+                        sprite: townspot-m-rev
+                        priority: 6
+                        text:
+                            font:
+                                size: [[5,11px],[8,16px],[9,17px],[10,17px],[11,18px],[12,18px],[13,0px]]
+                capital:
+                    filter: { country_capital: true, $zoom: { min: 5 } }
+                    draw:
+                        icons:
+                            size: [[10,8px],[11,0px]]
+                            sprite: capital-l
+                            priority: 5
+            population-5m-10m:
+                filter:
+                    any:
+                        - { population: { min: 5000000, max: 10000000 } }
+                draw:
+                    icons:
+                        size: [[8,6px],[9,0px]]
+                        sprite: townspot-m-rev
+                        priority: 7
+                        text:
+                            font:
+                                size: [[5,11px],[8,16px],[9,17px],[10,17px],[11,18px],[12,18px],[13,0px]]
+                capital:
+                    filter: { country_capital: true, $zoom: { min: 5 } }
+                    draw:
+                        icons:
+                            size: [[10,8px],[11,0px]]
+                            sprite: capital-l
+                            priority: 6
+            population-1m-5m:
+                filter:
+                    any:
+                        - { population: { min: 1000000, max: 5000000 } }
+                draw:
+                    icons:
+                        size: [[8,6px],[9,0px]]
+                        sprite: townspot-m-rev
+                        priority: 9
+                        text:
+                            font:
+                                size: [[5,11px],[8,16px],[9,17px],[10,17px],[11,18px],[12,18px],[13,0px]]
+                capital:
+                    filter: { country_capital: true, $zoom: { min: 5 } }
+                    draw:
+                        icons:
+                            size: [[10,8px],[11,0px]]
+                            sprite: capital-l
+                            priority: 8
+            population-500k-1m:
+                filter:
+                    any:
+                        - { population: { min: 500000, max: 1000000 } }
+                draw:
+                    icons:
+                        size: [[8,6px],[9,0px]]
+                        sprite: townspot-m-rev
+                        priority: 11
+                        text:
+                            font:
+                                size: [[5,10px],[8,13px],[9,13px],[10,13px],[11,14px],[12,14px],[13,0px]]
+                capital:
+                    filter: { country_capital: true, $zoom: { min: 5 } }
+                    draw:
+                        icons:
+                            size: [[10,6px],[11,0px]]
+                            sprite: capital-m
+                            priority: 10
+            population-200k-500k:
+                filter:
+                    any:
+                        - { population: { min: 200000, max: 500000 } }
+                draw:
+                    icons:
+                        size: [[8,6px],[9,6px],[10,6px],[11,0px]]
+                        sprite: townspot-m-rev
+                        priority: 13
+                        text:
+                            font:
+                                size: [[5,10px],[8,13px],[9,13px],[10,13px],[11,13px],[12,13px],[13,0px]]
+                capital:
+                    filter: { country_capital: true, $zoom: { min: 5 } }
+                    draw:
+                        icons:
+                            size: [[10,6px],[11,0px]]
+                            sprite: capital-m
+                            priority: 12
+            population-100k-200k:
+                filter:
+                    any:
+                        - { population: { min: 100000, max: 200000 } }
+                draw:
+                    icons:
+                        size: [[8,6px],[9,6px],[10,6px],[11,0px]]
+                        sprite: townspot-m-rev
+                        priority: 15
+                        text:
+                            font:
+                                size: [[5,9px],[8,13px],[9,13px],[10,13px],[11,13px],[12,13px],[13,14px]]
+                capital:
+                    filter: { country_capital: true, $zoom: { min: 5 } }
+                    draw:
+                        icons:
+                            size: [[10,6px],[11,0px]]
+                            sprite: capital-m
+                            priority: 14
+            population-50k-100k:
+                filter:
+                    any:
+                        - { population: { min: 50000, max: 100000 } }
+                draw:
+                    icons:
+                        size: [[8,5px],[9,5px],[10,6px],[11,0px]]
+                        sprite: townspot-s-rev
+                        priority: 17
+                        text:
+                            font:
+                                fill: [[8,[0.30,0.30,0.30]],[9,[0.30,0.30,0.30]],[10,[0.25,0.25,0.25]]]
+                                size: [[5,7px],[8,10px],[9,9px],[10,11px],[11,11px],[12,12px],[13,14px]]
+                capital:
+                    filter: { country_capital: true, $zoom: { min: 5 } }
+                    draw:
+                        icons:
+                            size: [[10,5px],[11,0px]]
+                            sprite: capital-m
+                            priority: 16
+            population-20k-50k:
+                filter:
+                    all:
+                        - { population: { min: 20000, max: 50000 } }
+                    any:
+                        - country_capital: true
+                        - region_capital: true
+                draw:
+                    icons:
+                        size: [[8,5px],[9,5px],[10,5px],[11,0px]]
+                        sprite: townspot-s-rev
+                        priority: 19
+                        text:
+                            font:
+                                fill: [[8,[0.30,0.30,0.30]],[9,[0.30,0.30,0.30]],[10,[0.35,0.35,0.35]]]
+                                size: [[5,7px],[8,10px],[9,9px],[10,9px],[11,9px],[12,11px],[13,12px]]
+                capital:
+                    filter: { country_capital: true, $zoom: { min: 5 } }
+                    draw:
+                        icons:
+                            size: [[10,5px],[11,0px]]
+                            sprite: capital-s
+                            priority: 18
+            population-10k-20k:
+                filter:
+                    all:
+                        - { population: { min: 10000, max: 20000 } }
+                draw:
+                    icons:
+                        size: [[8,5px],[9,5px],[10,5px],[11,0px]]
                         sprite: townspot-s-rev
                         priority: 21
                         text:
-                            visible: global.text_visible_populated_places
                             font:
-                                size: 10px
-
-            populated-places-natural-earth-z9-backfill:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [9], population: { max: 50000 } }
-                draw: { icons: { text: { font: { fill: global.text_fill } } } }
-                z9places-1-ne:
-                    filter: { scalerank: [0,1] }
+                                fill: [[8,[0.30,0.30,0.30]],[9,[0.30,0.30,0.30]],[10,[0.35,0.35,0.35]]]
+                                size: [[5,6px],[8,10px],[9,9px],[10,9px],[11,9px],[12,11px],[13,12px]]
+                capital:
+                    filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
                         icons:
-                            size: 8px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-l-rev
-                            priority: 25
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 16px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                sprite: capital-l
-                                priority: 23
-
-                z9places-2-ne:
-                    filter: { scalerank: [2,3,4,5] }
-                    draw:
-                        icons:
-                            size: 6px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-m-rev
-                            priority: 29
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 13px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                sprite: capital-m
-                                priority: 28
-
-                z9places-3-ne:
-                    filter: { scalerank: [6,7,8,9] }
-                    draw:
-                        icons:
-                            size: 6px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-m-rev
-                            priority: 33
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 11px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                sprite: capital-m
-                                priority: 31
-
-            populated-places-osm-z10:
+                            size: [[10,5px],[11,0px]]
+                            sprite: capital-s
+                            priority: 20
+            population-5k-10k:
                 filter:
                     all:
-                        - source: openstreetmap.org
-                        - $zoom: [10]
-
-                z10places-1:
-                    filter:
-                        any:
-                            - { population: { min: 1000000 } }
-                    draw:
-                        text-blend-order:
-                            anchor: center
-                            visible: global.text_visible_populated_places
-                            # TODO: Why is this here?
-                            priority: 5
-                            font:
-                                size: 17px
-
-                z10places-2a:
-                    filter:
-                        any:
-                            - { population: { min: 350000, max: 1000000 } }
-                    draw:
-                        text-blend-order:
-                            anchor: center
-                            visible: global.text_visible_populated_places
-                            # TODO: Why is this here?
-                            priority: 6
-                            font:
-                                size: 13px
-#                                fill: global.text_fill
-#                                stroke: { color: global.text_stroke, width: 4 }
-
-                z10places-2b:
-                    filter:
-                        any:
-                            - { population: { min: 150000, max: 350000 } }
-                    draw:
-                        icons:
-                            size: 6px
-                            sprite: townspot-m-rev
-                            priority: 7
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 13px
-
-                z10places-3:
-                    filter:
-                        any:
-                            - { population: { min: 50000, max: 149999 } }
-                    draw:
-                        icons:
-                            size: 6px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-m-rev
-                            priority: 11
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.25,0.25,0.25]
-                                    size: 11px
-
-                z10places-4:
-                    filter:
-                        any:
-                            - { population: { min: 20000, max: 49999 } }
-                    draw:
-                        icons:
-                            size: 5px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-s-rev
-                            priority: 13
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.35,0.35,0.35]
-                                    size: 9px
-
-            populated-places-osm-z10-no-population:
-                filter:
-                    all:
-                        - source: openstreetmap.org
-                        - $zoom: [10]
-                        - kind_detail: [city,town]
+                        - { population: { min: 5000, max: 10000 } }
                 draw:
                     icons:
-                        size: 5px
-                        visible: global.icon_visible_populated_places
+                        size: [[8,5px],[9,5px],[10,5px],[11,0px]]
                         sprite: townspot-s-rev
-                        priority: 15
+                        priority: 23
                         text:
-                            visible: global.text_visible_populated_places
                             font:
-                                size: 10px
-
-            populated-places-natural-earth-z10-backfill:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [10], population: { max: 20000 } }
-                draw: { icons: { text: { font: { fill: global.text_fill } } } }
-                z10places-1-ne:
-                    filter: { scalerank: [0,1] }
+                                fill: [[8,[0.30,0.30,0.30]],[9,[0.30,0.30,0.30]],[10,[0.35,0.35,0.35]]]
+                                size: [[5,6px],[8,10px],[9,9px],[10,9px],[11,9px],[12,11px],[13,12px]]
+                capital:
+                    filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
                         icons:
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 16px
-
-                z10places-2-ne:
-                    filter: { scalerank: [2,3,4,5] }
-                    draw:
-                        icons:
-                            size: 6px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-m-rev
-                            priority: 21
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 13px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                sprite: capital-m
-                                priority: 20
-
-                z10places-3-ne:
-                    filter: { scalerank: [6,7,8,9,10] }
-                    draw:
-                        icons:
-                            size: 5px
-                            visible: global.icon_visible_populated_places
-                            sprite: townspot-s-rev
-                            priority: 25
-                            text:
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 12px
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            icons:
-                                size: 7px
-                                sprite: capital-m
-                                priority: 23
-
-
-            populated-places-osm-z11:
-                filter:
-                    all:
-                        - source: openstreetmap.org
-                        - $zoom: [11]
-                        - population: true
-                no-townspots:
-                    filter: { kind_detail: [city,town] }
-
-                    z11places-1:
-                        filter:
-                            any:
-                                - { population: { min: 1000000 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                visible: global.text_visible_populated_places
-                                priority: 5
-                                font:
-                                    size: 18px
-    #                                fill: global.text_fill
-    #                                stroke: { color: global.text_stroke, width: 4 }
-
-                    z11places-2:
-                        filter:
-                            any:
-                                - { population: { min: 50000, max: 999999 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                visible: global.text_visible_populated_places
-                                priority: 6
-                                font:
-                                    size: 14px
-    #                                fill: global.text_fill
-    #                                stroke: { color: global.text_stroke, width: 4 }
-
-                    z11places-3:
-                        filter:
-                            any:
-                            - { population: { min: 5000, max: 49999 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                visible: global.text_visible_populated_places
-                                priority: 7
-                                font:
-                                    size: 12px
-    #                                fill: global.text_fill
-    #                                stroke: { color: global.text_stroke, width: 4 }
-
-                some-townspots:
-                    filter: { not: { kind_detail: [city,town] } }
-
-                    z11places-1:
-                        filter:
-                            any:
-                                - { population: { min: 1000000 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                visible: global.text_visible_populated_places
-                                # TODO: Why is this here?
-                                priority: 5
-                                font:
-                                    size: 17px
-
-                    z11places-2a:
-                        filter:
-                            any:
-                                - { population: { min: 350000, max: 1000000 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                visible: global.text_visible_populated_places
-                                # TODO: Why is this here?
-                                priority: 6
-                                font:
-                                    size: 13px
-    #                                fill: global.text_fill
-    #                                stroke: { color: global.text_stroke, width: 4 }
-
-                    z11places-2b:
-                        filter:
-                            any:
-                                - { population: { min: 150000, max: 350000 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                priority: 7
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 13px
-
-                    z11places-3:
-                        filter:
-                            any:
-                                - { population: { min: 50000, max: 149999 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                size: 6px
-                                priority: 11
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.25,0.25,0.25]
-                                    size: 11px
-
-                    z11places-4:
-                        filter:
-                            any:
-                                - { population: { min: 20000, max: 49999 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                size: 5px
-                                priority: 13
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.35,0.35,0.35]
-                                    size: 9px
-
-                    z11places-6:
-                        filter:
-                            any:
-                                - { population: { max: 20000 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                size: 5px
-                                priority: 14
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.35,0.35,0.35]
-                                    size: 8px
-
-            populated-places-osm-z11-no-population:
-                filter:
-                    all:
-                        - source: openstreetmap.org
-                        - $zoom: [11]
-                        - population: false
-                draw:
-                    text-blend-order:
-                        anchor: center
-                        visible: global.text_visible_populated_places
-                        priority: 8
-                        font:
-                            size: 11px
-                            #fill: global.text_fill
-#                            stroke: { color: global.text_stroke, width: 4 }
-                village:
-                    filter: { kind_detail: [village] }
-                    draw:
-                        text-blend-order:
-                            font:
-                                #fill: green
-                                size: 9px
-
-            populated-places-natural-earth-z11-backfill:
-                filter: { source: naturalearthdata.com, $zoom: [11], population: { max: 5000 } }
-                draw:
-                    text-blend-order:
-                        anchor: center
-                        font:
-                            fill: global.text_fill
-                z11places-1-ne:
-                    filter: { min_zoom: [2,3] }
-                    draw:
-                        text-blend-order:
-                            visible: global.text_visible_populated_places
-                            priority: 10
-                            font:
-                                size: 16px
-                                #stroke: { color: global.text_stroke, width: 4 }
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            text-blend-order:
-                                priority: 9
-                                font:
-                                    size: 16px
-                                    #stroke: { color: global.text_stroke, width: 4 }
-
-                z11places-2-ne:
-                    filter: { min_zoom: [4,5,6] }
-                    draw:
-                        text-blend-order:
-                            visible: global.text_visible_populated_places
-                            priority: 13
-                            font:
-                                size: 13px
-                                #stroke: { color: global.text_stroke, width: 4 }
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            text-blend-order:
-                                priority: 11
-                                font:
-                                    size: 16px
-                                    #stroke: { color: global.text_stroke, width: 4 }
-                    region_capital:
-                        filter: { region_capital: true }
-                        draw:
-                            text-blend-order:
-                                priority: 12
-                                font:
-                                    size: 14px
-                                    #stroke: { color: global.text_stroke, width: 4 }
-
-                z11places-3-ne:
-                    filter: { min_zoom: [6,7,8,9,10] }
-                    draw:
-                        text-blend-order:
-                            visible: global.text_visible_populated_places
-                            priority: 15
-                            font:
-                                size: 11px
-                                #stroke: { color: global.text_stroke, width: 4 }
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            text-blend-order:
-                                priority: 14
-                                font:
-                                    size: 14px
-                                    #stroke: { color: global.text_stroke, width: 4 }
-
-#            populated-places-osm-z12-debug:
-#                filter:
-#                    all:
-#                        - source: openstreetmap.org
-#                        - population: true
-#                        - kind_detail: [hamlet]
-#                        - $zoom: [12]
-#                draw:
-#                    icons:
-#                        size: 6px
-#                        sprite: townspot-m-rev
-#                        priority: 7
-#                        text:
-#                            visible: global.text_visible_populated_places
-#                            font:
-#                                size: 10px
-#                                fill: red
-#                village:
-#                    filter: { kind_detail: [village] }
-#                    draw:
-#                        icons:
-#                            text:
-#                                font:
-#                                    fill: green
-
-            populated-places-osm-z12:
-                filter:
-                    all:
-                        - $zoom: [12]
-                        - source: openstreetmap.org
-                        - population: true
-                no-townspots:
-                    filter: { kind_detail: [city,town] }
-
-                    draw:
-                        text-blend-order:
-                            anchor: center
-
-                    z12places-1:
-                        filter:
-                            any:
-                                - { population: { min: 1000000 } }
-
-                        draw:
-                            text-blend-order:
-                                visible: global.text_visible_populated_places
-                                priority: 5
-                                font:
-                                    size: 18px
-                                    #fill: global.text_fill
-   #                                 stroke: { color: global.text_stroke, width: 4 }
-
-                    z12places-2:
-                        filter:
-                            any:
-                                - { population: { min: 50000, max: 999999 } }
-                        draw:
-                            text-blend-order:
-                                visible: global.text_visible_populated_places
-                                priority: 6
-                                font:
-                                    size: 14px
-                                    #fill: global.text_fill
-   #                                 stroke: { color: global.text_stroke, width: 4 }
-
-                    z12places-3:
-                        filter:
-                            any:
-                            - { population: { min: 5000, max: 49999 } }
-                        draw:
-                            text-blend-order:
-                                visible: global.text_visible_populated_places
-                                priority: 7
-                                font:
-                                    size: 11px
-                                    #fill: global.text_fill
-   #                                 stroke: { color: global.text_stroke, width: 4 }
-
-                    z12places-4:
-                        filter:
-                            any:
-                            - { population: { max: 5000 } }
-                        draw:
-                            text-blend-order:
-                                visible: global.text_visible_populated_places
-                                priority: 8
-                                font:
-                                    size: 10px
-                                    #fill: global.text_fill
-   #                                 stroke: { color: global.text_stroke, width: 4 }
-
-                some-townspots:
-                    filter: { not: { kind_detail: [city,town] } }
-
-                    z12places-1:
-                        filter:
-                            any:
-                                - { population: { min: 1000000 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                visible: global.text_visible_populated_places
-                                # TODO: Why is this here?
-                                priority: 5
-                                font:
-                                    size: 17px
-
-                    z12places-2a:
-                        filter:
-                            any:
-                                - { population: { min: 350000, max: 1000000 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                visible: global.text_visible_populated_places
-                                # TODO: Why is this here?
-                                priority: 6
-                                font:
-                                    size: 13px
-    #                                 fill: global.text_fill
-    #                                 stroke: { color: global.text_stroke, width: 4 }
-
-                    z12places-2b:
-                        filter:
-                            any:
-                                - { population: { min: 150000, max: 350000 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                size: 6px
-                                priority: 7
-                                visible: global.text_visible_populated_places
-                                font:
-                                    size: 13px
-
-                    z12places-3:
-                        filter:
-                            any:
-                                - { population: { min: 50000, max: 149999 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                size: 6px
-                                priority: 11
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.25,0.25,0.25]
-                                    size: 12px
-
-                    z12places-4:
-                        filter:
-                            any:
-                                - { population: { min: 20000, max: 49999 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                size: 5px
-                                priority: 13
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.35,0.35,0.35]
-                                    size: 11px
-
-                    z12places-6:
-                        filter:
-                            any:
-                                - { population: { max: 20000 } }
-                        draw:
-                            text-blend-order:
-                                anchor: center
-                                size: 5px
-                                priority: 14
-                                visible: global.text_visible_populated_places
-                                font:
-                                    fill: [0.35,0.35,0.35]
-                                    size: 10px
-
-                    hamlet:
-                        filter: { kind_detail: [hamlet] }
-                        draw:
-                            text-blend-order:
-                                #visible: false
-                                font:
-                                    #fill: magenta
-                                    size: 9px
-
-            populated-places-osm-z12-no-population:
-                filter:
-                    all:
-                        - $zoom: [12]
-                        - source: openstreetmap.org
-                        - population: false
-                        #- kind_detail: [city,town,village,hamlet]
-                draw:
-                    text-blend-order:
-                        anchor: center
-                        visible: global.text_visible_populated_places
-                        priority: 9
-                        font:
-                            size: 11px
-                            #fill: cyan
-                            #fill: global.text_fill
-                            #stroke: { color: global.text_stroke, width: 4 }
-                hamlet:
-                    filter: { kind_detail: [hamlet] }
-                    draw:
-                        text-blend-order:
-                            visible: false
-                            font:
-                                #fill: magenta
-                                size: 9px
-                village:
-                    filter: { kind_detail: [village] }
-                    draw:
-                        text-blend-order:
-                            font:
-                                #fill: green
-                                size: 9px
-
-            populated-places-natural-earth-z12-backfill:
-                filter: { source: naturalearthdata.com, $zoom: [12], population: { max: 5000 } }
-                draw:
-                    text-blend-order:
-                        anchor: center
-                        priority: 10
-                        font:
-                            fill: global.text_fill
-
-                z12places-1-ne:
-                    filter: { scalerank: [0,1] }
-                    draw:
-                        text-blend-order:
-                            visible: global.text_visible_populated_places
-                            priority: 12
-                            font:
-                                size: 16px
-                                #stroke: { color: global.text_stroke, width: 4 }
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            text-blend-order:
-                                priority: 11
-                                font:
-                                    size: 16px
-                                    #stroke: { color: global.text_stroke, width: 4 }
-
-                z12places-2-ne:
-                    filter: { scalerank: [2,3,4,5] }
-                    draw:
-                        text-blend-order:
-                            visible: global.text_visible_populated_places
-                            priority: 14
-                            font:
-                                size: 13px
-                                #stroke: { color: global.text_stroke, width: 4 }
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            text-blend-order:
-                                priority: 13
-                                font:
-                                    size: 16px
-                                    #stroke: { color: global.text_stroke, width: 4 }
-
-                z12places-3-ne:
-                    filter: { scalerank: [6,7,8,9,10,11,12] }
-                    draw:
-                        text-blend-order:
-                            visible: global.text_visible_populated_places
-                            priority: 16
-                            font:
-                                size: 11px
-                                #stroke: { color: global.text_stroke, width: 4 }
-                    capital:
-                        filter: { country_capital: true }
-                        draw:
-                            text-blend-order:
-                                priority: 15
-                                font:
-                                    size: 14px
-                                    #stroke: { color: global.text_stroke, width: 4 }
-
-            populated-places-osm-z13-z14:
-                filter:
-                    all:
-                        - source: openstreetmap.org
-                        - population: true
-                        - $zoom: [13,14]
-                draw:
-                    text-blend-order:
-                        anchor: center
-                        visible: global.text_visible_populated_places
-                        font:
-                            weight: 600
-                            fill: global.text_fill
-                z14:
-                    filter:
-                        $zoom: [14]
-                    draw:
-                        text-blend-order:
-                            font:
-                                weight: 600
-
-                z13places-1:
-                    filter:
-                        any:
-                            - { population: { min: 200000 } }
-                    draw:
-                        text-blend-order:
-                            visible: false
-
-                z13places-2:
-                    filter:
-                        any:
-                            - { population: { min: 50000, max: 199999 } }
-                    draw:
-                        text-blend-order:
-                            visible: global.text_visible_populated_places
-                            priority: 5
-                            font:
-                                size: 14px
-                                #stroke: { color: global.text_stroke, width: 4 }
-
-                z13places-3:
-                    filter:
-                        any:
-                        - { population: { min: 5000, max: 49999 } }
-                    draw:
-                        text-blend-order:
-                            visible: global.text_visible_populated_places
-                            priority: 6
-                            font:
-                                size: 12px
-                                #stroke: { color: global.text_stroke, width: 4 }
-
-                z13places-4:
-                    filter:
-                        - population: { max: 5000 }
-                    draw:
-                        text-blend-order:
-                            font:
-                                size: 12px
-                                #stroke: { color: global.text_stroke, width: 4 }
-
-                # someone in London and Salt Lake City thought neighbourhoods should be tagged place: locality
-                # They were wrong
-                funky-fake-neighbourhoods:
-                    filter: { kind_detail: locality }
-                    draw:
-                        text-blend-order:
+                            size: [[10,5px],[11,0px]]
+                            sprite: capital-s
                             priority: 22
-                            visible: false
-
-            populated-places-osm-z13-z14-no-population:
+            population-2k-5k:
                 filter:
                     all:
-                        - source: openstreetmap.org
-                        - population: false
-                        - $zoom: [13, 14]
-                        #- kind_detail: [city,town]
+                        - { population: { min: 2000, max: 5000 } }
                 draw:
-                    text-blend-order:
-                        anchor: center
-                        visible: global.text_visible_populated_places
-                        priority: 7
-                        font:
-                            size: 11px
-                            #fill: orange
-                            #stroke: { color: global.text_stroke, width: 4 }
-
-                # someone in London and Salt Lake City thought neighbourhoods should be tagged place: locality
-                # They were wrong
-                funky-fake-neighbourhoods:
-                    filter: { kind_detail: locality }
+                    icons:
+                        size: [[8,5px],[9,5px],[10,5px],[11,0px]]
+                        sprite: townspot-s-rev
+                        priority: 25
+                        text:
+                            font:
+                                fill: [[8,[0.30,0.30,0.30]],[9,[0.30,0.30,0.30]],[10,[0.35,0.35,0.35]]]
+                                size: [[5,6px],[8,10px],[9,9px],[10,9px],[11,9px],[12,11px],[13,12px]]
+                capital:
+                    filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
-                        text-blend-order:
-                            priority: 22
-                            visible: false
-
-#                city_town:
-#                    filter:
-#                        all:
-#                            - kind_detail: [city,town]
-#                    draw:
-#                        text-blend-order:
-#                            font:
-#                                fill: yellow
-#
-#                hamlet:
-#                    filter: { kind_detail: [hamlet] }
-#                    draw:
-#                        icons:
-#                            text:
-#                                font:
-#                                    fill: brown
-#
-#                village:
-#                    filter: { kind_detail: [village] }
-#                    draw:
-#                        icons:
-#                            text:
-#                                font:
-#                                    fill: green
-#
-#                locality:
-#                    filter: { kind_detail: [locality] }
-#                    draw:
-#                        icons:
-#                            text:
-#                                font:
-#                                    fill: purple
-#
-#                isolated_dwelling_farm:
-#                    filter: { kind_detail: [isolated_dwelling,farm] }
-#                    draw:
-#                        icons:
-#                            text:
-#                                font:
-#                                    fill: pink
-
-
-            populated-places-natural-earth-z13-z14-backfill:
-                filter: { source: naturalearthdata.com, $zoom: [13,14], population: { max: 5000 } }
+                        icons:
+                            size: [[10,5px],[11,0px]]
+                            sprite: capital-s
+                            priority: 24
+            population-1k-2k:
+                filter:
+                    all:
+                        - { population: { min: 1000, max: 2000 } }
                 draw:
-                    text-blend-order:
-                        anchor: center
-                        font:
-                            fill: global.text_fill
-                            weight: normal
-
-                z13places-1-ne:
-                    filter: { min_zoom: [2,3] }
-                    draw:
-                        text-blend-order:
-                            priority: 8
-                            interactive: false
-                            visible: false
-
-                z13places-2-ne:
-                    filter: { min_zoom: [4,5,6] }
-                    draw:
-                        text-blend-order:
-                            priority: 9
-                            visible: global.text_visible_populated_places
+                    icons:
+                        size: [[8,5px],[9,5px],[10,5px],[11,0px]]
+                        sprite: townspot-s-rev
+                        priority: 27
+                        text:
                             font:
-                                size: 13px
-                                #stroke: { color: global.text_stroke, width: 4 }
-
-                z13places-3-ne:
-                    filter: { min_zoom: [7,8,9,10] }
+                                fill: [[8,[0.30,0.30,0.30]],[9,[0.30,0.30,0.30]],[10,[0.35,0.35,0.35]]]
+                                size: [[5,6px],[8,10px],[9,9px],[10,9px],[11,9px],[12,11px]]
+                capital:
+                    filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
-                        text-blend-order:
-                            visible: global.text_visible_populated_places
-                            priority: 10
+                        icons:
+                            size: [[10,5px],[11,0px]]
+                            sprite: capital-s
+                            priority: 26
+            population-200-1k:
+                filter:
+                    all:
+                        - { population: { min: 200, max: 1000 } }
+                draw:
+                    icons:
+                        size: [[8,5px],[9,5px],[10,5px],[11,0px]]
+                        sprite: townspot-s-rev
+                        priority: 28
+                        text:
                             font:
-                                size: 12px
-                                #stroke: { color: global.text_stroke, width: 4 }
+                                fill: [[8,[0.30,0.30,0.30]],[9,[0.30,0.30,0.30]],[10,[0.35,0.35,0.35]]]
+                                size: [[5,6px],[8,10px],[9,9px],[10,9px],[11,9px],[12,11px]]
+                capital:
+                    filter: { country_capital: true, $zoom: { min: 5 } }
+                    draw:
+                        icons:
+                            size: [[10,5px],[11,0px]]
+                            sprite: capital-s
+                            priority: 27
 
         neighborhoods:
             filter: { kind: [macrohood, neighbourhood, borough] }
