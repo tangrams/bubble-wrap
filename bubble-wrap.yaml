@@ -4078,7 +4078,7 @@ layers:
                         priority: 6
                         text:
                             font:
-                                size: [[4,13px],[6,15px],[8,16px],[10,18px],[11,18px],[12,18px],[13,0px]]
+                                size: [[4,13px],[6,15px],[8,16px],[10,18px],[12,18px],[13,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4097,7 +4097,7 @@ layers:
                         priority: 7
                         text:
                             font:
-                                size: [[4,10px],[6,13px],[8,16px],[10,18px],[11,18px],[12,18px],[13,0px]]
+                                size: [[4,10px],[6,13px],[8,16px],[10,18px],[12,18px],[13,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4116,7 +4116,7 @@ layers:
                         priority: 9
                         text:
                             font:
-                                size: [[4,10px],[6,13px],[8,16px],[10,18px],[11,18px],[12,18px],[13,0px]]
+                                size: [[4,10px],[6,13px],[8,16px],[10,18px],[12,18px],[13,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4135,7 +4135,7 @@ layers:
                         priority: 11
                         text:
                             font:
-                                size: [[6,11px],[8,14px],[10,14px],[11,14px],[12,14px],[13,0px]]
+                                size: [[6,11px],[8,14px],[10,14px],[12,16px],[13,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4154,7 +4154,7 @@ layers:
                         priority: 13
                         text:
                             font:
-                                size: [[6,10px],[8,12px],[10,14px],[11,13px],[12,13px],[13,0px]]
+                                size: [[6,10px],[8,12px],[10,14px],[12,16px],[13,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4173,7 +4173,7 @@ layers:
                         priority: 15
                         text:
                             font:
-                                size: [[6,10px],[8,12px],[10,12px],[11,13px],[12,13px],[13,14px]]
+                                size: [[6,10px],[8,12px],[10,12px],[12,14px],[13,14px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4193,7 +4193,7 @@ layers:
                         text:
                             font:
                                 fill: [0.30,0.30,0.30]
-                                size: [[6,10px],[8,10px],[10,12px],[11,11px],[12,12px],[13,14px]]
+                                size: [[6,10px],[8,10px],[10,12px],[12,14px],[13,14px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
