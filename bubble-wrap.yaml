@@ -715,8 +715,8 @@ sources:
         #enforce_winding: true  #because Tangram v0.4 and tiles v0.5-pre don't play nice
         #url:  //localhost:8080/vector/all/{z}/{x}/{y}.mvt
         # road labels in Tangram JS are broken when overzooming, set max_zoom: 18 to preview fix
-        url_params:
-            api_key: vector-tiles-7bfyfz8
+        # url_params:
+        #    api_key: vector-tiles-7bfyfz8
         max_zoom: 16
 
 #    # Only enable this for local debug, should not be enabled for prod (app inserts these at runtime)
@@ -1088,19 +1088,16 @@ styles:
     ux-location-gem-overlay:
         base: points
         texture: pois
-        interactive: true
         blend: overlay
         blend_order: 2
     ux-icons-overlay:
         base: points
         texture: pois
-        interactive: true
         blend: overlay
         blend_order: 3
     sdk-point-overlay:
         base: points
         texture: pois
-        interactive: true
         blend: overlay
         blend_order: 3
     sdk-shield-overlay:
@@ -1152,7 +1149,6 @@ layers:
         data: { source: mz_current_location }
         draw:
             ux-location-gem-overlay:
-                interactive: true
                 sprite: ux-current-location
                 size: 36px
                 collide: false
@@ -1161,7 +1157,6 @@ layers:
         data: { source: mz_route_location }
         draw:
             ux-location-gem-overlay:
-                interactive: true
                 sprite: ux-route-arrow
                 size: [60px,60px]
                 collide: false
@@ -1170,7 +1165,6 @@ layers:
         data: { source: mz_route_start }
         draw:
             ux-icons-overlay:
-                interactive: true
                 priority: 1
                 sprite: ux-route-start
                 size: [36px,46px]
@@ -1181,7 +1175,6 @@ layers:
         data: { source: mz_route_destination }
         draw:
             ux-icons-overlay:
-                interactive: true
                 priority: 1
                 sprite: ux-route-stop
                 size: [36px,46px]
@@ -1192,7 +1185,6 @@ layers:
         data: { source: mz_route_transit_stop }
         draw:
             ux-icons-overlay:
-                interactive: true
                 sprite: ux-transit-stop
                 size: [15px,15px]
                 collide: false
@@ -1228,7 +1220,6 @@ layers:
         data: { source: mz_default_point }
         draw:
             sdk-point-overlay:
-                interactive: true
                 sprite: ux-search-active
                 size: [36px,54px]
                 collide: false
@@ -1509,7 +1500,6 @@ layers:
             filter: { not: { kind: [platform] }, $zoom: { min: 14 } }
             draw:
                 lines:
-                    interactive: true
                     order: function() { return feature.sort_key || 275; }
             railway:
                 filter: { kind: [railway,train] }
@@ -1576,7 +1566,6 @@ layers:
         filter: { not: { kind: rail } }
         draw:
             lines:
-                interactive: true
                 # let roads sort themselves past zoom 14 (using server value)
                 order: global.feature_order
                 # but give them all the same outline
@@ -3337,7 +3326,6 @@ layers:
             filter: { kind: racetrack }
             draw:
                 lines:
-                    interactive: true
                     cap: round
                     join: round
                     color: [0.600,0.667,0.627]
@@ -3388,7 +3376,6 @@ layers:
             filter: { kind: aerialway }
             draw:
                 lines:
-                    interactive: true
                     color: '#444'
                     width: [[14, 0.5px], [15, 1.0px], [16, 2m]]
             gondola_cable_car:
@@ -3449,7 +3436,6 @@ layers:
             filter: { kind: rail, not: { railway: [subway,light_rail,tram] } }
             draw:
                 lines:
-                    interactive: true
                     order: global.feature_order
                     color: [0.588,0.671,0.698]
                     width: [[12,0px],[13,0.25px],[14,0.4px],[15,0.75px],[16,0.75px],[18,1m]]
@@ -3516,7 +3502,6 @@ layers:
 #                           }
 #                       }
 #                   }
-                interactive: true
             lines:
                 style: lines
                 order: 330
@@ -3525,9 +3510,9 @@ layers:
                 width: [[13, 0.55px], [15, 0.65px], [16,0.75px], [18, 1.25px]]
 
         # turn interactive feature selection on for buildings with names
-        interactive:
-            filter: { name: true }
-            draw: { polygons: { interactive: true } }
+        #interactive:
+            #filter: { name: true }
+            #draw: { polygons: { interactive: true } }
 
         # building footprints, pre-extrusion
         footprints:
@@ -3666,7 +3651,6 @@ layers:
             draw:
                 text-blend-order:
                     text_source: global.ux_language_text_source
-                    interactive: true
                     move_into_tile: true
                     priority: 70
                     visible: global.text_visible_building
@@ -3710,7 +3694,6 @@ layers:
             draw:
                 text-blend-order:
                     text_source: global.ux_language_text_source
-                    interactive: true
                     order: 7
                     visible: global.text_visible_address
                     text_source: addr_housenumber
@@ -3726,7 +3709,6 @@ layers:
         # country subdivisions (states, provinces)
         draw:
             lines:
-                interactive: true
                 order: global.feature_order
 #                color: red
 #                width: [[9, 1px], [14, 2px], [16, 3px], [17, 8m]]
@@ -4033,7 +4015,6 @@ layers:
                     # debug testing
                     #collide: false
                     text:
-                        interactive: true
                         buffer: 3px
                         # debug testing
                         #collide: false
@@ -5496,7 +5477,6 @@ layers:
                     draw:
                         text-blend-order:
                             priority: 8
-                            interactive: false
                             visible: false
 
                 z13places-2-ne:
@@ -5710,7 +5690,6 @@ layers:
                     text_source: global.ux_language_text_source
                     visible: false    # labels are enabled by each layer below
                     move_into_tile: false # preserves text alignment w/icons in JS
-                    interactive: true
                     priority: 66
                     font:
                         family: global.text_font_family
@@ -5722,7 +5701,6 @@ layers:
                 text_source: global.ux_language_text_source
                 visible: false    # labels are enabled by each layer below
                 move_into_tile: false # preserves text alignment w/icons in JS
-                interactive: true
                 priority: 66
                 font:
                     family: global.text_font_family
@@ -6036,7 +6014,6 @@ layers:
                         sprite: beach
                         text:
                             visible: global.text_visible_landuse_green
-                            interactive: true
                             font:
                                 fill: global.text_fill_beach
                                 stroke:
@@ -6334,7 +6311,6 @@ layers:
                     text-blend-order:
                         visible: true
                         priority: 44
-                        interactive: true
                         text_wrap: 10
                         font:
                             weight: normal
@@ -6651,7 +6627,6 @@ layers:
                     text-blend-order:
                         visible: false
                         priority: 45
-                        interactive: true
                         text_wrap: 10
                         font:
                             weight: normal
@@ -6743,7 +6718,6 @@ layers:
                     visible: false
                 text-blend-order:
                     visible: global.text_visible_airport_gate
-                    interactive: true
                     text_source: ref
                     font:
                         fill: global.text_fill_exits
@@ -6763,7 +6737,6 @@ layers:
                     visible: false
                 text-blend-order:
                     visible: global.text_visible_exits
-                    interactive: true
                     text_source: ref
                     priority: 1
                     font:
@@ -7001,7 +6974,6 @@ layers:
 #                           return 1000;
 #                       }
 #                   }
-                interactive: true
                 #debug for polygon merging
                 #color: |
 #                   function() {
@@ -7043,7 +7015,6 @@ layers:
             draw:
                 text-blend-order:
                     text_source: global.ux_language_text_source
-                    interactive: true
                     move_into_tile: true
                     priority: 100
                     visible: global.text_visible_landuse_generic
@@ -7598,7 +7569,6 @@ layers:
                 visible: global.sdk_transit_overlay
                 color: purple
                 width: [[5,1.5px],[6,2px],[11,3px],[18,4px]]
-                interactive: true
                 outline:
                     color: [1.,1.,1.,.8]
                     width: [[7,0px],[8,0.25px],[9,0.5px],[12,1.0px],[13,1.75px],[14,2px]]
@@ -7747,7 +7717,6 @@ layers:
                     move_into_tile: false # preserves text alignment w/icons in JS
                     #anchor: bottom
                     #offset: [[13, [0, 6px]], [16, [0, 8px]], [19, [0, 10px]]] # offset tracks alongside icon size (half icon height)
-                    interactive: true
                     priority: 16
                     font:
                         fill: black
@@ -7870,7 +7839,6 @@ layers:
                     size: [[13, 8px], [16, 10px], [17, 12px], [18, 18px]]
                     sprite: bus_station
                     text:
-                        interactive: true
                         font:
                             fill: black
                             size: 12px
@@ -7885,7 +7853,6 @@ layers:
                     sprite: bus_station
                     priority: 17
                     text:
-                        interactive: true
                         priority: 18
                         font:
                             fill: black
@@ -7911,7 +7878,6 @@ layers:
                     text:
                         #offset: [[17, [0, 6px]], [19, [0, 7px]]] # offset tracks alongside icon size (half icon height)
                         priority: 20
-                        interactive: true
                         text_source: function() { if( feature.ref || feature.name ) { if( feature.ref && feature.name ) { return '[' + feature.ref + ']\n' + feature.name; } else { return feature.name; } } else { return "Entrance"; } }
                         font:
                             fill: black
