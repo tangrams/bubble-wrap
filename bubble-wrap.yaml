@@ -4073,12 +4073,12 @@ layers:
                         - { population: { min: 10000000 } }
                 draw:
                     icons:
-                        size: [[8,6px],[9,0px]]
+                        size: [[4,5px],[8,6px],[9,0px]]
                         sprite: townspot-m-rev
                         priority: 6
                         text:
                             font:
-                                size: [[6,15px],[8,16px],[10,18px],[11,18px],[12,18px],[13,0px]]
+                                size: [[4,13px],[6,15px],[8,16px],[10,18px],[11,18px],[12,18px],[13,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4092,12 +4092,12 @@ layers:
                         - { population: { min: 5000000, max: 10000000 } }
                 draw:
                     icons:
-                        size: [[8,6px],[9,0px]]
+                        size: [[4,5px],[8,6px],[9,0px]]
                         sprite: townspot-m-rev
                         priority: 7
                         text:
                             font:
-                                size: [[6,13px],[8,16px],[10,18px],[11,18px],[12,18px],[13,0px]]
+                                size: [[4,10px],[6,13px],[8,16px],[10,18px],[11,18px],[12,18px],[13,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4111,12 +4111,12 @@ layers:
                         - { population: { min: 1000000, max: 5000000 } }
                 draw:
                     icons:
-                        size: [[8,6px],[9,0px]]
+                        size: [[4,5px],[8,6px],[9,0px]]
                         sprite: townspot-m-rev
                         priority: 9
                         text:
                             font:
-                                size: [[6,13px],[8,16px],[10,18px],[11,18px],[12,18px],[13,0px]]
+                                size: [[4,10px],[6,13px],[8,16px],[10,18px],[11,18px],[12,18px],[13,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
