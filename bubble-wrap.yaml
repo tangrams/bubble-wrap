@@ -56,21 +56,31 @@ global:
         }
     ux_language_text_source_road_ref_and_name: |
         function() {
+            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
+            return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+
+            /*
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if(feature.ref && name) {
                 return (feature.ref + ' ' + name);
             } else {
                 return name;
             }
+            */
         }
     ux_language_text_source_road_ref_and_name_short: |
         function() {
+            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
+            return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+
+            /*
             var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if (feature.ref && (feature.ref.length < 6) && name) {
                 return feature.ref + ' ' + name;
             } else {
                 return name;
             }
+            */
         }
     ux_language_text_source_piste_advanced: |
         function() {
@@ -153,6 +163,10 @@ global:
     # or app logic sets other booleans that triggers auto behavior later
     sdk_transit_overlay: false
     #
+    # SHIELDS
+    sdk_shield_color: [0.506,0.192,0.169]
+    sdk_shield_text_color: white
+    #
     # default order for basemap features
     feature_order: function() { return feature.sort_rank; }
     #
@@ -183,6 +197,7 @@ global:
     text_visible_highway: true
     text_visible_highway_e: true
     text_visible_trunk_primary: true
+    text_visible_trunk_primary_route: true
     text_visible_trunk_primary_e2: true
     text_visible_trunk_primary_e: true
     text_visible_secondary: true
@@ -201,7 +216,7 @@ global:
     text_visible_exits: true
     #
     #label styling
-    text_fill: black                         # BLACK
+    text_fill: [0.300, 0.300, 0.300]                         # BLACK
     text_fill2: '#555'                       # WHITE
     text_fill_road_e: '#555'                 # WHITE
     text_fill_exits: [0.920,0.398,0.340]     # motorway junctions, highway_casing1
@@ -373,166 +388,323 @@ global:
     building_extrude_height: |              # building extrude height logic
         function() { return feature.height || 20; }
 
-
 textures:
     pois:
-        url: images/poi_icons_18@2x.png
+        url: images/bubble-wrap@2x.png
         filtering: mipmap
         sprites:
             # define sprites: [x origin, y origin, width, height]
+            'US:CA-1char': [350, 694, 82, 90]
+            'US:CA-2char': [826, 694, 92, 92]
+            'US:CA-3char': [706, 694, 112, 92]
+            'US:CA-4char': [574, 694, 124, 92]
+            'US:CA-5char': [438, 694, 128, 92]
+            'US:I-1char': [686, 790, 90, 100]
+            'US:I-2char': [286, 894, 100, 100]
+            'US:I-3char': [148, 894, 134, 100]
+            'US:I-4char': [0, 894, 140, 100]
+            'US:I-5char': [784, 790, 152, 100]
+            'US:NY-1char': [560, 602, 72, 88]
+            'US:NY-2char': [812, 510, 88, 88]
+            'US:NY-3char': [700, 510, 104, 86]
+            'US:NY-4char': [576, 510, 116, 88]
+            'US:NY-5char': [448, 510, 120, 86]
+            'US:PA-1char': [480, 602, 72, 88]
+            'US:PA-2char': [384, 602, 88, 88]
+            'US:PA-3char': [264, 602, 112, 88]
+            'US:PA-4char': [136, 602, 120, 88]
+            'US:PA-5char': [0, 602, 128, 88]
+            'US:US-1char': [480, 790, 88, 94]
+            'US:US-2char': [576, 790, 104, 94]
+            'US:US-3char': [336, 790, 138, 100]
+            'US:US-4char': [172, 790, 158, 100]
+            'US:US-5char': [0, 792, 164, 98]
             airport: [870, 0, 38, 38]
-            aquarium: [732, 168, 38, 38]
-            art-gallery: [640, 168, 38, 38]
-            athletics-sports: [184, 168, 38, 38]
-            atm: [918, 126, 38, 38]
-            automotive-shop: [0, 168, 38, 38]
-            bakery: [548, 168, 38, 38]
-            bank: [964, 126, 38, 38]
-            bar: [230, 168, 38, 38]
-            baseball-field: [506, 84, 38, 38]
-            basketball-court: [460, 84, 38, 38]
+            aerodrome: [870, 0, 38, 38]
+            aquarium: [870, 204, 38, 38]
+            atm: [46, 204, 38, 38]
+            bakery: [686, 204, 38, 38]
+            bank: [92, 204, 38, 38]
+            category-predicate-money: [92, 204, 38, 38]
+            bar: [368, 204, 38, 38]
+            pub: [368, 204, 38, 38]
+            category-predicate-drink: [368, 204, 38, 38]
+            baseball: [506, 84, 38, 38]
+            basketball: [460, 84, 38, 38]
             beach: [644, 84, 38, 38]
-            beer-garden: [322, 210, 38, 38]
             bench: [548, 0, 38, 38]
-            bicycle-parking: [644, 126, 38, 38]
-            bike-shop: [872, 126, 38, 38]
-            boat-ferry: [824, 0, 38, 38]
-            boat-ramp: [138, 84, 40, 38]
-            bookstore: [826, 126, 38, 38]
+            bicycle: [0, 204, 38, 38]
+            bicycle_rental: [0, 204, 38, 38]
+            bicycle_rental_station: [0, 204, 38, 38]
+            bicycle_parking: [772, 126, 38, 38]
+            biergarten: [458, 246, 38, 38]
+            brewery: [458, 246, 38, 38]
+            books: [954, 126, 38, 38]
             bridge: [920, 84, 38, 38]
-            buddhism: [782, 84, 38, 38]
-            building: [414, 168, 34, 34]
-            burger: [184, 210, 38, 38]
-            taqueria: [138, 210, 38, 38]
-            bus-station: [778, 0, 38, 38]
+            buddhist: [782, 84, 38, 38]
+            building: [552, 204, 38, 38]
+            hangar: [552, 204, 38, 38]
+            nursing_home: [552, 204, 38, 38]
+            manor: [552, 204, 38, 38]
+            apartments: [552, 204, 38, 38]
+            care_home: [552, 204, 38, 38]
+            bus_station: [778, 0, 38, 38]
+            bus_stop: [778, 0, 38, 38]
             butcher: [920, 42, 38, 38]
-            campground: [828, 84, 38, 38]
-            candy-store: [0, 210, 38, 38]
-            capital-l: [560, 210, 16, 16]
-            capital-m: [540, 210, 12, 12]
-            capital-s: [520, 210, 10, 10]
-            capital-xl: [584, 210, 20, 20]
-            capital-xs: [506, 210, 8, 8]
-            car-dealership: [780, 126, 38, 38]
+            cafe: [640, 204, 38, 38]
+            camp_site: [828, 84, 38, 38]
+            summer_camp: [828, 84, 38, 38]
+            caravan_site: [828, 84, 38, 38]
+            capital-l: [726, 246, 32, 32]
+            capital-m: [694, 246, 24, 24]
+            capital-s: [664, 246, 20, 20]
+            capital-xl: [814, 246, 40, 40]
+            capital-xs: [642, 246, 16, 16]
+            car: [908, 126, 38, 38]
+            category-namespace-mobility: [908, 126, 38, 38]
+            category-predicate-mobility: [908, 126, 38, 38]
+            car_repair: [138, 204, 38, 38]
+            car_sharing: [594, 0, 38, 38]
             castle: [414, 42, 38, 38]
+            fort: [414, 42, 38, 38]
             cemetery: [736, 84, 38, 38]
-            church: [230, 126, 38, 38]
-            clothing-store: [824, 168, 38, 38]
-            coffee-shop: [502, 168, 38, 38]
-            college-university: [870, 168, 38, 38]
-            convenience-store: [46, 84, 38, 38]
+            grave_yard: [736, 84, 38, 38]
+            christian: [230, 126, 38, 38]
+            cinema: [916, 204, 38, 38]
+            clothes: [962, 204, 38, 38]
+            fashion: [962, 204, 38, 38]
+            college: [0, 246, 38, 38]
+            university: [0, 246, 38, 38]
+            confectionery: [136, 246, 38, 38]
+            convenience: [46, 84, 38, 38]
+            county_shield-1char: [640, 602, 72, 72]
+            county_shield-2char: [256, 694, 88, 72]
+            county_shield-3char: [144, 694, 104, 72]
+            county_shield-4char: [0, 694, 136, 72]
+            county_shield-5char: [720, 602, 160, 72]
             courthouse: [364, 0, 38, 38]
-            department-store: [734, 126, 38, 38]
-            drinking-water: [276, 210, 38, 38]
-            dry-cleaning: [0, 84, 38, 38]
-            electronics-store: [598, 126, 38, 38]
-            factory: [368, 168, 38, 38]
-            fire-station: [318, 0, 38, 38]
+            department_store: [862, 126, 38, 38]
+            drinking_water: [412, 246, 38, 38]
+            dry_cleaning: [0, 84, 38, 38]
+            electronics: [726, 126, 38, 38]
+            computer: [726, 126, 38, 38]
+            estate_agent: [138, 42, 38, 38]
+            factory: [506, 204, 38, 38]
+            industrial: [506, 204, 38, 38]
+            chimney: [506, 204, 38, 38]
+            substation: [506, 204, 38, 38]
+            wastewater_plant: [506, 204, 38, 38]
+            works: [506, 204, 38, 38]
+            water_works: [506, 204, 38, 38]
+            plant: [506, 204, 38, 38]
+            generator: [506, 204, 38, 38]
+            category-predicate-industry: [506, 204, 38, 38]
+            fast_food: [320, 246, 38, 38]
+            ferry: [824, 0, 38, 38]
+            ferry_terminal: [824, 0, 38, 38]
+            fire_station: [318, 0, 38, 38]
             fitness: [874, 42, 38, 38]
-            flower-shop: [184, 126, 38, 38]
-            forest: [46, 210, 38, 38]
-            fountain: [322, 126, 38, 38]
+            fitness_station: [874, 42, 38, 38]
+            florist: [184, 126, 38, 38]
+            forest: [182, 246, 38, 38]
+            natural_forest: [182, 246, 38, 38]
+            nature_reserve: [182, 246, 38, 38]
+            conservation: [182, 246, 38, 38]
+            protected_area: [182, 246, 38, 38]
+            grass: [182, 246, 38, 38]
+            fountain: [404, 126, 38, 38]
+            fuel: [90, 246, 38, 38]
+            gallery: [778, 204, 38, 38]
             garden: [690, 84, 38, 38]
-            gas-station: [960, 168, 38, 38]
-            generic: [460, 210, 38, 38]
-            gift-shop: [138, 126, 38, 38]
-            golf-course: [414, 84, 38, 38]
-            government-building: [138, 168, 38, 38]
-            grocery-store: [552, 126, 38, 38]
-            harbor-marina: [92, 168, 40, 38]
-            hardware-store: [828, 42, 38, 38]
-            historic-site: [92, 126, 38, 38]
-            hospital: [184, 0, 34, 34]
+            generic: [596, 246, 38, 38]
+            category-namespace-other: [596, 246, 38, 38]
+            category-predicate-addressing: [596, 246, 38, 38]
+            generic_shield-1char: [928, 290, 72, 72]
+            generic_shield-2char: [488, 422, 98, 72]
+            generic_shield-3char: [348, 422, 132, 72]
+            generic_shield-4char: [188, 422, 152, 72]
+            generic_shield-5char: [0, 422, 180, 72]
+            gift: [138, 126, 38, 38]
+            golf_course: [414, 84, 38, 38]
+            government: [276, 204, 38, 38]
+            townhall: [276, 204, 38, 38]
+            public: [276, 204, 38, 38]
+            embassy: [276, 204, 38, 38]
+            category-predicate-civic: [276, 204, 38, 38]
+            hairdresser: [46, 42, 38, 38]
+            hardware: [828, 42, 38, 38]
+            doityourself: [828, 42, 38, 38]
+            painter: [828, 42, 38, 38]
+            historical: [92, 126, 38, 38]
+            hospital: [184, 0, 38, 38]
+            category-namespace-health: [184, 0, 38, 38]
+            category-predicate-health: [184, 0, 38, 38]
             hotel: [732, 0, 38, 38]
-            ice-cream-shop: [368, 210, 38, 38]
-            information: [414, 210, 38, 38]
-            jewelry-store: [736, 42, 38, 38]
+            motel: [732, 0, 38, 38]
+            hostel: [732, 0, 38, 38]
+            category-predicate-sleep: [732, 0, 38, 38]
+            ice_cream: [504, 246, 38, 38]
+            information: [550, 246, 38, 38]
+            jewelry: [736, 42, 38, 38]
+            jewish: [46, 0, 38, 38]
             landmark: [272, 0, 38, 38]
+            memorial: [272, 0, 38, 38]
+            monument: [272, 0, 38, 38]
+            tower: [272, 0, 38, 38]
+            beacon: [272, 0, 38, 38]
             laundry: [690, 42, 38, 38]
             library: [0, 0, 38, 38]
-            light-rail: [686, 0, 38, 38]
+            light_rail: [686, 0, 38, 38]
+            tram_stop: [686, 0, 38, 38]
             lighthouse: [276, 84, 38, 38]
-            liquor-store: [506, 126, 38, 38]
-            locate-off: [492, 342, 72, 72]
-            locate-on: [412, 342, 72, 72]
+            liquor: [634, 126, 38, 38]
+            alcohol: [634, 126, 38, 38]
             mall: [644, 42, 38, 38]
-            market: [598, 42, 38, 38]
-            mine: [782, 42, 40, 38]
-            mobile-phone-shop: [506, 42, 38, 38]
-            mosque: [92, 0, 38, 38]
-            mountain: [230, 84, 38, 38]
-            movie-theatre: [778, 168, 38, 38]
+            marina: [230, 204, 38, 38]
+            dock: [230, 204, 38, 38]
+            mineshaft: [782, 42, 38, 38]
+            quarry: [782, 42, 38, 38]
+            adit: [782, 42, 38, 38]
+            mobile_phone: [506, 42, 38, 38]
             museum: [46, 126, 38, 38]
-            music-store: [368, 42, 38, 38]
-            newsstand: [322, 42, 38, 38]
+            observatory: [46, 126, 38, 38]
+            music: [368, 42, 38, 38]
+            muslim: [92, 0, 38, 38]
+            newspaper: [322, 42, 38, 38]
+            kiosk: [322, 42, 38, 38]
             office: [598, 84, 38, 38]
-            optical-shop: [276, 42, 38, 38]
-            park: [276, 126, 38, 38]
-            parking: [690, 126, 38, 38]
-            performing-arts: [594, 168, 38, 38]
-            pet-store: [230, 42, 38, 38]
+            insurance: [598, 84, 38, 38]
+            company: [598, 84, 38, 38]
+            category-predicate-service: [598, 84, 38, 38]
+            optician: [276, 42, 38, 38]
+            park: [358, 126, 38, 38]
+            national_park: [358, 126, 38, 38]
+            battlefield: [358, 126, 38, 38]
+            protected_area: [358, 126, 38, 38]
+            category-predicate-nature: [358, 126, 38, 38]
+            park-l: [276, 126, 74, 74]
+            parking: [818, 126, 38, 38]
+            peak: [230, 84, 38, 38]
+            pet: [230, 42, 38, 38]
             pharmacy: [966, 42, 38, 38]
-            photography-lab: [184, 42, 38, 38]
+            photographic_laboratory: [184, 42, 38, 38]
+            photographer: [184, 42, 38, 38]
             pier: [640, 0, 38, 38]
+            place_of_worship: [414, 204, 38, 38]
+            chapel: [414, 204, 38, 38]
+            wayside_shrine: [414, 204, 38, 38]
+            category-predicate-religion: [414, 204, 38, 38]
             playground: [460, 42, 38, 38]
             police: [226, 0, 38, 38]
-            pool: [184, 84, 38, 38]
-            post-office: [322, 168, 38, 38]
-            real-estate: [138, 42, 38, 38]
-            recycling-facility: [92, 42, 38, 38]
-            rental-car: [594, 0, 38, 38]
-            restaurant: [92, 210, 38, 38]
+            post_office: [460, 204, 38, 38]
+            recycling: [92, 42, 38, 38]
+            restaurant: [228, 246, 38, 38]
+            category-namespace-eat_and_drink: [228, 246, 38, 38]
+            category-predicate-eat: [228, 246, 38, 38]
+            retail: [598, 42, 38, 38]
+            store: [598, 42, 38, 38]
+            category-namespace-shop_and_service: [598, 42, 38, 38]
+            category-predicate-shop: [598, 42, 38, 38]
             ruin: [502, 0, 38, 38]
-            salon-barber: [46, 42, 38, 38]
+            ruins: [502, 0, 38, 38]
+            archaeological_site: [502, 0, 38, 38]
             school: [552, 84, 38, 38]
-            shoe-store: [552, 42, 38, 38]
-            ski-area: [368, 126, 38, 38]
-            soccer-field: [368, 84, 38, 38]
-            spiritual-center: [276, 168, 38, 38]
-            sporting-goods-shop: [0, 42, 38, 38]
+            kindergarten: [552, 84, 38, 38]
+            category-namespace-education_and_religion: [552, 84, 38, 38]
+            category-predicate-education: [552, 84, 38, 38]
+            sdk_shield-1char: [592, 422, 84, 84]
+            sdk_shield-2char: [328, 510, 112, 84]
+            sdk_shield-3char: [176, 510, 144, 84]
+            sdk_shield-4char: [0, 510, 168, 84]
+            sdk_shield-5char: [684, 422, 192, 84]
+            shoemaker: [552, 42, 38, 38]
+            ski: [450, 126, 38, 38]
+            winter_sports: [450, 126, 38, 38]
+            slipway: [138, 84, 38, 38]
+            soccer: [368, 84, 38, 38]
+            sports: [0, 42, 38, 38]
+            sports_centre: [322, 204, 38, 38]
+            pitch: [322, 204, 38, 38]
+            recreation_ground: [322, 204, 38, 38]
             spring: [322, 84, 38, 38]
-            stadium: [460, 126, 38, 38]
-            subway-entrance: [456, 0, 38, 38]
-            synagogue: [46, 0, 38, 38]
-            tailor-shop: [962, 0, 38, 38]
-            tennis: [414, 126, 38, 38]
-            theme-park: [0, 126, 38, 38]
+            hot_spring: [322, 84, 38, 38]
+            stadium: [542, 126, 38, 38]
+            subway_entrance: [456, 0, 38, 38]
+            supermarket: [680, 126, 38, 38]
+            greengrocer: [680, 126, 38, 38]
+            swimming_pool: [588, 126, 38, 38]
+            tailor: [962, 0, 38, 38]
+            taqueria: [274, 246, 38, 38]
+            tennis: [496, 126, 38, 38]
+            theatre: [732, 204, 38, 38]
+            category-predicate-fun: [732, 204, 38, 38]
+            theme_park: [0, 126, 38, 38]
+            amusement_ride: [0, 126, 38, 38]
             toilets: [874, 84, 38, 38]
-            townspot-l: [770, 210, 16, 16]
-            townspot-l-rev: [664, 210, 16, 16]
-            townspot-m: [750, 210, 12, 12]
-            townspot-m-rev: [644, 210, 12, 12]
-            townspot-s: [732, 210, 10, 10]
-            townspot-s-rev: [626, 210, 10, 10]
-            townspot-xl: [794, 210, 20, 20]
-            townspot-xl-rev: [688, 210, 20, 20]
-            townspot-xs: [716, 210, 8, 8]
-            townspot-xs-rev: [612, 210, 6, 6]
-            toy-game-store: [916, 0, 38, 38]
-            traffic-signal: [916, 168, 36, 34]
-            train-station: [410, 0, 38, 38]
-            veterinarian: [138, 0, 38, 38]
-            view-point: [686, 168, 40, 38]
-            vineyard: [46, 168, 40, 38]
+            townspot-l: [132, 288, 32, 32]
+            townspot-l-rev: [942, 246, 32, 32]
+            townspot-m: [100, 288, 24, 24]
+            townspot-m-rev: [910, 246, 24, 24]
+            townspot-s: [72, 288, 20, 20]
+            townspot-s-rev: [882, 246, 20, 20]
+            townspot-xl: [172, 288, 40, 40]
+            townspot-xl-rev: [0, 290, 40, 40]
+            townspot-xs: [48, 288, 16, 16]
+            townspot-xs-rev: [862, 246, 12, 12]
+            toys: [916, 0, 38, 38]
+            traffic_signals: [46, 246, 38, 38]
+            train_station: [410, 0, 38, 38]
+            station: [410, 0, 38, 38]
+            train: [410, 0, 38, 38]
+            category-predicate-transport: [410, 0, 38, 38]
+            ux-current-location: [514, 290, 88, 88]
+            ux-locate-off: [848, 290, 72, 72]
+            ux-locate-on: [768, 290, 72, 72]
+            ux-route-arrow: [220, 290, 128, 128]
+            ux-route-start: [434, 290, 72, 92]
+            ux-route-stop: [356, 290, 72, 92]
+            ux-search-active: [608, 290, 72, 108]
+            ux-search-inactive: [688, 290, 72, 108]
+            ux-transit-stop: [766, 248, 42, 36]
+            veterinary: [138, 0, 38, 38]
+            viewpoint: [824, 204, 38, 38]
+            category-namespace-do_and_see: [824, 204, 38, 38]
+            category-predicate-attraction: [824, 204, 38, 38]
+            vineyard: [184, 204, 38, 38]
             volcano: [92, 84, 38, 38]
-            wine-bar: [230, 210, 38, 38]
-            winery: [456, 168, 38, 38]
+            water_park: [184, 84, 38, 38]
+            wine: [366, 246, 38, 38]
+            winery: [594, 204, 38, 38]
             zoo: [966, 84, 38, 38]
-            #
-            # UX/UI icons for map interactivity & app chrome
-            #
-            ux-current-location: [158, 342, 88, 88]
-            ux-route-arrow: [822, 210, 128, 128]
-            ux-route-start: [78, 342, 72, 92]
-            ux-route-stop: [0, 342, 72, 92]
-            ux-search-active: [252, 342, 72, 108]
-            ux-search-inactive: [332, 342, 72, 108]
-            # ux-transit-stop is currently reusing capital-xl artwork, please customize
-            ux-transit-stop: [584, 210, 20, 20]
 
     building-grid:
         url: images/building-grid.gif
         filtering: mipmap
+
+fonts:
+    Open Sans:
+        - weight: 300 # Light
+          url: fonts/OpenSans-Light.woff
+        - weight: normal # Regular
+          url: fonts/OpenSans-Regular.woff
+        - weight: normal # Regular
+          style: italic
+          url: fonts/OpenSans-Italic.woff
+        - weight: 600 # Semi Bold
+          url: fonts/OpenSans-Semibold.woff
+        - weight: 600 # Semi Bold
+          style: italic
+          url: fonts/OpenSans-SemiboldItalic.woff
+        - weight: bold
+          url: fonts/OpenSans-Bold.woff
+    Montserrat:
+        - weight: normal
+          #url: https://fonts.gstatic.com/s/montserrat/v7/zhcz-_WihjSQC0oHJ9TCYL3hpw3pgy2gAi-Ip7WPMi0.woff
+          url: fonts/Montserrat-Regular.woff
+    Varela:
+        - weight: normal
+          #url: https://fonts.gstatic.com/s/varela/v7/maB5vWJo0EAVzvHPjBkLM-vvDin1pK8aKteLpeZ5c0A.woff
+          url: fonts/Varela-Regular.woff
 
 sources:
     mapzen:
@@ -558,9 +730,9 @@ sources:
 #    mz_route_line:
 #        type: GeoJSON
 #        # sf to ny
-#        url: https://gist.githubusercontent.com/anonymous/30c6c1a75c168d91d90c/raw/92bfe55e622766d250b1f2f5d17bdc7c26acb956/map.geojson
+#        # url: https://gist.githubusercontent.com/anonymous/30c6c1a75c168d91d90c/raw/92bfe55e622766d250b1f2f5d17bdc7c26acb956/map.geojson
 #        # local sf trip
-#        # url: https://gist.githubusercontent.com/anonymous/9a610ebda6fe4be7bccc/raw/8d217e43f2412d48d01534ba115f1e42dac72e68/map.geojson
+#        url: https://gist.githubusercontent.com/anonymous/9a610ebda6fe4be7bccc/raw/8d217e43f2412d48d01534ba115f1e42dac72e68/map.geojson
 #    # Dashed route line
 #    mz_dash_line:
 #        type: GeoJSON
@@ -593,6 +765,10 @@ sources:
 #    mz_default_point:
 #        type: GeoJSON
 #        url: https://gist.githubusercontent.com/anonymous/16324c771edfce45be0721390389b878/raw/7dbaebf17da7da8562e6c6f8768bc8cff83efa88/map.geojson
+#    # Default shield styling (SDK)
+#    mz_default_shield:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/nvkelso/3c08dba1eced4d01df98c1a9a7801162/raw/d83a5a396fc7b22309b8ca89336ad2dcfff6c452/map.geojson
 #    # Default line styling (SDK)
 #    mz_default_line:
 #        type: GeoJSON
@@ -683,50 +859,23 @@ styles:
                     }
                     #endif
 
-    tools-grain:
+    tools-vignette:
         shaders:
             blocks:
                 global: |
-                    // Grain
-                    //=============================
-                    float random(vec2 p) {
-                        return fract(1e4 * sin(17.0 * p.x + p.y * 0.1) * (0.1 + abs(sin(p.y * 13.0 + p.x))));
-                    }
-                    float noise(vec2 x) {
-                        vec2 i = floor(x);
-                        vec2 f = fract(x);
-                        float a = random(i);
-                        float b = random(i + vec2(1.0, 0.0));
-                        float c = random(i + vec2(0.0, 1.0));
-                        float d = random(i + vec2(1.0, 1.0));
-                        vec2 u = f * f * (3.0 - 2.0 * f);
-                        return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
-                    }
-                    float fbm(in vec2 p) {
-                        float s = 0.0;
-                        float m = 0.0;
-                        float a = 0.5;
-                        for(int i = 0; i < 2; i++ ) {
-                            s += a * noise(p);
-                            m += a;
-                            a *= 0.5;
-                            p *= 2.0;
-                        }
-                        return s/m;
-                    }
-                    float grain(vec2 pos) {
+                    float vignette(vec2 pos) {
                         vec2 st = pos / u_resolution.xy - vec2(.5);
-                        return dot(st, st) + (fbm(pos * 0.6) * 0.1);
+                        return dot(st, st) + 0.05;
                     }
 
     grid:
         base: polygons
-        mix: [tools-grain, tools-grid]
+        mix: [tools-vignette, tools-grid]
         shaders:
             blocks:
                 filter: |
                     color.rgb = vec3(0.899, 0.95, 1.0);
-                    color.rgb -= grain(gl_FragCoord.xy) * 0.1;
+                    color.rgb -= vignette(gl_FragCoord.xy) * 0.1;
                     color.rgb = mix(color.rgb, vec3(0.639, 0.886, 0.906), TileGrid());
 
     water_border:
@@ -951,6 +1100,12 @@ styles:
         texture: pois
         blend: overlay
         blend_order: 3
+    sdk-shield-overlay:
+        base: points
+        texture: pois
+        interactive: true
+        blend: overlay
+        blend_order: 3
     sdk-line-overlay:
         base: lines
         blend: overlay
@@ -1070,6 +1225,115 @@ layers:
                 collide: false
                 anchor: top
                 transition: { show: { time: 0s }, hide: { time: 0s } }
+    mz_default_shield:
+        data: { source: mz_default_shield }
+        draw:
+            sdk-shield-overlay:
+                interactive: true
+                sprite: |
+                    function() {
+                        if( feature.shield_text ) {
+                            return ('sdk_shield-' + feature.shield_text.length + 'char');
+                        } else {
+                            return ('sdk_shield-' + feature.name.length + 'char');
+                        }
+                    }
+                sprite_default: sdk_shield-1char
+                color: global.sdk_shield_color
+                collide: false
+                transition:
+                    [show, hide]:
+                        time: 0s
+                text:
+                    # offset: [0px, -1px]
+                    text_source: |
+                        function() {
+                            if( feature.shield_text ) {
+                                return feature.shield_text;
+                            } else {
+                                return feature.name;
+                            }
+                        }
+                    anchor: center
+                    font:
+                        family: Montserrat
+                        fill: global.sdk_shield_text_color
+                        style: bold
+                        size: [[7,7px],[12,8px],[16,11px]]
+
+        width_1char:
+            filter: |
+                function() {
+                    if( feature.shield_text ) {
+                        return (feature.shield_text.length === 1);
+                    } else {
+                        return (feature.name.length === 1);
+                    }
+                }
+            draw:
+                sdk-shield-overlay:
+                    size: [[6,[16px,16px]],[13,[18px,18px]],[16,[21px,21px]]]
+        width_2char:
+            filter: |
+                function() {
+                    if( feature.shield_text ) {
+                        return (feature.shield_text.length === 2);
+                    } else {
+                        return (feature.name.length === 2);
+                    }
+                }
+            draw:
+                sdk-shield-overlay:
+                    size: [[6,[21px,16px]],[13,[24px,18px]],[16,[28px,21px]]]
+        width_3char:
+            filter: |
+                function() {
+                    if( feature.shield_text ) {
+                        return (feature.shield_text.length === 3);
+                    } else {
+                        return (feature.name.length === 3);
+                    }
+                }
+            draw:
+                sdk-shield-overlay:
+                    size: [[6,[27px,16px]],[13,[31px,18px]],[16,[36px,21px]]]
+        width_4char:
+            filter: |
+                function() {
+                    if( feature.shield_text ) {
+                        return (feature.shield_text.length === 4);
+                    } else {
+                        return (feature.name.length === 4);
+                    }
+                }
+            draw:
+                sdk-shield-overlay:
+                    size: [[6,[32px,16px]],[13,[36px,18px]],[16,[41px,21px]]]
+        width_5char:
+            filter: |
+                function() {
+                    if( feature.shield_text ) {
+                        return (feature.shield_text.length === 5);
+                    } else {
+                        return (feature.name.length === 5);
+                    }
+                }
+            draw:
+                sdk-shield-overlay:
+                    size: [[6,[37px,16px]],[13,[41px,18px]],[16,[48px,21px]]]
+        # this is kinda a hack
+        width_longggggg:
+            filter: |
+                function() {
+                    if( feature.shield_text ) {
+                        return (feature.shield_text.length > 5);
+                    } else {
+                        return (feature.name.length > 5);
+                    }
+                }
+            draw:
+                sdk-shield-overlay:
+                    visible: false
     mz_default_line:
         data: { source: mz_default_line }
         draw:
@@ -1209,7 +1473,7 @@ layers:
                     fill: [0.314,0.591,0.640]
                     family: global.text_font_family
                     style: italic
-                    weight: 400
+                    weight: normal
                     size: 12px
         water-line-labels-z14:
             filter: { $zoom: [14] }
@@ -1312,11 +1576,11 @@ layers:
                 visible: false    # labels are enabled by each layer below
                 font:
                     family: global.text_font_family
-                    weight: 400
+                    weight: normal
                     fill: global.text_fill
 
         natural_earth_highways:
-            filter: { source: 'naturalearthdata.com' }
+            filter: { source: 'naturalearthdata.com', $zoom: { max: 8 } }
             draw:
                 lines:
                     # Perf impact (too many vertices)
@@ -1325,25 +1589,25 @@ layers:
                     color: global.highway1
                     width: [[5, 1px], [7, 1.4px], [9, 1.5px], [14, 3px], [16, 4px], [17, 10m]]
             major_road:
-                filter: { type: ['Secondary Highway','Road'] }
+                filter: { kind: major_road }
                 draw:
                     lines:
                         color: [0.980,0.601,0.559]
                         width: [[5, 0.45px], [6, 0.75px], [7, 1.0px], [8, 1px]]
             minor_road:
-                filter: { type: 'Unknown' }
+                filter: { kind: minor_road }
                 draw:
                     lines:
                         color: [[12, global.minor_road1], [17, global.minor_road2]]
                         width: [[12, 1.0px], [14, 1.5px], [15, 3px], [16, 5m]]
             ferry:
-                filter: { kind: Ferry }
+                filter: { kind: ferry }
                 draw:
                     lines:
                         color: [0.702,0.843,0.933]
                         width: 1px
         highway:
-            filter: { kind: highway }
+            filter: { kind: highway, $zoom: { min: 8 } }
             draw:
                 lines:
                     color: [[8, global.highway1], [14, global.highway1], [15, [1.0,1.0,1.0]], [17, [1.0,1.0,1.0]]]
@@ -1399,54 +1663,59 @@ layers:
                 draw:
                     text-blend-order:
                         text_source: global.ux_language_text_source_road_ref_and_name
-            labels-highway-early:
-                filter: { $zoom: [7,8,9] }
-                draw:
-                    text-blend-order:
-                        priority: 50
-                        visible: global.text_visible_shields
-                        text_source: ref
-                        font:
-                            fill: [1.0,1.0,1.0]
-                            weight: 600
-                            size: 9px
-                            stroke: { color: [0.976,0.541,0.490], width: 3 }
-            labels-highway-z10:
-                filter:
-                    $zoom: 10
-                draw:
-                    text-blend-order:
-                        visible: global.text_visible_shields
-                        text_source: ref
-                        font:
-                            fill: [1.0,1.0,1.0]
-                            weight: 600
-                            size: 10px
-                            stroke: { color: [0.976,0.541,0.490], width: 3 }
-            labels-highway-z11:
-                filter:
-                    $zoom: 11
-                draw:
-                    text-blend-order:
-                        visible: global.text_visible_shields
-                        text_source: ref
-                        font:
-                            fill: [1.0,1.0,1.0]
-                            weight: 600
-                            size: 11px
-                            stroke: { color: [0.976,0.541,0.490], width: 3 }
-            labels-highway-z12:
-                filter:
-                    $zoom: 12
-                draw:
-                    text-blend-order:
-                        visible: global.text_visible_shields
-                        text_source: ref
-                        font:
-                            fill: [1.0,1.0,1.0]
-                            weight: 600
-                            size: 12px
-                            stroke: { color: [0.976,0.541,0.490], width: 3 }
+            # labels-highway-early:
+            #     filter:
+            #         $zoom: [7,8,9]
+            #         shield_text: false
+            #     draw:
+            #         text-blend-order:
+            #             priority: 50
+            #             visible: global.text_visible_shields
+            #             text_source: ref
+            #             font:
+            #                 fill: [1.0,1.0,1.0]
+            #                 weight: 600
+            #                 size: 9px
+            #                 stroke: { color: [0.976,0.541,0.490], width: 3 }
+            # labels-highway-z10:
+            #     filter:
+            #         $zoom: 10
+            #         shield_text: false
+            #     draw:
+            #         text-blend-order:
+            #             visible: global.text_visible_shields
+            #             text_source: ref
+            #             font:
+            #                 fill: [1.0,1.0,1.0]
+            #                 weight: 600
+            #                 size: 10px
+            #                 stroke: { color: [0.976,0.541,0.490], width: 3 }
+            # labels-highway-z11:
+            #     filter:
+            #         $zoom: 11
+            #         shield_text: false
+            #     draw:
+            #         text-blend-order:
+            #             visible: global.text_visible_shields
+            #             text_source: ref
+            #             font:
+            #                 fill: [1.0,1.0,1.0]
+            #                 weight: 600
+            #                 size: 11px
+            #                 stroke: { color: [0.976,0.541,0.490], width: 3 }
+            # labels-highway-z12:
+            #     filter:
+            #         $zoom: 12
+            #         shield_text: false
+            #     draw:
+            #         text-blend-order:
+            #             visible: global.text_visible_shields
+            #             text_source: ref
+            #             font:
+            #                 fill: [1.0,1.0,1.0]
+            #                 weight: 600
+            #                 size: 12px
+            #                 stroke: { color: [0.976,0.541,0.490], width: 3 }
             labels-highway-z13:
                 filter:
                     $zoom: 13
@@ -1506,7 +1775,7 @@ layers:
                             stroke: { color: [1.000,1.000,1.000], width: 4 }
 
         major_road:
-            filter: { kind: major_road }
+            filter: { kind: major_road, $zoom: { min: 8 } }
             # default style
             draw:
                 lines:
@@ -1566,22 +1835,25 @@ layers:
                         draw:
                             text-blend-order:
                                 text_source: global.ux_language_text_source_road_ref_and_name
-                    labels-trunk_primary-route-z13:
-                        filter: { $zoom: { max: 14 } }
-                        draw:
-                            text-blend-order:
-                                text_source: ref
-                                font:
-                                    fill: [1.0,1.0,1.0]
-                                    weight: 600
-                                    size: 11px
-                                    stroke: { color: [0.976,0.541,0.490], width: 2 }
+                    # labels-trunk_primary-route-z13:
+                    #     filter:
+                    #         $zoom: { max: 14 }
+                    #         shield_text: false
+                    #     draw:
+                    #         text-blend-order:
+                    #             text_source: ref
+                    #             visible: global.text_visible_trunk_primary_route
+                    #             font:
+                    #                 fill: [1.0,1.0,1.0]
+                    #                 weight: 600
+                    #                 size: 11px
+                    #                 stroke: { color: [0.976,0.541,0.490], width: 2 }
                     labels-trunk_primary-route-z14:
                         filter: { $zoom: [14] }
                         draw:
                             text-blend-order:
-                                priority: 53
-                                visible: global.text_visible_trunk_primary_e2
+                                priority: 51
+                                visible: global.text_visible_trunk_primary_route
                                 #text_source: ref
                                 font:
                                     fill: [0.0,0.0,0.0]
@@ -1591,8 +1863,8 @@ layers:
                         filter: { $zoom: [15] }
                         draw:
                             text-blend-order:
-                                priority: 53
-                                visible: global.text_visible_trunk_primary
+                                priority: 51
+                                visible: global.text_visible_trunk_primary_route
                                 #text_source: global.ux_language_text_source_road_ref_and_name
                                 font:
                                     fill: [0.0,0.0,0.0]
@@ -1603,8 +1875,8 @@ layers:
                         filter: { $zoom: { min: 16 } }
                         draw:
                             text-blend-order:
-                                priority: 53
-                                visible: global.text_visible_trunk_primary
+                                priority: 51
+                                visible: global.text_visible_trunk_primary_route
                                 #text_source: global.ux_language_text_source_road_ref_and_name
                                 font:
                                     fill: [0.0,0.0,0.0]
@@ -1620,7 +1892,7 @@ layers:
                         $zoom: [11]
                     draw:
                         text-blend-order:
-                            priority: 53
+                            priority: 51
                             visible: global.text_visible_trunk_primary_e
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -1632,7 +1904,7 @@ layers:
                         $zoom: [12]
                     draw:
                         text-blend-order:
-                            priority: 53
+                            priority: 51
                             visible: global.text_visible_trunk_primary_e
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -1644,7 +1916,7 @@ layers:
                         $zoom: [13]
                     draw:
                         text-blend-order:
-                            priority: 53
+                            priority: 51
                             visible: global.text_visible_trunk_primary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -1656,7 +1928,7 @@ layers:
                         $zoom: [14]
                     draw:
                         text-blend-order:
-                            priority: 53
+                            priority: 51
                             visible: global.text_visible_trunk_primary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -1667,7 +1939,7 @@ layers:
                     filter: { $zoom: [15] }
                     draw:
                         text-blend-order:
-                            priority: 53
+                            priority: 51
                             visible: global.text_visible_trunk_primary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -1678,7 +1950,7 @@ layers:
                     filter: { $zoom: [16] }
                     draw:
                         text-blend-order:
-                            priority: 53
+                            priority: 51
                             visible: global.text_visible_trunk_primary
                             #text_source: global.ux_language_text_source_road_ref_and_name
                             font:
@@ -1689,7 +1961,7 @@ layers:
                     filter: { $zoom: [17] }
                     draw:
                         text-blend-order:
-                            priority: 53
+                            priority: 51
                             visible: global.text_visible_trunk_primary
                             #text_source: global.ux_language_text_source_road_ref_and_name
                             font:
@@ -1700,7 +1972,7 @@ layers:
                     filter: { $zoom: { min: 18 } }
                     draw:
                         text-blend-order:
-                            priority: 53
+                            priority: 51
                             visible: global.text_visible_trunk_primary
                             #text_source: global.ux_language_text_source_road_ref_and_name
                             font:
@@ -1770,7 +2042,7 @@ layers:
                         filter: { $zoom: [13] }
                         draw:
                             text-blend-order:
-                                priority: 54
+                                priority: 56
                                 visible: global.text_visible_secondary_e
                                 #text_source: global.ux_language_text_source_road_ref_and_name_short
                                 font:
@@ -1781,7 +2053,7 @@ layers:
                         filter: { $zoom: { min: 15 } }
                         draw:
                             text-blend-order:
-                                priority: 54
+                                priority: 56
                                 visible: global.text_visible_secondary_e
                                 #text_source: global.ux_language_text_source_road_ref_and_name_short
                                 font:
@@ -1830,7 +2102,7 @@ layers:
                         $zoom: [13]
                     draw:
                         text-blend-order:
-                            priority: 54
+                            priority: 56
                             visible: global.text_visible_secondary_e
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -1842,7 +2114,7 @@ layers:
                         $zoom: [14]
                     draw:
                         text-blend-order:
-                            priority: 54
+                            priority: 56
                             visible: global.text_visible_secondary_e
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -1854,7 +2126,7 @@ layers:
                         $zoom: [15]
                     draw:
                         text-blend-order:
-                            priority: 54
+                            priority: 56
                             visible: global.text_visible_secondary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -1865,7 +2137,7 @@ layers:
                     filter: { $zoom: { min: 16, max: 18 } }
                     draw:
                         text-blend-order:
-                            priority: 54
+                            priority: 56
                             visible: global.text_visible_secondary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -1876,7 +2148,7 @@ layers:
                     filter: { $zoom: { min: 18 } }
                     draw:
                         text-blend-order:
-                            priority: 54
+                            priority: 56
                             visible: global.text_visible_secondary
                             #text_source: ref
                             text_source: global.ux_language_text_source_road_ref_and_name
@@ -1975,7 +2247,7 @@ layers:
                     filter: { $zoom: [13] }
                     draw:
                         text-blend-order:
-                            priority: 55
+                            priority: 57
                             visible: global.text_visible_tertiary_e
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -1986,7 +2258,7 @@ layers:
                     filter: { $zoom: [14] }
                     draw:
                         text-blend-order:
-                            priority: 55
+                            priority: 57
                             visible: global.text_visible_tertiary_e
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -1997,7 +2269,7 @@ layers:
                     filter: { $zoom: [15] }
                     draw:
                         text-blend-order:
-                            priority: 55
+                            priority: 57
                             visible: global.text_visible_tertiary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -2008,7 +2280,7 @@ layers:
                     filter: { $zoom: [16] }
                     draw:
                         text-blend-order:
-                            priority: 55
+                            priority: 57
                             visible: global.text_visible_tertiary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -2019,7 +2291,7 @@ layers:
                     filter: { $zoom: { min: 17, max: 18 } }
                     draw:
                         text-blend-order:
-                            priority: 55
+                            priority: 57
                             visible: global.text_visible_tertiary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -2030,7 +2302,7 @@ layers:
                     filter: { $zoom: { min: 18 } }
                     draw:
                         text-blend-order:
-                            priority: 55
+                            priority: 57
                             visible: global.text_visible_tertiary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -2038,7 +2310,7 @@ layers:
                                 size: 15px
                                 stroke: { color: [1.00,1.00,1.00], width: 2 }
         minor_road:
-            filter: { kind: minor_road, not: { kind_detail: service } }
+            filter: { kind: minor_road, not: { kind_detail: service }, $zoom: { min: 8 } }
             draw:
                 lines:
                     color: [[12, [0.9,0.9,0.9]], [13, [0.9,0.9,0.9]], [14, [1.0,1.0,1.0]]]
@@ -2140,7 +2412,7 @@ layers:
                 filter: { $zoom: 15 }
                 draw:
                     text-blend-order:
-                        priority: 56
+                        priority: 59
                         visible: global.text_visible_minor_road_e
                         text_source: global.ux_language_text_source
                         font:
@@ -2151,7 +2423,7 @@ layers:
                 filter: { $zoom: 16 }
                 draw:
                     text-blend-order:
-                        priority: 56
+                        priority: 59
                         visible: global.text_visible_minor_road_e
                         text_source: global.ux_language_text_source
                         font:
@@ -2162,7 +2434,7 @@ layers:
                 filter: { $zoom: { min: 17, max: 18 } }
                 draw:
                     text-blend-order:
-                        priority: 56
+                        priority: 59
                         visible: global.text_visible_minor_road_e
                         text_source: global.ux_language_text_source
                         font:
@@ -2173,7 +2445,7 @@ layers:
                 filter: { $zoom: { min: 18 } }
                 draw:
                     text-blend-order:
-                        priority: 56
+                        priority: 59
                         visible: global.text_visible_minor_road
                         text_source: global.ux_language_text_source
                         font:
@@ -2263,7 +2535,7 @@ layers:
                 filter: { $zoom: 17 }
                 draw:
                     text-blend-order:
-                        priority: 57
+                        priority: 60
                         visible: global.text_visible_service_road
                         text_source: global.ux_language_text_source
                         font:
@@ -2275,7 +2547,7 @@ layers:
                 filter: { $zoom: { min: 18 } }
                 draw:
                     text-blend-order:
-                        priority: 57
+                        priority: 60
                         visible: global.text_visible_service_road
                         text_source: global.ux_language_text_source
                         font:
@@ -2283,6 +2555,521 @@ layers:
                             fill: [0.15,0.15,0.15]
                             size: 14px
                             stroke: { color: [1.00,1.00,1.00], width: 2 }
+
+        shields:
+            filter:
+                $zoom: { min: 6 }
+                #
+                # United State looks great with shield_text alone, but...
+                #
+                #shield_text: true    # some roads don't have shield text, deal with that later
+                #
+                # Europe doesn't have many network relations set, so we could look for either
+                # shield_text or ref (with no shield_text) but...
+                # that makes United States look a bit funky with `(xxx)` and generic shields
+                # showing up in fields of custom state shields like US:CA and US:NY
+                #
+                any:
+                    - shield_text: true    # some roads don't have shield text, deal with that later
+                    - all:
+                        - shield_text: false    # some roads don't have shield text, deal with that later
+                        - ref: true
+                        - kind_detail: [motorway, trunk, primary, secondary, tertiary]
+            # default
+            draw:
+                icons:
+                    # you need to match any custom shield to the vector tile `network` values
+                    sprite: |
+                        function() {
+                            if( feature.shield_text ) {
+                                return ('generic_shield-' + feature.shield_text.length + 'char');
+                            } else {
+                                return ('generic_shield-' + feature.ref.length + 'char');
+                            }
+                        }
+                    sprite_default: generic_shield_5char
+                    priority: 58
+                    # Size is specified below, and limited to 5 char in another filter
+                    repeat_group: shields
+                    repeat_distance: [[8,90px],[10,40px],[13,30px]]
+                    placement: midpoint
+                    placement_min_length_ratio:
+                        - [8, 0.1]
+                        - [9, 0.25]
+                        - [10, 0.25]
+                        - [11, 0.15]
+                        - [12, 1]
+                        - [13, 1.50]
+                        - [14, 2.0]
+                    cull_from_tile: true
+                    visible: false
+                    text:
+                        offset: [0px, -0.5px]
+                        repeat_distance: 200px
+                        anchor: center
+                        text_source: |
+                            function() {
+                                if( feature.shield_text ) {
+                                    return feature.shield_text;
+                                } else {
+                                    return feature.ref;
+                                }
+                            }
+                        font:
+                            family: Montserrat
+                            fill: [0.308,0.308,0.308]
+                            size: [[7,7px],[12,8px],[15,11px]]
+
+            default_priority_highway:
+                filter:
+                    all:
+                        - kind_detail: motorway
+                        - $zoom: { min: 9 }
+                draw:
+                    icons:
+                        priority: 47
+                        #color: yellow
+                        visible: global.text_visible_shields
+
+            default_priority_trunk:
+                filter:
+                    all:
+                        - kind_detail: [trunk]
+                        - $zoom: { min: 10 }
+                draw:
+                    icons:
+                        priority: 48
+                        #color: red
+                        visible: global.text_visible_shields
+            default_priority_primary:
+                filter:
+                    all:
+                        - kind_detail: [primary]
+                        - $zoom: { min: 12 }
+                draw:
+                    icons:
+                        priority: 49
+                        #color: aqua
+                        visible: global.text_visible_shields
+            default_priority_trunk_secondary:
+                filter:
+                    all:
+                        - kind_detail: [secondary]
+                        - $zoom: { min: 12 }
+                draw:
+                    icons:
+                        priority: 53
+                        #color: blue
+                        visible: global.text_visible_shields
+            default_priority_trunk_tertiary:
+                filter:
+                    all:
+                        - kind_detail: tertiary
+                        - $zoom: { min: 13 }
+                draw:
+                    icons:
+                        priority: 55
+                        #color: green
+                        visible: global.text_visible_shields
+
+            width_1char:
+                filter: |
+                    function() {
+                        if( feature.shield_text ) {
+                            return (feature.shield_text.length === 1)
+                        } else {
+                            return (feature.ref.length === 1)
+                        }
+                    }
+                draw:
+                    icons:
+                        size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
+            width_2char:
+                filter: |
+                    function() {
+                        if( feature.shield_text ) {
+                            return (feature.shield_text.length === 2)
+                        } else {
+                            return (feature.ref.length === 2)
+                        }
+                    }
+                draw:
+                    icons:
+                        size: [[6,[18px,14px]],[13,[20px,15px]],[15,[24px,18px]]]
+            width_3char:
+                filter: |
+                    function() {
+                        if( feature.shield_text ) {
+                            return (feature.shield_text.length === 3)
+                        } else {
+                            return (feature.ref.length === 3)
+                        }
+                    }
+                draw:
+                    icons:
+                        size: [[6,[25px,14px]],[13,[27px,15px]],[15,[33px,18px]]]
+            width_4char:
+                filter: |
+                    function() {
+                        if( feature.shield_text ) {
+                            return (feature.shield_text.length === 4)
+                        } else {
+                            return (feature.ref.length === 4)
+                        }
+                    }
+                draw:
+                    icons:
+                        size: [[6,[29px,14px]],[13,[31px,15px]],[15,[38px,18px]]]
+                # London sucks
+                early:
+                    filter: { $zoom: { max: 14 } }
+                    draw:
+                        icons:
+                            visible: false
+            width_5char:
+                filter: |
+                    function() {
+                        if( feature.shield_text ) {
+                            return (feature.shield_text.length === 5)
+                        } else {
+                            return (feature.ref.length === 5)
+                        }
+                    }
+                draw:
+                    icons:
+                        size: [[6,[34px,14px]],[13,[37px,15px]],[15,[45px,18px]]]
+                # London sucks
+                early:
+                    filter: { $zoom: { max: 14 } }
+                    draw:
+                        icons:
+                            visible: false
+            # this is kinda a hack
+            width_longggggg:
+                filter: |
+                    function() {
+                        if( feature.shield_text ) {
+                            return (feature.shield_text.length > 5)
+                        } else {
+                            return (feature.ref.length > 5)
+                        }
+                    }
+                draw:
+                    icons:
+                        visible: false
+            #
+            # Now for the good stuff
+            #
+            legit-shields:
+                filter: { shield_text: true }
+                # draw:
+                #     icons:
+                #         color: pink
+
+                # US Interstate roads
+                US-I:
+                    filter:
+                        network: 'US:I'
+                    draw:
+                        icons:
+                            # you need to match any custom shield to the vector tile `network` values
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            priority: 46
+                            visible: global.text_visible_shields
+                            text:
+                                offset: [0px, 0.5px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    size: [[7,8px],[13,9px],[15,11px]]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            icons:
+                                size: [[6,[15px,18px]],[13,[17px,20px]],[15,[22px,25px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            icons:
+                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[25px,25px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            icons:
+                                size: [[6,[23px,18px]],[13,[26px,20px]],[15,[33px,25px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            icons:
+                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[35px,25px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            icons:
+                                size: [[6,[26px,18px]],[13,[30px,20px]],[15,[38px,25px]]]
+                # US Federal Routes
+                US-US:
+                    filter:
+                        network: ['US:US','US:US:Business', 'US:US:Truck', 'US:US:Alternate']
+                        $zoom: { min: 7 }
+                    draw:
+                        icons:
+                            # you need to match any custom shield to the vector tile `network` values
+                            sprite: |
+                                function() { return ('US:US-' + feature.shield_text.length + 'char'); }
+                            priority: 47
+                            cull_from_tile: true
+                            visible: global.text_visible_shields
+                            text:
+                                offset: [0px, -0.7px]
+                                font:
+                                    fill: [0.380,0.318,0.312]
+                                    size: [[7,8px],[13,9px],[15,11px]]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            icons:
+                                size: [[6,[15px,17px]],[13,[17px,19px]],[15,[22px,24px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            icons:
+                                size: [[6,[18px,17px]],[13,[20px,19px]],[15,[26px,24px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            icons:
+                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[34px,25px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            icons:
+                                size: [[6,[25px,17px]],[13,[29px,19px]],[15,[39px,25px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            icons:
+                                size: [[6,[27px,17px]],[13,[30px,19px]],[15,[41px,25px]]]
+                # US State Routes
+                # US-states:
+                #     # Match state highways: `US:??`
+                #     filter: |
+                #         function() {
+                #             return feature.shield_text &&
+                #                 /^US:(?!US)\w\w$/.test(feature.network)
+                #         }
+                #     draw:
+                #         icons:
+                #             # you need to match any custom shield to the vector tile `network` values
+                #             #priority: 48
+                #             visible: global.text_visible_shields
+                US-CA:
+                    # Match California state highways: `US:CA`
+                    filter: |
+                        function() {
+                            return feature.shield_text &&
+                                /^US:CA$/.test(feature.network)
+                        }
+                    draw:
+                        icons:
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            #priority: 48
+                            text:
+                                offset: [0px, 1px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    size: [[7,7px],[13,9px],[15,10px]]
+                    motorway:
+                        filter: { kind_detail: [motorway], $zoom: [7,8] }
+                        draw:
+                            icons:
+                                visible: global.text_visible_shields
+                    trunk:
+                        filter: { kind_detail: [trunk], $zoom: [8,9] }
+                        draw:
+                            icons:
+                                visible: global.text_visible_shields
+                    primary:
+                        filter: { kind_detail: primary, $zoom: [10,11] }
+                        draw:
+                            icons:
+                                visible: global.text_visible_shields
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            icons:
+                                size: [[6,[14px,16px]],[13,[15px,18px]],[15,[18px,21px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            icons:
+                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[23px,23px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            icons:
+                                size: [[6,[21px,18px]],[13,[24px,20px]],[15,[28px,23px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            icons:
+                                size: [[6,[24px,18px]],[13,[26px,20px]],[15,[31px,23px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            icons:
+                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[32px,23px]]]
+                US-NY:
+                    # Match New York state highways: `US:NY`
+                    filter: |
+                        function() {
+                            return feature.shield_text &&
+                                /^US:NY$/.test(feature.network)
+                                /* (/^US:NY$/.test(feature.network) || /^NY:US$/.test(feature.network)) */
+                        }
+                    draw:
+                        icons:
+                            sprite: |
+                                function() { return ( 'US:NY-' + feature.shield_text.length + 'char'); }
+                            text:
+                                # offset: [0px, 1px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    size: [[7,7px],[13,9px],[15,10px]]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            icons:
+                                size: [[6,[13px,17px]],[13,[15px,19px]],[15,[18px,22px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            icons:
+                                size: [[6,[17px,17px]],[13,[19px,19px]],[15,[22px,22px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            icons:
+                                size: [[6,[20px,17px]],[13,[22px,19px]],[15,[27px,22px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            icons:
+                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[29px,22px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            icons:
+                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
+                US-PA:
+                    # Match Pennsylvania state highways
+                    filter: |
+                        function() {
+                            return feature.shield_text &&
+                                /^US:PA$/.test(feature.network)
+                        }
+                    draw:
+                        icons:
+                            sprite: |
+                                function() { return ( 'US:PA-' + feature.shield_text.length + 'char'); }
+                            text:
+                                offset: [0px, 1px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    size: [[7,7px],[13,9px],[15,10px]]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            icons:
+                                size: [[6,[13px,17px]],[13,[15px,19px]],[15,[18px,22px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            icons:
+                                size: [[6,[17px,17px]],[13,[19px,19px]],[15,[22px,22px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            icons:
+                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[28px,22px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            icons:
+                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30x,22px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            icons:
+                                size: [[6,[24px,17px]],[13,[27px,19px]],[15,[32px,22px]]]
+                # USA County Routes
+                US-counties:
+                    # Match state highways: `US:??:*`
+                    #
+                    # this is very USA specific
+                    #
+                    # filter: |
+                    #     function() {
+                    #         return feature.shield_text &&
+                    #             /^US:(?!US)\w\w:.*$/.test(feature.network)
+                    #     }
+                    #
+                    # this generic for any country with 3rd level networks (like county routes in USA)
+                    # BEWARE:
+                    # US:US:Business  about 150
+                    # US:US:Truck
+                    # US:US:Alternate
+    #
+                    # STATE ROUTE
+                    # ??:??:Loop  about 200
+                    # ??:??:Spur  about 200
+                    # ??:??:Business   about 100
+    #
+                    # STATE TEXAS SPECIAL ROUTE
+                    # US:TX:FM -- probably just state? there are 3k of these
+                    #
+                    #
+                    filter: |
+                        function() {
+                            return feature.shield_text &&
+                                /^\w+:\w+:(!Alternate).+$/.test(feature.network) &&
+                                $zoom > 10
+                        }
+                    draw:
+                        icons:
+                            # you need to match any custom shield to the vector tile `network` values
+                            sprite: function() { return ('county_shield-' + feature.shield_text.length + 'char'); }
+                            #color: pink
+                            #priority: 19
+                            visible: global.text_visible_shields
+                            text:
+                                font:
+                                    fill: [0.508,0.508,0.508]
+                                    #size: [[11,7px],[15,10px]]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            icons:
+                                size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            icons:
+                                size: [[6,[16px,14px]],[13,[18px,15px]],[15,[22px,18px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            icons:
+                                size: [[6,[20px,14px]],[13,[21px,15px]],[15,[26px,18px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            icons:
+                                size: [[6,[25px,14px]],[13,[28px,15px]],[15,[34px,18px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            icons:
+                                size: [[6,[30px,14px]],[13,[33px,15px]],[15,[40px,18px]]]
         path:
             filter:
                 all:
@@ -2389,7 +3176,7 @@ layers:
                 filter: { $zoom: { min: 17 } }
                 draw:
                     text-blend-order:
-                        priority: 58
+                        priority: 61
                         visible: global.text_visible_path
                         text_source: global.ux_language_text_source
                         font:
@@ -2467,7 +3254,7 @@ layers:
                 filter: { $zoom: { min: 17 } }
                 draw:
                     text-blend-order:
-                        priority: 59
+                        priority: 62
                         visible: global.text_visible_steps
                         text_source: global.ux_language_text_source
                         font:
@@ -2484,7 +3271,7 @@ layers:
                     color: '#909090'
                     width: [[13,0px],[14,0.5px],[15, 1px], [16, 1.5px], [18, 3m]]
                 text-blend-order:
-                    priority: 18
+                    priority: 60
                     visible: true
                     font:
                         fill: global.text_fill_piste
@@ -2613,7 +3400,7 @@ layers:
                 filter: { $zoom: { min: 14 } }
                 draw:
                     text-blend-order:
-                        priority: 59
+                        priority: 63
                         visible: global.text_visible_aerialway
                         text_source: global.ux_language_text_source
                         font:
@@ -2998,14 +3785,14 @@ layers:
                     text_source: global.ux_language_text_source
                     visible: false    # labels are enabled by each layer below
                     font:
-                        family: global.text_font_family
+                        family: Varela
                         # weight: 500
                         fill: global.text_fill
             text-blend-order:
                 text_source: global.ux_language_text_source
                 visible: false    # labels are enabled by each layer below
                 font:
-                    family: global.text_font_family
+                    family: Varela
                     # weight: 500
                     fill: global.text_fill
 
@@ -3016,7 +3803,7 @@ layers:
                     visible: global.text_visible_continent
                     font:
                         size: 14px
-                        weight: 700
+                        weight: bold
                         # stroke: { color: global.text_stroke, width: 4 }
                         transform: uppercase
 
@@ -3033,7 +3820,7 @@ layers:
                     text_source: global.ux_language_text_source
                     font:
                         fill: [0.30,0.30,0.30]
-                        weight: 400
+                        weight: normal
                         size: 10px
                         transform: uppercase
         country-z3:
@@ -3097,7 +3884,7 @@ layers:
                     text_source: global.ux_language_text_source
                     font:
                         size: 13px
-                        weight: 400
+                        weight: normal
                         fill: [0.25,0.25,0.25]
                         # stroke: { color: global.text_stroke, width: 4 }
                         transform: uppercase
@@ -3228,6 +4015,7 @@ layers:
                     # debug testing
                     #collide: false
                     text:
+                        buffer: 3px
                         # debug testing
                         #collide: false
 
@@ -3805,7 +4593,7 @@ layers:
                     all:
                         - source: openstreetmap.org
                         - $zoom: [9]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     icons:
                         size: 5px
@@ -3962,7 +4750,7 @@ layers:
                     all:
                         - source: openstreetmap.org
                         - $zoom: [10]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     icons:
                         size: 5px
@@ -4598,6 +5386,15 @@ layers:
                                 size: 12px
                                 #stroke: { color: global.text_stroke, width: 4 }
 
+                # someone in London and Salt Lake City thought neighbourhoods should be tagged place: locality
+                # They were wrong
+                funky-fake-neighbourhoods:
+                    filter: { kind_detail: locality }
+                    draw:
+                        text-blend-order:
+                            priority: 22
+                            visible: false
+
             populated-places-osm-z13-z14-no-population:
                 filter:
                     all:
@@ -4614,6 +5411,15 @@ layers:
                             size: 11px
                             #fill: orange
                             #stroke: { color: global.text_stroke, width: 4 }
+
+                # someone in London and Salt Lake City thought neighbourhoods should be tagged place: locality
+                # They were wrong
+                funky-fake-neighbourhoods:
+                    filter: { kind_detail: locality }
+                    draw:
+                        text-blend-order:
+                            priority: 22
+                            visible: false
 
 #                city_town:
 #                    filter:
@@ -4664,7 +5470,7 @@ layers:
                         anchor: center
                         font:
                             fill: global.text_fill
-                            weight: 400
+                            weight: normal
 
                 z13places-1-ne:
                     filter: { min_zoom: [2,3] }
@@ -4711,9 +5517,11 @@ layers:
                         text_wrap: 10
                         visible: global.text_visible_neighbourhoods_e
                         font:
+                            family: Varela
                             size: 9px
-                            weight: 400
-                            fill: global.text_fill
+                            weight: normal
+                            fill: [0.225,0.561,0.415]
+                            # fill: global.text_fill
                             transform: uppercase
                             stroke: { color: global.text_stroke, width: 4 }
             neighborhood-z12:
@@ -4731,9 +5539,11 @@ layers:
                         text_wrap: 10
                         visible: global.text_visible_neighbourhoods_e
                         font:
+                            family: Varela
                             size: 10px
-                            weight: 400
-                            fill: [0.300,0.300,0.300]
+                            weight: normal
+                            fill: [0.225,0.561,0.415]
+                            # fill: [0.300,0.300,0.300]
                             transform: uppercase
                             # stroke: { color: global.text_stroke, width: 2 }
             neighborhood-z13:
@@ -4751,9 +5561,11 @@ layers:
                         text_wrap: 10
                         visible: global.text_visible_neighbourhoods_e
                         font:
+                            family: Varela
                             size: 11px
-                            weight: 400
-                            fill: [0.35,0.35,0.35]
+                            weight: normal
+                            fill: [0.225,0.561,0.415]
+                            # fill: [0.35,0.35,0.35]
                             transform: uppercase
                             # stroke: { color: global.text_stroke, width: 2 }
             neighborhood-z14:
@@ -4771,9 +5583,11 @@ layers:
                         text_wrap: 12
                         visible: global.text_visible_neighbourhoods
                         font:
+                            family: Varela
                             size: 13px
-                            weight: 400
-                            fill: [0.000,0.000,0.000,0.500]
+                            weight: normal
+                            fill: [0.225,0.561,0.415]
+                            # fill: [0.000,0.000,0.000,0.500]
                             transform: uppercase
                             # stroke: { color: global.text_stroke, width: 3 }
             neighborhood-z15:
@@ -4791,9 +5605,11 @@ layers:
                         text_wrap: 12
                         visible: global.text_visible_neighbourhoods
                         font:
+                            family: Varela
                             size: 16px
                             weight: 300
-                            fill: [0.000,0.000,0.000,0.480]
+                            fill: [0.225,0.561,0.415]
+                            # fill: [0.000,0.000,0.000,0.480]
                             transform: uppercase
                             # stroke: { color: global.text_stroke, width: 3 }
                 z15-new:
@@ -4804,6 +5620,7 @@ layers:
                         text-blend-order:
                             priority: 19
                             font:
+                                family: Varela
                                 size: 13px
             neighborhood-z16:
                 filter:
@@ -4819,9 +5636,11 @@ layers:
                         visible: global.text_visible_neighbourhoods
                         priority: 18
                         font:
+                            family: Varela
                             size: 17px
                             weight: 300
-                            fill: [0.000,0.000,0.000,0.400]
+                            fill: [0.225,0.561,0.415]
+                            # fill: [0.000,0.000,0.000,0.400]
                             transform: uppercase
                             # stroke: { color: global.text_stroke, width: 3 }
 
@@ -4862,7 +5681,7 @@ layers:
                           - kind: true
         draw:
             icons:
-                size: [[13, 12px], [16, 16px], [18, 19px]]
+                size: [[13, 14px], [16, 18px], [18, 19px]]
                 interactive: true
                 visible: false
                 priority: 65  #function() { return (feature.min_zoom && Math.floor(feature.min_zoom * 1000)) || 65; }
@@ -4874,7 +5693,7 @@ layers:
                     priority: 66
                     font:
                         family: global.text_font_family
-                        weight: 400
+                        weight: normal
                         fill: [0.20,0.20,0.20]
                         size: 10px
                         stroke: { color: global.text_stroke, width: 1 }
@@ -4885,7 +5704,7 @@ layers:
                 priority: 66
                 font:
                     family: global.text_font_family
-                    weight: 400
+                    weight: normal
                     fill: [0.20,0.20,0.20]
                     size: 10px
                     stroke: { color: global.text_stroke, width: 1 }
@@ -4913,19 +5732,19 @@ layers:
                         priority: 69
                 baseball:
                     filter: { kind_detail: baseball }
-                    draw: { icons: { sprite: baseball-field } }
+                    draw: { icons: { sprite: baseball } }
                 basketball:
                     filter: { kind_detail: basketball }
-                    draw: { icons: { sprite: basketball-court } }
+                    draw: { icons: { sprite: basketball } }
                 football:
                     filter: { kind_detail: football }
-                    draw: { icons: { sprite: football-stadium } }
+                    draw: { icons: { sprite: football } }
                 hockey:
-                    filter: { kind_detail: hockey-field }
-                    draw: { icons: { sprite: hockey-field } }
+                    filter: { kind_detail: hockey }
+                    draw: { icons: { sprite: hockey } }
                 soccer:
                     filter: { kind_detail: soccer }
-                    draw: { icons: { sprite: soccer-field } }
+                    draw: { icons: { sprite: soccer } }
                 tennis:
                     filter: { sport: tennis }
                     draw: { icons: { sprite: tennis } }
@@ -4937,20 +5756,20 @@ layers:
                 draw: { icons: { sprite: playground, visible: global.icon_visible_poi_landuse_e } }
             picnic_site:
                 filter: { kind: picnic_site, $zoom: { min: 18 }  }
-                draw: { icons: { sprite: picnic-spot, visible: global.icon_visible_poi_landuse_e } }
+                draw: { icons: { sprite: picnic_site, visible: global.icon_visible_poi_landuse_e } }
             information:
                 filter: { kind: information, $zoom: { min: 18 }  }
                 draw: { icons: { sprite: information, visible: global.icon_visible_poi_landuse_e } }
-            drinking-water:
+            drinking_water:
                 filter: { kind: drinking_water, $zoom: { min: 18 }  }
-                draw: { icons: { sprite: drinking-water, visible: global.icon_visible_poi_landuse_e } }
-            traffic-signal:
+                draw: { icons: { sprite: drinking_water, visible: global.icon_visible_poi_landuse_e } }
+            traffic_signals:
                 filter: { kind: traffic_signals, $zoom: { min: 18 } }
-                draw:   { icons: { sprite: traffic-signal, visible: global.icon_visible_poi_landuse_e } }
-            bicycle-parking:
+                draw:   { icons: { sprite: traffic_signals, visible: global.icon_visible_poi_landuse_e } }
+            bicycle_parking:
                 filter: { kind: [bicycle_parking], $zoom: { min: 19 } }
-                draw:   { icons: { sprite: bicycle-parking, visible: global.icon_visible_poi_landuse_e } }
-            car-parking:
+                draw:   { icons: { sprite: bicycle_parking, visible: global.icon_visible_poi_landuse_e } }
+            parking:
                 filter: { kind: [parking], $zoom: { min: 17 } }
                 draw:   { icons: { sprite: parking, visible: global.icon_visible_poi_landuse_e } }
         has-name:
@@ -5039,6 +5858,12 @@ layers:
                         draw:
                             icons:
                                 text: { font: { size: 12px } }
+                    z14-parks:
+                        filter: { $zoom: { min: 14 } }
+                        draw:
+                            icons:
+                                sprite: park-l
+                                size: [[14,24px],[16,32px]]
 
             landuse-labels-green-areas-not-national-park:
                 filter:
@@ -5073,7 +5898,7 @@ layers:
                                 font:
                                     fill: [0.181,0.370,0.361]
     #                                size: 12px
-    #                                weight: 400
+    #                                weight: normal
                                     style: italic
                                     # stroke: { color: [0.870,0.870,0.870], width: 2 }
                     green-areas-z6:
@@ -5254,13 +6079,13 @@ layers:
                 visible: global.label_visible_landuse_green
                 draw:
                     icons:
-                        sprite: college-university
+                        sprite: college
                         visible: global.icon_visible_landuse_green
                         priority: 41
                         text:
                             visible: global.text_visible_landuse_green
                             font:
-                                weight: 600
+                                #weight: 600
                                 fill: [0.20,0.20,0.20]
                                 #size: 10px
                                 # stroke: { color: global.text_stroke, width: 4 }
@@ -5320,7 +6145,7 @@ layers:
 #                        - { $zoom: { min: 18 } }
                 draw:
                     icons:
-                        sprite: ski-area
+                        sprite: ski
                         visible: global.icon_visible_landuse_green
                         priority: 41
                         text:
@@ -5370,7 +6195,7 @@ layers:
                             text_wrap: 10
                             font:
                                 style: italic
-                                weight: 400
+                                weight: normal
                 early-sizing:
                     filter: { $zoom: { max: 14 } }
                     draw: { icons: { text: { font: { size: 11px } } } }
@@ -5403,10 +6228,10 @@ layers:
                     draw:
                         icons:
                             sprite: landmark
-            rest-area:
+            rest_area:
                 filter:
                     all:
-                        - kind: [rest_area, service_area, rest-area]
+                        - kind: [rest_area, service, service_area]
                         - area: true
                         - $geometry: point
 #                    any:
@@ -5488,7 +6313,7 @@ layers:
                         priority: 44
                         text_wrap: 10
                         font:
-                            weight: 400
+                            weight: normal
                             style: italic
                             fill: '#4ba3c5'
 
@@ -5498,7 +6323,7 @@ layers:
                 draw:
                     icons:
                         visible: global.icon_visible_station
-                        sprite: train-station
+                        sprite: train_station
                         size: [[13, 12px], [14, 12px], [15, 16px], [17, 18px], [18, 20px]]
                         priority: 42
                         text:
@@ -5506,7 +6331,7 @@ layers:
                             font:
                                 fill: [0.20,0.20,0.20] # *text_fill
                                 # size: 10px
-                                weight: 600
+                                # weight: 600
                                 stroke: { color: global.text_stroke, width: 4 }
                 low-priority-early:
                     filter: { kind_tile_rank: { min: 5 }, $zoom: { min: 0, max: 13 } }
@@ -5562,7 +6387,7 @@ layers:
                             font:
                                 fill: [0.20,0.20,0.20] # *text_fill
     #                            size: 10px
-                                weight: 600
+                                #weight: 600
                                 stroke: { color: global.text_stroke, width: 4 }
                 early-sizing:
                     filter: { $zoom: { max: 14 } }
@@ -5804,7 +6629,7 @@ layers:
                         priority: 45
                         text_wrap: 10
                         font:
-                            weight: 400
+                            weight: normal
                             style: italic
                             fill: '#4ba3c5'
             bus-stop-bus-station-labels:
@@ -5854,60 +6679,6 @@ layers:
                         text:  { visible: false }
 
             icons:
-                adult-boutique:
-                    filter: { kind: [erotic, adult_boutique] }
-                    draw:   { icons: { sprite: adult-boutique } }
-                allotments:
-                    filter: { kind: [allotments] }
-                    draw:   { icons: { sprite: garden } }
-                airport:
-                    filter: { kind: [airport, aerodrome] }
-                    draw:   { icons: { sprite: airport } }
-                animal-shelter:
-                    filter: { kind: [animal_shelter, animal-shelter, animal_boarding] }
-                    draw:   { icons: { sprite: animal-shelter } }
-                antique-shop:
-                    filter: { kind: [antiques, antique-shop] }
-                    draw:   { icons: { sprite: antique-shop } }
-                art-gallery:
-                    filter: { kind: [art_gallery, art-gallery, art, artwork] }
-                    draw:   { icons: { sprite: art-gallery } }
-                athletics-sports:
-                    filter: { kind: [athletic_sports, recreation_ground, sports_centre] }
-                    draw:   { icons: { sprite: athletics-sports } }
-                automotive-shop:
-                    filter: { kind: [car_repair, automotive-shop, automotive, tyres] }
-                    draw:   { icons: { sprite: automotive-shop } }
-                bakery:
-                    filter: { kind: [bakery, pastry, chocolate] }
-                    draw:   { icons: { sprite: bakery } }
-                bar:
-                    filter: { kind: [pub, bar] }
-                    draw:   { icons: { sprite: bar } }
-                beer-garden:
-                    filter: { kind: [biergarten, beer-garden, brewery] }
-                    draw:   { icons: { sprite: beer-garden } }
-                bike-shop:
-                    filter: { kind: [bicycle, bicycle_rental, bike, bike_shop, bicycle_rental_station] }
-                    draw:   { icons: { sprite: bike-shop } }
-                bicycle-parking:
-                    filter: { kind: [bicycle_parking] }
-                    draw:   { icons: { sprite: bicycle-parking } }
-                boat-ferry:
-                    filter: { kind: [ferry_terminal, boat-ferry, ferry-boat, ferry] }
-                    draw:   { icons: { sprite: boat-ferry } }
-                boat-ramp:
-                    filter: { kind: [slipway, boat-ramp, boat_ramp] }
-                    draw:   { icons: { sprite: boat-ramp } }
-                bookstore:
-                    filter: { kind: [books, bookstore] }
-                    draw:   { icons: { sprite: bookstore } }
-                bowling-alley:
-                    filter: { kind: [bowling_alley, bowling-alley] }
-                    draw:   { icons: { sprite: bowling-alley } }
-                bridal-shop:
-                    filter: { kind: [bridal, bridal-shop] }
-                    draw:   { icons: { sprite: bridal-shop } }
                 building-icon:
                     filter: { kind: [building, auditorium, terminal, hangar, retirement_home, manor, recreation_center, apartments] }
                     draw:   { icons: { sprite: building } }
@@ -5924,405 +6695,24 @@ layers:
                                 visible: false
                                 text:
                                     visible: false
-                burger:
-                    filter: { kind: [fast_food, burger] }
-                    draw:   { icons: { sprite: burger } }
-                taqueria:
-                    filter: { kind: [burrito,taqueria] }
-                    draw:   { icons: { sprite: taqueria } }
-                bus-station:
-                    filter: { kind: [bus_stop, bus_station] }
-                    draw:   { icons: { sprite: bus-station } }
-                camera-store:
-                    filter: { kind: [camera, camera-store, photo] }
-                    draw:   { icons: { sprite: camera-store } }
-                campground:
-                    filter: { kind: [campground, camp_site, caravan_site] }
-                    draw:   { icons: { sprite: campground } }
-                candy-store:
-                    filter: { kind: [candy, candy-store, confectionery] }
-                    draw:   { icons: { sprite: candy-store } }
-                car-dealership:
-                    filter: { kind: [car, car-dealership] }
-                    draw:   { icons: { sprite: car-dealership } }
-                car-wash:
-                    filter: { kind: [car_wash, car-wash] }
-                    draw:   { icons: { sprite: car-wash } }
-                castle:
-                    filter: { kind: [castle, fort] }
-                    draw:   { icons: { sprite: castle } }
-                cemetery:
-                    filter: { kind: [grave_yard, cemetery] }
-                    draw:   { icons: { sprite: cemetery } }
-                cheese-shop:
-                    filter: { kind: [cheese, cheese-shop] }
-                    draw:   { icons: { sprite: cheese-shop } }
-                clothing-store:
-                    filter: { kind: [clothes, chothing-store, "clothes store", fashion] }
-                    draw:   { icons: { sprite: clothing-store } }
-                coffee-shop:
-                    filter: { kind: [cafe, coffee-shop] }
-                    draw:   { icons: { sprite: coffee-shop } }
-                college-university:
-                    filter: { kind: [university, college, college-university], area: false }
-                    draw:   { icons: { sprite: college-university } }
-                concert-hall:
-                    filter: { kind: [music_venue] }
-                    draw:   { icons: { sprite: concert-hall } }
-                convenience-store:
-                    filter: { kind: [convenience, convenience-store, convenience_store, beverages] }
-                    draw:   { icons: { sprite: convenience-store } }
-                cosmetics-shop:
-                    filter: { kind: [cosmetics, cosmetics-shop, beauty] }
-                    draw:   { icons: { sprite: cosmetics-shop } }
-                department-store:
-                    filter: { kind: [department_store, department-store] }
-                    draw:   { icons: { sprite: department-store } }
-                doctors:
-                    filter: { kind: [doctors, clinic] }
-                    draw:   { icons: { sprite: doctors } }
-                dog-park:
-                    filter: { kind: [dog_park, dog_run, dog-run] }
-                    draw:   { icons: { sprite: dog-park } }
-                drinking-water:
-                    filter: { kind: drinking_water }
-                    draw: { icons: { sprite: drinking-water } }
-                dry-cleaning:
-                    filter: { kind: [dry_cleaning] }
-                    draw:   { icons: { sprite: dry-cleaning } }
-                electronics-store:
-                    filter: { kind: [electronics, electronics-store, computer] }
-                    draw:   { icons: { sprite: electronics-store } }
-                factory:
-                    filter: { kind: [factory, industrial, chimney, sub_station, substation, wastewater_plant, works, water_works, plant, generator] }
-                    draw:   { icons: { sprite: factory } }
-                farmers-market:
-                    filter: { kind: [farmers_market, farmers-market] }
-                    draw:   { icons: { sprite: farmers-market } }
-                fire-station:
-                    filter: { kind: [fire_station, fire-station] }
-                    draw:   { icons: { sprite: fire-station } }
-                fish-market:
-                    filter: { kind: [fish, fish-market, seafood, fishmonger] }
-                    draw:   { icons: { sprite: fish-market } }
-                fishing-area:
-                    filter: { kind: [fishing_area, fishing-spot, fishing] }
-                    draw:   { icons: { sprite: fishing-area } }
-                fitness:
-                    filter: { kind: [gym, fitness, fitness_center] }
-                    draw:   { icons: { sprite: fitness } }
-                flea-market:
-                    filter: { kind: [flea_market, flea-market] }
-                    draw:   { icons: { sprite: flea-market } }
-                flower-shop:
-                    filter: { kind: [florist, flower-shop] }
-                    draw:   { icons: { sprite: flower-shop } }
-                forest:
-                    filter: { kind: [forest, conservation, wood] }
-                    draw:   { icons: { sprite: forest } }
-                furniture-store:
-                    filter: { kind: [furniture, furniture-store] }
-                    draw:   { icons: { sprite: furniture-store } }
-                garden-center:
-                    filter: { kind: [garden_centre, garden_center] }
-                    draw:   { icons: { sprite: garden-center } }
-                gas:
-                    filter: { kind: [gas, gas_canister] }
-                    draw:   { icons: { sprite: gas } }
-                gas-station:
-                    filter: { kind: [fuel, gas-station] }
-                    draw:   { icons: { sprite: gas-station } }
-                general-entertainment:
-                    filter: { kind: [ticket, general_entertainment] }
-                    draw:   { icons: { sprite: general-entertainment } }
-                generic:
-                    filter: { kind: [generic] }
-                    draw:   { icons: { sprite: generic } }
-                gift-shop:
-                    filter: { kind: [gift, gift-shop] }
-                    draw:   { icons: { sprite: gift-shop } }
-                golf-course:
-                    filter: { kind: [golf-course, golf_course] }
-                    draw:   { icons: { sprite: golf-course } }
-                government-building:
-                    filter: { kind: [townhall, public_building, embassy] }
-                    draw:   { icons: { sprite: government-building } }
-                grocery-store:
-                    filter: { kind: [supermarket, grocery-store, health_food, greengrocer] }
-                    draw:   { icons: { sprite: grocery-store } }
-                harbor-marina:
-                    filter: { kind: [marina, harbor, harbor-marina, harbor_marina, dock, mooring] }
-                    draw:   { icons: { sprite: harbor-marina } }
-                hardware-store:
-                    filter: { kind: [hardware, hardware-store, doityourself, paint] }
-                    draw:   { icons: { sprite: hardware-store } }
-                hotel:
-                    filter: { kind: [hotel, motel, hostel] }
-                    draw:   { icons: { sprite: hotel } }
-                hot_spring:
-                    filter: { kind: [hot_spring] }
-                    draw:   { icons: { sprite: hot-spring } }
-                hunting:
-                    filter: { kind: [hunting] }
-                    draw:   { icons: { sprite: hunting } }
-                ice-cream-shop:
-                    filter: { kind: [ice_cream] }
-                    draw:   { icons: { sprite: ice-cream-shop } }
-                information:
-                    filter: { kind: [info, information] }
-                    draw:   { icons: { sprite: information } }
-                jewelry-store:
-                    filter: { kind: [jewelry, jewelry_store, jewelry-store] }
-                    draw:   { icons: { sprite: jewelry-store } }
-                landmark:
-                    filter: { kind: [landmark, memorial, monument, wayside_shrine, beacon] }
-                    draw:   { icons: { sprite: landmark } }
-                tower:
-                    filter: { kind: [tower], label_placement: false }
-                    draw:   { icons: { sprite: landmark } }
-                laundry:
-                    filter: { kind: [laundry] }
-                    draw:   { icons: { sprite: laundry } }
-                light-rail:
-                    filter: { kind: [light-rail, light_rail, tram_stop] }
-                    draw:   { icons: { sprite: light-rail } }
-                liquor-store:
-                    filter: { kind: [alcohol, liquor-store, liquor] }
-                    draw:   { icons: { sprite: liquor-store } }
-                market:
-                    filter: { kind: [market, variety_store, boutique, dairy, retail] }
-                    draw:   { icons: { sprite: market } }
-                mine:
-                    filter: { kind: [mine, quarry, mineshaft, adit] }
-                    draw:   { icons: { sprite: mine } }
-                miscellaneous-shop:
-                    filter: { kind: [houseware, miscellaneous-shop] }
-                    draw:   { icons: { sprite: miscellaneous-shop } }
-                mobile-phone-shop:
-                    filter: { kind: [mobile_phone] }
-                    draw:   { icons: { sprite: mobile-phone-shop } }
-                motorcycle-shop:
-                    filter: { kind: [motorcycle, motorcycle_shop, motorcycle_repair] }
-                    draw:   { icons: { sprite: motorcycle-shop } }
-                mountain:
-                    filter: { kind: [mountain, peak] }
-                    draw:   { icons: { sprite: mountain } }
-                movie-theatre:
-                    filter: { kind: [cinema, movie-theatre, movie-theater] }
-                    draw:   { icons: { sprite: movie-theatre } }
-                museum:
-                    filter: { kind: [museum, observatory] }
-                    draw:   { icons: { sprite: museum } }
-                music-store:
-                    filter: { kind: [music, music-store, musical_instrument] }
-                    draw:   { icons: { sprite: music-store } }
-                newsstand:
-                    filter: { kind: [kiosk, newsstand, newsagent] }
-                    draw:   { icons: { sprite: newsstand } }
-                nightlife:
-                    filter: { kind: [nightclub, nightlife] }
-                    draw:   { icons: { sprite: nightlife } }
-                office:
-                    filter: { kind: [insurance, office, company] }
-                    draw:   { icons: { sprite: office } }
-                office-supplies:
-                    filter: { kind: [office_supplies, office-supplies, stationery] }
-                    draw:   { icons: { sprite: office-supplies } }
-                optical-shop:
-                    filter: { kind: [optician, optical_shop, optical-shop] }
-                    draw:   { icons: { sprite: optical-shop } }
-                outdoor:
-                    filter: { kind: [outdoor] }
-                    draw:   { icons: { sprite: outdoor } }
-                performing-arts:
-                    filter: { kind: [theater, theatre, performing-arts] }
-                    draw:   { icons: { sprite: performing-arts } }
-                pet-store:
-                    filter: { kind: [pet, pet-store, pet-service, pet_store] }
-                    draw:   { icons: { sprite: pet-store } }
                 sports-pitch:
                     filter: { kind: [grass, pitch] }
                     draw:
                         icons:
                             sprite: function() { return feature.kind_detail; }
-                    baseball:
-                        filter: { kind_detail: baseball }
-                        draw: { icons: { sprite: baseball-field } }
-                    basketball:
-                        filter: { kind_detail: basketball }
-                        draw: { icons: { sprite: basketball-court } }
-                    football:
-                        filter: { kind_detail: football }
-                        draw: { icons: { sprite: football-stadium } }
-                    hockey:
-                        filter: { kind_detail: hockey-field }
-                        draw: { icons: { sprite: hockey-field } }
-                    soccer:
-                        filter: { kind_detail: soccer }
-                        draw: { icons: { sprite: soccer-field } }
-                    tennis:
-                        filter: { kind_detail: tennis }
-                        draw: { icons: { sprite: tennis } }
-                pharmacy:
-                    filter: { kind: [pharmacy, chemist] }
-                    draw:   { icons: { sprite: pharmacy } }
-                photography-lab:
-                    filter: { kind: [photo_studio, photography_lab, photographer] }
-                    draw:   { icons: { sprite: photography-lab } }
-                picnic-spot:
-                    filter: { kind: [picnic_site, picnic_spot, picnic-spot, picnic_table] }
-                    draw:   { icons: { sprite: picnic-spot } }
-                pool:
-                    filter: { kind: [pool, swimming_pool, water_park] }
-                    draw:   { icons: { sprite: pool } }
-                pool-hall:
-                    filter: { kind: [billiards, pool-hall] }
-                    draw:   { icons: { sprite: pool-hall } }
-                post-office:
-                    filter: { kind: [post_office, post-office] }
-                    draw:   { icons: { sprite: post-office } }
-                power-pylon:
-                    filter: { kind: [tower, power-pylon, pylon] }
-                    draw:   { icons: { sprite: power-pylon } }
-                real-estate:
-                    filter: { kind: [estate_agent, real_estate] }
-                    draw:   { icons: { sprite: real-estate } }
-                recreation-track:
-                    filter: { kind: [recreation_track] }
-                    draw:   { icons: { sprite: recreation-track } }
-                recycling-facility:
-                    filter: { kind: [recycling, recycling-facility] }
-                    draw:   { icons: { sprite: recycling-facility } }
-                rental-car:
-                    filter: { kind: [rental-car, car_rental, car_sharing] }
-                    draw:   { icons: { sprite: rental-car } }
-                rest-area:
-                    filter: { kind: [rest_area, rest-area] }
-                    draw:   { icons: { sprite: rest-area } }
-                restaurant:
-                    filter: { kind: [restaurant, deli] }
-                    draw:   { icons: { sprite: restaurant } }
-                ruin:
-                    filter: { kind: [ruins, archaeological_site] }
-                    draw:   { icons: { sprite: ruin } }
-                salon-barber:
-                    filter: { kind: [hairdresser, salon-barber, salon, beauty_salon] }
-                    draw:   { icons: { sprite: salon-barber } }
-                scuba-diving:
-                    filter: { kind: [scuba_diving,dive_centre] }
-                    draw:   { icons: { sprite: scuba-diving } }
-                ship-wreck:
-                    filter: { kind: [wreck] }
-                    draw:   { icons: { sprite: ship-wreck } }
-                shoe-store:
-                    filter: { kind: [shoes, shoe-store, shoe_store] }
-                    draw:   { icons: { sprite: shoe-store } }
-                slipway:
-                    filter: { kind: [slipway] }
-                    draw:   { icons: { sprite: slipway } }
-                smoke-shop:
-                    filter: { kind: [smoke_shop, tobacco] }
-                    draw:   { icons: { sprite: smoke-shop } }
-                spa-massage:
-                    filter: { kind: [spa, spa-massage, sauna, massage] }
-                    draw:   { icons: { sprite: spa-massage } }
+                            sprite_default: sports
                 # prefix with "a-" here to allow Tangram to sort the generic style 1st, allowing more specific religion tags to win later
-                a-spiritual-center:
+                place_of_worship:
                     filter:
                         all:
-                            - kind: [spiritual_center, spiritual-center, place_of_worship, wayside_chapel]
-                    draw:   { icons: { sprite: spiritual-center } }
-                church:
-                    filter: { kind: [spiritual_center, spiritual-center, place_of_worship, wayside_chapel], religion: christian }
-                    draw:   { icons: { sprite: church } }
-                synagogue:
-                    filter: { kind: [spiritual_center, spiritual-center, place_of_worship, wayside_chapel], religion: jewish }
-                    draw:   { icons: { sprite: synagogue } }
-                buddhist:
-                    filter: { kind: [spiritual_center, spiritual-center, place_of_worship, wayside_chapel], religion: buddhist }
-                    draw:   { icons: { sprite: buddhism } }
-                mosque:
-                    filter: { kind: [spiritual_center, spiritual-center, place_of_worship, wayside_chapel], religion: muslim }
-                    draw:   { icons: { sprite: mosque } }
-                sporting-goods-shop:
-                    filter: { kind: [sporting_goods, sporting-goods-shop, sports] }
-                    draw:   { icons: { sprite: sporting-goods-shop } }
-                stable:
-                    filter: { kind: [stable, horse_riding, horse] }
-                    draw:   { icons: { sprite: stable } }
-                storage-facility:
-                    filter: { kind: [storage, storage-facility] }
-                    draw:   { icons: { sprite: storage-facility } }
-                subway-entrance:
-                    filter: { kind: [subway_entrance] }
-                    draw:   { icons: { sprite: subway-entrance } }
-                summer-camp:
-                    filter: { kind: [summer_camp] }
-                    draw:   { icons: { sprite: summer-camp } }
-                tailor-shop:
-                    filter: { kind: [tailor, tailor-shop] }
-                    draw:   { icons: { sprite: tailor-shop } }
-                tattoo-parlor:
-                    filter: { kind: [tattoo, tattoo_parlor, tattoo-parlor] }
-                    draw:   { icons: { sprite: tattoo-parlor } }
-                telescope:
-                    filter: { kind: [telescope] }
-                    draw:   { icons: { sprite: telescope } }
-                theme-park:
-                    filter: { kind: [theme_park, theme-park, miniature_golf] }
-                    draw:   { icons: { sprite: theme-park } }
-                thrift-vintage-store:
-                    filter: { kind: [thrift, thrift-vintage-store, second_hand] }
-                    draw:   { icons: { sprite: thrift-vintage-store } }
-                toll-booth:
-                    filter: { kind: [toll_booth, checkpoint, border_control] }
-                    draw:   { icons: { sprite: toll-booth } }
-                toy-game-store:
-                    filter: { kind: [toys, toy-game-store, baby_goods] }
-                    draw:   { icons: { sprite: toy-game-store } }
-                toilets:
-                    filter: { kind: [toilets] }
-                    draw:   { icons: { sprite: toilets } }
-                trailhead:
-                    filter: { kind: [trailhead, hiking_trail] }
-                    draw:   { icons: { sprite: trailhead } }
-                # because: JAPAN
-                traffic-signal:
-                    filter: { kind: traffic_signals }
-                    draw:   { icons: { sprite: traffic-signal } }
-                veterinarian:
-                    filter: { kind: [pet_care, veterinarian, veterinary] }
-                    draw:   { icons: { sprite: veterinarian } }
-                video-game-store:
-                    filter: { kind: [video_games] }
-                    draw:   { icons: { sprite: video-game-store } }
-                video-store:
-                    filter: { kind: [video, video_store] }
-                    draw:   { icons: { sprite: video-store } }
-                view-point:
-                    filter: { kind: [viewpoint, view_point, view-point, vista] }
-                    draw:   { icons: { sprite: view-point } }
-                waterfall:
-                    filter: { kind: [waterfall] }
-                    draw:   { icons: { sprite: waterfall } }
-                waterpark:
-                    filter: { kind: [water_park] }
-                    draw:   { icons: { sprite: waterpark } }
-                well:
-                    filter: { kind: [well, water_well] }
-                    draw:   { icons: { sprite: well } }
-                wine-shop:
-                    filter: { kind: [wine, wine-shop] }
-                    draw:   { icons: { sprite: wine-shop } }
-                winery:
-                    filter: { kind: [winery, wine] }
-                    draw:   { icons: { sprite: winery } }
-                winter_sport:
-                    filter: { kind: [ski, ski_rental, ski_school, ski_jumping, skiing] }
-                    draw:   { icons: { sprite: ski-area } }
+                            - kind: [place_of_worship, wayside_chapel]
+                    draw:
+                        icons:
+                            sprite: function() { return feature.religion; }
+                            sprite_default: place_of_worship
 
         airport-gate:
-            filter: { kind: gate, aeroway: gate }
+            filter: { kind: aeroway_gate }
             draw:
                 icons:
                     visible: false
@@ -6350,6 +6740,7 @@ layers:
                     text_source: ref
                     priority: 1
                     font:
+                        family: Montserrat
                         fill: global.text_fill_exits
                         size: [[12,9px],[15,12px],[17,14px]]
                         stroke: { color: global.text_stroke, width: [[12,2px],[14,3px],[15,3px]] }
@@ -6394,7 +6785,7 @@ layers:
                         fill: [0.314,0.591,0.640] #global.text_fill_water
                         family: global.text_font_family
                         style: italic
-                        weight: 400
+                        weight: normal
                         size: 12px
                         # stroke: { color: [0.878,0.929,0.980], width: 2 }
         lakes-z5:
@@ -6420,7 +6811,7 @@ layers:
                 font:
                     fill: [0.314,0.591,0.640] #global.text_fill_water
                     family: global.text_font_family
-                    weight: 400
+                    weight: normal
                     size: 12px
                     transform: uppercase
         sea-early:
@@ -6517,7 +6908,7 @@ layers:
                     fill: grey
                     family: global.text_font_family
                     style: italic
-                    weight: 400
+                    weight: normal
                     size: 12px
                     stroke: { color: global.text_stroke_water, width: 3 }
         # debug only
@@ -6559,7 +6950,7 @@ layers:
                         size: 12px
                         style: italic
                         fill: global.text_fill
-                        weight: 400
+                        weight: normal
                         stroke: { color: global.text_stroke, width: 4 }
                         #transform: uppercase
 
@@ -7328,9 +7719,8 @@ layers:
                     #offset: [[13, [0, 6px]], [16, [0, 8px]], [19, [0, 10px]]] # offset tracks alongside icon size (half icon height)
                     priority: 16
                     font:
-                        weight: 500
                         fill: black
-                        weight: 400
+                        weight: normal
                         size: 11px
                         stroke: { color: white, width: 3 }
         poi_labels-z14:
@@ -7349,7 +7739,7 @@ layers:
             filter: { kind: [station, train-station, train_station] } #, $zoom: { min: 13 }
             draw:
                 icons:
-                    sprite: train-station
+                    sprite: train_station
                     size: [[13, 12px], [14, 14px], [15, 16px], [17, 20px]]
                     priority: 11
                     text:
@@ -7412,7 +7802,7 @@ layers:
                 icons:
                     size: [[15, 8px], [16, 18px]]
                     visible: global.sdk_transit_overlay
-                    sprite: light-rail
+                    sprite: light_rail
                     text:
                         visible: false
         platform-early:
@@ -7430,7 +7820,7 @@ layers:
                 icons:
                     size: [[13, 0px], [14, 7px], [15, 8px]]
                     visible: global.sdk_transit_overlay
-                    sprite: light-rail
+                    sprite: light_rail
                     text:
                         visible: false
         tram-stop:
@@ -7438,7 +7828,7 @@ layers:
             draw:
                 icons:
                     size: [[16, 12px], [17, 14px], [18, 18px]]
-                    sprite: light-rail
+                    sprite: light_rail
                     #text:
                         #offset: [[13, [0, 6px]], [16, [0, 9px]]]
         bus-like-labels:
@@ -7447,7 +7837,7 @@ layers:
             draw:
                 icons:
                     size: [[13, 8px], [16, 10px], [17, 12px], [18, 18px]]
-                    sprite: bus-station
+                    sprite: bus_station
                     text:
                         font:
                             fill: black
@@ -7460,7 +7850,7 @@ layers:
             draw:
                 icons:
                     size: [[13, 12px], [16, 18px]]
-                    sprite: bus-station
+                    sprite: bus_station
                     priority: 17
                     text:
                         priority: 18
@@ -7482,7 +7872,7 @@ layers:
                 kind: [subway_entrance]
             draw:
                 icons:
-                    sprite: subway-entrance
+                    sprite: subway_entrance
                     size: [[17, 12px], [19, 14px]]
                     priority: 19
                     text:
