@@ -4323,118 +4323,85 @@ layers:
                             sprite: capital-s
                             priority: 27
 
-        neighborhoods:
-            filter: { kind: [macrohood, neighbourhood, borough] }
+        neighborhood:
+            filter:
+                name: true
+                kind: [macrohood, neighbourhood, borough]
+                $zoom: { min: 11 }
+                is_landuse_aoi: false
+            draw:
+                text-blend-order:
+                    visible: false
+                    priority: 29
+                    text_wrap: 10
+                    font:
+                        family: Varela
+                        weight: normal
+                        fill: [0.225,0.561,0.415]
+                        transform: uppercase
 
             neighborhood-z11:
                 filter:
-                    all:
-                        - $zoom: [11]
-                          all:
-                            - min_zoom: [11]
-                            - max_zoom: { min: 12 }
-                            - is_landuse_aoi: false
-                            #- kind_tile_rank: { max: 6 }
+                    $zoom: [11]
+                    min_zoom: [11]
+                    max_zoom: { min: 12 }
+                    #kind_tile_rank: { max: 6 }
                 draw:
                     text-blend-order:
-                        priority: 29
-                        text_wrap: 10
                         visible: global.text_visible_neighbourhoods_e
                         font:
-                            family: Varela
                             size: 9px
-                            weight: normal
-                            fill: [0.225,0.561,0.415]
-                            # fill: global.text_fill
-                            transform: uppercase
                             stroke: { color: global.text_stroke, width: 4 }
             neighborhood-z12:
                 filter:
-                    all:
-                        - $zoom: [12]
-                          all:
-                            - min_zoom: [11,12]
-                            - max_zoom: { min: 13 }
-                            - is_landuse_aoi: false
-                            #- kind_tile_rank: { max: 8 }
+                    $zoom: [12]
+                    min_zoom: [11,12]
+                    max_zoom: { min: 13 }
+                    #kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
-                        priority: 29
-                        text_wrap: 10
                         visible: global.text_visible_neighbourhoods_e
                         font:
-                            family: Varela
                             size: 10px
-                            weight: normal
-                            fill: [0.225,0.561,0.415]
-                            # fill: [0.300,0.300,0.300]
-                            transform: uppercase
                             # stroke: { color: global.text_stroke, width: 2 }
             neighborhood-z13:
                 filter:
-                    all:
-                        - $zoom: [13]
-                          all:
-                            - min_zoom: [11,12,13]
-                            - max_zoom: { min: 14 }
-                            - is_landuse_aoi: false
-                            - kind_tile_rank: { max: 8 }
+                    $zoom: [13]
+                    min_zoom: [11,12,13]
+                    max_zoom: { min: 14 }
+                    kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
-                        priority: 29
-                        text_wrap: 10
                         visible: global.text_visible_neighbourhoods_e
                         font:
-                            family: Varela
                             size: 11px
-                            weight: normal
-                            fill: [0.225,0.561,0.415]
-                            # fill: [0.35,0.35,0.35]
-                            transform: uppercase
                             # stroke: { color: global.text_stroke, width: 2 }
             neighborhood-z14:
                 filter:
-                    all:
-                        - $zoom: [14]
-                          all:
-                            - min_zoom: [11,12,13,14]
-                            - max_zoom: { min: 15 }
-                            - is_landuse_aoi: false
-                            - kind_tile_rank: { max: 8 }
+                    $zoom: [14]
+                    min_zoom: [11,12,13,14]
+                    max_zoom: { min: 15 }
+                    kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
-                        priority: 29
                         text_wrap: 12
                         visible: global.text_visible_neighbourhoods
                         font:
-                            family: Varela
                             size: 13px
-                            weight: normal
-                            fill: [0.225,0.561,0.415]
-                            # fill: [0.000,0.000,0.000,0.500]
-                            transform: uppercase
                             # stroke: { color: global.text_stroke, width: 3 }
             neighborhood-z15:
                 filter:
-                    all:
-                        - $zoom: [15]
-                          all:
-                            - min_zoom: [11,12,13,14,15]
-                            - max_zoom: { min: 16 }
-                            - is_landuse_aoi: false
-                            - kind_tile_rank: { max: 8 }
+                    $zoom: [15]
+                    min_zoom: [11,12,13,14,15]
+                    max_zoom: { min: 16 }
+                    kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
-                        priority: 29
                         text_wrap: 12
                         visible: global.text_visible_neighbourhoods
                         font:
-                            family: Varela
                             size: 16px
                             weight: 300
-                            fill: [0.225,0.561,0.415]
-                            # fill: [0.000,0.000,0.000,0.480]
-                            transform: uppercase
                             # stroke: { color: global.text_stroke, width: 3 }
                 z15-new:
                     filter:
@@ -4444,28 +4411,20 @@ layers:
                         text-blend-order:
                             priority: 19
                             font:
-                                family: Varela
                                 size: 13px
             neighborhood-z16:
                 filter:
-                    all:
-                        - $zoom: [16]
-                          all:
-                            - min_zoom: [11,12,13,14,15,16]
-                            - max_zoom: { min: 17 }
-                            - is_landuse_aoi: false
-                            - kind_tile_rank: { max: 8 }
+                    $zoom: [16]
+                    min_zoom: [11,12,13,14,15,16]
+                    max_zoom: { min: 17 }
+                    kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
+                        text_wrap: 12
                         visible: global.text_visible_neighbourhoods
-                        priority: 29
                         font:
-                            family: Varela
                             size: 17px
                             weight: 300
-                            fill: [0.225,0.561,0.415]
-                            # fill: [0.000,0.000,0.000,0.400]
-                            transform: uppercase
                             # stroke: { color: global.text_stroke, width: 3 }
 
 #    landuse_labels_debug:
