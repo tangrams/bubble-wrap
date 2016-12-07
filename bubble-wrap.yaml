@@ -4032,7 +4032,7 @@ layers:
                     interactive: true
                     size: [[10,6px],[11,0px]]
                     sprite: townspot-s-rev
-                    priority: 50
+                    priority: 30
                     # debug testing
                     #collide: false
                     text:
@@ -4173,7 +4173,7 @@ layers:
                         priority: 15
                         text:
                             font:
-                                size: [[6,10px],[8,12px],[10,12px],[12,14px],[13,14px]]
+                                size: [[6,10px],[8,12px],[10,12px],[12,14px],[13,14px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4193,7 +4193,7 @@ layers:
                         text:
                             font:
                                 fill: [0.30,0.30,0.30]
-                                size: [[6,10px],[8,10px],[10,12px],[12,14px],[13,14px]]
+                                size: [[6,10px],[8,10px],[10,12px],[12,14px],[13,14px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4214,7 +4214,7 @@ layers:
                         text:
                             font:
                                 fill: [0.30,0.30,0.30]
-                                size: [[9,10px],[12,11px],[13,12px]]
+                                size: [[9,10px],[12,12px],[13,12px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4234,7 +4234,7 @@ layers:
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
-                                size: [[9,10px],[12,11px],[13,12px]]
+                                size: [[9,10px],[12,12px],[13,12px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4254,7 +4254,7 @@ layers:
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
-                                size: [[9,9px],[10,10px],[12,11px],[13,12px]]
+                                size: [[9,9px],[12,12px],[13,12px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4274,7 +4274,7 @@ layers:
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
-                                size: [[9,7px],[10,10px],[12,11px],[13,12px]]
+                                size: [[9,7px],[12,10px],[13,12px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4294,7 +4294,7 @@ layers:
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
-                                size: [[9,7px],[10,10px],[12,11px]]
+                                size: [[9,7px],[12,10px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4314,7 +4314,7 @@ layers:
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
-                                size: [[9,7px],[10,10px],[12,11px]]
+                                size: [[9,7px],[12,10px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4337,7 +4337,7 @@ layers:
                             #- kind_tile_rank: { max: 6 }
                 draw:
                     text-blend-order:
-                        priority: 18
+                        priority: 29
                         text_wrap: 10
                         visible: global.text_visible_neighbourhoods_e
                         font:
@@ -4359,7 +4359,7 @@ layers:
                             #- kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
-                        priority: 18
+                        priority: 29
                         text_wrap: 10
                         visible: global.text_visible_neighbourhoods_e
                         font:
@@ -4381,7 +4381,7 @@ layers:
                             - kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
-                        priority: 18
+                        priority: 29
                         text_wrap: 10
                         visible: global.text_visible_neighbourhoods_e
                         font:
@@ -4403,7 +4403,7 @@ layers:
                             - kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
-                        priority: 18
+                        priority: 29
                         text_wrap: 12
                         visible: global.text_visible_neighbourhoods
                         font:
@@ -4425,7 +4425,7 @@ layers:
                             - kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
-                        priority: 18
+                        priority: 29
                         text_wrap: 12
                         visible: global.text_visible_neighbourhoods
                         font:
@@ -4458,7 +4458,7 @@ layers:
                 draw:
                     text-blend-order:
                         visible: global.text_visible_neighbourhoods
-                        priority: 18
+                        priority: 29
                         font:
                             family: Varela
                             size: 17px
