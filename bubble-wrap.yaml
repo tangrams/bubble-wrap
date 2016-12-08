@@ -705,6 +705,8 @@ fonts:
         - weight: normal
           #url: https://fonts.gstatic.com/s/varela/v7/maB5vWJo0EAVzvHPjBkLM-vvDin1pK8aKteLpeZ5c0A.woff
           url: fonts/Varela-Regular.woff
+    Quicksand:
+        - url: https://fonts.gstatic.com/s/quicksand/v6/sKd0EMYPAh5PYCRKSryvW7O3LdcAZYWl9Si6vvxL-qU.woff
 
 sources:
     mapzen:
@@ -3565,15 +3567,22 @@ layers:
                         order: 438
                         style: building-grid
                         extrude: global.building_extrude_height
-                        color: [0.892,0.880,0.878]
                     lines:
                         order: 439
                         style: building-lines
                         extrude: global.building_extrude_height
+                # NOTE: This is a hack to re-enable the building colors per landuse_kind
+                # Earlier versions before October 2016 didn't need this hack
+                not_landuse:
+                    filter: { not: { landuse_kind: [station, retail, aerodrome, runway, taxiway, park,forest,nature_reserve,conservation,golf_course,garden, university,school, hospital] } }
+                    draw:
+                        polygons:
+                            color: [0.892,0.880,0.878]
 
         # landuse-specific rules
         in_park:
-            filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+            filter:
+                landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden]
             draw:
                 polygons:
                     color: [0.864,0.910,0.905]
@@ -4585,7 +4594,7 @@ layers:
                     interactive: true
                     priority: 66
                     font:
-                        family: global.text_font_family
+                        family: Quicksand #global.text_font_family
                         weight: normal
                         fill: [0.20,0.20,0.20]
                         size: 10px
