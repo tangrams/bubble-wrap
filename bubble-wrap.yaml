@@ -4448,7 +4448,6 @@ layers:
                     text_wrap: 10
                     font:
                         family: Varela
-                        weight: normal
                         fill: [0.225,0.561,0.415]
                         transform: uppercase
 
@@ -4513,7 +4512,6 @@ layers:
                         visible: global.text_visible_neighbourhoods
                         font:
                             size: 16px
-                            weight: 300
                             # stroke: { color: global.text_stroke, width: 3 }
                 z15-new:
                     filter:
@@ -4536,7 +4534,6 @@ layers:
                         visible: global.text_visible_neighbourhoods
                         font:
                             size: 17px
-                            weight: 300
                             # stroke: { color: global.text_stroke, width: 3 }
 
 #    landuse_labels_debug:
