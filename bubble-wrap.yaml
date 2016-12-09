@@ -4062,8 +4062,8 @@ layers:
                 icons:
                     visible: global.icon_visible_populated_places
                     interactive: true
-                    size: [[10,6px],[11,0px]]
-                    sprite: townspot-s-rev
+                    size: [[10,4px],[11,0px]]
+                    sprite: townspot-xs-rev
                     priority: 30
                     # debug testing
                     #collide: false
@@ -4074,7 +4074,15 @@ layers:
                         # debug testing
                         #collide: false
                         font:
-                            size: [[5,6px],[8,10px],[12,12px]]
+                            size: [[5,9px],[8,10px],[12,10px]]
+                text:
+                    visible: global.text_visible_populated_places
+                    interactive: true
+                    buffer: 3px
+                    # debug testing
+                    #collide: false
+                    font:
+                        size: [[5,9px],[8,10px],[12,10px]]
 
             #
             # NOTE: you'd think no-townspot would be the way to go, but icons with size 0px seems to have a bug to also hide the text :(
@@ -4105,21 +4113,54 @@ layers:
             # END HACK
 
             z8-50k-below:
-                filter: { $zoom: [5,6,7,8], population: { max: 50000 } }
+                filter: { $zoom: [8,9], population: { min: 10000, max: 50000 } }
                 draw:
                     icons:
-                        visible: false
-            z9-20k-below:
-                filter: { $zoom: [5,6,7,8,9], population: { max: 10000 } }
+                        buffer: 25px
+                        #color: red
+                        #visible: false
+            z9-10k-below:
+                filter: { $zoom: [8,9], population: { max: 10000 } }
                 draw:
                     icons:
-                        visible: false
+                        buffer: 18px
+                        #color: blue
+                        #visible: false
             z9-no-population:
-                filter: { $zoom: [5,6,7,8,9], population: false }
+                filter: { $zoom: [8,9], population: false }
                 draw:
                     icons:
-                        visible: false
+                        buffer: 10px
+                        #color: yellow
+                        #visible: false
 
+            # HACK
+            # NOTE: These should use icon: buffer instead of going visible: false, but there are problems using icon here :(
+            # This fixes Paris area, but causes problems for small places in the USA eg Table Bluff near Eureka, California.
+            funky-village:
+                filter: { kind_detail: [village], $zoom: [11], population: { max: 1000 } }
+                draw:
+                    text:
+                        visible: false
+            funky-isolated_dwelling:
+                filter: { kind_detail: [isolated_dwelling], $zoom: [13] }
+                draw:
+                    text:
+                        visible: false
+            hamlet:
+                filter: { kind_detail: hamlet, $zoom: [13] }
+                draw:
+                    text:
+                        visible: false
+            # END HACK
+
+            # someone in London and Salt Lake City thought neighbourhoods should be tagged place: locality
+            # They were wrong
+            funky-fake-neighbourhoods:
+                filter: { kind_detail: [locality], $zoom: { min: 13 } }
+                draw:
+                    text:
+                        visible: false
 
             population-10m-up:
                 filter:
@@ -4248,11 +4289,11 @@ layers:
                         priority: 15
                         text:
                             font:
-                                size: [[6,10px],[8,12px],[10,12px],[12,14px],[13,14px],[15,0px]]
+                                size: [[6,10px],[8,12px],[10,12px],[12,14px],[14,14px],[15,0px]]
                     text:
                         priority: 15
                         font:
-                            size: [[6,10px],[8,12px],[10,12px],[12,14px],[13,14px],[15,0px]]
+                            size: [[6,10px],[8,12px],[10,12px],[12,14px],[14,14px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4273,12 +4314,12 @@ layers:
                         text:
                             font:
                                 fill: [0.30,0.30,0.30]
-                                size: [[6,10px],[8,10px],[10,12px],[12,14px],[13,14px],[15,0px]]
+                                size: [[6,10px],[8,11px],[10,12px],[12,14px],[14,14px],[15,0px]]
                     text:
                         priority: 17
                         font:
                             fill: [0.30,0.30,0.30]
-                            size: [[6,10px],[8,10px],[10,12px],[12,14px],[13,14px],[15,0px]]
+                            size: [[6,10px],[8,11px],[10,12px],[12,14px],[14,14px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4299,12 +4340,12 @@ layers:
                         text:
                             font:
                                 fill: [0.30,0.30,0.30]
-                                size: [[9,10px],[12,12px],[13,12px],[15,0px]]
+                                size: [[9,11px],[12,12px],[14,12px],[15,0px]]
                     text:
                         priority: 19
                         font:
                             fill: [0.30,0.30,0.30]
-                            size: [[9,10px],[12,12px],[13,12px],[15,0px]]
+                            size: [[9,11px],[12,12px],[14,12px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4319,18 +4360,18 @@ layers:
                     population: { min: 10000, max: 20000 }
                 draw:
                     icons:
-                        size: [[8,5px],[9,5px],[10,5px],[11,0px]]
-                        sprite: townspot-s-rev
+                        size: [[8,4px],[9,4px],[10,4px],[11,0px]]
+                        sprite: townspot-xs-rev
                         priority: 21
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
-                                size: [[9,10px],[12,12px],[13,12px],[15,0px]]
+                                size: [[9,11px],[12,12px],[14,12px],[15,0px]]
                     text:
                         priority: 21
                         font:
                             fill: [0.35,0.35,0.35]
-                            size: [[9,10px],[12,12px],[13,12px],[15,0px]]
+                            size: [[9,11px],[12,12px],[14,12px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4345,18 +4386,18 @@ layers:
                     population: { min: 5000, max: 10000 }
                 draw:
                     icons:
-                        size: [[8,5px],[9,5px],[10,5px],[11,0px]]
-                        sprite: townspot-s-rev
+                        size: [[8,4px],[9,4px],[10,4px],[11,0px]]
+                        sprite: townspot-xs-rev
                         priority: 23
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
-                                size: [[9,9px],[12,12px],[13,12px],[15,0px]]
+                                size: [[9,10px],[12,12px],[13,12px],[14,12px],[15,0px]]
                     text:
                         priority: 23
                         font:
                             fill: [0.35,0.35,0.35]
-                            size: [[9,9px],[12,12px],[13,12px],[15,0px]]
+                            size: [[9,10px],[12,12px],[13,12px],[14,12px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4371,18 +4412,18 @@ layers:
                     population: { min: 2000, max: 5000 }
                 draw:
                     icons:
-                        size: [[8,5px],[9,5px],[10,5px],[11,0px]]
-                        sprite: townspot-s-rev
+                        size: [[8,4px],[9,4px],[10,4px],[11,0px]]
+                        sprite: townspot-xs-rev
                         priority: 25
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
-                                size: [[9,7px],[12,10px],[13,12px],[15,0px]]
+                                size: [[9,10px],[12,10px],[13,12px],[14,12px],[15,0px]]
                     text:
                         priority: 25
                         font:
                             fill: [0.35,0.35,0.35]
-                            size: [[9,7px],[12,10px],[13,12px],[15,0px]]
+                            size: [[9,10px],[12,10px],[13,12px],[14,12px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4397,18 +4438,18 @@ layers:
                     population: { min: 1000, max: 2000 }
                 draw:
                     icons:
-                        size: [[8,5px],[9,5px],[10,5px],[11,0px]]
-                        sprite: townspot-s-rev
+                        size: [[8,4px],[9,4px],[10,4px],[11,0px]]
+                        sprite: townspot-xs-rev
                         priority: 27
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
-                                size: [[9,7px],[12,10px],[15,0px]]
+                                size: [[9,10px],[12,10px],[14,11px],[15,0px]]
                     text:
                         priority: 27
                         font:
                             fill: [0.35,0.35,0.35]
-                            size: [[9,7px],[12,10px],[15,0px]]
+                            size: [[9,10px],[12,10px],[14,11px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4423,18 +4464,18 @@ layers:
                     population: { min: 200, max: 1000 }
                 draw:
                     icons:
-                        size: [[8,5px],[9,5px],[10,5px],[11,0px]]
-                        sprite: townspot-s-rev
+                        size: [[8,4px],[9,4px],[10,4px],[11,0px]]
+                        sprite: townspot-xs-rev
                         priority: 28
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
-                                size: [[9,7px],[12,10px],[15,0px]]
+                                size: [[9,10px],[12,10px],[14,11px],[15,0px]]
                     text:
                         priority: 28
                         font:
                             fill: [0.35,0.35,0.35]
-                            size: [[9,7px],[12,10px],[15,0px]]
+                            size: [[9,10px],[12,10px],[14,11px],[15,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
