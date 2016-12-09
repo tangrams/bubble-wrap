@@ -457,7 +457,7 @@ textures:
             caravan_site: [828, 84, 38, 38]
             capital-l: [726, 246, 32, 32]
             capital-m: [694, 246, 24, 24]
-            capital-s: [664, 246, 20, 20]
+            capital-s: [666, 246, 20, 20]
             capital-xl: [814, 246, 40, 40]
             capital-xs: [642, 246, 16, 16]
             car: [908, 126, 38, 38]
@@ -706,7 +706,9 @@ fonts:
           #url: https://fonts.gstatic.com/s/varela/v7/maB5vWJo0EAVzvHPjBkLM-vvDin1pK8aKteLpeZ5c0A.woff
           url: fonts/Varela-Regular.woff
     Quicksand:
-        - url: https://fonts.gstatic.com/s/quicksand/v6/sKd0EMYPAh5PYCRKSryvW7O3LdcAZYWl9Si6vvxL-qU.woff
+        - weight: normal
+          #url: https://fonts.gstatic.com/s/quicksand/v6/sKd0EMYPAh5PYCRKSryvW7O3LdcAZYWl9Si6vvxL-qU.woff
+          url: fonts/Quicksand-Regular.woff
 
 sources:
     mapzen:
@@ -3977,7 +3979,7 @@ layers:
                 draw:
                     text-blend-order:
                         font:
-                            size: 18px
+                            size: [[7,18px],[9,24px]]
                 small-ones-z7:
                     filter: { name: [Liechtenstein,San Marino,Civitatis Vaticanæ,Хуссар Ирыстон,Аҧсны - Абхазия], $zoom: {min: 7, max: 8} }
                     draw:
@@ -4026,8 +4028,8 @@ layers:
                         visible: global.text_visible_admin
                         text_source: global.ux_language_text_source_short_proxy_name
                         font:
-                            size: 14px
-                            fill: [0.4,0.4,0.4]
+                            size: [[7,15px],[8,17px]]
+                            fill: [0.5,0.5,0.5]
                             transform: uppercase
                 pesky-z7:
                     filter: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"], $zoom: [7] }
@@ -4053,7 +4055,7 @@ layers:
                         draw:
                             text-blend-order:
                                 font:
-                                    size: 12px
+                                    size: 13px
                                     #fill: blue  #debug
 
         populated-places:
@@ -4074,7 +4076,7 @@ layers:
                         # debug testing
                         #collide: false
                         font:
-                            size: [[5,9px],[8,10px],[12,10px]]
+                            size: [[5,9px],[8,10px],[12,11px]]
                 text:
                     visible: global.text_visible_populated_places
                     interactive: true
@@ -4082,7 +4084,7 @@ layers:
                     # debug testing
                     #collide: false
                     font:
-                        size: [[5,9px],[8,10px],[12,10px]]
+                        size: [[5,9px],[8,10px],[12,11px]]
 
             #
             # NOTE: you'd think no-townspot would be the way to go, but icons with size 0px seems to have a bug to also hide the text :(
@@ -4172,11 +4174,11 @@ layers:
                         priority: 6
                         text:
                             font:
-                                size: [[4,13px],[6,15px],[8,16px],[10,18px],[12,18px],[13,0px]]
+                                size: [[2,11px],[6,15px],[8,16px],[10,18px],[12,18px],[13,0px]]
                     text:
                         priority: 6
                         font:
-                            size: [[4,13px],[6,15px],[8,16px],[10,18px],[12,18px],[13,0px]]
+                            size: [[2,11px],[6,15px],[8,16px],[10,18px],[12,18px],[13,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -4244,7 +4246,11 @@ layers:
                         priority: 11
                         text:
                             font:
-                                size: [[6,11px],[8,14px],[10,14px],[12,16px],[13,0px]]
+                                size: [[5,10px],[8,14px],[10,14px],[12,16px],[13,0px]]
+                    text:
+                        priority: 11
+                        font:
+                            size: [[5,10px],[8,14px],[10,14px],[12,16px],[13,0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
