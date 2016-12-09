@@ -400,7 +400,7 @@ textures:
             'US:CA-4char': [574, 694, 124, 92]
             'US:CA-5char': [438, 694, 128, 92]
             'US:I-1char': [686, 790, 90, 100]
-            'US:I-2char': [286, 894, 100, 100]
+            'US:I-2char': [288, 894, 100, 100]
             'US:I-3char': [148, 894, 134, 100]
             'US:I-4char': [0, 894, 140, 100]
             'US:I-5char': [784, 790, 152, 100]
@@ -4066,21 +4066,23 @@ layers:
                     interactive: true
                     size: [[10,4px],[11,0px]]
                     sprite: townspot-xs-rev
+                    buffer: 8px
                     priority: 30
                     # debug testing
                     #collide: false
                     text:
                         visible: global.text_visible_populated_places
                         interactive: true
-                        buffer: 3px
+                        #buffer: 3px
                         # debug testing
                         #collide: false
                         font:
                             size: [[5,9px],[8,10px],[12,11px]]
-                text:
+                text-blend-order:
                     visible: global.text_visible_populated_places
                     interactive: true
-                    buffer: 3px
+                    # NOTE: text doesn't seem to support buffer (only points?)
+                    # buffer: 3px
                     # debug testing
                     #collide: false
                     font:
@@ -4104,13 +4106,13 @@ layers:
                 draw:
                     icons: 
                         visible: false
-                    text:
+                    text-blend-order:
                         visible: global.text_visible_populated_places
 
             _text_early: 
                 filter: { $zoom: { max: 11 } }
                 draw:
-                    text: 
+                    text-blend-order: 
                         visible: false
             # END HACK
 
@@ -4142,17 +4144,17 @@ layers:
             funky-village:
                 filter: { kind_detail: [village], $zoom: [11], population: { max: 1000 } }
                 draw:
-                    text:
+                    text-blend-order:
                         visible: false
             funky-isolated_dwelling:
                 filter: { kind_detail: [isolated_dwelling], $zoom: [13] }
                 draw:
-                    text:
+                    text-blend-order:
                         visible: false
             hamlet:
                 filter: { kind_detail: hamlet, $zoom: [13] }
                 draw:
-                    text:
+                    text-blend-order:
                         visible: false
             # END HACK
 
@@ -4161,7 +4163,7 @@ layers:
             funky-fake-neighbourhoods:
                 filter: { kind_detail: [locality], $zoom: { min: 13 } }
                 draw:
-                    text:
+                    text-blend-order:
                         visible: false
 
             population-10m-up:
@@ -4175,7 +4177,7 @@ layers:
                         text:
                             font:
                                 size: [[2,11px],[6,15px],[8,16px],[10,18px],[12,18px],[13,0px]]
-                    text:
+                    text-blend-order:
                         priority: 6
                         font:
                             size: [[2,11px],[6,15px],[8,16px],[10,18px],[12,18px],[13,0px]]
@@ -4199,7 +4201,7 @@ layers:
                         text:
                             font:
                                 size: [[4,10px],[6,13px],[8,16px],[10,18px],[12,18px],[13,0px]]
-                    text:
+                    text-blend-order:
                         priority: 7
                         font:
                             size: [[4,10px],[6,13px],[8,16px],[10,18px],[12,18px],[13,0px]]
@@ -4223,7 +4225,7 @@ layers:
                         text:
                             font:
                                 size: [[4,10px],[6,13px],[8,16px],[10,18px],[12,18px],[13,0px]]
-                    text:
+                    text-blend-order:
                         priority: 9
                         font:
                             size: [[4,10px],[6,13px],[8,16px],[10,18px],[12,18px],[13,0px]]
@@ -4247,7 +4249,7 @@ layers:
                         text:
                             font:
                                 size: [[5,10px],[8,14px],[10,14px],[12,16px],[13,0px]]
-                    text:
+                    text-blend-order:
                         priority: 11
                         font:
                             size: [[5,10px],[8,14px],[10,14px],[12,16px],[13,0px]]
@@ -4272,7 +4274,7 @@ layers:
                         text:
                             font:
                                 size: [[6,10px],[8,12px],[10,14px],[12,16px],[13,0px]]
-                    text:
+                    text-blend-order:
                         priority: 13
                         font:
                             size: [[6,10px],[8,12px],[10,14px],[12,16px],[13,0px]]
@@ -4296,7 +4298,7 @@ layers:
                         text:
                             font:
                                 size: [[6,10px],[8,12px],[10,12px],[12,14px],[14,14px],[15,0px]]
-                    text:
+                    text-blend-order:
                         priority: 15
                         font:
                             size: [[6,10px],[8,12px],[10,12px],[12,14px],[14,14px],[15,0px]]
@@ -4321,7 +4323,7 @@ layers:
                             font:
                                 fill: [0.30,0.30,0.30]
                                 size: [[6,10px],[8,11px],[10,12px],[12,14px],[14,14px],[15,0px]]
-                    text:
+                    text-blend-order:
                         priority: 17
                         font:
                             fill: [0.30,0.30,0.30]
@@ -4347,7 +4349,7 @@ layers:
                             font:
                                 fill: [0.30,0.30,0.30]
                                 size: [[9,11px],[12,12px],[14,12px],[15,0px]]
-                    text:
+                    text-blend-order:
                         priority: 19
                         font:
                             fill: [0.30,0.30,0.30]
@@ -4373,7 +4375,7 @@ layers:
                             font:
                                 fill: [0.35,0.35,0.35]
                                 size: [[9,11px],[12,12px],[14,12px],[15,0px]]
-                    text:
+                    text-blend-order:
                         priority: 21
                         font:
                             fill: [0.35,0.35,0.35]
@@ -4399,7 +4401,7 @@ layers:
                             font:
                                 fill: [0.35,0.35,0.35]
                                 size: [[9,10px],[12,12px],[13,12px],[14,12px],[15,0px]]
-                    text:
+                    text-blend-order:
                         priority: 23
                         font:
                             fill: [0.35,0.35,0.35]
@@ -4425,7 +4427,7 @@ layers:
                             font:
                                 fill: [0.35,0.35,0.35]
                                 size: [[9,10px],[12,10px],[13,12px],[14,12px],[15,0px]]
-                    text:
+                    text-blend-order:
                         priority: 25
                         font:
                             fill: [0.35,0.35,0.35]
@@ -4451,7 +4453,7 @@ layers:
                             font:
                                 fill: [0.35,0.35,0.35]
                                 size: [[9,10px],[12,10px],[14,11px],[15,0px]]
-                    text:
+                    text-blend-order:
                         priority: 27
                         font:
                             fill: [0.35,0.35,0.35]
@@ -4477,7 +4479,7 @@ layers:
                             font:
                                 fill: [0.35,0.35,0.35]
                                 size: [[9,10px],[12,10px],[14,11px],[15,0px]]
-                    text:
+                    text-blend-order:
                         priority: 28
                         font:
                             fill: [0.35,0.35,0.35]
@@ -4640,6 +4642,8 @@ layers:
                     move_into_tile: false # preserves text alignment w/icons in JS
                     interactive: true
                     priority: 66
+                    text_wrap: 18
+                    max_lines: 3
                     font:
                         family: Quicksand #global.text_font_family
                         weight: normal
@@ -5037,7 +5041,7 @@ layers:
                             visible: global.text_visible_landuse_green
                             font:
                                 #weight: 600
-                                fill: [0.20,0.20,0.20]
+                                fill: global.text_fill
                                 #size: 10px
                                 # stroke: { color: global.text_stroke, width: 4 }
                 early:
