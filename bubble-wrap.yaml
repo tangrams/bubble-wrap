@@ -5683,22 +5683,14 @@ layers:
 #                        style: italic
 
     pois_and_landuse_labels:
-        data: { source: mapzen, layer: [pois] }
+        data: { source: mapzen, layer: pois }
         visible: global.label_visible_poi_landuse
         filter:
             all:
                 - not: { kind: [building,address,farm,tree,apron,residential,commercial,industrial] }
-                - $geometry: point
                 # White list a few kinds to "always" show per the tile zoom inclusion, else test feature's min_zoom
                 #- function() { return feature.min_zoom <= $zoom }
                 - function() { if( feature.kind == 'restaurant' || feature.kind == 'landmark' || feature.kind == 'cafe' ) { return true } else { return feature.min_zoom <= $zoom } }
-                - any:
-                    - area: false
-                      all:
-                          - $zoom: { min: 12 }
-                    - area: true
-                      all:
-                          - kind: true
         draw:
             icons:
                 size: [[13, 14px], [16, 18px], [18, 19px]]
@@ -5716,32 +5708,11 @@ layers:
                         family: global.text_font_family
                         weight: normal
                         fill: [0.20,0.20,0.20]
-                        size: 10px
-                        stroke: { color: global.text_stroke, width: 1 }
-            text-blend-order:
-                text_source: global.ux_language_text_source
-                visible: false    # labels are enabled by each layer below
-                move_into_tile: false # preserves text alignment w/icons in JS
-                interactive: true
-                priority: 66
-                font:
-                    family: global.text_font_family
-                    weight: normal
-                    fill: [0.20,0.20,0.20]
-                    size: 10px
-                    stroke: { color: global.text_stroke, width: 1 }
-        poi_labels-z14:
-            filter: { $zoom: [14] }
-            draw: { icons: { text: { font: { size: 11px } } } }
-        poi_labels-z15:
-            filter: { $zoom: [15,16,17] }
-            draw: { icons: { text: { font: { size: 12px, stroke: { width: 2 } } } } }
+                        size: [[13,10px],[14,11px],[15,12px],[19,12px],[20,14px]]
+                        stroke: { color: global.text_stroke, width: [[14,1px],[15,2px],[17,2px],[18,3px]] }
         poi_labels-z18:
-            filter: { $zoom: [18,19] }
-            draw: { icons: { text: { font: { size: 12px, weight: 600, stroke: { width: 3 } } } } }
-        poi_labels-z20-up:
-            filter: { $zoom: { min: 20 } }
-            draw: { icons: { text: { font: { size: 14px, weight: 600, stroke: { width: 3 }  } } } }
+            filter: { $zoom: { min: 18 } }
+            draw: { icons: { text: { font: { weight: 600 } } } }
 
         no-name:
             filter: { name: false }
@@ -5752,48 +5723,15 @@ layers:
                         sprite: function() { return feature.kind_detail; }
                         visible: global.icon_visible_poi_landuse_e
                         priority: 69
-                baseball:
-                    filter: { kind_detail: baseball }
-                    draw: { icons: { sprite: baseball } }
-                basketball:
-                    filter: { kind_detail: basketball }
-                    draw: { icons: { sprite: basketball } }
-                football:
-                    filter: { kind_detail: football }
-                    draw: { icons: { sprite: football } }
-                hockey:
-                    filter: { kind_detail: hockey }
-                    draw: { icons: { sprite: hockey } }
-                soccer:
-                    filter: { kind_detail: soccer }
-                    draw: { icons: { sprite: soccer } }
-                tennis:
-                    filter: { sport: tennis }
-                    draw: { icons: { sprite: tennis } }
-            toilets:
-                filter: { kind: toilets, $zoom: { min: 18 }  }
-                draw: { icons: { sprite: toilets, visible: global.icon_visible_poi_landuse_e } }
-            playground:
-                filter: { kind: playground, $zoom: { min: 18 }  }
-                draw: { icons: { sprite: playground, visible: global.icon_visible_poi_landuse_e } }
-            picnic_site:
-                filter: { kind: picnic_site, $zoom: { min: 18 }  }
-                draw: { icons: { sprite: picnic_site, visible: global.icon_visible_poi_landuse_e } }
-            information:
-                filter: { kind: information, $zoom: { min: 18 }  }
-                draw: { icons: { sprite: information, visible: global.icon_visible_poi_landuse_e } }
-            drinking_water:
-                filter: { kind: drinking_water, $zoom: { min: 18 }  }
-                draw: { icons: { sprite: drinking_water, visible: global.icon_visible_poi_landuse_e } }
-            traffic_signals:
-                filter: { kind: traffic_signals, $zoom: { min: 18 } }
-                draw:   { icons: { sprite: traffic_signals, visible: global.icon_visible_poi_landuse_e } }
-            bicycle_parking:
-                filter: { kind: [bicycle_parking], $zoom: { min: 19 } }
-                draw:   { icons: { sprite: bicycle_parking, visible: global.icon_visible_poi_landuse_e } }
-            parking:
-                filter: { kind: [parking], $zoom: { min: 17 } }
-                draw:   { icons: { sprite: parking, visible: global.icon_visible_poi_landuse_e } }
+            z17:
+                filter: { kind: [parking], $zoom: { min: 17 }  }
+                draw: { icons: { visible: global.icon_visible_poi_landuse_e } }
+            z18:
+                filter: { kind: [toilets,playground,picnic_site,information,drinking_water,traffic_signals], $zoom: { min: 18 }  }
+                draw: { icons: { visible: global.icon_visible_poi_landuse_e } }
+            z19:
+                filter: { kind: [bicycle_parking], $zoom: { min: 19 }  }
+                draw: { icons: { visible: global.icon_visible_poi_landuse_e } }
         has-name:
             filter: { name: true }
             # match 1:1 correlations between data and sprite name
@@ -6017,18 +5955,7 @@ layers:
                 filter:
                     all:
                         - area: true
-                        - $geometry: point
                         - kind: [beach]
-#                    any:
-#                        # show labels for smaller landuse areas at higher zooms
-#                        - { $zoom: [10],   area: { min: 300000 } }
-#                        - { $zoom: [11],   area: { min: 100000 } }
-#                        - { $zoom: [12],   area: { min: 50000 } }
-#                        - { $zoom: [13],   area: { min: 50000 } }
-#                        - { $zoom: [14],   area: { min: 20000 } }
-#                        - { $zoom: [15],   area: { min: 10000 } }
-#                        - { $zoom: [16],   area: { min: 1000 } }
-#                        - { $zoom: { min: 17 } }
                 draw:
                     icons:
                         visible: global.icon_visible_landuse_green
@@ -6046,20 +5973,6 @@ layers:
                     all:
                         - kind: [airport, aerodrome]
                         - area: true
-                        - $geometry: point
-#                    any:
-#                        # show labels for smaller landuse areas at higher zooms
-#                        - { $zoom: [9],  area: { min: 10000000 } }
-#                        - { $zoom: [10], area: { min: 10000000 } }
-#                        - { $zoom: [11], area: { min: 5000000 } }
-#                        - { $zoom: [12], area: { min: 5000000 } }
-#                        - { $zoom: [13], area: { min: 500000 } }
-#                        - { $zoom: [14], area: { min: 20000 } }
-#                        # show labels for smaller landuse areas at higher zooms
-#                        - { $zoom: [15], area: { min: 10000 } }
-#                        - { $zoom: [16], area: { min: 5000 } }
-#                        - { $zoom: [17], area: { min: 2000 } }
-#                        - { $zoom: { min: 18 } }
                 draw:
                     icons:
                         sprite: airport
@@ -6084,21 +5997,6 @@ layers:
                     all:
                         - kind: [university, college]
                         - area: true
-                        - $geometry: point
-                        - not: { $layer: buildings }
-#                    any:
-#                        # show labels for smaller landuse areas at higher zooms
-#                        - { $zoom: [9],   area: { min: 10000000 } }
-#                        - { $zoom: [10], area: { min: 5000000 } }
-#                        - { $zoom: [11], area: { min: 2000000 } }
-#                        - { $zoom: [12], area: { min: 500000 } }
-#                        - { $zoom: [13], area: { min: 100000 } }
-#                        - { $zoom: [14], area: { min: 100000 } }
-#                        # show labels for smaller landuse areas at higher zooms
-#                        - { $zoom: [15], area: { min: 40000 } }
-#                        - { $zoom: [16], area: { min: 5000 } }
-#                        - { $zoom: [17], area: { min: 2000 } }
-#                        - { $zoom: { min: 18 } }
                 visible: global.label_visible_landuse_green
                 draw:
                     icons:
@@ -6112,9 +6010,6 @@ layers:
                                 fill: [0.20,0.20,0.20]
                                 #size: 10px
                                 # stroke: { color: global.text_stroke, width: 4 }
-                early:
-                    filter: { $zoom: { max: 12 } }
-                    draw: { text-blend-order: { visible: false } }
                 early2:
                     filter: { $zoom: { min: 12, max: 14 } }
                     draw: { icons: { text: { font: { size: 11px } } } }
@@ -6123,8 +6018,6 @@ layers:
                     all:
                         - kind: [school, kindergarten]
                         - area: true
-                        - $geometry: point
-                        - not: { $layer: buildings }
                     any:
                         # show labels for smaller landuse areas at higher zooms
                         - { $zoom: [13], area: { min: 100000 } }
@@ -6145,27 +6038,11 @@ layers:
                                 fill: global.text_fill
                                 #size: 12px
                                 stroke: { color: global.text_stroke, width: 4 }
-                #early:
-#                    filter: { $zoom: { max: 14 } }
-#                    draw: { icons: { text: { font: { size: 11px } } } }
             winter_sports:
                 filter:
                     all:
                         - kind: winter_sports
                         - area: true
-                        - $geometry: point
-#                    any:
-#                        # show labels for smaller landuse areas at higher zooms
-#                        - { $zoom: [10], area: { min: 5000000 } }
-#                        - { $zoom: [11], area: { min: 2000000 } }
-#                        - { $zoom: [12], area: { min: 500000 } }
-#                        - { $zoom: [13], area: { min: 100000 } }
-#                        - { $zoom: [14], area: { min: 100000 } }
-#                        # show labels for smaller landuse areas at higher zooms
-#                        - { $zoom: [15], area: { min: 40000 } }
-#                        - { $zoom: [16], area: { min: 5000 } }
-#                        - { $zoom: [17], area: { min: 2000 } }
-#                        - { $zoom: { min: 18 } }
                 draw:
                     icons:
                         sprite: ski
@@ -6185,16 +6062,6 @@ layers:
                     all:
                         - kind: [zoo, theme_park, resort, aquarium, winery, maze, stadium, enclosure, animal]
                         - area: true
-                        - $geometry: point
-#                    any:
-#                        # show labels for smaller landuse areas at higher zooms
-#                        - { $zoom: { min: 11 }, area: { min: 400000 } }
-#                        - { $zoom: { min: 12 }, area: { min: 200000 } }
-#                        - { $zoom: { min: 13 }, area: { min: 50000 } }
-#                        - { $zoom: { min: 14 }, area: { min: 20000 } }
-#                        - { $zoom: { min: 15 }, area: { min: 10000 } }
-#                        - { $zoom: { min: 15 }, area: { min: 2000 } }
-#                        - { $zoom: { min: 16 }, area: true }
                 draw:
                     icons:
                         sprite: function() { return feature.kind; }
@@ -6212,13 +6079,13 @@ layers:
                     filter: { kind: [enclosure, animal] }
                     draw:
                         icons:
-                            visible: false
+                            size: 0px
                             sprite_default: dot-black
-                        text-blend-order:
-                            text_wrap: 10
-                            font:
-                                style: italic
-                                weight: normal
+                            text:
+                                text_wrap: 10
+                                font:
+                                    style: italic
+                                    weight: normal
                 early-sizing:
                     filter: { $zoom: { max: 14 } }
                     draw: { icons: { text: { font: { size: 11px } } } }
@@ -6227,11 +6094,6 @@ layers:
                     all:
                         - kind: [playground, allotments, attraction, landmark, supermarket]
                         - area: true
-                        - $geometry: point
-#                    any:
-#                        - { $zoom: [15], area: { min: 600 } }
-#                        - { $zoom: [16], area: { min: 300 } }
-#                        - { $zoom: { min: 17 } }
                 draw:
                     icons:
                         visible: global.icon_visible_landuse_green
@@ -6256,14 +6118,6 @@ layers:
                     all:
                         - kind: [rest_area, service, service_area]
                         - area: true
-                        - $geometry: point
-#                    any:
-#                        - { $zoom: [12], area: { min: 30000 } }
-#                        - { $zoom: [13], area: { min: 10000 } }
-#                        - { $zoom: [14], area: { min: 5000 } }
-#                        - { $zoom: [15], area: { min: 2000 } }
-#                        - { $zoom: [16], area: { min: 1000 } }
-#                        - { $zoom: { min: 17, area: true } }
                 draw:
                     icons:
                         visible: global.icon_visible_landuse_green
@@ -6278,12 +6132,6 @@ layers:
                     all:
                         - kind: [windmill]
                         - area: true
-                        - $geometry: point
-#                    any:
-#                        - { $zoom: [14], area: { min: 500 } }
-#                        - { $zoom: [15], area: { min: 200 } }
-#                        - { $zoom: [16], area: { min: 100 } }
-#                        - { $zoom: { min: 17, area: true } }
                 draw:
                     icons:
                         visible: global.icon_visible_landuse_green
@@ -6298,13 +6146,6 @@ layers:
                     all:
                         - kind: [campground, camp_site, caravan_site]
                         - area: true
-                        - $geometry: point
-#                    any:
-#                        - { $zoom: [13], area: { min: 10000 } }
-#                        - { $zoom: [14], area: { min: 5000 } }
-#                        - { $zoom: [15], area: { min: 2000 } }
-#                        - { $zoom: [16], area: { min: 1000 } }
-#                        - { $zoom: { min: 17, area: true } }
                 draw:
                     icons:
                         visible: global.icon_visible_landuse_green
@@ -6319,27 +6160,19 @@ layers:
                     all:
                         - kind: glacier
                         - area: true
-                        - $geometry: point
-#                    any:
-#                        # show labels for smaller landuse areas at higher zooms
-#                        - { $zoom: [10],    area: { min: 20000000 } }
-#                        - { $zoom: [11],    area: { min: 5000000 } }
-#                        - { $zoom: [12],    area: { min: 2000000 } }
-#                        - { $zoom: [13],    area: { min: 500000 } }
-#                        # show labels for smaller landuse areas at higher zooms
-#                        - { $zoom: { min: 14 } }
                 draw:
                     icons:
-                        visible: false
-                    text-blend-order:
-                        visible: true
-                        priority: 44
-                        interactive: true
-                        text_wrap: 10
-                        font:
-                            weight: normal
-                            style: italic
-                            fill: '#4ba3c5'
+                        size: 0px
+                        #visible: false
+                        text:
+                            visible: true
+                            priority: 44
+                            interactive: true
+                            text_wrap: 10
+                            font:
+                                weight: normal
+                                style: italic
+                                fill: '#4ba3c5'
 
             station-train-subway:
                 filter: { kind: [station, train-station, train_station], $zoom: { min: 11 } }
@@ -6354,29 +6187,23 @@ layers:
                             visible: global.text_visible_station
                             font:
                                 fill: [0.20,0.20,0.20] # *text_fill
-                                # size: 10px
-                                # weight: 600
                                 stroke: { color: global.text_stroke, width: 4 }
                 low-priority-early:
                     filter: { kind_tile_rank: { min: 5 }, $zoom: { min: 0, max: 13 } }
                     draw:
                         icons:
                             visible: false
-                            #size: [[12, 10px], [14, 10px], [15, 16px]]
                             text: { visible: false }
                 low-priority-early-z13:
                     filter: { kind_tile_rank: { min: 5 }, $zoom: [13] }
                     draw:
                         icons:
                             visible: false
-                            #size: [[12, 10px], [14, 10px], [15, 16px]]
                             text: { visible: false }
                 low-priority-early-z14:
                     filter: { kind_tile_rank: { min: 7 }, $zoom: [14] }
                     draw:
                         icons:
-                            #size: [[14, 11px], [15, 16px], [17, 18px], [18, 20px]]
-                            #visible: false
                             text: { visible: false }
 
             landuse-labels-not-any-above:
@@ -6384,22 +6211,7 @@ layers:
                     all:
                         - $zoom: { min: 6 }
                         - area: true
-                        - $geometry: point
                         - not: { kind: [park, national_park, battlefield, conservation, protected_area, nature_reserve, forest, grass, beach, airport, aerodrome, university, college, school, kindergarten, winter_sports, zoo, theme_park, resort, aquarium, winery, maze, stadium, playground, allotments, attraction, landmark, glacier, station] }
-#                    any:
-#                        # show labels for smaller landuse areas at higher zooms
-#                        - { $zoom: [5,6,7], area: { min: 5000000000 } }
-#                        - { $zoom: [8],     area: { min: 1600000000 } }
-#                        - { $zoom: [9],     area: { min: 400000000 } }
-#                        - { $zoom: [10],    area: { min: 100000000 } }
-#                        - { $zoom: [11],    area: { min: 25000000 } }
-#                        - { $zoom: [12],    area: { min: 5000000 } }
-#                        - { $zoom: [13],    area: { min: 1000000 } }
-#                        - { $zoom: [14],    area: { min: 100000 } }
-#                        # show labels for smaller landuse areas at higher zooms
-#                        - { $zoom: [15],    area: { min: 5000 } }
-#                        - { $zoom: [16],    area: { min: 2000 } }
-#                        - { $zoom: { min: 17 }, area: true }
                 draw:
                     icons:
                         sprite: function() { return feature.kind; }
@@ -6410,23 +6222,15 @@ layers:
                             visible: global.text_visible_poi_landuse
                             font:
                                 fill: [0.20,0.20,0.20] # *text_fill
-    #                            size: 10px
-                                #weight: 600
                                 stroke: { color: global.text_stroke, width: 4 }
                 early-sizing:
                     filter: { $zoom: { max: 14 } }
-                    draw: { text-blend-order: { size: 11px } }
+                    draw: { icons: { text: { size: 11px } } }
                 building-like:
                     filter: { kind: [commercial,residential,warehouse,public,dormitory], osm_relation: false }
                     draw:
                         icons:
                             sprite: building
-#                residential-relations-paris-wtf:
-#                    filter: { kind: [residential], osm_relation: true }
-#                    draw:
-#                        icons:
-#                            text: { visible: true, text_source: short_name, font: { fill: red } }
-#                            icons: { sprite: park, visible: true }
                 hide-till-later:
                     filter: { kind: [pedestrian,common,railway,ship,houseboat,common,grass,wetland,pitch], $zoom: { max: 17 } }
                     draw:
@@ -6463,21 +6267,6 @@ layers:
                    draw:
                        icons:
                            visible: false
-#                z-other-tier6-early:
-#                    filter:
-#                        all:
-#                            - kind: [garden, allotments, parking, pedestrian, common, pitch, place_of_worship, playground, school, nursing_home]
-#                        any:
-#                            # limit show smaller landuse areas to higher zooms
-#                            - { $zoom: { max: 12 } }
-#                            - { $zoom: [12], area: { max: 500000 } }
-#                            - { $zoom: [13], area: { max: 10000 } }
-#                            - { $zoom: [14], area: { max: 4000 } }
-#                            - { $zoom: [15], area: { max: 2000 } }
-#                    draw:
-#                        icons:
-#                            visible: false
-
             university-poi:
                 filter: { kind: [university, college], area: false, $zoom: { max: 16 } }
                 draw:
@@ -6645,18 +6434,17 @@ layers:
                 filter: { $zoom: { min: 14 }, kind: glacier, area: false }
                 draw:
                     icons:
-                        visible: false
-                        text:
+                        size: 0px
+                        #visible: false
+                        text-blend-order:
                             visible: false
-                    text-blend-order:
-                        visible: false
-                        priority: 45
-                        interactive: true
-                        text_wrap: 10
-                        font:
-                            weight: normal
-                            style: italic
-                            fill: '#4ba3c5'
+                            priority: 45
+                            interactive: true
+                            text_wrap: 10
+                            font:
+                                weight: normal
+                                style: italic
+                                fill: '#4ba3c5'
             bus-stop-bus-station-labels:
                 filter:
                     kind: [bus_stop, bus_station]
@@ -6740,43 +6528,47 @@ layers:
             filter: { kind: aeroway_gate }
             draw:
                 icons:
-                    visible: false
-                text-blend-order:
-                    visible: global.text_visible_airport_gate
-                    interactive: true
-                    text_source: ref
-                    font:
-                        fill: global.text_fill_exits
-                        size: [[16,9px],[17,12px],[20,14px]]
-                        #stroke: { color: global.highway1, width: [[12,2px],[14,3px],[15,3px]] }
+                    size: 0px
+                    #visible: false
+                    text:
+                        visible: global.text_visible_airport_gate
+                        interactive: true
+                        text_source: ref
+                        font:
+                            fill: global.text_fill_exits
+                            size: [[16,9px],[17,12px],[20,14px]]
+                            #stroke: { color: global.highway1, width: [[12,2px],[14,3px],[15,3px]] }
             later:
                 filter: { $zoom: { min: 19 } }
                 draw:
-                    text-blend-order:
-                        font:
-                            weight: 600
+                    icons:
+                        text:
+                            font:
+                                weight: 600
 
         highway-exit:
             filter: { kind: motorway_junction, $zoom: { min: 14 } }
             draw:
                 icons:
-                    visible: false
-                text-blend-order:
-                    visible: global.text_visible_exits
-                    interactive: true
-                    text_source: ref
-                    priority: 1
-                    font:
-                        family: Montserrat
-                        fill: global.text_fill_exits
-                        size: [[12,9px],[15,12px],[17,14px]]
-                        stroke: { color: global.text_stroke, width: [[12,2px],[14,3px],[15,3px]] }
+                    size: 0px
+                    #visible: false
+                    text-blend-order:
+                        visible: global.text_visible_exits
+                        interactive: true
+                        text_source: ref
+                        priority: 1
+                        font:
+                            family: Montserrat
+                            fill: global.text_fill_exits
+                            size: [[12,9px],[15,12px],[17,14px]]
+                            stroke: { color: global.text_stroke, width: [[12,2px],[14,3px],[15,3px]] }
             later:
                 filter: { $zoom: { min: 16 } }
                 draw:
-                    text-blend-order:
-                        font:
-                            weight: 600
+                    icons:
+                        text:
+                            font:
+                                weight: 600
 
 
     water-area-labels:
