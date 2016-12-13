@@ -5870,14 +5870,6 @@ layers:
                 draw:
                     icons:
                         visible: false
-            hide-until-z13-any:
-                filter:
-                    kind:
-                        - memorial
-                    $zoom: { max: 13 }
-                draw:
-                    icons:
-                        visible: false
             hide-until-z14-any:
                 filter:
                     kind:
@@ -5921,6 +5913,7 @@ layers:
                 filter:
                     kind:
                         - peak
+                        # TODO: why is tram_stop listed twice, see above `hide-until-z15-any`?
                         - tram_stop
                         - police
                         - fire_station
@@ -5945,8 +5938,8 @@ layers:
                 filter:
                     $zoom: { max: 17 }
                     kind:
-                        - commercial
-                        - residential
+                        - commercial  # TODO: not sure why this is in the list
+                        - residential # TODO: not sure why this is in the list
                         - wood
                         - car_sharing
                         - bank
