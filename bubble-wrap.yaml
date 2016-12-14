@@ -3938,6 +3938,7 @@ layers:
                 filter: { population: true, $zoom: [4] }
                 draw:
                     text-blend-order:
+                        buffer: 10px
                         font:
                             size: 11px
                 early-ones-z4:
@@ -4188,7 +4189,7 @@ layers:
                             size: [[10,8px],[11,0px]]
                             sprite: capital-l
                             priority: 5
-                        text:
+                        text-blend-order:
                             priority: 5
             population-5m-10m:
                 filter:
@@ -4212,7 +4213,7 @@ layers:
                             size: [[10,8px],[11,0px]]
                             sprite: capital-l
                             priority: 6
-                        text:
+                        text-blend-order:
                             priority: 6
             population-1m-5m:
                 filter:
@@ -4236,7 +4237,7 @@ layers:
                             size: [[10,8px],[11,0px]]
                             sprite: capital-l
                             priority: 8
-                        text:
+                        text-blend-order:
                             priority: 8
             population-500k-1m:
                 filter:
@@ -4260,7 +4261,7 @@ layers:
                             size: [[10,6px],[11,0px]]
                             sprite: capital-m
                             priority: 10
-                        text:
+                        text-blend-order:
                             priority: 10
             population-200k-500k:
                 filter:
@@ -4285,7 +4286,7 @@ layers:
                             size: [[10,6px],[11,0px]]
                             sprite: capital-m
                             priority: 12
-                        text:
+                        text-blend-order:
                             priority: 12
             population-100k-200k:
                 filter:
@@ -4309,7 +4310,7 @@ layers:
                             size: [[10,6px],[11,0px]]
                             sprite: capital-m
                             priority: 14
-                        text:
+                        text-blend-order:
                             priority: 14
             population-50k-100k:
                 filter:
@@ -4335,7 +4336,7 @@ layers:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-m
                             priority: 16
-                        text:
+                        text-blend-order:
                             priority: 16
             population-20k-50k:
                 filter:
@@ -4361,7 +4362,7 @@ layers:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-s
                             priority: 18
-                        text:
+                        text-blend-order:
                             priority: 18
             population-10k-20k:
                 filter:
@@ -4387,7 +4388,7 @@ layers:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-s
                             priority: 20
-                        text:
+                        text-blend-order:
                             priority: 20
             population-5k-10k:
                 filter:
@@ -4413,7 +4414,7 @@ layers:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-s
                             priority: 22
-                        text:
+                        text-blend-order:
                             priority: 22
             population-2k-5k:
                 filter:
@@ -4439,7 +4440,7 @@ layers:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-s
                             priority: 24
-                        text:
+                        text-blend-order:
                             priority: 24
             population-1k-2k:
                 filter:
@@ -4465,7 +4466,7 @@ layers:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-s
                             priority: 26
-                        text:
+                        text-blend-order:
                             priority: 26
             population-200-1k:
                 filter:
@@ -4491,7 +4492,7 @@ layers:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-s
                             priority: 27
-                        text:
+                        text-blend-order:
                             priority: 27
         neighborhood:
             filter:
