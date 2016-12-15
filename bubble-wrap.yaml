@@ -4029,7 +4029,7 @@ layers:
                         visible: global.text_visible_admin
                         text_source: global.ux_language_text_source_short_proxy_name
                         font:
-                            size: [[7,15px],[8,17px]]
+                            size: [[7,15px],[8,16px]]
                             fill: [0.5,0.5,0.5]
                             transform: uppercase
                 pesky-z7:
@@ -4081,6 +4081,7 @@ layers:
                             size: [[5,9px],[8,10px],[12,11px]]
                 text-blend-order:
                     visible: global.text_visible_populated_places
+                    buffer: 8px
                     interactive: true
                     # NOTE: text doesn't seem to support buffer (only points?)
                     # buffer: 3px
@@ -4530,6 +4531,7 @@ layers:
                     #kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
+                        buffer: 7px
                         visible: global.text_visible_neighbourhoods_e
                         font:
                             size: 10px
@@ -4542,6 +4544,7 @@ layers:
                     kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
+                        buffer: 4px
                         visible: global.text_visible_neighbourhoods_e
                         font:
                             size: 11px
@@ -4557,7 +4560,7 @@ layers:
                         text_wrap: 12
                         visible: global.text_visible_neighbourhoods
                         font:
-                            size: 13px
+                            size: 12px
                             # stroke: { color: global.text_stroke, width: 3 }
             neighborhood-z15:
                 filter:
@@ -4570,7 +4573,7 @@ layers:
                         text_wrap: 12
                         visible: global.text_visible_neighbourhoods
                         font:
-                            size: 16px
+                            size: 14px
                             # stroke: { color: global.text_stroke, width: 3 }
                 z15-new:
                     filter:
