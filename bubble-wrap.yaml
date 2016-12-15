@@ -4482,6 +4482,7 @@ layers:
                     visible: false
                     priority: 29
                     text_wrap: 10
+                    max_lines: 2
                     font:
                         family: Varela
                         fill: [0.225,0.561,0.415]
@@ -4533,8 +4534,7 @@ layers:
                 draw:
                     text-blend-order:
                         text_wrap: 12
-                        # text_wrap: 18
-                        max_lines: 2
+                        max_lines: 3
                         visible: global.text_visible_neighbourhoods
                         font:
                             size: 12px
@@ -4548,6 +4548,7 @@ layers:
                 draw:
                     text-blend-order:
                         text_wrap: 12
+                        max_lines: 4
                         visible: global.text_visible_neighbourhoods
                         font:
                             size: 14px
@@ -4570,6 +4571,7 @@ layers:
                 draw:
                     text-blend-order:
                         text_wrap: 12
+                        max_lines: 4
                         visible: global.text_visible_neighbourhoods
                         font:
                             size: 17px
