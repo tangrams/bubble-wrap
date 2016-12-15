@@ -313,7 +313,7 @@ global:
     #
     #boundaries
     country_boundary: [1.0,1.0,1.0]
-    region_boundary: [1.0,1.0,1.0]
+    region_boundary: [0.95,0.95,0.95]
     subregion_boundary: '#bbb'
     city_wall: [0.682,0.682,0.682]
     retaining_wall: [0.827,0.808,0.780]
@@ -807,6 +807,10 @@ styles:
     dashed:
         base: lines
         dash: [1.25, 1.25]
+        dash_background_color: [0.808,0.860,0.851]
+    dashed_big:
+        base: lines
+        dash: [2.0, 1.0]
         dash_background_color: [0.808,0.860,0.851]
     dashedline:
         base: lines
@@ -3747,7 +3751,7 @@ layers:
             draw:
                 lines:
                     color: global.country_boundary
-                    width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [9, 2.5px], [14, 3.5px], [16, 4.5px], [17, 14m]]
+                    width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [8, 2.5px], [14, 3.5px], [16, 4.5px], [17, 14m]]
             water:
                 filter: { maritime_boundary: true }
                 draw:
@@ -3775,6 +3779,16 @@ layers:
                     order: global.feature_order
                     color: global.country_boundary
                     width: [[1, 0.2px], [2, 0.5px], [4, 1.0px], [9, 1.5px], [14, 2.5px], [16, 3.5px], [17, 10m]]
+            disputed:
+                filter: { kind: [disputed, line_of_control] }
+                draw:
+                    dashed:
+                        visible: false
+                    dashed_big:
+                        order: global.feature_order
+                        color: global.country_boundary
+                        #width: [[1, 0.2px], [2, 0.5px], [4, 1.0px], [9, 1.5px], [14, 2.5px], [16, 3.5px], [17, 10m]]
+                        width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [9, 2.5px], [14, 3.5px], [16, 4.5px], [17, 14m]]
         region:
             filter:
                 any:
@@ -3783,7 +3797,7 @@ layers:
             draw:
                 lines:
                     color: global.region_boundary
-                    width: [[0, 0.5px], [2, 1.0px], [5, 1.25px], [6, 1.5px], [7, 1.75px], [9, 3.5px], [14, 5.5px], [16, 6.5px], [17, 16m]]
+                    width: [[0, 0.5px], [2, 1.0px], [5, 1.25px], [6, 1.5px], [7, 1.75px], [8, 2.0px], [9, 3.5px], [14, 5.5px], [16, 6.5px], [17, 16m]]
             water:
                 filter: { maritime_boundary: true }
                 draw:
@@ -3872,14 +3886,25 @@ layers:
                         fill: [[2,[0.357,0.243,0.184]],[6,[0.604,0.437,0.427]]]
                         transform: uppercase
             country-z2-z3:
-                filter: { $zoom: [2,3] }
+                filter:
+                    $zoom: [2,3]
                 draw:
                     text-blend-order:
+                        priority: 10
+                        buffer: 10px
                         font:
                             size: 10px
-                early-ones:
-                    # US, Brazil, China, Russia, Canada, Greenland, Iceland, Australia, India, Japan, Guam, Indonesia, South Africa, Egypt, Nigeria, Kenya
-                    filter: { not: { name: ["United States of America","Brasil","中华人民共和国","Россия","Canada","Kalaallit Nunaat","Ísland","Australia","India","日本","Guam","Indonesia","South Africa","مصر","Nigeria","Kenya"] }, $zoom: [2,3] }
+                early-ones-z2:
+                    filter:
+                        $zoom: [2]
+                        not: { name: [United States of America,Brasil,中华人民共和国,Россия,Canada,Kalaallit Nunaat,Ísland,Australia,India,日本,Guam,Indonesia,South Africa,مصر,Nigeria,Kenya] }
+                    draw:
+                        text-blend-order:
+                            visible: false
+                early-ones-z2:
+                    filter:
+                        $zoom: [3]
+                        name: [Nederland,Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,Crna Gora,Македонија,The Gambia,Burundi,Swaziland,الإمارات العربية المتحدة,العراق,Singapore,El Salvador,Belize,Trinidad and Tobago, Saint Lucia, Montserrat,Anguilla,República Dominicana,Bahamas,British Virgin Islands,Antigua and Barbuda,Grenada,Sint Maarten,Saint Kitts and Nevis,Cayman Islands,België - Belgique - Belgien,Deutschland,España]
                     draw:
                         text-blend-order:
                             visible: false
@@ -3888,10 +3913,12 @@ layers:
                 draw:
                     text-blend-order:
                         buffer: 10px
+                        priority: 8
                         font:
                             size: 11px
                 early-ones-z4:
-                    filter: { name: [Nederland,Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,Crna Gora,Македонија,The Gambia,Burundi,Swaziland,الإمارات العربية المتحدة,العراق,Singapore,El Salvador,Belize,Trinidad and Tobago, Saint Lucia, Montserrat,Anguilla,República Dominicana,Bahamas,British Virgin Islands,Antigua and Barbuda,Grenada,Sint Maarten,Saint Kitts and Nevis,Cayman Islands,België - Belgique - Belgien], $zoom: {min: 4, max: 5} }
+                    filter:
+                        name: [Nederland,Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,Crna Gora,Македонија,The Gambia,Burundi,Swaziland,الإمارات العربية المتحدة,العراق,Singapore,El Salvador,Belize,Trinidad and Tobago, Saint Lucia, Montserrat,Anguilla,República Dominicana,Bahamas,British Virgin Islands,Antigua and Barbuda,Grenada,Sint Maarten,Saint Kitts and Nevis,Cayman Islands,België - Belgique - Belgien,Deutschland,España,Magyarország,Österreich,Polska]
                     draw:
                         text-blend-order:
                             visible: false
@@ -3904,10 +3931,12 @@ layers:
                         - { population: { min: 5000000 } }
                 draw:
                     text-blend-order:
+                        priority: 8
                         font:
                             size: 13px
                 early-ones-z5:
-                    filter: { name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,El Salvador,Belize,België - Belgique - Belgien], $zoom: {min: 5, max: 6} }
+                    filter:
+                        name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,El Salvador,Belize,België - Belgique - Belgien]
                     draw:
                         text-blend-order:
                             visible: false
@@ -3916,10 +3945,12 @@ layers:
                 filter: { $zoom: [6] }
                 draw:
                     text-blend-order:
+                        priority: 8
                         font:
                             size: 16px
                 small-ones-z6:
-                    filter: { name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,België - Belgique - Belgien,Хуссар Ирыстон,Аҧсны - Абхазия], $zoom: {min: 6, max: 7} }
+                    filter:
+                        name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,België - Belgique - Belgien,Хуссар Ирыстон,Аҧсны - Абхазия]
                     draw:
                         text-blend-order:
                             visible: false
@@ -3931,7 +3962,9 @@ layers:
                         font:
                             size: [[7,18px],[9,24px]]
                 small-ones-z7:
-                    filter: { name: [Liechtenstein,San Marino,Civitatis Vaticanæ,Хуссар Ирыстон,Аҧсны - Абхазия], $zoom: {min: 7, max: 8} }
+                    filter:
+                        $zoom: [7]
+                        name: [Liechtenstein,San Marino,Civitatis Vaticanæ,Хуссар Ирыстон,Аҧсны - Абхазия]
                     draw:
                         text-blend-order:
                             visible: false
@@ -3950,19 +3983,25 @@ layers:
                         weight: 300
                         fill: [0.3,0.3,0.3]
             region-z4:
-                filter: { $zoom: [4], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+                filter:
+                    $zoom: [4]
+                    not: { name: [Western Cape,Eastern Cape,Northern Cape,North West,Limpopo,KwaZulu-Natal,Hamburg,Freie und Hansestadt Hamburg,Neuchâtel,Nordrhein-Westfalen,Haute-Normandie,Baden-Württemberg,Bayern,Sachsen-Anhalt,Berlin,Mecklenburg-Vorpommern,Schleswig-Holstein,Brandenburg,Niedersachsen,Saarland,Thüringen,Hessen,Sachsen] }
                 draw:
                     text-blend-order:
                         visible: global.text_visible_admin
             region-z5:
-                filter: { $zoom: [5], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+                filter:
+                    $zoom: [5]
+                    not: { name: [Western Cape,Eastern Cape,Northern Cape,North West,Limpopo,KwaZulu-Natal,Hamburg,Freie und Hansestadt Hamburg,Neuchâtel,Nordrhein-Westfalen,Haute-Normandie,Baden-Württemberg,Bayern,Sachsen-Anhalt,Berlin,Mecklenburg-Vorpommern,Schleswig-Holstein,Brandenburg,Niedersachsen,Saarland,Thüringen,Hessen,Sachsen] }
                 draw:
                     text-blend-order:
                         visible: global.text_visible_admin
                         font:
                             size: 13px
             region-z6:
-                filter: { $zoom: [6], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+                filter:
+                    $zoom: [6]
+                    not: { name: [Western Cape,Eastern Cape,Northern Cape,North West,Limpopo,KwaZulu-Natal,Hamburg,Freie und Hansestadt Hamburg,Neuchâtel,Nordrhein-Westfalen,Haute-Normandie,Baden-Württemberg,Bayern,Sachsen-Anhalt,Berlin,Mecklenburg-Vorpommern,Schleswig-Holstein,Brandenburg,Niedersachsen,Saarland,Thüringen,Hessen,Sachsen] }
                 draw:
                     text-blend-order:
                         visible: global.text_visible_admin
@@ -3980,18 +4019,23 @@ layers:
                             fill: [0.5,0.5,0.5]
                             transform: uppercase
                 pesky-z7:
-                    filter: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"], $zoom: [7] }
+                    filter:
+                        $zoom: [7]
+                        name: [Western Cape,Eastern Cape,Northern Cape,North West,Limpopo,KwaZulu-Natal,Hamburg,Freie und Hansestadt Hamburg,Neuchâtel,Nordrhein-Westfalen,Haute-Normandie,Baden-Württemberg,Bayern,Sachsen-Anhalt,Berlin,Mecklenburg-Vorpommern,Schleswig-Holstein,Brandenburg,Niedersachsen,Saarland,Thüringen,Hessen,Sachsen]
                     draw:
                         text-blend-order:
                             visible: false
-                small-ones-z7:
-                    filter: { name: ["Delaware","New Jersey","Connecticut","Rhode Island","Massachusetts","New Hampshire","Vermont"], $zoom: [7] }
+                abbrev-small-ones-z7:
+                    filter:
+                        $zoom: [7]
+                        name: [Delaware,New Jersey,Connecticut,Rhode Island,Massachusetts,New Hampshire,Vermont]
                     draw:
                         text-blend-order:
                             text_source: global.ux_language_text_source_abbreviation
                             font: { transform: uppercase }
                 region-z8:
-                    filter: { $zoom: [8] }
+                    filter:
+                        $zoom: [8]
                     draw:
                         text-blend-order:
                             text_source: global.ux_language_text_source
@@ -4004,7 +4048,6 @@ layers:
                             text-blend-order:
                                 font:
                                     size: 13px
-                                    #fill: blue  #debug
 
         populated-places:
             filter:
@@ -4051,7 +4094,6 @@ layers:
                         visible: false
                     text-blend-order:
                         visible: global.text_visible_populated_places
-
             _text_early:
                 filter: { $zoom: { max: 11 } }
                 draw:
@@ -4080,6 +4122,14 @@ layers:
                         buffer: 10px
                         #color: yellow
                         #visible: false
+
+            sorry-denver:
+                filter:
+                    $zoom: [3]
+                    name: [Denver]
+                draw:
+                    icons:
+                        visible: false
 
             # HACK
             # NOTE: These should use icon: buffer instead of going visible: false, but there are problems using icon here :(
@@ -4213,7 +4263,6 @@ layers:
                         size: [[8,6px],[9,6px],[10,6px],[11,0px]]
                         sprite: townspot-m-rev
                         priority: 13
-                        collide: false  #debug
                         text:
                             font:
                                 size: [[6,10px],[8,12px],[10,14px],[12,16px],[13,0px]]
