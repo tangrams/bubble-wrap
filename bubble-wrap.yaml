@@ -5742,14 +5742,14 @@ layers:
         building-icon:
             filter:
                 kind:
-                    - building
+                    - apartments
                     - auditorium
-                    - terminal
+                    - building
                     - hangar
-                    - retirement_home
                     - manor
                     - recreation_center
-                    - apartments
+                    - retirement_home
+                    - terminal
             draw:
                 icons:
                     sprite: building
@@ -5789,10 +5789,10 @@ layers:
                 filter:
                     $zoom: { min: 18 }
                     kind:
-                        - toilets
-                        - playground
-                        - information
                         - drinking_water
+                        - information
+                        - playground
+                        - toilets
                         - traffic_signals
                 draw: { icons: { visible: global.icon_visible_poi_landuse_e } }
             z19:
@@ -5831,8 +5831,8 @@ layers:
                 filter:
                     kind:
                         - natural_forest  # NOTE: all natural_* should only be in landuse layer
-                        - natural_wood
                         - natural_park
+                        - natural_wood
                 draw:
                     icons:
                         size: 0px
@@ -5847,13 +5847,13 @@ layers:
                         filter:
                             $zoom: { min: 17 }
                             kind:
-                                - pedestrian
                                 - common
-                                - railway
-                                - ship
-                                - houseboat
                                 - common
                                 - grass
+                                - houseboat
+                                - pedestrian
+                                - railway
+                                - ship
                                 - wetland
                         draw:
                             icons:
@@ -5864,9 +5864,9 @@ layers:
             hide-until-z12-any:
                 filter:
                     kind:
-                        - prison
-                        - museum
                         - landmark
+                        - museum
+                        - prison
                     $zoom: { max: 12 }
                 draw:
                     icons:
@@ -5874,10 +5874,10 @@ layers:
             hide-until-z14-any:
                 filter:
                     kind:
-                        - post_office
-                        - natural_wood
                         - natural_forest
                         - natural_park
+                        - natural_wood
+                        - post_office
                     $zoom: { max: 14 }
                 draw:
                     icons:
@@ -5912,11 +5912,11 @@ layers:
             hide-until-z16-any:
                 filter:
                     kind:
-                        - peak
-                        - tram_stop
-                        - police
                         - fire_station
                         - grass
+                        - peak
+                        - police
+                        - tram_stop
                     $zoom: { max: 16 }
                 draw:
                     icons:
@@ -5925,10 +5925,10 @@ layers:
                 filter:
                     area: false
                     kind:
-                        - garden
                         - allotments
-                        - university
                         - college
+                        - garden
+                        - university
                     $zoom: { max: 16 }
                 draw:
                     icons:
@@ -5938,10 +5938,10 @@ layers:
                 filter:
                     $zoom: { max: 17 }
                     kind:
-                        - wood
-                        - car_sharing
                         - bank
                         - bus_stop
+                        - car_sharing
+                        - wood
                 draw:
                     icons:
                         visible: false
@@ -5950,15 +5950,15 @@ layers:
                     area: true
                     $zoom: { max: 17 }
                     kind:
-                        - pedestrian
                         - common
-                        - railway
-                        - ship
-                        - houseboat
                         - common
                         - grass
-                        - wetland
+                        - houseboat
+                        - pedestrian
                         - pitch
+                        - railway
+                        - ship
+                        - wetland
                 draw:
                     icons:
                         visible: false
@@ -5967,13 +5967,13 @@ layers:
                     area: false
                     $zoom: { max: 17 }
                     kind:
-                        - animal
                         - accountant
                         - administrative
                         - advertising_agency
+                        - animal
                         - architect
                         - association
-                        - atm
+                        - atm               # why twice?
                         - bakery
                         - bed_and_breakfast
                         - bicycle
@@ -5990,7 +5990,7 @@ layers:
                         - consulting
                         - convenience
                         - doityourself
-                        - drinking_water
+                        - drinking_water            # why twice?
                         - dry_cleaning
                         - educational_institution
                         - emergency_phone
@@ -6044,8 +6044,8 @@ layers:
                 filter:
                     kind:
                         - atm
-                        - drinking_water
                         - bus_stop
+                        - drinking_water
                     $zoom: { max: 18 }
                 draw:
                     icons:
@@ -6056,8 +6056,8 @@ layers:
                     area: false
                     kind:
                         - bench
-                        - waste_basket
                         - parking
+                        - waste_basket
                 draw:
                     icons:
                         visible: false
@@ -6066,8 +6066,8 @@ layers:
                     $zoom: { max: 19 }
                     kind:
                         - bicycle_parking
-                        - car_sharing
                         - burial_vault
+                        - car_sharing
                 draw:
                     icons:
                         visible: false
