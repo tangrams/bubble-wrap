@@ -4558,6 +4558,8 @@ layers:
                 draw:
                     text-blend-order:
                         text_wrap: 12
+                        # text_wrap: 18
+                        max_lines: 2
                         visible: global.text_visible_neighbourhoods
                         font:
                             size: 12px
