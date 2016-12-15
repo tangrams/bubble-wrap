@@ -719,6 +719,7 @@ sources:
         # road labels in Tangram JS are broken when overzooming, set max_zoom: 18 to preview fix
         url_params:
             api_key: vector-tiles-7bfyfz8
+            #api_key: mapzen-45zyeJa        #dev
         max_zoom: 16
 
 #    # Only enable this for local debug, should not be enabled for prod (app inserts these at runtime)
@@ -5885,7 +5886,6 @@ layers:
                 filter:
                     $zoom: { max: 15 }
                     kind:
-                        - tram_stop
                         - cafe
                         - restaurant
                 draw:
@@ -5913,7 +5913,6 @@ layers:
                 filter:
                     kind:
                         - peak
-                        # TODO: why is tram_stop listed twice, see above `hide-until-z15-any`?
                         - tram_stop
                         - police
                         - fire_station
@@ -5934,12 +5933,11 @@ layers:
                 draw:
                     icons:
                         visible: false
+            # no POIs for commercial, residential
             hide-until-z17-any:
                 filter:
                     $zoom: { max: 17 }
                     kind:
-                        - commercial  # TODO: not sure why this is in the list
-                        - residential # TODO: not sure why this is in the list
                         - wood
                         - car_sharing
                         - bank
