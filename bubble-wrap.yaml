@@ -9,6 +9,20 @@ global:
             // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
             return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
         }
+    ux_language_text_source_boundary_lines: |
+        function() {
+            var right = (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
+            var left = (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
+            if( right && left ) {
+                if( right.includes(' ') || left.includes(' ') ) {
+                    return left + " - " + right;
+                } else {
+                    return right + '\n' + left;
+                }
+            } else {
+                return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+            }
+        }
     ux_language_text_source_short: |
         function() {
             return (global.ux_language && feature['name:short:'+global.ux_language]) || (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) || feature['name:short'];
@@ -3799,19 +3813,7 @@ layers:
                     text-blend-order:
                         priority: 3
                         visible: global.text_visible_admin
-                        #text_source: global.ux_language_text_source
-                        text_source: |
-                            function() {
-                                if( feature['name:right'] && feature['name:left'] ) {
-                                    if( feature['name:right'].includes(' ') || feature['name:left'].includes(' ') ) {
-                                        return feature['name'];
-                                    } else {
-                                        return feature['name:right'] + '\n' + feature['name:left'];
-                                    }
-                                } else {
-                                    return feature['name'];
-                                }
-                            }
+                        text_source: global.ux_language_text_source_boundary_lines
                         text_wrap: 100px
                         offset: 10px
                         anchor: top
