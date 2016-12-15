@@ -3356,21 +3356,21 @@ layers:
                     color: [0.600,0.667,0.627]
                     width: [[13,0.5px],[14,1px],[15, 1px], [16, 1.5px], [18, 3px], [19, 5px]]
         airport-lines:
-            filter: { kind: minor_road, aeroway: [runway,taxiway] }
+            filter: { kind: aeroway, kind_detail: [runway,taxiway] }
             draw:
                 lines:
                     color: [[10,[0.4,0.4,0.4]],[11,[0.50,0.50,0.50]],[12,[0.7,0.7,0.7]],[13,[0.75,0.75,0.75]],[14,[0.95,0.95,0.95]]]
                     cap: butt
-                    width: [[9,0px],[10,0.75px],[11,1.25px],[12,2px],[13,4px],[14,8px],[15,16px],[16,32px],[17,60m]]
+                    width: [[10,0.75px],[11,1.25px],[12,2px],[13,4px],[14,8px],[15,16px],[16,32px],[17,60m]]
                     # outline:
                     #     color: [17,[0.95,0.95,0.95]]
                     #     width: [17,[60m]]
             # Features come in at zoom 9, but include mostly minor airports without POIs until z13
             early:
-                filter: { $zoom: { max: 12 }, not: { landuse_kind: [aerodrome, runway, taxiway] } }
-                draw:
-                    lines:
-                        visible: false
+               filter: { $zoom: { max: 12 }, not: { landuse_kind: [aerodrome, runway, taxiway] } }
+               draw:
+                   lines:
+                       visible: false
             not-round:
                 filter: { $zoom: { min: 17 } }
                 draw:
@@ -6421,6 +6421,11 @@ layers:
                 polygons:
                     visible: true
                     color: [[10,[0.4,0.4,0.4]],[11,[0.50,0.50,0.50]],[12,[0.7,0.7,0.7]],[13,[0.75,0.75,0.75]],[14,[0.95,0.95,0.95]]]
+            early:
+                filter: { $zoom: [9] }
+                draw:
+                    polygons:
+                        visible: false
         apron:
             filter:
                 kind: apron
