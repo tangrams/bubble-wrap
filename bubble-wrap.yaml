@@ -4,10 +4,36 @@ global:
     #ux/ui
     ux_language: false             # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
     ux_language_fallback: false    # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
+    ux_language_text_source_fn: |
+        function(f) {
+          var language = global.ux_language ? 'name:'+global.ux_language : '';
+          var fallback = global.ux_language_fallback ? 'name:'+global.ux_language_fallback : '';
+          // replace self with evaluated global options
+          var func = global.ux_language_text_source_fn =
+              global.ux_language && global.ux_language_fallback ?
+                function(f) { return f[language] || f[fallback] || f['name']; } :
+              global.ux_language ?
+                function(f) { return f[language] || f['name']; } :
+              global.ux_language_fallback ?
+                function(f) { return f[fallback] || f['name']; } :
+                function(f) { return f['name']; };
+          return func(f);
+        }
     ux_language_text_source: |
-        function() {
-            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
-            return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+        function() { return global.ux_language_text_source_fn(feature); }
+    ux_language_text_source_short_fn: |
+        function(f) {
+          var language = global.ux_language ? 'name:short:'+global.ux_language : '';
+          var fallback = global.ux_language_fallback ? 'name:short:'+global.ux_language_fallback : '';
+          var func = global.ux_language_text_source_short_fn =
+              global.ux_language && global.ux_language_fallback ?
+                function(f) { return f[language] || f[fallback] || f['name:short']; } :
+              global.ux_language ?
+                function(f) { return f[language] || f['name:short']; } :
+              global.ux_language_fallback ?
+                function(f) { return f[fallback] || f['name:short']; } :
+                function(f) { return f['name:short']; };
+          return func(f);
         }
     ux_language_text_source_boundary_lines: |
         function() {
@@ -24,25 +50,24 @@ global:
             }
         }
     ux_language_text_source_short: |
-        function() {
-            return (global.ux_language && feature['name:short:'+global.ux_language]) || (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) || feature['name:short'];
-        }
+        function() { return global.ux_language_text_source_short_fn(feature); }
     ux_language_text_source_short_proxy_name: |
         function() {
-            var name  = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
-            var short = (global.ux_language && feature['name:short:'+global.ux_language]) || (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) || feature['name:short'];
+            var name  = global.ux_language_text_source_fn(feature);
+            var short = global.ux_language_text_source_short_fn(feature);
             return short ? name : '';
         }
     ux_language_text_source_abbreviation: |
         function() {
-            var name  = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
-            var abbrev = (global.ux_language && feature['name:abbreviation:'+global.ux_language]) || (global.ux_language_fallback && feature['name:abbreviation:'+global.ux_language_fallback]) || feature['name:abbreviation'];
-            return abbrev || name;
+            var abbrev = (global.ux_language && feature['name:abbreviation:'+global.ux_language]) ||
+                         (global.ux_language_fallback && feature['name:abbreviation:'+global.ux_language_fallback]) ||
+                         feature['name:abbreviation'];
+            return abbrev || global.ux_language_text_source_fn(feature);
         }
     ux_language_text_source_iata: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
-            if(feature.iata) {
+            var name = global.ux_language_text_source_fn(feature);
+            if (feature.iata) {
                 if (name) {
                     return name + ' (' + feature.iata + ')';
                 }
@@ -55,26 +80,25 @@ global:
         }
     ux_language_text_source_ocean: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            var name = global.ux_language_text_source_fn(feature);
             return name.split('').join('  ');
         }
     ux_language_text_source_sea: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            var name = global.ux_language_text_source_fn(feature);
             return name.split('').join(' ');
         }
     ux_language_text_source_continent: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            var name = global.ux_language_text_source_fn(feature);
             return name.split('').join(' ');
         }
     ux_language_text_source_road_ref_and_name: |
         function() {
-            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
-            return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+            return global.ux_language_text_source_fn(feature);
 
             /*
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+            var name = global.ux_language_text_source_fn(feature);
             if(feature.ref && name) {
                 return (feature.ref + ' ' + name);
             } else {
@@ -84,11 +108,10 @@ global:
         }
     ux_language_text_source_road_ref_and_name_short: |
         function() {
-            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
-            return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+            return global.ux_language_text_source_fn(feature);
 
             /*
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+            var name = global.ux_language_text_source_fn(feature);
             if (feature.ref && (feature.ref.length < 6) && name) {
                 return feature.ref + ' ' + name;
             } else {
@@ -98,17 +121,17 @@ global:
         }
     ux_language_text_source_piste_advanced: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+            var name = global.ux_language_text_source_fn(feature);
             return name ? ('◆ ' + name) : '◆';
         }
     ux_language_text_source_piste_expert: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+            var name = global.ux_language_text_source_fn(feature);
             return name ? ('◆◆ ' + name) : '◆◆';
         }
     ux_language_text_source_building_and_address: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+            var name = global.ux_language_text_source_fn(feature);
             if (name && feature.addr_housenumber) {
                 return name + '\n' + feature.addr_housenumber;
             } else {
