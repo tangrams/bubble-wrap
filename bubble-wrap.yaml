@@ -313,7 +313,7 @@ global:
     #
     #boundaries
     country_boundary: [1.0,1.0,1.0]
-    region_boundary: [0.95,0.95,0.95]
+    region_boundary: [0.96,0.96,0.96]
     subregion_boundary: '#bbb'
     city_wall: [0.682,0.682,0.682]
     retaining_wall: [0.827,0.808,0.780]
@@ -3909,7 +3909,8 @@ layers:
                         text-blend-order:
                             visible: false
             country-z4:
-                filter: { population: true, $zoom: [4] }
+                filter:
+                    $zoom: [4]
                 draw:
                     text-blend-order:
                         buffer: 10px
@@ -3918,17 +3919,13 @@ layers:
                             size: 11px
                 early-ones-z4:
                     filter:
-                        name: [Nederland,Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,Crna Gora,Македонија,The Gambia,Burundi,Swaziland,الإمارات العربية المتحدة,العراق,Singapore,El Salvador,Belize,Trinidad and Tobago, Saint Lucia, Montserrat,Anguilla,República Dominicana,Bahamas,British Virgin Islands,Antigua and Barbuda,Grenada,Sint Maarten,Saint Kitts and Nevis,Cayman Islands,België - Belgique - Belgien,Deutschland,España,Magyarország,Österreich,Polska]
+                        name: [Nederland,Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,Crna Gora,Македонија,The Gambia,Burundi,Swaziland,الإمارات العربية المتحدة,العراق,Singapore,El Salvador,Belize,Trinidad and Tobago, Saint Lucia, Montserrat,Anguilla,República Dominicana,Bahamas,British Virgin Islands,Antigua and Barbuda,Grenada,Sint Maarten,Saint Kitts and Nevis,Cayman Islands,België - Belgique - Belgien,Deutschland,España,Magyarország,Österreich,Polska,Хуссар Ирыстон,Аҧсны - Абхазия]
                     draw:
                         text-blend-order:
                             visible: false
             country-z5:
                 filter:
-                    all:
-                        - population: true
-                        - $zoom: [5]
-                    any:
-                        - { population: { min: 5000000 } }
+                    $zoom: [5]
                 draw:
                     text-blend-order:
                         priority: 8
@@ -3936,13 +3933,15 @@ layers:
                             size: 13px
                 early-ones-z5:
                     filter:
-                        name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,El Salvador,Belize,België - Belgique - Belgien]
+                        # South Ossetia and Abkhazia aren't countries (they are disputed areas)
+                        - name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,El Salvador,Belize,België - Belgique - Belgien,"Хуссар Ирыстон - Южная Осетия","Хуссар Ирыстон","Аҧсны - Абхазия","Լեռնային Ղարաբաղի Հանրապետությու (Nagorno-Karabakh Republic)"]
+                        - population: { max: 5000000 }
                     draw:
                         text-blend-order:
                             visible: false
             country-z6:
-                # South Ossetia and Abkhazia aren't countries (they are disputed areas)
-                filter: { $zoom: [6] }
+                filter:
+                    $zoom: [6]
                 draw:
                     text-blend-order:
                         priority: 8
@@ -3950,13 +3949,15 @@ layers:
                             size: 16px
                 small-ones-z6:
                     filter:
-                        name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,België - Belgique - Belgien,Хуссар Ирыстон,Аҧсны - Абхазия]
+                        # South Ossetia and Abkhazia aren't countries (they are disputed areas)
+                        - name: [Luxembourg,Liechtenstein,San Marino,Civitatis Vaticanæ,België - Belgique - Belgien,"Хуссар Ирыстон - Южная Осетия","Хуссар Ирыстон","Аҧсны - Абхазия","Լեռնային Ղարաբաղի Հանրապետությու (Nagorno-Karabakh Republic)"]
+                        - population: { max: 5000000 }
                     draw:
                         text-blend-order:
                             visible: false
             country-z7:
-                # South Ossetia and Abkhazia aren't countries (they are disputed areas)
-                filter: { $zoom: { min: 7, max: 9 } }
+                filter:
+                    $zoom: { min: 7, max: 9 }
                 draw:
                     text-blend-order:
                         font:
@@ -3964,10 +3965,19 @@ layers:
                 small-ones-z7:
                     filter:
                         $zoom: [7]
-                        name: [Liechtenstein,San Marino,Civitatis Vaticanæ,Хуссар Ирыстон,Аҧсны - Абхазия]
+                        # South Ossetia and Abkhazia aren't countries (they are disputed areas)
+                        name: [Liechtenstein,San Marino,Civitatis Vaticanæ,"Хуссар Ирыстон - Южная Осетия","Хуссар Ирыстон","Аҧсны - Абхазия","Լեռնային Ղարաբաղի Հանրապետությու (Nagorno-Karabakh Republic)"]
                     draw:
                         text-blend-order:
                             visible: false
+                small-pop:
+                    filter:
+                        - population: { max: 5000000 }
+                    draw:
+                        text-blend-order:
+                            priority: 30
+                            font:
+                                size: 12px
 
         region:
             filter:
@@ -4135,17 +4145,17 @@ layers:
             # NOTE: These should use icon: buffer instead of going visible: false, but there are problems using icon here :(
             # This fixes Paris area, but causes problems for small places in the USA eg Table Bluff near Eureka, California.
             funky-village:
-                filter: { kind_detail: [village], $zoom: [11], population: { max: 1000 } }
+                filter: { $zoom: [11], population: { max: 1000 }, kind_detail: [village] }
                 draw:
                     text-blend-order:
                         visible: false
             funky-isolated_dwelling:
-                filter: { kind_detail: [isolated_dwelling], $zoom: [13] }
+                filter: { $zoom: [13], kind_detail: [isolated_dwelling] }
                 draw:
                     text-blend-order:
                         visible: false
             hamlet:
-                filter: { kind_detail: hamlet, $zoom: [13] }
+                filter: { $zoom: [13], kind_detail: hamlet }
                 draw:
                     text-blend-order:
                         visible: false
@@ -4154,7 +4164,7 @@ layers:
             # someone in London and Salt Lake City thought neighbourhoods should be tagged place: locality
             # They were wrong
             funky-fake-neighbourhoods:
-                filter: { kind_detail: [locality], $zoom: { min: 13 } }
+                filter: { $zoom: { min: 13 }, kind_detail: [locality] }
                 draw:
                     text-blend-order:
                         visible: false
@@ -4175,6 +4185,7 @@ layers:
                         font:
                             size: [[2,11px],[6,15px],[8,16px],[10,18px],[12,18px],[13,0px]]
                 capital:
+                    # we only want townspots to show as capital dots starting at zoom 5
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
                         icons:
@@ -4199,6 +4210,7 @@ layers:
                         font:
                             size: [[4,10px],[6,13px],[8,16px],[10,18px],[12,18px],[13,0px]]
                 capital:
+                    # we only want townspots to show as capital dots starting at zoom 5
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
                         icons:
@@ -4223,6 +4235,7 @@ layers:
                         font:
                             size: [[4,10px],[6,13px],[8,16px],[10,18px],[12,18px],[13,0px]]
                 capital:
+                    # we only want townspots to show as capital dots starting at zoom 5
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
                         icons:
@@ -4485,7 +4498,11 @@ layers:
                             priority: 27
                         text-blend-order:
                             priority: 27
-        neighborhood:
+
+        #
+        #neighborhoods (excluding microhoods, eg the Tendernob)
+        #
+        neighbourhood:
             filter:
                 kind:
                     - macrohood
@@ -4495,6 +4512,8 @@ layers:
                 is_landuse_aoi: false
             draw:
                 text-blend-order:
+                    # there are more labels than we want to show, so we hide them,
+                    # then selectively reveal in classes below (ultimately a data problem)
                     visible: false
                     priority: 29
                     buffer: 8px
@@ -4527,7 +4546,6 @@ layers:
                         visible: global.text_visible_neighbourhoods_e
                         font:
                             size: 10px
-                            # stroke: { color: global.text_stroke, width: 2 }
             neighborhood-z13:
                 filter:
                     $zoom: [13]
@@ -4539,7 +4557,6 @@ layers:
                         visible: global.text_visible_neighbourhoods_e
                         font:
                             size: 11px
-                            # stroke: { color: global.text_stroke, width: 2 }
             neighborhood-z14:
                 filter:
                     $zoom: [14]
@@ -4553,7 +4570,6 @@ layers:
                         visible: global.text_visible_neighbourhoods
                         font:
                             size: 12px
-                            # stroke: { color: global.text_stroke, width: 3 }
             neighborhood-z15:
                 filter:
                     $zoom: [15]
@@ -4567,7 +4583,6 @@ layers:
                         visible: global.text_visible_neighbourhoods
                         font:
                             size: 14px
-                            # stroke: { color: global.text_stroke, width: 3 }
                 z15-new:
                     filter:
                         all:
@@ -4590,7 +4605,6 @@ layers:
                         visible: global.text_visible_neighbourhoods
                         font:
                             size: 17px
-                            # stroke: { color: global.text_stroke, width: 3 }
 
 #    landuse_labels_debug:
 #        data: { source: mapzen, layer: [landuse] }
