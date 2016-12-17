@@ -5263,7 +5263,6 @@ layers:
             draw:
                 icons:
                     size: 0px
-#                    priority: 1
                     text:
                         visible: global.text_visible_exits
                         interactive: true
@@ -5552,25 +5551,7 @@ layers:
                         size: 11px
                         stroke: { color: global.text_stroke_address, width: 1 }
 
-#        tier1:
-#            filter:
-#                any:
-#                    # limit show smaller landuse areas to higher zooms
-#                    - { $zoom: { min: 3 },  area: { min: 300000000 } }
-#                    - { $zoom: { min: 4 },  area: { min: 300000000 } }
-#                    - { $zoom: { min: 5 },  area: { min: 150000000 } }
-#                    - { $zoom: { min: 6 },  area: { min: 150000000 } }
-#                    - { $zoom: { min: 7 },  area: { min: 100000000 } }
-#                    - { $zoom: { min: 8 },  area: { min: 10000000 } }
-#                    - { $zoom: { min: 9 },  area: { min: 5000000 } }
-#                    - { $zoom: { min: 10 }, area: { min: 1000000 } }
-#                    - { $zoom: { min: 11 }, area: { min: 500000 } }
-#                    - { $zoom: { min: 12 }, area: { min: 500000 } }
-#                    - { $zoom: { min: 13 }, area: { min: 100000 } }
-#                    - { $zoom: { min: 14 }, area: { min: 50000 } }
-#                    - { $zoom: { min: 15 }, area: { min: 20000 } }
-#                    - { $zoom: { min: 15 }, area: { min: 2000 } }
-#                    - { $zoom: { min: 16 }, area: true }
+        #TIER 1
         national_park:
             filter:
                 all:
@@ -5596,24 +5577,7 @@ layers:
                         order: 19
                         visible: true
                         # color: [[4,[0.242,0.737,0.712]],[12,[0.224,0.682,0.659]]]
-#        tier2:
-#            filter:
-#                any:
-#                    # limit show smaller landuse areas to higher zooms
-#                    - { $zoom: { min: 4 },  area: { min: 1000000000 } }
-#                    - { $zoom: { min: 5 },  area: { min: 1000000000 } }
-#                    - { $zoom: { min: 6 },  area: { min: 150000000 } }
-#                    - { $zoom: { min: 7 },  area: { min: 100000000 } }
-#                    - { $zoom: { min: 8 },  area: { min: 10000000 } }
-#                    - { $zoom: { min: 9 },  area: { min: 5000000 } }
-#                    - { $zoom: { min: 10 }, area: { min: 1000000 } }
-#                    - { $zoom: { min: 11 }, area: { min: 500000 } }
-#                    - { $zoom: { min: 12 }, area: { min: 250000 } }
-#                    - { $zoom: { min: 13 }, area: { min: 100000 } }
-#                    - { $zoom: { min: 14 }, area: { min: 50000 } }
-#                    - { $zoom: { min: 15 }, area: { min: 20000 } }
-#                    - { $zoom: { min: 15 }, area: { min: 2000 } }
-#                    - { $zoom: { min: 16 }, area: true }
+        #TIER 2
         conservation:
             filter:
                 all:
@@ -5668,11 +5632,6 @@ layers:
                     # color: [[4,[0.655,0.800,0.796]],[11,[0.588,0.780,0.773]],[12,[0.242,0.737,0.712]],[14,[0.412,0.733,0.718]],[15,[0.635,0.792,0.788]]]
                     color: [[4,[0.655,0.800,0.796]],[11,[0.588,0.780,0.773]],[12,[0.635,0.792,0.788]]]
                     visible: true
-            #forest:
-#                    filter: { kind: forest }
-#                    draw:
-#                        dots2:
-#                            color: green
             national_park:
                 #filter: function() { return feature.name && (feature.name.indexOf('National Park') > -1); }
                 filter:
@@ -5689,20 +5648,7 @@ layers:
                 dots2:
                     color: [[0, global.earth2],[9, global.earth2]]
                     visible: global.earth2_v
-#        tier3:
-#            filter:
-#                any:
-#                    # limit show smaller landuse areas to higher zooms
-#                    - { $zoom: { min: 8 },  area: { min: 10000000 } }
-#                    - { $zoom: { min: 9 },  area: { min: 5000000 } }
-#                    - { $zoom: { min: 10 }, area: { min: 1000000 } }
-#                    - { $zoom: { min: 11 }, area: { min: 500000 } }
-#                    - { $zoom: { min: 12 }, area: { min: 500000 } }
-#                    - { $zoom: { min: 13 }, area: { min: 100000 } }
-#                    - { $zoom: { min: 14 }, area: { min: 50000 } }
-#                    - { $zoom: { min: 15 }, area: { min: 20000 } }
-#                    - { $zoom: { min: 15 }, area: { min: 2000 } }
-#                    - { $zoom: { min: 16 }, area: true }
+        #TIER 3
         airport:
             filter:
                 kind: aerodrome
@@ -5724,18 +5670,7 @@ layers:
                 dots2:
                     color: [0.827,0.753,0.682]
                     visible: true
-#        tier4:
-#            filter:
-#                any:
-#                    # limit show smaller landuse areas to higher zooms
-#                    - { $zoom: { min: 10 }, area: { min: 1000000 } }
-#                    - { $zoom: { min: 11 }, area: { min: 500000 } }
-#                    - { $zoom: { min: 12 }, area: { min: 500000 } }
-#                    - { $zoom: { min: 13 }, area: { min: 100000 } }
-#                    - { $zoom: { min: 14 }, area: { min: 50000 } }
-#                    - { $zoom: { min: 15 }, area: { min: 20000 } }
-#                    - { $zoom: { min: 15 }, area: { min: 2000 } }
-#                    - { $zoom: { min: 16 }, area: true }
+        #TIER 4
         cemetery:
             filter:
                 kind: cemetery
@@ -5837,26 +5772,7 @@ layers:
                     dots2:
                         color: [0.679,0.679,0.679]
                         visible: true
-#        tier5:
-#            filter:
-#                any:
-#                    # limit show smaller landuse areas to higher zooms
-#                    - { $zoom: { min: 10 }, area: { min: 1000000 } }
-#                    - { $zoom: { min: 11 }, area: { min: 400000 } }
-#                    - { $zoom: { min: 12 }, area: { min: 200000 } }
-#                    - { $zoom: { min: 13 }, area: { min: 50000 } }
-#                    - { $zoom: { min: 14 }, area: { min: 20000 } }
-#                    - { $zoom: { min: 15 }, area: { min: 10000 } }
-#                    - { $zoom: { min: 15 }, area: { min: 2000 } }
-#                    - { $zoom: { min: 16 } }
-#            all:
-#                - kind:
-#                    - theme_park
-#                    - resort
-#                    - aquarium
-#                    - winery
-#                    - maze
-#                    - beach
+        #TIER 5
         tourism-related:
             filter:
                 kind:
@@ -5876,84 +5792,82 @@ layers:
                dots2:
                    color: [0.780,0.740,0.538]
                    visible: true
-        tier6:
+        #TIER 6
+        garden:
+            filter:
+                kind: [garden, allotments]
+            draw:
+                dots2:
+                    color: [0.604,0.973,0.722]
+                    visible: true
+        parking:
             filter:
                 all:
-                    - kind: [garden, allotments, parking, pedestrian, common, pitch, place_of_worship, playground, school]
-            garden:
-                filter:
-                    kind: [garden, allotments]
+                    - kind: parking
+                    - $zoom: { min: 14 }
+                any:
+                    - { $zoom: { min: 14 }, area: { min: 10000 } }
+                    - { $zoom: { min: 15 }, area: { min: 5000 } }
+            draw:
+                dots2:
+                    color: [0.765,0.765,0.765]
+                    visible: global.grey1_v
+            early:
+                filter: { $zoom: { max: 15 } }
                 draw:
                     dots2:
-                        color: [0.604,0.973,0.722]
+                        color: global.grey1_e
                         visible: true
-            parking:
+        pedestrian:
+            filter:
+                kind: [pedestrian,common]
+            draw:
+                dots2:
+                    color: [0.740,0.740,0.740]
+                    visible: global.grey1_v
+            green-stuff:
                 filter:
-                    all:
-                        - kind: parking
-                        - $zoom: { min: 14 }
-                    any:
-                        - { $zoom: { min: 14 }, area: { min: 10000 } }
-                        - { $zoom: { min: 15 }, area: { min: 5000 } }
+                    surface: [grass]
                 draw:
                     dots2:
-                        color: [0.765,0.765,0.765]
-                        visible: global.grey1_v
-                early:
-                    filter: { $zoom: { max: 15 } }
-                    draw:
-                        dots2:
-                            color: global.grey1_e
-                            visible: true
-            pedestrian:
-                filter:
-                    kind: [pedestrian,common]
-                draw:
-                    dots2:
-                        color: [0.740,0.740,0.740]
-                        visible: global.grey1_v
-                green-stuff:
-                    filter:
-                        surface: [grass]
-                    draw:
-                        dots2:
-                            color: [0.584,0.843,0.792]
-            # glacier:
-            #     filter:
-            #         kind: glacier
-            #     draw:
-            #         terrain:
-            #             color: [0.890,0.970,1.000]
-            #             # color: [0.975,0.975,0.828]
-            #             visible: true
-
-            pitch:
-                filter: { kind: pitch }
-                draw:
-                    dots2:
-                        color: [0.490,0.812,0.631]
-                        visible: true
-            place_of_worship:
-                filter:
-                    kind: place_of_worship
-                draw:
-                    dots2:
-                        color: [0.910,0.972,1.000]
-                        visible: global.grey1_v
-            playground:
-                filter:
-                    kind: playground
-                draw:
-                    dots-rev:
                         color: [0.584,0.843,0.792]
-                        visible: true
-            school:
-                filter:
-                    kind: school
-                draw:
-                    dots2:
-                        color: [0.749,0.722,0.694]
-                        visible: true
+        # glacier:
+        #     filter:
+        #         kind: glacier
+        #     draw:
+        #         terrain:
+        #             color: [0.890,0.970,1.000]
+        #             # color: [0.975,0.975,0.828]
+        #             visible: true
+
+        pitch:
+            filter: { kind: pitch }
+            draw:
+                dots2:
+                    color: [0.490,0.812,0.631]
+                    visible: true
+        place_of_worship:
+            filter:
+                kind: place_of_worship
+            draw:
+                dots2:
+                    color: [0.910,0.972,1.000]
+                    visible: global.grey1_v
+        playground:
+            filter:
+                kind: playground
+            draw:
+                dots-rev:
+                    color: [0.584,0.843,0.792]
+                    visible: true
+        school:
+            filter:
+                kind: school
+            draw:
+                dots2:
+                    color: [0.749,0.722,0.694]
+                    visible: true
+
         minor-landuse:
             filter:
                 kind:
@@ -6400,7 +6314,6 @@ layers:
                             fill: black
                             size: 12px
                             stroke: { color: white, width: 4 }
-
 
 #    transit-platforms:
 #        data: { source: mapzen, layer: transit }
