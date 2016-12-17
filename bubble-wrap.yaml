@@ -4648,7 +4648,6 @@ layers:
                     text_wrap: 18
                     max_lines: 3
                     text_source: global.ux_language_text_source
-                    interactive: true
                     font:
                         family: Quicksand #global.text_font_family
                         weight: normal
