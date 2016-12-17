@@ -4076,7 +4076,6 @@ layers:
             draw:
                 icons:
                     visible: global.icon_visible_populated_places
-                    interactive: global.interactive
                     size: [[10,4px],[11,0px]]
                     sprite: townspot-xs-rev
                     buffer: 8px
