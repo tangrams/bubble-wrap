@@ -4644,10 +4644,10 @@ layers:
                 repeat_group: abc
                 buffer: 3px
                 text:
+                    text_source: global.ux_language_text_source
                     buffer: 3px
                     text_wrap: 18
                     max_lines: 3
-                    text_source: global.ux_language_text_source
                     font:
                         family: Quicksand #global.text_font_family
                         weight: normal
