@@ -194,7 +194,7 @@ map = (function () {
     /***** Render loop *****/
 
     // Create dat GUI
-    var gui = new dat.GUI({ autoPlace: true });
+    var gui = new dat.GUI({ autoPlace: true, width: 250 });
 
     function addGUI() {
         gui.domElement.parentNode.style.zIndex = 10000;
@@ -269,6 +269,14 @@ map = (function () {
             });
         };
         gui.add(gui, 'save_screenshot');
+
+        // Enable/disable interactivity for all features
+        var interactive_label = 'debug_interactive';
+        gui[interactive_label] = true;
+        gui.add(gui, interactive_label).onChange(function(value) {
+            scene.setIntrospection(value);
+        });
+        scene.setIntrospection(gui[interactive_label]);
 
         // Link to edit in OSM - hold 'e' and click
         map.getContainer().addEventListener('dblclick', function (event) {
@@ -364,6 +372,12 @@ map = (function () {
     window.addEventListener('load', function () {
         // Scene initialized
         layer.on('init', function() {
+            if (!inIframe()) {
+                map.scrollWheelZoom.enable();
+                addGUI();
+                initFeatureSelection();
+            }
+
             var camera = scene.config.cameras[scene.getActiveCamera()];
             // if a camera position is set in the scene file, use that
             if (defaultpos && typeof camera.position != "undefined") {
@@ -378,12 +392,6 @@ map = (function () {
                 msg.config.global.ux_language = query.language;
             }
         });
-
-        if (!inIframe()) {
-            map.scrollWheelZoom.enable();
-            addGUI();
-            initFeatureSelection();
-        }
 
         layer.addTo(map);
     });
