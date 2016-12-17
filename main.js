@@ -272,7 +272,7 @@ map = (function () {
 
         // Enable/disable interactivity for all features
         var interactive_label = 'debug_interactive';
-        gui[interactive_label] = true;
+        gui[interactive_label] = false;
         gui.add(gui, interactive_label).onChange(function(value) {
             scene.setIntrospection(value);
         });
