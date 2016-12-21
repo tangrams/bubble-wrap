@@ -1603,7 +1603,6 @@ layers:
 
     roads:
         data: { source: mapzen, layer: roads }
-        filter: { not: { kind: rail } }
         draw:
             lines:
                 # let roads sort themselves past zoom 14 (using server value)
@@ -5261,7 +5260,7 @@ layers:
                         size: 12px
 
         lakes-labels:
-            filter: 
+            filter:
                 $zoom: { min: 4 }
             draw:
                 text-blend-order:
