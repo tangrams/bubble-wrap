@@ -74,7 +74,7 @@ map = (function () {
     map.setView(map_start_location.slice(0, 2), map_start_location[2]);
 
     var layer = Tangram.leafletLayer({
-        scene: style_file,
+        scene: { import: style_file, global: { sdk_mapzen_api_key: 'vector-tiles-7bfyfz8' } },
         attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a> | &copy; OSM contributors | <a href="https://mapzen.com/" target="_blank">Mapzen</a>'
     });
 
@@ -187,7 +187,7 @@ map = (function () {
         var zoom = max_zoom < map.getZoom() ? max_zoom : Math.floor(map.getZoom());
         var tileCoords = { x : long2tile(latlng.lng,zoom), y: lat2tile(latlng.lat,zoom), z: zoom };
 
-        var url = 'http://vector.mapzen.com/osm/all/' + zoom + '/' + tileCoords.x  + '/' + tileCoords.y + '.topojson?api_key=vector-tiles-HqUVidw';
+        var url = 'http://tile.mapzen.com/mapzen/vector/v1/all/' + zoom + '/' + tileCoords.x  + '/' + tileCoords.y + '.topojson?api_key=vector-tiles-HqUVidw';
         return url;
     }
 
