@@ -14,11 +14,11 @@ global:
             var right = (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
             var left = (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
             if( right && left ) {
-                if( right.includes(' ') || left.includes(' ') ) {
+                //if( right.includes(' ') || left.includes(' ') ) {
                     return left + " - " + right;
-                } else {
-                    return right + '\n' + left;
-                }
+                //} else {
+                //    return right + '\n' + left;
+                //}
             } else {
                 return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
             }
@@ -3890,7 +3890,6 @@ layers:
                 text-blend-order:
                     priority: 3
                     visible: global.text_visible_admin
-                    text_source: global.ux_language_text_source
                     font:
                         fill: [[2,[0.357,0.243,0.184]],[6,[0.604,0.437,0.427]]]
                         transform: uppercase
