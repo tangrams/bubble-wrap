@@ -3734,7 +3734,6 @@ layers:
                     - { label_position: true, addr_housenumber: true, name: false }
             draw:
                 text-blend-order:
-                    text_source: global.ux_language_text_source
                     order: 7
                     visible: global.text_visible_address
                     text_source: addr_housenumber
