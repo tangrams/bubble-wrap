@@ -192,6 +192,7 @@ global:
     # SHIELDS
     sdk_shield_color: [0.506,0.192,0.169]
     sdk_shield_text_color: white
+    sdk_shield_visible: true
     #
     # enable interactivity for key features
     interactive: true
@@ -2600,23 +2601,25 @@ layers:
 
         shields:
             filter:
-                $zoom: { min: 6 }
-                #
-                # United State looks great with shield_text alone, but...
-                #
-                #shield_text: true    # some roads don't have shield text, deal with that later
-                #
-                # Europe doesn't have many network relations set, so we could look for either
-                # shield_text or ref (with no shield_text) but...
-                # that makes United States look a bit funky with `(xxx)` and generic shields
-                # showing up in fields of custom state shields like US:CA and US:NY
-                #
-                any:
-                    - shield_text: true    # some roads don't have shield text, deal with that later
-                    - all:
-                        - shield_text: false    # some roads don't have shield text, deal with that later
-                        - ref: true
-                        - kind_detail: [motorway, trunk, primary, secondary, tertiary]
+                all:
+                    - $zoom: { min: 6 }
+                    #
+                    # United State looks great with shield_text alone, but...
+                    #
+                    #shield_text: true    # some roads don't have shield text, deal with that later
+                    #
+                    # Europe doesn't have many network relations set, so we could look for either
+                    # shield_text or ref (with no shield_text) but...
+                    # that makes United States look a bit funky with `(xxx)` and generic shields
+                    # showing up in fields of custom state shields like US:CA and US:NY
+                    #
+                    - function() { return global.sdk_shield_visible; }
+                    - any:
+                        - shield_text: true    # some roads don't have shield text, deal with that later
+                        - all:
+                            - shield_text: false    # some roads don't have shield text, deal with that later
+                            - ref: true
+                            - kind_detail: [motorway, trunk, primary, secondary, tertiary]
             # default
             draw:
                 icons:
@@ -3655,16 +3658,15 @@ layers:
 
         transit-overlay-station-buildings:
             filter:
-                any:
+                all:
                     - landuse_kind: [station]
+                    - function() { retrun global.sdk_transit_overlay; }
             draw:
                 polygons:
-                    visible: global.sdk_transit_overlay
                     color: '#bdadbf'
                     order: 500
                     #extrude: function() { return feature.height || 20; }
                 outline:
-                    visible: global.sdk_transit_overlay
                     style: lines
                     order: 501
                     color: '#d534df'
@@ -5991,36 +5993,99 @@ layers:
                 draw:
                     lines:
                         order: 504
-        labels-transit-lines-early:
-            filter: { $zoom: [13,14], ref: true }
-            draw:
-                text:
-                    visible: global.sdk_transit_overlay
-                    priority: 20
-                    text_source: function() { if( feature.ref.length < 4 ) { return feature.ref; } else { return ''; } }
-                    font:
-                        fill: black
-                        size: 12px
-                        weight: bold
-                        stroke: { color: white, width: 2 }
         labels-transit-lines:
-            filter: { $zoom: { min: 15 } }
+            filter:
+                all:
+                    - function() { return global.sdk_transit_overlay; }
+                    - all:
+                        - $zoom: { min: 13 }
+                        - ref: true
             draw:
-                text:
-                    visible: global.sdk_transit_overlay
+                icons:
                     priority: 20
-                    text_source: ref
-                    font:
-                        fill: black
-                        size: 14px
-                        weight: bold
-                        stroke: { color: white, width: 2 }
-            z19-show-long-route-name:
-                filter: { $zoom: { min: 19 } }
+                    # you need to match any custom shield to the vector tile `network` values
+                    sprite: function() { return ('sdk_shield-' + feature.ref.length + 'char'); }
+                    sprite_default: sdk_shield_5char
+                    color: function() { if ( feature.kind === 'train') { return 'purple' } else { return feature.colour || 'purple'; } }
+                    # Size is specified below, and limited to 5 char in another filter
+                    repeat_group: shields
+                    repeat_distance: [[8,90px],[10,40px],[13,30px]]
+                    placement: midpoint
+                    placement_min_length_ratio:
+                        - [8, 0.1]
+                        - [9, 0.25]
+                        - [10, 0.25]
+                        - [11, 0.15]
+                        - [12, 1]
+                        - [13, 1.50]
+                        - [14, 2.0]
+                    cull_from_tile: true
+#                    visible: false
+                    text:
+                        offset: [0px, -0.5px]
+                        repeat_distance: 200px
+                        anchor: center
+                        text_source: function() { if( feature.ref.length < 6 ) { return feature.ref; } else { return ''; } }
+                        font:
+                            family: Montserrat
+                            fill: function() { if(feature.colour == 'yellow') { return '#555'; } else { return 'white'; } }
+                            style: bold
+                            size: [[7,7px],[12,8px],[16,11px]]
+
+            width_1char:
+                filter: function() { return (feature.ref.length === 1); }
+                draw:
+                    icons:
+                        size: [[6,[16px,16px]],[13,[18px,18px]],[16,[21px,21px]]]
+            width_2char:
+                filter: function() { return (feature.ref.length === 2); }
+                draw:
+                    icons:
+                        size: [[6,[21px,16px]],[13,[24px,18px]],[16,[28px,21px]]]
+            width_3char:
+                filter: function() { return (feature.ref.length === 3); }
+                draw:
+                    icons:
+                        size: [[6,[27px,16px]],[13,[31px,18px]],[16,[36px,21px]]]
+            width_4char:
+                filter: function() { return (feature.ref.length === 4); }
+                draw:
+                    icons:
+                        size: [[6,[32px,16px]],[13,[36px,18px]],[16,[41px,21px]]]
+                # London sucks
+                early:
+                    filter: { $zoom: { max: 14 } }
+                    draw:
+                        icons:
+                            visible: false
+            width_5char:
+                filter: function() { return (feature.ref.length === 5); }
+                draw:
+                    icons:
+                        size: [[6,[37px,16px]],[13,[41px,18px]],[16,[48px,21px]]]
+                # London sucks
+                early:
+                    filter: { $zoom: { max: 14 } }
+                    draw:
+                        icons:
+                            visible: false
+            # this is kinda a hack
+            width_longggggg:
+                filter: function() { return (feature.ref.length > 5); }
+                draw:
+                    icons:
+                        visible: false
+
+        z19-show-long-route-name:
+                filter:
+                    all:
+                        - function() { return global.sdk_transit_overlay; }
+                        - $zoom: { min: 19 }
                 draw:
                     text:
-                        text_source: function() { return feature.route_name || feature.ref; }
                         font:
+                            fill: black
+                            style: italic
                             stroke: { color: white, width: 3px }
 
 #    transit-bus-roads:

@@ -240,6 +240,11 @@ map = (function () {
         gui.transit_overlay = query.transit_overlay || false;
         gui.add(gui, 'transit_overlay', transit_overlay).onChange(function(value) {
             scene.config.global.sdk_transit_overlay = (value === 'true' || value === true); // dat.gui passes a string
+            if (value === 'true' || value === true) {
+                scene.config.global.sdk_shield_visible = false;
+            } else {
+                scene.config.global.sdk_shield_visible = true;
+            }
             scene.updateConfig();
         });
 
