@@ -423,7 +423,7 @@
                 scene.config.global.text_visible_water_labels = _default;
                 scene.config.global.text_visible_island = _default;
 
-                scene.config.global.sdk_shield_visible = _default;
+                scene.config.global.sdk_road_shields = _default;
                 scene.config.global.text_visible_roads = _default;
                 scene.config.global.text_visible_highway = _default;
                 scene.config.global.text_visible_highway_e = _default;
@@ -499,9 +499,9 @@
             gui.transit_button = gui.add(gui, 'transit_overlay', transit_overlay).onChange(function(value) {
                 scene.config.global.sdk_transit_overlay = (value === 'true' || value === true); // dat.gui passes a string
                 if (value === 'true' || value === true) {
-                    scene.config.global.sdk_shield_visible = false;
+                    scene.config.global.sdk_road_shields = false;
                 } else {
-                    scene.config.global.sdk_shield_visible = true;
+                    scene.config.global.sdk_road_shields = true;
                 }
                 scene.updateConfig();
             });

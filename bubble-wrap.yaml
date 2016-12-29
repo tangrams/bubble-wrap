@@ -244,6 +244,7 @@ global:
     text_visible_steps: true
     text_visible_aerialway: true
     text_visible_airport_gate: true
+    sdk_road_shields: true
     text_visible_exits: true
     text_visible_exits_e: true               # true by default // not used in Bubble Wrap?
 
@@ -1658,7 +1659,7 @@ layers:
             #     draw:
             #         text-blend-order:
             #             priority: 50
-            #             visible: global.sdk_shield_visibles
+            #             visible: global.sdk_road_shields
             #             text_source: ref
             #             font:
             #                 fill: [1.0,1.0,1.0]
@@ -1671,7 +1672,7 @@ layers:
             #         shield_text: false
             #     draw:
             #         text-blend-order:
-            #             visible: global.sdk_shield_visibles
+            #             visible: global.sdk_road_shields
             #             text_source: ref
             #             font:
             #                 fill: [1.0,1.0,1.0]
@@ -1684,7 +1685,7 @@ layers:
             #         shield_text: false
             #     draw:
             #         text-blend-order:
-            #             visible: global.sdk_shield_visibles
+            #             visible: global.sdk_road_shields
             #             text_source: ref
             #             font:
             #                 fill: [1.0,1.0,1.0]
@@ -1697,7 +1698,7 @@ layers:
             #         shield_text: false
             #     draw:
             #         text-blend-order:
-            #             visible: global.sdk_shield_visibles
+            #             visible: global.sdk_road_shields
             #             text_source: ref
             #             font:
             #                 fill: [1.0,1.0,1.0]
@@ -2546,7 +2547,7 @@ layers:
                     # that makes United States look a bit funky with `(xxx)` and generic shields
                     # showing up in fields of custom state shields like US:CA and US:NY
                     #
-                    - function() { return global.sdk_shield_visible; }
+                    - function() { return global.sdk_road_shields; }
                     - any:
                         - shield_text: true    # some roads don't have shield text, deal with that later
                         - all:
@@ -2607,7 +2608,7 @@ layers:
                     icons:
                         priority: 47
                         #color: yellow
-                        visible: global.sdk_shield_visibles
+                        visible: global.sdk_road_shields
 
             default_priority_trunk:
                 filter:
@@ -2618,7 +2619,7 @@ layers:
                     icons:
                         priority: 48
                         #color: red
-                        visible: global.sdk_shield_visibles
+                        visible: global.sdk_road_shields
             default_priority_primary:
                 filter:
                     all:
@@ -2628,7 +2629,7 @@ layers:
                     icons:
                         priority: 49
                         #color: aqua
-                        visible: global.sdk_shield_visibles
+                        visible: global.sdk_road_shields
             default_priority_trunk_secondary:
                 filter:
                     all:
@@ -2638,7 +2639,7 @@ layers:
                     icons:
                         priority: 53
                         #color: blue
-                        visible: global.sdk_shield_visibles
+                        visible: global.sdk_road_shields
             default_priority_trunk_tertiary:
                 filter:
                     all:
@@ -2648,7 +2649,7 @@ layers:
                     icons:
                         priority: 55
                         #color: green
-                        visible: global.sdk_shield_visibles
+                        visible: global.sdk_road_shields
 
             width_1char:
                 filter: |
@@ -2753,7 +2754,7 @@ layers:
                             # you need to match any custom shield to the vector tile `network` values
                             sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
                             priority: 46
-                            visible: global.sdk_shield_visibles
+                            visible: global.sdk_road_shields
                             text:
                                 offset: [0px, 0.5px]
                                 font:
@@ -2796,7 +2797,7 @@ layers:
                                 function() { return ('US:US-' + feature.shield_text.length + 'char'); }
                             priority: 47
                             cull_from_tile: true
-                            visible: global.sdk_shield_visibles
+                            visible: global.sdk_road_shields
                             text:
                                 offset: [0px, -0.7px]
                                 font:
@@ -2839,7 +2840,7 @@ layers:
                 #         icons:
                 #             # you need to match any custom shield to the vector tile `network` values
                 #             #priority: 48
-                #             visible: global.sdk_shield_visibles
+                #             visible: global.sdk_road_shields
                 US-CA:
                     # Match California state highways: `US:CA`
                     filter: |
@@ -2860,17 +2861,17 @@ layers:
                         filter: { kind_detail: [motorway], $zoom: [7,8] }
                         draw:
                             icons:
-                                visible: global.sdk_shield_visibles
+                                visible: global.sdk_road_shields
                     trunk:
                         filter: { kind_detail: [trunk], $zoom: [8,9] }
                         draw:
                             icons:
-                                visible: global.sdk_shield_visibles
+                                visible: global.sdk_road_shields
                     primary:
                         filter: { kind_detail: primary, $zoom: [10,11] }
                         draw:
                             icons:
-                                visible: global.sdk_shield_visibles
+                                visible: global.sdk_road_shields
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -3018,7 +3019,7 @@ layers:
                             sprite: function() { return ('county_shield-' + feature.shield_text.length + 'char'); }
                             #color: pink
                             #priority: 19
-                            visible: global.sdk_shield_visibles
+                            visible: global.sdk_road_shields
                             text:
                                 font:
                                     fill: [0.508,0.508,0.508]
