@@ -192,7 +192,6 @@ global:
     # SHIELDS
     sdk_shield_color: [0.506,0.192,0.169]
     sdk_shield_text_color: white
-    sdk_shield_visible: true
     #
     # enable interactivity for key features
     sdk_interactive: true
