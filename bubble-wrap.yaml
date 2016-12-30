@@ -3,7 +3,7 @@ Author: Geraldine Sarmiento, Nathaniel V. Kelso, Patricio Gonzalez Vivo, Brett C
 global:
     # Sign up for a Mapzen API key to enjoy higher rate limits
     # https://mapzen.com/documentation/overview/#developer-accounts-and-api-keys
-    sdk_mapzen_api_key: your-api-key-here     # set this value to your Mapzen API key
+    sdk_mapzen_api_key: mapzen-xxxxxx     # set this value to your Mapzen API key
 
     #ux/ui
     ux_language: false             # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
@@ -192,10 +192,9 @@ global:
     # SHIELDS
     sdk_shield_color: [0.506,0.192,0.169]
     sdk_shield_text_color: white
-    sdk_shield_visible: true
     #
     # enable interactivity for key features
-    interactive: true
+    sdk_interactive: true
     #
     # default order for basemap features
     feature_order: function() { return feature.sort_rank; }
@@ -211,39 +210,43 @@ global:
     text_visible_address: true
     text_visible_water_labels: true
     text_visible_island: true
-    label_visible_landuse_green: true
-    icon_visible_landuse_green: true
+    label_visible_landuse_green: true                          #this needs work
+    icon_visible_landuse_green: true                           #this needs work
+    icon_size_green: [[13, '14px'], [16, '18px'], [18, '19px']]      # 0px for no, default, more  [[13, 14px], [16, 18px], [18, 19px]]
+    icon_size_green_l: [[14, '24px'],[16, '32px']]                   # 0px for no, default, more  [[14,24px],[16,32px]]
     text_visible_landuse_green: true
-    label_visible_poi_landuse: true
+    label_visible_poi_landuse: true                            #false on default
     icon_visible_poi_landuse: true
     text_visible_poi_landuse: true
-    label_visible_poi_landuse_e: true
-    icon_visible_poi_landuse_e: true
-    text_visible_poi_landuse_e: true
+    label_visible_poi_landuse_e: true        # true by default
+    icon_visible_poi_landuse_e: true         # true by default
+    text_visible_poi_landuse_e: true         # true by default
     text_visible_landuse_generic: true
     label_visible_station: true
     icon_visible_station: true
     text_visible_station: true
     text_visible_highway: true
-    text_visible_highway_e: true
+    text_visible_highway_e: true             # true by default
     text_visible_trunk_primary: true
-    text_visible_trunk_primary_route: true
-    text_visible_trunk_primary_e2: true
-    text_visible_trunk_primary_e: true
+    text_visible_trunk_primary_route: true   # true by default
+    text_visible_trunk_primary_e2: true      # true by default
+    text_visible_trunk_primary_e: true       # true by default
     text_visible_secondary: true
-    text_visible_secondary_e: true
+    text_visible_secondary_e: true           # true by default
     text_visible_tertiary: true
-    text_visible_tertiary_e: true
+    text_visible_tertiary_e: true            # true by default
     text_visible_minor_road: true
-    text_visible_minor_road_e: true
+    text_visible_minor_road_e: true          # true by default
     text_visible_service_road: true
     text_visible_path: true
     text_visible_piste: true
     text_visible_steps: true
     text_visible_aerialway: true
     text_visible_airport_gate: true
-    text_visible_shields: true
+    sdk_road_shields: true
     text_visible_exits: true
+    text_visible_exits_e: true               # true by default // not used in Bubble Wrap?
+
     #
     #label styling
     text_fill: [0.300, 0.300, 0.300]                         # BLACK
@@ -335,7 +338,7 @@ global:
     #
     #landuse
     water1: [0.83, 0.83, 0.83]              # water
-    water2: [.75,.75,.75]                   # playa
+    water2: [0.83, 0.83, 0.83]              # playa
     water1_o: '#9dc3de'                     # water stroke
     water2_o: '#9dc3de'                     # water stroke 2
     earth1: [0.870,0.870,0.870]             # land color, used to set scene background color
@@ -414,7 +417,7 @@ global:
     building2: [.860, .860, .860]           # building stroke
     building_o:  5                          # building stroke order
     building_e: true                        # building stroke order early
-    building_extrude: true                  # building extrusion toggle
+    sdk_building_extrude: true                  # building extrusion toggle
     building_extrude_height: |              # building extrude height logic
         function() { return feature.height || 20; }
 
@@ -1075,19 +1078,19 @@ styles:
     ux-icons-overlay:
         base: points
         texture: pois
-        interactive: global.interactive
+        interactive: global.sdk_interactive
         blend: overlay
         blend_order: 3
     sdk-point-overlay:
         base: points
         texture: pois
-        interactive: global.interactive
+        interactive: global.sdk_interactive
         blend: overlay
         blend_order: 3
     sdk-shield-overlay:
         base: points
         texture: pois
-        interactive: global.interactive
+        interactive: global.sdk_interactive
         blend: overlay
         blend_order: 3
     sdk-line-overlay:
@@ -1149,7 +1152,7 @@ layers:
         data: { source: mz_route_start }
         draw:
             ux-icons-overlay:
-                interactive: global.interactive
+                interactive: global.sdk_interactive
                 priority: 1
                 sprite: ux-route-start
                 size: [36px,46px]
@@ -1160,7 +1163,7 @@ layers:
         data: { source: mz_route_destination }
         draw:
             ux-icons-overlay:
-                interactive: global.interactive
+                interactive: global.sdk_interactive
                 priority: 1
                 sprite: ux-route-stop
                 size: [36px,46px]
@@ -1179,7 +1182,7 @@ layers:
         data: { source: mz_search_result }
         draw:
             ux-icons-overlay:
-                interactive: global.interactive
+                interactive: global.sdk_interactive
                 sprite: ux-search-active
                 size: [36px,54px]
                 collide: false
@@ -1205,7 +1208,7 @@ layers:
         data: { source: mz_default_point }
         draw:
             sdk-point-overlay:
-                interactive: global.interactive
+                interactive: global.sdk_interactive
                 sprite: ux-search-active
                 size: [36px,54px]
                 collide: false
@@ -1215,7 +1218,7 @@ layers:
         data: { source: mz_default_shield }
         draw:
             sdk-shield-overlay:
-                interactive: global.interactive
+                interactive: global.sdk_interactive
                 sprite: |
                     function() {
                         if( feature.shield_text ) {
@@ -1377,16 +1380,16 @@ layers:
                 grid:
                     color: global.water1
         other-water-areas:
-            filter: { not: { kind: [ocean, lake, water, reservoir, playa, swimming_pool] }, $zoom: { min: 11 }, area: { min: 100 } }
+            filter: { not: { kind: [ocean, lake, water, reservoir, swimming_pool, playa] }, $zoom: { min: 11 }, area: { min: 100 } }
             draw:
                 grid:
                     color: global.water1
         playas:
-            filter: { kind: playa, $zoom: {min: 6} }
+            filter: { kind: playa }
             draw:
                 polygons:
-                    order: global.feature_order
-                    color: [0.870,0.870,0.870]
+                    order: function() { return feature.sort_rank + 1; }
+                    color: global.water2 #[0.870,0.870,0.870]
         water-boundary-ocean-early:
             filter: { boundary: true, kind: ocean, $zoom: {min: 1, max: 17} }
             draw:
@@ -1655,7 +1658,7 @@ layers:
             #     draw:
             #         text-blend-order:
             #             priority: 50
-            #             visible: global.text_visible_shields
+            #             visible: global.sdk_road_shields
             #             text_source: ref
             #             font:
             #                 fill: [1.0,1.0,1.0]
@@ -1668,7 +1671,7 @@ layers:
             #         shield_text: false
             #     draw:
             #         text-blend-order:
-            #             visible: global.text_visible_shields
+            #             visible: global.sdk_road_shields
             #             text_source: ref
             #             font:
             #                 fill: [1.0,1.0,1.0]
@@ -1681,7 +1684,7 @@ layers:
             #         shield_text: false
             #     draw:
             #         text-blend-order:
-            #             visible: global.text_visible_shields
+            #             visible: global.sdk_road_shields
             #             text_source: ref
             #             font:
             #                 fill: [1.0,1.0,1.0]
@@ -1694,7 +1697,7 @@ layers:
             #         shield_text: false
             #     draw:
             #         text-blend-order:
-            #             visible: global.text_visible_shields
+            #             visible: global.sdk_road_shields
             #             text_source: ref
             #             font:
             #                 fill: [1.0,1.0,1.0]
@@ -1820,6 +1823,7 @@ layers:
                         draw:
                             text-blend-order:
                                 text_source: global.ux_language_text_source_road_ref_and_name
+                                visible: global.text_visible_trunk_primary_route
                     # labels-trunk_primary-route-z13:
                     #     filter:
                     #         $zoom: { max: 14 }
@@ -1838,7 +1842,6 @@ layers:
                         draw:
                             text-blend-order:
                                 priority: 51
-                                visible: global.text_visible_trunk_primary_route
                                 #text_source: ref
                                 font:
                                     fill: [0.0,0.0,0.0]
@@ -1849,7 +1852,6 @@ layers:
                         draw:
                             text-blend-order:
                                 priority: 51
-                                visible: global.text_visible_trunk_primary_route
                                 #text_source: global.ux_language_text_source_road_ref_and_name
                                 font:
                                     fill: [0.0,0.0,0.0]
@@ -1861,7 +1863,6 @@ layers:
                         draw:
                             text-blend-order:
                                 priority: 51
-                                visible: global.text_visible_trunk_primary_route
                                 #text_source: global.ux_language_text_source_road_ref_and_name
                                 font:
                                     fill: [0.0,0.0,0.0]
@@ -1872,6 +1873,7 @@ layers:
                     draw:
                         text-blend-order:
                             text_source: global.ux_language_text_source_road_ref_and_name_short
+                            visible: global.text_visible_trunk_primary
                 labels-trunk_primary-z11:
                     filter:
                         $zoom: [11]
@@ -1902,7 +1904,6 @@ layers:
                     draw:
                         text-blend-order:
                             priority: 51
-                            visible: global.text_visible_trunk_primary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.25,0.25,0.25]
@@ -1914,7 +1915,6 @@ layers:
                     draw:
                         text-blend-order:
                             priority: 51
-                            visible: global.text_visible_trunk_primary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.10,0.10,0.10]
@@ -1925,7 +1925,6 @@ layers:
                     draw:
                         text-blend-order:
                             priority: 51
-                            visible: global.text_visible_trunk_primary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.0,0.0,0.0]
@@ -1936,7 +1935,6 @@ layers:
                     draw:
                         text-blend-order:
                             priority: 51
-                            visible: global.text_visible_trunk_primary
                             #text_source: global.ux_language_text_source_road_ref_and_name
                             font:
                                 fill: [0.0,0.0,0.0]
@@ -1947,7 +1945,6 @@ layers:
                     draw:
                         text-blend-order:
                             priority: 51
-                            visible: global.text_visible_trunk_primary
                             #text_source: global.ux_language_text_source_road_ref_and_name
                             font:
                                 fill: [0.0,0.0,0.0]
@@ -1958,7 +1955,6 @@ layers:
                     draw:
                         text-blend-order:
                             priority: 51
-                            visible: global.text_visible_trunk_primary
                             #text_source: global.ux_language_text_source_road_ref_and_name
                             font:
                                 fill: [0.0,0.0,0.0]
@@ -2082,6 +2078,7 @@ layers:
                     draw:
                         text-blend-order:
                             text_source: global.ux_language_text_source_road_ref_and_name_short
+                            visible: global.text_visible_secondary
                 labels-secondary-z13:
                     filter:
                         $zoom: [13]
@@ -2112,7 +2109,6 @@ layers:
                     draw:
                         text-blend-order:
                             priority: 56
-                            visible: global.text_visible_secondary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.10,0.10,0.10]
@@ -2123,7 +2119,6 @@ layers:
                     draw:
                         text-blend-order:
                             priority: 56
-                            visible: global.text_visible_secondary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.0,0.0,0.0]
@@ -2134,7 +2129,6 @@ layers:
                     draw:
                         text-blend-order:
                             priority: 56
-                            visible: global.text_visible_secondary
                             #text_source: ref
                             text_source: global.ux_language_text_source_road_ref_and_name
                             font:
@@ -2228,6 +2222,7 @@ layers:
                     draw:
                         text-blend-order:
                             text_source: global.ux_language_text_source_road_ref_and_name_short
+                            visible: global.text_visible_tertiary
                 labels-tertiary-z13:
                     filter: { $zoom: [13] }
                     draw:
@@ -2255,7 +2250,6 @@ layers:
                     draw:
                         text-blend-order:
                             priority: 57
-                            visible: global.text_visible_tertiary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.3,0.3,0.3]
@@ -2266,7 +2260,6 @@ layers:
                     draw:
                         text-blend-order:
                             priority: 57
-                            visible: global.text_visible_tertiary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.3,0.3,0.3]
@@ -2277,7 +2270,6 @@ layers:
                     draw:
                         text-blend-order:
                             priority: 57
-                            visible: global.text_visible_tertiary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.15,0.15,0.15]
@@ -2288,7 +2280,6 @@ layers:
                     draw:
                         text-blend-order:
                             priority: 57
-                            visible: global.text_visible_tertiary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.15,0.15,0.15]
@@ -2555,7 +2546,7 @@ layers:
                     # that makes United States look a bit funky with `(xxx)` and generic shields
                     # showing up in fields of custom state shields like US:CA and US:NY
                     #
-                    - function() { return global.sdk_shield_visible; }
+                    - function() { return global.sdk_road_shields; }
                     - any:
                         - shield_text: true    # some roads don't have shield text, deal with that later
                         - all:
@@ -2616,7 +2607,7 @@ layers:
                     icons:
                         priority: 47
                         #color: yellow
-                        visible: global.text_visible_shields
+                        visible: global.sdk_road_shields
 
             default_priority_trunk:
                 filter:
@@ -2627,7 +2618,7 @@ layers:
                     icons:
                         priority: 48
                         #color: red
-                        visible: global.text_visible_shields
+                        visible: global.sdk_road_shields
             default_priority_primary:
                 filter:
                     all:
@@ -2637,7 +2628,7 @@ layers:
                     icons:
                         priority: 49
                         #color: aqua
-                        visible: global.text_visible_shields
+                        visible: global.sdk_road_shields
             default_priority_trunk_secondary:
                 filter:
                     all:
@@ -2647,7 +2638,7 @@ layers:
                     icons:
                         priority: 53
                         #color: blue
-                        visible: global.text_visible_shields
+                        visible: global.sdk_road_shields
             default_priority_trunk_tertiary:
                 filter:
                     all:
@@ -2657,7 +2648,7 @@ layers:
                     icons:
                         priority: 55
                         #color: green
-                        visible: global.text_visible_shields
+                        visible: global.sdk_road_shields
 
             width_1char:
                 filter: |
@@ -2762,7 +2753,7 @@ layers:
                             # you need to match any custom shield to the vector tile `network` values
                             sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
                             priority: 46
-                            visible: global.text_visible_shields
+                            visible: global.sdk_road_shields
                             text:
                                 offset: [0px, 0.5px]
                                 font:
@@ -2805,7 +2796,7 @@ layers:
                                 function() { return ('US:US-' + feature.shield_text.length + 'char'); }
                             priority: 47
                             cull_from_tile: true
-                            visible: global.text_visible_shields
+                            visible: global.sdk_road_shields
                             text:
                                 offset: [0px, -0.7px]
                                 font:
@@ -2848,7 +2839,7 @@ layers:
                 #         icons:
                 #             # you need to match any custom shield to the vector tile `network` values
                 #             #priority: 48
-                #             visible: global.text_visible_shields
+                #             visible: global.sdk_road_shields
                 US-CA:
                     # Match California state highways: `US:CA`
                     filter: |
@@ -2869,17 +2860,17 @@ layers:
                         filter: { kind_detail: [motorway], $zoom: [7,8] }
                         draw:
                             icons:
-                                visible: global.text_visible_shields
+                                visible: global.sdk_road_shields
                     trunk:
                         filter: { kind_detail: [trunk], $zoom: [8,9] }
                         draw:
                             icons:
-                                visible: global.text_visible_shields
+                                visible: global.sdk_road_shields
                     primary:
                         filter: { kind_detail: primary, $zoom: [10,11] }
                         draw:
                             icons:
-                                visible: global.text_visible_shields
+                                visible: global.sdk_road_shields
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -3027,7 +3018,7 @@ layers:
                             sprite: function() { return ('county_shield-' + feature.shield_text.length + 'char'); }
                             #color: pink
                             #priority: 19
-                            visible: global.text_visible_shields
+                            visible: global.sdk_road_shields
                             text:
                                 font:
                                     fill: [0.508,0.508,0.508]
@@ -3516,7 +3507,7 @@ layers:
             extrude:
                 filter:
                     all:
-                        - function() { return global.building_extrude; }
+                        - function() { return global.sdk_building_extrude; }
                         - any:
                             - { $zoom: 15, height: { min: 190 } }
                             - { $zoom: 15, area: { min: 5000 } }
@@ -4033,7 +4024,7 @@ layers:
                 text-blend-order:
                     visible: global.text_visible_populated_places
                     buffer: 8px
-                    interactive: global.interactive
+                    interactive: global.sdk_interactive
                     font:
                         size: [[5,9px],[8,10px],[12,11px]]
 
@@ -4575,9 +4566,9 @@ layers:
 #                        size: 12px
 #                        style: italic
 
-    pois_and_landuse_labels:
+    pois:
         data: { source: mapzen, layer: pois }
-        visible: global.label_visible_poi_landuse
+        #visible: global.label_visible_poi_landuse
         filter:
             all:
                 - not: { kind: [building,address,farm,tree,apron,residential,commercial,industrial] }
@@ -4590,7 +4581,7 @@ layers:
                 size: [[13, 14px], [16, 18px], [18, 19px]]
                 sprite: function() { return feature.kind; }
                 sprite_default: generic
-                interactive: global.interactive
+                interactive: global.sdk_interactive
                 priority: 65 #function() { return (feature.min_zoom && Math.floor(feature.min_zoom * 1000)) || 65; }
                 repeat_group: abc
                 buffer: 3px
@@ -4606,6 +4597,7 @@ layers:
                         fill: [0.20,0.20,0.20]
                         size: [[13,10px],[14,11px],[17,12px],[19,12px],[20,14px]]
                         stroke: { color: global.text_stroke, width: [[12,2px],[16,4px]] }
+
         # improve legibility at high zooms
         poi_labels-z18:
             filter: { $zoom: { min: 18 } }
@@ -4710,219 +4702,220 @@ layers:
                     text: { font: { style: italic } }
 
         # the server should be setting better values here
-        hide-until-z12-any:
-            filter:
-                kind: [landmark, museum, prison]
-                $zoom: { max: 12 }
-            draw:
-                icons:
-                    visible: false
-        hide-until-z14-any:
-            filter:
-                kind: [natural_forest, natural_park, natural_wood, post_office]
-                $zoom: { max: 14 }
-            draw:
-                icons:
-                    visible: false
-        hide-until-z15-any:
-            filter:
-                $zoom: { max: 15 }
-                kind: [cafe, restaurant]
-            draw:
-                icons:
-                    visible: false
-        hide-until-z15-no-area:
-            filter:
-                area: false
-                $zoom: { max: 15 }
-                kind: [park]
-            draw:
-                icons:
-                    visible: false
-        hide-until-z15-with-area:
-            filter:
-                area: true
-                $zoom: { max: 15 }
-                kind: [nursing_home]
-            draw:
-                icons:
-                    visible: false
-        hide-until-z16-any:
-            filter:
-                kind: [fire_station, grass, peak, police, tram_stop]
-                $zoom: { max: 16 }
-            draw:
-                icons:
-                    visible: false
-        hide-until-z16-no-area:
-            filter:
-                area: false
-                kind: [allotments, college, garden, university]
-                $zoom: { max: 16 }
-            draw:
-                icons:
-                    visible: false
-        # no POIs for commercial, residential
-        hide-until-z17-any:
-            filter:
-                $zoom: { max: 17 }
-                kind: [bank, bus_stop, car_sharing, wood]
-            draw:
-                icons:
-                    visible: false
-        hide-until-z17-with-area:
-            filter:
-                area: true
-                $zoom: { max: 17 }
-                kind: [common, grass, houseboat, pedestrian, pitch, railway, ship, wetland]
-            draw:
-                icons:
-                    visible: false
-        hide-until-z17-no-area:
-            filter:
-                area: false
-                $zoom: { max: 17 }
-                # note: atm and drinking_water appear hear and in area versions
-                kind: [accountant, administrative, advertising_agency, animal, architect, association, atm, bakery, bed_and_breakfast, bicycle, bicycle_parking, bicycle_rental_station, books, butcher, car, car_repair, chalet, clothes, company, computer, consulting, convenience, doityourself, drinking_water, dry_cleaning, educational_institution, emergency_phone, employment_agency, estate_agent, fashion, financial, florist, foundation, gift, government, greengrocer, guest_house, hairdresser, hostel, hotel, insurance, it, jewelry, lawyer, mast, memorial, mobile_phone, motel, newspaper, ngo, notary, optician, parking, pet, physician, playground, political_party, post_box, religion, research, subway_entrance, tax_advisor, telecommunication, telephone, theatre, therapist, toilets, traffic_signals, travel_agent, water_tower]
-            draw:
-                icons:
-                    visible: false
-        hide-until-z18-any:
-            filter:
-                kind: [atm, bus_stop, drinking_water]
-                $zoom: { max: 18 }
-            draw:
-                icons:
-                    visible: false
-        hide-until-z18-no-area:
-            filter:
-                $zoom: { max: 18 }
-                area: false
-                kind: [bench, parking, waste_basket]
-            draw:
-                icons:
-                    visible: false
-        hide-until-z19-any:
-            filter:
-                $zoom: { max: 19 }
-                kind: [bicycle_parking, burial_vault, car_sharing]
-            draw:
-                icons:
-                    visible: false
-
-        # hide based on kind and area filters
-        military-early:
-            filter:
-                kind: [military]
-                any:
-                    # show labels for smaller landuse areas at higher zooms
-                    - { $zoom: [8], area: { max: 50000000 } }
-            draw:
-                icons:
-                    visible: false
-        university-early:
-            filter:
-                kind: [university, college]
-                any:
-                    # show labels for smaller landuse areas at higher zooms
-                    - { $zoom: [11], area: { max: 2000000 } }
-                    - { $zoom: [12], area: { max: 500000 } }
-            draw:
-                icons:
-                    visible: false
-        school-early:
-            filter:
-                kind: [school, kindergarten]
-                any:
-                    # show labels for smaller landuse areas at higher zooms
-                    - { $zoom: [13], area: { max: 100000 } }
-                    - { $zoom: [14], area: { max: 50000 } }
-                    - { $zoom: [15], area: { max: 10000 } }
-                    - { $zoom: [16], area: { max: 5000 } }
-                    - { $zoom: [17], area: { max: 2000 } }
-            draw:
-                icons:
-                    visible: false
-        garden-area-early:
-            filter:
-                kind: [garden, allotments]
-                any:
-                    # limit show smaller landuse areas to higher zooms
-                    - { $zoom: [12], area: { max: 500000 } }
-                    - { $zoom: [13], area: { max: 100000 } }
-                    - { $zoom: [14], area: { max: 10000 } }
-                    - { $zoom: [15], area: { max: 5000 } }
-            draw:
-                icons:
-                    visible: false
-        cemetery-early:
-            filter:
-                kind: [cemetery]
-                # limit show smaller landuse areas to higher zooms
-                any:
-                    - { $zoom: [12], area: { max: 3000000 } }
-            draw:
-                icons:
-                    visible: false
-        golf_course-early:
-            filter:
-                kind: golf_course
-                any:
-                    - { $zoom: [12], area: { max: 2500000 } }
-            draw:
-                icons:
-                    visible: false
-        office-early:
-            filter:
-                - { kind: [insurance, office, company], $zoom: [15], area: { max: 10000 } }
-                - { kind: [insurance, office, company], $zoom: [16], area: { max: 5000 } }
-            draw:
-                icons:
-                    visible: false
-        landuse-labels-green-areas-not-national-park:
-            filter:
-                kind: [park, conservation, protected_area, nature_reserve, forest, grass]
-                any:
-                # show labels for smaller landuse areas at higher zooms
-                - { $zoom: { max: 6 }, area: true }
-                - { $zoom: [6],    area: { max: 5000000000 } }
-                - { $zoom: [7],    area: { max: 5000000000 } }
-                - { $zoom: [8],    area: { max: 1000000000 } }
-                - { $zoom: [9],    area: { max: 100000000 } }
-                - { $zoom: [10],   area: { max: 50000000 } }
-                - { $zoom: [11],   area: { max: 25000000 } }
-                - { $zoom: [12],   area: { max: 5000000 } }
-                - { $zoom: [13],   area: { max: 200000 } }
-                - { $zoom: [14],   area: { max: 50000 } }
-                - { $zoom: [15],   area: { max: 10000 } }
-                - { $zoom: [16],   area: { max: 1000 } }
-            draw:
-                icons:
-                    visible: false
-            wilderness-areas-early:
-                filter: function() { return $zoom < 9 && feature.name && (feature.name.indexOf("Wilderness") > -1 || feature.name.indexOf("BLM") > -1 || feature.protect_class == '1' || feature.protect_class == '1a' || feature.protect_class == '1b' ); }
+        z-server-friend:
+            hide-until-z12-any:
+                filter:
+                    kind: [landmark, museum, prison]
+                    $zoom: { max: 12 }
                 draw:
                     icons:
                         visible: false
-            not-national-park:
-                filter: function() { return feature.name && !((feature.name.indexOf("National Park") > -1) || feature.name.indexOf("National Monument") > -1); }
-                early:
-                    filter: { $zoom: { max: 8 } }
+            hide-until-z14-any:
+                filter:
+                    kind: [natural_forest, natural_park, natural_wood, post_office]
+                    $zoom: { max: 14 }
+                draw:
+                    icons:
+                        visible: false
+            hide-until-z15-any:
+                filter:
+                    $zoom: { max: 15 }
+                    kind: [cafe, restaurant]
+                draw:
+                    icons:
+                        visible: false
+            hide-until-z15-no-area:
+                filter:
+                    area: false
+                    $zoom: { max: 15 }
+                    kind: [park]
+                draw:
+                    icons:
+                        visible: false
+            hide-until-z15-with-area:
+                filter:
+                    area: true
+                    $zoom: { max: 15 }
+                    kind: [nursing_home]
+                draw:
+                    icons:
+                        visible: false
+            hide-until-z16-any:
+                filter:
+                    kind: [fire_station, grass, peak, police, tram_stop]
+                    $zoom: { max: 16 }
+                draw:
+                    icons:
+                        visible: false
+            hide-until-z16-no-area:
+                filter:
+                    area: false
+                    kind: [allotments, college, garden, university]
+                    $zoom: { max: 16 }
+                draw:
+                    icons:
+                        visible: false
+            # no POIs for commercial, residential
+            hide-until-z17-any:
+                filter:
+                    $zoom: { max: 17 }
+                    kind: [bank, bus_stop, car_sharing, wood]
+                draw:
+                    icons:
+                        visible: false
+            hide-until-z17-with-area:
+                filter:
+                    area: true
+                    $zoom: { max: 17 }
+                    kind: [common, grass, houseboat, pedestrian, pitch, railway, ship, wetland]
+                draw:
+                    icons:
+                        visible: false
+            hide-until-z17-no-area:
+                filter:
+                    area: false
+                    $zoom: { max: 17 }
+                    # note: atm and drinking_water appear hear and in area versions
+                    kind: [accountant, administrative, advertising_agency, animal, architect, association, atm, bakery, bed_and_breakfast, bicycle, bicycle_parking, bicycle_rental_station, books, butcher, car, car_repair, chalet, clothes, company, computer, consulting, convenience, doityourself, drinking_water, dry_cleaning, educational_institution, emergency_phone, employment_agency, estate_agent, fashion, financial, florist, foundation, gift, government, greengrocer, guest_house, hairdresser, hostel, hotel, insurance, it, jewelry, lawyer, mast, memorial, mobile_phone, motel, newspaper, ngo, notary, optician, parking, pet, physician, playground, political_party, post_box, religion, research, subway_entrance, tax_advisor, telecommunication, telephone, theatre, therapist, toilets, traffic_signals, travel_agent, water_tower]
+                draw:
+                    icons:
+                        visible: false
+            hide-until-z18-any:
+                filter:
+                    kind: [atm, bus_stop, drinking_water]
+                    $zoom: { max: 18 }
+                draw:
+                    icons:
+                        visible: false
+            hide-until-z18-no-area:
+                filter:
+                    $zoom: { max: 18 }
+                    area: false
+                    kind: [bench, parking, waste_basket]
+                draw:
+                    icons:
+                        visible: false
+            hide-until-z19-any:
+                filter:
+                    $zoom: { max: 19 }
+                    kind: [bicycle_parking, burial_vault, car_sharing]
+                draw:
+                    icons:
+                        visible: false
+
+            # hide based on kind and area filters
+            military-early:
+                filter:
+                    kind: [military]
+                    any:
+                        # show labels for smaller landuse areas at higher zooms
+                        - { $zoom: [8], area: { max: 50000000 } }
+                draw:
+                    icons:
+                        visible: false
+            university-early:
+                filter:
+                    kind: [university, college]
+                    any:
+                        # show labels for smaller landuse areas at higher zooms
+                        - { $zoom: [11], area: { max: 2000000 } }
+                        - { $zoom: [12], area: { max: 500000 } }
+                draw:
+                    icons:
+                        visible: false
+            school-early:
+                filter:
+                    kind: [school, kindergarten]
+                    any:
+                        # show labels for smaller landuse areas at higher zooms
+                        - { $zoom: [13], area: { max: 100000 } }
+                        - { $zoom: [14], area: { max: 50000 } }
+                        - { $zoom: [15], area: { max: 10000 } }
+                        - { $zoom: [16], area: { max: 5000 } }
+                        - { $zoom: [17], area: { max: 2000 } }
+                draw:
+                    icons:
+                        visible: false
+            garden-area-early:
+                filter:
+                    kind: [garden, allotments]
+                    any:
+                        # limit show smaller landuse areas to higher zooms
+                        - { $zoom: [12], area: { max: 500000 } }
+                        - { $zoom: [13], area: { max: 100000 } }
+                        - { $zoom: [14], area: { max: 10000 } }
+                        - { $zoom: [15], area: { max: 5000 } }
+                draw:
+                    icons:
+                        visible: false
+            cemetery-early:
+                filter:
+                    kind: [cemetery]
+                    # limit show smaller landuse areas to higher zooms
+                    any:
+                        - { $zoom: [12], area: { max: 3000000 } }
+                draw:
+                    icons:
+                        visible: false
+            golf_course-early:
+                filter:
+                    kind: golf_course
+                    any:
+                        - { $zoom: [12], area: { max: 2500000 } }
+                draw:
+                    icons:
+                        visible: false
+            office-early:
+                filter:
+                    - { kind: [insurance, office, company], $zoom: [15], area: { max: 10000 } }
+                    - { kind: [insurance, office, company], $zoom: [16], area: { max: 5000 } }
+                draw:
+                    icons:
+                        visible: false
+            landuse-labels-green-areas-not-national-park:
+                filter:
+                    kind: [park, conservation, protected_area, nature_reserve, forest, grass]
+                    any:
+                    # show labels for smaller landuse areas at higher zooms
+                    - { $zoom: { max: 6 }, area: true }
+                    - { $zoom: [6],    area: { max: 5000000000 } }
+                    - { $zoom: [7],    area: { max: 5000000000 } }
+                    - { $zoom: [8],    area: { max: 1000000000 } }
+                    - { $zoom: [9],    area: { max: 100000000 } }
+                    - { $zoom: [10],   area: { max: 50000000 } }
+                    - { $zoom: [11],   area: { max: 25000000 } }
+                    - { $zoom: [12],   area: { max: 5000000 } }
+                    - { $zoom: [13],   area: { max: 200000 } }
+                    - { $zoom: [14],   area: { max: 50000 } }
+                    - { $zoom: [15],   area: { max: 10000 } }
+                    - { $zoom: [16],   area: { max: 1000 } }
+                draw:
+                    icons:
+                        visible: false
+                wilderness-areas-early:
+                    filter: function() { return $zoom < 9 && feature.name && (feature.name.indexOf("Wilderness") > -1 || feature.name.indexOf("BLM") > -1 || feature.protect_class == '1' || feature.protect_class == '1a' || feature.protect_class == '1b' ); }
                     draw:
                         icons:
                             visible: false
-        landuse-labels-not-any-above:
-            filter:
-                $zoom: { max: 6 }
-                not: { kind: [aerodrome, airport, allotments, aquarium, attraction, battlefield, beach, cemetery, college, conservation, forest, garden, glacier, golf_course, grass, kindergarten, landmark, maze, national_park, nature_reserve, park, playground, protected_area, resort, school, stadium, station, theme_park, university, winery, winter_sports, zoo] }
-            draw:
-                icons:
-                    visible: false
-        glacier:
-            filter: { $zoom: { max: 14 }, kind: glacier, area: false }
-            draw:
-                icons:
-                    visible: false
+                not-national-park:
+                    filter: function() { return feature.name && !((feature.name.indexOf("National Park") > -1) || feature.name.indexOf("National Monument") > -1); }
+                    early:
+                        filter: { $zoom: { max: 8 } }
+                        draw:
+                            icons:
+                                visible: false
+            landuse-labels-not-any-above:
+                filter:
+                    $zoom: { max: 6 }
+                    not: { kind: [aerodrome, airport, allotments, aquarium, attraction, battlefield, beach, cemetery, college, conservation, forest, garden, glacier, golf_course, grass, kindergarten, landmark, maze, national_park, nature_reserve, park, playground, protected_area, resort, school, stadium, station, theme_park, university, winery, winter_sports, zoo] }
+                draw:
+                    icons:
+                        visible: false
+            glacier:
+                filter: { $zoom: { max: 14 }, kind: glacier, area: false }
+                draw:
+                    icons:
+                        visible: false
 
         # set special priority, sprite, and text styles per kind
         has-area:
@@ -4936,8 +4929,11 @@ layers:
                 kind: [national_park, battlefield]
             draw:
                 icons:
+                    visible: global.icon_visible_landuse_green
+                    size: global.icon_size_green
                     sprite: park
                     text:
+                        visible: global.text_visible_landuse_green
                         font:
                             fill: [0.200,0.409,0.398] #*text_fill_park
                             style: italic
@@ -4946,15 +4942,18 @@ layers:
                 draw:
                     icons:
                         sprite: park-l
-                        size: [[14,24px],[16,32px]]
+                        size: global.icon_size_green_l
         parks:
             filter:
                 - kind: [park, conservation, nature_reserve, grass]
                 - { kind: protected_area, not: { protect_class: [6, '6'] } }
             draw:
                 icons:
+                    visible: global.icon_visible_landuse_green
+                    size: global.icon_size_green
                     sprite: park
                     text:
+                        visible: global.text_visible_landuse_green
                         font:
                             fill: [0.181,0.370,0.361]
                             style: italic
@@ -4972,8 +4971,11 @@ layers:
                 - { kind: protected_area, protect_class: [6, '6'] }
             draw:
                 icons:
+                    visible: global.icon_visible_landuse_green
+                    size: global.icon_size_green
                     sprite: forest
                     text:
+                        visible: global.text_visible_landuse_green
                         font:
                             fill: [0.181,0.370,0.361]
                             style: italic
@@ -4982,7 +4984,10 @@ layers:
                 kind: [beach]
             draw:
                 icons:
+                    visible: global.icon_visible_landuse_green
+                    size: global.icon_size_green
                     text:
+                        visible: global.text_visible_landuse_green
                         font:
                             fill: global.text_fill_beach
         airport:
@@ -4990,12 +4995,16 @@ layers:
                 kind: [airport, aerodrome]
             draw:
                 icons:
+                    visible: global.icon_visible_landuse_green
+                    size: global.icon_size_green
                     priority: 42
                     text:
+                        visible: global.text_visible_landuse_green
                         text_source: global.ux_language_text_source_iata
             early:
                 filter: { $zoom: [9,10,11] }
                 draw: { icons: { text: { text_source: iata } } }
+
         enclosure-related:
             filter:
                 kind: [enclosure, animal]
@@ -5400,7 +5409,7 @@ layers:
             draw:
                 text-blend-order:
                     text_source: global.ux_language_text_source
-                    interactive: global.interactive
+                    interactive: global.sdk_interactive
                     move_into_tile: true
                     priority: 100
                     visible: global.text_visible_landuse_generic
@@ -6060,14 +6069,14 @@ layers:
             icons:
                 visible: global.sdk_transit_overlay
                 size: [[13, 12px], [16, 16px], [19, 20px]]
-                interactive: global.interactive
+                interactive: global.sdk_interactive
                 priority: 15
                 text:
                     buffer: 4px
                     move_into_tile: false # preserves text alignment w/icons in JS
                     #anchor: bottom
                     #offset: [[13, [0, 6px]], [16, [0, 8px]], [19, [0, 10px]]] # offset tracks alongside icon size (half icon height)
-                    interactive: global.interactive
+                    interactive: global.sdk_interactive
                     priority: 16
                     font:
                         fill: black
@@ -6190,7 +6199,7 @@ layers:
                     size: [[13, 8px], [16, 10px], [17, 12px], [18, 18px]]
                     sprite: bus_station
                     text:
-                        interactive: global.interactive
+                        interactive: global.sdk_interactive
                         font:
                             fill: black
                             size: 12px
@@ -6205,7 +6214,7 @@ layers:
                     sprite: bus_station
                     priority: 17
                     text:
-                        interactive: global.interactive
+                        interactive: global.sdk_interactive
                         priority: 18
                         font:
                             fill: black
@@ -6231,7 +6240,7 @@ layers:
                     text:
                         #offset: [[17, [0, 6px]], [19, [0, 7px]]] # offset tracks alongside icon size (half icon height)
                         priority: 20
-                        interactive: global.interactive
+                        interactive: global.sdk_interactive
                         text_source: function() { if( feature.ref || feature.name ) { if( feature.ref && feature.name ) { return '[' + feature.ref + ']\n' + feature.name; } else { return feature.name; } } else { return "Entrance"; } }
                         font:
                             fill: black
