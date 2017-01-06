@@ -246,7 +246,6 @@ global:
     sdk_road_shields: true
     text_visible_exits: true
     text_visible_exits_e: true               # true by default // not used in Bubble Wrap?
-
     #
     #label styling
     text_fill: [0.300, 0.300, 0.300]                         # BLACK
@@ -417,7 +416,7 @@ global:
     building2: [.860, .860, .860]           # building stroke
     building_o:  5                          # building stroke order
     building_e: true                        # building stroke order early
-    sdk_building_extrude: true                  # building extrusion toggle
+    sdk_building_extrude: true              # building extrusion toggle
     building_extrude_height: |              # building extrude height logic
         function() { return feature.height || 20; }
 
@@ -5856,11 +5855,12 @@ layers:
     transit-overlay-rail-lines:
         data: { source: mapzen, layer: transit }
         filter:
-            not: { kind: [platform, railway] }
+            all:
+                - not: { kind: [platform, railway] }
+                - function() { return global.sdk_transit_overlay; }
         draw:
             lines:
                 order: 499
-                visible: global.sdk_transit_overlay
                 color: purple
                 width: [[5,1.5px],[6,2px],[11,3px],[18,4px]]
                 outline:
