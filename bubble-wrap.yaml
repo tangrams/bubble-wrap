@@ -200,55 +200,55 @@ global:
     feature_order: function() { return feature.sort_rank; }
     #
     #label visibility
-    text_visible_continent: true
-    text_visible_admin: true
-    text_visible_populated_places: true
-    icon_visible_populated_places: true
-    text_visible_neighbourhoods: true
-    text_visible_neighbourhoods_e: true
-    text_visible_building: true
-    text_visible_address: true
-    text_visible_water_labels: true
-    text_visible_island: true
-    label_visible_landuse_green: true                          #this needs work
-    icon_visible_landuse_green: true                           #this needs work
-    icon_size_green: [[13, '14px'], [16, '18px'], [18, '19px']]      # 0px for no, default, more  [[13, 14px], [16, 18px], [18, 19px]]
-    icon_size_green_l: [[14, '24px'],[16, '32px']]                   # 0px for no, default, more  [[14,24px],[16,32px]]
-    text_visible_landuse_green: true
-    label_visible_poi_landuse: true                            #false on default
-    icon_visible_poi_landuse: true
-    text_visible_poi_landuse: true
-    label_visible_poi_landuse_e: true        # true by default
-    icon_visible_poi_landuse_e: true         # true by default
-    text_visible_poi_landuse_e: true         # true by default
-    text_visible_landuse_generic: true
-    label_visible_station: true
-    icon_visible_station: true
-    text_visible_station: true
-    text_visible_highway: true
-    text_visible_highway_e: true             # true by default
-    text_visible_trunk_primary: true
-    text_visible_trunk_primary_route: true   # true by default
-    text_visible_trunk_primary_e2: true      # true by default
-    text_visible_trunk_primary_e: true       # true by default
-    text_visible_secondary: true
-    text_visible_secondary_e: true           # true by default
-    text_visible_tertiary: true
-    text_visible_tertiary_e: true            # true by default
-    text_visible_minor_road: true
-    text_visible_minor_road_e: true          # true by default
-    text_visible_service_road: true
-    text_visible_path: true
-    text_visible_piste: true
-    text_visible_steps: true
-    text_visible_aerialway: true
-    text_visible_airport_gate: true
-    sdk_road_shields: true
-    text_visible_exits: true
-    text_visible_exits_e: true               # true by default // not used in Bubble Wrap?
+    text_visible_continent:         true
+    text_visible_admin:             true
+    text_visible_populated_places:  true
+    icon_visible_populated_places:  true
+    text_visible_neighbourhoods:    true
+    text_visible_neighbourhoods_e:  true
+    text_visible_building:          true
+    text_visible_address:           true
+    text_visible_water_labels:      true
+    text_visible_island:            true
+    label_visible_landuse_green:    true         #this needs work
+    icon_visible_landuse_green:     true         #this needs work
+    text_visible_landuse_green:     true
+    icon_size_green:                [[13, '14px'], [16, '18px'], [18, '19px']]      # 0px for no, default, more  [[13, 14px], [16, 18px], [18, 19px]]
+    icon_size_green_l:              [[14, '24px'],[16, '32px']]                     # 0px for no, default, more  [[14,24px],[16,32px]]
+    label_visible_poi_landuse:      true         #false on default
+    icon_visible_poi_landuse:       true
+    text_visible_poi_landuse:       true
+    label_visible_poi_landuse_e:    true         # true by default
+    icon_visible_poi_landuse_e:     true         # true by default
+    text_visible_poi_landuse_e:     true         # true by default
+    text_visible_landuse_generic:   true
+    label_visible_station:          true
+    icon_visible_station:           true
+    text_visible_station:           true
+    text_visible_highway:           true
+    text_visible_highway_e:         true          # true by default
+    text_visible_trunk_primary:     true
+    text_visible_trunk_primary_route: true        # true by default
+    text_visible_trunk_primary_e2:  true          # true by default
+    text_visible_trunk_primary_e:   true          # true by default
+    text_visible_secondary:         true
+    text_visible_secondary_e:       true          # true by default
+    text_visible_tertiary:          true
+    text_visible_tertiary_e:        true          # true by default
+    text_visible_minor_road:        true
+    text_visible_minor_road_e:      true          # true by default
+    text_visible_service_road:      true
+    text_visible_path:              true
+    text_visible_piste:             true
+    text_visible_steps:             true
+    text_visible_aerialway:         true
+    text_visible_airport_gate:      true
+    sdk_road_shields:               true
+    text_visible_exits:             true
+    text_visible_exits_e:           true          # true by default // not used in Bubble Wrap?
     #
     #label styling
-    text_fill: [0.300, 0.300, 0.300]                         # BLACK
+    text_fill: [0.300, 0.300, 0.300]         # BLACK
     text_fill2: '#555'                       # WHITE
     text_fill_road_e: '#555'                 # WHITE
     text_fill_exits: [0.920,0.398,0.340]     # motorway junctions, highway_casing1
@@ -1546,6 +1546,16 @@ layers:
                         outline_transparent:
                             color: global.grey9_o
                             width: [[16,0px],[17,0.5px],[19,2px]]
+
+#    # useful to example road geometry merging & Tangram labeling w/r/t tile boundaries
+#    z-randomColor:
+#        data: { source: mapzen, layer: roads }
+#        draw:
+#            lines:
+#                order: 1000
+#                # color: '#777'
+#                color: function() { return [Math.random(), Math.random(), Math.random()] }
+#                width: [[13,0.5px],[14,1px],[16,2px]]
 
     roads:
         data: { source: mapzen, layer: roads }
@@ -3610,6 +3620,7 @@ layers:
                     - $geometry: point
                     - not: { location: underground, kind: address }
                     - name: true
+                    - function() { return global.text_visible_building; }
     #                - kind: [false, building, university, college, school, kindergarten]
                 any:
                     - { $zoom: [16], area: { min: 5000 } }
@@ -3629,7 +3640,6 @@ layers:
                     text_source: global.ux_language_text_source
                     move_into_tile: true
                     priority: 70
-                    visible: global.text_visible_building
                     order: 7
                     font:
                         fill: '#666'
@@ -3667,10 +3677,11 @@ layers:
                 any:
                     - kind: address
                     - { label_position: true, addr_housenumber: true, name: false }
+                all:
+                    - function() { return global.text_visible_address; }
             draw:
                 text-blend-order:
                     order: 7
-                    visible: global.text_visible_address
                     text_source: addr_housenumber
                     font:
                         fill: global.text_fill_address
@@ -4021,7 +4032,6 @@ layers:
                 text-blend-order:
                     visible: global.text_visible_populated_places
                     buffer: 8px
-                    interactive: global.sdk_interactive
                     font:
                         size: [[5,9px],[8,10px],[12,11px]]
 
@@ -5403,13 +5413,13 @@ layers:
                 all:
                     - label_placement: true
                     - name: true
+                    - function() { return global.text_visible_landuse_generic; }
             draw:
                 text-blend-order:
                     text_source: global.ux_language_text_source
                     interactive: global.sdk_interactive
                     move_into_tile: true
                     priority: 100
-                    visible: global.text_visible_landuse_generic
                     font:
                         fill: '#666'
                         family: global.text_font_family
