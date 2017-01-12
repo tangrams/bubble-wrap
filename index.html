@@ -225,7 +225,8 @@
             // more: 'vector-tiles-7bfyfz8'
             // default (some): 'mapzen-PvjAKRW'
             // no: 'mapzen-UHeMjEw'
-            scene: { import: 'bubble-wrap.yaml', global: { sdk_mapzen_api_key: 'vector-tiles-7bfyfz8' } },
+            // dev: 'mapzen-45zyeJa'
+            scene: { import: 'bubble-wrap.yaml', global: { sdk_mapzen_api_key: 'mapzen-PvjAKRW' } },
             attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a>, &copy; OSM contributors'
         });
 
@@ -470,9 +471,10 @@
                 scene.config.global.text_visible_exits = _default;
 
                 scene.config.global.text_visible_building = _more;
-                scene.config.global.text_visible_addresses = _more;
+                scene.config.global.text_visible_address = _more;
 
                 scene.config.global.label_visible_poi_landuse = _more;
+                scene.config.global.text_visible_poi_landuse = _more;
                 scene.config.global.label_visible_poi_landuse_e = _more;
                 scene.config.global.icon_visible_poi_landuse = _more;
                 scene.config.global.icon_visible_poi_landuse_e = _more;
