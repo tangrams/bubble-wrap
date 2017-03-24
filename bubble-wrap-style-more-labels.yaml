@@ -1611,7 +1611,7 @@ layers:
             filter: { not: { kind: [platform] }, $zoom: { min: 14 } }
             draw:
                 lines:
-                    order: function() { return feature.sort_key || 275; }
+                    order: function() { return feature.sort_rank || 275; }
             railway:
                 filter: { kind: [railway,train] }
                 draw:
@@ -3571,7 +3571,7 @@ layers:
                         lines:
                             outline:
                                 # except bridges and tunnels, their outlines should also self-sort
-                                order: function() { return feature.sort_key || 305; }
+                                order: function() { return feature.sort_rank || 305; }
 
     buildings:
         data: { source: mapzen, layer: buildings }
