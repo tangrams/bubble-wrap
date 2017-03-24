@@ -3,7 +3,7 @@ Author: Geraldine Sarmiento, Nathaniel V. Kelso, Patricio Gonzalez Vivo, Brett C
 global:
     # Sign up for a Mapzen API key to enjoy higher rate limits
     # https://mapzen.com/documentation/overview/#developer-accounts-and-api-keys
-    sdk_mapzen_api_key: mapzen-ZzW4tEy     # set this value to your Mapzen API key
+    sdk_mapzen_api_key: ''     # set this value to your Mapzen API key
 
     #ux/ui
     ux_language: false             # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
@@ -1611,7 +1611,7 @@ layers:
             filter: { not: { kind: [platform] }, $zoom: { min: 14 } }
             draw:
                 lines:
-                    order: function() { return feature.sort_key || 275; }
+                    order: function() { return feature.sort_rank || 275; }
             railway:
                 filter: { kind: [railway,train] }
                 draw:
@@ -3571,7 +3571,7 @@ layers:
                         lines:
                             outline:
                                 # except bridges and tunnels, their outlines should also self-sort
-                                order: function() { return feature.sort_key || 305; }
+                                order: function() { return feature.sort_rank || 305; }
 
     buildings:
         data: { source: mapzen, layer: buildings }
