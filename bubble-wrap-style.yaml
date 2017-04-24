@@ -1038,7 +1038,6 @@ styles:
     building-lines:
         base: lines
         mix: scale-buildings
-        texcoords: true
     lines_transparent:
         base: lines
         blend: overlay
