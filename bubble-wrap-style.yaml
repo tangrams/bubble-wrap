@@ -3860,7 +3860,7 @@ layers:
                         priority: 2
                         visible: global.text_visible_admin
                         text_source: global.ux_language_text_source_boundary_lines_left_right
-                        offset: [[8,[0, 7px]],[11,[0, 8px]],[12,[0, 9px]]]
+                        offset: [[8,[0, 5px]], [11, [0, 6px]], [12,[0, 7px]]]
                         text_wrap: 100px
                         font:
                             family: Varela
@@ -3912,7 +3912,7 @@ layers:
                         priority: 3
                         visible: global.text_visible_admin
                         text_source: global.ux_language_text_source_boundary_lines_left_right
-                        offset: [[8,[0, 7px]],[11,[0, 8px]],[12,[0, 9px]]]
+                        offset: [[8,[0, 5px]], [11, [0, 6px]], [12,[0, 7px]]]
                         text_wrap: 100px
                         #anchor: top
                         font:
