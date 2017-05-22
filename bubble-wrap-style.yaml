@@ -13,20 +13,33 @@ global:
             // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
             return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
         }
-    ux_language_text_source_boundary_lines: |
+    ux_language_text_source_left: |
         function() {
-            var right = (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
-            var left = (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
-            if( right && left ) {
-                //if( right.includes(' ') || left.includes(' ') ) {
-                    return left + " - " + right;
-                //} else {
-                //    return right + '\n' + left;
-                //}
-            } else {
-                return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
-            }
+            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
+            return (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
         }
+    ux_language_text_source_right: |
+        function() {
+            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
+            return (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
+        }
+    ux_language_text_source_boundary_lines_left_right:
+        left: global.ux_language_text_source_left
+        right: global.ux_language_text_source_right
+    ux_language_text_source_boundary_lines: |
+       function() {
+           var right = (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
+           var left = (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
+           if( right && left ) {
+               //if( right.includes(' ') || left.includes(' ') ) {
+                   return left + " - " + right;
+               //} else {
+               //    return right + '\n' + left;
+               //}
+           } else {
+               return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+           }
+       }
     ux_language_text_source_short: |
         function() {
             return (global.ux_language && feature['name:short:'+global.ux_language]) || (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) || feature['name:short'];
@@ -3834,19 +3847,20 @@ layers:
             draw:
                 lines:
                     color: global.country_boundary
-                    width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [8, 2.5px], [14, 3.5px], [16, 4.5px], [17, 14m]]
+                    width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [8, 2.5px], [14, 3.5px], [16, 4.5px]]
             water:
                 filter: { maritime_boundary: true }
                 draw:
                     lines:
                         visible: false
             labels-z9-up:
-                filter: { name: true, $zoom: { min: 9 }, not: { maritime_boundary: true } }
+                filter: { name: true, $zoom: { min: 8 }, not: { maritime_boundary: true } }
                 draw:
                     text-blend-order:
                         priority: 2
                         visible: global.text_visible_admin
-                        text_source: global.ux_language_text_source_boundary_lines
+                        text_source: global.ux_language_text_source_boundary_lines_left_right
+                        offset: [[8,[0, 7px]],[11,[0, 8px]],[12,[0, 9px]]]
                         text_wrap: 100px
                         font:
                             family: Varela
@@ -3880,7 +3894,7 @@ layers:
             draw:
                 lines:
                     color: global.region_boundary
-                    width: [[0, 0.5px], [2, 1.0px], [5, 1.25px], [6, 1.5px], [7, 1.75px], [8, 2.0px], [9, 3.5px], [14, 5.5px], [16, 6.5px], [17, 16m]]
+                    width: [[0, 0.5px], [2, 1.0px], [5, 1.25px], [6, 1.5px], [7, 1.75px], [8, 2.0px], [9, 3.5px], [14, 5.5px], [16, 6.5px]]
             water:
                 filter: { maritime_boundary: true }
                 draw:
@@ -3892,15 +3906,15 @@ layers:
                     lines:
                         visible: false
             labels-z9-up:
-                filter: { name: true, $zoom: { min: 9 }, not: { maritime_boundary: true } }
+                filter: { name: true, $zoom: { min: 8 }, not: { maritime_boundary: true } }
                 draw:
                     text-blend-order:
                         priority: 3
                         visible: global.text_visible_admin
-                        text_source: global.ux_language_text_source_boundary_lines
+                        text_source: global.ux_language_text_source_boundary_lines_left_right
+                        offset: [[8,[0, 7px]],[11,[0, 8px]],[12,[0, 9px]]]
                         text_wrap: 100px
-                        offset: 10px
-                        anchor: top
+                        #anchor: top
                         font:
                             family: Varela
                             size: 9px
