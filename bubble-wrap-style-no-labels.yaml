@@ -13,20 +13,33 @@ global:
             // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
             return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
         }
-    ux_language_text_source_boundary_lines: |
+    ux_language_text_source_left: |
         function() {
-            var right = (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
-            var left = (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
-            if( right && left ) {
-                //if( right.includes(' ') || left.includes(' ') ) {
-                    return left + " - " + right;
-                //} else {
-                //    return right + '\n' + left;
-                //}
-            } else {
-                return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
-            }
+            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
+            return (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
         }
+    ux_language_text_source_right: |
+        function() {
+            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
+            return (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
+        }
+    ux_language_text_source_boundary_lines_left_right:
+        left: global.ux_language_text_source_left
+        right: global.ux_language_text_source_right
+    ux_language_text_source_boundary_lines: |
+       function() {
+           var right = (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
+           var left = (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
+           if( right && left ) {
+               //if( right.includes(' ') || left.includes(' ') ) {
+                   return left + " - " + right;
+               //} else {
+               //    return right + '\n' + left;
+               //}
+           } else {
+               return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+           }
+       }
     ux_language_text_source_short: |
         function() {
             return (global.ux_language && feature['name:short:'+global.ux_language]) || (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) || feature['name:short'];
@@ -1038,7 +1051,6 @@ styles:
     building-lines:
         base: lines
         mix: scale-buildings
-        texcoords: true
     lines_transparent:
         base: lines
         blend: overlay
@@ -1076,19 +1088,16 @@ styles:
     ux-icons-overlay:
         base: points
         texture: pois
-        interactive: global.sdk_interactive
         blend: overlay
         blend_order: 3
     sdk-point-overlay:
         base: points
         texture: pois
-        interactive: global.sdk_interactive
         blend: overlay
         blend_order: 3
     sdk-shield-overlay:
         base: points
         texture: pois
-        interactive: global.sdk_interactive
         blend: overlay
         blend_order: 3
     sdk-line-overlay:
@@ -1110,6 +1119,7 @@ layers:
         data: { source: mz_route_line }
         draw:
             ux-route-line-overlay:
+                interactive: global.sdk_interactive
                 color: '#06a6d4'
                 order: 500
                 width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
@@ -1117,6 +1127,7 @@ layers:
         data: { source: mz_dash_line }
         draw:
             ux-route-line-dash-overlay:
+                interactive: global.sdk_interactive
                 color: '#06a6d4'
                 order: 500
                 width: [[2,2px],[5,2.5px],[11,3px],[16,7px],[17,9px]]
@@ -1127,6 +1138,7 @@ layers:
                 # each transit route segment could be a different "line" each with it's own color
                 # but some transit lines don't define a color, in those cases default to blue
                 # and since the color is coming from Transit.land they call it "color" instead of "colour"
+                interactive: global.sdk_interactive
                 color: function() { return feature.color || '#06a6d4'; }
                 order: 500
                 width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
@@ -1134,6 +1146,7 @@ layers:
         data: { source: mz_current_location }
         draw:
             ux-location-gem-overlay:
+                interactive: global.sdk_interactive
                 sprite: ux-current-location
                 size: 36px
                 collide: false
@@ -1142,6 +1155,7 @@ layers:
         data: { source: mz_route_location }
         draw:
             ux-location-gem-overlay:
+                interactive: global.sdk_interactive
                 sprite: ux-route-arrow
                 size: [60px,60px]
                 collide: false
@@ -1172,6 +1186,7 @@ layers:
         data: { source: mz_route_transit_stop }
         draw:
             ux-icons-overlay:
+                interactive: global.sdk_interactive
                 sprite: ux-transit-stop
                 size: [15px,15px]
                 collide: false
@@ -1195,6 +1210,7 @@ layers:
         data: { source: mz_dropped_pin }
         draw:
             ux-icons-overlay:
+                interactive: global.sdk_interactive
                 sprite: ux-search-active
                 size: [36px,54px]
                 collide: false
@@ -1323,6 +1339,7 @@ layers:
         data: { source: mz_default_line }
         draw:
             sdk-line-overlay:
+                interactive: global.sdk_interactive
                 color: '#06a6d4'
                 order: 503
                 width: 3px
@@ -1330,6 +1347,7 @@ layers:
         data: { source: mz_default_polygon }
         draw:
             sdk-polygon-overlay:
+                interactive: global.sdk_interactive
                 color: [0.02,0.65,0.82,0.5]  #'#06b1e2'
                 order: 501
             sdk-line-overlay:
@@ -3831,19 +3849,20 @@ layers:
             draw:
                 lines:
                     color: global.country_boundary
-                    width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [8, 2.5px], [14, 3.5px], [16, 4.5px], [17, 14m]]
+                    width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [8, 2.5px], [14, 3.5px], [16, 4.5px]]
             water:
                 filter: { maritime_boundary: true }
                 draw:
                     lines:
                         visible: false
             labels-z9-up:
-                filter: { name: true, $zoom: { min: 9 }, not: { maritime_boundary: true } }
+                filter: { name: true, $zoom: { min: 8 }, not: { maritime_boundary: true } }
                 draw:
                     text-blend-order:
                         priority: 2
                         visible: global.text_visible_admin
-                        text_source: global.ux_language_text_source_boundary_lines
+                        text_source: global.ux_language_text_source_boundary_lines_left_right
+                        offset: [[8,[0, 5px]], [11, [0, 6px]], [12,[0, 7px]]]
                         text_wrap: 100px
                         font:
                             family: Varela
@@ -3877,7 +3896,7 @@ layers:
             draw:
                 lines:
                     color: global.region_boundary
-                    width: [[0, 0.5px], [2, 1.0px], [5, 1.25px], [6, 1.5px], [7, 1.75px], [8, 2.0px], [9, 3.5px], [14, 5.5px], [16, 6.5px], [17, 16m]]
+                    width: [[0, 0.5px], [2, 1.0px], [5, 1.25px], [6, 1.5px], [7, 1.75px], [8, 2.0px], [9, 3.5px], [14, 5.5px], [16, 6.5px]]
             water:
                 filter: { maritime_boundary: true }
                 draw:
@@ -3889,15 +3908,15 @@ layers:
                     lines:
                         visible: false
             labels-z9-up:
-                filter: { name: true, $zoom: { min: 9 }, not: { maritime_boundary: true } }
+                filter: { name: true, $zoom: { min: 8 }, not: { maritime_boundary: true } }
                 draw:
                     text-blend-order:
                         priority: 3
                         visible: global.text_visible_admin
-                        text_source: global.ux_language_text_source_boundary_lines
+                        text_source: global.ux_language_text_source_boundary_lines_left_right
+                        offset: [[8,[0, 5px]], [11, [0, 6px]], [12,[0, 7px]]]
                         text_wrap: 100px
-                        offset: 10px
-                        anchor: top
+                        #anchor: top
                         font:
                             family: Varela
                             size: 9px
@@ -3905,30 +3924,6 @@ layers:
                             fill: [0.4,0.4,0.4]
                             # stroke: { color: global.text_stroke, width: 4 }
                             transform: uppercase
-        city_walls:
-            filter: { kind: city_wall }
-            draw:
-                lines:
-                    color: global.city_wall
-                    width: [[12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.0px], [16, 2.5px], [19, 6m]]
-        retaining_wall:
-            filter: { kind: retaining_wall }
-            draw:
-                lines:
-                    color: global.retaining_wall
-                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 4m]]
-        snow_fence:
-            filter: { kind: snow_fence }
-            draw:
-                lines:
-                    color: global.snow_fence
-                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1.5m]]
-        fence:
-            filter: { kind: fence }
-            draw:
-                lines:
-                    color: global.fence
-                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1.5m]]
 
     places:
         data: { source: mapzen, layer: places }
@@ -5842,6 +5837,31 @@ layers:
                     visible: global.earth2_ev
                     order: global.feature_order
                     color: [[4,[0.965,0.600,0.882]],[6,[0.965,0.600,0.882]],[7,[0.882,0.639,0.827]],[8,[0.757,0.729,0.753]]]
+
+        city_walls:
+            filter: { kind: city_wall }
+            draw:
+                lines:
+                    color: global.city_wall
+                    width: [[12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.0px], [16, 2.5px], [19, 3m]]
+        retaining_wall:
+            filter: { kind: retaining_wall }
+            draw:
+                lines:
+                    color: global.retaining_wall
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 2m]]
+        snow_fence:
+            filter: { kind: snow_fence }
+            draw:
+                lines:
+                    color: global.snow_fence
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1m]]
+        fence:
+            filter: { kind: fence }
+            draw:
+                lines:
+                    color: global.fence
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1m]]
 
     transit-overlay-rail-lines:
         data: { source: mapzen, layer: transit }
