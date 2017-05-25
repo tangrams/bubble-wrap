@@ -1152,6 +1152,7 @@ layers:
         data: { source: mz_route_location }
         draw:
             ux-location-gem-overlay:
+                interactive: global.sdk_interactive
                 sprite: ux-route-arrow
                 size: [60px,60px]
                 collide: false
