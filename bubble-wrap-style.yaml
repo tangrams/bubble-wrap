@@ -3668,6 +3668,8 @@ layers:
                             - { $zoom: 17, area: { min: 500 } }
                             - { $zoom: 17, volume: { min: 15000 } }
                             - { $zoom: { min: 18 } }
+                        - not:
+                            - layer: [-1, -2, -3, -4, -5]
                 draw:
                     polygons:
                         order: 438
