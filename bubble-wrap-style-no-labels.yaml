@@ -3668,6 +3668,8 @@ layers:
                             - { $zoom: 17, area: { min: 500 } }
                             - { $zoom: 17, volume: { min: 15000 } }
                             - { $zoom: { min: 18 } }
+                        - not:
+                            - layer: [-1, -2, -3, -4, -5]
                 draw:
                     polygons:
                         order: 438
@@ -5235,18 +5237,18 @@ layers:
                         font:
                             style: italic
 
-        # TODO: this isn't working, should see small icons near the transbay terminal in SF
         bus_stop:
             filter:
                 kind: [bus_stop]
             draw:
                 icons:
-                    size: 14px
+                    size: [[18,12px],[20,18px]]
                     text:
+                        optional: true
                         font:
                             size: 11px
                             weight: normal
-            later:
+            early:
                 filter: { $zoom: { max: 19 } }
                 draw:
                     icons:
