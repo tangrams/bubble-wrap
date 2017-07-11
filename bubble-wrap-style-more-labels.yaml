@@ -1718,6 +1718,22 @@ layers:
                     weight: normal
                     fill: global.text_fill
 
+        arrows:
+            # oneway arrows and shields are distinct groups!
+            filter: { oneway: yes, shield_text: false, not: { kind: rail }, $zoom: { min: 17 } }
+            draw:
+                arrows:
+                    style: icons
+                    flat: true
+                    visible: global.icon_visible_landuse_green
+                    sprite: arrow
+                    color: [0.800,0.800,0.800]
+                    size: [[17, 6px], [20, 14px]]
+                    placement: spaced
+                    placement_spacing: [[17, 70px], [20, 175px]]
+                    angle: auto
+
+
         natural_earth_highways:
             filter: { source: 'naturalearthdata.com', $zoom: { max: 8 } }
             draw:
@@ -3858,7 +3874,7 @@ layers:
                 draw:
                     lines:
                         visible: false
-            labels-z9-up:
+            country-labels:
                 filter: { name: true, $zoom: { min: 8 }, not: { maritime_boundary: true } }
                 draw:
                     text-blend-order:
@@ -3910,7 +3926,7 @@ layers:
                 draw:
                     lines:
                         visible: false
-            labels-z9-up:
+            region-labels:
                 filter: { name: true, $zoom: { min: 8 }, not: { maritime_boundary: true } }
                 draw:
                     text-blend-order:
