@@ -5692,7 +5692,7 @@ layers:
                         visible: true
         pedestrian:
             filter:
-                kind: [pedestrian,common]
+                kind: [pedestrian,common,footway]
             draw:
                 dots:
                     color: [0.740,0.740,0.740]

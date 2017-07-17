@@ -1733,7 +1733,6 @@ layers:
                     placement_spacing: [[17, 70px], [20, 175px]]
                     angle: auto
 
-
         natural_earth_highways:
             filter: { source: 'naturalearthdata.com', $zoom: { max: 8 } }
             draw:
@@ -5692,7 +5691,7 @@ layers:
                         visible: true
         pedestrian:
             filter:
-                kind: [pedestrian,common]
+                kind: [pedestrian,common,footway]
             draw:
                 dots:
                     color: [0.740,0.740,0.740]
