@@ -3880,7 +3880,7 @@ layers:
                         priority: 2
                         visible: global.text_visible_admin
                         text_source: global.ux_language_text_source_boundary_lines_left_right
-                        offset: [[8,[0, 5px]], [11, [0, 6px]], [12,[0, 7px]]]
+                        offset: [0, 5px]
                         text_wrap: 100px
                         font:
                             family: Varela
@@ -3889,6 +3889,12 @@ layers:
                             fill: [0.25,0.25,0.25]
                             # stroke: { color: global.text_stroke, width: 4 }
                             transform: uppercase
+                no-left-right:
+                    filter: { "name:left": false, "name:right": false }
+                    draw:
+                        text-blend-order:
+                            text_source: global.ux_language_text_source_boundary_lines
+                            offset: 0px
         other_country_boundary_disputed_etc:
             filter: { kind: [disputed, indefinite, indeterminate, lease_limit, line_of_control, overlay_limit] }
             draw:
@@ -3932,9 +3938,8 @@ layers:
                         priority: 3
                         visible: global.text_visible_admin
                         text_source: global.ux_language_text_source_boundary_lines_left_right
-                        offset: [[8,[0, 5px]], [11, [0, 6px]], [12,[0, 7px]]]
+                        offset: [0, 5px]
                         text_wrap: 100px
-                        #anchor: top
                         font:
                             family: Varela
                             size: 9px
@@ -3942,6 +3947,12 @@ layers:
                             fill: [0.4,0.4,0.4]
                             # stroke: { color: global.text_stroke, width: 4 }
                             transform: uppercase
+                no-left-right:
+                    filter: { "name:left": false, "name:right": false }
+                    draw:
+                        text-blend-order:
+                            text_source: global.ux_language_text_source_boundary_lines
+                            offset: 0px
 
     places:
         data: { source: mapzen, layer: places }
