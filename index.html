@@ -443,6 +443,7 @@
                 scene.config.global.text_visible_island = _default;
 
                 scene.config.global.sdk_road_shields = _road_shields;
+                scene.config.global.icon_visible_arrows = _road_shields;
 
                 scene.config.global.text_visible_roads = _default;
                 scene.config.global.text_visible_highway = _default;
@@ -658,6 +659,12 @@
                                     var val = properties[x]
                                     label += "<span class='labelLine' key="+x+" value="+val+"'>"+x+" : "+val+"</span><br>"
                                 }
+
+                                var layers = selection.feature.layers;
+                                label += "<span class='labelLine'>Layers:</span><br>"
+                                layers.forEach(function(val) {
+                                    label += "<span class='labelLine' value="+val+"'>&nbsp;"+val+"</span><br>"
+                                });
 
                                 if (label != '') {
                                     popup.style.left = (selection.pixel.x) + 'px';

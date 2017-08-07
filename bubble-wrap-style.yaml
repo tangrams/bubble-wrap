@@ -231,6 +231,7 @@ global:
     text_visible_landuse_green:     true
     icon_size_green:                [[0, '0px']]    # 0px for no, default, more  [[13, 14px], [16, 18px], [18, 19px]]
     icon_size_green_l:              [[0, '0px']]    # 0px for no, default, more  [[14,24px],[16,32px]]
+    icon_visible_arrows:            true
     label_visible_poi_landuse:      true
     icon_visible_poi_landuse:       false     # false for default
     text_visible_poi_landuse:       false     # false for default
@@ -1064,10 +1065,6 @@ styles:
     polygons_transparent:
         base: polygons
         blend: overlay
-    mapzen_icon_library:
-        base: points
-        texture: mapzen_icon_spritesheet
-        blend_order: 1
     text-blend-order:
         base: text
         blend_order: 1
@@ -1728,13 +1725,15 @@ layers:
                 arrows:
                     style: mapzen_icon_library
                     flat: true
-                    visible: global.icon_visible_landuse_green
+                    visible: global.icon_visible_arrows
                     sprite: arrow
                     color: [0.800,0.800,0.800]
                     size: [[17, 6px], [20, 14px]]
                     placement: spaced
                     placement_spacing: [[17, 70px], [20, 175px]]
                     angle: auto
+                    text:
+                        visible: false
 
 
         natural_earth_highways:
@@ -3953,6 +3952,7 @@ layers:
             name: true
         draw:
             mapzen_icon_library:
+                visible: false
                 text:
                     text_source: global.ux_language_text_source
                     visible: false    # labels are enabled by each layer below
