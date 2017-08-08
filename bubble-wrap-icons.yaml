@@ -1,7 +1,7 @@
 styles:
     mapzen_icon_library:
         base: points
-        texture: mapzen_icon_spritesheet
+        texture: mapzen_icon_library
         blend_order: 1
         draw:
             size: [[13, 14px], [16, 18px], [18, 19px]]
@@ -20,7 +20,7 @@ styles:
                     stroke: { color: global.text_stroke, width: [[12,2px],[16,4px]] }
 
 textures:
-    mapzen_icon_spritesheet:
+    mapzen_icon_library:
         url: images/bubble-wrap@2x.png
         #url: https://raw.githubusercontent.com/tangrams/bubble-wrap/gh-pages/images/bubble-wrap%402x.png
         filtering: mipmap
