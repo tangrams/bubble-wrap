@@ -24,7 +24,7 @@
         <!-- production -->
         <script src="https://mapzen.com/tangram/0.13/tangram.min.js"></script>
         <!-- production debug -->
-        <!-- <script src="https://mapzen.com/tangram/0.12/tangram.debug.js"></script> -->
+        <!-- <script src="https://mapzen.com/tangram/0.13/tangram.debug.js"></script> -->
         <!-- dev -->
         <!-- <script src="https://precog.mapzen.com/tangrams/tangram/master/dist/tangram.debug.js"></script> -->
         <!-- dev branch -->
@@ -618,12 +618,13 @@
                         if( key.cmd || key.alt ) {
                             window.open( mapzenTileURL(), '_blank' );
                         } else {
-                            var url = 'https://www.openstreetmap.org/edit?';
                             if (!selection || selection.feature == null || selection.feature.properties == null) {
                                 picking = false;
                                 popup.style.visibility = 'hidden';
                                 return;
                             }
+                            var url = 'https://www.openstreetmap.org/edit?';
+
                             //console.log(selection.feature, selection.changed);
                             // enable iD to show properties sidebar for selected feature
                             osm_type = 'node';
@@ -675,11 +676,17 @@
 
                                 // JOSM editor link
                                 var position = '19' + '/' + latlng.lat + '/' + latlng.lng;
-                                var josmUrl = 'http://www.openstreetmap.org/edit?editor=remote#map='+position;
 
-                                popup.appendChild(createEditLinkElement( url, 'iD', 'Edit with iD ➹') );
+                                if( selection.feature.properties.source == 'whosonfirst.mapzen.com' ) {
+                                    var wofUrl = 'https://whosonfirst.mapzen.com/boundaryissues/id/'+selection.feature.properties.id+'/';
+                                    popup.appendChild(createEditLinkElement( wofUrl, 'WOF', 'Edit with Boundary Issues ➹') );
+                                } else {
+                                    popup.appendChild(createEditLinkElement( url, 'iD', 'Edit with iD ➹') );
+                                    //var josmUrl = 'http://www.openstreetmap.org/edit?editor=remote#map='+position;
+                                    //popup.appendChild(createEditLinkElement( josmUrl, 'JOSM', 'Edit with JOSM ➹') );
+                                }
                                 popup.appendChild(createEditLinkElement( mapzenTileURL(), 'rawTile', 'View tile data ➹') );
-                                //popup.appendChild(createEditLinkElement( josmUrl, 'JOSM', 'Edit with JOSM ➹') );
+
                                 popup.style.visibility = 'visible';
                             }
                         }
