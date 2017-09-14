@@ -2012,7 +2012,6 @@ layers:
                         text-blend-order:
                             priority: 57
                             visible: global.text_visible_tertiary_e
-                            # text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.5,0.5,0.5]
                                 size: 10px
@@ -2023,7 +2022,6 @@ layers:
                         text-blend-order:
                             priority: 57
                             visible: global.text_visible_tertiary_e
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.5,0.5,0.5]
                                 size: 12px
