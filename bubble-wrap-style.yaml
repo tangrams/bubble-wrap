@@ -1,7 +1,7 @@
 Author: Geraldine Sarmiento, Nathaniel V. Kelso, Patricio Gonzalez Vivo, Brett Camper, Peter Richardson
 
 import:
-    - bubble-wrap-icons.yaml
+    - themes/bubble-wrap-icons.yaml
     - themes/label-5.yaml
 
 global:
