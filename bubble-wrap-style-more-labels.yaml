@@ -2,7 +2,6 @@ Author: Geraldine Sarmiento, Nathaniel V. Kelso, Patricio Gonzalez Vivo, Brett C
 
 import:
     - bubble-wrap-style.yaml
-    - bubble-wrap-icons.yaml
 
 global:
     #label visibility
