@@ -3399,6 +3399,7 @@ layers:
                     - not: { location: underground, kind: address }
                     - name: true
                     - function() { return global.text_visible_building; }
+                    - landuse_kind: [university, college, school, kindergarten]
     #                - kind: [false, building, university, college, school, kindergarten]
                 any:
                     - { $zoom: [16], area: { min: 5000 } }

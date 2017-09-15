@@ -66,7 +66,7 @@ layers:
                 - { $zoom: { min: 17 } }
                 - $geometry: point
                 - function() { return global.text_visible_building; }
-                - kind_detail: [university, college, school, kindergarten]
+                - landuse_kind: [university, college, school, kindergarten]
             any:
                 - { $zoom: [17], area: { min: 3000 }, name: true }
                 - { $zoom: [17], area: { min: 2000 }, kind_detail: [university, college, school, kindergarten] }
