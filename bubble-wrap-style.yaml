@@ -2,6 +2,7 @@ Author: Geraldine Sarmiento, Nathaniel V. Kelso, Patricio Gonzalez Vivo, Brett C
 
 import:
     - themes/bubble-wrap-icons.yaml
+    - themes/label-5.yaml
 
 global:
     # Sign up for a Mapzen API key to enjoy higher rate limits
@@ -215,47 +216,6 @@ global:
     # default order for basemap features
     feature_order: function() { return feature.sort_rank; }
     #
-    #label visibility
-    text_visible_continent:         true
-    text_visible_admin:             true
-    text_visible_populated_places:  true
-    icon_visible_populated_places:  true
-    text_visible_neighbourhoods:    true
-    text_visible_neighbourhoods_e:  true
-    text_visible_building:          false     # false for default
-    text_visible_address:           false     # false for default
-    text_visible_water_labels:      true
-    text_visible_island:            true
-    icon_visible_landuse_green:     true     # needs work
-    text_visible_landuse_green:     true
-    icon_size_green:                [[0, '0px']]    # 0px for no, default, more  [[13, 14px], [16, 18px], [18, 19px]]
-    icon_size_green_l:              [[0, '0px']]    # 0px for no, default, more  [[14,24px],[16,32px]]
-    icon_visible_arrows:            true
-    label_visible_poi_landuse:      true
-    icon_visible_poi_landuse:       false     # false for default
-    text_visible_poi_landuse:       false     # false for default
-    icon_visible_poi_landuse_e:     false     # false for default
-    text_visible_landuse_generic:   false     # false for default
-    icon_visible_station:           false     # false for default
-    text_visible_station:           false     # false for default
-    text_visible_highway:           true
-    text_visible_trunk_primary:     true
-    text_visible_trunk_primary_route: true        # true by default
-    text_visible_trunk_primary_e:   false     # false for default, false for more
-    text_visible_secondary:         true
-    text_visible_secondary_e:       false     # false for default, false for more
-    text_visible_tertiary:          true
-    text_visible_tertiary_e:        false     # false for default, false for more
-    text_visible_minor_road:        true
-    text_visible_minor_road_e:      true
-    text_visible_service_road:      true
-    text_visible_path:              true
-    text_visible_piste:             true
-    text_visible_steps:             true
-    text_visible_aerialway:         true
-    text_visible_airport_gate:      true
-    sdk_road_shields:               true
-    text_visible_exits:             true
     #
     #label styling
     text_fill: [0.300, 0.300, 0.300]         # BLACK
@@ -1529,59 +1489,6 @@ layers:
                 draw:
                     text-blend-order:
                         text_source: global.ux_language_text_source_road_ref_and_name
-            # labels-highway-early:
-            #     filter:
-            #         $zoom: [7,8,9]
-            #         shield_text: false
-            #     draw:
-            #         text-blend-order:
-            #             priority: 50
-            #             visible: global.sdk_road_shields
-            #             text_source: ref
-            #             font:
-            #                 fill: [1.0,1.0,1.0]
-            #                 weight: 600
-            #                 size: 9px
-            #                 stroke: { color: [0.976,0.541,0.490], width: 3 }
-            # labels-highway-z10:
-            #     filter:
-            #         $zoom: 10
-            #         shield_text: false
-            #     draw:
-            #         text-blend-order:
-            #             visible: global.sdk_road_shields
-            #             text_source: ref
-            #             font:
-            #                 fill: [1.0,1.0,1.0]
-            #                 weight: 600
-            #                 size: 10px
-            #                 stroke: { color: [0.976,0.541,0.490], width: 3 }
-            # labels-highway-z11:
-            #     filter:
-            #         $zoom: 11
-            #         shield_text: false
-            #     draw:
-            #         text-blend-order:
-            #             visible: global.sdk_road_shields
-            #             text_source: ref
-            #             font:
-            #                 fill: [1.0,1.0,1.0]
-            #                 weight: 600
-            #                 size: 11px
-            #                 stroke: { color: [0.976,0.541,0.490], width: 3 }
-            # labels-highway-z12:
-            #     filter:
-            #         $zoom: 12
-            #         shield_text: false
-            #     draw:
-            #         text-blend-order:
-            #             visible: global.sdk_road_shields
-            #             text_source: ref
-            #             font:
-            #                 fill: [1.0,1.0,1.0]
-            #                 weight: 600
-            #                 size: 12px
-            #                 stroke: { color: [0.976,0.541,0.490], width: 3 }
             labels-highway-z13:
                 filter:
                     $zoom: 13
@@ -1594,7 +1501,7 @@ layers:
                             fill: [0.0,0.0,0.0]
                             weight: 600
                             size: 12px
-                            # stroke: { color: [0.976,0.541,0.490], width: 4 }
+                            # stroke: { color: [0.976,0.541,0.490], width: 4px }
             labels-highway-z14:
                 filter:
                     $zoom: 14
@@ -1607,7 +1514,7 @@ layers:
                             fill: [0.0,0.0,0.0]
                             weight: 600
                             size: 12px
-                            # stroke: { color: [0.976,0.541,0.490], width: 4 }
+                            # stroke: { color: [0.976,0.541,0.490], width: 4px }
             labels-highway-z15:
                 filter:
                     $zoom: 15
@@ -1618,7 +1525,7 @@ layers:
                             fill: [0.0,0.0,0.0]
                             weight: 600
                             size: 14px
-                            stroke: { color: [1.000,1.000,1.000], width: 2 }
+                            stroke: { color: [1.000,1.000,1.000], width: 2px }
             labels-highway-z16:
                 filter: { $zoom: { min: 16, max: 18 } }
                 draw:
@@ -1628,7 +1535,7 @@ layers:
                         font:
                             fill: [0.0,0.0,0.0]
                             size: 15px
-                            stroke: { color: [1.000,1.000,1.000], width: 4 }
+                            stroke: { color: [1.000,1.000,1.000], width: 4px }
             labels-highway-z18:
                 filter: { $zoom: { min: 18 } }
                 draw:
@@ -1638,7 +1545,7 @@ layers:
                         font:
                             fill: [0.0,0.0,0.0]
                             size: 17px
-                            stroke: { color: [1.000,1.000,1.000], width: 4 }
+                            stroke: { color: [1.000,1.000,1.000], width: 4px }
 
         major_road:
             filter: { kind: major_road, $zoom: { min: 8 } }
@@ -1763,7 +1670,7 @@ layers:
                             font:
                                 fill: [0.4,0.4,0.4]
                                 size: 10px
-                                # stroke: { color: [1.000,0.631,0.590], width: 3 }
+                                # stroke: { color: [1.000,0.631,0.590], width: 3px }
                 labels-trunk_primary-z12:
                     filter:
                         $zoom: [12]
@@ -1775,7 +1682,7 @@ layers:
                             font:
                                 fill: [0.4,0.4,0.4]
                                 size: 11px
-                                # stroke: { color: [1.000,0.631,0.590], width: 3 }
+                                # stroke: { color: [1.000,0.631,0.590], width: 3px }
                 labels-trunk_primary-z13:
                     filter:
                         $zoom: [13]
@@ -1786,7 +1693,7 @@ layers:
                             font:
                                 fill: [0.25,0.25,0.25]
                                 size: 12px
-                                stroke: { color: global.text_stroke, width: 2 }
+                                stroke: { color: global.text_stroke, width: 2px }
                 labels-trunk_primary-z14:
                     filter:
                         $zoom: [14]
@@ -1797,7 +1704,7 @@ layers:
                             font:
                                 fill: [0.10,0.10,0.10]
                                 size: 13px
-                                stroke: { color: [1.00,1.00,1.00], width: 2 }
+                                stroke: { color: [1.00,1.00,1.00], width: 2px }
                 labels-trunk_primary-z15:
                     filter: { $zoom: [15] }
                     draw:
@@ -1807,7 +1714,7 @@ layers:
                             font:
                                 fill: [0.0,0.0,0.0]
                                 size: 14px
-                                stroke: { color: [1.00,1.00,1.00], width: 3 }
+                                stroke: { color: [1.00,1.00,1.00], width: 3px }
                 labels-trunk_primary-z16:
                     filter: { $zoom: [16] }
                     draw:
@@ -1817,7 +1724,7 @@ layers:
                             font:
                                 fill: [0.0,0.0,0.0]
                                 size: 15px
-                                stroke: { color: [1.00,1.00,1.00], width: 3 }
+                                stroke: { color: [1.00,1.00,1.00], width: 3px }
                 labels-trunk_primary-z17:
                     filter: { $zoom: [17] }
                     draw:
@@ -1827,7 +1734,7 @@ layers:
                             font:
                                 fill: [0.0,0.0,0.0]
                                 size: 16px
-                                stroke: { color: [1.00,1.00,1.00], width: 3 }
+                                stroke: { color: [1.00,1.00,1.00], width: 3px }
                 labels-trunk_primary-z18:
                     filter: { $zoom: { min: 18 } }
                     draw:
@@ -1837,7 +1744,7 @@ layers:
                             font:
                                 fill: [0.0,0.0,0.0]
                                 size: 17px
-                                stroke: { color: [1.00,1.00,1.00], width: 3 }
+                                stroke: { color: [1.00,1.00,1.00], width: 3px }
             link:
                 filter: { is_link: true } # on- and off-ramps, etc
                 draw:
@@ -1903,23 +1810,21 @@ layers:
                             text-blend-order:
                                 priority: 56
                                 visible: global.text_visible_secondary_e
-                                #text_source: global.ux_language_text_source_road_ref_and_name_short
                                 font:
                                     # need fill here?
                                     size: 12px
-                                    stroke: { color: global.text_stroke, width: 4 }
+                                    stroke: { color: global.text_stroke, width: 4px }
                     labels-secondary-routes-z15:
                         filter: { $zoom: { min: 15 } }
                         draw:
                             text-blend-order:
                                 priority: 56
                                 visible: global.text_visible_secondary_e
-                                #text_source: global.ux_language_text_source_road_ref_and_name_short
                                 font:
                                     # need fill here?
                                     weight: 600
                                     size: 14px
-                                    stroke: { color: global.text_stroke, width: 4 }
+                                    stroke: { color: global.text_stroke, width: 4px }
                 in_park:
                     filter: { landuse_kind: [park,nature_reserve,conservation,golf_course,garden] }
                     draw:
@@ -1956,7 +1861,7 @@ layers:
                     draw:
                         text-blend-order:
                             text_source: global.ux_language_text_source_road_ref_and_name_short
-                            visible: global.text_visible_secondary
+                            # visible: global.text_visible_secondary
                 labels-secondary-z13:
                     filter:
                         $zoom: [13]
@@ -1968,7 +1873,7 @@ layers:
                             font:
                                 fill: [0.5,0.5,0.5]
                                 size: 11px
-                                stroke: { color: global.text_stroke, width: 2 }
+                                stroke: { color: global.text_stroke, width: 2px }
                 labels-secondary-z14:
                     filter:
                         $zoom: [14]
@@ -1980,40 +1885,40 @@ layers:
                             font:
                                 fill: [0.30,0.30,0.30]
                                 size: 12px
-                                stroke: { color: [1.00,1.00,1.00], width: 2 }
+                                stroke: { color: [1.00,1.00,1.00], width: 2px }
                 labels-secondary-z15:
                     filter:
                         $zoom: [15]
                     draw:
                         text-blend-order:
                             priority: 56
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
+                            visible: global.text_visible_secondary
                             font:
                                 fill: [0.10,0.10,0.10]
                                 size: 13px
-                                stroke: { color: [1.00,1.00,1.00], width: 2 }
+                                stroke: { color: [1.00,1.00,1.00], width: 2px }
                 labels-secondary-z16:
                     filter: { $zoom: { min: 16, max: 18 } }
                     draw:
                         text-blend-order:
                             priority: 56
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
+                            visible: global.text_visible_secondary
                             font:
                                 fill: [0.0,0.0,0.0]
                                 size: 14.5px
-                                stroke: { color: [1.00,1.00,1.00], width: 3 }
+                                stroke: { color: [1.00,1.00,1.00], width: 3px }
                 labels-secondary-z18:
                     filter: { $zoom: { min: 18 } }
                     draw:
                         text-blend-order:
                             priority: 56
-                            #text_source: ref
+                            visible: global.text_visible_secondary
                             text_source: global.ux_language_text_source_road_ref_and_name
                             font:
                                 # need a fill color here?
                                 fill: [0.15,0.15,0.15]
                                 size: 16px
-                                stroke: { color: [1.00,1.00,1.00], width: 3 }
+                                stroke: { color: [1.00,1.00,1.00], width: 3px }
             tertiary:
                 filter: { kind_detail: [tertiary, tertiary_link] }
                 draw:
@@ -2100,69 +2005,67 @@ layers:
                     draw:
                         text-blend-order:
                             text_source: global.ux_language_text_source_road_ref_and_name_short
-                            visible: global.text_visible_tertiary
+                            # visible: global.text_visible_tertiary
                 labels-tertiary-z13:
                     filter: { $zoom: [13] }
                     draw:
                         text-blend-order:
                             priority: 57
                             visible: global.text_visible_tertiary_e
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.5,0.5,0.5]
                                 size: 10px
-                                stroke: { color: [1.00,1.00,1.00], width: 1 }
+                                stroke: { color: [1.00,1.00,1.00], width: 1px }
                 labels-tertiary-z14:
                     filter: { $zoom: [14] }
                     draw:
                         text-blend-order:
                             priority: 57
                             visible: global.text_visible_tertiary_e
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.5,0.5,0.5]
                                 size: 12px
-                                stroke: { color: [1.00,1.00,1.00], width: 1 }
+                                stroke: { color: [1.00,1.00,1.00], width: 1px }
                 labels-tertiary-z15:
                     filter: { $zoom: [15] }
                     draw:
                         text-blend-order:
                             priority: 57
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
+                            visible: global.text_visible_tertiary
                             font:
                                 fill: [0.3,0.3,0.3]
                                 size: 12px
-                                stroke: { color: [1.00,1.00,1.00], width: 1 }
+                                stroke: { color: [1.00,1.00,1.00], width: 1px }
                 labels-tertiary-z16:
                     filter: { $zoom: [16] }
                     draw:
                         text-blend-order:
                             priority: 57
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
+                            visible: global.text_visible_tertiary
                             font:
                                 fill: [0.3,0.3,0.3]
                                 size: 14px
-                                stroke: { color: [1.00,1.00,1.00], width: 2 }
+                                stroke: { color: [1.00,1.00,1.00], width: 2px }
                 labels-tertiary-z17:
                     filter: { $zoom: { min: 17, max: 18 } }
                     draw:
                         text-blend-order:
                             priority: 57
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
+                            visible: global.text_visible_tertiary
                             font:
                                 fill: [0.15,0.15,0.15]
                                 size: 15px
-                                stroke: { color: [1.00,1.00,1.00], width: 2 }
+                                stroke: { color: [1.00,1.00,1.00], width: 2px }
                 labels-tertiary-z18:
                     filter: { $zoom: { min: 18 } }
                     draw:
                         text-blend-order:
                             priority: 57
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
+                            visible: global.text_visible_tertiary
                             font:
                                 fill: [0.15,0.15,0.15]
                                 size: 15px
-                                stroke: { color: [1.00,1.00,1.00], width: 2 }
+                                stroke: { color: [1.00,1.00,1.00], width: 2px }
         minor_road:
             filter: { kind: minor_road, not: { kind_detail: service }, $zoom: { min: 8 } }
             draw:
@@ -2272,7 +2175,7 @@ layers:
                         font:
                             fill: [0.30,0.30,0.30]
                             size: 12px
-                            stroke: { color: [1.00,1.00,1.00], width: 1 }
+                            stroke: { color: [1.00,1.00,1.00], width: 1px }
             labels-minor_road-z16:
                 filter: { $zoom: 16 }
                 draw:
@@ -2283,7 +2186,7 @@ layers:
                         font:
                             fill: [0.35,0.35,0.35]
                             size: 14px
-                            stroke: { color: [1.00,1.00,1.00], width: 2 }
+                            stroke: { color: [1.00,1.00,1.00], width: 2px }
             labels-minor_road-z17:
                 filter: { $zoom: { min: 17, max: 18 } }
                 draw:
@@ -2294,7 +2197,7 @@ layers:
                         font:
                             fill: [0.25,0.25,0.25]
                             size: 14px
-                            stroke: { color: [1.00,1.00,1.00], width: 2 }
+                            stroke: { color: [1.00,1.00,1.00], width: 2px }
             labels-minor_road-z18:
                 filter: { $zoom: { min: 18 } }
                 draw:
@@ -2306,7 +2209,7 @@ layers:
                             # needs a fill color?
                             fill: [0.15,0.15,0.15]
                             size: 15px
-                            stroke: { color: [1.00,1.00,1.00], width: 2 }
+                            stroke: { color: [1.00,1.00,1.00], width: 2px }
         service_road:
             filter: { kind: minor_road, kind_detail: service }
             draw:
@@ -3496,6 +3399,7 @@ layers:
                     - not: { location: underground, kind: address }
                     - name: true
                     - function() { return global.text_visible_building; }
+                    - landuse_kind: [university, college, school, kindergarten]
     #                - kind: [false, building, university, college, school, kindergarten]
                 any:
                     - { $zoom: [16], area: { min: 5000 } }
@@ -4317,7 +4221,7 @@ layers:
         #
         #neighborhoods (excluding microhoods, eg the Tendernob)
         #
-        neighbourhood:
+        neighbourhoods:
             filter:
                 all:
                     - kind:
@@ -4379,7 +4283,6 @@ layers:
 
     pois:
         data: { source: mapzen, layer: pois }
-        #visible: global.label_visible_poi_landuse
         filter:
             all:
                 - not: { kind: [building,address,farm,tree,apron,residential,commercial,industrial] }
