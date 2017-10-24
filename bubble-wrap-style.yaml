@@ -2937,6 +2937,171 @@ layers:
                             mapzen_icon_library:
                                 size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
 
+                international-shields:
+                    filter: |
+                        function() {
+                            return feature.shield_text &&
+                                /^AM:AM$/.test(feature.network) ||
+                                /^AR:AR$/.test(feature.network) ||
+                                /^AR:PR$/.test(feature.network) ||
+                                /^AT:A$/.test(feature.network) ||
+                                /^AT:L$/.test(feature.network) ||
+                                /^AT:S$/.test(feature.network) ||
+                                /^AU:AU$/.test(feature.network) ||
+                                /^AU:I$/.test(feature.network) ||
+                                /^AU:I2$/.test(feature.network) ||
+                                /^AU:I3$/.test(feature.network) ||
+                                /^AU:MR$/.test(feature.network) ||
+                                /^AU:TD$/.test(feature.network) ||
+                                /^BD:NH$/.test(feature.network) ||
+                                /^BE:I$/.test(feature.network) ||
+                                /^BR:BR$/.test(feature.network) ||
+                                /^BR:I$/.test(feature.network) ||
+                                /^BR:TA$/.test(feature.network) ||
+                                /^CA:AL$/.test(feature.network) ||
+                                /^CA:BC$/.test(feature.network) ||
+                                /^CA:I$/.test(feature.network) ||
+                                /^CA:transcanada$/.test(feature.network) ||
+                                /^CA:I2$/.test(feature.network) ||
+                                /^CA:MT$/.test(feature.network) ||
+                                /^CA:NB$/.test(feature.network) ||
+                                /^CA:NB2$/.test(feature.network) ||
+                                /^CA:NB3$/.test(feature.network) ||
+                                /^CA:NS$/.test(feature.network) ||
+                                /^CA:NWT$/.test(feature.network) ||
+                                /^CA:ON$/.test(feature.network) ||
+                                /^CA:PEI$/.test(feature.network) ||
+                                /^CA:QE$/.test(feature.network) ||
+                                /^CA:SA$/.test(feature.network) ||
+                                /^CA:YU$/.test(feature.network) ||
+                                /^CH:A$/.test(feature.network) ||
+                                /^CH:E$/.test(feature.network) ||
+                                /^CL:CL$/.test(feature.network) ||
+                                /^CL:CL2$/.test(feature.network) ||
+                                /^CL:VP$/.test(feature.network) ||
+                                /^CN:EXP$/.test(feature.network) ||
+                                /^CN:EXP2$/.test(feature.network) ||
+                                /^CN:I$/.test(feature.network) ||
+                                /^DE:A$/.test(feature.network) ||
+                                /^DE:DE$/.test(feature.network) ||
+                                /^DE:L$/.test(feature.network) ||
+                                /^DK:A$/.test(feature.network) ||
+                                /^DK:D$/.test(feature.network) ||
+                                /^ES:A$/.test(feature.network) ||
+                                /^ES:AA$/.test(feature.network) ||
+                                /^ES:AA2$/.test(feature.network) ||
+                                /^ES:C$/.test(feature.network) ||
+                                /^ES:IU$/.test(feature.network) ||
+                                /^EU:EU$/.test(feature.network) ||
+                                /^FI:FI$/.test(feature.network) ||
+                                /^FI:FS$/.test(feature.network) ||
+                                /^FI:LR$/.test(feature.network) ||
+                                /^FI:RR$/.test(feature.network) ||
+                                /^FR:A$/.test(feature.network) ||
+                                /^FR:D$/.test(feature.network) ||
+                                /^FR:N$/.test(feature.network) ||
+                                /^GR:GR$/.test(feature.network) ||
+                                /^GR:I$/.test(feature.network) ||
+                                /^ID:ID$/.test(feature.network) ||
+                                /^IE:M$/.test(feature.network) ||
+                                /^IE:N$/.test(feature.network) ||
+                                /^IE:R$/.test(feature.network) ||
+                                /^IN:IN$/.test(feature.network) ||
+                                /^IN:SH$/.test(feature.network) ||
+                                /^IQ:IQ$/.test(feature.network) ||
+                                /^IT:AS$/.test(feature.network) ||
+                                /^IT:RA$/.test(feature.network) ||
+                                /^IT:SP$/.test(feature.network) ||
+                                /^IT:SR$/.test(feature.network) ||
+                                /^IT:SS$/.test(feature.network) ||
+                                /^JP:EX$/.test(feature.network) ||
+                                /^JP:NR$/.test(feature.network) ||
+                                /^JP:PR$/.test(feature.network) ||
+                                /^LU:CR$/.test(feature.network) ||
+                                /^LU:M$/.test(feature.network) ||
+                                /^LU:RN$/.test(feature.network) ||
+                                /^MX:MX$/.test(feature.network) ||
+                                /^MX:SH$/.test(feature.network) ||
+                                /^MY:E$/.test(feature.network) ||
+                                /^NL:A$/.test(feature.network) ||
+                                /^NL:N$/.test(feature.network) ||
+                                /^NL:S$/.test(feature.network) ||
+                                /^NO:CR$/.test(feature.network) ||
+                                /^NO:RR$/.test(feature.network) ||
+                                /^NO:TR$/.test(feature.network) ||
+                                /^NZ:SH$/.test(feature.network) ||
+                                /^NZ:SR$/.test(feature.network) ||
+                                /^PE:PE$/.test(feature.network) ||
+                                /^PL:NR$/.test(feature.network) ||
+                                /^PL:VR$/.test(feature.network) ||
+                                /^PT:A$/.test(feature.network) ||
+                                /^PT:IC$/.test(feature.network) ||
+                                /^PT:IP$/.test(feature.network) ||
+                                /^RO:AS$/.test(feature.network) ||
+                                /^RO:DJ$/.test(feature.network) ||
+                                /^RO:DX$/.test(feature.network) ||
+                                /^RO:DС$/.test(feature.network) ||
+                                /^RU:RU$/.test(feature.network) ||
+                                /^SA:SA$/.test(feature.network) ||
+                                /^SE:A$/.test(feature.network) ||
+                                /^SG:E$/.test(feature.network) ||
+                                /^SK:I$/.test(feature.network) ||
+                                /^SK:LR$/.test(feature.network) ||
+                                /^SK:SK$/.test(feature.network) ||
+                                /^TH:TH$/.test(feature.network) ||
+                                /^TH:TM2$/.test(feature.network) ||
+                                /^TH:TM3$/.test(feature.network) ||
+                                /^TR:DY$/.test(feature.network) ||
+                                /^TR:OR$/.test(feature.network) ||
+                                /^UA:M$/.test(feature.network) ||
+                                /^UA:P$/.test(feature.network) ||
+                                /^UA:P2$/.test(feature.network) ||
+                                /^UK:A$/.test(feature.network) ||
+                                /^UK:G$/.test(feature.network) ||
+                                /^UK:M$/.test(feature.network) ||
+                                /^VN:I$/.test(feature.network) ||
+                                /^VN:PR$/.test(feature.network) ||
+                                /^VN:VN$/.test(feature.network) ||
+                                /^ZA:M$/.test(feature.network) ||
+                                /^ZA:P$/.test(feature.network) ||
+                                /^ZA:R$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_international
+                            sprite: |
+                                function() { return ( feature.network + '-' + feature.shield_text.length + 'char'); }
+                            text:
+                                # offset: [0px, 1px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    size: [[7,7px],[13,9px],[15,10px]]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[13px,17px]],[13,[15px,19px]],[15,[18px,22px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[17px,17px]],[13,[19px,19px]],[15,[22px,22px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[20px,17px]],[13,[22px,19px]],[15,[27px,22px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[29px,22px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
+
         path:
             filter:
                 all:
