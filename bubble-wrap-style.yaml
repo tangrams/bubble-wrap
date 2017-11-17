@@ -629,21 +629,20 @@ styles:
                 global: |
                     #ifdef TANGRAM_FRAGMENT_SHADER
                         float TileDots(float scale, float size) {
-                            vec2 tc = TileCoords() * scale * pow(2., floor(u_map_position.z) - abs(u_tile_origin.z));
+
+                            // controls
+                            float DOT_SIZE = 1.8; // bigger value = smaller dots
+                            float SPEED = 10.; // bigger value = faster transition
+
+                            vec2 tc = TileCoords() * scale * exp2(floor(u_map_position.z) - abs(u_tile_origin.z));
                             vec2 IN = brick(tc, 2.);
-                            float A = circleDF(vec2(0.5) - IN) * 1.8;
-                            float d = 0.0;
-                            if (u_map_position.z < 18.) {
-                                vec2 OUT = fract(tc * 2.);
-                                float B = circleDF(vec2(0.25) - OUT) * 7.;
-                                B = min(B, circleDF(vec2(0.75, 0.25) - OUT) * 7.);
-                                B = min(B, circleDF(vec2(0.50, 0.75) - OUT) * 7.);
-                                B = min(B, circleDF(vec2(0.00, 0.75) - OUT) * 7.);
-                                B = min(B, circleDF(vec2(1.00, 0.75) - OUT) * 7.);
-                                d = mix(A, B, pow(fract(u_map_position.z), 10.));
-                            } else {
-                                d = A;
-                            }
+                            float A = circleDF(vec2(0.5) - IN) * DOT_SIZE;
+                            vec2 OUT = brick(tc, 4.);
+                            float B = circleDF(vec2(0.5) - OUT) * DOT_SIZE;
+                            float transition = pow(fract(u_map_position.z), SPEED);
+                            // keep B dots big as they fade in, to maintain density
+                            B *= transition;
+                            float d = mix(A, B, transition);
                             return aastep(size, d);
                         }
                     #endif
