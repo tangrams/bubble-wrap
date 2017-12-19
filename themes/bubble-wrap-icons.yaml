@@ -22,7 +22,7 @@ styles:
         texture: mapzen_icon_library
         blend_order: 1
         draw:
-            size: global.icon_size
+            #size: global.icon_size
             sprite: function() { return feature.kind; }
             sprite_default: generic
             buffer: 3px
@@ -42,7 +42,7 @@ textures:
         url: images/bubble-wrap@2x.png
         #url: https://raw.githubusercontent.com/tangrams/bubble-wrap/gh-pages/images/bubble-wrap%402x.png
         filtering: mipmap
-        density: 2
+        density: 5
         sprites:
             # define sprites: [x origin, y origin, width, height]
             airport: [414, 44, 38, 38]
@@ -351,7 +351,7 @@ textures:
     mapzen_icon_library_shields_usa:
         url: images/bubble-wrap-shields-usa@2x.png
         filtering: mipmap
-        density: 2
+        density: 5
         sprites:
             # define sprites: [x origin, y origin, width, height]
             'US:AK-1char': [220, 1510, 82, 82]
@@ -648,7 +648,7 @@ textures:
     mapzen_icon_library_shields_international:
         url: images/bubble-wrap-shields-international@2x.png
         filtering: mipmap
-        density: 2
+        density: 5
         sprites:
             # define sprites: [x origin, y origin, width, height]
             'AM:AM-1char': [102, 970, 86, 94]
@@ -771,11 +771,6 @@ textures:
             'BR:BR-3char': [868, 3068, 108, 94]
             'BR:BR-4char': [736, 3068, 124, 94]
             'BR:BR-5char': [588, 3068, 142, 94]
-            'BR:RJ-1char': [108, 3174, 84, 94]
-            'BR:RJ-2char': [0, 3174, 100, 94]
-            'BR:RJ-3char': [868, 3068, 108, 94]
-            'BR:RJ-4char': [736, 3068, 124, 94]
-            'BR:RJ-5char': [588, 3068, 142, 94]
             'BR-1char': [622, 3174, 74, 98]
             'BR-2char': [536, 3174, 80, 98]
             'BR-3char': [438, 3174, 92, 98]
@@ -887,8 +882,8 @@ textures:
             'CN-expressways-4char': [448, 2594, 128, 72]
             'CN-expressways-5char': [302, 2594, 140, 72]
             'CN-roads-1char': [98, 2750, 84, 72]
-            'FR:A-1char': [98, 2750, 84, 72]
-            'FR:N-1char': [98, 2750, 84, 72]
+            'FR:A-road-1char': [98, 2750, 84, 72]
+            'FR:N-road-1char': [98, 2750, 84, 72]
             'PL:NR-1char': [98, 2750, 84, 72]
             'PT:IP-1char': [98, 2750, 84, 72]
             'NL:A-1char': [98, 2750, 84, 72]
@@ -896,8 +891,8 @@ textures:
             'LU:RN-1char': [98, 2750, 84, 72]
             'FI:FI-1char': [98, 2750, 84, 72]
             'CN-roads-2char': [0, 2750, 92, 72]
-            'FR:A-2char': [0, 2750, 92, 72]
-            'FR:N-2char': [0, 2750, 92, 72]
+            'FR:A-road-2char': [0, 2750, 92, 72]
+            'FR:N-road-2char': [0, 2750, 92, 72]
             'PL:NR-2char': [0, 2750, 92, 72]
             'PT:IP-2char': [0, 2750, 92, 72]
             'NL:A-2char': [0, 2750, 92, 72]
@@ -905,8 +900,8 @@ textures:
             'LU:RN-2char': [0, 2750, 92, 72]
             'FI:FI-2char': [0, 2750, 92, 72]
             'CN-roads-3char': [868, 2672, 104, 72]
-            'FR:A-3char': [868, 2672, 104, 72]
-            'FR:N-3char': [868, 2672, 104, 72]
+            'FR:A-road-3char': [868, 2672, 104, 72]
+            'FR:N-road-3char': [868, 2672, 104, 72]
             'PL:NR-3char': [868, 2672, 104, 72]
             'PT:IP-3char': [868, 2672, 104, 72]
             'NL:A-3char': [868, 2672, 104, 72]
@@ -914,8 +909,8 @@ textures:
             'LU:RN-3char': [868, 2672, 104, 72]
             'FI:FI-3char': [868, 2672, 104, 72]
             'CN-roads-4char': [746, 2672, 116, 72]
-            'FR:A-4char': [746, 2672, 116, 72]
-            'FR:N-4char': [746, 2672, 116, 72]
+            'FR:A-road-4char': [746, 2672, 116, 72]
+            'FR:N-road-4char': [746, 2672, 116, 72]
             'PL:NR-4char': [746, 2672, 116, 72]
             'PT:IP-4char': [746, 2672, 116, 72]
             'NL:A-4char': [746, 2672, 116, 72]
@@ -923,8 +918,8 @@ textures:
             'LU:RN-4char': [746, 2672, 116, 72]
             'FI:FI-4char': [746, 2672, 116, 72]
             'CN-roads-5char': [612, 2672, 128, 72]
-            'FR:A-5char': [612, 2672, 128, 72]
-            'FR:N-5char': [612, 2672, 128, 72]
+            'FR:A-road-5char': [612, 2672, 128, 72]
+            'FR:N-road-5char': [612, 2672, 128, 72]
             'PL:NR-5char': [612, 2672, 128, 72]
             'PT:IP-5char': [612, 2672, 128, 72]
             'NL:A-5char': [612, 2672, 128, 72]
@@ -1066,6 +1061,11 @@ textures:
             'GR:I-3char': [130, 1942, 118, 72]
             'GR:I-4char': [0, 1942, 122, 72]
             'GR:I-5char': [768, 1838, 130, 72]
+            'GR:motorway-1char': [374, 1942, 98, 70]
+            'GR:motorway-2char': [256, 1944, 110, 70]
+            'GR:motorway-3char': [130, 1942, 118, 72]
+            'GR:motorway-4char': [0, 1942, 122, 72]
+            'GR:motorway-5char': [768, 1838, 130, 72]
             'ID:ID-1char': [670, 1734, 92, 92]
             'ID:ID-2char': [564, 1734, 100, 90]
             'ID:ID-3char': [446, 1734, 112, 90]
@@ -1169,6 +1169,7 @@ textures:
             'ru:national-1char': [218, 2212, 86, 72]
             'UK:M-1char': [218, 2212, 86, 72]
             'GR:GR-1char': [218, 2212, 86, 72]
+            'GR:national-1char': [218, 2212, 86, 72]
             'IT:SR-1char': [218, 2212, 86, 72]
             'IT:SS-1char': [218, 2212, 86, 72]
             'IT:SP-1char': [218, 2212, 86, 72]
@@ -1184,6 +1185,7 @@ textures:
             'ru:national-2char': [116, 2212, 96, 72]
             'UK:M-2char': [116, 2212, 96, 72]
             'GR:GR-2char': [116, 2212, 96, 72]
+            'GR:national-2char': [116, 2212, 96, 72]
             'IT:SR-2char': [116, 2212, 96, 72]
             'IT:SS-2char': [116, 2212, 96, 72]
             'IT:SP-2char': [116, 2212, 96, 72]
@@ -1199,6 +1201,7 @@ textures:
             'ru:national-3char': [0, 2212, 108, 72]
             'UK:M-3char': [0, 2212, 108, 72]
             'GR:GR-3char': [0, 2212, 108, 72]
+            'GR:national-3char': [0, 2212, 108, 72]
             'IT:SR-3char': [0, 2212, 108, 72]
             'IT:SS-3char': [0, 2212, 108, 72]
             'IT:SP-3char': [0, 2212, 108, 72]
@@ -1214,6 +1217,7 @@ textures:
             'ru:national-4char': [786, 2116, 120, 72]
             'UK:M-4char': [786, 2116, 120, 72]
             'GR:GR-4char': [786, 2116, 120, 72]
+            'GR:national-4char': [786, 2116, 120, 72]
             'IT:SR-4char': [786, 2116, 120, 72]
             'IT:SS-4char': [786, 2116, 120, 72]
             'IT:SP-4char': [786, 2116, 120, 72]
@@ -1229,6 +1233,7 @@ textures:
             'ru:national-5char': [646, 2116, 132, 72]
             'UK:M-5char': [646, 2116, 132, 72]
             'GR:GR-5char': [646, 2116, 132, 72]
+            'GR:national-5char': [646, 2116, 132, 72]
             'IT:SR-5char': [646, 2116, 132, 72]
             'IT:SS-5char': [646, 2116, 132, 72]
             'IT:SP-5char': [646, 2116, 132, 72]

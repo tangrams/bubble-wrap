@@ -2433,42 +2433,42 @@ layers:
                         #color: green
                         visible: global.sdk_road_shields
 
-            width_1char:
-                filter: |
-                    function() {
-                        if( feature.shield_text ) {
-                            return (feature.shield_text.length === 1)
-                        } else {
-                            return (feature.ref.length === 1)
-                        }
-                    }
-                #draw:
-#                    mapzen_icon_library:
-#                        size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
-            width_2char:
-                filter: |
-                    function() {
-                        if( feature.shield_text ) {
-                            return (feature.shield_text.length === 2)
-                        } else {
-                            return (feature.ref.length === 2)
-                        }
-                    }
-                #draw:
-#                    mapzen_icon_library:
-#                        size: [[6,[18px,14px]],[13,[20px,15px]],[15,[24px,18px]]]
-            width_3char:
-                filter: |
-                    function() {
-                        if( feature.shield_text ) {
-                            return (feature.shield_text.length === 3)
-                        } else {
-                            return (feature.ref.length === 3)
-                        }
-                    }
-                #draw:
-#                    mapzen_icon_library:
-#                        size: [[6,[25px,14px]],[13,[27px,15px]],[15,[33px,18px]]]
+#            width_1char:
+#                filter: |
+#                    function() {
+#                        if( feature.shield_text ) {
+#                            return (feature.shield_text.length === 1)
+#                        } else {
+#                            return (feature.ref.length === 1)
+#                        }
+#                    }
+#                draw:
+#                   mapzen_icon_library:
+#                       size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
+#            width_2char:
+#                filter: |
+#                    function() {
+#                        if( feature.shield_text ) {
+#                            return (feature.shield_text.length === 2)
+#                        } else {
+#                            return (feature.ref.length === 2)
+#                        }
+#                    }
+#                draw:
+#                   mapzen_icon_library:
+#                       size: [[6,[18px,14px]],[13,[20px,15px]],[15,[24px,18px]]]
+#            width_3char:
+#                filter: |
+#                    function() {
+#                        if( feature.shield_text ) {
+#                            return (feature.shield_text.length === 3)
+#                        } else {
+#                            return (feature.ref.length === 3)
+#                        }
+#                    }
+#                draw:
+#                   mapzen_icon_library:
+#                       size: [[6,[25px,14px]],[13,[27px,15px]],[15,[33px,18px]]]
             width_4char:
                 filter: |
                     function() {
@@ -2479,8 +2479,8 @@ layers:
                         }
                     }
                 #draw:
-#                    mapzen_icon_library:
-#                        size: [[6,[29px,14px]],[13,[31px,15px]],[15,[38px,18px]]]
+#                   mapzen_icon_library:
+#                       size: [[6,[29px,14px]],[13,[31px,15px]],[15,[38px,18px]]]
                 # London sucks
                 early:
                     filter: { $zoom: { max: 14 } }
@@ -2497,8 +2497,8 @@ layers:
                         }
                     }
                 #draw:
-#                    mapzen_icon_library:
-#                        size: [[6,[34px,14px]],[13,[37px,15px]],[15,[45px,18px]]]
+#                   mapzen_icon_library:
+#                       size: [[6,[34px,14px]],[13,[37px,15px]],[15,[45px,18px]]]
                 # London sucks
                 early:
                     filter: { $zoom: { max: 14 } }
@@ -2521,8 +2521,16 @@ layers:
             #
             # Now for the good stuff
             #
-            legit-shields:
-                filter: { shield_text: true }
+            z-legit-shields:
+                filter: |
+                    function() {
+                        return  feature.shield_text ||
+                                /^A.*$/.test(feature.ref) ||
+                                /^B.*$/.test(feature.ref) ||
+                                /^D.*$/.test(feature.ref) ||
+                                /^N.*$/.test(feature.ref) ||
+                                /^MEX.*$/.test(feature.ref)
+                    }
                 # draw:
                 #     mapzen_icon_library:
                 #         color: pink
@@ -2890,6 +2898,7 @@ layers:
                                 /^US:TN$/.test(feature.network) ||
                                 /^US:UT$/.test(feature.network) ||
                                 /^US:VA$/.test(feature.network) ||
+                                /*TODO: US:VA:secondary*/
                                 /^US:VT$/.test(feature.network) ||
                                 /^US:WA$/.test(feature.network) ||
                                 /^US:WI$/.test(feature.network) ||
@@ -2958,14 +2967,14 @@ layers:
                                 /^AU:TD.*$/.test(feature.network) ||
                                 /^BD:NH.*$/.test(feature.network) ||
                                 /^BE:I.*$/.test(feature.network) ||
-                                /^BR:BR.*$/.test(feature.network) ||
-                                /^BR:RJ.*$/.test(feature.network) ||
+                                /^BR$/.test(feature.network) ||
+                                /^BR:.*$/.test(feature.network) ||
                                 /^BR.*$/.test(feature.network) ||
                                 /^BR:TA.*$/.test(feature.network) ||
                                 /^CA:AB.*$/.test(feature.network) ||
                                 /^CA:BC.*$/.test(feature.network) ||
                                 /^CA:I.*$/.test(feature.network) ||
-                                /^CA:transcanada.*$/.test(feature.network) ||
+                                /^CA:transcanada$/.test(feature.network) ||
                                 /^CA:I2.*$/.test(feature.network) ||
                                 /^CA:MB.*$/.test(feature.network) ||
                                 /^CA:NL.*$/.test(feature.network) ||
@@ -2989,6 +2998,8 @@ layers:
                                 /^DE:A.*$/.test(feature.network) ||
                                 /^BAB.*$/.test(feature.network) ||
                                 /^DE:DE.*$/.test(feature.network) ||
+                                /^B.*$/.test(feature.ref) ||
+                                /^B .*$/.test(feature.ref) ||
                                 /^DE:L.*$/.test(feature.network) ||
                                 /^dk:national.*$/.test(feature.network) ||
                                 /^DK:D.*$/.test(feature.network) ||
@@ -3002,16 +3013,26 @@ layers:
                                 /^FI:FS.*$/.test(feature.network) ||
                                 /^FI:LR.*$/.test(feature.network) ||
                                 /^FI:RR.*$/.test(feature.network) ||
-                                /^FR:A.*$/.test(feature.network) ||
-                                /^FR:D.*$/.test(feature.network) ||
-                                /^FR:N.*$/.test(feature.network) ||
-                                /^GR:GR.*$/.test(feature.network) ||
+                                /^FR:A-road.*$/.test(feature.network) ||
+                                /^A.*$/.test(feature.ref) ||
+                                /^A .*$/.test(feature.ref) ||
+                                /^FR:.*:.*$/.test(feature.network) ||
+                                /^D.*$/.test(feature.ref) ||
+                                /^D .*$/.test(feature.ref) ||
+                                /^FR:N-road.*$/.test(feature.network) ||
+                                /^N.*$/.test(feature.ref) ||
+                                /^N .*$/.test(feature.ref) ||
                                 /^GR:I.*$/.test(feature.network) ||
+                                /^GR:motorway$/.test(feature.network) ||
+                                /^GR:GR.*$/.test(feature.network) ||
+                                /^GR:national$/.test(feature.network) ||
                                 /^ID:ID.*$/.test(feature.network) ||
                                 /^IE:M.*$/.test(feature.network) ||
                                 /^IE:N.*$/.test(feature.network) ||
                                 /^IE:R.*$/.test(feature.network) ||
                                 /^IN:IN.*$/.test(feature.network) ||
+                                /^IN:NH$/.test(feature.network) ||
+                                /^IN:NH:.*$/.test(feature.network) ||
                                 /^IN:SH.*$/.test(feature.network) ||
                                 /^IQ:IQ.*$/.test(feature.network) ||
                                 /^IT:AS.*$/.test(feature.network) ||
@@ -3027,6 +3048,8 @@ layers:
                                 /^LU:M.*$/.test(feature.network) ||
                                 /^LU:RN.*$/.test(feature.network) ||
                                 /^MX:MX.*$/.test(feature.network) ||
+                                /^MEX$/.test(feature.network) ||
+                                /^MEX.*$/.test(feature.ref) ||
                                 /^MX:SH.*$/.test(feature.network) ||
                                 /^MY:E.*$/.test(feature.network) ||
                                 /^NL:A.*$/.test(feature.network) ||
@@ -3077,7 +3100,11 @@ layers:
                             texture: mapzen_icon_library_shields_international
                             sprite: |
                                 function() {
-                                    var basic_network = feature.network.split(":").slice(0,2).join(":");
+                                    if( feature.network ) {
+                                        var basic_network = feature.network.split(":").slice(0,2).join(":");
+                                    } else {
+                                        var basic_network = "generic";
+                                    }
                                     return ( basic_network + '-' + feature.shield_text.length + 'char');
                                 }
                             text:
@@ -3085,6 +3112,29 @@ layers:
                                 font:
                                     fill: [0.308,0.308,0.308]
                                     #size: [[7,7px],[13,9px],[15,10px]]
+                    zoom8up:
+                        filter: |
+                            function() {
+                                return $zoom >= 8 &&
+                                    /^BR$/.test(feature.network) ||
+                                    /^BAB.*$/.test(feature.network) ||
+                                    /^CA:transcanada$/.test(feature.network) ||
+                                    /^CN-expressways$/.test(feature.network) ||
+                                    /^FR:A-road.*$/.test(feature.network) ||
+                                    /^A.*$/.test(feature.ref) ||
+                                    /^MEX$/.test(feature.network) ||
+                                    /^MEX.*$/.test(feature.ref) ||
+                                    /^ru:national$/.test(feature.network) ||
+                                    /^sk:national$/.test(feature.network) ||
+                                    /^GR:motorway$/.test(feature.network) ||
+                                    /^GR:national$/.test(feature.network) ||
+                                    /^IN:NH$/.test(feature.network) ||
+                                    /^IN:NH:.*$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                visible: global.sdk_road_shields
+
 #                    width_1char:
 #                        filter: function() { return (feature.shield_text.length === 1) }
 #                        draw:
@@ -3110,6 +3160,88 @@ layers:
 #                        draw:
 #                            mapzen_icon_library:
 #                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
+
+                    brazil-shields:
+                        filter: |
+                            function() {
+                                return feature.shield_text &&
+                                    /^BR:.*$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'BR:BR-' + feature.shield_text.length + 'char');
+                                    }
+                    france-a-and-n-road-ref-shields:
+                        filter: |
+                            function() {
+                                return ((feature.ref && ! feature.shield_text) &&
+                                        /^A .*$/.test(feature.ref) ||
+                                        /^N .*$/.test(feature.ref) ) ||
+                                    ((feature.ref && feature.network == 'e-road') &&
+                                    /^A .*$/.test(feature.ref) ||
+                                    /^N .*$/.test(feature.ref) )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'FR:A-road-' + feature.ref.replace(" ", "").length + 'char');
+                                    }
+                                text:
+                                    text_source: |
+                                        function() {
+                                            return feature.ref.replace(" ", "");
+                                        }
+                    france-department-shields:
+                        filter: |
+                            function() {
+                                return ((feature.ref &&
+                                    ! feature.shield_text) &&
+                                    /^FR:.*:.*$/.test(feature.network) ||
+                                    /^D .*$/.test(feature.ref)) ||
+                                    ( feature.ref &&
+                                      /^D .*$/.test(feature.ref))
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        var text_len = feature.shield_text.length ? feature.ref.length;
+                                        return ( 'FR:D-' + feature.text_len + 'char');
+                                    }
+                    germany-b-shields:
+                        filter: |
+                            function() {
+                                return feature.ref &&
+                                    /^B .*$/.test(feature.ref)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'DE:DE-' + feature.ref.length + 'char');
+                                    }
+                z-mexico-shields:
+                    filter: |
+                        function() {
+                            return feature.ref &&
+                                /^MEX$/.test(feature.network) ||
+                                /^MEX.*$/.test(feature.ref)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            visible: global.sdk_road_shields
+                            sprite: |
+                                function() {
+                                    return ( 'MX:MX-' + feature.ref.replace("MEX ", "").length + 'char');
+                                }
+                            text:
+                                text_source: |
+                                    function() {
+                                        return feature.ref.replace("MEX ", "");
+                                    }
 
         path:
             filter:
