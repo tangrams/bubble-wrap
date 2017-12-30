@@ -2347,6 +2347,7 @@ layers:
                             }
                         }
                     sprite_default: generic_shield_5char
+                    size: [[7,[90%,90%]],[12,[100%,100%]],[15,[110%,110%]]]
                     priority: 58
                     # Size is specified below, and limited to 5 char in another filter
                     repeat_group: shields
@@ -2884,6 +2885,7 @@ layers:
                                 /^US:NE$/.test(feature.network) ||
                                 /^US:NH$/.test(feature.network) ||
                                 /^US:NJ$/.test(feature.network) ||
+                                /^US:NV$/.test(feature.network) ||
                                 /^US:IA$/.test(feature.network) ||
                                 /^US:DE$/.test(feature.network) ||
                                 /^US:KY$/.test(feature.network) ||
