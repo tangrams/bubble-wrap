@@ -2634,8 +2634,7 @@ layers:
                     # Match California state highways: `US:CA`
                     filter: |
                         function() {
-                            return feature.shield_text &&
-                                /^US:CA$/.test(feature.network)
+                            return feature.shield_text && /^US:CA$/.test(feature.network)
                         }
                     draw:
                         mapzen_icon_library:
@@ -2691,9 +2690,10 @@ layers:
                     # Match New York state highways: `US:NY`
                     filter: |
                         function() {
-                            return feature.shield_text &&
+                            return feature.shield_text && (
                                 /^US:NY$/.test(feature.network)
                                 /* (/^US:NY$/.test(feature.network) || /^NY:US$/.test(feature.network)) */
+                            )
                         }
                     draw:
                         mapzen_icon_library:
@@ -2734,8 +2734,7 @@ layers:
                     # Match Pennsylvania state highways
                     filter: |
                         function() {
-                            return feature.shield_text &&
-                                /^US:PA$/.test(feature.network)
+                            return feature.shield_text && /^US:PA$/.test(feature.network)
                         }
                     draw:
                         mapzen_icon_library:
@@ -2846,7 +2845,7 @@ layers:
                 US-OTHER:
                     filter: |
                         function() {
-                            return feature.shield_text &&
+                            return feature.shield_text && (
                                 /^US:AK$/.test(feature.network) ||
                                 /^US:AL$/.test(feature.network) ||
                                 /^US:AR$/.test(feature.network) ||
@@ -2907,6 +2906,7 @@ layers:
                                 /*US:PA*/
                                 /*US:US*/
                                 /*county_shield*/
+                            )
                         }
                     draw:
                         mapzen_icon_library:
@@ -2947,7 +2947,7 @@ layers:
                 international-shields:
                     filter: |
                         function() {
-                            return feature.shield_text &&
+                            return feature.shield_text && (
                                 /^AM:AM.*$/.test(feature.network) ||
                                 /^AR:AR.*$/.test(feature.network) ||
                                 /^AR:PR.*$/.test(feature.network) ||
@@ -3092,6 +3092,7 @@ layers:
                                 /^ZA:M.*$/.test(feature.network) ||
                                 /^ZA:P.*$/.test(feature.network) ||
                                 /^ZA:R.*$/.test(feature.network)
+                            )
                         }
                     draw:
                         mapzen_icon_library:
@@ -3113,7 +3114,7 @@ layers:
                     zoom8up:
                         filter: |
                             function() {
-                                return $zoom >= 8 &&
+                                return $zoom >= 8 && (
                                     /^BR$/.test(feature.network) ||
                                     /^BAB.*$/.test(feature.network) ||
                                     /^CA:transcanada$/.test(feature.network) ||
@@ -3128,6 +3129,7 @@ layers:
                                     /^GR:national$/.test(feature.network) ||
                                     /^IN:NH$/.test(feature.network) ||
                                     /^IN:NH:.*$/.test(feature.network)
+                                )
                             }
                         draw:
                             mapzen_icon_library:
@@ -3162,8 +3164,7 @@ layers:
                     brazil-shields:
                         filter: |
                             function() {
-                                return feature.shield_text &&
-                                    /^BR:.*$/.test(feature.network)
+                                return feature.shield_text && /^BR:.*$/.test(feature.network)
                             }
                         draw:
                             mapzen_icon_library:
@@ -3174,12 +3175,8 @@ layers:
                     france-a-and-n-road-ref-shields:
                         filter: |
                             function() {
-                                return ((feature.ref && ! feature.shield_text) &&
-                                        /^A .*$/.test(feature.ref) ||
-                                        /^N .*$/.test(feature.ref) ) ||
-                                    ((feature.ref && feature.network == 'e-road') &&
-                                    /^A .*$/.test(feature.ref) ||
-                                    /^N .*$/.test(feature.ref) )
+                                return ((feature.ref && !feature.shield_text) && (/^A .*$/.test(feature.ref) || /^N .*$/.test(feature.ref))) ||
+                                    ((feature.ref && feature.network == 'e-road') && (/^A .*$/.test(feature.ref) || /^N .*$/.test(feature.ref)))
                             }
                         draw:
                             mapzen_icon_library:
@@ -3206,14 +3203,13 @@ layers:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        var text_len = feature.shield_text.length ? feature.ref.length;
-                                        return ( 'FR:D-' + feature.text_len + 'char');
+                                        var text_len = feature.shield_text.length || feature.ref.length;
+                                        return ( 'FR:D-' + text_len + 'char');
                                     }
                     germany-b-shields:
                         filter: |
                             function() {
-                                return feature.ref &&
-                                    /^B .*$/.test(feature.ref)
+                                return feature.ref && /^B .*$/.test(feature.ref)
                             }
                         draw:
                             mapzen_icon_library:
@@ -3224,9 +3220,10 @@ layers:
                 z-mexico-shields:
                     filter: |
                         function() {
-                            return feature.ref &&
+                            return feature.ref && (
                                 /^MEX$/.test(feature.network) ||
                                 /^MEX.*$/.test(feature.ref)
+                            )
                         }
                     draw:
                         mapzen_icon_library:
