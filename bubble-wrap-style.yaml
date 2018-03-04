@@ -2536,6 +2536,7 @@ layers:
                 US-I:
                     filter:
                         network: 'US:I'
+                        shield_text: true
                     draw:
                         mapzen_icon_library:
                             texture: mapzen_icon_library_shields_usa
@@ -2577,6 +2578,7 @@ layers:
                 US-US:
                     filter:
                         network: ['US:US','US:US:Business', 'US:US:Truck', 'US:US:Alternate']
+                        shield_text: true
                         $zoom: { min: 7 }
                     draw:
                         mapzen_icon_library:
