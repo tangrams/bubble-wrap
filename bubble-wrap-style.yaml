@@ -435,12 +435,12 @@ sources:
     mapzen:
         # EraserMaps the app only supports MVT format tiles
         type:  MVT #TopoJSON
-        url:  https://tile.mapzen.com/mapzen/vector/v1/512/all/{z}/{x}/{y}.mvt
+        url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
         #url:  http://tile.dev.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.mvt
         #url:  //localhost:8080/vector/all/{z}/{x}/{y}.mvt
         # road labels in Tangram JS are broken when overzooming, set max_zoom: 18 to preview fix
         url_params:
-            api_key: global.sdk_mapzen_api_key
+            api_key: global.sdk_api_key
         tile_size: 512
         max_zoom: 16
 

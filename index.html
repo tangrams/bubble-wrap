@@ -22,7 +22,7 @@
 
         <!-- Main tangram library -->
         <!-- production -->
-        <script src="https://mapzen.com/tangram/0.14/tangram.min.js"></script>
+        <script src="https://www.nextzen.org/tangram/0.14/tangram.min.js"></script>
         <!-- production debug -->
         <!-- <script src="https://mapzen.com/tangram/0.14/tangram.debug.js"></script> -->
         <!-- dev -->
@@ -225,13 +225,13 @@
 
         var dev_or_prod = 'prod';
         // prod
-        var mapzen_api_key = 'vector-tiles-h6AbVZA';
+        var sdk_api_key = '-ZTNBBKCS5WZa62pfZyUkA';
 
         if( dev_or_prod == 'dev' ) {
-            mapzen_api_key = 'mapzen-PvjAKRW';
+            sdk_api_key = '-ZTNBBKCS5WZa62pfZyUkA';
         }
 
-        var tg_global = { sdk_mapzen_api_key: mapzen_api_key };
+        var tg_global = { sdk_api_key: sdk_api_key };
 
         var layer = Tangram.leafletLayer({
             // more: 'vector-tiles-7bfyfz8'
@@ -363,7 +363,7 @@
             var zoom = max_zoom < map.getZoom() ? max_zoom : Math.floor(map.getZoom());
             var tileCoords = { x : long2tile(latlng.lng,zoom), y: lat2tile(latlng.lat,zoom), z: zoom };
 
-            var url = 'http://tile.mapzen.com/mapzen/vector/v1/all/' + zoom + '/' + tileCoords.x  + '/' + tileCoords.y + '.topojson';
+            var url = 'https://tile.nextzen.org/tilezen/vector/v1/512/all/' + zoom + '/' + tileCoords.x  + '/' + tileCoords.y + '.topojson';
             return url;
         }
 
