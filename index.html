@@ -626,7 +626,7 @@
                                 var position = '19' + '/' + latlng.lat + '/' + latlng.lng;
 
                                 if( selection.feature.properties.source == 'whosonfirst.mapzen.com' ) {
-                                    var wofUrl = 'https://whosonfirst.mapzen.com/boundaryissues/id/'+selection.feature.properties.id+'/';
+                                    var wofUrl = 'https://www.whosonfirst.org/boundaryissues/id/'+selection.feature.properties.id+'/';
                                     popup.appendChild(createEditLinkElement( wofUrl, 'WOF', 'Edit with Boundary Issues ➹') );
                                 } else {
                                     popup.appendChild(createEditLinkElement( url, 'iD', 'Edit with iD ➹') );
