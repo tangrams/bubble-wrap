@@ -1484,22 +1484,9 @@ layers:
                 draw:
                     text-blend-order:
                         text_source: global.ux_language_text_source_road_ref_and_name
-            labels-highway-z13:
+            labels-highway-z13-z14:
                 filter:
-                    $zoom: 13
-                draw:
-                    text-blend-order:
-                        priority: 50
-                        visible: global.text_visible_highway
-                        #text_source: ref
-                        font:
-                            fill: [0.0,0.0,0.0]
-                            weight: 600
-                            size: 12px
-                            # stroke: { color: [0.976,0.541,0.490], width: 4px }
-            labels-highway-z14:
-                filter:
-                    $zoom: 14
+                    $zoom: [13,14]
                 draw:
                     text-blend-order:
                         priority: 50
@@ -1511,36 +1498,16 @@ layers:
                             size: 12px
                             # stroke: { color: [0.976,0.541,0.490], width: 4px }
             labels-highway-z15:
-                filter:
-                    $zoom: 15
+                filter: { $zoom: { min: 15 } }
                 draw:
                     text-blend-order:
+                        priority: 50
                         visible: global.text_visible_highway
                         font:
                             fill: [0.0,0.0,0.0]
                             weight: 600
-                            size: 14px
-                            stroke: { color: [1.000,1.000,1.000], width: 2px }
-            labels-highway-z16:
-                filter: { $zoom: { min: 16, max: 18 } }
-                draw:
-                    text-blend-order:
-                        priority: 50
-                        visible: global.text_visible_highway
-                        font:
-                            fill: [0.0,0.0,0.0]
-                            size: 15px
-                            stroke: { color: [1.000,1.000,1.000], width: 4px }
-            labels-highway-z18:
-                filter: { $zoom: { min: 18 } }
-                draw:
-                    text-blend-order:
-                        priority: 50
-                        visible: global.text_visible_highway
-                        font:
-                            fill: [0.0,0.0,0.0]
-                            size: 17px
-                            stroke: { color: [1.000,1.000,1.000], width: 4px }
+                            size: [[15, 14px], [18, 17px]]
+                            stroke: { color: [1.000,1.000,1.000], width: [[15, 2px], [18, 4px]] }
 
         major_road:
             filter: { kind: major_road, $zoom: { min: 8 } }
@@ -1554,7 +1521,7 @@ layers:
                 draw:
                     lines:
                         color: [1.0,1.0,1.0]
-                        width: [[9, 0.5px], [10, 0.5px], [11, 1.0px], [12, 1.0px], [13, 1.5px], [14, 2.5px], [15, 5px], [16, 10m], [17, 10m]]
+                        width: [[9, 0.5px], [11, 1.0px], [12, 1.0px], [13, 1.5px], [14, 2.5px], [15, 5px], [16, 10m]]
                         outline:
                             color: [[13, [0.827,0.827,0.827]], [15, [1.000,0.739,0.710]]]
                             # todo: investigate width optimizations
@@ -1576,10 +1543,10 @@ layers:
                     filter: { ref: true }
                     draw:
                         lines:
-                            color: [[9, global.major_route1], [14, global.major_route1], [15,[1.0,1.0,1.0]], [16,[1.0,1.0,1.0]]]
+                            color: [[9, global.major_route1], [14, global.major_route1], [15,[1.0,1.0,1.0]]]
                             #order: function() { return feature.sort_rank + 1; }
                             # todo confirm widths
-                            width: [[9, 1.0px], [10, 1.0px], [11, 1.2px], [12, 1.25px], [13, 1.5px], [14, 1.6px], [15, 0.15px], [16, 5.25px], [17, 12m]]
+                            width: [[9, 1.0px], [12, 1.25px], [14, 1.6px], [15, 0.15px], [16, 5.25px], [17, 12m]]
                             outline:
                                 color: [[13, [0.870,0.870,0.870]], [15, [0.976,0.612,0.573]]]
                                 width: [[13, 0], [15, 2px], [16, 2px], [17, 3px]]
@@ -1604,40 +1571,17 @@ layers:
                             text-blend-order:
                                 text_source: global.ux_language_text_source_road_ref_and_name
                                 visible: global.text_visible_trunk_primary_route
-                    # labels-trunk_primary-route-z13:
-                    #     filter:
-                    #         $zoom: { max: 14 }
-                    #         shield_text: false
-                    #     draw:
-                    #         text-blend-order:
-                    #             text_source: ref
-                    #             visible: global.text_visible_trunk_primary_route
-                    #             font:
-                    #                 fill: [1.0,1.0,1.0]
-                    #                 weight: 600
-                    #                 size: 11px
-                    #                 stroke: { color: [0.976,0.541,0.490], width: 2 }
-                    labels-trunk_primary-route-z14:
-                        filter: { $zoom: [14] }
+                    labels-trunk_primary-route-z14-z15:
+                        filter: { $zoom: [14, 15] }
                         draw:
                             text-blend-order:
                                 priority: 51
                                 #text_source: ref
                                 font:
                                     fill: [0.0,0.0,0.0]
-                                    #size: 12px
-                                    stroke: { color: [0.95,0.95,0.95], width: 0.1px }
-                    labels-trunk_primary-route-z15:
-                        filter: { $zoom: [15] }
-                        draw:
-                            text-blend-order:
-                                priority: 51
-                                #text_source: global.ux_language_text_source_road_ref_and_name
-                                font:
-                                    fill: [0.0,0.0,0.0]
                                     weight: 600
-                                    size: 14px
-                                    stroke: { color: [0.95,0.95,0.95], width: 0.1px }
+                                    size: [[14, 12px], [15, 14px]]
+                                    stroke: { width: 0px }
                     labels-trunk_primary-route-z16:
                         filter: { $zoom: { min: 16 } }
                         draw:
@@ -1652,38 +1596,23 @@ layers:
                 labels-trunk_primary-default:
                     draw:
                         text-blend-order:
+                            priority: 51
                             text_source: global.ux_language_text_source_road_ref_and_name_short
                             visible: global.text_visible_trunk_primary
-                labels-trunk_primary-z11:
+                labels-trunk_primary-z11-z12:
                     filter:
-                        $zoom: [11]
+                        $zoom: [11, 12]
                     draw:
                         text-blend-order:
-                            priority: 51
                             visible: global.text_visible_trunk_primary_e
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
-                                fill: [0.4,0.4,0.4]
-                                size: 10px
-                                # stroke: { color: [1.000,0.631,0.590], width: 3px }
-                labels-trunk_primary-z12:
-                    filter:
-                        $zoom: [12]
-                    draw:
-                        text-blend-order:
-                            priority: 51
-                            visible: global.text_visible_trunk_primary_e
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
-                            font:
-                                fill: [0.4,0.4,0.4]
-                                size: 11px
-                                # stroke: { color: [1.000,0.631,0.590], width: 3px }
+                                fill: [0.40,0.40,0.40]
+                                size: [[11, 10px], [12, 11px]]
                 labels-trunk_primary-z13:
                     filter:
                         $zoom: [13]
                     draw:
                         text-blend-order:
-                            priority: 51
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.25,0.25,0.25]
@@ -1694,51 +1623,18 @@ layers:
                         $zoom: [14]
                     draw:
                         text-blend-order:
-                            priority: 51
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.10,0.10,0.10]
                                 size: 13px
                                 stroke: { color: [1.00,1.00,1.00], width: 2px }
-                labels-trunk_primary-z15:
-                    filter: { $zoom: [15] }
+                labels-trunk_primary-z15-up:
+                    filter: { $zoom: { min: 15 } }
                     draw:
                         text-blend-order:
-                            priority: 51
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.0,0.0,0.0]
-                                size: 14px
-                                stroke: { color: [1.00,1.00,1.00], width: 3px }
-                labels-trunk_primary-z16:
-                    filter: { $zoom: [16] }
-                    draw:
-                        text-blend-order:
-                            priority: 51
-                            #text_source: global.ux_language_text_source_road_ref_and_name
-                            font:
-                                fill: [0.0,0.0,0.0]
-                                size: 15px
-                                stroke: { color: [1.00,1.00,1.00], width: 3px }
-                labels-trunk_primary-z17:
-                    filter: { $zoom: [17] }
-                    draw:
-                        text-blend-order:
-                            priority: 51
-                            #text_source: global.ux_language_text_source_road_ref_and_name
-                            font:
-                                fill: [0.0,0.0,0.0]
-                                size: 16px
-                                stroke: { color: [1.00,1.00,1.00], width: 3px }
-                labels-trunk_primary-z18:
-                    filter: { $zoom: { min: 18 } }
-                    draw:
-                        text-blend-order:
-                            priority: 51
-                            #text_source: global.ux_language_text_source_road_ref_and_name
-                            font:
-                                fill: [0.0,0.0,0.0]
-                                size: 17px
+                                size: [[15, 13px], 18, 17px]
                                 stroke: { color: [1.00,1.00,1.00], width: 3px }
             link:
                 filter: { is_link: true } # on- and off-ramps, etc
@@ -1772,7 +1668,7 @@ layers:
                             outline:
                                 order: 353 #function() { return feature.sort_rank + 2; }
                 routes:
-                    filter: { ref: true, $zoom: { min: 12} }
+                    filter: { ref: true, $zoom: { min: 12 } }
                     draw:
                         lines:
                             #order: function() { return feature.sort_rank + 2; }
@@ -1799,12 +1695,12 @@ layers:
                         draw:
                             text-blend-order:
                                 text_source: global.ux_language_text_source_road_ref_and_name_short
-                    labels-secondary-routes:
-                        filter: { $zoom: [13] }
-                        draw:
-                            text-blend-order:
                                 priority: 56
                                 visible: global.text_visible_secondary_e
+                    labels-secondary-routes:
+                        filter: { $zoom: [13, 14] }
+                        draw:
+                            text-blend-order:
                                 font:
                                     # need fill here?
                                     size: 12px
@@ -1813,8 +1709,6 @@ layers:
                         filter: { $zoom: { min: 15 } }
                         draw:
                             text-blend-order:
-                                priority: 56
-                                visible: global.text_visible_secondary_e
                                 font:
                                     # need fill here?
                                     weight: 600
@@ -1910,7 +1804,6 @@ layers:
                             visible: global.text_visible_secondary
                             text_source: global.ux_language_text_source_road_ref_and_name
                             font:
-                                # need a fill color here?
                                 fill: [0.15,0.15,0.15]
                                 size: 16px
                                 stroke: { color: [1.00,1.00,1.00], width: 3px }
@@ -2731,6 +2624,50 @@ layers:
                         draw:
                             mapzen_icon_library:
                                 size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
+                US-NV:
+                    # Match New York state highways: `US:NY`
+                    filter: |
+                        function() {
+                            return feature.shield_text && (
+                                /^US:NV$/.test(feature.network)
+                                /* (/^US:NV$/.test(feature.network) || /^NV:US$/.test(feature.network)) */
+                            )
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: |
+                                function() { return ( 'US:NV-' + feature.shield_text.length + 'char'); }
+                            text:
+                                offset: [0px, -4px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    size: [[7,7px],[13,9px],[15,10px]]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[13px,17px]],[13,[15px,19px]],[15,[18px,22px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[17px,17px]],[13,[19px,19px]],[15,[22px,22px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[21px,17px]],[13,[25px,20px]],[15,[29px,26px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[29px,22px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
                 US-PA:
                     # Match Pennsylvania state highways
                     filter: |
@@ -2881,7 +2818,6 @@ layers:
                                 /^US:NE$/.test(feature.network) ||
                                 /^US:NH$/.test(feature.network) ||
                                 /^US:NJ$/.test(feature.network) ||
-                                /^US:NV$/.test(feature.network) ||
                                 /^US:IA$/.test(feature.network) ||
                                 /^US:DE$/.test(feature.network) ||
                                 /^US:KY$/.test(feature.network) ||
