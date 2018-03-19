@@ -1750,7 +1750,7 @@ layers:
                     draw:
                         text-blend-order:
                             text_source: global.ux_language_text_source_road_ref_and_name_short
-                            # visible: global.text_visible_secondary
+                            visible: global.text_visible_secondary
                 labels-secondary-z13:
                     filter:
                         $zoom: [13]
@@ -2519,21 +2519,6 @@ layers:
                                 font:
                                     fill: [0.308,0.308,0.308]
                                     size: [[7,7px],[13,9px],[15,10px]]
-                    motorway:
-                        filter: { kind_detail: [motorway], $zoom: [7,8] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
-                    trunk:
-                        filter: { kind_detail: [trunk], $zoom: [8,9] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
-                    primary:
-                        filter: { kind_detail: primary, $zoom: [10,11] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2576,21 +2561,6 @@ layers:
                                 font:
                                     fill: [0.308,0.308,0.308]
                                     size: [[7,7px],[13,9px],[15,10px]]
-                    motorway:
-                        filter: { kind_detail: [motorway], $zoom: [7,8] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
-                    trunk:
-                        filter: { kind_detail: [trunk], $zoom: [8,9] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
-                    primary:
-                        filter: { kind_detail: primary, $zoom: [10,11] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2689,21 +2659,6 @@ layers:
                                 font:
                                     fill: [0.308,0.308,0.308]
                                     size: [[7,7px],[13,9px],[15,10px]]
-                    motorway:
-                        filter: { kind_detail: [motorway], $zoom: [7,8] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
-                    trunk:
-                        filter: { kind_detail: [trunk], $zoom: [8,9] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
-                    primary:
-                        filter: { kind_detail: primary, $zoom: [10,11] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2745,21 +2700,6 @@ layers:
                                 font:
                                     fill: [0.308,0.308,0.308]
                                     size: [[7,7px],[13,9px],[15,10px]]
-                    motorway:
-                        filter: { kind_detail: [motorway], $zoom: [7,8] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
-                    trunk:
-                        filter: { kind_detail: [trunk], $zoom: [8,9] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
-                    primary:
-                        filter: { kind_detail: primary, $zoom: [10,11] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2785,6 +2725,22 @@ layers:
                         draw:
                             mapzen_icon_library:
                                 size: [[6,[25px,18px]],[13,[27px,20px]],[15,[32px,23px]]]
+
+                US-GA:
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:GA$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            #priority: 48
+                            text:
+                                offset: [-1px, 0px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    size: [[7,7px],[13,9px],[15,10px]]
 
                 US-NY:
                     # Match New York state highways: `US:NY`
@@ -2845,7 +2801,7 @@ layers:
                             sprite: |
                                 function() { return ( 'US:NV-' + feature.shield_text.length + 'char'); }
                             text:
-                                offset: [0px, -4px]
+                                offset: [0px, -5px]
                                 font:
                                     fill: [0.308,0.308,0.308]
                                     size: [[7,7px],[13,9px],[15,10px]]
@@ -2863,7 +2819,7 @@ layers:
                         filter: function() { return (feature.shield_text.length === 3) }
                         draw:
                             mapzen_icon_library:
-                                size: [[6,[21px,17px]],[13,[25px,20px]],[15,[29px,26px]]]
+                                size: [[6,[20px,20px]],[13,[25px,22px]],[15,[30px,28px]]]
                     width_4char:
                         filter: function() { return (feature.shield_text.length === 4) }
                         draw:
@@ -2997,7 +2953,6 @@ layers:
                                 /^US:DC$/.test(feature.network) ||
                                 /^US:FSH$/.test(feature.network) ||
                                 /^US:FSR$/.test(feature.network) ||
-                                /^US:GA$/.test(feature.network) ||
                                 /^US:HI$/.test(feature.network) ||
                                 /^US:ID$/.test(feature.network) ||
                                 /^US:KS$/.test(feature.network) ||
