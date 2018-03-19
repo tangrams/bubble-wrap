@@ -2694,6 +2694,62 @@ layers:
                         draw:
                             mapzen_icon_library:
                                 size: [[6,[25px,18px]],[13,[27px,20px]],[15,[32px,23px]]]
+                US-CO:
+                    # Match California state highways: `US:CA`
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:CO$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            #priority: 48
+                            text:
+                                offset: [0px, 3px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    size: [[7,7px],[13,9px],[15,10px]]
+                    motorway:
+                        filter: { kind_detail: [motorway], $zoom: [7,8] }
+                        draw:
+                            mapzen_icon_library:
+                                visible: global.sdk_road_shields
+                    trunk:
+                        filter: { kind_detail: [trunk], $zoom: [8,9] }
+                        draw:
+                            mapzen_icon_library:
+                                visible: global.sdk_road_shields
+                    primary:
+                        filter: { kind_detail: primary, $zoom: [10,11] }
+                        draw:
+                            mapzen_icon_library:
+                                visible: global.sdk_road_shields
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[14px,17px]],[13,[15px,19px]],[15,[18px,21px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[23px,23px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[21px,18px]],[13,[24px,20px]],[15,[28px,23px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[24px,18px]],[13,[26px,20px]],[15,[31px,23px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[32px,23px]]]
                 US-NY:
                     # Match New York state highways: `US:NY`
                     filter: |
@@ -2902,7 +2958,6 @@ layers:
                                 /^US:AZ$/.test(feature.network) ||
                                 /^US:BIA$/.test(feature.network) ||
                                 /^US:BLM$/.test(feature.network) ||
-                                /^US:CO$/.test(feature.network) ||
                                 /^US:DC$/.test(feature.network) ||
                                 /^US:FL$/.test(feature.network) ||
                                 /^US:FSH$/.test(feature.network) ||
