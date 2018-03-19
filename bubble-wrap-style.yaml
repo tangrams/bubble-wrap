@@ -2235,7 +2235,7 @@ layers:
                             }
                         }
                     sprite_default: generic_shield_5char
-                    size: [[7,[90%,90%]],[12,[100%,100%]],[15,[110%,110%]]]
+                    size: [[7,[90%,90%]],[12,[100%,100%]],[15,[125%,125%]]]
                     priority: 58
                     # Size is specified below, and limited to 5 char in another filter
                     repeat_group: shields
@@ -2267,7 +2267,7 @@ layers:
                             family: Montserrat
                             weight: 500
                             fill: [0.308,0.308,0.308]
-                            size: [[7, 7px], [12, 8px], [15, 11px]]
+                            size: [[7, 7px], [12, 8px], [15, 10px]]
                             stroke: { color: global.text_stroke, width: 0px }
 
             default_priority_highway:
@@ -2524,6 +2524,63 @@ layers:
                 #             # you need to match any custom shield to the vector tile `network` values
                 #             #priority: 48
                 #             visible: global.sdk_road_shields
+                US-AL:
+                    # Match California state highways: `US:CA`
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:AL$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            #priority: 48
+                            text:
+                                offset: [0px, -2px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    size: [[7,7px],[13,9px],[15,10px]]
+                    motorway:
+                        filter: { kind_detail: [motorway], $zoom: [7,8] }
+                        draw:
+                            mapzen_icon_library:
+                                visible: global.sdk_road_shields
+                    trunk:
+                        filter: { kind_detail: [trunk], $zoom: [8,9] }
+                        draw:
+                            mapzen_icon_library:
+                                visible: global.sdk_road_shields
+                    primary:
+                        filter: { kind_detail: primary, $zoom: [10,11] }
+                        draw:
+                            mapzen_icon_library:
+                                visible: global.sdk_road_shields
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[14px,16px]],[13,[15px,18px]],[15,[18px,21px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[23px,23px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[21px,18px]],[13,[24px,20px]],[15,[28px,23px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[24px,18px]],[13,[26px,20px]],[15,[31px,23px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[32px,23px]]]
+
                 US-CA:
                     # Match California state highways: `US:CA`
                     filter: |
@@ -2785,7 +2842,6 @@ layers:
                         function() {
                             return feature.shield_text && (
                                 /^US:AK$/.test(feature.network) ||
-                                /^US:AL$/.test(feature.network) ||
                                 /^US:AR$/.test(feature.network) ||
                                 /^US:AZ$/.test(feature.network) ||
                                 /^US:BIA$/.test(feature.network) ||
@@ -3882,7 +3938,7 @@ layers:
             draw:
                 lines:
                     color: global.region_boundary
-                    width: [[0, 0.5px], [2, 1.0px], [5, 1.25px], [6, 1.5px], [7, 1.75px], [8, 2.0px], [9, 3.5px], [14, 5.5px], [16, 6.5px]]
+                    width: [[0, 0.5px], [2, 1.0px], [6, 1.5px], [8, 2.0px], [9, 3.5px], [14, 5.5px], [16, 6.5px]]
             water:
                 filter: { maritime_boundary: true }
                 draw:
