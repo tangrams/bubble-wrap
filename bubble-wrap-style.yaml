@@ -1763,39 +1763,18 @@ layers:
                                 fill: [0.5,0.5,0.5]
                                 size: 11px
                                 stroke: { color: global.text_stroke, width: 2px }
-                labels-secondary-z14:
+                labels-secondary-z14-z17:
                     filter:
-                        $zoom: [14]
+                        filter: { $zoom: { min: 14, max: 18 } }
                     draw:
                         text-blend-order:
                             priority: 56
-                            visible: global.text_visible_secondary_e
+                            visible: global.text_visible_secondary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
-                                fill: [0.30,0.30,0.30]
-                                size: 12px
-                                stroke: { color: [1.00,1.00,1.00], width: 2px }
-                labels-secondary-z15:
-                    filter:
-                        $zoom: [15]
-                    draw:
-                        text-blend-order:
-                            priority: 56
-                            visible: global.text_visible_secondary
-                            font:
-                                fill: [0.10,0.10,0.10]
-                                size: 13px
-                                stroke: { color: [1.00,1.00,1.00], width: 2px }
-                labels-secondary-z16:
-                    filter: { $zoom: { min: 16, max: 18 } }
-                    draw:
-                        text-blend-order:
-                            priority: 56
-                            visible: global.text_visible_secondary
-                            font:
-                                fill: [0.0,0.0,0.0]
-                                size: 14.5px
-                                stroke: { color: [1.00,1.00,1.00], width: 3px }
+                                fill: [[14, [0.30,0.30,0.30]], [17, [0.00,0.00,0.00]]]
+                                size: [[14, 12px], [17, 14.5px]]
+                                stroke: { color: [1.00,1.00,1.00], width: [[14, 2px], [17, 3px]] }
                 labels-secondary-z18:
                     filter: { $zoom: { min: 18 } }
                     draw:
@@ -2069,7 +2048,7 @@ layers:
                 draw:
                     text-blend-order:
                         priority: 59
-                        visible: global.text_visible_minor_road_e
+                        visible: global.text_visible_minor_road
                         text_source: global.ux_language_text_source
                         font:
                             fill: [0.35,0.35,0.35]
@@ -2080,7 +2059,7 @@ layers:
                 draw:
                     text-blend-order:
                         priority: 59
-                        visible: global.text_visible_minor_road_e
+                        visible: global.text_visible_minor_road
                         text_source: global.ux_language_text_source
                         font:
                             fill: [0.25,0.25,0.25]
@@ -2525,7 +2504,7 @@ layers:
                 #             #priority: 48
                 #             visible: global.sdk_road_shields
                 US-AL:
-                    # Match California state highways: `US:CA`
+                    # Match Alabama state highways: `US:AL`
                     filter: |
                         function() {
                             return feature.shield_text && /^US:AL$/.test(feature.network)
@@ -2582,7 +2561,7 @@ layers:
                                 size: [[6,[25px,18px]],[13,[27px,20px]],[15,[32px,23px]]]
 
                 US-AR:
-                    # Match California state highways: `US:CA`
+                    # Match Arkansas state highways: `US:AR`
                     filter: |
                         function() {
                             return feature.shield_text && /^US:AR$/.test(feature.network)
@@ -2695,7 +2674,7 @@ layers:
                             mapzen_icon_library:
                                 size: [[6,[25px,18px]],[13,[27px,20px]],[15,[32px,23px]]]
                 US-CO:
-                    # Match California state highways: `US:CA`
+                    # Match Colorado state highways: `US:CO`
                     filter: |
                         function() {
                             return feature.shield_text && /^US:CO$/.test(feature.network)
@@ -2750,6 +2729,63 @@ layers:
                         draw:
                             mapzen_icon_library:
                                 size: [[6,[25px,18px]],[13,[27px,20px]],[15,[32px,23px]]]
+
+                US-FL:
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:FL$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            #priority: 48
+                            text:
+                                offset: [-1px, 2px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    size: [[7,7px],[13,9px],[15,10px]]
+                    motorway:
+                        filter: { kind_detail: [motorway], $zoom: [7,8] }
+                        draw:
+                            mapzen_icon_library:
+                                visible: global.sdk_road_shields
+                    trunk:
+                        filter: { kind_detail: [trunk], $zoom: [8,9] }
+                        draw:
+                            mapzen_icon_library:
+                                visible: global.sdk_road_shields
+                    primary:
+                        filter: { kind_detail: primary, $zoom: [10,11] }
+                        draw:
+                            mapzen_icon_library:
+                                visible: global.sdk_road_shields
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[14px,17px]],[13,[15px,19px]],[15,[18px,21px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[23px,23px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[21px,18px]],[13,[24px,20px]],[15,[28px,23px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[24px,18px]],[13,[26px,20px]],[15,[31px,23px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[32px,23px]]]
+
                 US-NY:
                     # Match New York state highways: `US:NY`
                     filter: |
@@ -2795,7 +2831,7 @@ layers:
                             mapzen_icon_library:
                                 size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
                 US-NV:
-                    # Match New York state highways: `US:NY`
+                    # Match Nevada state highways: `US:NV`
                     filter: |
                         function() {
                             return feature.shield_text && (
@@ -2959,7 +2995,6 @@ layers:
                                 /^US:BIA$/.test(feature.network) ||
                                 /^US:BLM$/.test(feature.network) ||
                                 /^US:DC$/.test(feature.network) ||
-                                /^US:FL$/.test(feature.network) ||
                                 /^US:FSH$/.test(feature.network) ||
                                 /^US:FSR$/.test(feature.network) ||
                                 /^US:GA$/.test(feature.network) ||
