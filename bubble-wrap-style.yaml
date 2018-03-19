@@ -2688,27 +2688,27 @@ layers:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
                             mapzen_icon_library:
-                                size: [[6,[14px,17px]],[13,[15px,19px]],[15,[18px,21px]]]
+                                size: [[6,[18px,18px]],[13,[19px,19px]],[15,[20px,20px]]]
                     width_2char:
                         filter: function() { return (feature.shield_text.length === 2) }
                         draw:
                             mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[23px,23px]]]
+                                size: [[6,[20px,18px]],[13,[21px,19px]],[15,[23px,21px]]]
                     width_3char:
                         filter: function() { return (feature.shield_text.length === 3) }
                         draw:
                             mapzen_icon_library:
-                                size: [[6,[21px,18px]],[13,[24px,20px]],[15,[28px,23px]]]
+                                size: [[6,[25px,18px]],[13,[27px,19px]],[15,[30px,22px]]]
                     width_4char:
                         filter: function() { return (feature.shield_text.length === 4) }
                         draw:
                             mapzen_icon_library:
-                                size: [[6,[24px,18px]],[13,[26px,20px]],[15,[31px,23px]]]
+                                size: [[6,[29px,18px]],[13,[30px,19px]],[15,[31px,20px]]]
                     width_5char:
                         filter: function() { return (feature.shield_text.length === 5) }
                         draw:
                             mapzen_icon_library:
-                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[32px,23px]]]
+                                size: [[6,[30px,18px]],[13,[32px,19px]],[15,[33px,20px]]]
 
                 US-GA:
                     filter: |
