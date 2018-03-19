@@ -2246,7 +2246,7 @@ layers:
                             family: Montserrat
                             weight: 500
                             fill: [0.308,0.308,0.308]
-                            size: [[7, 7px], [12, 8px], [15, 10px]]
+                            size: [[7, 7px], [13, 9px], [15, 10px]]
                             stroke: { color: global.text_stroke, width: 0px }
 
             default_priority_highway:
@@ -2418,7 +2418,6 @@ layers:
                             text:
                                 offset: [0px, 0.5px]
                                 font:
-                                    fill: [0.308,0.308,0.308]
                                     size: [[7,8px],[13,9px],[15,11px]]
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
@@ -2516,9 +2515,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [0px, -2px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2558,9 +2554,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [-1px, 0px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2600,9 +2593,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [0px, 1px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
                     motorway:
                         filter: { kind_detail: [motorway], $zoom: [7,8] }
                         draw:
@@ -2656,9 +2646,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [0px, 3px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2697,9 +2684,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [-1px, 2px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2738,9 +2722,31 @@ layers:
                             #priority: 48
                             text:
                                 offset: [-1px, 0px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[18px,18px]],[13,[19px,19px]],[15,[20px,20px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[22px,18px]],[13,[23px,19px]],[15,[24px,20px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[27px,18px]],[13,[28px,18px]],[15,[31px,19px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[31px,19px]],[13,[32px,19px]],[15,[34px,20px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[35px,19px]],[13,[36px,20px]],[15,[37px,21px]]]
 
                 US-NY:
                     # Match New York state highways: `US:NY`
@@ -2758,9 +2764,7 @@ layers:
                                 function() { return ( 'US:NY-' + feature.shield_text.length + 'char'); }
                             text:
                                 # offset: [0px, 1px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
+
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2802,9 +2806,6 @@ layers:
                                 function() { return ( 'US:NV-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [0px, -5px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2843,9 +2844,6 @@ layers:
                                 function() { return ( 'US:PA-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [0px, 1px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
