@@ -2519,27 +2519,27 @@ layers:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
                             mapzen_icon_library:
-                                size: [[6,[14px,16px]],[13,[15px,18px]],[15,[18px,21px]]]
+                                size: [[6,[18px,19px]],[13,[19px,21px]],[15,[20px,21px]]]
                     width_2char:
                         filter: function() { return (feature.shield_text.length === 2) }
                         draw:
                             mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[23px,23px]]]
+                                size: [[6,[19px,20px]],[13,[20px,21px]],[15,[21px,21px]]]
                     width_3char:
                         filter: function() { return (feature.shield_text.length === 3) }
                         draw:
                             mapzen_icon_library:
-                                size: [[6,[21px,18px]],[13,[24px,20px]],[15,[28px,23px]]]
+                                size: [[6,[24px,20px]],[13,[25px,21px]],[15,[26px,21px]]]
                     width_4char:
                         filter: function() { return (feature.shield_text.length === 4) }
                         draw:
                             mapzen_icon_library:
-                                size: [[6,[24px,18px]],[13,[26px,20px]],[15,[31px,23px]]]
+                                size: [[6,[28px,20px]],[13,[29px,21px]],[15,[31px,21px]]]
                     width_5char:
                         filter: function() { return (feature.shield_text.length === 5) }
                         draw:
                             mapzen_icon_library:
-                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[32px,23px]]]
+                                size: [[6,[29px,20px]],[13,[33px,21px]],[15,[35px,21px]]]
 
                 US-AR:
                     # Match Arkansas state highways: `US:AR`
