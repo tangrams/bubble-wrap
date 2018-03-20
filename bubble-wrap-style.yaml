@@ -2733,6 +2733,44 @@ layers:
                             mapzen_icon_library:
                                 size: [[6,[35px,19px]],[13,[36px,20px]],[15,[37px,21px]]]
 
+                US-HI:
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:HI$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            #priority: 48
+                            text:
+                                offset: [0px, 1px]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[19px,20px]],[13,[20px,21px]],[15,[21px,22px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[19px,20px]],[13,[20px,21px]],[15,[21px,22px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[24px,20px]],[13,[25px,21px]],[15,[26px,22px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[29px,20px]],[13,[30px,21px]],[15,[31px,22px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[31px,20px]],[13,[33px,21px]],[15,[35px,22px]]]
+
                 US-NY:
                     # Match New York state highways: `US:NY`
                     filter: |
@@ -2933,7 +2971,6 @@ layers:
                                 /^US:DC$/.test(feature.network) ||
                                 /^US:FSH$/.test(feature.network) ||
                                 /^US:FSR$/.test(feature.network) ||
-                                /^US:HI$/.test(feature.network) ||
                                 /^US:ID$/.test(feature.network) ||
                                 /^US:KS$/.test(feature.network) ||
                                 /^US:LA$/.test(feature.network) ||
