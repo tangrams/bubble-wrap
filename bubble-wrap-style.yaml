@@ -2214,7 +2214,7 @@ layers:
                             }
                         }
                     sprite_default: generic_shield_5char
-                    size: [[7,[90%,90%]],[12,[100%,100%]],[15,[125%,125%]]]
+                    size: [[7,[95%,95%]],[12,[100%,100%]],[15,[125%,125%]]]
                     priority: 58
                     # Size is specified below, and limited to 5 char in another filter
                     repeat_group: shields
@@ -2847,6 +2847,44 @@ layers:
                             mapzen_icon_library:
                                 size: [[6,[31px,18px]],[13,[34px,22px]],[15,[37px,23px]]]
 
+                US-LA:
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:LA$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            #priority: 48
+                            text:
+                                offset: [-1px, 3px]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[21px,21px]],[13,[23px,23px]],[15,[24px,24px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[22px,21px]],[13,[24px,23px]],[15,[25px,24px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[26px,21px]],[13,[29px,23px]],[15,[30px,24px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[29px,21px]],[13,[31px,23px]],[15,[34px,24px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[32px,21px]],[13,[35px,23px]],[15,[37px,24px]]]
+
                 US-NY:
                     # Match New York state highways: `US:NY`
                     filter: |
@@ -3047,7 +3085,6 @@ layers:
                                 /^US:DC$/.test(feature.network) ||
                                 /^US:FSH$/.test(feature.network) ||
                                 /^US:FSR$/.test(feature.network) ||
-                                /^US:LA$/.test(feature.network) ||
                                 /^US:MA$/.test(feature.network) ||
                                 /^US:CT$/.test(feature.network) ||
                                 /^US:IL$/.test(feature.network) ||
