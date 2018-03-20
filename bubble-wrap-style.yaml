@@ -2253,7 +2253,7 @@ layers:
                 filter:
                     all:
                         - kind_detail: motorway
-                        - $zoom: { min: 9 }
+                        - $zoom: { min: 7 }
                 draw:
                     mapzen_icon_library:
                         priority: 47
@@ -2264,7 +2264,7 @@ layers:
                 filter:
                     all:
                         - kind_detail: [trunk]
-                        - $zoom: { min: 10 }
+                        - $zoom: { min: 8 }
                 draw:
                     mapzen_icon_library:
                         priority: 48
@@ -2274,7 +2274,7 @@ layers:
                 filter:
                     all:
                         - kind_detail: [primary]
-                        - $zoom: { min: 12 }
+                        - $zoom: { min: 10 }
                 draw:
                     mapzen_icon_library:
                         priority: 49
@@ -2593,21 +2593,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [0px, 1px]
-                    motorway:
-                        filter: { kind_detail: [motorway], $zoom: [7,8] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
-                    trunk:
-                        filter: { kind_detail: [trunk], $zoom: [8,9] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
-                    primary:
-                        filter: { kind_detail: primary, $zoom: [10,11] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2762,9 +2747,6 @@ layers:
                             texture: mapzen_icon_library_shields_usa
                             sprite: |
                                 function() { return ( 'US:NY-' + feature.shield_text.length + 'char'); }
-                            text:
-                                # offset: [0px, 1px]
-
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
