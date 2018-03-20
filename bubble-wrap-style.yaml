@@ -2958,7 +2958,6 @@ layers:
                         mapzen_icon_library:
                             texture: mapzen_icon_library_shields_usa
                             sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
-                            #priority: 48
                             text:
                                 offset: [0px, -1px]
                     width_1char:
@@ -2986,6 +2985,117 @@ layers:
                         draw:
                             mapzen_icon_library:
                                 size: [[6,[33px,18px]],[13,[35px,19px]],[15,[37px,21px]]]
+
+                US-NE:
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:NE$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            text:
+                                offset: [-0.5px, -2px]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[16px,17px]],[13,[17px,18px]],[15,[20px,21px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[19px,17px]],[13,[20px,18px]],[15,[23px,21px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[22px,17px]],[13,[23px,18px]],[15,[26px,21px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[26px,17px]],[13,[27px,18px]],[15,[29px,21px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[30px,17px]],[13,[31px,18px]],[15,[34px,21px]]]
+
+                US-NH:
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:NH$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            text:
+                                offset: [1px, 0px]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[18px,17px]],[13,[20px,19px]],[15,[20px,21px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[22px,17px]],[13,[24px,19px]],[15,[26px,21px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[25px,17px]],[13,[28px,19px]],[15,[29px,21px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[29px,17px]],[13,[31px,19px]],[15,[33px,21px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[32px,17px]],[13,[34px,19px]],[15,[36px,21px]]]
+
+                US-NM:
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:NM$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            text:
+                                offset: [0px, 0px]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[20px,20px]],[13,[22px,22px]],[15,[24px,24px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[20px,20px]],[13,[22px,22px]],[15,[24px,24px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[27px,21px]],[13,[29px,23px]],[15,[30px,24px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[30px,21px]],[13,[32px,23px]],[15,[33px,24px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[33px,21px]],[13,[35px,23px]],[15,[36px,24px]]]
 
                 US-NY:
                     # Match New York state highways: `US:NY`
@@ -3026,6 +3136,7 @@ layers:
                         draw:
                             mapzen_icon_library:
                                 size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
+
                 US-NV:
                     # Match Nevada state highways: `US:NV`
                     filter: |
@@ -3067,6 +3178,7 @@ layers:
                         draw:
                             mapzen_icon_library:
                                 size: [[6,[30px,21px]],[13,[31px,22px]],[15,[34px,25px]]]
+
                 US-PA:
                     # Match Pennsylvania state highways
                     filter: |
@@ -3196,19 +3308,13 @@ layers:
                                 /^US:ME$/.test(feature.network) ||
                                 /^US:WV$/.test(feature.network) ||
                                 /^US:MT$/.test(feature.network) ||
-                                /^US:MD$/.test(feature.network) ||
-                                /^US:MN$/.test(feature.network) ||
-                                /^US:MO$/.test(feature.network) ||
                                 /^US:NC$/.test(feature.network) ||
                                 /^US:ND$/.test(feature.network) ||
-                                /^US:NE$/.test(feature.network) ||
-                                /^US:NH$/.test(feature.network) ||
                                 /^US:NJ$/.test(feature.network) ||
                                 /^US:IA$/.test(feature.network) ||
                                 /^US:DE$/.test(feature.network) ||
                                 /^US:KY$/.test(feature.network) ||
                                 /^US:MS$/.test(feature.network) ||
-                                /^US:NM$/.test(feature.network) ||
                                 /^US:NV$/.test(feature.network) ||
                                 /^US:OH$/.test(feature.network) ||
                                 /^US:OK$/.test(feature.network) ||
