@@ -2787,7 +2787,7 @@ layers:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
                             mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[19px,19px]],[15,[20                  px,20px]]]
+                                size: [[6,[18px,18px]],[13,[19px,19px]],[15,[20px,20px]]]
                     width_2char:
                         filter: function() { return (feature.shield_text.length === 2) }
                         draw:
@@ -2808,6 +2808,44 @@ layers:
                         draw:
                             mapzen_icon_library:
                                 size: [[6,[33px,18px]],[13,[34px,19px]],[15,[35px,20px]]]
+
+                US-KS:
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:KS$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            #priority: 48
+                            text:
+                                offset: [0px, 0.5px]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[18px,18px]],[13,[21px,21px]],[15,[22px,22px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[21px,18px]],[13,[23px,21px]],[15,[24px,23px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[24px,18px]],[13,[27px,21px]],[15,[29px,23px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[28px,18px]],[13,[31px,21px]],[15,[33px,23px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[31px,18px]],[13,[34px,22px]],[15,[37px,23px]]]
 
                 US-NY:
                     # Match New York state highways: `US:NY`
@@ -3009,7 +3047,6 @@ layers:
                                 /^US:DC$/.test(feature.network) ||
                                 /^US:FSH$/.test(feature.network) ||
                                 /^US:FSR$/.test(feature.network) ||
-                                /^US:KS$/.test(feature.network) ||
                                 /^US:LA$/.test(feature.network) ||
                                 /^US:MA$/.test(feature.network) ||
                                 /^US:CT$/.test(feature.network) ||
