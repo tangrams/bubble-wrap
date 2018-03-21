@@ -1764,8 +1764,7 @@ layers:
                                 size: 11px
                                 stroke: { color: global.text_stroke, width: 2px }
                 labels-secondary-z14-z17:
-                    filter:
-                        filter: { $zoom: { min: 14, max: 18 } }
+                    filter: { $zoom: { min: 14, max: 18 } }
                     draw:
                         text-blend-order:
                             priority: 56
@@ -3071,7 +3070,7 @@ layers:
                     draw:
                         mapzen_icon_library:
                             texture: mapzen_icon_library_shields_usa
-                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            sprite: function() { return ( 'US:NM-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [0px, 0px]
                     width_1char:
@@ -3144,10 +3143,7 @@ layers:
                     # Match Nevada state highways: `US:NV`
                     filter: |
                         function() {
-                            return feature.shield_text && (
-                                /^US:NV$/.test(feature.network)
-                                /* (/^US:NV$/.test(feature.network) || /^NV:US$/.test(feature.network)) */
-                            )
+                            return feature.shield_text && /^US:NV$/.test(feature.network)
                         }
                     draw:
                         mapzen_icon_library:
@@ -3331,6 +3327,72 @@ layers:
                         draw:
                             mapzen_icon_library:
                                 size: [[6,[24px,17px]],[13,[27px,19px]],[15,[32px,22px]]]
+
+                US-SC:
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:SC$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            #priority: 48
+                            text:
+                                offset: [0px, 1.5px]
+
+                US-SD:
+                    # Match Pennsylvania state highways
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:SD$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: |
+                                function() { return ( 'US:SD-' + feature.shield_text.length + 'char'); }
+                            text:
+                                offset: [0px, 0px]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[22px,22px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[19px,18px]],[13,[21px,20px]],[15,[23px,22px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[22px,18px]],[13,[24px,20px]],[15,[27px,22px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[29x,22px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[30px,18px]],[13,[31px,19px]],[15,[34px,22px]]]
+
+                US-TN:
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:TN$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            #priority: 48
+                            text:
+                                offset: [0px, -2px]
+
                 # USA County Routes
                 US-counties:
                     # Match state highways: `US:??:*`
@@ -3429,9 +3491,6 @@ layers:
                                 /^US:DE$/.test(feature.network) ||
                                 /^US:KY$/.test(feature.network) ||
                                 /^US:MS$/.test(feature.network) ||
-                                /^US:SC$/.test(feature.network) ||
-                                /^US:SD$/.test(feature.network) ||
-                                /^US:TN$/.test(feature.network) ||
                                 /^US:UT$/.test(feature.network) ||
                                 /^US:VA$/.test(feature.network) ||
                                 /*TODO: US:VA:secondary*/
