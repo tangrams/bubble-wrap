@@ -2898,10 +2898,13 @@ layers:
                             text:
                                 offset: [0px, 1px]
 
-                US-MI:
+                US-MI-NC:
                     filter: |
                         function() {
-                            return feature.shield_text && /^US:MI$/.test(feature.network)
+                            return feature.shield_text && (
+                                /^US:MI$/.test(feature.network) ||
+                                /^US:NC$/.test(feature.network)
+                            )
                         }
                     draw:
                         mapzen_icon_library:
@@ -3179,6 +3182,43 @@ layers:
                             mapzen_icon_library:
                                 size: [[6,[30px,21px]],[13,[31px,22px]],[15,[34px,25px]]]
 
+                US-OH:
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:OH$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            text:
+                                offset: [0px, 0px]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[17px,18px]],[13,[18px,19px]],[15,[20px,21px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[19px,18px]],[13,[20px,19px]],[15,[24px,21px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[22px,18px]],[13,[23px,19px]],[15,[25px,21px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[26px,18px]],[13,[27px,19px]],[15,[29px,21px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[30px,18px]],[13,[31px,19px]],[15,[33px,21px]]]
+
                 US-PA:
                     # Match Pennsylvania state highways
                     filter: |
@@ -3315,8 +3355,6 @@ layers:
                                 /^US:DE$/.test(feature.network) ||
                                 /^US:KY$/.test(feature.network) ||
                                 /^US:MS$/.test(feature.network) ||
-                                /^US:NV$/.test(feature.network) ||
-                                /^US:OH$/.test(feature.network) ||
                                 /^US:OK$/.test(feature.network) ||
                                 /^US:OR$/.test(feature.network) ||
                                 /^US:SC$/.test(feature.network) ||
