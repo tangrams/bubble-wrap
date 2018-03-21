@@ -3484,6 +3484,58 @@ layers:
                             mapzen_icon_library:
                                 size: [[6,[32px,19px]],[13,[35px,22px]],[15,[36px,23px]]]
 
+                US-WI:
+                    # Match Pennsylvania state highways
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:WI$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: |
+                                function() { return ( 'US:WI-' + feature.shield_text.length + 'char'); }
+                            text:
+                                offset: [0px, -1px]
+                    width_1char:
+                        filter: function() { return (feature.shield_text.length === 1) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[18px,18px]],[13,[19px,19px]],[15,[21px,21px]]]
+                    width_2char:
+                        filter: function() { return (feature.shield_text.length === 2) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[19px,18px]],[13,[20px,19px]],[15,[22px,21px]]]
+                    width_3char:
+                        filter: function() { return (feature.shield_text.length === 3) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[23px,18px]],[13,[24px,19px]],[15,[26px,21px]]]
+                    width_4char:
+                        filter: function() { return (feature.shield_text.length === 4) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[26px,18px]],[13,[27px,19px]],[15,[30px,21px]]]
+                    width_5char:
+                        filter: function() { return (feature.shield_text.length === 5) }
+                        draw:
+                            mapzen_icon_library:
+                                size: [[6,[29px,18px]],[13,[31px,19px]],[15,[33px,21px]]]
+
+                US-WY:
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:WY$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            #priority: 48
+                            text:
+                                offset: [0px, -1px]
+
                 # USA County Routes
                 US-counties:
                     # Match state highways: `US:??:*`
@@ -3583,10 +3635,7 @@ layers:
                                 /^US:KY$/.test(feature.network) ||
                                 /^US:MS$/.test(feature.network) ||
                                 /*TODO: US:VA:secondary*/
-                                /^US:VT$/.test(feature.network) ||
-                                /^US:WA$/.test(feature.network) ||
-                                /^US:WI$/.test(feature.network) ||
-                                /^US:WY$/.test(feature.network)
+                                /^US:VT$/.test(feature.network)
                                 /*US:CA*/
                                 /*US:I*/
                                 /*US:NY*/
