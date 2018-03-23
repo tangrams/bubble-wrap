@@ -4105,6 +4105,21 @@ layers:
                                     mapzen_icon_library:
                                         size: [[6,[30px,16px]],[13,[31px,17px]],[15,[35px,20px]]]
 
+                    ru-national:
+                        filter: |
+                            function() {
+                                return feature.ref && /^ru:national.*$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ru:national-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
                 z-mexico-shields:
                     filter: |
                         function() {
