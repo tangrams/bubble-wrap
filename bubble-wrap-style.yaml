@@ -3925,7 +3925,7 @@ layers:
                                     }
                                 text:
                                     font:
-                                        fill: [0.990,0.925,0.663]
+                                        fill: [1.00,1.00,1.00]
 
                     brazil-shields:
                         filter: |
