@@ -3897,6 +3897,21 @@ layers:
 #                            mapzen_icon_library:
 #                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
 
+                    e-roads:
+                        filter: |
+                            function() {
+                                return feature.shield_text && /^e-road$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'e-road-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
                     AU-M:
                         filter: |
                             function() {
@@ -3926,6 +3941,23 @@ layers:
                                 text:
                                     font:
                                         fill: [1.00,1.00,1.00]
+
+                    # this is not working yet
+                    AU-AU:
+                        filter: |
+                            function() {
+                                return feature.shield_text && /^S .$/.test(feature.ref)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'AU:AU-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
 
                     brazil-shields:
                         filter: |
@@ -3998,6 +4030,8 @@ layers:
                                         function() {
                                             return feature.ref.replace(" ", "");
                                         }
+                                    font:
+                                        fill: [1.00,1.00,1.00]
                     france-department-shields:
                         filter: |
                             function() {
@@ -4015,6 +4049,9 @@ layers:
                                         var text_len = feature.shield_text.length || feature.ref.length;
                                         return ( 'FR:D-' + text_len + 'char');
                                     }
+                                text:
+                                    font:
+                                        fill: [0.20,0.20,0.20]
                     germany-b-shields:
                         filter: |
                             function() {
@@ -4026,6 +4063,47 @@ layers:
                                     function() {
                                         return ( 'DE:DE-' + feature.ref.length + 'char');
                                     }
+
+                    BAB:
+                        filter: |
+                            function() {
+                                return feature.ref && /^BAB$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'BAB-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+                            #this is not working, but color is working, see berlin
+                            width_1char:
+                                filter: function() { return (feature.shield_text.length === 1) }
+                                draw:
+                                    mapzen_icon_library:
+                                        size: [[6,[21px,16px]],[13,[23px,17px]],[15,[25px,20px]]]
+                            width_2char:
+                                filter: function() { return (feature.shield_text.length === 2) }
+                                draw:
+                                    mapzen_icon_library:
+                                        size: [[6,[24px,16px]],[13,[25px,17px]],[15,[26px,20px]]]
+                            width_3char:
+                                filter: function() { return (feature.shield_text.length === 3) }
+                                draw:
+                                    mapzen_icon_library:
+                                        size: [[6,[26px,16px]],[13,[27px,17px]],[15,[30px,20px]]]
+                            width_4char:
+                                filter: function() { return (feature.shield_text.length === 4) }
+                                draw:
+                                    mapzen_icon_library:
+                                        size: [[6,[28px,16px]],[13,[29px,17px]],[15,[32x,20px]]]
+                            width_5char:
+                                filter: function() { return (feature.shield_text.length === 5) }
+                                draw:
+                                    mapzen_icon_library:
+                                        size: [[6,[30px,16px]],[13,[31px,17px]],[15,[35px,20px]]]
 
                 z-mexico-shields:
                     filter: |
