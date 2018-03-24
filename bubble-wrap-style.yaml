@@ -4140,6 +4140,32 @@ layers:
                                     function() {
                                         return feature.ref.replace("MEX ", "");
                                     }
+                        #sizing is not working here either
+                        width_1char:
+                                filter: function() { return (feature.shield_text.length === 1) }
+                                draw:
+                                    mapzen_icon_library:
+                                        size: [[6,[16px,21px]],[13,[17px,24px]],[15,[19px,26px]]]
+                        width_2char:
+                            filter: function() { return (feature.shield_text.length === 2) }
+                            draw:
+                                mapzen_icon_library:
+                                    size: [[6,[18px,21px]],[13,[19px,24px]],[15,[21px,26px]]]
+                        width_3char:
+                            filter: function() { return (feature.shield_text.length === 3) }
+                            draw:
+                                mapzen_icon_library:
+                                    size: [[6,[20px,21px]],[13,[23px,24px]],[15,[25px,26px]]]
+                        width_4char:
+                            filter: function() { return (feature.shield_text.length === 4) }
+                            draw:
+                                mapzen_icon_library:
+                                    size: [[6,[22px,21px]],[13,[25px,24px]],[15,[27px,26px]]]
+                        width_5char:
+                            filter: function() { return (feature.shield_text.length === 5) }
+                            draw:
+                                mapzen_icon_library:
+                                    size: [[6,[27px,21px]],[13,[30px,24px]],[15,[32px,26px]]]
 
         path:
             filter:
