@@ -3679,11 +3679,14 @@ layers:
 #                        draw:
 #                            mapzen_icon_library:
 #                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
-
+                # NOTE (nvkelso 2018036): this regex need a NOT test fof US: to exclude states like NJ, 
+                # Arizona, Alaska, North Dakota, Mass., CT which were otherwise getting caught in the net
                 international-shields:
                     filter: |
                         function() {
-                            return feature.shield_text && (
+                            return (! /^US:.*$/.test(feature.network)) &&
+                                (feature.shield_text) && 
+                                (
                                 /^AM:AM.*$/.test(feature.network) ||
                                 /^AR:AR.*$/.test(feature.network) ||
                                 /^AR:PR.*$/.test(feature.network) ||
@@ -3732,8 +3735,6 @@ layers:
                                 /^DE:A.*$/.test(feature.network) ||
                                 /^BAB.*$/.test(feature.network) ||
                                 /^DE:DE.*$/.test(feature.network) ||
-                                /^B.*$/.test(feature.ref) ||
-                                /^B .*$/.test(feature.ref) ||
                                 /^DE:L.*$/.test(feature.network) ||
                                 /^dk:national.*$/.test(feature.network) ||
                                 /^DK:D.*$/.test(feature.network) ||
@@ -3748,14 +3749,8 @@ layers:
                                 /^FI:LR.*$/.test(feature.network) ||
                                 /^FI:RR.*$/.test(feature.network) ||
                                 /^FR:A-road.*$/.test(feature.network) ||
-                                /^A.*$/.test(feature.ref) ||
-                                /^A .*$/.test(feature.ref) ||
                                 /^FR:.*:.*$/.test(feature.network) ||
-                                /^D.*$/.test(feature.ref) ||
-                                /^D .*$/.test(feature.ref) ||
                                 /^FR:N-road.*$/.test(feature.network) ||
-                                /^N.*$/.test(feature.ref) ||
-                                /^N .*$/.test(feature.ref) ||
                                 /^GR:I.*$/.test(feature.network) ||
                                 /^GR:motorway$/.test(feature.network) ||
                                 /^GR:GR.*$/.test(feature.network) ||
@@ -3783,7 +3778,6 @@ layers:
                                 /^LU:RN.*$/.test(feature.network) ||
                                 /^MX:MX.*$/.test(feature.network) ||
                                 /^MEX$/.test(feature.network) ||
-                                /^MEX.*$/.test(feature.ref) ||
                                 /^MX:SH.*$/.test(feature.network) ||
                                 /^MY:E.*$/.test(feature.network) ||
                                 /^NL:A.*$/.test(feature.network) ||
@@ -3835,10 +3829,9 @@ layers:
                             texture: mapzen_icon_library_shields_international
                             sprite: |
                                 function() {
+                                    var basic_network = "generic_shield";
                                     if( feature.network ) {
-                                        var basic_network = feature.network.split(":").slice(0,2).join(":");
-                                    } else {
-                                        var basic_network = "generic";
+                                        basic_network = feature.network.split(":").slice(0,2).join(":");
                                     }
                                     return ( basic_network + '-' + feature.shield_text.length + 'char');
                                 }
@@ -3856,9 +3849,7 @@ layers:
                                     /^CA:transcanada$/.test(feature.network) ||
                                     /^CN-expressways$/.test(feature.network) ||
                                     /^FR:A-road.*$/.test(feature.network) ||
-                                    /^A.*$/.test(feature.ref) ||
                                     /^MEX$/.test(feature.network) ||
-                                    /^MEX.*$/.test(feature.ref) ||
                                     /^ru:national$/.test(feature.network) ||
                                     /^sk:national$/.test(feature.network) ||
                                     /^GR:motorway$/.test(feature.network) ||
@@ -4016,8 +4007,9 @@ layers:
                     france-a-and-n-road-ref-shields:
                         filter: |
                             function() {
-                                return ((feature.ref && !feature.shield_text) && (/^A .*$/.test(feature.ref) || /^N .*$/.test(feature.ref))) ||
-                                    ((feature.ref && feature.network == 'e-road') && (/^A .*$/.test(feature.ref) || /^N .*$/.test(feature.ref)))
+                                return ((feature.ref && feature.network == 'e-road') &&
+                                       (/^A .*$/.test(feature.ref) || /^N .*$/.test(feature.ref))) ||
+                                       ((feature.ref && feature.shield_text && feature.network == 'FR:A-road'))
                             }
                         draw:
                             mapzen_icon_library:
@@ -4035,12 +4027,8 @@ layers:
                     france-department-shields:
                         filter: |
                             function() {
-                                return ((feature.ref &&
-                                    ! feature.shield_text) &&
-                                    /^FR:.*:.*$/.test(feature.network) ||
-                                    /^D .*$/.test(feature.ref)) ||
-                                    ( feature.ref &&
-                                      /^D .*$/.test(feature.ref))
+                                return (/^D .*$/.test(feature.ref)) &&
+                                       (feature.ref && /^FR:.*:.*$/.test(feature.network))
                             }
                         draw:
                             mapzen_icon_library:
@@ -4166,6 +4154,114 @@ layers:
                             draw:
                                 mapzen_icon_library:
                                     size: [[6,[27px,21px]],[13,[30px,24px]],[15,[32px,26px]]]
+
+                international-shields-funky:
+                    filter: |
+                        function() {
+                            return (! /^US:.*$/.test(feature.network)) &&
+                                (!feature.shield_text && feature.ref) && 
+                                (
+                                /^B.*$/.test(feature.ref)  ||
+                                /^B .*$/.test(feature.ref) ||
+                                /^A.*$/.test(feature.ref)  ||
+                                /^A .*$/.test(feature.ref) ||
+                                /^D.*$/.test(feature.ref)  ||
+                                /^D .*$/.test(feature.ref) ||
+                                /^N.*$/.test(feature.ref)  ||
+                                /^N .*$/.test(feature.ref) ||
+                                /^MEX.*$/.test(feature.ref)
+                            )
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_international  #mapzen_icon_library
+                            visible: global.sdk_road_shields
+                            sprite: |
+                                function() {
+                                    if( feature.network ) {
+                                        var basic_network = feature.network.split(":").slice(0,2).join(":");
+                                    } else {
+                                        var basic_network = "generic_shield";
+                                    }
+                                    return ( basic_network + '-' + feature.ref.length + 'char');
+                                }
+                            text:
+                                # offset: [0px, 1px]
+                                font:
+                                    fill: [0.308,0.308,0.308]
+                                    #size: [[7,7px],[13,9px],[15,10px]]
+                    zoom8up:
+                        filter: |
+                            function() {
+                                return $zoom >= 8 && (
+                                    /^A.*$/.test(feature.ref) ||
+                                    /^MEX.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                visible: global.sdk_road_shields
+                    france-a-and-n-road-ref-shields-funky:
+                        filter: |
+                            function() {
+                                return ((feature.ref && !feature.shield_text) && (/^A .*$/.test(feature.ref) || /^N .*$/.test(feature.ref))) ||
+                                    ((feature.ref && feature.network == 'e-road') && (/^A .*$/.test(feature.ref) || /^N .*$/.test(feature.ref)))
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'FR:A-road-' + feature.ref.replace(" ", "").length + 'char');
+                                    }
+                                text:
+                                    text_source: |
+                                        function() {
+                                            return feature.ref.replace(" ", "");
+                                        }
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+                    france-department-shields-funky:
+                        filter: |
+                            function() {
+                                return (/^D .*$/.test(feature.ref)) &&
+                                       ( (feature.ref && /^FR:.*:.*$/.test(feature.network)) ||
+                                         (feature.ref && !feature.shield_text)
+                                        )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        var text_len = feature.ref.replace(" ", "").length;
+                                        return ( 'FR:D-' + text_len + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [0.20,0.20,0.20]
+                                    text_source: |
+                                        function() {
+                                            return feature.ref.replace(" ", "");
+                                        }
+                        early-major_road-primary:
+                            filter: { $zoom: { max: 9 }, kind: major_road, kind_detail: primary }
+                            draw:
+                                mapzen_icon_library:
+                                    visible: false
+                        early-major_road-secondary:
+                            filter: { $zoom: { max: 11 }, kind: major_road, kind_detail: secondary }
+                            draw:
+                                mapzen_icon_library:
+                                    visible: false
+                        early-major_road-tert:
+                            filter: { $zoom: { max: 13 }, kind: major_road, kind_detail: tertiary }
+                            draw:
+                                mapzen_icon_library:
+                                    visible: false
+                        early-other-roads:
+                            filter: { $zoom: { max: 14 }, not: { kind: major_road } }
+                            draw:
+                                mapzen_icon_library:
+                                    visible: false
 
         path:
             filter:
