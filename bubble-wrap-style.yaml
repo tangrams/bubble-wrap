@@ -2213,7 +2213,7 @@ layers:
                             }
                         }
                     sprite_default: generic_shield_5char
-                    size: [[7,[95%,95%]],[12,[100%,100%]],[15,[125%,125%]]]
+                    size: [[7,[75%,75%]],[12,[100%,100%]],[15,[110%,110%]]]
                     priority: 58
                     # Size is specified below, and limited to 5 char in another filter
                     repeat_group: shields
@@ -2245,7 +2245,7 @@ layers:
                             family: Montserrat
                             weight: 500
                             fill: [0.308,0.308,0.308]
-                            size: [[7, 7px], [13, 9px], [15, 10px]]
+                            size: [[7, 7px], [13, 10px], [15, 11px]]
                             stroke: { color: global.text_stroke, width: 0px }
 
             default_priority_highway:
@@ -2300,42 +2300,42 @@ layers:
                         #color: green
                         visible: global.sdk_road_shields
 
-#            width_1char:
-#                filter: |
-#                    function() {
-#                        if( feature.shield_text ) {
-#                            return (feature.shield_text.length === 1)
-#                        } else {
-#                            return (feature.ref.length === 1)
-#                        }
-#                    }
-#                draw:
-#                   mapzen_icon_library:
-#                       size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
-#            width_2char:
-#                filter: |
-#                    function() {
-#                        if( feature.shield_text ) {
-#                            return (feature.shield_text.length === 2)
-#                        } else {
-#                            return (feature.ref.length === 2)
-#                        }
-#                    }
-#                draw:
-#                   mapzen_icon_library:
-#                       size: [[6,[18px,14px]],[13,[20px,15px]],[15,[24px,18px]]]
-#            width_3char:
-#                filter: |
-#                    function() {
-#                        if( feature.shield_text ) {
-#                            return (feature.shield_text.length === 3)
-#                        } else {
-#                            return (feature.ref.length === 3)
-#                        }
-#                    }
-#                draw:
-#                   mapzen_icon_library:
-#                       size: [[6,[25px,14px]],[13,[27px,15px]],[15,[33px,18px]]]
+            width_1char:
+                filter: |
+                    function() {
+                        if( feature.shield_text ) {
+                            return (feature.shield_text.length === 1)
+                        } else {
+                            return (feature.ref.length === 1)
+                        }
+                    }
+               # draw:
+               #    mapzen_icon_library:
+               #        size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
+            width_2char:
+                filter: |
+                    function() {
+                        if( feature.shield_text ) {
+                            return (feature.shield_text.length === 2)
+                        } else {
+                            return (feature.ref.length === 2)
+                        }
+                    }
+               # draw:
+               #    mapzen_icon_library:
+               #        size: [[6,[18px,14px]],[13,[20px,15px]],[15,[24px,18px]]]
+            width_3char:
+                filter: |
+                    function() {
+                        if( feature.shield_text ) {
+                            return (feature.shield_text.length === 3)
+                        } else {
+                            return (feature.ref.length === 3)
+                        }
+                    }
+               # draw:
+               #    mapzen_icon_library:
+               #        size: [[6,[25px,14px]],[13,[27px,15px]],[15,[33px,18px]]]
             width_4char:
                 filter: |
                     function() {
@@ -2418,31 +2418,6 @@ layers:
                                 offset: [0px, 0.5px]
                                 font:
                                     size: [[7,8px],[13,9px],[15,11px]]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[15px,18px]],[13,[17px,20px]],[15,[22px,25px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[25px,25px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[23px,18px]],[13,[26px,20px]],[15,[33px,25px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[35px,25px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[26px,18px]],[13,[30px,20px]],[15,[38px,25px]]]
                 # US Federal Routes
                 US-US:
                     filter:
@@ -2463,31 +2438,6 @@ layers:
                                 font:
                                     fill: [0.380,0.318,0.312]
                                     size: [[7,8px],[13,9px],[15,11px]]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[15px,17px]],[13,[17px,19px]],[15,[22px,24px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,17px]],[13,[20px,19px]],[15,[26px,24px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[34px,25px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[25px,17px]],[13,[29px,19px]],[15,[39px,25px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[27px,17px]],[13,[30px,19px]],[15,[41px,25px]]]
                 # US State Routes
                 # US-states:
                 #     # Match state highways: `US:??`
@@ -2514,31 +2464,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [0px, -2px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,19px]],[13,[19px,21px]],[15,[20px,21px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[19px,20px]],[13,[20px,21px]],[15,[21px,21px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[24px,20px]],[13,[25px,21px]],[15,[26px,21px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[28px,20px]],[13,[29px,21px]],[15,[31px,21px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[29px,20px]],[13,[33px,21px]],[15,[35px,21px]]]
 
                 US-AR:
                     # Match Arkansas state highways: `US:AR`
@@ -2553,31 +2478,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [-1px, 0px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[19px,19px]],[15,[20px,20px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[20px,18px]],[13,[22px,19px]],[15,[23px,20px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[24px,18px]],[13,[27px,19px]],[15,[26px,21px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[27px,18px]],[13,[29px,19px]],[15,[31px,20px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[32px,18px]],[13,[34px,19px]],[15,[36px,20px]]]
 
                 US-CA:
                     # Match California state highways: `US:CA`
@@ -2592,31 +2492,7 @@ layers:
                             #priority: 48
                             text:
                                 offset: [0px, 1px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[14px,16px]],[13,[15px,18px]],[15,[18px,21px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[23px,23px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[21px,18px]],[13,[24px,20px]],[15,[28px,23px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[24px,18px]],[13,[26px,20px]],[15,[31px,23px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[32px,23px]]]
+
                 US-CO:
                     # Match Colorado state highways: `US:CO`
                     filter: |
@@ -2630,31 +2506,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [0px, 3px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[17px,18px]],[13,[19px,19px]],[15,[20px,20px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[20px,18px]],[13,[21px,19px]],[15,[23px,20px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[25px,18px]],[13,[26px,19px]],[15,[28px,20px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[27px,18px]],[13,[29px,19px]],[15,[31px,20px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[30px,18px]],[13,[32px,19px]],[15,[33px,20px]]]
 
                 US-FL:
                     filter: |
@@ -2668,31 +2519,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [-1px, 2px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[19px,19px]],[15,[20px,20px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[20px,18px]],[13,[21px,19px]],[15,[23px,21px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[25px,18px]],[13,[27px,19px]],[15,[30px,22px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[29px,18px]],[13,[30px,19px]],[15,[31px,20px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[30px,18px]],[13,[32px,19px]],[15,[33px,20px]]]
 
                 US-GA:
                     filter: |
@@ -2706,31 +2532,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [-1px, 0px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[19px,19px]],[15,[20px,20px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,18px]],[13,[23px,19px]],[15,[24px,20px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[27px,18px]],[13,[28px,18px]],[15,[31px,19px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[31px,19px]],[13,[32px,19px]],[15,[34px,20px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[35px,19px]],[13,[36px,20px]],[15,[37px,21px]]]
 
                 US-HI:
                     filter: |
@@ -2744,31 +2545,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [0px, 1px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[19px,20px]],[13,[20px,21px]],[15,[21px,22px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[19px,20px]],[13,[20px,21px]],[15,[21px,22px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[24px,20px]],[13,[25px,21px]],[15,[26px,22px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[29px,20px]],[13,[30px,21px]],[15,[31px,22px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[31px,20px]],[13,[33px,21px]],[15,[35px,22px]]]
 
                 US-ID:
                     filter: |
@@ -2782,31 +2558,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [3px, -3px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[19px,19px]],[15,[20px,20px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,18px]],[13,[23px,19px]],[15,[24px,20px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[26px,18px]],[13,[27px,19px]],[15,[28px,20px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[30px,18px]],[13,[31px,19px]],[15,[32px,20px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[33px,18px]],[13,[34px,19px]],[15,[35px,20px]]]
 
                 US-KS:
                     filter: |
@@ -2820,31 +2571,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [0px, 0.5px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[21px,21px]],[15,[22px,22px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[21px,18px]],[13,[23px,21px]],[15,[24px,23px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[24px,18px]],[13,[27px,21px]],[15,[29px,23px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[28px,18px]],[13,[31px,21px]],[15,[33px,23px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[31px,18px]],[13,[34px,22px]],[15,[37px,23px]]]
 
                 US-LA:
                     filter: |
@@ -2858,31 +2584,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [-1px, 3px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[21px,21px]],[13,[23px,23px]],[15,[24px,24px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,21px]],[13,[24px,23px]],[15,[25px,24px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[26px,21px]],[13,[29px,23px]],[15,[30px,24px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[29px,21px]],[13,[31px,23px]],[15,[34px,24px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[32px,21px]],[13,[35px,23px]],[15,[37px,24px]]]
 
                 US-MD:
                     filter: |
@@ -2912,31 +2613,6 @@ layers:
                             #priority: 48
                             text:
                                 offset: [0px, 0px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[19px,19px]],[13,[20px,20px]],[15,[23px,23px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[23px,19px]],[13,[25px,20px]],[15,[27px,23px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[29px,19px]],[13,[30px,20px]],[15,[33px,23px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[32px,20px]],[13,[34px,21px]],[15,[36px,23px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[32px,21px]],[13,[40px,21px]],[15,[43px,23px]]]
 
                 US-MN:
                     filter: |
@@ -2962,31 +2638,6 @@ layers:
                             sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [0px, -1px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[19px,19px]],[15,[21px,21px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[21px,18px]],[13,[23px,19px]],[15,[25px,21px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[27px,18px]],[13,[28px,19px]],[15,[30px,21px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[30px,18px]],[13,[32px,19px]],[15,[35px,21px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[33px,18px]],[13,[35px,19px]],[15,[37px,21px]]]
 
                 US-NE:
                     filter: |
@@ -2999,31 +2650,6 @@ layers:
                             sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [-0.5px, -2px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[16px,17px]],[13,[17px,18px]],[15,[20px,21px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[19px,17px]],[13,[20px,18px]],[15,[23px,21px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,17px]],[13,[23px,18px]],[15,[26px,21px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[26px,17px]],[13,[27px,18px]],[15,[29px,21px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[30px,17px]],[13,[31px,18px]],[15,[34px,21px]]]
 
                 US-NH:
                     filter: |
@@ -3036,31 +2662,6 @@ layers:
                             sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [1px, 0px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,17px]],[13,[20px,19px]],[15,[20px,21px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,17px]],[13,[24px,19px]],[15,[26px,21px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[25px,17px]],[13,[28px,19px]],[15,[29px,21px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[29px,17px]],[13,[31px,19px]],[15,[33px,21px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[32px,17px]],[13,[34px,19px]],[15,[36px,21px]]]
 
                 US-NM:
                     filter: |
@@ -3073,31 +2674,6 @@ layers:
                             sprite: function() { return ( 'US:NM-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [0px, 0px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[20px,20px]],[13,[22px,22px]],[15,[24px,24px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[20px,20px]],[13,[22px,22px]],[15,[24px,24px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[27px,21px]],[13,[29px,23px]],[15,[30px,24px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[30px,21px]],[13,[32px,23px]],[15,[33px,24px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[33px,21px]],[13,[35px,23px]],[15,[36px,24px]]]
 
                 US-NY:
                     # Match New York state highways: `US:NY`
@@ -3113,31 +2689,6 @@ layers:
                             texture: mapzen_icon_library_shields_usa
                             sprite: |
                                 function() { return ( 'US:NY-' + feature.shield_text.length + 'char'); }
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[13px,17px]],[13,[15px,19px]],[15,[18px,22px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[17px,17px]],[13,[19px,19px]],[15,[22px,22px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[20px,17px]],[13,[22px,19px]],[15,[27px,22px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[29px,22px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
 
                 US-NV:
                     # Match Nevada state highways: `US:NV`
@@ -3152,31 +2703,6 @@ layers:
                                 function() { return ( 'US:NV-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [0px, -5px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[17px,21px]],[13,[17px,22px]],[15,[18px,25px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,21px]],[13,[19px,22px]],[15,[22px,25px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,21px]],[13,[24px,23px]],[15,[29px,25px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[26px,21px]],[13,[27px,22px]],[15,[30px,25px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[30px,21px]],[13,[31px,22px]],[15,[34px,25px]]]
 
                 US-OH:
                     filter: |
@@ -3189,31 +2715,6 @@ layers:
                             sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [0px, 0px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[17px,18px]],[13,[18px,19px]],[15,[20px,21px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[19px,18px]],[13,[20px,19px]],[15,[24px,21px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,18px]],[13,[23px,19px]],[15,[25px,21px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[26px,18px]],[13,[27px,19px]],[15,[29px,21px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[30px,18px]],[13,[31px,19px]],[15,[33px,21px]]]
 
                 US-OK:
                     filter: |
@@ -3226,31 +2727,6 @@ layers:
                             sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [-2px, 2px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[19px,18px]],[13,[20px,19px]],[15,[20px,21px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,18px]],[13,[23px,19px]],[15,[25px,21px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[24px,18px]],[13,[26px,19px]],[15,[28px,21px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[28px,18px]],[13,[30px,19px]],[15,[32px,21px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[31px,18px]],[13,[34px,19px]],[15,[34px,21px]]]
 
                 US-OR:
                     filter: |
@@ -3263,31 +2739,6 @@ layers:
                             sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [0px, -1px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[21px,21px]],[15,[22px,22px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[20px,18px]],[13,[23px,21px]],[15,[25px,22px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[24px,18px]],[13,[27px,21px]],[15,[28px,22px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[28px,18px]],[13,[31px,21px]],[15,[32px,22px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[29px,18px]],[13,[33px,22px]],[15,[34px,22px]]]
 
                 US-PA:
                     # Match Pennsylvania state highways
@@ -3302,31 +2753,6 @@ layers:
                                 function() { return ( 'US:PA-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [0px, 1px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[13px,17px]],[13,[15px,19px]],[15,[18px,22px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[17px,17px]],[13,[19px,19px]],[15,[22px,22px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[28px,22px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30x,22px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[24px,17px]],[13,[27px,19px]],[15,[32px,22px]]]
 
                 US-SC:
                     filter: |
@@ -3354,31 +2780,6 @@ layers:
                                 function() { return ( 'US:SD-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [0px, 0px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[22px,22px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[19px,18px]],[13,[21px,20px]],[15,[23px,22px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,18px]],[13,[24px,20px]],[15,[27px,22px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[29x,22px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[30px,18px]],[13,[31px,19px]],[15,[34px,22px]]]
 
                 US-TN:
                     filter: |
@@ -3406,31 +2807,6 @@ layers:
                                 function() { return ( 'US:UT-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [0px, 1px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[21px,18px]],[13,[24px,21px]],[15,[25px,22px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,18px]],[13,[25px,21px]],[15,[26px,22px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[26px,18px]],[13,[29px,21px]],[15,[30px,22px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[30px,18px]],[13,[34px,21px]],[15,[35px,22px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[33px,18px]],[13,[37px,21px]],[15,[39px,22px]]]
 
                 US-VA:
                     filter: |
@@ -3458,31 +2834,6 @@ layers:
                                 function() { return ( 'US:WA-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [0px, -2px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,19px]],[13,[19px,21px]],[15,[20px,22px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[19px,19px]],[13,[21px,21px]],[15,[22px,22px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[24px,19px]],[13,[25px,21px]],[15,[26px,22px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[27px,19px]],[13,[30px,22px]],[15,[31px,23px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[32px,19px]],[13,[35px,22px]],[15,[36px,23px]]]
 
                 US-WI:
                     # Match Pennsylvania state highways
@@ -3497,31 +2848,6 @@ layers:
                                 function() { return ( 'US:WI-' + feature.shield_text.length + 'char'); }
                             text:
                                 offset: [0px, -1px]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[19px,19px]],[15,[21px,21px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[19px,18px]],[13,[20px,19px]],[15,[22px,21px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[23px,18px]],[13,[24px,19px]],[15,[26px,21px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[26px,18px]],[13,[27px,19px]],[15,[30px,21px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[29px,18px]],[13,[31px,19px]],[15,[33px,21px]]]
 
                 US-WY:
                     filter: |
@@ -3581,31 +2907,6 @@ layers:
                                 font:
                                     fill: [0.508,0.508,0.508]
                                     #size: [[11,7px],[15,10px]]
-                    #width_1char:
-#                        filter: function() { return (feature.shield_text.length === 1) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
-#                    width_2char:
-#                        filter: function() { return (feature.shield_text.length === 2) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[16px,14px]],[13,[18px,15px]],[15,[22px,18px]]]
-#                    width_3char:
-#                        filter: function() { return (feature.shield_text.length === 3) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[20px,14px]],[13,[21px,15px]],[15,[26px,18px]]]
-#                    width_4char:
-#                        filter: function() { return (feature.shield_text.length === 4) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[25px,14px]],[13,[28px,15px]],[15,[34px,18px]]]
-#                    width_5char:
-#                        filter: function() { return (feature.shield_text.length === 5) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[30px,14px]],[13,[33px,15px]],[15,[40px,18px]]]
 
                 US-OTHER:
                     filter: |
@@ -3653,32 +2954,7 @@ layers:
                                 # offset: [0px, 1px]
                                 font:
                                     fill: [0.308,0.308,0.308]
-                                    #size: [[7,7px],[13,9px],[15,10px]]
-#                    width_1char:
-#                        filter: function() { return (feature.shield_text.length === 1) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[13px,17px]],[13,[15px,19px]],[15,[18px,22px]]]
-#                    width_2char:
-#                        filter: function() { return (feature.shield_text.length === 2) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[17px,17px]],[13,[19px,19px]],[15,[22px,22px]]]
-#                    width_3char:
-#                        filter: function() { return (feature.shield_text.length === 3) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[20px,17px]],[13,[22px,19px]],[15,[27px,22px]]]
-#                    width_4char:
-#                        filter: function() { return (feature.shield_text.length === 4) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[29px,22px]]]
-#                    width_5char:
-#                        filter: function() { return (feature.shield_text.length === 5) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
+
                 # NOTE (nvkelso 2018036): this regex need a NOT test fof US: to exclude states like NJ, 
                 # Arizona, Alaska, North Dakota, Mass., CT which were otherwise getting caught in the net
                 international-shields:
