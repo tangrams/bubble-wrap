@@ -2245,7 +2245,7 @@ layers:
                             family: Montserrat
                             weight: 500
                             fill: [0.308,0.308,0.308]
-                            size: [[7, 7px], [13, 10px], [15, 11px]]
+                            size: [[7, 7px], [13, 9px], [15, 10px]]
                             stroke: { color: global.text_stroke, width: 0px }
 
             default_priority_highway:
@@ -2309,9 +2309,6 @@ layers:
                             return (feature.ref.length === 1)
                         }
                     }
-               # draw:
-               #    mapzen_icon_library:
-               #        size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
             width_2char:
                 filter: |
                     function() {
@@ -2321,9 +2318,6 @@ layers:
                             return (feature.ref.length === 2)
                         }
                     }
-               # draw:
-               #    mapzen_icon_library:
-               #        size: [[6,[18px,14px]],[13,[20px,15px]],[15,[24px,18px]]]
             width_3char:
                 filter: |
                     function() {
@@ -2333,9 +2327,6 @@ layers:
                             return (feature.ref.length === 3)
                         }
                     }
-               # draw:
-               #    mapzen_icon_library:
-               #        size: [[6,[25px,14px]],[13,[27px,15px]],[15,[33px,18px]]]
             width_4char:
                 filter: |
                     function() {
@@ -2415,9 +2406,7 @@ layers:
                             priority: 46
                             visible: global.sdk_road_shields
                             text:
-                                offset: [0px, 0.5px]
-                                font:
-                                    size: [[7,8px],[13,9px],[15,11px]]
+                                offset: [0px, 0px]
                 # US Federal Routes
                 US-US:
                     filter:
@@ -2437,7 +2426,7 @@ layers:
                                 offset: [0px, -0.7px]
                                 font:
                                     fill: [0.380,0.318,0.312]
-                                    size: [[7,8px],[13,9px],[15,11px]]
+                                    size: [[7,8px],[13,10px],[15,11px]]
                 # US State Routes
                 # US-states:
                 #     # Match state highways: `US:??`
