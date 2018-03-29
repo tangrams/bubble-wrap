@@ -2628,6 +2628,18 @@ layers:
                             text:
                                 offset: [0px, -1px]
 
+                US-ND:
+                    filter: |
+                        function() {
+                            return feature.shield_text && /^US:ND$/.test(feature.network)
+                        }
+                    draw:
+                        mapzen_icon_library:
+                            texture: mapzen_icon_library_shields_usa
+                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            text:
+                                offset: [-1px, 0px]
+
                 US-NE:
                     filter: |
                         function() {
