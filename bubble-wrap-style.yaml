@@ -2336,9 +2336,6 @@ layers:
                             return (feature.ref.length === 4)
                         }
                     }
-                #draw:
-#                   mapzen_icon_library:
-#                       size: [[6,[29px,14px]],[13,[31px,15px]],[15,[38px,18px]]]
                 # London sucks
                 early:
                     filter: { $zoom: { max: 14 } }
@@ -2354,9 +2351,6 @@ layers:
                             return (feature.ref.length === 5)
                         }
                     }
-                #draw:
-#                   mapzen_icon_library:
-#                       size: [[6,[34px,14px]],[13,[37px,15px]],[15,[45px,18px]]]
                 # London sucks
                 early:
                     filter: { $zoom: { max: 14 } }
@@ -3139,32 +3133,6 @@ layers:
                             mapzen_icon_library:
                                 visible: global.sdk_road_shields
 
-#                    width_1char:
-#                        filter: function() { return (feature.shield_text.length === 1) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[13px,17px]],[13,[15px,19px]],[15,[18px,22px]]]
-#                    width_2char:
-#                        filter: function() { return (feature.shield_text.length === 2) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[17px,17px]],[13,[19px,19px]],[15,[22px,22px]]]
-#                    width_3char:
-#                        filter: function() { return (feature.shield_text.length === 3) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[20px,17px]],[13,[22px,19px]],[15,[27px,22px]]]
-#                    width_4char:
-#                        filter: function() { return (feature.shield_text.length === 4) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[29px,22px]]]
-#                    width_5char:
-#                        filter: function() { return (feature.shield_text.length === 5) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
-
                     e-roads:
                         filter: |
                             function() {
@@ -3193,7 +3161,7 @@ layers:
                                     }
                                 text:
                                     font:
-                                        fill: [1.00,1.00,1.00]
+                                        fill: [1.000,0.942,0.860]
 
                     AU-A:
                         filter: |
@@ -3208,7 +3176,7 @@ layers:
                                     }
                                 text:
                                     font:
-                                        fill: [1.00,1.00,1.00]
+                                        fill: [1.000,0.942,0.860]
 
                     # this is not working yet
                     AU-AU:
@@ -3255,31 +3223,41 @@ layers:
                                     }
                                 text:
                                     offset: [0px, 2px]
-                            width_1char:
-                                filter: function() { return (feature.shield_text.length === 1) }
-                                draw:
-                                    mapzen_icon_library:
-                                        size: [[6,[17px,20px]],[13,[19px,23px]],[15,[23px,25px]]]
-                            width_2char:
-                                filter: function() { return (feature.shield_text.length === 2) }
-                                draw:
-                                    mapzen_icon_library:
-                                        size: [[6,[17px,20px]],[13,[20px,23px]],[15,[24px,25px]]]
-                            width_3char:
-                                filter: function() { return (feature.shield_text.length === 3) }
-                                draw:
-                                    mapzen_icon_library:
-                                        size: [[6,[21px,20px]],[13,[24px,23px]],[15,[26px,25px]]]
-                            width_4char:
-                                filter: function() { return (feature.shield_text.length === 4) }
-                                draw:
-                                    mapzen_icon_library:
-                                        size: [[6,[26px,20px]],[13,[29px,23px]],[15,[31x,25px]]]
-                            width_5char:
-                                filter: function() { return (feature.shield_text.length === 5) }
-                                draw:
-                                    mapzen_icon_library:
-                                        size: [[6,[40px,20px]],[13,[44px,23px]],[15,[50px,25px]]]
+
+                    CN-expressways:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^CN-expressways$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CN-expressways-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 2px]
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+                    CN-roads:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^CN-roads$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CN-roads-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.000,1.000,1.000]
 
                     france-a-and-n-road-ref-shields:
                         filter: |
@@ -3301,6 +3279,7 @@ layers:
                                         }
                                     font:
                                         fill: [1.00,1.00,1.00]
+
                     france-department-shields:
                         filter: |
                             function() {
@@ -3343,32 +3322,6 @@ layers:
                                 text:
                                     font:
                                         fill: [1.00,1.00,1.00]
-                            #this is not working, but color is working, see berlin
-                            width_1char:
-                                filter: function() { return (feature.shield_text.length === 1) }
-                                draw:
-                                    mapzen_icon_library:
-                                        size: [[6,[21px,16px]],[13,[23px,17px]],[15,[25px,20px]]]
-                            width_2char:
-                                filter: function() { return (feature.shield_text.length === 2) }
-                                draw:
-                                    mapzen_icon_library:
-                                        size: [[6,[24px,16px]],[13,[25px,17px]],[15,[26px,20px]]]
-                            width_3char:
-                                filter: function() { return (feature.shield_text.length === 3) }
-                                draw:
-                                    mapzen_icon_library:
-                                        size: [[6,[26px,16px]],[13,[27px,17px]],[15,[30px,20px]]]
-                            width_4char:
-                                filter: function() { return (feature.shield_text.length === 4) }
-                                draw:
-                                    mapzen_icon_library:
-                                        size: [[6,[28px,16px]],[13,[29px,17px]],[15,[32x,20px]]]
-                            width_5char:
-                                filter: function() { return (feature.shield_text.length === 5) }
-                                draw:
-                                    mapzen_icon_library:
-                                        size: [[6,[30px,16px]],[13,[31px,17px]],[15,[35px,20px]]]
 
                     ru-national:
                         filter: |
@@ -3405,32 +3358,6 @@ layers:
                                     function() {
                                         return feature.ref.replace("MEX ", "");
                                     }
-                        #sizing is not working here either
-                        width_1char:
-                                filter: function() { return (feature.shield_text.length === 1) }
-                                draw:
-                                    mapzen_icon_library:
-                                        size: [[6,[16px,21px]],[13,[17px,24px]],[15,[19px,26px]]]
-                        width_2char:
-                            filter: function() { return (feature.shield_text.length === 2) }
-                            draw:
-                                mapzen_icon_library:
-                                    size: [[6,[18px,21px]],[13,[19px,24px]],[15,[21px,26px]]]
-                        width_3char:
-                            filter: function() { return (feature.shield_text.length === 3) }
-                            draw:
-                                mapzen_icon_library:
-                                    size: [[6,[20px,21px]],[13,[23px,24px]],[15,[25px,26px]]]
-                        width_4char:
-                            filter: function() { return (feature.shield_text.length === 4) }
-                            draw:
-                                mapzen_icon_library:
-                                    size: [[6,[22px,21px]],[13,[25px,24px]],[15,[27px,26px]]]
-                        width_5char:
-                            filter: function() { return (feature.shield_text.length === 5) }
-                            draw:
-                                mapzen_icon_library:
-                                    size: [[6,[27px,21px]],[13,[30px,24px]],[15,[32px,26px]]]
 
                 international-shields-funky:
                     filter: |
@@ -3466,7 +3393,7 @@ layers:
                                 # offset: [0px, 1px]
                                 font:
                                     fill: [0.308,0.308,0.308]
-                                    #size: [[7,7px],[13,9px],[15,10px]]
+
                     zoom8up:
                         filter: |
                             function() {
@@ -5001,7 +4928,7 @@ layers:
         draw:
             mapzen_icon_library:
                 visible: global.icon_visible_poi_landuse
-                size: [[13, 14px], [16, 18px], [18, 19px]]
+                size: [[13, [95%,95%]], [16, [100%,100%]], [18, [105%,105%]]]
                 sprite: function() { return feature.kind; }
                 sprite_default: generic
                 interactive: global.sdk_interactive
@@ -5018,7 +4945,7 @@ layers:
                         family: Quicksand #global.text_font_family
                         weight: normal
                         fill: [0.20,0.20,0.20]
-                        size: [[13,10px],[14,11px],[17,12px],[19,12px],[20,14px]]
+                        size: [[13,10px], [17,12px], [19,12px], [20,14px]]
                         stroke: { color: global.text_stroke, width: [[12,2px],[16,4px]] }
 
         # improve legibility at high zooms
@@ -5114,7 +5041,7 @@ layers:
                 kind: [natural_forest, natural_park, natural_wood]
             draw:
                 mapzen_icon_library:
-                    size: 0px
+                    visible: false
                     priority: 100
                     text:
                         font:
@@ -5128,8 +5055,7 @@ layers:
                 kind: [common, grass, houseboat, pedestrian, railway, ship, wetland]
             draw:
                 mapzen_icon_library:
-                    size: 0px
-                    #visible: false
+                    visible: false
                     text: { font: { style: italic } }
 
         # the server should be setting better values here
@@ -5392,7 +5318,7 @@ layers:
                 filter: { kind: [grass], $zoom: { min: 16 } }
                 draw:
                     mapzen_icon_library:
-                        size: 0px
+                        visible: false
                         text:
                             font:
                                 style: italic
@@ -5442,8 +5368,7 @@ layers:
             draw:
                 mapzen_icon_library:
                     priority: 43
-                    size: 0px
-                    #: dot-black
+                    visible: false
                     text:
                         text_wrap: 10
                         font:
@@ -5454,8 +5379,7 @@ layers:
                 kind: glacier
             draw:
                 mapzen_icon_library:
-                    size: 0px
-                    #visible: false
+                    visible: false
                     text:
                         visible: true
                         priority: 44
@@ -5483,7 +5407,7 @@ layers:
             draw:
                 mapzen_icon_library:
                     visible: global.icon_visible_station
-                    size: [[13, 12px], [14, 12px], [15, 16px], [17, 18px], [18, 20px]]
+                    size: [[13, [80%,80%]], [17, [100%,100%]], [18, [110%,110%]]]
                     priority: 42
                     text:
                         visible: global.text_visible_station
@@ -5515,14 +5439,12 @@ layers:
             draw:
                 mapzen_icon_library:
                     priority: 45
-                    size: 14px
                     text:  { font: { size: 10px, style: italic } }
         garden-no-area-later:
             filter: { kind: [garden, allotments], $zoom: { min: 17 }, area: false }
             draw:
                 mapzen_icon_library:
                     priority: 45
-                    size: 16px
                     text:  { font: { size: 11px, style: italic } }
         gate:
             filter: { kind: gate, name: true  }
@@ -5542,8 +5464,7 @@ layers:
             filter: { kind: [tower], label_placement: true }
             draw:
                 mapzen_icon_library:
-                    size: 0px
-                    #visible: false
+                    visible: false
                     text:
                         font:
                             style: italic
@@ -5553,7 +5474,7 @@ layers:
                 kind: [bus_stop]
             draw:
                 mapzen_icon_library:
-                    size: [[18,12px],[20,18px]]
+                    size: [[18, [80%,80%]], [20, [100%,100%]]]
                     text:
                         optional: true
                         font:
@@ -6423,7 +6344,7 @@ layers:
             draw:
                 mapzen_icon_library:
                     sprite: train_station
-                    size: [[13, 12px], [14, 14px], [15, 16px], [17, 20px]]
+                    size: [[13, [65%,65%]], [16, [100%,100%]]]
                     priority: 11
                     text:
                         #offset: [[13, [0, 6px]], [14, [0, 7px]],[15, [0, 8px]], [17, [0, 10px]]]
@@ -6432,7 +6353,7 @@ layers:
                 filter: { kind_tile_rank: { min: 3 }, $zoom: { min: 0, max: 12 } }
                 draw:
                     mapzen_icon_library:
-                        size: [[12, 5px], [14, 6px], [15, 16px]]
+                        size: [[12, [40%,40%]], [15, [50%,50%]]]
                         text:
                             visible: false
                 long-tail:
@@ -6445,7 +6366,7 @@ layers:
                 draw:
                     mapzen_icon_library:
 #                        visible: false
-                        size: [[12, 5px], [14, 6px], [15, 16px]]
+                        size: [[12, [40%,40%]], [15, [50%,50%]]]
                         text:
                             visible: false
             low-priority-early-z13:
@@ -6453,14 +6374,14 @@ layers:
                 draw:
                     mapzen_icon_library:
                         #visible: false
-                        size: [[12, 8px], [14, 6px], [15, 16px]]
+                        size: [[12, [40%,40%]], [15, [50%,50%]]]
                         text:
                             visible: false
             low-priority-early-z14:
                 filter: { kind_tile_rank: { min: 7 }, $zoom: [14] }
                 draw:
                     mapzen_icon_library:
-                        size: [[12, 10px], [14, 11px], [15, 16px]]
+                        size: [[12, [40%,40%]], [15, [50%,50%]]]
                         #visible: false
                         text:
                             visible: false
