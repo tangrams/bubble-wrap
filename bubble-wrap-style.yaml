@@ -3372,6 +3372,42 @@ layers:
                                     font:
                                         fill: [0.20,0.20,0.20]
 
+                    FR:A-road:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^FR:A-road$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'FR:A-road-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, -1px]
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    FR:N-road:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^FR:N-road$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'FR:N-road-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, -1px]
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
                     germany-b-shields:
                         filter: |
                             function() {
