@@ -3194,7 +3194,6 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-
                     brazil-shields:
                         filter: |
                             function() {
@@ -3223,6 +3222,82 @@ layers:
                                     }
                                 text:
                                     offset: [0px, 2px]
+
+                    CA:NS:
+                        filter: |
+                            function() {
+                                return feature.shield_text && /^CA:NS.*$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CA:NS-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 4px]
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+                    CA:ON:
+                        filter: |
+                            function() {
+                                return feature.shield_text && /^CA:ON.*$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CA:ON-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 2px]
+
+                    CA:PEI:
+                        filter: |
+                            function() {
+                                return feature.shield_text && /^CA:PEI.*$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CA:PEI-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 3px]
+
+                    CA:QC:
+                        filter: |
+                            function() {
+                                return feature.shield_text && /^CA:QC.*$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CA:QC-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 2px]
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+                    CA:SK:
+                        filter: |
+                            function() {
+                                return feature.shield_text && /^CA:SK.*$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CA:SK-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 3px]
+                                    font:
+                                        fill: [1.000,1.000,1.000]
 
                     CN-expressways:
                         filter: |
@@ -3296,6 +3371,7 @@ layers:
                                 text:
                                     font:
                                         fill: [0.20,0.20,0.20]
+
                     germany-b-shields:
                         filter: |
                             function() {
@@ -3318,6 +3394,44 @@ layers:
                                 sprite: |
                                     function() {
                                         return ( 'BAB-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    JP:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^JP:national$/.test(feature.network) ||
+                                    /^JP:national:expressway$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'JP:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, -1px]
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    jp:prefectural:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^jp:prefectural$/.test(feature.network) ||
+                                    /^JP:prefectural$/.test(feature.network) ||
+                                    /^JP:prefectural:.*$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'jp:prefectural-' + feature.shield_text.length + 'char');
                                     }
                                 text:
                                     font:
