@@ -3022,6 +3022,7 @@ layers:
                                 /^FR:A-road.*$/.test(feature.network) ||
                                 /^FR:.*:.*$/.test(feature.network) ||
                                 /^FR:N-road.*$/.test(feature.network) ||
+                                /^GB.*$/.test(feature.network) ||
                                 /^GR:I.*$/.test(feature.network) ||
                                 /^GR:motorway$/.test(feature.network) ||
                                 /^GR:GR.*$/.test(feature.network) ||
@@ -3485,6 +3486,23 @@ layers:
                                 sprite: |
                                     function() {
                                         return ( 'ru:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    GB:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^GB$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'GB-' + feature.shield_text.length + 'char');
                                     }
                                 text:
                                     font:
