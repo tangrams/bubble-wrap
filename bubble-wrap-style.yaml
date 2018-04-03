@@ -3035,6 +3035,7 @@ layers:
                                 /^IN:NH$/.test(feature.network) ||
                                 /^IN:NH:.*$/.test(feature.network) ||
                                 /^IN:SH.*$/.test(feature.network) ||
+                                /^IN:MH.*$/.test(feature.network) ||
                                 /^IQ:IQ.*$/.test(feature.network) ||
                                 /^IT:AS.*$/.test(feature.network) ||
                                 /^IT:RA.*$/.test(feature.network) ||
@@ -3491,7 +3492,7 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-                    GB:
+                    GB:     # implied GB:M and GB:A, with sublayer for the A
                         filter: |
                             function() {
                                 return feature.shield_text && (
@@ -3507,6 +3508,92 @@ layers:
                                 text:
                                     font:
                                         fill: [1.00,1.00,1.00]
+                        GB:A:
+                            filter: |
+                                function() {
+                                    return feature.shield_text && (
+                                        /^A.*$/.test(feature.shield_text)
+                                    )
+                                }
+                            draw:
+                                mapzen_icon_library:
+                                    sprite: |
+                                        function() {
+                                            return ( 'GB:A-' + feature.shield_text.length + 'char');
+                                        }
+                                    text:
+                                        font:
+                                            fill: [1.000,0.931,0.680]
+                    GR:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^GR:national$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'GR:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    GR:motorway:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^GR:motorway$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'GR:motorway-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    IN:NH:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^IN:NH$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IN:NH-' + feature.shield_text.replace("NH", "").length + 'char');
+                                    }
+                                text:
+                                    text_source: |
+                                        function() {
+                                            return feature.shield_text.replace("NH", "");
+                                        }
+                    IN:SH:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^IN:SH$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IN:SH-' + feature.shield_text.replace("SH", "").length + 'char');
+                                    }
+                                text:
+                                    text_source: |
+                                        function() {
+                                            return feature.shield_text.replace("SH", "");
+                                        }
 
                 z-mexico-shields:
                     filter: |
@@ -3533,17 +3620,22 @@ layers:
                     filter: |
                         function() {
                             return (! /^US:.*$/.test(feature.network)) &&
-                                (!feature.shield_text && feature.ref) && 
-                                (
-                                /^B.*$/.test(feature.ref)  ||
-                                /^B .*$/.test(feature.ref) ||
-                                /^A.*$/.test(feature.ref)  ||
-                                /^A .*$/.test(feature.ref) ||
-                                /^D.*$/.test(feature.ref)  ||
-                                /^D .*$/.test(feature.ref) ||
-                                /^N.*$/.test(feature.ref)  ||
-                                /^N .*$/.test(feature.ref) ||
-                                /^MEX.*$/.test(feature.ref)
+                                (   (!feature.shield_text && feature.ref) && 
+                                    (
+                                        /^B.*$/.test(feature.ref)  ||
+                                        /^B .*$/.test(feature.ref) ||
+                                        /^A.*$/.test(feature.ref)  ||
+                                        /^A .*$/.test(feature.ref) ||
+                                        /^D.*$/.test(feature.ref)  ||
+                                        /^D .*$/.test(feature.ref) ||
+                                        /^N.*$/.test(feature.ref)  ||
+                                        /^N .*$/.test(feature.ref) ||
+                                        /^IN:NH*$/.test(feature.network) ||
+                                        /^IN:SH*$/.test(feature.network)
+                                ) || (
+                                    (feature.shield_text && feature.ref) && 
+                                    /^SH.*$/.test(feature.ref)
+                                )
                             )
                         }
                     draw:
@@ -3636,6 +3728,64 @@ layers:
                             draw:
                                 mapzen_icon_library:
                                     visible: false
+                    IN:NH:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^IN:NH$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IN:NH-' + feature.ref.replace("NH", "").length + 'char');
+                                    }
+                                text:
+                                    text_source: |
+                                        function() {
+                                            return feature.ref.replace("NH", "");
+                                        }
+                    IN:SH:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^IN:SH$/.test(feature.network) || 
+                                    /^SH.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IN:SH-' + feature.ref.replace("SH", "").length + 'char');
+                                    }
+                                text:
+                                    text_source: |
+                                        function() {
+                                            return feature.ref.replace("SH", "");
+                                        }
+                        early-major_road-primary:
+                            filter: { $zoom: { max: 10 }, kind: major_road, kind_detail: primary }
+                            draw:
+                                mapzen_icon_library:
+                                    visible: false
+                        early-major_road-secondary:
+                            filter: { $zoom: { max: 11 }, kind: major_road, kind_detail: secondary }
+                            draw:
+                                mapzen_icon_library:
+                                    visible: false
+                        early-major_road-tert:
+                            filter: { $zoom: { max: 13 }, kind: major_road, kind_detail: tertiary }
+                            draw:
+                                mapzen_icon_library:
+                                    visible: false
+                        early-other-roads:
+                            filter: { $zoom: { max: 14 }, not: { kind: major_road } }
+                            draw:
+                                mapzen_icon_library:
+                                    visible: false
+
 
         path:
             filter:

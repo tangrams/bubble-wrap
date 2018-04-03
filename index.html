@@ -363,7 +363,7 @@
             var zoom = max_zoom < map.getZoom() ? max_zoom : Math.floor(map.getZoom());
             var tileCoords = { x : long2tile(latlng.lng,zoom), y: lat2tile(latlng.lat,zoom), z: zoom };
 
-            var url = 'https://tile.nextzen.org/tilezen/vector/v1/512/all/' + zoom + '/' + tileCoords.x  + '/' + tileCoords.y + '.topojson';
+            var url = 'https://tile.nextzen.org/tilezen/vector/v1/512/all/' + zoom + '/' + tileCoords.x  + '/' + tileCoords.y + '.topojson' + '?api_key=' + sdk_api_key;
             return url;
         }
 
