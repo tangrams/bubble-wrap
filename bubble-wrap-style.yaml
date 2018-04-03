@@ -3473,16 +3473,18 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-                    ru-national:
+                    ru:national:
                         filter: |
                             function() {
-                                return feature.ref && /^ru:national.*$/.test(feature.network)
+                                return feature.shield_text && (
+                                    /^ru:national$/.test(feature.network)
+                                )
                             }
                         draw:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'ru:national-' + feature.ref.length + 'char');
+                                        return ( 'ru:national-' + feature.shield_text.length + 'char');
                                     }
                                 text:
                                     font:
