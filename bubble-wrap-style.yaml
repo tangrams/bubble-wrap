@@ -434,7 +434,7 @@ fonts:
 sources:
     mapzen:
         type:  MVT #TopoJSON
-        url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
+        url:  https://dev-tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
         url_params:
             api_key: global.sdk_api_key
         tile_size: 512
@@ -3069,7 +3069,7 @@ layers:
                                 /^pl:regional.*$/.test(feature.network) ||
                                 /^PT:A.*$/.test(feature.network) ||
                                 /^PT:IC.*$/.test(feature.network) ||
-                                /^PT:IP.*$/.test(feature.network) ||
+                                /^PT:national.*$/.test(feature.network) ||
                                 /^RO:AS.*$/.test(feature.network) ||
                                 /^RO:DJ.*$/.test(feature.network) ||
                                 /^RO:DX.*$/.test(feature.network) ||
@@ -3662,6 +3662,23 @@ layers:
                                     function() {
                                         return ( 'pl:regional-' + feature.shield_text.length + 'char');
                                     }
+
+                    PT:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^PT:national$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'PT:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
 
                 z-mexico-shields:
                     filter: |
@@ -4553,11 +4570,11 @@ layers:
                 lines:
                     color: global.country_boundary
                     width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [8, 2.5px], [14, 3.5px], [16, 4.5px]]
-            water:
-                filter: { maritime_boundary: true }
-                draw:
-                    lines:
-                        visible: false
+            # water:
+            #     filter: { maritime_boundary: true }
+            #     draw:
+            #         lines:
+            #             visible: false
             country-labels:
                 filter: { name: true, $zoom: { min: 8 }, not: { maritime_boundary: true } }
                 draw:
