@@ -3065,8 +3065,8 @@ layers:
                                 /^NZ:SH.*$/.test(feature.network) ||
                                 /^NZ:SR.*$/.test(feature.network) ||
                                 /^PE:PE.*$/.test(feature.network) ||
-                                /^PL:NR.*$/.test(feature.network) ||
-                                /^PL:VR.*$/.test(feature.network) ||
+                                /^pl:national.*$/.test(feature.network) ||
+                                /^pl:regional.*$/.test(feature.network) ||
                                 /^PT:A.*$/.test(feature.network) ||
                                 /^PT:IC.*$/.test(feature.network) ||
                                 /^PT:IP.*$/.test(feature.network) ||
@@ -3631,6 +3631,38 @@ layers:
                                 text:
                                     font:
                                         fill: [1.00,1.00,1.00]
+
+                    pl:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^pl:national$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'pl:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    pl:regional:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^pl:regional$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'pl:regional-' + feature.shield_text.length + 'char');
+                                    }
+
                 z-mexico-shields:
                     filter: |
                         function() {
