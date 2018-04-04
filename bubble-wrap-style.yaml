@@ -3037,6 +3037,9 @@ layers:
                                 /^IN:SH.*$/.test(feature.network) ||
                                 /^IN:MH.*$/.test(feature.network) ||
                                 /^IQ:IQ.*$/.test(feature.network) ||
+                                /^IT:A-road$/.test(feature.network) ||
+                                /^IT:B-road$/.test(feature.network) ||
+                                /^IT:.*$/.test(feature.network) ||
                                 /^IT:AS.*$/.test(feature.network) ||
                                 /^IT:RA.*$/.test(feature.network) ||
                                 /^IT:SP.*$/.test(feature.network) ||
@@ -3572,6 +3575,7 @@ layers:
                                         return ( 'IN:NH-' + feature.shield_text.replace("NH", "").length + 'char');
                                     }
                                 text:
+                                    offset: [0px, 2px]
                                     text_source: |
                                         function() {
                                             return feature.shield_text.replace("NH", "");
@@ -3594,7 +3598,39 @@ layers:
                                         function() {
                                             return feature.shield_text.replace("SH", "");
                                         }
-
+                    IT:AS:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^IT:A-road$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IT:A-road-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+                    IT:B-road:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^IT:B-road$/.test(feature.network) ||
+                                   ( /^IT:.*$/.test(feature.network) && !(/^IT:A-road$/.test(feature.network)) )
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IT:B-road-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
                 z-mexico-shields:
                     filter: |
                         function() {
@@ -3630,11 +3666,18 @@ layers:
                                         /^D .*$/.test(feature.ref) ||
                                         /^N.*$/.test(feature.ref)  ||
                                         /^N .*$/.test(feature.ref) ||
+                                        /^IT:A-road*$/.test(feature.network) ||
+                                        /^IT:B-road*$/.test(feature.network) ||
+                                        /^SS.*$/.test(feature.ref) ||
+                                        /^IT:.*$/.test(feature.network) ||
                                         /^IN:NH*$/.test(feature.network) ||
                                         /^IN:SH*$/.test(feature.network)
                                 ) || (
-                                    (feature.shield_text && feature.ref) && 
-                                    /^SH.*$/.test(feature.ref)
+                                    (feature.shield_text && feature.ref) &&
+                                    (
+                                        /^SH.*$/.test(feature.ref) ||
+                                        /^SS.*$/.test(feature.ref)
+                                    )
                                 )
                             )
                         }
@@ -3742,6 +3785,7 @@ layers:
                                         return ( 'IN:NH-' + feature.ref.replace("NH", "").length + 'char');
                                     }
                                 text:
+                                    offset: [0px, 2px]
                                     text_source: |
                                         function() {
                                             return feature.ref.replace("NH", "");
@@ -3785,6 +3829,41 @@ layers:
                             draw:
                                 mapzen_icon_library:
                                     visible: false
+                    IT:AS:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^IT:A-road$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IT:A-road-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+                    IT:B-road:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^IT:B-road$/.test(feature.network) ||
+                                    ( /^IT:.*$/.test(feature.network) && !(/^IT:A-road$/.test(feature.network)) ) ||
+                                    /^SS.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IT:B-road-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
 
 
         path:
