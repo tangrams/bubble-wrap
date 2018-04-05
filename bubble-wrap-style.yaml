@@ -3101,7 +3101,9 @@ layers:
                                 /^za:national.*$/.test(feature.network) ||
                                 /^za:regional.*$/.test(feature.network) ||
                                 /^za:capetown.*$/.test(feature.network) ||
-                                /^motorway.*$/.test(feature.network)
+                                /^motorway.*$/.test(feature.network) ||
+                                /^no:Fylkesvei.*$/.test(feature.network) ||
+                                /^no:Fylkesvei .*$/.test(feature.network)
                             )
                         }
                     draw:
@@ -3773,6 +3775,21 @@ layers:
                                 text:
                                     font:
                                         fill: [1.00,1.00,1.00]
+
+                    no:Fylkesvei:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^no:Fylkesvei.*$/.test(feature.network) ||
+                                    /^no:Fylkesvei .*$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'NO:CR-' + feature.shield_text.length + 'char');
+                                    }
 
                 z-mexico-shields:
                     filter: |
