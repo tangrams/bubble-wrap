@@ -3702,6 +3702,23 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    ES:A-road:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^ES:A-road$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:A-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
                 z-mexico-shields:
                     filter: |
                         function() {
