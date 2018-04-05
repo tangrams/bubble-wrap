@@ -3098,7 +3098,9 @@ layers:
                                 /^VN:VN.*$/.test(feature.network) ||
                                 /^ZA:M.*$/.test(feature.network) ||
                                 /^ZA:P.*$/.test(feature.network) ||
-                                /^ZA:R.*$/.test(feature.network)
+                                /^za:national.*$/.test(feature.network) ||
+                                /^za:regional.*$/.test(feature.network) ||
+                                /^za:capetown.*$/.test(feature.network)
                             )
                         }
                     draw:
@@ -3718,6 +3720,41 @@ layers:
                                 text:
                                     font:
                                         fill: [1.00,1.00,1.00]
+
+                    za:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^za:national$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'za:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    za:regional:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^za:regional$/.test(feature.network) ||
+                                    /^za:capetown$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'za:regional-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.000,0.915,0.610]
 
                 z-mexico-shields:
                     filter: |
