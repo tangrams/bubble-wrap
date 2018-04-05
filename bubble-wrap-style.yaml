@@ -3100,7 +3100,8 @@ layers:
                                 /^ZA:P.*$/.test(feature.network) ||
                                 /^za:national.*$/.test(feature.network) ||
                                 /^za:regional.*$/.test(feature.network) ||
-                                /^za:capetown.*$/.test(feature.network)
+                                /^za:capetown.*$/.test(feature.network) ||
+                                /^motorway.*$/.test(feature.network)
                             )
                         }
                     draw:
@@ -3755,6 +3756,23 @@ layers:
                                 text:
                                     font:
                                         fill: [1.000,0.915,0.610]
+
+                    switzerland:motorway:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^motorway$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CH:A-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
 
                 z-mexico-shields:
                     filter: |
