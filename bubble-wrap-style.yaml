@@ -3865,8 +3865,7 @@ layers:
                         filter: |
                             function() {
                                 return feature.ref && (
-                                    /^IN:SH$/.test(feature.network) || 
-                                    /^SH.*$/.test(feature.ref)
+                                    /^IN:SH$/.test(feature.network)
                                 )
                             }
                         draw:
