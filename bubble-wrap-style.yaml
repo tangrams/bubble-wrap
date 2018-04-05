@@ -434,7 +434,8 @@ fonts:
 sources:
     mapzen:
         type:  MVT #TopoJSON
-        url:  https://dev-tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
+        url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
+        # url:  https://dev-tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
         url_params:
             api_key: global.sdk_api_key
         tile_size: 512
@@ -3424,6 +3425,10 @@ layers:
                                     function() {
                                         return ( 'DE:DE-' + feature.ref.length + 'char');
                                     }
+                                text:
+                                    offset: [0px, -1px]
+                                    font:
+                                        fill: [0.150,0.150,0.150]
 
                     BAB:
                         filter: |
@@ -3675,6 +3680,23 @@ layers:
                                 sprite: |
                                     function() {
                                         return ( 'PT:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    NZ:SH:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^NZ:SH$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'NZ:SH-' + feature.shield_text.length + 'char');
                                     }
                                 text:
                                     font:
