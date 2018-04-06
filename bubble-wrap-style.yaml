@@ -3791,6 +3791,20 @@ layers:
                                         return ( 'NO:CR-' + feature.shield_text.length + 'char');
                                     }
 
+                    dk:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^dk:national$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'dk:national-' + feature.shield_text.length + 'char');
+                                    }
+
                 z-mexico-shields:
                     filter: |
                         function() {
