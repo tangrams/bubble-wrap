@@ -3880,7 +3880,8 @@ layers:
                                         /^SS.*$/.test(feature.ref) ||
                                         /^IT:.*$/.test(feature.network) ||
                                         /^IN:NH*$/.test(feature.network) ||
-                                        /^IN:SH*$/.test(feature.network)
+                                        /^IN:SH*$/.test(feature.network) ||
+                                        /^TR-roads.*$/.test(feature.network)
                                 ) || (
                                     (feature.shield_text && feature.ref) &&
                                     (
@@ -4067,6 +4068,25 @@ layers:
                                 sprite: |
                                     function() {
                                         return ( 'IT:B-road-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    #this is not working yet...
+                    TR-roads-D:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^TR-roads$/.test(feature.network) &&
+                                    /^D.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'TR-DY-' + feature.shield_text.length + 'char');
                                     }
                                 text:
                                     font:
