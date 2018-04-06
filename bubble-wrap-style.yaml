@@ -3088,6 +3088,8 @@ layers:
                                 /^TH:TM3.*$/.test(feature.network) ||
                                 /^TR:DY.*$/.test(feature.network) ||
                                 /^TR:OR.*$/.test(feature.network) ||
+                                /^TR-roads.*$/.test(feature.network) ||
+                                /^TR-road.*$/.test(feature.network) ||
                                 /^UA:M.*$/.test(feature.network) ||
                                 /^UA:P.*$/.test(feature.network) ||
                                 /^UA:P2.*$/.test(feature.network) ||
@@ -3822,6 +3824,21 @@ layers:
                                     }
                                 text:
                                     offset: [0px, 2px]
+
+                    TR-roads:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^TR-roads$/.test(feature.network) ||
+                                    /^TR-road$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'TR-roads-' + feature.shield_text.length + 'char');
+                                    }
 
                 z-mexico-shields:
                     filter: |
