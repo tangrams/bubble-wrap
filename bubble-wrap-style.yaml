@@ -3000,7 +3000,8 @@ layers:
                                 /^CH:E.*$/.test(feature.network) ||
                                 /^CL:CL.*$/.test(feature.network) ||
                                 /^CL:CL2.*$/.test(feature.network) ||
-                                /^CL:VP.*$/.test(feature.network) ||
+                                /^CL:national.*$/.test(feature.network) ||
+                                /^CL:regional.*$/.test(feature.network) ||
                                 /^CN:EXP.*$/.test(feature.network) ||
                                 /^CN-expressways.*$/.test(feature.network) ||
                                 /^CN-roads.*$/.test(feature.network) ||
@@ -3804,6 +3805,23 @@ layers:
                                     function() {
                                         return ( 'dk:national-' + feature.shield_text.length + 'char');
                                     }
+
+                    CL:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^CL:national$/.test(feature.network) ||
+                                    /^CL:regional$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CL:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 2px]
 
                 z-mexico-shields:
                     filter: |
