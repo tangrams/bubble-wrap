@@ -3840,6 +3840,39 @@ layers:
                                         return ( 'TR-roads-' + feature.shield_text.length + 'char');
                                     }
 
+                    AR:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^AR:national$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'AR:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 0px]
+
+                    AR:provincial:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^AR:provincial$/.test(feature.network) ||
+                                    /^AR:provincial:secondary$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'AR:PR-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 0px]
+
                 z-mexico-shields:
                     filter: |
                         function() {
