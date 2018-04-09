@@ -2986,9 +2986,9 @@ layers:
                                 /^CA:transcanada$/.test(feature.network) ||
                                 /^CA:I2.*$/.test(feature.network) ||
                                 /^CA:MB.*$/.test(feature.network) ||
-                                /^CA:NL.*$/.test(feature.network) ||
-                                /^CA:NL2.*$/.test(feature.network) ||
-                                /^CA:NL3.*$/.test(feature.network) ||
+                                /^CA:NB.*$/.test(feature.network) ||
+                                /^CA:NB2.*$/.test(feature.network) ||
+                                /^CA:NB3.*$/.test(feature.network) ||
                                 /^CA:NS.*$/.test(feature.network) ||
                                 /^CA:NT.*$/.test(feature.network) ||
                                 /^CA:ON.*$/.test(feature.network) ||
@@ -3209,7 +3209,7 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-                    brazil-shields:
+                    brazil-state-shields:
                         filter: |
                             function() {
                                 return feature.shield_text && /^BR:.*$/.test(feature.network)
@@ -3219,6 +3219,34 @@ layers:
                                 sprite: |
                                     function() {
                                         return ( 'BR:BR-' + feature.shield_text.length + 'char');
+                                    }
+                    brazil-trans-amazonian:
+                        filter: |
+                            function() {
+                                return (feature.shield_text == 230) && (feature.network == 'BR')
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'BR:TA-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 4px]
+                    # sometimes in Alberta the network is not set... so this needs to go into Funky section as well. or fix the data...
+                    # and maybe set the texture name to CA:YH instead of CA:I2
+                    CA:yellowhead:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^CA:.*$/.test(feature.network)
+                                ) && feature.nat_name == 'Trans-Canada Highway'
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CA:I2-' + feature.shield_text.length + 'char');
                                     }
 
                     CA-BC:
@@ -3254,6 +3282,36 @@ layers:
                                     font:
                                         fill: [1.000,1.000,1.000]
 
+                    CA:NB2:
+                        filter: |
+                            function() {
+                                return feature.shield_text && /^CA:NB.*$/.test(feature.network) && parseInt(feature.shield_text) >= 100  && parseInt(feature.shield_text) < 200
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CA:NB2-' + feature.shield_text.length + 'char');
+                                    }
+                                # text:
+                                #     offset: [0px, 4px]
+                                #     font:
+                                #         fill: [1.000,1.000,1.000]
+                    CA:NB3:
+                        filter: |
+                            function() {
+                                return feature.shield_text && /^CA:NB.*$/.test(feature.network) && parseInt(feature.shield_text) >= 200
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CA:NB3-' + feature.shield_text.length + 'char');
+                                    }
+                                # text:
+                                #     offset: [0px, 4px]
+                                #     font:
+                                #         fill: [1.000,1.000,1.000]
                     CA:ON:
                         filter: |
                             function() {
@@ -3301,7 +3359,7 @@ layers:
                     CA:SK:
                         filter: |
                             function() {
-                                return feature.shield_text && /^CA:SK.*$/.test(feature.network)
+                                return feature.shield_text && /^CA:SK.*$/.test(feature.network) && feature.nat_name != 'Trans-Canada Highway'
                             }
                         draw:
                             mapzen_icon_library:
@@ -3875,6 +3933,22 @@ layers:
                                     offset: [0px, 0px]
 
                     pe:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^pe:national$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'PE:PE-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 3px]
+
+                    BE:A-road:
                         filter: |
                             function() {
                                 return feature.shield_text && (
