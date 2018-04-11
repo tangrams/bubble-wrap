@@ -434,8 +434,8 @@ fonts:
 sources:
     mapzen:
         type:  MVT #TopoJSON
-        url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
-        # url:  https://dev-tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
+        # url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
+        url:  https://dev-tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
         url_params:
             api_key: global.sdk_api_key
         tile_size: 512
@@ -3165,52 +3165,87 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-                    AU-M:
+                    # AU-M:
+                    #     filter: |
+                    #         function() {
+                    #             return feature.shield_text && /^M$/.test(feature.network)
+                    #         }
+                    #     draw:
+                    #         mapzen_icon_library:
+                    #             sprite: |
+                    #                 function() {
+                    #                     return ( 'AU:M-' + feature.shield_text.length + 'char');
+                    #                 }
+                    #             text:
+                    #                 font:
+                    #                     fill: [1.000,0.942,0.860]
+
+                    # AU-A:
+                    #     filter: |
+                    #         function() {
+                    #             return feature.shield_text && /^A$/.test(feature.network)
+                    #         }
+                    #     draw:
+                    #         mapzen_icon_library:
+                    #             sprite: |
+                    #                 function() {
+                    #                     return ( 'AU:A-' + feature.shield_text.length + 'char');
+                    #                 }
+                    #             text:
+                    #                 font:
+                    #                     fill: [1.000,0.942,0.860]
+
+                    # # this is not working yet
+                    # AU-AU:
+                    #     filter: |
+                    #         function() {
+                    #             return feature.shield_text && /^S .$/.test(feature.ref)
+                    #         }
+                    #     draw:
+                    #         mapzen_icon_library:
+                    #             sprite: |
+                    #                 function() {
+                    #                     return ( 'AU:AU-' + feature.shield_text.length + 'char');
+                    #                 }
+                    #             text:
+                    #                 font:
+                    #                     fill: [1.00,1.00,1.00]
+
+                    ###
+                    ### BELGIUM - Generic White Shield
+                    ###
+                    BE:A-N-road:
                         filter: |
                             function() {
-                                return feature.shield_text && /^M$/.test(feature.network)
+                                return feature.shield_text && (
+                                    /^BE:A-road$/.test(feature.network) ||
+                                    /^BE:N-road$/.test(feature.network)
+                                )
                             }
                         draw:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'AU:M-' + feature.shield_text.length + 'char');
+                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
                                     }
-                                text:
-                                    font:
-                                        fill: [1.000,0.942,0.860]
 
-                    AU-A:
+                    ###
+                    ### BRAZIL
+                    ###
+                    BR:
                         filter: |
                             function() {
-                                return feature.shield_text && /^A$/.test(feature.network)
+                                return feature.shield_text && /^BR$/.test(feature.network)
                             }
                         draw:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'AU:A-' + feature.shield_text.length + 'char');
+                                        return ( 'BR-' + feature.shield_text.length + 'char');
                                     }
                                 text:
-                                    font:
-                                        fill: [1.000,0.942,0.860]
-
-                    # this is not working yet
-                    AU-AU:
-                        filter: |
-                            function() {
-                                return feature.shield_text && /^S .$/.test(feature.ref)
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'AU:AU-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
+                                    offset: [0px, 2px]
+                    #BR:ES, BR:GO are included here
                     brazil-state-shields:
                         filter: |
                             function() {
@@ -3222,6 +3257,8 @@ layers:
                                     function() {
                                         return ( 'BR:BR-' + feature.shield_text.length + 'char');
                                     }
+                                text:
+                                    offset: [0px, 1px]
                     brazil-trans-amazonian:
                         filter: |
                             function() {
@@ -3234,9 +3271,11 @@ layers:
                                         return ( 'BR:TA-' + feature.shield_text.length + 'char');
                                     }
                                 text:
-                                    offset: [0px, 4px]
-                    # sometimes in Alberta the network is not set... so this needs to go into Funky section as well. or fix the data...
-                    # and maybe set the texture name to CA:YH instead of CA:I2
+                                    offset: [0px, 2px]
+
+                    ### CANADA
+                    ### sometimes in Alberta the network is not set... so this needs to go into Funky section as well. or fix the data...
+                    ### and maybe set the texture name to CA:YH instead of CA:I2
                     CA:yellowhead:
                         filter: |
                             function() {
@@ -3251,6 +3290,7 @@ layers:
                                         return ( 'CA:I2-' + feature.shield_text.length + 'char');
                                     }
 
+                    # BRITISH COLUMBIA
                     CA-BC:
                         filter: |
                             function() {
@@ -3268,22 +3308,59 @@ layers:
                                 text:
                                     offset: [0px, 2px]
 
-                    CA:NS:
+                    # ALBERTA
+                    # CA:AB is drawing - included in top filter
+
+                    # SASKATCHEWAN
+                    CA:SK:
                         filter: |
                             function() {
-                                return feature.shield_text && /^CA:NS.*$/.test(feature.network)
+                                return feature.shield_text && /^CA:SK.*$/.test(feature.network) && feature.nat_name != 'Trans-Canada Highway'
                             }
                         draw:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'CA:NS-' + feature.shield_text.length + 'char');
+                                        return ( 'CA:SK-' + feature.shield_text.length + 'char');
                                     }
                                 text:
-                                    offset: [0px, 4px]
+                                    offset: [0px, 3px]
                                     font:
                                         fill: [1.000,1.000,1.000]
 
+                    # ONTARIO
+                    CA:ON:
+                        filter: |
+                            function() {
+                                return feature.shield_text && /^CA:ON.*$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CA:ON-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 2px]
+
+                    # QUEBEC
+                    CA:QC:
+                        filter: |
+                            function() {
+                                return feature.shield_text && /^CA:QC.*$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CA:QC-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 2px]
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+                    # NEW BRUNSWICK
                     CA:NB2:
                         filter: |
                             function() {
@@ -3314,20 +3391,25 @@ layers:
                                 #     offset: [0px, 4px]
                                 #     font:
                                 #         fill: [1.000,1.000,1.000]
-                    CA:ON:
+
+                    # NOVA SCOTIA
+                    CA:NS:
                         filter: |
                             function() {
-                                return feature.shield_text && /^CA:ON.*$/.test(feature.network)
+                                return feature.shield_text && /^CA:NS.*$/.test(feature.network) && feature.nat_name != 'Trans-Canada Highway'
                             }
                         draw:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'CA:ON-' + feature.shield_text.length + 'char');
+                                        return ( 'CA:NS-' + feature.shield_text.length + 'char');
                                     }
                                 text:
-                                    offset: [0px, 2px]
+                                    offset: [0px, 4px]
+                                    font:
+                                        fill: [1.000,1.000,1.000]
 
+                    # PRINCE EDWARD ISLAND
                     CA:PEI:
                         filter: |
                             function() {
@@ -3342,37 +3424,35 @@ layers:
                                 text:
                                     offset: [0px, 3px]
 
-                    CA:QC:
+                    # YUKON
+                    CA:YT:
                         filter: |
                             function() {
-                                return feature.shield_text && /^CA:QC.*$/.test(feature.network)
+                                return feature.shield_text && /^CA:YT$/.test(feature.network)
                             }
                         draw:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'CA:QC-' + feature.shield_text.length + 'char');
+                                        return ( 'CA:YT-' + feature.shield_text.length + 'char');
+                                    }
+
+                    # NORTHWEST TERRITORIES
+                        filter: |
+                            function() {
+                                return feature.shield_text && /^CA:NT$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CA:NT-' + feature.shield_text.length + 'char');
                                     }
                                 text:
-                                    offset: [0px, 2px]
+                                    offset: [0px, 5px]
                                     font:
                                         fill: [1.000,1.000,1.000]
 
-                    CA:SK:
-                        filter: |
-                            function() {
-                                return feature.shield_text && /^CA:SK.*$/.test(feature.network) && feature.nat_name != 'Trans-Canada Highway'
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'CA:SK-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    offset: [0px, 3px]
-                                    font:
-                                        fill: [1.000,1.000,1.000]
 
                     CN-expressways:
                         filter: |
@@ -3949,21 +4029,6 @@ layers:
                                     }
                                 text:
                                     offset: [0px, 3px]
-
-                    BE:A-N-road:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^BE:A-road$/.test(feature.network) ||
-                                    /^BE:N-road$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
-                                    }
 
                 z-mexico-shields:
                     filter: |
@@ -4873,7 +4938,7 @@ layers:
             draw:
                 lines:
                     color: global.country_boundary
-                    width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [8, 2.5px], [14, 3.5px], [16, 4.5px]]
+                    width: [[1, 0.5px], [4, 2.5px], [14, 4px], [16, 4.5px]]
             # water:
             #     filter: { maritime_boundary: true }
             #     draw:
