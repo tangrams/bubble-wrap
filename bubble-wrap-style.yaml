@@ -3109,7 +3109,9 @@ layers:
                                 /^no:Fylkesvei .*$/.test(feature.network)||
                                 /^pe:national.*$/.test(feature.network) ||
                                 /^BE:A-road.*$/.test(feature.network) ||
-                                /^BE:N-road.*$/.test(feature.network)
+                                /^BE:N-road.*$/.test(feature.network) ||
+                                /^GR.*$/.test(feature.network) ||
+                                /^AsianHighway$/.test(feature.network)
                             )
                         }
                     draw:
@@ -3711,6 +3713,23 @@ layers:
                     ###
                     ### GREECE
                     ###
+
+                    GR:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^GR$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'GR:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
                     
                     GR:national:
                         filter: |
@@ -3746,11 +3765,49 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    ###
+                    ### INDIA
+                    ###
+
+                    #this filter is not drawing anything, though it is being read see http://localhost:8000/#13/13.0968/437.6057  Bellary Rd.
+                    AsianHighway:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^AsianHighway$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IN:NH-' + feature.shield_text.length + 'char');
+                                    }
+
+                    # Give IN:MH a generic white shield, since we don't have a shield drawn for this
+                    # this filter is not drawing anything, though it is being read http://localhost:8000/#13/15.8942/433.6549 Sagari Mahamarg,
+                    # try commenting it out and green shield appears
+                    IN:MH:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^IN:MH$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
+                                    }
+
+                    # IN:NH:AN, IN:NH:AP, IN:NH:AR, IN:NH
                     IN:NH:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^IN:NH$/.test(feature.network)
+                                    /^IN:NH$/.test(feature.network) ||
+                                    /^IN:NH:.*$/.test(feature.network)
                                 )
                             }
                         draw:
@@ -3765,11 +3822,14 @@ layers:
                                         function() {
                                             return feature.shield_text.replace("NH", "");
                                         }
+
+                    # IN:SH:BH, IN:SH:Gj, IN:SH:HP
                     IN:SH:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^IN:SH$/.test(feature.network)
+                                    /^IN:SH$/.test(feature.network) ||
+                                    /^IN:SH:.*$/.test(feature.network)
                                 )
                             }
                         draw:
@@ -4142,6 +4202,10 @@ layers:
                             mapzen_icon_library:
                                 visible: global.sdk_road_shields
 
+                    ###
+                    ### FRANCE
+                    ###
+
                     # This filter is causing Bangladesh, to have red road shields. Also: Cologne, Germany
                     france-a-and-n-road-ref-shields-funky:
                         filter: |
@@ -4204,6 +4268,10 @@ layers:
                             draw:
                                 mapzen_icon_library:
                                     visible: false
+
+                    ###
+                    ### INDIA
+                    ###
                     IN:NH:
                         filter: |
                             function() {
