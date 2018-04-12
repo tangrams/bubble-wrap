@@ -3150,6 +3150,7 @@ layers:
                             mapzen_icon_library:
                                 visible: global.sdk_road_shields
 
+                    # This is causing Cologne Germany to get red road shields
                     e-roads:
                         filter: |
                             function() {
@@ -3453,7 +3454,9 @@ layers:
                                     font:
                                         fill: [1.000,1.000,1.000]
 
-
+                    ###
+                    ### CHINA
+                    ###
                     CN-expressways:
                         filter: |
                             function() {
@@ -3489,6 +3492,9 @@ layers:
                                     font:
                                         fill: [1.000,1.000,1.000]
 
+                    ###
+                    ### FRANCE
+                    ###
                     france-a-and-n-road-ref-shields:
                         filter: |
                             function() {
@@ -3510,6 +3516,7 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    # FR:01:D-road, FR:02:D-road
                     france-department-shields:
                         filter: |
                             function() {
@@ -3563,6 +3570,9 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    ###
+                    ### GERMANY
+                    ###
                     germany-b-shields:
                         filter: |
                             function() {
@@ -3594,6 +3604,10 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+
+                    ###
+                    ### JAPAN
+                    ###
                     JP:national:
                         filter: |
                             function() {
@@ -3613,6 +3627,7 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    # JP:prefectural, JP:prefectural:chiba, JP:prefectural:gunma
                     jp:prefectural:
                         filter: |
                             function() {
@@ -3632,6 +3647,11 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+
+                    ###
+                    ### RUSSIA
+                    ###
+
                     ru:national:
                         filter: |
                             function() {
@@ -3648,6 +3668,11 @@ layers:
                                 text:
                                     font:
                                         fill: [1.00,1.00,1.00]
+
+
+                    ###
+                    ### UNITED KINGDOM
+                    ###
 
                     GB:     # implied GB:M and GB:A, with sublayer for the A
                         filter: |
@@ -3681,6 +3706,12 @@ layers:
                                     text:
                                         font:
                                             fill: [1.000,0.931,0.680]
+
+
+                    ###
+                    ### GREECE
+                    ###
+                    
                     GR:national:
                         filter: |
                             function() {
@@ -4110,6 +4141,8 @@ layers:
                         draw:
                             mapzen_icon_library:
                                 visible: global.sdk_road_shields
+
+                    # This filter is causing Bangladesh, to have red road shields. Also: Cologne, Germany
                     france-a-and-n-road-ref-shields-funky:
                         filter: |
                             function() {
