@@ -3111,7 +3111,9 @@ layers:
                                 /^BE:A-road.*$/.test(feature.network) ||
                                 /^BE:N-road.*$/.test(feature.network) ||
                                 /^GR.*$/.test(feature.network) ||
-                                /^AsianHighway$/.test(feature.network)
+                                /^AsianHighway$/.test(feature.network) ||
+                                /^pl:expressways$/.test(feature.network) ||
+                                /^PT:regional.*$/.test(feature.network)
                             )
                         }
                     draw:
@@ -3770,6 +3772,8 @@ layers:
                     ###
 
                     #this filter is not drawing anything, though it is being read see http://localhost:8000/#13/13.0968/437.6057  Bellary Rd.
+
+                    # this filter is working it seems, it's showing up in Malaysia http://localhost:8000/#9.180020650227867/2.7173/472.5489
                     AsianHighway:
                         filter: |
                             function() {
@@ -3787,6 +3791,7 @@ layers:
                     # Give IN:MH a generic white shield, since we don't have a shield drawn for this
                     # this filter is not drawing anything, though it is being read http://localhost:8000/#13/15.8942/433.6549 Sagari Mahamarg,
                     # try commenting it out and green shield appears
+                    # it is drawing here: http://localhost:8000/#12/16.3915/433.4824
                     IN:MH:
                         filter: |
                             function() {
@@ -3843,6 +3848,29 @@ layers:
                                         function() {
                                             return feature.shield_text.replace("SH", "");
                                         }
+
+                    ###
+                    ### INDONESIA
+                    ###
+
+                    # this filter is not drawing any shields, testing out the IDS network, but appears there are none
+                    IDS:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^IDS .*$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ID:ID-' + feature.shield_text.length + 'char');
+                                    }
+
+                    ###
+                    ### ITALY
+                    ###
                     IT:AS:
                         filter: |
                             function() {
@@ -3877,11 +3905,18 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    ###
+                    ### POLAND
+                    ###
+
+                    # pl:national, pl:expressways, pl:motorways
                     pl:national:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^pl:national$/.test(feature.network)
+                                    /^pl:national$/.test(feature.network) ||
+                                    /^pl:expressways$/.test(feature.network) ||
+                                    /^pl:motorways$/.test(feature.network)
                                 )
                             }
                         draw:
@@ -3908,6 +3943,9 @@ layers:
                                         return ( 'pl:regional-' + feature.shield_text.length + 'char');
                                     }
 
+                    ###
+                    ### PORTUGAL
+                    ###
                     PT:national:
                         filter: |
                             function() {
@@ -3924,6 +3962,24 @@ layers:
                                 text:
                                     font:
                                         fill: [1.00,1.00,1.00]
+
+                    # PT:regional http://localhost:8000/#11/39.6945/351.4547
+                    # PT:regional:north, PT:regional:Alentejo, PT:regional:Algarve, PT:regional:centre
+                    # Using generic white shield
+                    PT:regional:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^PT:regional$/.test(feature.network) ||
+                                    /^PT:regional:.*$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
+                                    }
 
                     NZ:SH:
                         filter: |
@@ -4206,7 +4262,7 @@ layers:
                     ### FRANCE
                     ###
 
-                    # This filter is causing Bangladesh, to have red road shields. Also: Cologne, Germany
+                    # This filter is causing Bangladesh, to have red road shields. Also: Cologne-Germany, Porto-Portugal
                     france-a-and-n-road-ref-shields-funky:
                         filter: |
                             function() {
