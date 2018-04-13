@@ -3981,6 +3981,9 @@ layers:
                                         return ( 'DE:L-' + feature.shield_text.length + 'char');
                                     }
 
+                    ###
+                    ### NEW ZEALAND
+                    ###
                     NZ:SH:
                         filter: |
                             function() {
@@ -3998,6 +4001,9 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    ###
+                    ### SPAIN
+                    ###
                     ES:A-road:
                         filter: |
                             function() {
@@ -4015,6 +4021,9 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    ###
+                    ### SOUTH AFRICA
+                    ###
                     za:national:
                         filter: |
                             function() {
@@ -4032,11 +4041,27 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-                    za:regional:
+                    za:regional1:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^za:regional$/.test(feature.network) ||
+                                    /^za:regional$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ZA:P-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.000,0.915,0.610]
+
+                    za:regional2:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
                                     /^za:capetown$/.test(feature.network)
                                 )
                             }
