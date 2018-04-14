@@ -3003,6 +3003,7 @@ layers:
                                 /^CL:national.*$/.test(feature.network) ||
                                 /^CL:regional.*$/.test(feature.network) ||
                                 /^CN:EXP.*$/.test(feature.network) ||
+                                /^CN:$/.test(feature.network) ||
                                 /^CN-expressways.*$/.test(feature.network) ||
                                 /^CN-roads.*$/.test(feature.network) ||
                                 /^DE:A.*$/.test(feature.network) ||
@@ -3295,6 +3296,20 @@ layers:
                                         return ( 'CA:I2-' + feature.shield_text.length + 'char');
                                     }
 
+                    # this is not working, see Montreal http://localhost:8000/#9/45.5400/286.4328
+                    CA:yellowhead2:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^CA:transcanada$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CA:I2-' + feature.shield_text.length + 'char');
+                                    }
+
                     # BRITISH COLUMBIA
                     CA-BC:
                         filter: |
@@ -3443,6 +3458,7 @@ layers:
                                     }
 
                     # NORTHWEST TERRITORIES
+                    CA:NT:
                         filter: |
                             function() {
                                 return feature.shield_text && /^CA:NT$/.test(feature.network)
@@ -3465,7 +3481,8 @@ layers:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^CN-expressways$/.test(feature.network)
+                                    /^CN-expressways$/.test(feature.network) ||
+                                    /^CN:$/.test(feature.network)
                                 )
                             }
                         draw:
@@ -4041,6 +4058,7 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    # Split up the za:regional filters, but really need a za:provincial network for diamond green shields ZA:P
                     za:regional1:
                         filter: |
                             function() {
@@ -4075,6 +4093,9 @@ layers:
                                     font:
                                         fill: [1.000,0.915,0.610]
 
+                    ###
+                    ### SWITZERLAND
+                    ###
                     switzerland:motorway:
                         filter: |
                             function() {
@@ -4092,6 +4113,10 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+
+                    ###
+                    ### NORWAY
+                    ###
                     no:Fylkesvei:
                         filter: |
                             function() {
