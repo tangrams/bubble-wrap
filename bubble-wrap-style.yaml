@@ -3025,6 +3025,7 @@ layers:
                                 /^FR:A-road.*$/.test(feature.network) ||
                                 /^FR:.*:.*$/.test(feature.network) ||
                                 /^FR:N-road.*$/.test(feature.network) ||
+                                /^FR.*$/.test(feature.network) ||
                                 /^GB.*$/.test(feature.network) ||
                                 /^GR:I.*$/.test(feature.network) ||
                                 /^GR:motorway$/.test(feature.network) ||
@@ -3573,6 +3574,24 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    FR:A-road2:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^FR$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'FR:A-road-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, -1px]
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
                     FR:N-road:
                         filter: |
                             function() {
@@ -3744,7 +3763,7 @@ layers:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'GR:national-' + feature.shield_text.length + 'char');
+                                        return ( 'GR:motorway-' + feature.shield_text.length + 'char');
                                     }
                                 text:
                                     font:
@@ -4243,6 +4262,7 @@ layers:
                                     return ( 'MX:MX-' + feature.ref.replace("MEX ", "").length + 'char');
                                 }
                             text:
+                                offset: [0px, 2px]
                                 text_source: |
                                     function() {
                                         return feature.ref.replace("MEX ", "");
