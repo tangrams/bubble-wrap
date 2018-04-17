@@ -3302,7 +3302,7 @@ layers:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^CA:transcanada$/.test(feature.network)
+                                    /^CA:transcanada$/.test(feature.network) )
                             }
                         draw:
                             mapzen_icon_library:
@@ -3496,6 +3496,23 @@ layers:
                                     offset: [0px, 2px]
                                     font:
                                         fill: [1.000,1.000,1.000]
+
+                        CN-expressways2:
+                            filter: |
+                                function() {
+                                    return feature.shield_text && (
+                                        /^S.*$/.test(feature.shield_text)
+                                    )
+                                }
+                            draw:
+                                mapzen_icon_library:
+                                    sprite: |
+                                        function() {
+                                            return ( 'CN:EXP-' + feature.shield_text.length + 'char');
+                                        }
+                                    text:
+                                        font:
+                                            fill: [1.000,0.931,0.680]
 
                     CN-roads:
                         filter: |
