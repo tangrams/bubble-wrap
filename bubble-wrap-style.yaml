@@ -3011,6 +3011,7 @@ layers:
                                 /^DE:DE.*$/.test(feature.network) ||
                                 /^DE:L.*$/.test(feature.network) ||
                                 /^dk:national.*$/.test(feature.network) ||
+                                /^DK.*$/.test(feature.network) ||
                                 /^DK:D.*$/.test(feature.network) ||
                                 /^ES:A.*$/.test(feature.network) ||
                                 /^ES:AA.*$/.test(feature.network) ||
@@ -4168,11 +4169,15 @@ layers:
                                         return ( 'NO:CR-' + feature.shield_text.length + 'char');
                                     }
 
+                    ###
+                    ### DENMARK
+                    ###
                     dk:national:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^dk:national$/.test(feature.network)
+                                    /^dk:national$/.test(feature.network) ||
+                                    /^DK$/.test(feature.network)
                                 )
                             }
                         draw:
