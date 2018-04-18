@@ -434,8 +434,8 @@ fonts:
 sources:
     mapzen:
         type:  MVT #TopoJSON
-        # url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
-        url:  https://dev-tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
+        url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
+        #url:  https://dev-tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
         url_params:
             api_key: global.sdk_api_key
         tile_size: 512
@@ -5193,8 +5193,10 @@ layers:
             #     draw:
             #         lines:
             #             visible: false
+            #         text-blend-order:
+            #             visible: false
             country-labels:
-                filter: { name: true, $zoom: { min: 8 }, not: { maritime_boundary: true } }
+                filter: { name: true, $zoom: { min: 8 } }
                 draw:
                     text-blend-order:
                         priority: 2
@@ -5241,18 +5243,20 @@ layers:
                 lines:
                     color: global.region_boundary
                     width: [[0, 0.5px], [2, 1.0px], [6, 1.5px], [8, 2.0px], [9, 3.5px], [14, 5.5px], [16, 6.5px]]
-            water:
-                filter: { maritime_boundary: true }
-                draw:
-                    lines:
-                        visible: false
+            #water:
+            #    filter: { maritime_boundary: true }
+            #    draw:
+            #        lines:
+            #            visible: false
+            #        text-blend-order:
+            #            visible: false
             early:
                 filter: { not: { min_zoom: [1,2] }, $zoom: { max: 8 } }
                 draw:
                     lines:
                         visible: false
             region-labels:
-                filter: { name: true, $zoom: { min: 8 }, not: { maritime_boundary: true } }
+                filter: { name: true, $zoom: { min: 8 } }
                 draw:
                     text-blend-order:
                         priority: 3
