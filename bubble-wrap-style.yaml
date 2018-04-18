@@ -5188,8 +5188,10 @@ layers:
             #     draw:
             #         lines:
             #             visible: false
+            #         text-blend-order:
+            #             visible: false
             country-labels:
-                filter: { name: true, $zoom: { min: 8 }, not: { maritime_boundary: true } }
+                filter: { name: true, $zoom: { min: 8 } }
                 draw:
                     text-blend-order:
                         priority: 2
@@ -5241,13 +5243,15 @@ layers:
             #    draw:
             #        lines:
             #            visible: false
+            #        text-blend-order:
+            #            visible: false
             early:
                 filter: { not: { min_zoom: [1,2] }, $zoom: { max: 8 } }
                 draw:
                     lines:
                         visible: false
             region-labels:
-                filter: { name: true, $zoom: { min: 8 }, not: { maritime_boundary: true } }
+                filter: { name: true, $zoom: { min: 8 } }
                 draw:
                     text-blend-order:
                         priority: 3
