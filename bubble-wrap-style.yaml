@@ -2959,6 +2959,7 @@ layers:
                             return (! /^US:.*$/.test(feature.network)) &&
                                 (feature.shield_text) && 
                                 (
+                                /^AH.*$/.test(feature.network) ||
                                 /^AM:AM.*$/.test(feature.network) ||
                                 /^AR:AR.*$/.test(feature.network) ||
                                 /^AR:PR.*$/.test(feature.network) ||
@@ -3218,6 +3219,23 @@ layers:
                     #             text:
                     #                 font:
                     #                     fill: [1.00,1.00,1.00]
+
+                    ###
+                    ### BANGLADESH
+                    ###
+                    AH:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^AH$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
+                                    }
 
                     ###
                     ### BELGIUM - Generic White Shield
