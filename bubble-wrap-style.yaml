@@ -5236,11 +5236,11 @@ layers:
                 lines:
                     color: global.region_boundary
                     width: [[0, 0.5px], [2, 1.0px], [6, 1.5px], [8, 2.0px], [9, 3.5px], [14, 5.5px], [16, 6.5px]]
-            water:
-                filter: { maritime_boundary: true }
-                draw:
-                    lines:
-                        visible: false
+            #water:
+            #    filter: { maritime_boundary: true }
+            #    draw:
+            #        lines:
+            #            visible: false
             early:
                 filter: { not: { min_zoom: [1,2] }, $zoom: { max: 8 } }
                 draw:
