@@ -2385,6 +2385,7 @@ layers:
                                 /^O.*$/.test(feature.ref) ||
                                 /^QL.*$/.test(feature.ref) ||
                                 /^CT.*$/.test(feature.ref) ||
+                                /^RP.*$/.test(feature.ref) ||
                                 /^MEX.*$/.test(feature.ref)
                     }
                 # draw:
@@ -4329,6 +4330,9 @@ layers:
                                         return ( 'VN:VN-' + feature.shield_text.length + 'char');
                                     }
 
+                    ###
+                    ### ARGENTINA
+                    ###
                     AR:national:
                         filter: |
                             function() {
@@ -4417,6 +4421,7 @@ layers:
                                         /^N .*$/.test(feature.ref) ||
                                         /^O.*$/.test(feature.ref) ||
                                         /^QL.*$/.test(feature.ref) ||
+                                        /^RP.*$/.test(feature.ref) ||
                                         /^IT:A-road*$/.test(feature.network) ||
                                         /^IT:B-road*$/.test(feature.network) ||
                                         /^SS.*$/.test(feature.ref) ||
@@ -4466,6 +4471,26 @@ layers:
                         draw:
                             mapzen_icon_library:
                                 visible: global.sdk_road_shields
+
+                    ###
+                    ### ARGENTINA
+                    ###
+
+                    # using generic shield here, too white shields in Argentina, difficult to view hierarchy
+                    RP-roads:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^RP.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'generic_shield-' + feature.ref.length + 'char');
+                                    }
+
 
                     ###
                     ### FRANCE
