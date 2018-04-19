@@ -2382,6 +2382,7 @@ layers:
                                 /^B.*$/.test(feature.ref) ||
                                 /^D.*$/.test(feature.ref) ||
                                 /^N.*$/.test(feature.ref) ||
+                                /^O.*$/.test(feature.ref) ||
                                 /^MEX.*$/.test(feature.ref)
                     }
                 # draw:
@@ -3093,6 +3094,7 @@ layers:
                                 /^TR:DY.*$/.test(feature.network) ||
                                 /^TR:OR.*$/.test(feature.network) ||
                                 /^TR-roads.*$/.test(feature.network) ||
+                                /^TR-motorway.*$/.test(feature.network) ||
                                 /^TR-road.*$/.test(feature.network) ||
                                 /^UA:M.*$/.test(feature.network) ||
                                 /^UA:P.*$/.test(feature.network) ||
@@ -3173,6 +3175,25 @@ layers:
                                 text:
                                     font:
                                         fill: [1.00,1.00,1.00]
+
+                        ### this is returning e-road shield text incorrectly, need the O prefix ref text
+                        ### TURKEY
+                        eroad-otoyol-roads:
+                            filter: |
+                                function() {
+                                    return feature.ref && (
+                                        /^O.*$/.test(feature.ref)
+                                    )
+                                }
+                            draw:
+                                mapzen_icon_library:
+                                    sprite: |
+                                        function() {
+                                            return ( 'TR-roads-' + feature.ref.length + 'char');
+                                        }
+                                    text:
+                                        font:
+                                            fill: [0.000,0.000,0.000]
 
                     # AU-M:
                     #     filter: |
@@ -4247,18 +4268,32 @@ layers:
                             filter: |
                                 function() {
                                     return feature.shield_text && (
-                                        /^D.*$/.test(feature.shield_text)
+                                        /^D.*$/.test(feature.ref)
                                     )
                                 }
                             draw:
                                 mapzen_icon_library:
                                     sprite: |
                                         function() {
-                                            return ( 'TR:DY-' + feature.shield_text.length + 'char');
+                                            return ( 'TR:DY-' + feature.ref.length + 'char');
                                         }
                                     text:
                                         font:
-                                            fill: [1.000,0.931,0.680]
+                                            fill: [1.000,1.000,1.000]
+
+                    TR-roads2:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^TR-motorway$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'TR-roads-' + feature.shield_text.length + 'char');
+                                    }
 
                     AR:national:
                         filter: |
@@ -4345,6 +4380,7 @@ layers:
                                         /^D .*$/.test(feature.ref) ||
                                         /^N.*$/.test(feature.ref)  ||
                                         /^N .*$/.test(feature.ref) ||
+                                        /^O.*$/.test(feature.ref) ||
                                         /^IT:A-road*$/.test(feature.network) ||
                                         /^IT:B-road*$/.test(feature.network) ||
                                         /^SS.*$/.test(feature.ref) ||
@@ -4415,6 +4451,7 @@ layers:
                                         }
                                     font:
                                         fill: [1.00,1.00,1.00]
+                    # This filter is causing Istanbul to receive yellow road shields, see http://localhost:8000/#11/41.0791/28.6359
                     france-department-shields-funky:
                         filter: |
                             function() {
@@ -4553,6 +4590,9 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    ###
+                    ### TURKEY
+                    ###
                     TR-roads-D:
                         filter: |
                             function() {
@@ -4569,6 +4609,20 @@ layers:
                                 text:
                                     font:
                                         fill: [1.00,1.00,1.00]
+
+                    Otoyol-roads:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^O.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'TR-roads-' + feature.ref.length + 'char');
+                                    }
 
 
 
