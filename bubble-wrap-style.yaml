@@ -2383,6 +2383,8 @@ layers:
                                 /^D.*$/.test(feature.ref) ||
                                 /^N.*$/.test(feature.ref) ||
                                 /^O.*$/.test(feature.ref) ||
+                                /^QL.*$/.test(feature.ref) ||
+                                /^CT.*$/.test(feature.ref) ||
                                 /^MEX.*$/.test(feature.ref)
                     }
                 # draw:
@@ -3119,7 +3121,8 @@ layers:
                                 /^GR.*$/.test(feature.network) ||
                                 /^AsianHighway$/.test(feature.network) ||
                                 /^pl:expressways$/.test(feature.network) ||
-                                /^PT:regional.*$/.test(feature.network)
+                                /^PT:regional.*$/.test(feature.network) ||
+                                /^VN:national.*$/.test(feature.network)
                             )
                         }
                     draw:
@@ -4295,6 +4298,37 @@ layers:
                                         return ( 'TR-roads-' + feature.shield_text.length + 'char');
                                     }
 
+                    ###
+                    ### VIETNAM
+                    ###
+                    VN:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^VN:national$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'VN:VN-' + feature.shield_text.length + 'char');
+                                    }
+
+                    VI-roads:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^VI-roads$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'VN:VN-' + feature.shield_text.length + 'char');
+                                    }
+
                     AR:national:
                         filter: |
                             function() {
@@ -4376,23 +4410,29 @@ layers:
                                         /^B .*$/.test(feature.ref) ||
                                         /^A.*$/.test(feature.ref)  ||
                                         /^A .*$/.test(feature.ref) ||
+                                        /^CT.*$/.test(feature.ref) ||
                                         /^D.*$/.test(feature.ref)  ||
                                         /^D .*$/.test(feature.ref) ||
                                         /^N.*$/.test(feature.ref)  ||
                                         /^N .*$/.test(feature.ref) ||
                                         /^O.*$/.test(feature.ref) ||
+                                        /^QL.*$/.test(feature.ref) ||
                                         /^IT:A-road*$/.test(feature.network) ||
                                         /^IT:B-road*$/.test(feature.network) ||
                                         /^SS.*$/.test(feature.ref) ||
                                         /^IT:.*$/.test(feature.network) ||
                                         /^IN:NH*$/.test(feature.network) ||
                                         /^IN:SH*$/.test(feature.network) ||
-                                        /^TR-roads.*$/.test(feature.network)
+                                        /^TR-roads.*$/.test(feature.network) ||
+                                        /^VI-roads.*$/.test(feature.network)
+
                                 ) || (
                                     (feature.shield_text && feature.ref) &&
                                     (
                                         /^SH.*$/.test(feature.ref) ||
-                                        /^SS.*$/.test(feature.ref)
+                                        /^SS.*$/.test(feature.ref) ||
+                                        /^CT.*$/.test(feature.ref) ||
+                                        /^QL.*$/.test(feature.ref)
                                     )
                                 )
                             )
@@ -4593,11 +4633,13 @@ layers:
                     ###
                     ### TURKEY
                     ###
+                    # this filter is causing Vietnam to receive blue shield, fixed at this location http://localhost:8000/#11/18.9040/105.3390
                     TR-roads-D:
                         filter: |
                             function() {
                                 return feature.ref && (
-                                    /^D.*$/.test(feature.ref)
+                                    /^D.*$/.test(feature.ref) &&
+                                    !(/^VI-roads$/.test(feature.network))
                                 )
                             }
                         draw:
@@ -4624,7 +4666,68 @@ layers:
                                         return ( 'TR-roads-' + feature.ref.length + 'char');
                                     }
 
+                    ###
+                    ### VIETNAM
+                    ###
+                    QL-roads:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^QL.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'VN:VN-' + feature.ref.length + 'char');
+                                    }
 
+                    CT-roads:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^CT.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'VN:I-' + feature.ref.length + 'char');
+                                    }
+
+                    # trying to make this work for this location http://localhost:8000/#11/17.1969/106.8249
+                    # this filter should also work for here http://localhost:8000/#11/16.6039/106.9895
+                    VI-roads-ref:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^VI-roads$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'VN:VN-' + feature.ref.length + 'char');
+                                    }
+
+                    # trying to make this work for http://localhost:8000/#11/16.6043/106.9897
+                    VI-roads-Ho-Chi-Minh:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^VI-roads$/.test(feature.network) &&
+                                    feature.name:en == 'Ho Chi Minh Highway'
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'VN:VN-' + feature.ref.length + 'char');
+                                    }
 
         path:
             filter:
