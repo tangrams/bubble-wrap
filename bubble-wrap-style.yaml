@@ -4205,6 +4205,9 @@ layers:
                                         return ( 'dk:national-' + feature.shield_text.length + 'char');
                                     }
 
+                    ###
+                    ### CHILE
+                    ###
                     CL:national:
                         filter: |
                             function() {
@@ -4222,6 +4225,9 @@ layers:
                                 text:
                                     offset: [0px, 2px]
 
+                    ###
+                    ### TURKEY
+                    ###
                     TR-roads:
                         filter: |
                             function() {
@@ -4236,6 +4242,23 @@ layers:
                                     function() {
                                         return ( 'TR-roads-' + feature.shield_text.length + 'char');
                                     }
+
+                        TR:DY:
+                            filter: |
+                                function() {
+                                    return feature.shield_text && (
+                                        /^D.*$/.test(feature.shield_text)
+                                    )
+                                }
+                            draw:
+                                mapzen_icon_library:
+                                    sprite: |
+                                        function() {
+                                            return ( 'TR:DY-' + feature.shield_text.length + 'char');
+                                        }
+                                    text:
+                                        font:
+                                            fill: [1.000,0.931,0.680]
 
                     AR:national:
                         filter: |
@@ -4530,12 +4553,10 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-                    #this is not working yet...
                     TR-roads-D:
                         filter: |
                             function() {
-                                return feature.shield_text && (
-                                    /^TR-roads$/.test(feature.network) &&
+                                return feature.ref && (
                                     /^D.*$/.test(feature.ref)
                                 )
                             }
@@ -4543,7 +4564,7 @@ layers:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'TR-DY-' + feature.shield_text.length + 'char');
+                                        return ( 'TR:DY-' + feature.ref.length + 'char');
                                     }
                                 text:
                                     font:
