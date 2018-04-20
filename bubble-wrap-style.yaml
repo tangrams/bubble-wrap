@@ -2385,8 +2385,15 @@ layers:
                                 /^O.*$/.test(feature.ref) ||
                                 /^QL.*$/.test(feature.ref) ||
                                 /^CT.*$/.test(feature.ref) ||
+                                /^PE.*$/.test(feature.ref) ||
+                                /^AR.*$/.test(feature.ref) ||
+                                /^MO.*$/.test(feature.ref) ||
+                                /^TA.*$/.test(feature.ref) ||
+                                /^PU.*$/.test(feature.ref) ||
+                                /^CU.*$/.test(feature.ref) ||
+                                /^AP.*$/.test(feature.ref) ||
                                 /^RP.*$/.test(feature.ref) ||
-                                /^MEX.*$/.test(feature.ref)
+                                /^MEX.*$/.test(feature.ref) 
                     }
                 # draw:
                 #     mapzen_icon_library:
@@ -4366,6 +4373,9 @@ layers:
                                 text:
                                     offset: [0px, 0px]
 
+                    ###
+                    ### PERU
+                    ###
                     pe:national:
                         filter: |
                             function() {
@@ -4420,6 +4430,7 @@ layers:
                                         /^N.*$/.test(feature.ref)  ||
                                         /^N .*$/.test(feature.ref) ||
                                         /^O.*$/.test(feature.ref) ||
+                                        /^PE.*$/.test(feature.ref) ||
                                         /^QL.*$/.test(feature.ref) ||
                                         /^RP.*$/.test(feature.ref) ||
                                         /^IT:A-road*$/.test(feature.network) ||
@@ -4437,7 +4448,13 @@ layers:
                                         /^SH.*$/.test(feature.ref) ||
                                         /^SS.*$/.test(feature.ref) ||
                                         /^CT.*$/.test(feature.ref) ||
-                                        /^QL.*$/.test(feature.ref)
+                                        /^QL.*$/.test(feature.ref) ||
+                                        /^PE.*$/.test(feature.ref) ||
+                                        /^AR.*$/.test(feature.ref) ||
+                                        /^MO.*$/.test(feature.ref) ||
+                                        /^TA.*$/.test(feature.ref) ||
+                                        /^PU.*$/.test(feature.ref) ||
+                                        /^CU.*$/.test(feature.ref)
                                     )
                                 )
                             )
@@ -4654,6 +4671,114 @@ layers:
                                 text:
                                     font:
                                         fill: [1.00,1.00,1.00]
+
+                    ###
+                    ### PERU
+                    ###
+                    PE-highways:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^PE.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'PE:PE-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 3px]
+
+                    ### AREQUIPA
+                    AR-roads:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^AR.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
+                                    }
+
+                    ### MOQUEGUA
+                    MO-roads:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^MO.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
+                                    }
+
+                    ### TACNA
+                    TA-roads:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^TA.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
+                                    }
+
+                    ### PUNO
+                    PU-roads:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^PU.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
+                                    }
+
+                    ### CUSCO
+                    CU-roads:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^CU.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
+                                    }
+
+                    # ### APURIMAC
+                    # AP-roads:
+                    #     filter: |
+                    #         function() {
+                    #             return feature.shield_text && (
+                    #                 /^AP-.*$/.test(feature.ref)
+                    #             )
+                    #         }
+                    #     draw:
+                    #         mapzen_icon_library:
+                    #             sprite: |
+                    #                 function() {
+                    #                     return ( 'DE:L-' + feature.shield_text.length + 'char');
 
                     ###
                     ### TURKEY
