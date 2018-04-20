@@ -2381,8 +2381,11 @@ layers:
                                 /^A.*$/.test(feature.ref) ||
                                 /^B.*$/.test(feature.ref) ||
                                 /^D.*$/.test(feature.ref) ||
+                                /^E.*$/.test(feature.ref) ||
+                                /^J.*$/.test(feature.ref) ||
                                 /^N.*$/.test(feature.ref) ||
                                 /^O.*$/.test(feature.ref) ||
+                                /^P.*$/.test(feature.ref) ||
                                 /^QL.*$/.test(feature.ref) ||
                                 /^CT.*$/.test(feature.ref) ||
                                 /^PE.*$/.test(feature.ref) ||
@@ -3131,7 +3134,8 @@ layers:
                                 /^AsianHighway$/.test(feature.network) ||
                                 /^pl:expressways$/.test(feature.network) ||
                                 /^PT:regional.*$/.test(feature.network) ||
-                                /^VN:national.*$/.test(feature.network)
+                                /^VN:national.*$/.test(feature.network) ||
+                                /^my:federal.*$/.test(feature.network)
                             )
                         }
                     draw:
@@ -3893,6 +3897,24 @@ layers:
                                         return ( 'IN:NH-' + feature.shield_text.length + 'char');
                                     }
 
+                        # Asian Highway/E - expressways in Malaysia - yellow shields - http://localhost:8000/#10/4.8919/101.1827
+                        E-AsianHighway:
+                            filter: |
+                                function() {
+                                    return feature.ref && (
+                                        /^E.*$/.test(feature.ref)
+                                    )
+                                }
+                            draw:
+                                mapzen_icon_library:
+                                    sprite: |
+                                        function() {
+                                            return ( 'MY:E-' + feature.ref.length + 'char');
+                                        }
+                                    text:
+                                        font:
+                                            fill: [0.00,0.00,0.00]     
+
                     # Give IN:MH a generic white shield, since we don't have a shield drawn for this
                     # this filter is not drawing anything, though it is being read http://localhost:8000/#13/15.8942/433.6549 Sagari Mahamarg,
                     # try commenting it out and green shield appears
@@ -4084,6 +4106,23 @@ layers:
                                 sprite: |
                                     function() {
                                         return ( 'DE:L-' + feature.shield_text.length + 'char');
+                                    }
+
+                    ###
+                    ### MALAYSIA
+                    ###
+                    my:federal:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^my:federal$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'MY:E-' + feature.shield_text.length + 'char');
                                     }
 
                     ###
@@ -4437,15 +4476,18 @@ layers:
                                         /^CT.*$/.test(feature.ref) ||
                                         /^D .*$/.test(feature.ref) ||
                                         /^D.*$/.test(feature.ref)  ||
+                                        /^E.*$/.test(feature.ref)  ||
                                         /^IN:NH*$/.test(feature.network) ||
                                         /^IN:SH*$/.test(feature.network) ||
                                         /^IT:.*$/.test(feature.network) ||
                                         /^IT:A-road*$/.test(feature.network) ||
                                         /^IT:B-road*$/.test(feature.network) ||
+                                        /^J.*$/.test(feature.ref) ||
                                         /^LM.*$/.test(feature.ref) ||
                                         /^N .*$/.test(feature.ref) ||
                                         /^N.*$/.test(feature.ref)  ||
                                         /^O.*$/.test(feature.ref) ||
+                                        /^P.*$/.test(feature.ref) ||
                                         /^PE.*$/.test(feature.ref) ||
                                         /^QL.*$/.test(feature.ref) ||
                                         /^RP.*$/.test(feature.ref) ||
@@ -4695,6 +4737,68 @@ layers:
                                         fill: [1.00,1.00,1.00]
 
                     ###
+                    ### MALAYSIA
+                    ###
+                    E-expressways:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^E.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'MY:E-' + feature.ref.length + 'char');
+                                    }
+
+                    # in Kuala Lumpur http://localhost:8000/#12/3.0183/101.8972
+                    B-roads-Malaysia:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^B.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'MY:E-' + feature.ref.length + 'char');
+                                    }
+
+                    # in Johor Bahru http://localhost:8000/#13/1.5058/103.7361
+                    J-roads-Malaysia:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^J.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'MY:E-' + feature.ref.length + 'char');
+                                    }
+
+                    # in Bukit Mertajam http://localhost:8000/#12/5.3470/100.4809
+                    P-roads-Malaysia:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^P.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'MY:E-' + feature.ref.length + 'char');
+                                    }
+
+                    ###
                     ### PERU
                     ###
                     PE-highways:
@@ -4848,6 +4952,7 @@ layers:
                     ### TURKEY
                     ###
                     # this filter is causing Vietnam to receive blue shield, fixed at this location http://localhost:8000/#11/18.9040/105.3390
+                    # Malaysia is also receiving these shields here: http://localhost:8000/#10/5.8310/102.6328
                     TR-roads-D:
                         filter: |
                             function() {
