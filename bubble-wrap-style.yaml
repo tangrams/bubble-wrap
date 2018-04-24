@@ -3307,16 +3307,9 @@ layers:
                     ### BRAZIL
                     ###
                     BR:
-                        filter: |
-                            function() {
-                                return feature.shield_text && /^BR$/.test(feature.network)
-                            }
+                        filter: { network: BR }
                         draw:
                             mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'BR-' + feature.shield_text.length + 'char');
-                                    }
                                 text:
                                     offset: [0px, 2px]
                     #BR:ES, BR:GO are included here
