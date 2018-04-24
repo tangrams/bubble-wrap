@@ -2379,16 +2379,25 @@ layers:
                     function() {
                         return  feature.shield_text ||
                                 /^A.*$/.test(feature.ref) ||
+                                /^AYE.*$/.test(feature.ref) ||
                                 /^B.*$/.test(feature.ref) ||
+                                /^BKE.*$/.test(feature.ref) ||
+                                /^CTE.*$/.test(feature.ref) ||
                                 /^D.*$/.test(feature.ref) ||
                                 /^E.*$/.test(feature.ref) ||
+                                /^ECP.*$/.test(feature.ref) ||
                                 /^J.*$/.test(feature.ref) ||
+                                /^K.*$/.test(feature.ref) ||
+                                /^KJE.*$/.test(feature.ref) ||
+                                /^KPE.*$/.test(feature.ref) ||
+                                /^MCE.*$/.test(feature.ref) ||
                                 /^N.*$/.test(feature.ref) ||
                                 /^O.*$/.test(feature.ref) ||
                                 /^P.*$/.test(feature.ref) ||
                                 /^QL.*$/.test(feature.ref) ||
                                 /^CT.*$/.test(feature.ref) ||
                                 /^PE.*$/.test(feature.ref) ||
+                                /^PIE.*$/.test(feature.ref) ||
                                 /^AR.*$/.test(feature.ref) ||
                                 /^MO.*$/.test(feature.ref) ||
                                 /^TA.*$/.test(feature.ref) ||
@@ -2397,7 +2406,9 @@ layers:
                                 /^AP.*$/.test(feature.ref) ||
                                 /^RP.*$/.test(feature.ref) ||
                                 /^LM.*$/.test(feature.ref) ||
-                                /^MEX.*$/.test(feature.ref) 
+                                /^MEX.*$/.test(feature.ref) ||
+                                /^SLE.*$/.test(feature.ref) ||
+                                /^TPE.*$/.test(feature.ref)
                     }
                 # draw:
                 #     mapzen_icon_library:
@@ -4445,27 +4456,38 @@ layers:
                                         /^A .*$/.test(feature.ref) ||
                                         /^A.*$/.test(feature.ref)  ||
                                         /^AP.*$/.test(feature.ref) ||
+                                        /^AYE.*$/.test(feature.ref) ||
                                         /^B .*$/.test(feature.ref) ||
                                         /^B.*$/.test(feature.ref)  ||
+                                        /^BKE.*$/.test(feature.ref)  ||
                                         /^CT.*$/.test(feature.ref) ||
+                                        /^CTE.*$/.test(feature.ref) ||
                                         /^D .*$/.test(feature.ref) ||
                                         /^D.*$/.test(feature.ref)  ||
                                         /^E.*$/.test(feature.ref)  ||
+                                        /^ECP.*$/.test(feature.ref)  ||
                                         /^IN:NH*$/.test(feature.network) ||
                                         /^IN:SH*$/.test(feature.network) ||
                                         /^IT:.*$/.test(feature.network) ||
                                         /^IT:A-road*$/.test(feature.network) ||
                                         /^IT:B-road*$/.test(feature.network) ||
                                         /^J.*$/.test(feature.ref) ||
+                                        /^K.*$/.test(feature.ref) ||
+                                        /^KJE.*$/.test(feature.ref) ||
+                                        /^KPE.*$/.test(feature.ref) ||
                                         /^LM.*$/.test(feature.ref) ||
+                                        /^MCE.*$/.test(feature.ref) ||
                                         /^N .*$/.test(feature.ref) ||
                                         /^N.*$/.test(feature.ref)  ||
                                         /^O.*$/.test(feature.ref) ||
                                         /^P.*$/.test(feature.ref) ||
                                         /^PE.*$/.test(feature.ref) ||
+                                        /^PIE.*$/.test(feature.ref) ||
                                         /^QL.*$/.test(feature.ref) ||
                                         /^RP.*$/.test(feature.ref) ||
+                                        /^SLE.*$/.test(feature.ref) ||
                                         /^SS.*$/.test(feature.ref) ||
+                                        /^TPE.*$/.test(feature.ref) ||
                                         /^TR-roads.*$/.test(feature.network) ||
                                         /^VI-roads.*$/.test(feature.network)
                                 ) || (
@@ -4743,6 +4765,7 @@ layers:
                                     }
 
                     # in Johor Bahru http://localhost:8000/#13/1.5058/103.7361
+                    # JOHOR
                     J-roads-Malaysia:
                         filter: |
                             function() {
@@ -4757,7 +4780,23 @@ layers:
                                         return ( 'MY:E-' + feature.ref.length + 'char');
                                     }
 
+                    ### KEDAH
+                    K-roads-Malaysia:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^K.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'MY:E-' + feature.ref.length + 'char');
+                                    }
+
                     # in Bukit Mertajam http://localhost:8000/#12/5.3470/100.4809
+                    # PENANG
                     P-roads-Malaysia:
                         filter: |
                             function() {
@@ -5021,6 +5060,185 @@ layers:
                                     function() {
                                         return ( 'VN:VN-' + feature.ref.length + 'char');
                                     }
+
+                    ### SINGAPORE
+
+                    # return ( 'SG:E-' + feature.ref.length + 'char');
+                    # return ( 'SG:E-' + feature.ref.replace("PIE", "").length + 'char');
+                    # this is not working
+                    AYE:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^AYE.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CH:E-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+                    BKE:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^BKE.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CH:E-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+                    CTE:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^CTE.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CH:E-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+                    ECP:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^ECP.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CH:E-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+                    PIE:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^PIE.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CH:E-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+                    KJE:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^KJE.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CH:E-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+                    KPE:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^KPE.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CH:E-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+                    MCE:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^MCE.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CH:E-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+                    SLE:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^SLE.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CH:E-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+                    TPE:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^TPE.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CH:E-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+
+
+
 
         path:
             filter:
