@@ -433,8 +433,8 @@ fonts:
 
 sources:
     mapzen:
-        type:  MVT #TopoJSON
-        url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
+        type: TopoJSON #MVT
+        url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.topojson
         #url:  https://dev-tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
         url_params:
             api_key: global.sdk_api_key
@@ -3345,8 +3345,8 @@ layers:
 
                     ### CANADA
                     ### sometimes in Alberta the network is not set... so this needs to go into Funky section as well. or fix the data...
-                    ### and maybe set the texture name to CA:YH instead of CA:I2
-                    CA:yellowhead:
+                    ### and maybe set the texture name to CA:yellowhead instead of CA:I2
+                    CA:transcanada:
                         filter: |
                             function() {
                                 return feature.shield_text && (
@@ -3357,22 +3357,22 @@ layers:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'CA:I2-' + feature.shield_text.length + 'char');
+                                        return ( 'CA:transcanada-' + feature.shield_text.length + 'char');
                                     }
 
                     # this is not working, see Montreal http://localhost:8000/#9/45.5400/286.4328
-                    CA:yellowhead2:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^CA:transcanada$/.test(feature.network) )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'CA:I2-' + feature.shield_text.length + 'char');
-                                    }
+                    #CA:yellowhead:
+#                       filter: |
+#                           function() {
+#                               return feature.shield_text && (
+#                                   /^CA:transcanada$/.test(feature.network) )
+#                           }
+#                       draw:
+#                           mapzen_icon_library:
+#                               sprite: |
+#                                   function() {
+#                                       return ( 'CA:transcanada-' + feature.shield_text.length + 'char');
+#                                   }
 
                     # BRITISH COLUMBIA
                     CA-BC:
@@ -3542,19 +3542,9 @@ layers:
                     ### CHINA
                     ###
                     CN-expressways:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^CN-expressways$/.test(feature.network) ||
-                                    /^CN:$/.test(feature.network)
-                                )
-                            }
+                        filter: { network: CN-expressways }
                         draw:
                             mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'CN-expressways-' + feature.shield_text.length + 'char');
-                                    }
                                 text:
                                     offset: [0px, 2px]
                                     font:
@@ -3578,18 +3568,9 @@ layers:
                                             fill: [1.000,0.931,0.680]
 
                     CN-roads:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^CN-roads$/.test(feature.network)
-                                )
-                            }
+                        filter: { network: CN-roads }
                         draw:
                             mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'CN-roads-' + feature.shield_text.length + 'char');
-                                    }
                                 text:
                                     font:
                                         fill: [1.000,1.000,1.000]
