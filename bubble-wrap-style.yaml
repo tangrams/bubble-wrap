@@ -3906,7 +3906,7 @@ layers:
                         priority: 2
                         visible: global.text_visible_admin
                         text_source: global.ux_language_text_source_boundary_lines_left_right
-                        offset: [0, 5px]
+                        offset: [0px, 5px]
                         text_wrap: 100px
                         font:
                             family: Varela
@@ -3964,7 +3964,7 @@ layers:
                         priority: 3
                         visible: global.text_visible_admin
                         text_source: global.ux_language_text_source_boundary_lines_left_right
-                        offset: [0, 5px]
+                        offset: [0px, 5px]
                         text_wrap: 100px
                         font:
                             family: Varela
