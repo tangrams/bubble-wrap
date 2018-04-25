@@ -3674,6 +3674,8 @@ layers:
                     ###
                     ### FRANCE
                     ###
+                    
+                    # This is a hack since E-roads should be sorted after FR:A-roads, FR:N-roads, and FR:D-roads
                     france-a-and-n-road-ref-shields:
                         filter: |
                             function() {
@@ -3713,59 +3715,15 @@ layers:
                                     font:
                                         fill: [0.20,0.20,0.20]
 
-                    FR:A-road:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^FR:A-road$/.test(feature.network)
-                                )
-                            }
+                    FR:A-and-N-road-offset:
+                        filter: { network: [FR, FR:A-road, FR:N-road] }
                         draw:
                             mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'FR:A-road-' + feature.shield_text.length + 'char');
-                                    }
                                 text:
                                     offset: [0px, -1px]
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-                    FR:A-road2:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^FR$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'FR:A-road-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    offset: [0px, -1px]
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    FR:N-road:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^FR:N-road$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'FR:N-road-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    offset: [0px, -1px]
-                                    font:
-                                        fill: [1.00,1.00,1.00]
 
                     ###
                     ### GERMANY
@@ -3881,6 +3839,7 @@ layers:
                                         fill: [1.000,1.000,1.000]
 
                         # Asian Highway/E - expressways in Malaysia - yellow shields - http://localhost:8000/#10/4.8919/101.1827
+                        # This is affecting roads in Japan! http://localhost:8000/#13/34.7106/135.6046
                         E-AsianHighway:
                             filter: |
                                 function() {
