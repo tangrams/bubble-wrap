@@ -2384,6 +2384,8 @@ layers:
                                 /^BKE.*$/.test(feature.ref) ||
                                 /^CTE.*$/.test(feature.ref) ||
                                 /^D.*$/.test(feature.ref) ||
+                                /^DN.*$/.test(feature.ref) ||
+                                /^DJ.*$/.test(feature.ref) ||
                                 /^E.*$/.test(feature.ref) ||
                                 /^ECP.*$/.test(feature.ref) ||
                                 /^J.*$/.test(feature.ref) ||
@@ -2989,6 +2991,7 @@ layers:
                                 /^AM:AM.*$/.test(feature.network) ||
                                 /^AR:AR.*$/.test(feature.network) ||
                                 /^AR:PR.*$/.test(feature.network) ||
+                                /^AsianHighway$/.test(feature.network) ||
                                 /^AT:A.*$/.test(feature.network) ||
                                 /^AT:L.*$/.test(feature.network) ||
                                 /^AT:S.*$/.test(feature.network) ||
@@ -3001,8 +3004,11 @@ layers:
                                 /^AU:I3.*$/.test(feature.network) ||
                                 /^AU:MR.*$/.test(feature.network) ||
                                 /^AU:TD.*$/.test(feature.network) ||
+                                /^BAB.*$/.test(feature.network) ||
                                 /^BD:NH.*$/.test(feature.network) ||
                                 /^BE:I.*$/.test(feature.network) ||
+                                /^BE:A-road.*$/.test(feature.network) ||
+                                /^BE:N-road.*$/.test(feature.network) ||
                                 /^BR$/.test(feature.network) ||
                                 /^BR:.*$/.test(feature.network) ||
                                 /^BR.*$/.test(feature.network) ||
@@ -3034,12 +3040,12 @@ layers:
                                 /^CN-expressways.*$/.test(feature.network) ||
                                 /^CN-roads.*$/.test(feature.network) ||
                                 /^DE:A.*$/.test(feature.network) ||
-                                /^BAB.*$/.test(feature.network) ||
                                 /^DE:DE.*$/.test(feature.network) ||
                                 /^DE:L.*$/.test(feature.network) ||
                                 /^dk:national.*$/.test(feature.network) ||
                                 /^DK.*$/.test(feature.network) ||
                                 /^DK:D.*$/.test(feature.network) ||
+                                /^DN.*$/.test(feature.network) ||
                                 /^ES:A.*$/.test(feature.network) ||
                                 /^ES:AA.*$/.test(feature.network) ||
                                 /^ES:AA2.*$/.test(feature.network) ||
@@ -3102,20 +3108,24 @@ layers:
                                 /^PT:A.*$/.test(feature.network) ||
                                 /^PT:IC.*$/.test(feature.network) ||
                                 /^PT:national.*$/.test(feature.network) ||
+                                /^RO:A.*$/.test(feature.network) ||
                                 /^RO:AS.*$/.test(feature.network) ||
                                 /^RO:DJ.*$/.test(feature.network) ||
                                 /^RO:DX.*$/.test(feature.network) ||
                                 /^RO:DС.*$/.test(feature.network) ||
                                 /^ru:national.*$/.test(feature.network) ||
+                                /^ru:regional.*$/.test(feature.network) ||
                                 /^SA:SA.*$/.test(feature.network) ||
                                 /^SE:A.*$/.test(feature.network) ||
                                 /^SG:E.*$/.test(feature.network) ||
                                 /^SK:I.*$/.test(feature.network) ||
                                 /^SK:LR.*$/.test(feature.network) ||
                                 /^SK:SK.*$/.test(feature.network) ||
+                                /^TH-network.*$/.test(feature.network) ||
                                 /^TH:TH.*$/.test(feature.network) ||
                                 /^TH:TM2.*$/.test(feature.network) ||
                                 /^TH:TM3.*$/.test(feature.network) ||
+                                /^TH-roads.*$/.test(feature.network) ||
                                 /^TR:DY.*$/.test(feature.network) ||
                                 /^TR:OR.*$/.test(feature.network) ||
                                 /^TR-roads.*$/.test(feature.network) ||
@@ -3127,26 +3137,28 @@ layers:
                                 /^UK:A.*$/.test(feature.network) ||
                                 /^UK:G.*$/.test(feature.network) ||
                                 /^UK:M.*$/.test(feature.network) ||
+                                /^motorway.*$/.test(feature.network) ||
+                                /^my:federal.*$/.test(feature.network) ||
+                                /^no:Fylkesvei.*$/.test(feature.network) ||
+                                /^no:Fylkesvei .*$/.test(feature.network)||
+                                /^pe:national.*$/.test(feature.network) ||
+                                /^GR.*$/.test(feature.network) ||
+                                /^pl:expressways$/.test(feature.network) ||
+                                /^PT:regional.*$/.test(feature.network) ||
+                                /^ua:international.*$/.test(feature.network) ||
+                                /^ua:national.*$/.test(feature.network) ||
+                                /^ua:regional.*$/.test(feature.network) ||
+                                /^ua:territorial.*$/.test(feature.network) ||
                                 /^VN:I.*$/.test(feature.network) ||
                                 /^VN:PR.*$/.test(feature.network) ||
                                 /^VN:VN.*$/.test(feature.network) ||
+                                /^VN:national.*$/.test(feature.network) ||
+                                /^VN-roads.*$/.test(feature.network) ||
                                 /^ZA:M.*$/.test(feature.network) ||
                                 /^ZA:P.*$/.test(feature.network) ||
                                 /^za:national.*$/.test(feature.network) ||
                                 /^za:regional.*$/.test(feature.network) ||
-                                /^za:capetown.*$/.test(feature.network) ||
-                                /^motorway.*$/.test(feature.network) ||
-                                /^no:Fylkesvei.*$/.test(feature.network) ||
-                                /^no:Fylkesvei .*$/.test(feature.network)||
-                                /^pe:national.*$/.test(feature.network) ||
-                                /^BE:A-road.*$/.test(feature.network) ||
-                                /^BE:N-road.*$/.test(feature.network) ||
-                                /^GR.*$/.test(feature.network) ||
-                                /^AsianHighway$/.test(feature.network) ||
-                                /^pl:expressways$/.test(feature.network) ||
-                                /^PT:regional.*$/.test(feature.network) ||
-                                /^VN:national.*$/.test(feature.network) ||
-                                /^my:federal.*$/.test(feature.network)
+                                /^za:capetown.*$/.test(feature.network)
                             )
                         }
                     draw:
@@ -3222,6 +3234,53 @@ layers:
                                         font:
                                             fill: [0.000,0.000,0.000]
 
+                    ###
+                    ### ARGENTINA
+                    ###
+                    AR:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^AR:national$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'AR:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 0px]
+
+                        # using generic shield here, too white shields in Argentina, difficult to view hierarchy
+                        early:
+                            filter:
+                                - $zoom: { max: 11 }
+                            draw:
+                                mapzen_icon_library:
+                                    visible: true
+
+                    AR:provincial:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^AR:provincial$/.test(feature.network) ||
+                                    /^AR:provincial:secondary$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'AR:PR-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 0px]
+
+                    ###
+                    ### AUSTRALIA
+                    ###
                     # AU-M:
                     #     filter: |
                     #         function() {
@@ -3535,6 +3594,27 @@ layers:
                                     font:
                                         fill: [1.000,1.000,1.000]
 
+
+                    ###
+                    ### CHILE
+                    ###
+                    CL:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^CL:national$/.test(feature.network) ||
+                                    /^CL:regional$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CL:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 2px]
+
                     ###
                     ### CHINA
                     ###
@@ -3571,6 +3651,24 @@ layers:
                                 text:
                                     font:
                                         fill: [1.000,1.000,1.000]
+
+                    ###
+                    ### DENMARK
+                    ###
+                    dk:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^dk:national$/.test(feature.network) ||
+                                    /^DK$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'dk:national-' + feature.shield_text.length + 'char');
+                                    }
 
                     ###
                     ### FRANCE
@@ -3660,110 +3758,6 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-
-                    ###
-                    ### JAPAN
-                    ###
-                    JP:national:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^JP:national$/.test(feature.network) ||
-                                    /^JP:national:expressway$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'JP:national-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    offset: [0px, -1px]
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    # JP:prefectural, JP:prefectural:chiba, JP:prefectural:gunma
-                    jp:prefectural:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^jp:prefectural$/.test(feature.network) ||
-                                    /^JP:prefectural$/.test(feature.network) ||
-                                    /^JP:prefectural:.*$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'jp:prefectural-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-
-                    ###
-                    ### RUSSIA
-                    ###
-
-                    ru:national:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^ru:national$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'ru:national-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-
-                    ###
-                    ### UNITED KINGDOM
-                    ###
-
-                    GB:     # implied GB:M and GB:A, with sublayer for the A
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^GB$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'GB-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-                        GB:A:
-                            filter: |
-                                function() {
-                                    return feature.shield_text && (
-                                        /^A.*$/.test(feature.shield_text)
-                                    )
-                                }
-                            draw:
-                                mapzen_icon_library:
-                                    sprite: |
-                                        function() {
-                                            return ( 'GB:A-' + feature.shield_text.length + 'char');
-                                        }
-                                    text:
-                                        font:
-                                            fill: [1.000,0.931,0.680]
-
-
                     ###
                     ### GREECE
                     ###
@@ -3837,8 +3831,11 @@ layers:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'IN:NH-' + feature.shield_text.length + 'char');
+                                        return ( 'CH:E-' + feature.shield_text.length + 'char');
                                     }
+                                text:
+                                    font:
+                                        fill: [1.000,1.000,1.000]
 
                         # Asian Highway/E - expressways in Malaysia - yellow shields - http://localhost:8000/#10/4.8919/101.1827
                         # This is affecting roads in Japan! http://localhost:8000/#13/34.7106/135.6046
@@ -3977,6 +3974,122 @@ layers:
                                         fill: [1.00,1.00,1.00]
 
                     ###
+                    ### JAPAN
+                    ###
+                    JP:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^JP:national$/.test(feature.network) ||
+                                    /^JP:national:expressway$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'JP:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, -1px]
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    # JP:prefectural, JP:prefectural:chiba, JP:prefectural:gunma
+                    jp:prefectural:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^jp:prefectural$/.test(feature.network) ||
+                                    /^JP:prefectural$/.test(feature.network) ||
+                                    /^JP:prefectural:.*$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'jp:prefectural-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    ###
+                    ### MALAYSIA
+                    ###
+                    my:federal:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^my:federal$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'MY:E-' + feature.shield_text.length + 'char');
+                                    }
+
+                    ###
+                    ### NEW ZEALAND
+                    ###
+                    NZ:SH:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^NZ:SH$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'NZ:SH-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    ###
+                    ### NORWAY
+                    ###
+                    no:Fylkesvei:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^no:Fylkesvei.*$/.test(feature.network) ||
+                                    /^no:Fylkesvei .*$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'NO:CR-' + feature.shield_text.length + 'char');
+                                    }
+
+                    ###
+                    ### PERU
+                    ###
+                    pe:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^pe:national$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'PE:PE-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 3px]
+
+                    ###
                     ### POLAND
                     ###
 
@@ -4053,61 +4166,81 @@ layers:
                                     }
 
                     ###
-                    ### MALAYSIA
+                    ### ROMANIA
                     ###
-                    my:federal:
+                    DN-national:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^my:federal$/.test(feature.network)
+                                    /^DN$/.test(feature.network)
                                 )
                             }
                         draw:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'MY:E-' + feature.shield_text.length + 'char');
-                                    }
-
-                    ###
-                    ### NEW ZEALAND
-                    ###
-                    NZ:SH:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^NZ:SH$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'NZ:SH-' + feature.shield_text.length + 'char');
+                                        return ( 'RO:DX-' + feature.shield_text.length + 'char');
                                     }
                                 text:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-                    ###
-                    ### SPAIN
-                    ###
-                    ES:A-road:
+                    RO:A:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^ES:A-road$/.test(feature.network)
+                                    /^RO:A$/.test(feature.network)
                                 )
                             }
                         draw:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'ES:A-' + feature.shield_text.length + 'char');
+                                        return ( 'RO:AS-' + feature.shield_text.length + 'char');
                                     }
                                 text:
                                     font:
                                         fill: [1.00,1.00,1.00]
+
+
+                    ###
+                    ### RUSSIA
+                    ###
+
+                    ru:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^ru:national$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ru:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    ru:regional:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^ru:regional$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ru:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
 
                     ###
                     ### SOUTH AFRICA
@@ -4165,6 +4298,26 @@ layers:
                                         fill: [1.000,0.915,0.610]
 
                     ###
+                    ### SPAIN
+                    ###
+                    ES:A-road:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^ES:A-road$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:A-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    ###
                     ### SWITZERLAND
                     ###
                     switzerland:motorway:
@@ -4184,62 +4337,167 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-
                     ###
-                    ### NORWAY
+                    ### THAILAND
                     ###
-                    no:Fylkesvei:
+                    TH-roads:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^no:Fylkesvei.*$/.test(feature.network) ||
-                                    /^no:Fylkesvei .*$/.test(feature.network)
+                                    /^TH-roads$/.test(feature.network)
                                 )
                             }
                         draw:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'NO:CR-' + feature.shield_text.length + 'char');
-                                    }
-
-                    ###
-                    ### DENMARK
-                    ###
-                    dk:national:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^dk:national$/.test(feature.network) ||
-                                    /^DK$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'dk:national-' + feature.shield_text.length + 'char');
-                                    }
-
-                    ###
-                    ### CHILE
-                    ###
-                    CL:national:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^CL:national$/.test(feature.network) ||
-                                    /^CL:regional$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'CL:national-' + feature.shield_text.length + 'char');
+                                        return ( 'TH:TH-' + feature.shield_text.length + 'char');
                                     }
                                 text:
-                                    offset: [0px, 2px]
+                                    offset: [0px, 4px]
+
+                    TH-network:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^TH-network$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'TH:TH-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 4px]
+
+                    VN-roads:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^VN-roads$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'TH:TH-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 4px]
+
+                    ###
+                    ### UKRAINE
+                    ###
+                    ua:international:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^ua:international$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'UA:M-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    ua:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^ua:national$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'UA:M-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    ua:regional:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^ua:regional$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'UA:M-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    # this is not working, does it exceed 5 characters in some places? T-, see KIEV
+                    # it is drawing after all, but seeing only at z14 at this location
+                    # http://localhost:8000/#14/50.5221/30.4056
+                    # needs yellow shield, using ES:IU for now, was UA:P
+                    ua:territorial:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^ua:territorial$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:IU-' + feature.shield_text.length + 'char');
+                                    }
+
+
+
+                    ###
+                    ### UNITED KINGDOM
+                    ###
+
+                    GB:     # implied GB:M and GB:A, with sublayer for the A
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^GB$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'GB-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+                        GB:A:
+                            filter: |
+                                function() {
+                                    return feature.shield_text && (
+                                        /^A.*$/.test(feature.shield_text)
+                                    )
+                                }
+                            draw:
+                                mapzen_icon_library:
+                                    sprite: |
+                                        function() {
+                                            return ( 'GB:A-' + feature.shield_text.length + 'char');
+                                        }
+                                    text:
+                                        font:
+                                            fill: [1.000,0.931,0.680]
 
                     ###
                     ### TURKEY
@@ -4321,69 +4579,6 @@ layers:
                                         return ( 'VN:VN-' + feature.shield_text.length + 'char');
                                     }
 
-                    ###
-                    ### ARGENTINA
-                    ###
-                    AR:national:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^AR:national$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'AR:national-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    offset: [0px, 0px]
-
-                        # using generic shield here, too white shields in Argentina, difficult to view hierarchy
-                        early:
-                            filter:
-                                - $zoom: { max: 11 }
-                            draw:
-                                mapzen_icon_library:
-                                    visible: true
-
-                    AR:provincial:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^AR:provincial$/.test(feature.network) ||
-                                    /^AR:provincial:secondary$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'AR:PR-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    offset: [0px, 0px]
-
-                    ###
-                    ### PERU
-                    ###
-                    pe:national:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^pe:national$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'PE:PE-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    offset: [0px, 3px]
-
                 z-mexico-shields:
                     filter: |
                         function() {
@@ -4423,6 +4618,8 @@ layers:
                                         /^CTE.*$/.test(feature.ref) ||
                                         /^D .*$/.test(feature.ref) ||
                                         /^D.*$/.test(feature.ref)  ||
+                                        /^DN.*$/.test(feature.ref)  ||
+                                        /^DJ.*$/.test(feature.ref)  ||
                                         /^E.*$/.test(feature.ref)  ||
                                         /^ECP.*$/.test(feature.ref)  ||
                                         /^IN:NH*$/.test(feature.network) ||
@@ -4771,6 +4968,42 @@ layers:
                                     }
 
                     ###
+                    ### ROMANIA
+                    ###
+
+                    # this is not working, Turkey D roads are drawing instead, see Bucharest
+                    # http://localhost:8000/#10/44.3347/26.2109
+                    DN-national:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^DN.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'RO:DX-' + feature.ref.length + 'char');
+                                    }
+
+                    # this is not working, Turkey D roads are drawing here instead, see Bucharest
+                    # http://localhost:8000/#11/44.4806/26.0953
+                    DJ-roads:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^DJ.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'RO:DJ-' + feature.ref.length + 'char');
+                                    }
+
+                    ###
                     ### PERU
                     ###
                     PE-highways:
@@ -4974,6 +5207,8 @@ layers:
                                         return ( 'VN:VN-' + feature.ref.length + 'char');
                                     }
 
+                    # CT roads can also be found in Romania
+                    # http://localhost:8000/#13/45.7584/21.2448
                     CT-roads:
                         filter: |
                             function() {
