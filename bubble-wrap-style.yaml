@@ -3004,6 +3004,7 @@ layers:
                                 /^AU:I3.*$/.test(feature.network) ||
                                 /^AU:MR.*$/.test(feature.network) ||
                                 /^AU:TD.*$/.test(feature.network) ||
+                                /^BAB.*$/.test(feature.network) ||
                                 /^BD:NH.*$/.test(feature.network) ||
                                 /^BE:I.*$/.test(feature.network) ||
                                 /^BE:A-road.*$/.test(feature.network) ||
@@ -3039,12 +3040,12 @@ layers:
                                 /^CN-expressways.*$/.test(feature.network) ||
                                 /^CN-roads.*$/.test(feature.network) ||
                                 /^DE:A.*$/.test(feature.network) ||
-                                /^BAB.*$/.test(feature.network) ||
                                 /^DE:DE.*$/.test(feature.network) ||
                                 /^DE:L.*$/.test(feature.network) ||
                                 /^dk:national.*$/.test(feature.network) ||
                                 /^DK.*$/.test(feature.network) ||
                                 /^DK:D.*$/.test(feature.network) ||
+                                /^DN.*$/.test(feature.network) ||
                                 /^ES:A.*$/.test(feature.network) ||
                                 /^ES:AA.*$/.test(feature.network) ||
                                 /^ES:AA2.*$/.test(feature.network) ||
@@ -3107,6 +3108,7 @@ layers:
                                 /^PT:A.*$/.test(feature.network) ||
                                 /^PT:IC.*$/.test(feature.network) ||
                                 /^PT:national.*$/.test(feature.network) ||
+                                /^RO:A.*$/.test(feature.network) ||
                                 /^RO:AS.*$/.test(feature.network) ||
                                 /^RO:DJ.*$/.test(feature.network) ||
                                 /^RO:DX.*$/.test(feature.network) ||
@@ -4196,6 +4198,43 @@ layers:
                                         return ( 'DE:L-' + feature.shield_text.length + 'char');
                                     }
 
+                    ###
+                    ### ROMANIA
+                    ###
+                    DN-national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^DN$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'RO:DX-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    RO:A:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^RO:A$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'RO:AS-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
 
                     ###
                     ### RUSSIA
@@ -5110,6 +5149,8 @@ layers:
                                         return ( 'VN:VN-' + feature.ref.length + 'char');
                                     }
 
+                    # CT roads can also be found in Romania
+                    # http://localhost:8000/#13/45.7584/21.2448
                     CT-roads:
                         filter: |
                             function() {
