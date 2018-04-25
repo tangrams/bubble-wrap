@@ -3114,6 +3114,7 @@ layers:
                                 /^RO:DX.*$/.test(feature.network) ||
                                 /^RO:DС.*$/.test(feature.network) ||
                                 /^ru:national.*$/.test(feature.network) ||
+                                /^ru:regional.*$/.test(feature.network) ||
                                 /^SA:SA.*$/.test(feature.network) ||
                                 /^SE:A.*$/.test(feature.network) ||
                                 /^SG:E.*$/.test(feature.network) ||
@@ -3144,6 +3145,10 @@ layers:
                                 /^GR.*$/.test(feature.network) ||
                                 /^pl:expressways$/.test(feature.network) ||
                                 /^PT:regional.*$/.test(feature.network) ||
+                                /^ua:international.*$/.test(feature.network) ||
+                                /^ua:national.*$/.test(feature.network) ||
+                                /^ua:regional.*$/.test(feature.network) ||
+                                /^ua:territorial.*$/.test(feature.network) ||
                                 /^VN:I.*$/.test(feature.network) ||
                                 /^VN:PR.*$/.test(feature.network) ||
                                 /^VN:VN.*$/.test(feature.network) ||
@@ -3273,6 +3278,9 @@ layers:
                                 text:
                                     offset: [0px, 0px]
 
+                    ###
+                    ### AUSTRALIA
+                    ###
                     # AU-M:
                     #     filter: |
                     #         function() {
@@ -4257,6 +4265,24 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    ru:regional:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^ru:regional$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ru:national-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+
                     ###
                     ### SOUTH AFRICA
                     ###
@@ -4402,6 +4428,79 @@ layers:
                                     }
                                 text:
                                     offset: [0px, 4px]
+
+                    ###
+                    ### UKRAINE
+                    ###
+                    ua:international:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^ua:international$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'UA:M-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    ua:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^ua:national$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'UA:M-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    ua:regional:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^ua:regional$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'UA:M-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    # this is not working, does it exceed 5 characters in some places? T-, see KIEV
+                    # it is drawing after all, but seeing only at z14 at this location
+                    # http://localhost:8000/#14/50.5221/30.4056
+                    # needs yellow shield, using ES:IU for now, was UA:P
+                    ua:territorial:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^ua:territorial$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:IU-' + feature.shield_text.length + 'char');
+                                    }
+
 
 
                     ###
