@@ -3087,6 +3087,7 @@ layers:
                                 /^JP:national.*$/.test(feature.network) ||
                                 /^JP:prefectural.*$/.test(feature.network) ||
                                 /^jp:prefectural.*$/.test(feature.network) ||
+                                /^KR:national.*$/.test(feature.network) ||
                                 /^LU:CR.*$/.test(feature.network) ||
                                 /^LU:M.*$/.test(feature.network) ||
                                 /^LU:RN.*$/.test(feature.network) ||
@@ -4051,6 +4052,26 @@ layers:
                                 sprite: |
                                     function() {
                                         return ( 'jp:prefectural-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    ###
+                    ### KOREA
+                    ###
+                    KR:national:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^KR:national$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'SK:I-' + feature.shield_text.length + 'char');
                                     }
                                 text:
                                     font:
