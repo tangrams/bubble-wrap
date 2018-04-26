@@ -2429,6 +2429,7 @@ layers:
                     function() {
                         return  feature.shield_text ||
                                 /^A.*$/.test(feature.ref) ||
+                                /^AH.*$/.test(feature.ref) ||
                                 /^AP.*$/.test(feature.ref) ||
                                 /^AR.*$/.test(feature.ref) ||
                                 /^AYE.*$/.test(feature.ref) ||
@@ -4449,6 +4450,7 @@ layers:
                                     (
                                         /^A .*$/.test(feature.ref) ||
                                         /^A.*$/.test(feature.ref)  ||
+                                        /^AH.*$/.test(feature.ref) ||
                                         /^AP.*$/.test(feature.ref) ||
                                         /^AYE.*$/.test(feature.ref) ||
                                         /^B .*$/.test(feature.ref) ||
@@ -4523,6 +4525,23 @@ layers:
                                 # offset: [0px, 1px]
                                 font:
                                     fill: [0.308,0.308,0.308]
+
+                    AH-AsianHighway:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^AH.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CH:E-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.000,1.000,1.000]
 
                     # MEX and A-roads
                     zoom8up:
