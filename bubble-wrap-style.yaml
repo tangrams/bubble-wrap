@@ -2451,6 +2451,7 @@ layers:
                                 /^MEX.*$/.test(feature.ref) ||
                                 /^MO.*$/.test(feature.ref) ||
                                 /^N.*$/.test(feature.ref) ||
+                                /^NH.*$/.test(feature.ref) ||
                                 /^O.*$/.test(feature.ref) ||
                                 /^P.*$/.test(feature.ref) ||
                                 /^PE.*$/.test(feature.ref) ||
@@ -4493,6 +4494,7 @@ layers:
                                         /^CT.*$/.test(feature.ref) ||
                                         /^CU.*$/.test(feature.ref) ||
                                         /^MO.*$/.test(feature.ref) ||
+                                        /^NH.*$/.test(feature.ref) ||
                                         /^PE.*$/.test(feature.ref) ||
                                         /^PU.*$/.test(feature.ref) ||
                                         /^QL.*$/.test(feature.ref) ||
@@ -4717,7 +4719,7 @@ layers:
                     SH-roads:
                         filter: |
                             function() {
-                                return feature.ref && (
+                                return feature.shield_text && (
                                     /^SH.*$/.test(feature.ref)
                                 )
                             }
@@ -4725,8 +4727,25 @@ layers:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'IN:SH-' + feature.ref.length + 'char');
+                                        return ( 'IN:SH-' + feature.shield_text.length + 'char');
                                     }
+
+                    # this is offsetting all other NH refs, will comment out for now
+                    NH-roads:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^NH.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IN:NH-' + feature.shield_text.length + 'char');
+                                    }
+                                # text:
+                                #     offset: [0px, 3px]
 
                     ###
                     ### ITALY
