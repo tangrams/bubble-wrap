@@ -2379,10 +2379,14 @@ layers:
                     function() {
                         return  feature.shield_text ||
                                 /^A.*$/.test(feature.ref) ||
+                                /^AP.*$/.test(feature.ref) ||
+                                /^AR.*$/.test(feature.ref) ||
                                 /^AYE.*$/.test(feature.ref) ||
                                 /^B.*$/.test(feature.ref) ||
                                 /^BKE.*$/.test(feature.ref) ||
                                 /^CTE.*$/.test(feature.ref) ||
+                                /^CT.*$/.test(feature.ref) ||
+                                /^CU.*$/.test(feature.ref) ||
                                 /^D.*$/.test(feature.ref) ||
                                 /^DN.*$/.test(feature.ref) ||
                                 /^DJ.*$/.test(feature.ref) ||
@@ -2392,24 +2396,21 @@ layers:
                                 /^K.*$/.test(feature.ref) ||
                                 /^KJE.*$/.test(feature.ref) ||
                                 /^KPE.*$/.test(feature.ref) ||
+                                /^LM.*$/.test(feature.ref) ||
                                 /^MCE.*$/.test(feature.ref) ||
+                                /^MEX.*$/.test(feature.ref) ||
+                                /^MO.*$/.test(feature.ref) ||
                                 /^N.*$/.test(feature.ref) ||
                                 /^O.*$/.test(feature.ref) ||
                                 /^P.*$/.test(feature.ref) ||
-                                /^QL.*$/.test(feature.ref) ||
-                                /^CT.*$/.test(feature.ref) ||
                                 /^PE.*$/.test(feature.ref) ||
                                 /^PIE.*$/.test(feature.ref) ||
-                                /^AR.*$/.test(feature.ref) ||
-                                /^MO.*$/.test(feature.ref) ||
-                                /^TA.*$/.test(feature.ref) ||
                                 /^PU.*$/.test(feature.ref) ||
-                                /^CU.*$/.test(feature.ref) ||
-                                /^AP.*$/.test(feature.ref) ||
                                 /^RP.*$/.test(feature.ref) ||
-                                /^LM.*$/.test(feature.ref) ||
-                                /^MEX.*$/.test(feature.ref) ||
+                                /^QL.*$/.test(feature.ref) ||
+                                /^SH.*$/.test(feature.ref) ||
                                 /^SLE.*$/.test(feature.ref) ||
+                                /^TA.*$/.test(feature.ref) ||
                                 /^TPE.*$/.test(feature.ref)
                     }
                 # draw:
@@ -4874,6 +4875,24 @@ layers:
                             draw:
                                 mapzen_icon_library:
                                     visible: false
+
+                    SH-roads:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^SH.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IN:SH-' + feature.ref.length + 'char');
+                                    }
+
+                    ###
+                    ### ITALY
+                    ###
                     IT:AS:
                         filter: |
                             function() {
