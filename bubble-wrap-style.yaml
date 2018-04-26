@@ -4481,6 +4481,7 @@ layers:
                                         /^PIE.*$/.test(feature.ref) ||
                                         /^QL.*$/.test(feature.ref) ||
                                         /^RP.*$/.test(feature.ref) ||
+                                        /^SH.*$/.test(feature.ref) ||
                                         /^SLE.*$/.test(feature.ref) ||
                                         /^SS.*$/.test(feature.ref) ||
                                         /^TPE.*$/.test(feature.ref) ||
@@ -4728,6 +4729,20 @@ layers:
                                 sprite: |
                                     function() {
                                         return ( 'IN:SH-' + feature.shield_text.length + 'char');
+                                    }
+
+                    SH-roads-no-shield-text:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^SH.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IN:SH-' + feature.ref.length + 'char');
                                     }
 
                     # this is offsetting all other NH refs, will comment out for now
