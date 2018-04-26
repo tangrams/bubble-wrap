@@ -2462,6 +2462,9 @@ layers:
                                 /^QL.*$/.test(feature.ref) ||
                                 /^SH.*$/.test(feature.ref) ||
                                 /^SLE.*$/.test(feature.ref) ||
+                                /^SP.*$/.test(feature.ref) ||
+                                /^SR.*$/.test(feature.ref) ||
+                                /^SS.*$/.test(feature.ref) ||
                                 /^TA.*$/.test(feature.ref) ||
                                 /^TPE.*$/.test(feature.ref)
                     }
@@ -4485,6 +4488,8 @@ layers:
                                         /^RP.*$/.test(feature.ref) ||
                                         /^SH.*$/.test(feature.ref) ||
                                         /^SLE.*$/.test(feature.ref) ||
+                                        /^SP.*$/.test(feature.ref) ||
+                                        /^SR.*$/.test(feature.ref) ||
                                         /^SS.*$/.test(feature.ref) ||
                                         /^TPE.*$/.test(feature.ref) ||
                                         /^TR-roads.*$/.test(feature.network) ||
@@ -4502,6 +4507,8 @@ layers:
                                         /^PU.*$/.test(feature.ref) ||
                                         /^QL.*$/.test(feature.ref) ||
                                         /^SH.*$/.test(feature.ref) ||
+                                        /^SP.*$/.test(feature.ref) ||
+                                        /^SR.*$/.test(feature.ref) ||
                                         /^SS.*$/.test(feature.ref) ||
                                         /^TA.*$/.test(feature.ref)
                                     )
@@ -4814,6 +4821,88 @@ layers:
                                 sprite: |
                                     function() {
                                         return ( 'IT:B-road-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    SS-roads:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^SS.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IT:B-road-' + feature.ref.length + 'char');
+                                    }
+
+                    SR-roads:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^SR.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IT:B-road-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    SP-roads:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^SP.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IT:B-road-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    SP-roads-shield-text:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^SP.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IT:B-road-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    SR-roads-shield-text:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^SR.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IT:B-road-' + feature.shield_text.length + 'char');
                                     }
                                 text:
                                     font:
