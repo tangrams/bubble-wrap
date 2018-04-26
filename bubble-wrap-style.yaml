@@ -2904,6 +2904,7 @@ layers:
                                 /^IN:SH.*$/.test(feature.network) ||
                                 /^IN:MH.*$/.test(feature.network) ||
                                 /^IQ:IQ.*$/.test(feature.network) ||
+                                /^IT$/.test(feature.network) ||
                                 /^IT:A-road$/.test(feature.network) ||
                                 /^IT:B-road$/.test(feature.network) ||
                                 /^IT:.*$/.test(feature.network) ||
@@ -3768,7 +3769,8 @@ layers:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^IT:A-road$/.test(feature.network)
+                                    /^IT:A-road$/.test(feature.network) ||
+                                    /^IT$/.test(feature.network)
                                 )
                             }
                         draw:
