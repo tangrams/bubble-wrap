@@ -2435,6 +2435,7 @@ layers:
                                 /^AYE.*$/.test(feature.ref) ||
                                 /^B.*$/.test(feature.ref) ||
                                 /^BKE.*$/.test(feature.ref) ||
+                                /^C-.*$/.test(feature.ref) ||
                                 /^CTE.*$/.test(feature.ref) ||
                                 /^CT.*$/.test(feature.ref) ||
                                 /^CU.*$/.test(feature.ref) ||
@@ -2448,9 +2449,11 @@ layers:
                                 /^KJE.*$/.test(feature.ref) ||
                                 /^KPE.*$/.test(feature.ref) ||
                                 /^LM.*$/.test(feature.ref) ||
+                                /^M-.*$/.test(feature.ref) ||
                                 /^MCE.*$/.test(feature.ref) ||
                                 /^MEX.*$/.test(feature.ref) ||
                                 /^MO.*$/.test(feature.ref) ||
+                                /^N-.*$/.test(feature.ref)  ||
                                 /^N.*$/.test(feature.ref) ||
                                 /^NH.*$/.test(feature.ref) ||
                                 /^O.*$/.test(feature.ref) ||
@@ -2881,6 +2884,7 @@ layers:
                                 /^DK.*$/.test(feature.network) ||
                                 /^DK:D.*$/.test(feature.network) ||
                                 /^DN.*$/.test(feature.network) ||
+                                /^ES.*$/.test(feature.network) ||
                                 /^ES:A.*$/.test(feature.network) ||
                                 /^ES:AA.*$/.test(feature.network) ||
                                 /^ES:AA2.*$/.test(feature.network) ||
@@ -4170,6 +4174,23 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    ES:A-road2:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^ES$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:A-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
                     ###
                     ### SWITZERLAND
                     ###
@@ -4459,6 +4480,7 @@ layers:
                                         /^B .*$/.test(feature.ref) ||
                                         /^B.*$/.test(feature.ref)  ||
                                         /^BKE.*$/.test(feature.ref)  ||
+                                        /^C-.*$/.test(feature.ref) ||
                                         /^CT.*$/.test(feature.ref) ||
                                         /^CTE.*$/.test(feature.ref) ||
                                         /^D .*$/.test(feature.ref) ||
@@ -4477,7 +4499,9 @@ layers:
                                         /^KJE.*$/.test(feature.ref) ||
                                         /^KPE.*$/.test(feature.ref) ||
                                         /^LM.*$/.test(feature.ref) ||
+                                        /^M-.*$/.test(feature.ref) ||
                                         /^MCE.*$/.test(feature.ref) ||
+                                        /^N-.*$/.test(feature.ref)  ||
                                         /^N .*$/.test(feature.ref) ||
                                         /^N.*$/.test(feature.ref)  ||
                                         /^O.*$/.test(feature.ref) ||
@@ -4499,8 +4523,10 @@ layers:
                                     (
                                         /^AP.*$/.test(feature.ref) ||
                                         /^AR.*$/.test(feature.ref) ||
+                                        /^C-.*$/.test(feature.ref) ||
                                         /^CT.*$/.test(feature.ref) ||
                                         /^CU.*$/.test(feature.ref) ||
+                                        /^M-.*$/.test(feature.ref) ||
                                         /^MO.*$/.test(feature.ref) ||
                                         /^NH.*$/.test(feature.ref) ||
                                         /^PE.*$/.test(feature.ref) ||
@@ -4762,7 +4788,7 @@ layers:
                             function() {
                                 return feature.ref && (
                                     /^SH.*$/.test(feature.ref)
-                                )
+                                ) && !feature.shield_text
                             }
                         draw:
                             mapzen_icon_library:
@@ -5172,6 +5198,134 @@ layers:
                             draw:
                                 mapzen_icon_library:
                                     visible: true
+
+                    ###
+                    ### SPAIN
+                    ###
+
+                    Autopistas:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^AP.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:A-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+
+                    # need a red shield for national roads in Spain
+                    Nacional-Spain:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^N-.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'FR:A-road-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    Nacional-Spain-shield-text:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^N-.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'FR:A-road-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    # MADRID
+                    M-Madrid:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^M-.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:A-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    # MADRID
+                    M-Madrid-shield-text:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^M-.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:A-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    # CATALUNYA
+                    C-Catalonia:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^C-.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:A-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    C-Catalonia-shield-text:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^C-.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:A-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
 
                     ###
                     ### TURKEY
