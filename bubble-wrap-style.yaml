@@ -2449,6 +2449,7 @@ layers:
                                 /^KJE.*$/.test(feature.ref) ||
                                 /^KPE.*$/.test(feature.ref) ||
                                 /^LM.*$/.test(feature.ref) ||
+                                /^M.*$/.test(feature.ref) ||
                                 /^M-.*$/.test(feature.ref) ||
                                 /^MCE.*$/.test(feature.ref) ||
                                 /^MEX.*$/.test(feature.ref) ||
@@ -4499,6 +4500,7 @@ layers:
                                         /^KJE.*$/.test(feature.ref) ||
                                         /^KPE.*$/.test(feature.ref) ||
                                         /^LM.*$/.test(feature.ref) ||
+                                        /^M.*$/.test(feature.ref) ||
                                         /^M-.*$/.test(feature.ref) ||
                                         /^MCE.*$/.test(feature.ref) ||
                                         /^N-.*$/.test(feature.ref)  ||
@@ -5327,108 +5329,6 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-                    ###
-                    ### TURKEY
-                    ###
-                    # this filter is causing Vietnam to receive blue shield, fixed at this location http://localhost:8000/#11/18.9040/105.3390
-                    # Malaysia is also receiving these shields here: http://localhost:8000/#10/5.8310/102.6328
-                    TR-roads-D:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^D.*$/.test(feature.ref) &&
-                                    !(/^VI-roads$/.test(feature.network))
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'TR:DY-' + feature.ref.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    Otoyol-roads:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^O.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'TR-roads-' + feature.ref.length + 'char');
-                                    }
-
-                    ###
-                    ### VIETNAM
-                    ###
-                    QL-roads:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^QL.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'VN:VN-' + feature.ref.length + 'char');
-                                    }
-
-                    # CT roads can also be found in Romania
-                    # http://localhost:8000/#13/45.7584/21.2448
-                    CT-roads:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^CT.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'VN:I-' + feature.ref.length + 'char');
-                                    }
-
-                    # trying to make this work for this location http://localhost:8000/#11/17.1969/106.8249
-                    # this filter should also work for here http://localhost:8000/#11/16.6039/106.9895
-                    VI-roads-ref:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^VI-roads$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'VN:VN-' + feature.ref.length + 'char');
-                                    }
-
-                    # trying to make this work for http://localhost:8000/#11/16.6043/106.9897
-                    VI-roads-Ho-Chi-Minh:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^VI-roads$/.test(feature.network) &&
-                                    feature["name:en"] == 'Ho Chi Minh Highway'
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'VN:VN-' + feature.ref.length + 'char');
-                                    }
-
                     ### SINGAPORE
 
                     # return ( 'SG:E-' + feature.ref.length + 'char');
@@ -5603,6 +5503,131 @@ layers:
                                 text:
                                     font:
                                         fill: [1.000,1.000,1.000]
+
+                    ###
+                    ### SOUTH AFRICA
+                    ###
+
+                    M-roads-South-Africa:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^M.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ZA:M-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 3px]
+                                    font:
+                                        fill: [1.000,1.000,1.000]
+
+
+                    ###
+                    ### TURKEY
+                    ###
+                    # this filter is causing Vietnam to receive blue shield, fixed at this location http://localhost:8000/#11/18.9040/105.3390
+                    # Malaysia is also receiving these shields here: http://localhost:8000/#10/5.8310/102.6328
+                    TR-roads-D:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^D.*$/.test(feature.ref) &&
+                                    !(/^VI-roads$/.test(feature.network))
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'TR:DY-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    Otoyol-roads:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^O.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'TR-roads-' + feature.ref.length + 'char');
+                                    }
+
+                    ###
+                    ### VIETNAM
+                    ###
+                    QL-roads:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^QL.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'VN:VN-' + feature.ref.length + 'char');
+                                    }
+
+                    # CT roads can also be found in Romania
+                    # http://localhost:8000/#13/45.7584/21.2448
+                    CT-roads:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^CT.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'VN:I-' + feature.ref.length + 'char');
+                                    }
+
+                    # trying to make this work for this location http://localhost:8000/#11/17.1969/106.8249
+                    # this filter should also work for here http://localhost:8000/#11/16.6039/106.9895
+                    VI-roads-ref:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^VI-roads$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'VN:VN-' + feature.ref.length + 'char');
+                                    }
+
+                    # trying to make this work for http://localhost:8000/#11/16.6043/106.9897
+                    VI-roads-Ho-Chi-Minh:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^VI-roads$/.test(feature.network) &&
+                                    feature["name:en"] == 'Ho Chi Minh Highway'
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'VN:VN-' + feature.ref.length + 'char');
+                                    }
 
 
 
