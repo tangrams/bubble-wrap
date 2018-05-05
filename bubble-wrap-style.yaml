@@ -2445,6 +2445,7 @@ layers:
                                 /^DJ.*$/.test(feature.ref) ||
                                 /^E.*$/.test(feature.ref) ||
                                 /^ECP.*$/.test(feature.ref) ||
+                                /^EX.*$/.test(feature.ref) ||
                                 /^J.*$/.test(feature.ref) ||
                                 /^K.*$/.test(feature.ref) ||
                                 /^KJE.*$/.test(feature.ref) ||
@@ -2463,6 +2464,7 @@ layers:
                                 /^PE.*$/.test(feature.ref) ||
                                 /^PIE.*$/.test(feature.ref) ||
                                 /^PU.*$/.test(feature.ref) ||
+                                /^RM.*$/.test(feature.ref) ||
                                 /^RP.*$/.test(feature.ref) ||
                                 /^QL.*$/.test(feature.ref) ||
                                 /^SH.*$/.test(feature.ref) ||
@@ -4493,6 +4495,7 @@ layers:
                                         /^DJ.*$/.test(feature.ref)  ||
                                         /^E.*$/.test(feature.ref)  ||
                                         /^ECP.*$/.test(feature.ref)  ||
+                                        /^EX.*$/.test(feature.ref)  ||
                                         /^IN:NH*$/.test(feature.network) ||
                                         /^IN:SH*$/.test(feature.network) ||
                                         /^IT:.*$/.test(feature.network) ||
@@ -4514,6 +4517,7 @@ layers:
                                         /^PE.*$/.test(feature.ref) ||
                                         /^PIE.*$/.test(feature.ref) ||
                                         /^QL.*$/.test(feature.ref) ||
+                                        /^RM.*$/.test(feature.ref) ||
                                         /^RP.*$/.test(feature.ref) ||
                                         /^SH.*$/.test(feature.ref) ||
                                         /^SLE.*$/.test(feature.ref) ||
@@ -5262,6 +5266,25 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    # EXTREMADURA
+                    EX-Extremadura:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^EX.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:A-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+
                     # GALICIA
                     AG-Galicia:
                         filter: |
@@ -5280,13 +5303,30 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-
                     # MADRID
                     M-Madrid:
                         filter: |
                             function() {
                                 return feature.ref && (
                                     /^M-.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:A-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    # MURCIA
+                    M-Murcia:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^RM.*$/.test(feature.ref)
                                 )
                             }
                         draw:
