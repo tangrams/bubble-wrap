@@ -2429,6 +2429,7 @@ layers:
                     function() {
                         return  feature.shield_text ||
                                 /^A.*$/.test(feature.ref) ||
+                                /^AG.*$/.test(feature.ref) ||
                                 /^AH.*$/.test(feature.ref) ||
                                 /^AP.*$/.test(feature.ref) ||
                                 /^AR.*$/.test(feature.ref) ||
@@ -2470,7 +2471,8 @@ layers:
                                 /^SR.*$/.test(feature.ref) ||
                                 /^SS.*$/.test(feature.ref) ||
                                 /^TA.*$/.test(feature.ref) ||
-                                /^TPE.*$/.test(feature.ref)
+                                /^TPE.*$/.test(feature.ref) ||
+                                /^V.*$/.test(feature.ref)
                     }
                 # draw:
                 #     mapzen_icon_library:
@@ -4475,6 +4477,7 @@ layers:
                                     (
                                         /^A .*$/.test(feature.ref) ||
                                         /^A.*$/.test(feature.ref)  ||
+                                        /^AG.*$/.test(feature.ref)  ||
                                         /^AH.*$/.test(feature.ref) ||
                                         /^AP.*$/.test(feature.ref) ||
                                         /^AYE.*$/.test(feature.ref) ||
@@ -4519,6 +4522,7 @@ layers:
                                         /^SS.*$/.test(feature.ref) ||
                                         /^TPE.*$/.test(feature.ref) ||
                                         /^TR-roads.*$/.test(feature.network) ||
+                                        /^V-.*$/.test(feature.ref) ||
                                         /^VI-roads.*$/.test(feature.network)
                                 ) || (
                                     (feature.shield_text && feature.ref) &&
@@ -5258,6 +5262,25 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    # GALICIA
+                    AG-Galicia:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^AG.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:A-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+
                     # MADRID
                     M-Madrid:
                         filter: |
@@ -5324,6 +5347,24 @@ layers:
                                 sprite: |
                                     function() {
                                         return ( 'ES:A-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    # VALENCIA
+                    V-Valencia:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^V-.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:A-' + feature.ref.length + 'char');
                                     }
                                 text:
                                     font:
