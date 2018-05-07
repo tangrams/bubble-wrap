@@ -2440,6 +2440,7 @@ layers:
                                 /^BKE.*$/.test(feature.ref) ||
                                 /^BU.*$/.test(feature.ref) ||
                                 /^C-.*$/.test(feature.ref) ||
+                                /^CM.*$/.test(feature.ref) ||
                                 /^CTE.*$/.test(feature.ref) ||
                                 /^CT.*$/.test(feature.ref) ||
                                 /^CU.*$/.test(feature.ref) ||
@@ -2461,6 +2462,7 @@ layers:
                                 /^LR.*$/.test(feature.ref) ||
                                 /^LZ.*$/.test(feature.ref) ||
                                 /^M.*$/.test(feature.ref) ||
+                                /^MA.*$/.test(feature.ref) ||
                                 /^Ma.*$/.test(feature.ref) ||
                                 /^Me.*$/.test(feature.ref) ||
                                 /^M-.*$/.test(feature.ref) ||
@@ -4504,6 +4506,7 @@ layers:
                                         /^BKE.*$/.test(feature.ref)  ||
                                         /^BU.*$/.test(feature.ref)  ||
                                         /^C-.*$/.test(feature.ref) ||
+                                        /^CM.*$/.test(feature.ref) ||
                                         /^CT.*$/.test(feature.ref) ||
                                         /^CTE.*$/.test(feature.ref) ||
                                         /^D .*$/.test(feature.ref) ||
@@ -4531,6 +4534,7 @@ layers:
                                         /^LR.*$/.test(feature.ref) ||
                                         /^LZ.*$/.test(feature.ref) ||
                                         /^M.*$/.test(feature.ref) ||
+                                        /^MA.*$/.test(feature.ref) ||
                                         /^Ma.*$/.test(feature.ref) ||
                                         /^Me.*$/.test(feature.ref) ||
                                         /^M-.*$/.test(feature.ref) ||
@@ -5332,7 +5336,9 @@ layers:
                                     /^AS.*$/.test(feature.ref) ||
                                     /^BI.*$/.test(feature.ref) ||
                                     /^C-.*$/.test(feature.ref) ||
+                                    /^CM.*$/.test(feature.ref) ||
                                     /^Ma.*$/.test(feature.ref) ||
+                                    /^MA.*$/.test(feature.ref) ||
                                     /^Me.*$/.test(feature.ref) ||
                                     /^EI.*$/.test(feature.ref) ||
                                     /^EX.*$/.test(feature.ref) ||
