@@ -3187,7 +3187,7 @@ layers:
                     ###
                     ### BANGLADESH
                     ###
-                    AH:
+                    AH: # Asian Highway
                         filter: |
                             function() {
                                 return feature.shield_text && (
@@ -3198,8 +3198,11 @@ layers:
                             mapzen_icon_library:
                                 sprite: |
                                     function() {
-                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
+                                        return ( 'CH:E-' + feature.shield_text.length + 'char');
                                     }
+                                text:
+                                    font:
+                                        fill: [1.000,1.000,1.000]
 
                     ###
                     ### BELGIUM - Generic White Shield
@@ -4267,22 +4270,6 @@ layers:
                                 text:
                                     offset: [0px, 4px]
 
-                    VN-roads:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^VN-roads$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'TH:TH-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    offset: [0px, 4px]
-
                     ###
                     ### UKRAINE
                     ###
@@ -4456,6 +4443,20 @@ layers:
                             function() {
                                 return feature.shield_text && (
                                     /^VI-roads$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'VN:VN-' + feature.shield_text.length + 'char');
+                                    }
+
+                    VN-roads:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^VN-roads$/.test(feature.network)
                                 )
                             }
                         draw:
