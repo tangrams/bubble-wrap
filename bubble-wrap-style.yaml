@@ -2436,7 +2436,9 @@ layers:
                                 /^AS.*$/.test(feature.ref) ||
                                 /^AYE.*$/.test(feature.ref) ||
                                 /^B.*$/.test(feature.ref) ||
+                                /^BI.*$/.test(feature.ref) ||
                                 /^BKE.*$/.test(feature.ref) ||
+                                /^BU.*$/.test(feature.ref) ||
                                 /^C-.*$/.test(feature.ref) ||
                                 /^CTE.*$/.test(feature.ref) ||
                                 /^CT.*$/.test(feature.ref) ||
@@ -2448,12 +2450,16 @@ layers:
                                 /^ECP.*$/.test(feature.ref) ||
                                 /^EI.*$/.test(feature.ref) ||
                                 /^EX.*$/.test(feature.ref) ||
+                                /^FV.*$/.test(feature.ref) ||
+                                /^GC.*$/.test(feature.ref) ||
+                                /^GI.*$/.test(feature.ref) ||
                                 /^J.*$/.test(feature.ref) ||
                                 /^K.*$/.test(feature.ref) ||
                                 /^KJE.*$/.test(feature.ref) ||
                                 /^KPE.*$/.test(feature.ref) ||
                                 /^LM.*$/.test(feature.ref) ||
                                 /^LR.*$/.test(feature.ref) ||
+                                /^LZ.*$/.test(feature.ref) ||
                                 /^M.*$/.test(feature.ref) ||
                                 /^Ma.*$/.test(feature.ref) ||
                                 /^Me.*$/.test(feature.ref) ||
@@ -2462,10 +2468,12 @@ layers:
                                 /^MEX.*$/.test(feature.ref) ||
                                 /^MO.*$/.test(feature.ref) ||
                                 /^N-.*$/.test(feature.ref)  ||
+                                /^NA.*$/.test(feature.ref)  ||
                                 /^N.*$/.test(feature.ref) ||
                                 /^NH.*$/.test(feature.ref) ||
                                 /^O.*$/.test(feature.ref) ||
                                 /^P.*$/.test(feature.ref) ||
+                                /^PA.*$/.test(feature.ref) ||
                                 /^PE.*$/.test(feature.ref) ||
                                 /^PIE.*$/.test(feature.ref) ||
                                 /^PU.*$/.test(feature.ref) ||
@@ -2478,6 +2486,7 @@ layers:
                                 /^SR.*$/.test(feature.ref) ||
                                 /^SS.*$/.test(feature.ref) ||
                                 /^TA.*$/.test(feature.ref) ||
+                                /^TF.*$/.test(feature.ref) ||
                                 /^TPE.*$/.test(feature.ref) ||
                                 /^V.*$/.test(feature.ref)
                     }
@@ -4491,7 +4500,9 @@ layers:
                                         /^AYE.*$/.test(feature.ref) ||
                                         /^B .*$/.test(feature.ref) ||
                                         /^B.*$/.test(feature.ref)  ||
+                                        /^BI.*$/.test(feature.ref)  ||
                                         /^BKE.*$/.test(feature.ref)  ||
+                                        /^BU.*$/.test(feature.ref)  ||
                                         /^C-.*$/.test(feature.ref) ||
                                         /^CT.*$/.test(feature.ref) ||
                                         /^CTE.*$/.test(feature.ref) ||
@@ -4503,6 +4514,9 @@ layers:
                                         /^ECP.*$/.test(feature.ref)  ||
                                         /^EI.*$/.test(feature.ref)  ||
                                         /^EX.*$/.test(feature.ref)  ||
+                                        /^FV.*$/.test(feature.ref)  ||
+                                        /^GC.*$/.test(feature.ref)  ||
+                                        /^GI.*$/.test(feature.ref)  ||
                                         /^IN:NH*$/.test(feature.network) ||
                                         /^IN:SH*$/.test(feature.network) ||
                                         /^IT:.*$/.test(feature.network) ||
@@ -4513,17 +4527,21 @@ layers:
                                         /^KJE.*$/.test(feature.ref) ||
                                         /^KPE.*$/.test(feature.ref) ||
                                         /^LM.*$/.test(feature.ref) ||
+                                        /^LO.*$/.test(feature.ref) ||
                                         /^LR.*$/.test(feature.ref) ||
+                                        /^LZ.*$/.test(feature.ref) ||
                                         /^M.*$/.test(feature.ref) ||
                                         /^Ma.*$/.test(feature.ref) ||
                                         /^Me.*$/.test(feature.ref) ||
                                         /^M-.*$/.test(feature.ref) ||
                                         /^MCE.*$/.test(feature.ref) ||
                                         /^N-.*$/.test(feature.ref)  ||
+                                        /^NA.*$/.test(feature.ref)  ||
                                         /^N .*$/.test(feature.ref) ||
                                         /^N.*$/.test(feature.ref)  ||
                                         /^O.*$/.test(feature.ref) ||
                                         /^P.*$/.test(feature.ref) ||
+                                        /^PA.*$/.test(feature.ref) ||
                                         /^PE.*$/.test(feature.ref) ||
                                         /^PIE.*$/.test(feature.ref) ||
                                         /^QL.*$/.test(feature.ref) ||
@@ -4534,6 +4552,7 @@ layers:
                                         /^SP.*$/.test(feature.ref) ||
                                         /^SR.*$/.test(feature.ref) ||
                                         /^SS.*$/.test(feature.ref) ||
+                                        /^TF.*$/.test(feature.ref) ||
                                         /^TPE.*$/.test(feature.ref) ||
                                         /^TR-roads.*$/.test(feature.network) ||
                                         /^V-.*$/.test(feature.ref) ||
@@ -4551,6 +4570,7 @@ layers:
                                         /^M-.*$/.test(feature.ref) ||
                                         /^MO.*$/.test(feature.ref) ||
                                         /^NH.*$/.test(feature.ref) ||
+                                        /^PA.*$/.test(feature.ref) ||
                                         /^PE.*$/.test(feature.ref) ||
                                         /^PU.*$/.test(feature.ref) ||
                                         /^QL.*$/.test(feature.ref) ||
@@ -4558,7 +4578,8 @@ layers:
                                         /^SP.*$/.test(feature.ref) ||
                                         /^SR.*$/.test(feature.ref) ||
                                         /^SS.*$/.test(feature.ref) ||
-                                        /^TA.*$/.test(feature.ref)
+                                        /^TA.*$/.test(feature.ref) ||
+                                        /^TF.*$/.test(feature.ref)
                                     )
                                 )
                             )
@@ -5278,29 +5299,18 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-                    # ASTURIAS
-                    AS-Asturias:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^AS.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'ES:A-' + feature.ref.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    AS-Asturias-shield-text:
+                    # ASTURIAS, BALEARIC ISLANDS, CATALONIA, MADRID
+                    Spain-regions-shield-text:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^AS.*$/.test(feature.ref)
+                                    /^AS.*$/.test(feature.ref) ||
+                                    /^BU.*$/.test(feature.ref) ||
+                                    /^C-.*$/.test(feature.ref) ||
+                                    /^EI.*$/.test(feature.ref) ||
+                                    /^M-.*$/.test(feature.ref) ||
+                                    /^PA.*$/.test(feature.ref) ||
+                                    /^TF.*$/.test(feature.ref)
                                 )
                             }
                         draw:
@@ -5313,193 +5323,29 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-                    # BALEARIC ISLANDS
-                    Ma-Balearic:
+                    # ASTURIAS, BALEARIC ISLANDS, EXTREMADURA, GALICIA, LA RIOJA, MADRID, MURCIA, CANARY ISLANDS
+                    Spain-regions-ref-blue:
                         filter: |
                             function() {
                                 return feature.ref && (
+                                    /^AG.*$/.test(feature.ref) ||
+                                    /^AS.*$/.test(feature.ref) ||
+                                    /^BI.*$/.test(feature.ref) ||
+                                    /^C-.*$/.test(feature.ref) ||
                                     /^Ma.*$/.test(feature.ref) ||
                                     /^Me.*$/.test(feature.ref) ||
-                                    /^EI.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'ES:A-' + feature.ref.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    EI-Balearic-shield-text:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^EI.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'ES:A-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    # EXTREMADURA
-                    EX-Extremadura:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^EX.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'ES:A-' + feature.ref.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-
-                    # GALICIA
-                    AG-Galicia:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^AG.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'ES:A-' + feature.ref.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    # LA RIOJA
-                    LR-La-Rioja:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^LR-.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'ES:A-' + feature.ref.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-
-                    # MADRID
-                    M-Madrid:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^M-.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'ES:A-' + feature.ref.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    # MURCIA
-                    M-Murcia:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^RM.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'ES:A-' + feature.ref.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    # MADRID
-                    M-Madrid-shield-text:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^M-.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'ES:A-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    # CATALUNYA
-                    C-Catalonia:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^C-.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'ES:A-' + feature.ref.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    C-Catalonia-shield-text:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^C-.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'ES:A-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    # VALENCIA
-                    V-Valencia:
-                        filter: |
-                            function() {
-                                return feature.ref && (
+                                    /^EI.*$/.test(feature.ref) ||
+                                    /^EX.*$/.test(feature.ref) ||
+                                    /^FV.*$/.test(feature.ref) ||
+                                    /^GC.*$/.test(feature.ref) ||
+                                    /^GI.*$/.test(feature.ref) ||
+                                    /^LO-.*$/.test(feature.ref) ||
+                                    /^LR-.*$/.test(feature.ref) ||
+                                    /^LZ.*$/.test(feature.ref) ||
+                                    /^M-.*$/.test(feature.ref) ||
+                                    /^PA.*$/.test(feature.ref) ||
+                                    /^RM.*$/.test(feature.ref) ||
+                                    /^TF.*$/.test(feature.ref) ||
                                     /^V-.*$/.test(feature.ref)
                                 )
                             }
@@ -5508,6 +5354,24 @@ layers:
                                 sprite: |
                                     function() {
                                         return ( 'ES:A-' + feature.ref.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
+                    # MORE SPAIN REGIONS - YELLOW SHIELD
+                    Spain-regions-yellow:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^NA.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'ES:AA-' + feature.ref.length + 'char');
                                     }
                                 text:
                                     font:
