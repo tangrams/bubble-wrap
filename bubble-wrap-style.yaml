@@ -1635,7 +1635,7 @@ layers:
                         text-blend-order:
                             font:
                                 fill: [0.0,0.0,0.0]
-                                size: [[15, 13px], 18, 17px]
+                                size: [[15, 13px], [18, 17px]]
                                 stroke: { color: [1.00,1.00,1.00], width: 3px }
             link:
                 filter: { is_link: true } # on- and off-ramps, etc
@@ -2434,11 +2434,13 @@ layers:
                                 /^AP.*$/.test(feature.ref) ||
                                 /^AR.*$/.test(feature.ref) ||
                                 /^AS.*$/.test(feature.ref) ||
+                                /^AY.*$/.test(feature.ref) ||
                                 /^AYE.*$/.test(feature.ref) ||
                                 /^B.*$/.test(feature.ref) ||
                                 /^BI.*$/.test(feature.ref) ||
                                 /^BKE.*$/.test(feature.ref) ||
                                 /^BU.*$/.test(feature.ref) ||
+                                /^CA.*$/.test(feature.ref) ||
                                 /^C-.*$/.test(feature.ref) ||
                                 /^CM.*$/.test(feature.ref) ||
                                 /^CTE.*$/.test(feature.ref) ||
@@ -2454,6 +2456,8 @@ layers:
                                 /^FV.*$/.test(feature.ref) ||
                                 /^GC.*$/.test(feature.ref) ||
                                 /^GI.*$/.test(feature.ref) ||
+                                /^HV.*$/.test(feature.ref) ||
+                                /^IC.*$/.test(feature.ref) ||
                                 /^J.*$/.test(feature.ref) ||
                                 /^K.*$/.test(feature.ref) ||
                                 /^KJE.*$/.test(feature.ref) ||
@@ -3134,6 +3138,8 @@ layers:
                                     }
                                 text:
                                     offset: [0px, 0px]
+                                    font:
+                                        fill: [0.000,0.000,0.000]
 
                     ###
                     ### AUSTRALIA
@@ -4507,6 +4513,7 @@ layers:
                                         /^BKE.*$/.test(feature.ref)  ||
                                         /^BU.*$/.test(feature.ref)  ||
                                         /^C-.*$/.test(feature.ref) ||
+                                        /^CA.*$/.test(feature.ref) ||
                                         /^CM.*$/.test(feature.ref) ||
                                         /^CT.*$/.test(feature.ref) ||
                                         /^CTE.*$/.test(feature.ref) ||
@@ -4568,10 +4575,13 @@ layers:
                                         /^AP.*$/.test(feature.ref) ||
                                         /^AR.*$/.test(feature.ref) ||
                                         /^AS.*$/.test(feature.ref) ||
+                                        /^AY.*$/.test(feature.ref) ||
                                         /^C-.*$/.test(feature.ref) ||
                                         /^CT.*$/.test(feature.ref) ||
                                         /^CU.*$/.test(feature.ref) ||
                                         /^EI.*$/.test(feature.ref) ||
+                                        /^HV.*$/.test(feature.ref) ||
+                                        /^IC.*$/.test(feature.ref) ||
                                         /^M-.*$/.test(feature.ref) ||
                                         /^MO.*$/.test(feature.ref) ||
                                         /^NH.*$/.test(feature.ref) ||
@@ -5120,72 +5130,19 @@ layers:
                                             return feature.ref.replace("PE-", "");
                                         }
 
-                    ### AREQUIPA
-                    AR-roads:
+                    ### AREQUIPA, MOQUEGUA, TACNA, CUSCO, AYACUCHO, ICA, HUANCAVELICA
+                    Peru-regions:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^AR.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
-                                    }
-
-                    ### MOQUEGUA
-                    MO-roads:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^MO.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
-                                    }
-
-                    ### TACNA
-                    TA-roads:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^TA.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
-                                    }
-
-                    ### PUNO
-                    PU-roads:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
+                                    /^AR.*$/.test(feature.ref) ||
+                                    /^AY.*$/.test(feature.ref) ||
+                                    /^CU.*$/.test(feature.ref) ||
+                                    /^HV.*$/.test(feature.ref) ||
+                                    /^IC.*$/.test(feature.ref) ||
+                                    /^MO.*$/.test(feature.ref) ||
+                                    /^TA.*$/.test(feature.ref) ||
                                     /^PU.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
-                                    }
-
-                    ### CUSCO
-                    CU-roads:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^CU.*$/.test(feature.ref)
                                 )
                             }
                         draw:
@@ -5197,7 +5154,6 @@ layers:
 
                     ### LIMA
 
-                    # this is not working
                     LM-roads:
                         filter: |
                             function() {
@@ -5219,6 +5175,28 @@ layers:
                         # this is kinda a hack
                         width_longggggg_ref_short:
                             filter: function() { return (feature.ref.replace("LM-", "").length <= 5); }
+                            draw:
+                                mapzen_icon_library:
+                                    visible: true
+
+                    # ... not seeing any shields, but the filter is being read
+                    # CAJAMARCA
+                    CA-roads:
+                        filter: |
+                            function() {
+                                return feature.ref && (
+                                    /^CA.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'DE:L-' + feature.ref.length + 'char');
+                                    }
+                        # this is kinda a hack
+                        width_longggggg_ref_short:
+                            filter: function() { return (feature.ref.replace("CA-", "").length <= 5); }
                             draw:
                                 mapzen_icon_library:
                                     visible: true
@@ -5567,7 +5545,8 @@ layers:
                         filter: |
                             function() {
                                 return feature.ref && (
-                                    /^M.*$/.test(feature.ref)
+                                    /^M.*$/.test(feature.ref) &&
+                                    !(/^MO.*$/.test(feature.ref))
                                 )
                             }
                         draw:
