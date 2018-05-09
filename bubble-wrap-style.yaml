@@ -2440,8 +2440,10 @@ layers:
                                 /^BI.*$/.test(feature.ref) ||
                                 /^BKE.*$/.test(feature.ref) ||
                                 /^BU.*$/.test(feature.ref) ||
+                                /^BR.*$/.test(feature.ref) ||
                                 /^CA.*$/.test(feature.ref) ||
                                 /^C-.*$/.test(feature.ref) ||
+                                /^CE.*$/.test(feature.ref) ||
                                 /^CM.*$/.test(feature.ref) ||
                                 /^CTE.*$/.test(feature.ref) ||
                                 /^CT.*$/.test(feature.ref) ||
@@ -3645,7 +3647,8 @@ layers:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^GR$/.test(feature.network)
+                                    /^GR$/.test(feature.network) ||
+                                    /^GR:motorway$/.test(feature.network)
                                 )
                             }
                         draw:
@@ -3670,23 +3673,6 @@ layers:
                                 sprite: |
                                     function() {
                                         return ( 'GR:national-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    GR:motorway:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^GR:motorway$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'GR:motorway-' + feature.shield_text.length + 'char');
                                     }
                                 text:
                                     font:
@@ -4589,7 +4575,9 @@ layers:
                                         /^AR.*$/.test(feature.ref) ||
                                         /^AS.*$/.test(feature.ref) ||
                                         /^AY.*$/.test(feature.ref) ||
+                                        /^BR.*$/.test(feature.ref) ||
                                         /^C-.*$/.test(feature.ref) ||
+                                        /^CE.*$/.test(feature.ref) ||
                                         /^CT.*$/.test(feature.ref) ||
                                         /^CU.*$/.test(feature.ref) ||
                                         /^EI.*$/.test(feature.ref) ||
@@ -4690,6 +4678,43 @@ layers:
                                 mapzen_icon_library:
                                     visible: false
 
+                    ###
+                    ### BRAZIL
+                    ###
+
+                    # this is not working http://localhost:8000/#13/-23.4141/312.8141
+                    # it was getting Italy blue SP shields
+                    # see SP-roads and SP-roads-shield-text
+                    BR-Brazil:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^BR.*$/.test(feature.ref) &&
+                                    /^BR$/.test(feature.network)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'BR:BR-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    offset: [0px, 1px]
+
+                    CE-roads:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^CE.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'DE:L-' + feature.shield_text.length + 'char');
+                                    }
 
                     ###
                     ### FRANCE
@@ -4959,7 +4984,7 @@ layers:
                             function() {
                                 return feature.ref && (
                                     /^SP.*$/.test(feature.ref) &&
-                                    !(/^BR:SP$/.test(feature.network))
+                                    !(/^BR.*$/.test(feature.network))
                                 )
                             }
                         draw:
@@ -4977,7 +5002,7 @@ layers:
                             function() {
                                 return feature.shield_text && (
                                     /^SP.*$/.test(feature.ref) &&
-                                    !(/^BR:SP$/.test(feature.network))
+                                    !(/^BR.*$/.test(feature.network))
                                 )
                             }
                         draw:
