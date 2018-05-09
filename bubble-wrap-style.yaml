@@ -3282,6 +3282,19 @@ layers:
                                         return ( 'CA:transcanada-' + feature.shield_text.length + 'char');
                                     }
 
+                    CA:transcanada2:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^CA:transcanada$/.test(feature.network)
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CA:transcanada-' + feature.shield_text.length + 'char');
+                                    }
+
                     # this is not working, see Montreal http://localhost:8000/#9/45.5400/286.4328
                     #CA:yellowhead:
 #                       filter: |
@@ -4945,7 +4958,8 @@ layers:
                         filter: |
                             function() {
                                 return feature.ref && (
-                                    /^SP.*$/.test(feature.ref)
+                                    /^SP.*$/.test(feature.ref) &&
+                                    !(/^BR:SP$/.test(feature.network))
                                 )
                             }
                         draw:
@@ -4962,7 +4976,8 @@ layers:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^SP.*$/.test(feature.ref)
+                                    /^SP.*$/.test(feature.ref) &&
+                                    !(/^BR:SP$/.test(feature.network))
                                 )
                             }
                         draw:
