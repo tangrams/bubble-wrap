@@ -4305,7 +4305,8 @@ layers:
                             function() {
                                 return feature.shield_text && (
                                     /^TR-roads$/.test(feature.network) ||
-                                    /^TR-road$/.test(feature.network)
+                                    /^TR-road$/.test(feature.network) ||
+                                    /^TR-motorway$/.test(feature.network)
                                 )
                             }
                         draw:
@@ -4332,20 +4333,6 @@ layers:
                                         font:
                                             fill: [1.000,1.000,1.000]
 
-                    TR-roads2:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^TR-motorway$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'TR-roads-' + feature.shield_text.length + 'char');
-                                    }
-
                     ###
                     ### VIETNAM
                     ###
@@ -4353,34 +4340,8 @@ layers:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^VN:national$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'VN:VN-' + feature.shield_text.length + 'char');
-                                    }
-
-                    VI-roads:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^VI-roads$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'VN:VN-' + feature.shield_text.length + 'char');
-                                    }
-
-                    VN-roads:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
+                                    /^VN:national$/.test(feature.network) ||
+                                    /^VI-roads$/.test(feature.network) ||
                                     /^VN-roads$/.test(feature.network)
                                 )
                             }
@@ -4899,6 +4860,23 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
+                    SR-roads-shield-text:
+                        filter: |
+                            function() {
+                                return feature.shield_text && (
+                                    /^SR.*$/.test(feature.ref)
+                                )
+                            }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'IT:B-road-' + feature.shield_text.length + 'char');
+                                    }
+                                text:
+                                    font:
+                                        fill: [1.00,1.00,1.00]
+
                     SP-roads:
                         filter: |
                             function() {
@@ -4935,23 +4913,6 @@ layers:
                                     font:
                                         fill: [1.00,1.00,1.00]
 
-                    SR-roads-shield-text:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^SR.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'IT:B-road-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
                     ###
                     ### MALAYSIA
                     ###
@@ -4959,68 +4920,10 @@ layers:
                         filter: |
                             function() {
                                 return feature.ref && (
-                                    /^E.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'MY:E-' + feature.ref.length + 'char');
-                                    }
-
-                    # in Kuala Lumpur http://localhost:8000/#12/3.0183/101.8972
-                    B-roads-Malaysia:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^B.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'MY:E-' + feature.ref.length + 'char');
-                                    }
-
-                    # in Johor Bahru http://localhost:8000/#13/1.5058/103.7361
-                    # JOHOR
-                    J-roads-Malaysia:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^J.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'MY:E-' + feature.ref.length + 'char');
-                                    }
-
-                    ### KEDAH
-                    K-roads-Malaysia:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^K.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'MY:E-' + feature.ref.length + 'char');
-                                    }
-
-                    # in Bukit Mertajam http://localhost:8000/#12/5.3470/100.4809
-                    # PENANG
-                    P-roads-Malaysia:
-                        filter: |
-                            function() {
-                                return feature.ref && (
+                                    /^E.*$/.test(feature.ref) ||
+                                    /^B.*$/.test(feature.ref) ||
+                                    /^J.*$/.test(feature.ref) ||
+                                    /^K.*$/.test(feature.ref) ||
                                     /^P.*$/.test(feature.ref)
                                 )
                             }
@@ -5037,6 +4940,7 @@ layers:
 
                     # this is not working, Turkey D roads are drawing instead, see Bucharest
                     # http://localhost:8000/#10/44.3347/26.2109
+                    # http://localhost:8000/#11/44.4806/26.0953
                     DN-national:
                         filter: |
                             function() {
@@ -5331,7 +5235,8 @@ layers:
                         filter: |
                             function() {
                                 return feature.ref && (
-                                    /^AYE.*$/.test(feature.ref)
+                                    /^AYE.*$/.test(feature.ref) ||
+                                    /^CTE.*$/.test(feature.ref)
                                 )
                             }
                         draw:
@@ -5357,27 +5262,8 @@ layers:
                                     function() {
                                         return ( 'CH:E-' + feature.ref.length + 'char');
                                     }
-                                text:
-                                    font:
-                                        fill: [1.000,1.000,1.000]
 
-                    CTE:
-                        filter: |
-                            function() {
-                                return feature.ref && (
-                                    /^CTE.*$/.test(feature.ref)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'CH:E-' + feature.ref.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.000,1.000,1.000]
-
+                    # when consolidated above, disappears and gets Malaysian E-expressways shield
                     ECP:
                         filter: |
                             function() {
@@ -5395,6 +5281,7 @@ layers:
                                     font:
                                         fill: [1.000,1.000,1.000]
 
+                    # when consolidated above, disappears
                     PIE:
                         filter: |
                             function() {
@@ -5412,6 +5299,7 @@ layers:
                                     font:
                                         fill: [1.000,1.000,1.000]
 
+                    # when consolidated above, disappears
                     KJE:
                         filter: |
                             function() {
@@ -5581,7 +5469,8 @@ layers:
                         filter: |
                             function() {
                                 return feature.ref && (
-                                    /^CT.*$/.test(feature.ref)
+                                    /^CT.*$/.test(feature.ref) &&
+                                    !(/^CTE$/.test(feature.ref))
                                 )
                             }
                         draw:
@@ -5622,9 +5511,6 @@ layers:
                                     function() {
                                         return ( 'VN:VN-' + feature.ref.length + 'char');
                                     }
-
-
-
 
 
         path:
