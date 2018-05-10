@@ -4097,23 +4097,7 @@ layers:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^ru:national$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'ru:national-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    ru:regional:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
+                                    /^ru:national$/.test(feature.network) ||
                                     /^ru:regional$/.test(feature.network)
                                 )
                             }
@@ -4126,7 +4110,6 @@ layers:
                                 text:
                                     font:
                                         fill: [1.00,1.00,1.00]
-
 
                     ###
                     ### SOUTH AFRICA
@@ -4190,23 +4173,7 @@ layers:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^ES:A-road$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'ES:A-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    ES:A-road2:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
+                                    /^ES:A-road$/.test(feature.network) ||
                                     /^ES$/.test(feature.network)
                                 )
                             }
@@ -4247,22 +4214,7 @@ layers:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^TH-roads$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'TH:TH-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    offset: [0px, 4px]
-
-                    TH-network:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
+                                    /^TH-roads$/.test(feature.network) ||
                                     /^TH-network$/.test(feature.network)
                                 )
                             }
@@ -4282,40 +4234,8 @@ layers:
                         filter: |
                             function() {
                                 return feature.shield_text && (
-                                    /^ua:international$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'UA:M-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    ua:national:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^ua:national$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'UA:M-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.00,1.00,1.00]
-
-                    ua:regional:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
+                                    /^ua:international$/.test(feature.network) ||
+                                    /^ua:national$/.test(feature.network) ||
                                     /^ua:regional$/.test(feature.network)
                                 )
                             }
