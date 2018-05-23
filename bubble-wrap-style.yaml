@@ -433,8 +433,8 @@ fonts:
 
 sources:
     mapzen:
-        type: TopoJSON #MVT
-        url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.topojson
+        type: MVT #TopoJSON
+        url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
         #url:  https://dev-tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
         url_params:
             api_key: global.sdk_api_key
