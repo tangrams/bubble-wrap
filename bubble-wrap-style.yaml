@@ -3289,6 +3289,7 @@ layers:
                             function() {
                                 return feature.shield_text && (
                                     /^CA:transcanada$/.test(feature.network)
+                                )
                             }
                         draw:
                             mapzen_icon_library:
