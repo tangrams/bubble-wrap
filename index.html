@@ -22,7 +22,7 @@
 
         <!-- Main tangram library -->
         <!-- production -->
-        <script src="https://www.nextzen.org/tangram/0.14/tangram.min.js"></script>
+        <script src="https://www.nextzen.org/tangram/tangram.min.js"></script>
         <!-- production debug -->
         <!-- <script src="https://mapzen.com/tangram/0.14/tangram.debug.js"></script> -->
         <!-- dev -->
@@ -234,12 +234,8 @@
         var tg_global = { sdk_api_key: sdk_api_key };
 
         var layer = Tangram.leafletLayer({
-            // more: 'vector-tiles-7bfyfz8'
-            // default (some): 'mapzen-PvjAKRW'
-            // no: 'mapzen-UHeMjEw'
-            // dev: 'mapzen-45zyeJa'
             scene: { import: [tg_baseScene], global: tg_global },
-            attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a>, &copy; OSM contributors'
+            attribution: '<a href="https://github.com/tangrams/tangram" target="_blank">Tangram</a>, &copy; OSM contributors'
         });
 
         var scene = layer.scene;
@@ -315,28 +311,8 @@
             anchor.href = url;
             anchor.target = '_blank';
             anchor.textContent = label;
-            anchor.addEventListener('click', function (event) {
-                trackOutboundLink(url, 'mapzen_carto_debug', type);
-            }, false);
             el.appendChild(anchor);
             return el;
-        }
-
-        /**
-        * Function that tracks a click on an outbound link in Google Analytics.
-        * This function takes a valid URL string as an argument, and uses that URL string
-        * as the event label. Setting the transport method to 'beacon' lets the hit be sent
-        * using 'navigator.sendBeacon' in browser that support it.
-        */
-        function trackOutboundLink (url, post_name, editor) {
-           // ga('send', 'event', [eventCategory], [eventAction], [eventLabel], [eventValue], [fieldsObject]);
-           ga('send', 'event', 'outbound', post_name, url, {
-             'transport': 'beacon',
-             // If opening a link in the current window, this opens the url AFTER
-             // registering the hit with Analytics. Disabled because here want the
-             // link to open in a new window, so this hit can occur in the current tab.
-             //'hitCallback': function(){document.location = url;}
-           });
         }
 
         // convert tile coordinates to lat-lng
@@ -677,17 +653,6 @@
             }
         });
 
-        </script>
-
-        <!-- Mapzen map UI -->
-        <script src='https://mapzen.com/common/ui/mapzen-ui.min.js'></script>
-        <script>
-          MPZN.bug({
-          name: 'Mapzen Bubble Wrap cartography',
-          link: 'https://tangrams.github.io/bubble-wrap/',
-          tweet: 'Bubble Wrap cartography from @mapzen',
-          repo: 'https://github.com/tangrams/bubble-wrap/'
-        });
         </script>
 
   </body>
