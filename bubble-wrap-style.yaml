@@ -434,8 +434,9 @@ fonts:
 sources:
     mapzen:
         type: MVT #TopoJSON
-        url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
+        #url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
         #url:  https://dev-tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
+        url: http://localhost:8050/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt?api_key=&
         url_params:
             api_key: global.sdk_api_key
         tile_size: 512
@@ -1511,7 +1512,12 @@ layers:
                             stroke: { color: [1.000,1.000,1.000], width: [[15, 2px], [18, 4px]] }
 
         major_road:
-            filter: { kind: major_road, $zoom: { min: 8 } }
+            filter: 
+                all:
+                    - $zoom: { min: 8 }
+                    - any: 
+                        - { kind: major_road }
+                        - { kind: minor_road, kind_detail: unclassified }
             # default style
             draw:
                 lines:
@@ -1787,7 +1793,9 @@ layers:
                                 size: 16px
                                 stroke: { color: [1.00,1.00,1.00], width: 3px }
             tertiary:
-                filter: { kind_detail: [tertiary, tertiary_link] }
+                filter: 
+                    any:
+                        - kind_detail: [tertiary, tertiary_link, unclassified ]
                 draw:
                     lines:
                         color: [1.0,1.0,1.0]
@@ -1934,7 +1942,7 @@ layers:
                                 size: 15px
                                 stroke: { color: [1.00,1.00,1.00], width: 2px }
         minor_road:
-            filter: { kind: minor_road, not: { kind_detail: service }, $zoom: { min: 8 } }
+            filter: { kind: minor_road, not: { kind_detail: [service, unclassified] }, $zoom: { min: 8 } }
             draw:
                 lines:
                     color: [[12, [0.9,0.9,0.9]], [13, [0.9,0.9,0.9]], [14, [1.0,1.0,1.0]]]
@@ -2513,6 +2521,7 @@ layers:
                             texture: mapzen_icon_library_shields_usa
                             # you need to match any custom shield to the vector tile `network` values
                             sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                            default_sprite: function() { return ('county_shield-' + feature.shield_text.length + 'char'); }
 
                 # US Interstate roads
                 US-I:
@@ -5637,7 +5646,19 @@ layers:
                     outline:
                         order: 354
                         color: global.minor_casing1
-                        width: [[15, 0px], [16, 0.5px], [17, 1.0px], [18, 2.0px]]
+                        width: [[14, 0px], [15, 0.2px], [16, 0.5px], [17, 1.0px], [18, 2.0px]]
+            major_track:
+                filter:
+                    any:
+                        - { kind_detail: track, surface: [paved, asphalt, concrete, gravel] }
+                        - { kind_detail: track, tracktype: [grade1, grade2] }
+                draw:
+                    lines:
+                        color: [1.0,1.0,1.0]
+                        width: [[11, 0.5px], [12, 0.5px], [13, 0.5px], [14, 0.65px], [15, 1.5px], [16, 8m], [19, 10m]]
+                        outline:
+                            color: [[13, [0.827,0.827,0.827], [15, [1.0,1.0,1.0]]]]
+                            width: [[15, 0], [16, 1.0px], [18, 3.5px]]
             bridge:
                 filter: { is_bridge: true }
                 draw:
@@ -6165,13 +6186,13 @@ layers:
                 lines:
                     color: global.country_boundary
                     width: [[1, 0.5px], [4, 2.5px], [14, 4px], [16, 4.5px]]
-            # water:
-            #     filter: { maritime_boundary: true }
-            #     draw:
-            #         lines:
-            #             visible: false
-            #         text-blend-order:
-            #             visible: false
+            water:
+                 filter: { maritime_boundary: true }
+                 draw:
+                     lines:
+                         visible: false
+                     text-blend-order:
+                         visible: false
             country-labels:
                 filter: { name: true, $zoom: { min: 8 } }
                 draw:
@@ -6220,13 +6241,13 @@ layers:
                 lines:
                     color: global.region_boundary
                     width: [[0, 0.5px], [2, 1.0px], [6, 1.5px], [8, 2.0px], [9, 3.5px], [14, 5.5px], [16, 6.5px]]
-            #water:
-            #    filter: { maritime_boundary: true }
-            #    draw:
-            #        lines:
-            #            visible: false
-            #        text-blend-order:
-            #            visible: false
+            water:
+                filter: { maritime_boundary: true }
+                draw:
+                    lines:
+                        visible: false
+                    text-blend-order:
+                        visible: false
             early:
                 filter: { not: { min_zoom: [1,2] }, $zoom: { max: 8 } }
                 draw:
@@ -8119,14 +8140,14 @@ layers:
                     order: global.feature_order
                     color: [[4,[0.965,0.600,0.882]],[6,[0.965,0.600,0.882]],[7,[0.882,0.639,0.827]],[8,[0.757,0.729,0.753]]]
 
-        city_walls:
+        city_wall:
             filter: { kind: city_wall }
             draw:
                 lines:
                     color: global.city_wall
                     width: [[12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.0px], [16, 2.5px], [19, 3m]]
-        retaining_wall:
-            filter: { kind: retaining_wall }
+        walls:
+            filter: { kind: [wall, retaining_wall] }
             draw:
                 lines:
                     color: global.retaining_wall
@@ -8143,6 +8164,18 @@ layers:
                 lines:
                     color: global.fence
                     width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1m]]
+        power_line:
+            filter: { kind: [power_line, power_minor_line] }
+            draw:
+                lines:
+                    color: [0.779,0.779,0.779]
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1m]]
+            minor:
+                filter: { kind: power_minor_line }
+                draw:
+                    lines:
+                        color: [0.8,0.8,0.8]
+                        width: [[14, 0.5px], [15, 0.8px], [16, 1.25px], [17, 1.5px], [19, 0.5m]]
 
     transit-overlay-rail-lines:
         data: { source: mapzen, layer: transit }
