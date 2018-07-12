@@ -2521,7 +2521,7 @@ layers:
                             texture: mapzen_icon_library_shields_usa
                             # you need to match any custom shield to the vector tile `network` values
                             sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
-                            default_sprite: function() { return ('county_shield-' + feature.shield_text.length + 'char'); }
+                            sprite_default: function() { return ('county_shield-' + feature.shield_text.length + 'char'); }
 
                 # US Interstate roads
                 US-I:
