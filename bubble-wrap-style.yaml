@@ -434,9 +434,9 @@ fonts:
 sources:
     mapzen:
         type: MVT #TopoJSON
-        #url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
+        url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
         #url:  https://dev-tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
-        url: http://localhost:8050/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt?api_key=&
+        #url: http://localhost:8050/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt?api_key=&
         url_params:
             api_key: global.sdk_api_key
         tile_size: 512
