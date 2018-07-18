@@ -2694,200 +2694,18 @@ layers:
             shields-international:
                 filter: #|
                     all:
-                        - network: ['AM:AM', 'AU:AU', 'AU:I', 'AU:I2', 'AU:A', 'AU:M', 'A', 'M', 'e-road', 'GB:A', 'ES:AA2', 'BD:NH', 'IT:RA', 'IQ:IQ', 'RO:AS', 'IE:N', 'AU:I3', 'MX:SH', 'NZ:SR', 'AR:national', 'CA:AB', 'CA:MB', 'AU:MR', 'AU:TD', 'BR', 'BR:BR', 'BR:TA', 'CA:BC', 'CA:BC:primary', 'CA:BC:trunk', 'CA:I2', 'CA:NL', 'CA:NL2', 'CA:NL3', 'CA:NS', 'CA:NT', 'CA:ON', 'CA:PEI', 'CA:QC', 'CA:QC:A', 'CA:SK', 'CA:transcanada', 'CH:A', 'CL:CL', 'CL:CL2', 'CL:national', 'CL:regional', 'CN-expressways', 'CN-roads', 'FR:A-road', 'FR:N-road', 'pl:national', 'PT:IP', 'NL:A', 'ES:C', 'LU:RN', 'FI:FI', 'CN:EXP', 'DE:A', 'BAB', 'DE:DE', 'pl:regional', 'dk:national', 'VN:I', 'SK:LR', 'FI:FS', 'UA:P2', 'DE:L', 'UK:G', 'PT:IC', 'NO:CR', 'DK:D', 'AT:L', 'VN:VN', 'AR:PR', 'CA:YT', 'FI:RR', 'IE:R', 'BE:I', 'ES:IU', 'FR:D', 'NL:N', 'ES:AA', 'LU:CR', 'GR:I', 'GR:motorway', 'ID:ID', 'IN:NH', 'IN:SH', 'IN:MH', 'IT:A-road', 'JP:EX', 'JP:national', 'JP:prefectural', 'jp:prefectural', 'MX:MX', 'NL:S', 'NO:RR', 'NZ:SH', 'PE:PE', 'PT:A', 'PT:national', 'CH:E', 'VN:PR', 'IE:M', 'RO:DC', 'RO:DJ', 'RO:DX', 'SA:SA', 'SG:E', 'SK:I', 'SK:SK', 'TH:TH', 'TH:TM2', 'TH:TM3', 'TR-roads', 'MY:E', 'ZA:M', 'ZA:P', 'ru:national', 'GB', 'GR:GR', 'GR:national', 'IT:SR', 'IT:SS', 'IT:B-road', 'ES:A', 'SE:A', 'AT:A', 'AT:S', 'TR:DY', 'LU:M', 'FI:LR', 'UA:M', 'UA:P', 'za:national', 'za:regional', 'ZA:R', 'NO:TR']
+                        - network: ['AM:AM', 'AU:I2', 'AU:A-road', 'AU:M-road', 'AU:B-road', 'AU:C-road', 'e-road', 'GB:A-road-green', 'ES:AA2', 'BD:NH', 'IT:RA', 'IQ:IQ', 'RO:AS', 'IE:N', 'ES:AA3', 'ES:AA4', 'ES:AA5', 'AU:I3', 'AU:N-route', 'MX:SH', 'NZ:SR', 'AR:national', 'CA:AB', 'CA:AB:primary', 'CA:AB:trunk', 'CA:MB', 'CA:MB:PTH', 'AU:Metro-road', 'AU:N-highway', 'AU:S-route', 'AU:T-drive', 'BR', 'BR:BR', 'BR:TA', 'CA:BC', 'CA:BC:primary', 'CA:BC:trunk', 'CA:I2', 'CA:NB', 'CA:NB2', 'CA:NB3', 'CA:NS', 'CA:NS:R', 'CA:NS:T', 'CA:NT', 'CA:ON', 'CA:ON:primary', 'CA:PEI', 'CA:QC', 'CA:QC:A', 'CA:QC:R', 'CA:SK', 'CA:SK:primary', 'CA:transcanada', 'CH:A', 'CL:national', 'CL', 'CL:panamerican', 'CL:regional', 'CN:expressway', 'CN:expressway:regional', 'CN:road', 'CN-roads', 'FR:A-road', 'FR:N-road', 'pl:national', 'PT:IP', 'NL:A', 'ES:C', 'LU:RN', 'FI:FI', 'DE:BAB', 'DE:DE', 'DE:BS', 'PL:regional', 'DK:national', 'VN:I', 'SK:LR', 'FI:FS', 'UA:P1', 'UA:P2', 'DK:`national', 'DE:L', 'DE:LS', 'UK:G', 'PT:IC', 'NO:CR', 'DK:D', 'AT:L', 'VN:VN', 'AR:provincial', 'CA:YT', 'FI:RR', 'IE:R', 'BE:I', 'GB:A-road-white', 'ES:IU', 'FR:D', 'FR:D-road', 'NL:N', 'ES:AA', 'LU:CR', 'GR:I', 'GR:motorway', 'ID:ID', 'IN:NH', 'IN:SH', 'IN:MH', 'IT:A-road', 'JP:EX', 'JP:national', 'JP:prefectural', 'jp:prefectural', 'MX:MX', 'NL:S', 'NO:RR', 'NZ:SH', 'PE:PE', 'PT:A', 'PT:national', 'CH:E', 'VN:PR', 'IE:M', 'RO:DC', 'RO:DJ', 'RO:DX', 'SA:SA', 'SG:E', 'SK:I', 'SK:SK', 'TH:TH', 'TH:TM2', 'TH:TM3', 'TR-roads', 'MY:E', 'ZA:M', 'ZA:P', 'ru:national', 'RU:national', 'GB:M-road', 'GR:GR', 'GR:national', 'IT:SR', 'IT:SS', 'IT:B-road', 'ES:A', 'SE:A', 'AT:A', 'AT:S', 'TR:DY', 'LU:M', 'FI:LR', 'UA:M', 'UA:P', 'za:national', 'za:regional', 'ZA:R', 'NO:TR']
                         - shield_text: true
-
-#                        function() {
-#                            return (! /^US:.*$/.test(feature.network)) &&
-#                                (feature.shield_text) && 
-#                                (
-#                                /^AH.*$/.test(feature.network) ||
-#                                /^AM:AM.*$/.test(feature.network) ||
-#                                /^AR:AR.*$/.test(feature.network) ||
-#                                /^AR:PR.*$/.test(feature.network) ||
-#                                /^AsianHighway$/.test(feature.network) ||
-#                                /^AT:A.*$/.test(feature.network) ||
-#                                /^AT:L.*$/.test(feature.network) ||
-#                                /^AT:S.*$/.test(feature.network) ||
-#                                /^AU:AU.*$/.test(feature.network) ||
-#                                /^AU:I.*$/.test(feature.network) ||
-#                                /^AU:A.*$/.test(feature.network) ||
-#                                /^AU:M.*$/.test(feature.network) ||
-#                                /^A.*$/.test(feature.network) ||
-#                                /^M.*$/.test(feature.network) ||
-#                                /^AU:I3.*$/.test(feature.network) ||
-#                                /^AU:MR.*$/.test(feature.network) ||
-#                                /^AU:TD.*$/.test(feature.network) ||
-#                                /^BAB.*$/.test(feature.network) ||
-#                                /^BD:NH.*$/.test(feature.network) ||
-#                                /^BE:I.*$/.test(feature.network) ||
-#                                /^BE:A-road.*$/.test(feature.network) ||
-#                                /^BE:N-road.*$/.test(feature.network) ||
-#                                /^BR$/.test(feature.network) ||
-#                                /^BR:.*$/.test(feature.network) ||
-#                                /^BR.*$/.test(feature.network) ||
-#                                /^BR:TA.*$/.test(feature.network) ||
-#                                /^CA:AB.*$/.test(feature.network) ||
-#                                /^CA:BC.*$/.test(feature.network) ||
-#                                /^CA:I.*$/.test(feature.network) ||
-#                                /^CA:transcanada$/.test(feature.network) ||
-#                                /^CA:I2.*$/.test(feature.network) ||
-#                                /^CA:MB.*$/.test(feature.network) ||
-#                                /^CA:NB.*$/.test(feature.network) ||
-#                                /^CA:NB2.*$/.test(feature.network) ||
-#                                /^CA:NB3.*$/.test(feature.network) ||
-#                                /^CA:NS.*$/.test(feature.network) ||
-#                                /^CA:NT.*$/.test(feature.network) ||
-#                                /^CA:ON.*$/.test(feature.network) ||
-#                                /^CA:PEI.*$/.test(feature.network) ||
-#                                /^CA:QC.*$/.test(feature.network) ||
-#                                /^CA:SK.*$/.test(feature.network) ||
-#                                /^CA:YT.*$/.test(feature.network) ||
-#                                /^CH:A.*$/.test(feature.network) ||
-#                                /^CH:E.*$/.test(feature.network) ||
-#                                /^CL:CL.*$/.test(feature.network) ||
-#                                /^CL:CL2.*$/.test(feature.network) ||
-#                                /^CL:national.*$/.test(feature.network) ||
-#                                /^CL:regional.*$/.test(feature.network) ||
-#                                /^CN:EXP.*$/.test(feature.network) ||
-#                                /^CN:$/.test(feature.network) ||
-#                                /^CN-expressways.*$/.test(feature.network) ||
-#                                /^CN-roads.*$/.test(feature.network) ||
-#                                /^DE:A.*$/.test(feature.network) ||
-#                                /^DE:DE.*$/.test(feature.network) ||
-#                                /^DE:L.*$/.test(feature.network) ||
-#                                /^dk:national.*$/.test(feature.network) ||
-#                                /^DK.*$/.test(feature.network) ||
-#                                /^DK:D.*$/.test(feature.network) ||
-#                                /^DN.*$/.test(feature.network) ||
-#                                /^ES.*$/.test(feature.network) ||
-#                                /^ES:A.*$/.test(feature.network) ||
-#                                /^ES:AA.*$/.test(feature.network) ||
-#                                /^ES:AA2.*$/.test(feature.network) ||
-#                                /^ES:C.*$/.test(feature.network) ||
-#                                /^ES:IU.*$/.test(feature.network) ||
-#                                /^e-road.*$/.test(feature.network) ||
-#                                /^FI:FI.*$/.test(feature.network) ||
-#                                /^FI:FS.*$/.test(feature.network) ||
-#                                /^FI:LR.*$/.test(feature.network) ||
-#                                /^FI:RR.*$/.test(feature.network) ||
-#                                /^FR:A-road.*$/.test(feature.network) ||
-#                                /^FR:.*:.*$/.test(feature.network) ||
-#                                /^FR:N-road.*$/.test(feature.network) ||
-#                                /^FR.*$/.test(feature.network) ||
-#                                /^GB.*$/.test(feature.network) ||
-#                                /^GR:I.*$/.test(feature.network) ||
-#                                /^GR:motorway$/.test(feature.network) ||
-#                                /^GR:GR.*$/.test(feature.network) ||
-#                                /^GR:national$/.test(feature.network) ||
-#                                /^ID:ID.*$/.test(feature.network) ||
-#                                /^IE:M.*$/.test(feature.network) ||
-#                                /^IE:N.*$/.test(feature.network) ||
-#                                /^IE:R.*$/.test(feature.network) ||
-#                                /^IN:IN.*$/.test(feature.network) ||
-#                                /^IN:NH$/.test(feature.network) ||
-#                                /^IN:NH:.*$/.test(feature.network) ||
-#                                /^IN:SH.*$/.test(feature.network) ||
-#                                /^IN:MH.*$/.test(feature.network) ||
-#                                /^IQ:IQ.*$/.test(feature.network) ||
-#                                /^IT$/.test(feature.network) ||
-#                                /^IT:A-road$/.test(feature.network) ||
-#                                /^IT:B-road$/.test(feature.network) ||
-#                                /^IT:.*$/.test(feature.network) ||
-#                                /^IT:AS.*$/.test(feature.network) ||
-#                                /^IT:RA.*$/.test(feature.network) ||
-#                                /^IT:SP.*$/.test(feature.network) ||
-#                                /^IT:SR.*$/.test(feature.network) ||
-#                                /^IT:SS.*$/.test(feature.network) ||
-#                                /^JP:EX.*$/.test(feature.network) ||
-#                                /^JP:national.*$/.test(feature.network) ||
-#                                /^JP:prefectural.*$/.test(feature.network) ||
-#                                /^jp:prefectural.*$/.test(feature.network) ||
-#                                /^KR:national.*$/.test(feature.network) ||
-#                                /^LU:CR.*$/.test(feature.network) ||
-#                                /^LU:M.*$/.test(feature.network) ||
-#                                /^LU:RN.*$/.test(feature.network) ||
-#                                /^MX:MX.*$/.test(feature.network) ||
-#                                /^MEX$/.test(feature.network) ||
-#                                /^MX:SH.*$/.test(feature.network) ||
-#                                /^MY:E.*$/.test(feature.network) ||
-#                                /^NL:A.*$/.test(feature.network) ||
-#                                /^NL:N.*$/.test(feature.network) ||
-#                                /^NL:S.*$/.test(feature.network) ||
-#                                /^NO:CR.*$/.test(feature.network) ||
-#                                /^NO:RR.*$/.test(feature.network) ||
-#                                /^NO:TR.*$/.test(feature.network) ||
-#                                /^NZ:SH.*$/.test(feature.network) ||
-#                                /^NZ:SR.*$/.test(feature.network) ||
-#                                /^PE:PE.*$/.test(feature.network) ||
-#                                /^pl:national.*$/.test(feature.network) ||
-#                                /^pl:regional.*$/.test(feature.network) ||
-#                                /^PT:A.*$/.test(feature.network) ||
-#                                /^PT:IC.*$/.test(feature.network) ||
-#                                /^PT:national.*$/.test(feature.network) ||
-#                                /^RO:A.*$/.test(feature.network) ||
-#                                /^RO:AS.*$/.test(feature.network) ||
-#                                /^RO:DJ.*$/.test(feature.network) ||
-#                                /^RO:DX.*$/.test(feature.network) ||
-#                                /^RO:DС.*$/.test(feature.network) ||
-#                                /^ru:national.*$/.test(feature.network) ||
-#                                /^ru:regional.*$/.test(feature.network) ||
-#                                /^SA:SA.*$/.test(feature.network) ||
-#                                /^SE:A.*$/.test(feature.network) ||
-#                                /^SG:E.*$/.test(feature.network) ||
-#                                /^SK:I.*$/.test(feature.network) ||
-#                                /^SK:LR.*$/.test(feature.network) ||
-#                                /^SK:SK.*$/.test(feature.network) ||
-#                                /^TH-network.*$/.test(feature.network) ||
-#                                /^TH:TH.*$/.test(feature.network) ||
-#                                /^TH:TM2.*$/.test(feature.network) ||
-#                                /^TH:TM3.*$/.test(feature.network) ||
-#                                /^TH-roads.*$/.test(feature.network) ||
-#                                /^TR:DY.*$/.test(feature.network) ||
-#                                /^TR:OR.*$/.test(feature.network) ||
-#                                /^TR-roads.*$/.test(feature.network) ||
-#                                /^TR-motorway.*$/.test(feature.network) ||
-#                                /^TR-road.*$/.test(feature.network) ||
-#                                /^UA:M.*$/.test(feature.network) ||
-#                                /^UA:P.*$/.test(feature.network) ||
-#                                /^UA:P2.*$/.test(feature.network) ||
-#                                /^UK:A.*$/.test(feature.network) ||
-#                                /^UK:G.*$/.test(feature.network) ||
-#                                /^UK:M.*$/.test(feature.network) ||
-#                                /^motorway.*$/.test(feature.network) ||
-#                                /^my:federal.*$/.test(feature.network) ||
-#                                /^no:Fylkesvei.*$/.test(feature.network) ||
-#                                /^no:Fylkesvei .*$/.test(feature.network)||
-#                                /^pe:national.*$/.test(feature.network) ||
-#                                /^GR.*$/.test(feature.network) ||
-#                                /^pl:expressways$/.test(feature.network) ||
-#                                /^PT:regional.*$/.test(feature.network) ||
-#                                /^ua:international.*$/.test(feature.network) ||
-#                                /^ua:national.*$/.test(feature.network) ||
-#                                /^ua:regional.*$/.test(feature.network) ||
-#                                /^ua:territorial.*$/.test(feature.network) ||
-#                                /^VN:I.*$/.test(feature.network) ||
-#                                /^VN:PR.*$/.test(feature.network) ||
-#                                /^VN:VN.*$/.test(feature.network) ||
-#                                /^VN:national.*$/.test(feature.network) ||
-#                                /^VN-roads.*$/.test(feature.network) ||
-#                                /^ZA:M.*$/.test(feature.network) ||
-#                                /^ZA:P.*$/.test(feature.network) ||
-#                                /^za:national.*$/.test(feature.network) ||
-#                                /^za:regional.*$/.test(feature.network) ||
-#                                /^za:capetown.*$/.test(feature.network)
-#                            )
-#                        }
                 draw:
                     mapzen_icon_library:
                         texture: mapzen_icon_library_shields_international
                         sprite: |
                             function() {
-                                var basic_network = "generic_shield";
-                                if( feature.network ) {
-                                    basic_network = feature.network.split(":").slice(0,2).join(":");
-                                }
-                                return ( basic_network + '-' + feature.shield_text.length + 'char');
+                                return ( feature.network + '-' + feature.shield_text.length + 'char');
+                            }
+                        sprite_default: |
+                            function() {
+                                return ( 'generic_shield' + '-' + feature.shield_text.length + 'char');
                             }
                         text:
                             # offset: [0px, 1px]
@@ -2898,23 +2716,7 @@ layers:
                     filter: #|
                         all:
                             - zoom: { min: 8 }
-                            - network: [BR:BR, BAB, CA:transcanada, CN-expressway, FR:A-road, MX:MEX, ru:national, sk:national, GR:motorway, GR:national, IN:NH, IN:NH]
-#                            function() {
-#                                return $zoom >= 8 && (
-#                                    /^BR$/.test(feature.network) ||
-#                                    /^BAB.*$/.test(feature.network) ||
-#                                    /^CA:transcanada$/.test(feature.network) ||
-#                                    /^CN-expressways$/.test(feature.network) ||
-#                                    /^FR:A-road.*$/.test(feature.network) ||
-#                                    /^MEX$/.test(feature.network) ||
-#                                    /^ru:national$/.test(feature.network) ||
-#                                    /^sk:national$/.test(feature.network) ||
-#                                    /^GR:motorway$/.test(feature.network) ||
-#                                    /^GR:national$/.test(feature.network) ||
-#                                    /^IN:NH$/.test(feature.network) ||
-#                                    /^IN:NH:.*$/.test(feature.network)
-#                                )
-#                            }
+                            - network: [BR:BR, DE:BAB, CA:transcanada, CN:expressway, FR:A-road, MX:MEX, RU:national, SK:national, GR:motorway, GR:national, IN:NH, IN:NH]
                     draw:
                         mapzen_icon_library:
                             visible: global.sdk_road_shields
@@ -2969,74 +2771,46 @@ layers:
                             mapzen_icon_library:
                                 visible: true
 
-                AR:provincial:
-                    filter: #|
-                        filter: { network: ['AR:provincial', 'AR:provincial:secondary'] }
-#                            function() {
-#                                return feature.shield_text && (
-#                                    /^AR:provincial$/.test(feature.network) ||
-#                                    /^AR:provincial:secondary$/.test(feature.network)
-#                                )
-#                            }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'AR:PR-' + feature.shield_text.length + 'char');
-                                }
-                            text:
-                                offset: [0px, 0px]
-                                font:
-                                    fill: [0.000,0.000,0.000]
-
                 ###
                 ### AUSTRALIA
                 ###
-                # AU-M:
-                #     filter: |
-                #         function() {
-                #             return feature.shield_text && /^M$/.test(feature.network)
-                #         }
-                #     draw:
-                #         mapzen_icon_library:
-                #             sprite: |
-                #                 function() {
-                #                     return ( 'AU:M-' + feature.shield_text.length + 'char');
-                #                 }
-                #             text:
-                #                 font:
-                #                     fill: [1.000,0.942,0.860]
+                AU-M:
+                    filter: { network: ['AU:A-road','AU:M-road','AU:B-road', 'AU:C-road'] }
+                    draw:
+                        mapzen_icon_library:
+                            text:
+                                font:
+                                    fill: [1.000,0.942,0.860]
 
-                # AU-A:
-                #     filter: |
-                #         function() {
-                #             return feature.shield_text && /^A$/.test(feature.network)
-                #         }
-                #     draw:
-                #         mapzen_icon_library:
-                #             sprite: |
-                #                 function() {
-                #                     return ( 'AU:A-' + feature.shield_text.length + 'char');
-                #                 }
-                #             text:
-                #                 font:
-                #                     fill: [1.000,0.942,0.860]
+                AU-A-road-M-B-C:
+                    filter: { network: ['AU:A-road','AU:M-road','AU:B-road', 'AU:C-road'] }
+                    draw:
+                        mapzen_icon_library:
+                            text:
+                                font:
+                                    fill: [1.000,0.942,0.860]
 
-                # # this is not working yet
-                # AU-AU:
-                #     filter: |
-                #         function() {
-                #             return feature.shield_text && /^S .$/.test(feature.ref)
-                #         }
-                #     draw:
-                #         mapzen_icon_library:
-                #             sprite: |
-                #                 function() {
-                #                     return ( 'AU:AU-' + feature.shield_text.length + 'char');
-                #                 }
-                #             text:
-                #                 font:
-                #                     fill: [1.00,1.00,1.00]
+                AU-S-route:
+                    filter: { network: ['AU:S-route'] }
+                    draw:
+                        mapzen_icon_library:
+                            priority: 180
+                            text:
+                                font:
+                                    fill: [1.00,1.00,1.00]
+                    early:
+                        filter: { $zoom: { max: 13 }, kind: [major_road, minor_road] }
+                        draw:
+                            mapzen_icon_library:
+                                visible: false
+
+                AU-T-drive:
+                    filter: { network: ['AU:T-drive'] }
+                    draw:
+                        mapzen_icon_library:
+                            text:
+                                font:
+                                    fill: [1.00,1.00,1.00]
 
                 ###
                 ### BANGLADESH
@@ -3116,47 +2890,6 @@ layers:
                 ### CANADA
                 ### sometimes in Alberta the network is not set... so this needs to go into Funky section as well. or fix the data...
                 ### and maybe set the texture name to CA:yellowhead instead of CA:I2
-                CA:transcanada:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^CA:.*$/.test(feature.network)
-                            ) && feature.nat_name == 'Trans-Canada Highway'
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'CA:transcanada-' + feature.shield_text.length + 'char');
-                                }
-
-                CA:transcanada2:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^CA:transcanada$/.test(feature.network)
-                            )
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'CA:transcanada-' + feature.shield_text.length + 'char');
-                                }
-
-                # this is not working, see Montreal http://localhost:8000/#9/45.5400/286.4328
-                #CA:yellowhead:
-#                       filter: |
-#                           function() {
-#                               return feature.shield_text && (
-#                                   /^CA:transcanada$/.test(feature.network) )
-#                           }
-#                       draw:
-#                           mapzen_icon_library:
-#                               sprite: |
-#                                   function() {
-#                                       return ( 'CA:transcanada-' + feature.shield_text.length + 'char');
-#                                   }
 
                 # BRITISH COLUMBIA
                 CA-BC:
@@ -3166,21 +2899,11 @@ layers:
                             text:
                                 offset: [0px, 2px]
 
-                # ALBERTA
-                # CA:AB is drawing - included in top filter
-
                 # SASKATCHEWAN
                 CA:SK:
-                    filter: |
-                        function() {
-                            return feature.shield_text && /^CA:SK.*$/.test(feature.network) && feature.nat_name != 'Trans-Canada Highway'
-                        }
+                    filter: { network: ['CA:SK','CA:SK:primary'] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'CA:SK-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 offset: [0px, 3px]
                                 font:
@@ -3188,156 +2911,83 @@ layers:
 
                 # ONTARIO
                 CA:ON:
-                    filter: |
-                        function() {
-                            return feature.shield_text && /^CA:ON.*$/.test(feature.network)
-                        }
+                    filter: { network: ['CA:ON', 'CA:ON:primary'] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'CA:ON-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 offset: [0px, 2px]
 
                 # QUEBEC
                 CA:QC:
-                    filter: |
-                        function() {
-                            return feature.shield_text && /^CA:QC.*$/.test(feature.network)
-                        }
+                    filter: { network: [CA:QC, CA:QC:A, CA:QC:R] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'CA:QC-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 offset: [0px, 2px]
                                 font:
                                     fill: [1.000,1.000,1.000]
 
-                # NEW BRUNSWICK
-                CA:NB2:
-                    filter: |
-                        function() {
-                            return feature.shield_text && /^CA:NB.*$/.test(feature.network) && parseInt(feature.shield_text) >= 100  && parseInt(feature.shield_text) < 200
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'CA:NB2-' + feature.shield_text.length + 'char');
-                                }
-                            # text:
-                            #     offset: [0px, 4px]
-                            #     font:
-                            #         fill: [1.000,1.000,1.000]
-                CA:NB3:
-                    filter: |
-                        function() {
-                            return feature.shield_text && /^CA:NB.*$/.test(feature.network) && parseInt(feature.shield_text) >= 200
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'CA:NB3-' + feature.shield_text.length + 'char');
-                                }
-                            # text:
-                            #     offset: [0px, 4px]
-                            #     font:
-                            #         fill: [1.000,1.000,1.000]
-
                 # NOVA SCOTIA
                 CA:NS:
-                    filter: |
-                        function() {
-                            return feature.shield_text && /^CA:NS.*$/.test(feature.network) && feature.nat_name != 'Trans-Canada Highway'
-                        }
+                    filter: { network: ['CA:NS'] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'CA:NS-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 offset: [0px, 4px]
                                 font:
                                     fill: [1.000,1.000,1.000]
 
-                # PRINCE EDWARD ISLAND
-                CA:PEI:
-                    filter: |
-                        function() {
-                            return feature.shield_text && /^CA:PEI.*$/.test(feature.network)
-                        }
+                CA:NS:R:
+                    filter: { network: ['CA:NS:R'] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'CA:PEI-' + feature.shield_text.length + 'char');
-                                }
+                            text:
+                                font:
+                                    fill: [1.000,1.000,1.000]
+
+                # PRINCE EDWARD ISLAND
+                CA:PEI:
+                    filter: { network: ['CA:PEI'] }
+                    draw:
+                        mapzen_icon_library:
                             text:
                                 offset: [0px, 3px]
 
-                # YUKON
-                CA:YT:
-                    filter: |
-                        function() {
-                            return feature.shield_text && /^CA:YT$/.test(feature.network)
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'CA:YT-' + feature.shield_text.length + 'char');
-                                }
-
                 # NORTHWEST TERRITORIES
                 CA:NT:
-                    filter: |
-                        function() {
-                            return feature.shield_text && /^CA:NT$/.test(feature.network)
-                        }
+                    filter: { network: ['CA:NT'] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'CA:NT-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 offset: [0px, 5px]
                                 font:
                                     fill: [1.000,1.000,1.000]
 
-
                 ###
                 ### CHILE
                 ###
-                CL:national:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^CL:national$/.test(feature.network) ||
-                                /^CL:regional$/.test(feature.network)
-                            )
-                        }
+                CL:
+                    filter: { network: ['CL', 'CL:national', 'CL:regional'] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'CL:national-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 offset: [0px, 2px]
+                                font:
+                                    fill: [1.000,1.000,1.000]
+                    panamerica:
+                        filter: { shield_text: 5, network: ['CL', 'CL:national'] }
+                        draw:
+                            mapzen_icon_library:
+                                sprite: |
+                                    function() {
+                                        return ( 'CL:panamerican-' + feature.shield_text.length + 'char');
+                                    }
 
                 ###
                 ### CHINA
                 ###
                 CN-expressways:
-                    filter: { network: CN-expressways }
+                    filter: { network: CN:expressway }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -3345,25 +2995,17 @@ layers:
                                 font:
                                     fill: [1.000,1.000,1.000]
 
-                    CN-expressways2:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^S.*$/.test(feature.shield_text)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'CN:EXP-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.000,0.931,0.680]
+                CN-expressway-regional:
+                    filter: { network: CN:expressway:regional }
+                    draw:
+                        mapzen_icon_library:
+                            text:
+                                offset: [0px, 2px]
+                                font:
+                                    fill: [1.000,0.931,0.680]
 
-                CN-roads:
-                    filter: { network: CN-roads }
+                CN-road:
+                    filter: { network: CN:road }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -3393,85 +3035,22 @@ layers:
                 ###
                 
                 # This is a hack since E-roads should be sorted after FR:A-roads, FR:N-roads, and FR:D-roads
-                france-a-and-n-road-ref-shields:
-                    filter: |
-                        function() {
-                            return ((feature.ref && feature.network == 'e-road') &&
-                                   (/^A .*$/.test(feature.ref) || /^N .*$/.test(feature.ref))) ||
-                                   ((feature.ref && feature.shield_text && feature.network == 'FR:A-road'))
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'FR:A-road-' + feature.ref.replace(" ", "").length + 'char');
-                                }
-                            text:
-                                text_source: |
-                                    function() {
-                                        return feature.ref.replace(" ", "");
-                                    }
-                                font:
-                                    fill: [1.00,1.00,1.00]
-
-                # FR:01:D-road, FR:02:D-road
-                france-department-shields:
-                    filter: |
-                        function() {
-                            return (/^D .*$/.test(feature.ref)) &&
-                                   (feature.ref && /^FR:.*:.*$/.test(feature.network))
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    var text_len = feature.shield_text.length || feature.ref.length;
-                                    return ( 'FR:D-' + text_len + 'char');
-                                }
-                            text:
-                                font:
-                                    fill: [0.20,0.20,0.20]
-
-                FR:A-and-N-road-offset:
-                    filter: { network: [FR, FR:A-road, FR:N-road] }
+                france-a-and-n-road:
+                    filter: { network: ['FR:A-road','FR:N-road'] }
                     draw:
                         mapzen_icon_library:
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
-
 
                 ###
                 ### GERMANY
                 ###
-                # (2018-05-23 nvkelso: disabling as it leaks into other countries)
-                # germany-b-shields:
-                #     filter: |
-                #         function() {
-                #             return feature.ref && /^B .*$/.test(feature.ref)
-                #         }
-                #     draw:
-                #         mapzen_icon_library:
-                #             sprite: |
-                #                 function() {
-                #                     return ( 'DE:DE-' + feature.ref.length + 'char');
-                #                 }
-                #             text:
-                #                 offset: [0px, -1px]
-                #                 font:
-                #                     fill: [0.150,0.150,0.150]
 
                 BAB:
-                    filter: |
-                        function() {
-                            return feature.ref && /^BAB$/.test(feature.network)
-                        }
+                    filter: { network: ['DE:BAB'] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'BAB-' + feature.ref.length + 'char');
-                                }
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
@@ -3481,36 +3060,17 @@ layers:
                 ###
 
                 GR:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^GR$/.test(feature.network) ||
-                                /^GR:motorway$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: ['GR:motorway'] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'GR:motorway-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
                 
                 GR:national:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^GR:national$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: ['GR:national'] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'GR:national-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
@@ -4111,29 +3671,20 @@ layers:
                 ### UNITED KINGDOM
                 ###
 
-                GB:     # GB implies GB:M-road and GB:A-road, with sublayer for the GB:A-road
-                    filter: { network: GB }
+                GB-M-road:     # GB implies GB:M-road and GB:A-road, with sublayer for the GB:A-road
+                    filter: { network: 'GB:M-road' }
                     draw:
                         mapzen_icon_library:
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
-                    GB:A:
-                        filter: |
-                            function() {
-                                return feature.shield_text && (
-                                    /^A.*$/.test(feature.shield_text)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'GB:A-' + feature.shield_text.length + 'char');
-                                    }
-                                text:
-                                    font:
-                                        fill: [1.000,0.931,0.680]
+                GB:A-road:
+                    filter: { network: 'GB:A-road-green' }
+                    draw:
+                        mapzen_icon_library:
+                            text:
+                                font:
+                                    fill: [1.000,0.931,0.680]
 
                 ###
                 ### TURKEY
