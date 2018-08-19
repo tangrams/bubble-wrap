@@ -2723,17 +2723,9 @@ layers:
 
                 # This is causing Cologne Germany to get red road shields
                 e-roads:
-                    filter: #|
-                        - network: [e-road]
-#                            function() {
-#                                return feature.shield_text && /^e-road$/.test(feature.network)
-#                            }
+                    filter: { network: [e-road] }
                     draw:
                         mapzen_icon_library:
-#                                sprite: |
-#                                    function() {
-#                                        return ( 'e-road-' + feature.shield_text.length + 'char');
-#                                    }
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
@@ -2763,7 +2755,6 @@ layers:
                 ###
                 AR:national:
                     filter: { network: 'AR:national' }
-                    # using generic shield here, too white shields in Argentina, difficult to view hierarchy
                     early:
                         filter:
                             - $zoom: { max: 11 }
