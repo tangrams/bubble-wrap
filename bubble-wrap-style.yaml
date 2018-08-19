@@ -2694,7 +2694,7 @@ layers:
             shields-international:
                 filter: #|
                     all:
-                        - network: ['AM:AM', 'AU:I2', 'AU:A-road', 'AU:M-road', 'AU:B-road', 'AU:C-road', 'e-road', 'GB:A-road-green', 'ES:AA2', 'BD:NH', 'IT:RA', 'IQ:IQ', 'RO:AS', 'IE:N', 'ES:AA3', 'ES:AA4', 'ES:AA5', 'AU:I3', 'AU:N-route', 'MX:SH', 'NZ:SR', 'AR:national', 'CA:AB', 'CA:AB:primary', 'CA:AB:trunk', 'CA:MB', 'CA:MB:PTH', 'AU:Metro-road', 'AU:N-highway', 'AU:S-route', 'AU:T-drive', 'BR', 'BR:BR', 'BR:TA', 'CA:BC', 'CA:BC:primary', 'CA:BC:trunk', 'CA:I2', 'CA:NB', 'CA:NB2', 'CA:NB3', 'CA:NS', 'CA:NS:R', 'CA:NS:T', 'CA:NT', 'CA:ON', 'CA:ON:primary', 'CA:PEI', 'CA:QC', 'CA:QC:A', 'CA:QC:R', 'CA:SK', 'CA:SK:primary', 'CA:transcanada', 'CH:A', 'CL:national', 'CL', 'CL:panamerican', 'CL:regional', 'CN:expressway', 'CN:expressway:regional', 'CN:road', 'CN-roads', 'FR:A-road', 'FR:N-road', 'pl:national', 'PT:IP', 'NL:A', 'ES:C', 'LU:RN', 'FI:FI', 'DE:BAB', 'DE:DE', 'DE:BS', 'PL:regional', 'DK:national', 'VN:I', 'SK:LR', 'FI:FS', 'UA:P1', 'UA:P2', 'DK:`national', 'DE:L', 'DE:LS', 'UK:G', 'PT:IC', 'NO:CR', 'DK:D', 'AT:L', 'VN:VN', 'AR:provincial', 'CA:YT', 'FI:RR', 'IE:R', 'BE:I', 'GB:A-road-white', 'ES:IU', 'FR:D', 'FR:D-road', 'NL:N', 'ES:AA', 'LU:CR', 'GR:I', 'GR:motorway', 'ID:ID', 'IN:NH', 'IN:SH', 'IN:MH', 'IT:A-road', 'JP:EX', 'JP:national', 'JP:prefectural', 'jp:prefectural', 'MX:MX', 'NL:S', 'NO:RR', 'NZ:SH', 'PE:PE', 'PT:A', 'PT:national', 'CH:E', 'VN:PR', 'IE:M', 'RO:DC', 'RO:DJ', 'RO:DX', 'SA:SA', 'SG:E', 'SK:I', 'SK:SK', 'TH:TH', 'TH:TM2', 'TH:TM3', 'TR-roads', 'MY:E', 'ZA:M', 'ZA:P', 'ru:national', 'RU:national', 'GB:M-road', 'GR:GR', 'GR:national', 'IT:SR', 'IT:SS', 'IT:B-road', 'ES:A', 'SE:A', 'AT:A', 'AT:S', 'TR:DY', 'LU:M', 'FI:LR', 'UA:M', 'UA:P', 'za:national', 'za:regional', 'ZA:R', 'NO:TR']
+                        - network: ['AM:AM', 'AU:I2', 'AU:A-road', 'AU:M-road', 'AU:B-road', 'AU:C-road', 'e-road', 'GB:A-road-green', 'ES:AA2', 'BD:NH', 'IT:RA', 'IQ:IQ', 'RO:AS', 'IE:N', 'ES:AA3', 'ES:AA4', 'ES:AA5', 'AU:I3', 'AU:N-route', 'MX:SH', 'NZ:SR', 'AR:national', 'CA:AB', 'CA:AB:primary', 'CA:AB:trunk', 'CA:MB', 'CA:MB:PTH', 'AU:Metro-road', 'AU:N-highway', 'AU:S-route', 'AU:T-drive', 'BR-', 'BR:PA', 'BR:PB', 'BR:PR', 'BR:PE', 'BR:PI', 'BR:RJ', 'BR:RN', 'BR:RS', 'BR:RO', 'BR:RR', 'BR:SC', 'BR:SP', 'BR:SE', 'BR:TO', 'BR', 'BR:BR', 'BR:DF', 'BR:AC', 'BR:AL', 'BR:AP', 'BR:AM', 'BR:BA', 'BR:CE', 'BR:ES', 'BR:GO', 'BR:MA', 'BR:MT', 'BR:MS', 'BR:MG', 'BR:Trans-Amazonian', 'CA:BC', 'CA:BC:primary', 'CA:BC:trunk', 'CA:I2', 'CA:NB', 'CA:NB2', 'CA:NB3', 'CA:NS', 'CA:NS:R', 'CA:NS:T', 'CA:NT', 'CA:ON', 'CA:ON:primary', 'CA:PEI', 'CA:QC', 'CA:QC:A', 'CA:QC:R', 'CA:SK', 'CA:SK:primary', 'CA:transcanada', 'CH:A', 'CL:national', 'CL', 'CL:panamerican', 'CL:regional', 'CN:expressway', 'CN:expressway:regional', 'CN:road', 'CN-roads', 'FR:A-road', 'FR:N-road', 'pl:national', 'PT:IP', 'NL:A', 'ES:C', 'LU:RN', 'FI:FI', 'DE:BAB', 'DE:DE', 'DE:BS', 'PL:regional', 'DK', 'DK:national', 'VN:I', 'SK:LR', 'FI:FS', 'UA:P1', 'DE:L', 'DE:LS', 'UK:G', 'PT:IC', 'NO:CR', 'DK:D', 'AT:L', 'VN:VN', 'AR:provincial', 'CA:YT', 'FI:RR', 'IE:R', 'BE:I', 'GB:A-road-white', 'BE:A-road', 'BE:N-road', 'ES:IU', 'FR:D', 'FR:D-road', 'NL:N', 'ES:AA', 'LU:CR', 'GR:I', 'GR:motorway', 'ID:ID', 'ID:national', 'ID:motorway', 'IN:NH', 'IN:SH', 'IN:MH', 'IT:A-road', 'JP:EX', 'JP:national', 'JP:prefectural', 'jp:prefectural', 'KR:expressway', 'KR:national', 'MX:MX', 'NL:S', 'NO:RR', 'NZ:SH', 'PE:PE', 'PT:A', 'PT:national', 'CH:E', 'VN:PR', 'IE:M', 'RO:DC', 'RO:DJ', 'RO:DX', 'SA:SA', 'SG:E', 'TH:TH', 'TH:TM2', 'TH:TM3', 'TR-roads', 'TR:motorway', 'MY:expressway', 'ZA:M', 'ZA:P', 'ru:national', 'RU:national', 'GB:M-road', 'GR:GR', 'GR:national', 'IT:SR', 'IT:SS', 'IT:B-road', 'ES:A', 'SE:A', 'AT:A', 'AT:S', 'TR:highway', 'LU:M', 'FI:LR', 'UA:M', 'UA:P', 'za:national', 'za:regional', 'ZA:R', 'NO:TR']
                         - shield_text: true
                 draw:
                     mapzen_icon_library:
@@ -2729,26 +2729,6 @@ layers:
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
-
-                    ### this is returning e-road shield text incorrectly, need the O prefix ref text
-                    ### TURKEY
-                    # (2018-05-23 nvkelso: disabling as it leaks into other countries)
-                    # eroad-otoyol-roads:
-                    #     filter: |
-                    #         function() {
-                    #             return feature.ref && (
-                    #                 /^O.*$/.test(feature.ref)
-                    #             )
-                    #         }
-                    #     draw:
-                    #         mapzen_icon_library:
-                    #             sprite: |
-                    #                 function() {
-                    #                     return ( 'TR-roads-' + feature.ref.length + 'char');
-                    #                 }
-                    #             text:
-                    #                 font:
-                    #                     fill: [0.000,0.000,0.000]
 
                 ###
                 ### ARGENTINA
@@ -2804,44 +2784,6 @@ layers:
                                     fill: [1.00,1.00,1.00]
 
                 ###
-                ### BANGLADESH
-                ###
-                AH: # Asian Highway
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^AH$/.test(feature.network)
-                            )
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'CH:E-' + feature.shield_text.length + 'char');
-                                }
-                            text:
-                                font:
-                                    fill: [1.000,1.000,1.000]
-
-                ###
-                ### BELGIUM - Generic White Shield
-                ###
-                BE:A-N-road:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^BE:A-road$/.test(feature.network) ||
-                                /^BE:N-road$/.test(feature.network)
-                            )
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'DE:L-' + feature.shield_text.length + 'char');
-                                }
-
-                ###
                 ### BRAZIL
                 ###
                 BR:
@@ -2850,33 +2792,18 @@ layers:
                         mapzen_icon_library:
                             text:
                                 offset: [0px, 2px]
-                #BR:ES, BR:GO are included here
-                brazil-state-shields:
-                    filter: |
-                        function() {
-                            return feature.shield_text && /^BR:.*$/.test(feature.network)
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'BR:BR-' + feature.shield_text.length + 'char');
-                                }
-                            text:
-                                offset: [0px, 1px]
                 brazil-trans-amazonian:
-                    filter: |
-                        function() {
-                            return (feature.shield_text == 230) && (feature.network == 'BR')
-                        }
+                    filter: { network: 'BR:Trans-Amazonian' }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'BR:TA-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 offset: [0px, 2px]
+                brazil-state-shields:
+                    filter: { network: ['BR:AC','BR:AL','BR:AM','BR:AP','BR:BA','BR:BR','BR:CE','BR:DF','BR:ES','BR:GO','BR:MA','BR:MG','BR:MS','BR:MT','BR:PA','BR:PB','BR:PE','BR:PI','BR:PR','BR:RJ','BR:RN','BR:RO','BR:RR','BR:RS','BR:SC','BR:SE','BR:SP','BR:TO'] }
+                    draw:
+                        mapzen_icon_library:
+                            text:
+                                offset: [0px, 1px]
 
                 ### CANADA
                 ### sometimes in Alberta the network is not set... so this needs to go into Funky section as well. or fix the data...
@@ -3004,24 +2931,6 @@ layers:
                                     fill: [1.000,1.000,1.000]
 
                 ###
-                ### DENMARK
-                ###
-                dk:national:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^dk:national$/.test(feature.network) ||
-                                /^DK$/.test(feature.network)
-                            )
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'dk:national-' + feature.shield_text.length + 'char');
-                                }
-
-                ###
                 ### FRANCE
                 ###
                 
@@ -3070,160 +2979,34 @@ layers:
                 ### INDIA
                 ###
 
-                #this filter is not drawing anything, though it is being read see http://localhost:8000/#13/13.0968/437.6057  Bellary Rd.
-
-                # this filter is working it seems, it's showing up in Malaysia http://localhost:8000/#9.180020650227867/2.7173/472.5489
-                AsianHighway:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^AsianHighway$/.test(feature.network)
-                            )
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'CH:E-' + feature.shield_text.length + 'char');
-                                }
-                            text:
-                                font:
-                                    fill: [1.000,1.000,1.000]
-
-                    # Asian Highway/E - expressways in Malaysia - yellow shields - http://localhost:8000/#10/4.8919/101.1827
-                    # This is affecting roads in Japan! http://localhost:8000/#13/34.7106/135.6046
-                    # (2018-05-23 nvkelso: disabling as it leaks into other countries)
-                    # E-AsianHighway:
-                    #     filter: |
-                    #         function() {
-                    #             return feature.ref && (
-                    #                 /^E.*$/.test(feature.ref)
-                    #             )
-                    #         }
-                    #     draw:
-                    #         mapzen_icon_library:
-                    #             sprite: |
-                    #                 function() {
-                    #                     return ( 'MY:E-' + feature.ref.length + 'char');
-                    #                 }
-                    #             text:
-                    #                 font:
-                    #                     fill: [0.00,0.00,0.00]     
-
-                # Give IN:MH a generic white shield, since we don't have a shield drawn for this
-                # this filter is not drawing anything, though it is being read http://localhost:8000/#13/15.8942/433.6549 Sagari Mahamarg,
-                # try commenting it out and green shield appears
-                # it is drawing here: http://localhost:8000/#12/16.3915/433.4824
-                IN:MH:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^IN:MH$/.test(feature.network)
-                            )
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'DE:L-' + feature.shield_text.length + 'char');
-                                }
-
-                # IN:NH:AN, IN:NH:AP, IN:NH:AR, IN:NH
                 IN:NH:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^IN:NH$/.test(feature.network) ||
-                                /^IN:NH:.*$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: IN:NH }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'IN:NH-' + feature.shield_text.replace("NH", "").length + 'char');
-                                }
                             text:
                                 offset: [0px, 2px]
-                                text_source: |
-                                    function() {
-                                        return feature.shield_text.replace("NH", "");
-                                    }
 
-                # IN:SH:BH, IN:SH:Gj, IN:SH:HP
                 IN:SH:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^IN:SH$/.test(feature.network) ||
-                                /^IN:SH:.*$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: IN:SH }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'IN:SH-' + feature.shield_text.replace("SH", "").length + 'char');
-                                }
                             text:
-                                text_source: |
-                                    function() {
-                                        return feature.shield_text.replace("SH", "");
-                                    }
-
-                ###
-                ### INDONESIA
-                ###
-
-                # this filter is not drawing any shields, testing out the IDS network, but appears there are none
-                IDS:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^IDS .*$/.test(feature.network)
-                            )
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'ID:ID-' + feature.shield_text.length + 'char');
-                                }
+                                offset: [0px, 3px]
 
                 ###
                 ### ITALY
                 ###
                 IT:AS:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^IT:A-road$/.test(feature.network) ||
-                                /^IT$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: IT:A-road }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'IT:A-road-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
                 IT:B-road:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^IT:B-road$/.test(feature.network) ||
-                               ( /^IT:.*$/.test(feature.network) && !(/^IT:A-road$/.test(feature.network)) )
-                            )
-                        }
+                    filter: { network: IT:B-road }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'IT:B-road-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
@@ -3232,19 +3015,9 @@ layers:
                 ### JAPAN
                 ###
                 JP:national:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^JP:national$/.test(feature.network) ||
-                                /^JP:national:expressway$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: [JP:national, JP:national:expressway] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'JP:national-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 offset: [0px, -1px]
                                 font:
@@ -3252,20 +3025,9 @@ layers:
 
                 # JP:prefectural, JP:prefectural:chiba, JP:prefectural:gunma
                 JP:prefectural:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^jp:prefectural$/.test(feature.network) ||
-                                /^JP:prefectural$/.test(feature.network) ||
-                                /^JP:prefectural:.*$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: JP:prefectural }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'jp:prefectural-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
@@ -3274,55 +3036,20 @@ layers:
                 ### KOREA
                 ###
                 KR:national:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^KR:national$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: [KR:expressway, KR:national] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'SK:I-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
 
                 ###
-                ### MALAYSIA
-                ###
-                my:federal:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^my:federal$/.test(feature.network)
-                            )
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'MY:E-' + feature.shield_text.length + 'char');
-                                }
-
-                ###
                 ### NEW ZEALAND
                 ###
                 NZ:SH:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^NZ:SH$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: NZ:SH }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'NZ:SH-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
@@ -3656,8 +3383,6 @@ layers:
                                     return ( 'ES:IU-' + feature.shield_text.length + 'char');
                                 }
 
-
-
                 ###
                 ### UNITED KINGDOM
                 ###
@@ -3939,31 +3664,6 @@ layers:
 #                             draw:
 #                                 mapzen_icon_library:
 #                                     visible: false
-
-#                     ###
-#                     ### BRAZIL
-#                     ###
-
-#                     # this is not working http://localhost:8000/#13/-23.4141/312.8141
-#                     # it was getting Italy blue SP shields
-#                     # see SP-roads and SP-roads-shield-text
-#                     BR-Brazil:
-#                         filter: |
-#                             function() {
-#                                 return feature.shield_text && (
-#                                     /^BR.*$/.test(feature.ref) &&
-#                                     /^BR$/.test(feature.network)
-#                                 )
-#                             }
-#                         draw:
-#                             mapzen_icon_library:
-#                                 sprite: |
-#                                     function() {
-#                                         return ( 'BR:BR-' + feature.shield_text.length + 'char');
-#                                     }
-#                                 text:
-#                                     offset: [0px, 1px]
-
 #                     CE-roads:
 #                         filter: |
 #                             function() {
