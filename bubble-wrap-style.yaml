@@ -2694,7 +2694,7 @@ layers:
             shields-international:
                 filter: #|
                     all:
-                        - network: ['AM:AM', 'AU:I2', 'AU:A-road', 'AU:M-road', 'AU:B-road', 'AU:C-road', 'e-road', 'GB:A-road-green', 'ES:AA2', 'BD:NH', 'IT:RA', 'IQ:IQ', 'RO:AS', 'IE:N', 'ES:AA3', 'ES:AA4', 'ES:AA5', 'AU:I3', 'AU:N-route', 'MX:SH', 'NZ:SR', 'AR:national', 'CA:AB', 'CA:AB:primary', 'CA:AB:trunk', 'CA:MB', 'CA:MB:PTH', 'PE:AM', 'PE:AN', 'PE:AP', 'PE:AR', 'PE:AY', 'PE:CA', 'PE:CL', 'PE:CU', 'PE:HV', 'PE:HU', 'PE:IC', 'PE:JU', 'PE:LI', 'PE:LA', 'PE:LM', 'PE:LO', 'PE:MD', 'PE:MO', 'PE:PA', 'PE:PI', 'PE:PU', 'PE:SM', 'PE:TA', 'PE:TU', 'PE:UC', 'AU:Metro-road', 'AU:N-highway', 'AU:S-route', 'AU:T-drive', 'BR-', 'BR:PA', 'BR:PB', 'BR:PR', 'BR:PE', 'BR:PI', 'BR:RJ', 'BR:RN', 'BR:RS', 'BR:RO', 'BR:RR', 'BR:SC', 'BR:SP', 'BR:SE', 'BR:TO', 'BR', 'BR:BR', 'BR:DF', 'BR:AC', 'BR:AL', 'BR:AP', 'BR:AM', 'BR:BA', 'BR:CE', 'BR:ES', 'BR:GO', 'BR:MA', 'BR:MT', 'BR:MS', 'BR:MG', 'BR:Trans-Amazonian', 'CA:BC', 'CA:BC:primary', 'CA:BC:trunk', 'CA:I2', 'CA:NB', 'CA:NB2', 'CA:NB3', 'CA:NS', 'CA:NS:R', 'CA:NS:T', 'CA:NT', 'CA:ON', 'CA:ON:primary', 'CA:PEI', 'CA:QC', 'CA:QC:A', 'CA:QC:R', 'CA:SK', 'CA:SK:primary', 'CA:transcanada', 'CH:A', 'CL:national', 'CL', 'CL:panamerican', 'CL:regional', 'CN:expressway', 'CN:expressway:regional', 'CN:road', 'CN-roads', 'FR:A-road', 'FR:N-road', 'PL:national', 'PL:expressway', 'PL:motorway', 'PT:primary', 'NL:A', 'ES:autonoma', 'ES:N-road', 'LU:RN', 'FI:FI', 'DE:BAB', 'DE:DE', 'DE:BS', 'PL:regional', 'DK', 'DK:national', 'VN:I', 'SK:LR', 'FI:FS', 'UA:P1', 'DE:L', 'DE:LS', 'UK:G', 'PT:IC', 'NO:fylkesvei', 'DK:D', 'AT:L', 'VN:VN', 'AR:provincial', 'CA:YT', 'FI:RR', 'IE:R', 'BE:I', 'GB:A-road-white', 'BE:A-road', 'BE:N-road', 'PT:national', 'PT:secondary', 'PT:regional', 'ES:IU', 'FR:D', 'FR:D-road', 'NL:N', 'ES:province', 'LU:CR', 'GR:I', 'GR:motorway', 'ID:ID', 'ID:national', 'ID:motorway', 'IN:NH', 'IN:SH', 'IN:MH', 'IT:A-road', 'JP:EX', 'JP:national', 'JP:prefectural', 'jp:prefectural', 'KR:expressway', 'KR:national', 'MX:MX', 'NL:S', 'NO:RR', 'NZ:SH', 'PE:PE', 'PT:A', 'PT:motorway', 'CH:E', 'VN:PR', 'IE:M', 'RO:DC', 'RO:DJ', 'RO:DX', 'SA:SA', 'SG:E', 'TH:TH', 'TH:TM2', 'TH:TM3', 'TR-roads', 'TR:motorway', 'MY:expressway', 'ZA:M', 'ZA:P', 'ru:national', 'RU:national', 'GB:M-road', 'GR:GR', 'GR:national', 'IT:SR', 'IT:SS', 'IT:B-road', 'ES:A-road', 'SE:A', 'AT:A', 'AT:S', 'TR:highway', 'LU:M', 'FI:LR', 'UA:M', 'UA:P', 'za:national', 'za:regional', 'ZA:R', 'NO:riksvei']
+                        - network: ['AM:AM', 'AU:I2', 'AU:A-road', 'AU:M-road', 'AU:B-road', 'AU:C-road', 'e-road', 'GB:A-road-green', 'ES:AA2', 'BD:NH', 'IT:RA', 'IQ:IQ', 'RO:AS', 'IE:N', 'ES:AA3', 'ES:AA4', 'ES:AA5', 'AU:I3', 'AU:N-route', 'MX:SH', 'NZ:SR', 'AR:national', 'CA:AB', 'CA:AB:primary', 'CA:AB:trunk', 'CA:MB', 'CA:MB:PTH', 'PE:AM', 'PE:AN', 'PE:AP', 'PE:AR', 'PE:AY', 'PE:CA', 'PE:CL', 'PE:CU', 'PE:HV', 'PE:HU', 'PE:IC', 'PE:JU', 'PE:LI', 'PE:LA', 'PE:LM', 'PE:LO', 'PE:MD', 'PE:MO', 'PE:PA', 'PE:PI', 'PE:PU', 'PE:SM', 'PE:TA', 'PE:TU', 'PE:UC', 'AU:Metro-road', 'AU:N-highway', 'AU:S-route', 'AU:T-drive', 'BR-', 'BR:PA', 'BR:PB', 'BR:PR', 'BR:PE', 'BR:PI', 'BR:RJ', 'BR:RN', 'BR:RS', 'BR:RO', 'BR:RR', 'BR:SC', 'BR:SP', 'BR:SE', 'BR:TO', 'BR', 'BR:BR', 'BR:DF', 'BR:AC', 'BR:AL', 'BR:AP', 'BR:AM', 'BR:BA', 'BR:CE', 'BR:ES', 'BR:GO', 'BR:MA', 'BR:MT', 'BR:MS', 'BR:MG', 'BR:Trans-Amazonian', 'CA:BC', 'CA:BC:primary', 'CA:BC:trunk', 'CA:I2', 'CA:NB', 'CA:NB2', 'CA:NB3', 'CA:NS', 'CA:NS:R', 'CA:NS:T', 'CA:NT', 'CA:ON', 'CA:ON:primary', 'CA:PEI', 'CA:QC', 'CA:QC:A', 'CA:QC:R', 'CA:SK', 'CA:SK:primary', 'CA:transcanada', 'CH:A', 'CL:national', 'CL', 'CL:panamerican', 'CL:regional', 'CN:expressway', 'CN:expressway:regional', 'CN:road', 'CN-roads', 'FR:A-road', 'FR:N-road', 'PL:national', 'PL:expressway', 'PL:motorway', 'PT:primary', 'NL:A', 'ES:autonoma', 'ES:N-road', 'LU:RN', 'FI:FI', 'DE:BAB', 'DE:DE', 'DE:BS', 'PL:regional', 'DK', 'DK:national', 'VN:I', 'SK:LR', 'FI:FS', 'UA:P1', 'DE:L', 'DE:LS', 'UK:G', 'PT:IC', 'NO:fylkesvei', 'DK:D', 'AT:L', 'VN:VN', 'AR:provincial', 'CA:YT', 'FI:RR', 'IE:R', 'BE:I', 'GB:A-road-white', 'BE:A-road', 'BE:N-road', 'PT:national', 'PT:secondary', 'PT:regional', 'ES:IU', 'FR:D', 'FR:D-road', 'NL:N', 'ES:province', 'LU:CR', 'GR:I', 'GR:motorway', 'ID:ID', 'ID:national', 'ID:motorway', 'IN:NH', 'IN:SH', 'IN:MH', 'IT:A-road', 'JP:EX', 'JP:national', 'JP:prefectural', 'jp:prefectural', 'KR:expressway', 'KR:national', 'MX:MX', 'NL:S', 'NO:RR', 'NZ:SH', 'PE:PE', 'PT:A', 'PT:motorway', 'CH:E', 'VN:PR', 'IE:M', 'RO:DC', 'RO:DJ', 'RO:DX', 'SA:SA', 'SG:E', 'TH:TH', 'TH:TM2', 'TH:TM3', 'TR-roads', 'TR:motorway', 'MY:expressway', 'ZA:metropolitan', 'ZA:national', 'ZA:provincial', 'ZA:regional', 'NO:riksvei', 'ru:national', 'RU:national', 'GB:M-road', 'GR:GR', 'GR:national', 'IT:SR', 'IT:SS', 'IT:B-road', 'ES:A-road', 'SE:A', 'AT:A', 'AT:S', 'TR:highway', 'LU:M', 'FI:LR', 'UA:M', 'UA:P']
                         - shield_text: true
                 draw:
                     mapzen_icon_library:
@@ -3160,15 +3160,20 @@ layers:
                                 font:
                                     fill: [1.00,1.00,1.00]
 
-                # Split up the za:regional filters, but really need a za:provincial network for diamond green shields ZA:P
-                za:regional1:
-                    filter: { network: ZA:regional }
+                za:metropolitan:
+                    filter: { network: ZA:metropolitan }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'ZA:P-' + feature.shield_text.length + 'char');
-                                }
+                            text:
+                                offset: [0px, 2px]
+                                font:
+                                    fill: [1.00,1.00,1.00]
+
+                # Split up the za:regional filters, but really need a za:provincial network for diamond green shields ZA:P
+                za:regional1:
+                    filter: { network: [ZA:regional,ZA:provincial] }
+                    draw:
+                        mapzen_icon_library:
                             text:
                                 font:
                                     fill: [1.000,0.915,0.610]
