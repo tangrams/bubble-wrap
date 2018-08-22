@@ -2694,7 +2694,7 @@ layers:
             shields-international:
                 filter: #|
                     all:
-                        - network: ['AM:AM', 'AU:I2', 'AU:A-road', 'AU:M-road', 'AU:B-road', 'AU:C-road', 'e-road', 'GB:A-road-green', 'ES:AA2', 'BD:NH', 'IT:RA', 'IQ:IQ', 'RO:AS', 'IE:N', 'ES:AA3', 'ES:AA4', 'ES:AA5', 'AU:I3', 'AU:N-route', 'MX:SH', 'NZ:SR', 'AR:national', 'CA:AB', 'CA:AB:primary', 'CA:AB:trunk', 'CA:MB', 'CA:MB:PTH', 'AU:Metro-road', 'AU:N-highway', 'AU:S-route', 'AU:T-drive', 'BR-', 'BR:PA', 'BR:PB', 'BR:PR', 'BR:PE', 'BR:PI', 'BR:RJ', 'BR:RN', 'BR:RS', 'BR:RO', 'BR:RR', 'BR:SC', 'BR:SP', 'BR:SE', 'BR:TO', 'BR', 'BR:BR', 'BR:DF', 'BR:AC', 'BR:AL', 'BR:AP', 'BR:AM', 'BR:BA', 'BR:CE', 'BR:ES', 'BR:GO', 'BR:MA', 'BR:MT', 'BR:MS', 'BR:MG', 'BR:Trans-Amazonian', 'CA:BC', 'CA:BC:primary', 'CA:BC:trunk', 'CA:I2', 'CA:NB', 'CA:NB2', 'CA:NB3', 'CA:NS', 'CA:NS:R', 'CA:NS:T', 'CA:NT', 'CA:ON', 'CA:ON:primary', 'CA:PEI', 'CA:QC', 'CA:QC:A', 'CA:QC:R', 'CA:SK', 'CA:SK:primary', 'CA:transcanada', 'CH:A', 'CL:national', 'CL', 'CL:panamerican', 'CL:regional', 'CN:expressway', 'CN:expressway:regional', 'CN:road', 'CN-roads', 'FR:A-road', 'FR:N-road', 'pl:national', 'PT:IP', 'NL:A', 'ES:C', 'LU:RN', 'FI:FI', 'DE:BAB', 'DE:DE', 'DE:BS', 'PL:regional', 'DK', 'DK:national', 'VN:I', 'SK:LR', 'FI:FS', 'UA:P1', 'DE:L', 'DE:LS', 'UK:G', 'PT:IC', 'NO:CR', 'DK:D', 'AT:L', 'VN:VN', 'AR:provincial', 'CA:YT', 'FI:RR', 'IE:R', 'BE:I', 'GB:A-road-white', 'BE:A-road', 'BE:N-road', 'ES:IU', 'FR:D', 'FR:D-road', 'NL:N', 'ES:AA', 'LU:CR', 'GR:I', 'GR:motorway', 'ID:ID', 'ID:national', 'ID:motorway', 'IN:NH', 'IN:SH', 'IN:MH', 'IT:A-road', 'JP:EX', 'JP:national', 'JP:prefectural', 'jp:prefectural', 'KR:expressway', 'KR:national', 'MX:MX', 'NL:S', 'NO:RR', 'NZ:SH', 'PE:PE', 'PT:A', 'PT:national', 'CH:E', 'VN:PR', 'IE:M', 'RO:DC', 'RO:DJ', 'RO:DX', 'SA:SA', 'SG:E', 'TH:TH', 'TH:TM2', 'TH:TM3', 'TR-roads', 'TR:motorway', 'MY:expressway', 'ZA:M', 'ZA:P', 'ru:national', 'RU:national', 'GB:M-road', 'GR:GR', 'GR:national', 'IT:SR', 'IT:SS', 'IT:B-road', 'ES:A', 'SE:A', 'AT:A', 'AT:S', 'TR:highway', 'LU:M', 'FI:LR', 'UA:M', 'UA:P', 'za:national', 'za:regional', 'ZA:R', 'NO:TR']
+                        - network: ['AM:AM', 'AU:I2', 'AU:A-road', 'AU:M-road', 'AU:B-road', 'AU:C-road', 'e-road', 'GB:A-road-green', 'ES:AA2', 'BD:NH', 'IT:RA', 'IQ:IQ', 'RO:AS', 'IE:N', 'ES:AA3', 'ES:AA4', 'ES:AA5', 'AU:I3', 'AU:N-route', 'MX:SH', 'NZ:SR', 'AR:national', 'CA:AB', 'CA:AB:primary', 'CA:AB:trunk', 'CA:MB', 'CA:MB:PTH', 'PE:AM', 'PE:AN', 'PE:AP', 'PE:AR', 'PE:AY', 'PE:CA', 'PE:CL', 'PE:CU', 'PE:HV', 'PE:HU', 'PE:IC', 'PE:JU', 'PE:LI', 'PE:LA', 'PE:LM', 'PE:LO', 'PE:MD', 'PE:MO', 'PE:PA', 'PE:PI', 'PE:PU', 'PE:SM', 'PE:TA', 'PE:TU', 'PE:UC', 'AU:Metro-road', 'AU:N-highway', 'AU:S-route', 'AU:T-drive', 'BR-', 'BR:PA', 'BR:PB', 'BR:PR', 'BR:PE', 'BR:PI', 'BR:RJ', 'BR:RN', 'BR:RS', 'BR:RO', 'BR:RR', 'BR:SC', 'BR:SP', 'BR:SE', 'BR:TO', 'BR', 'BR:BR', 'BR:DF', 'BR:AC', 'BR:AL', 'BR:AP', 'BR:AM', 'BR:BA', 'BR:CE', 'BR:ES', 'BR:GO', 'BR:MA', 'BR:MT', 'BR:MS', 'BR:MG', 'BR:Trans-Amazonian', 'CA:BC', 'CA:BC:primary', 'CA:BC:trunk', 'CA:I2', 'CA:NB', 'CA:NB2', 'CA:NB3', 'CA:NS', 'CA:NS:R', 'CA:NS:T', 'CA:NT', 'CA:ON', 'CA:ON:primary', 'CA:PEI', 'CA:QC', 'CA:QC:A', 'CA:QC:R', 'CA:SK', 'CA:SK:primary', 'CA:transcanada', 'CH:A', 'CL:national', 'CL', 'CL:panamerican', 'CL:regional', 'CN:expressway', 'CN:expressway:regional', 'CN:road', 'CN-roads', 'FR:A-road', 'FR:N-road', 'PL:national', 'PL:expressway', 'PL:motorway', 'PT:primary', 'NL:A', 'ES:autonoma', 'ES:N-road', 'LU:RN', 'FI:FI', 'DE:BAB', 'DE:DE', 'DE:BS', 'PL:regional', 'DK', 'DK:national', 'VN:I', 'SK:LR', 'FI:FS', 'UA:P1', 'DE:L', 'DE:LS', 'UK:G', 'PT:IC', 'NO:fylkesvei', 'DK:D', 'AT:L', 'VN:VN', 'AR:provincial', 'CA:YT', 'FI:RR', 'IE:R', 'BE:I', 'GB:A-road-white', 'BE:A-road', 'BE:N-road', 'PT:national', 'PT:secondary', 'PT:regional', 'ES:IU', 'FR:D', 'FR:D-road', 'NL:N', 'ES:province', 'LU:CR', 'GR:I', 'GR:motorway', 'ID:ID', 'ID:national', 'ID:motorway', 'IN:NH', 'IN:SH', 'IN:MH', 'IT:A-road', 'JP:EX', 'JP:national', 'JP:prefectural', 'jp:prefectural', 'KR:expressway', 'KR:national', 'MX:MX', 'NL:S', 'NO:RR', 'NZ:SH', 'PE:PE', 'PT:A', 'PT:motorway', 'CH:E', 'VN:PR', 'IE:M', 'RO:DC', 'RO:DJ', 'RO:DX', 'SA:SA', 'SG:E', 'TH:TH', 'TH:TM2', 'TH:TM3', 'TR-roads', 'TR:motorway', 'MY:expressway', 'ZA:M', 'ZA:P', 'ru:national', 'RU:national', 'GB:M-road', 'GR:GR', 'GR:national', 'IT:SR', 'IT:SS', 'IT:B-road', 'ES:A-road', 'SE:A', 'AT:A', 'AT:S', 'TR:highway', 'LU:M', 'FI:LR', 'UA:M', 'UA:P', 'za:national', 'za:regional', 'ZA:R', 'NO:riksvei']
                         - shield_text: true
                 draw:
                     mapzen_icon_library:
@@ -3057,37 +3057,21 @@ layers:
                 ###
                 ### NORWAY
                 ###
-                no:Fylkesvei:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^no:Fylkesvei.*$/.test(feature.network) ||
-                                /^no:Fylkesvei .*$/.test(feature.network)
-                            )
-                        }
+                NO:riksvei:
+                    filter: { network: 'NO:riksvei'}
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'NO:CR-' + feature.shield_text.length + 'char');
-                                }
+                            text:
+                                font:
+                                    fill: [1.00,1.00,1.00]
 
                 ###
                 ### PERU
                 ###
                 pe:national:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^pe:national$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: 'PE:PE' }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'PE:PE-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 offset: [0px, 3px]
 
@@ -3097,75 +3081,23 @@ layers:
 
                 # pl:national, pl:expressways, pl:motorways
                 pl:national:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^pl:national$/.test(feature.network) ||
-                                /^pl:expressways$/.test(feature.network) ||
-                                /^pl:motorways$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: [PL:national, PL:expressway, PL:motorway] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'pl:national-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
-
-                pl:regional:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^pl:regional$/.test(feature.network)
-                            )
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'pl:regional-' + feature.shield_text.length + 'char');
-                                }
 
                 ###
                 ### PORTUGAL
                 ###
                 PT:national:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^PT:national$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: [PT:motorway,PT:primary] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'PT:national-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
-
-                # PT:regional http://localhost:8000/#11/39.6945/351.4547
-                # PT:regional:north, PT:regional:Alentejo, PT:regional:Algarve, PT:regional:centre
-                # Using generic white shield
-                PT:regional:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^PT:regional$/.test(feature.network) ||
-                                /^PT:regional:.*$/.test(feature.network)
-                            )
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'DE:L-' + feature.shield_text.length + 'char');
-                                }
 
                 ###
                 ### ROMANIA
@@ -3210,19 +3142,9 @@ layers:
                 ###
 
                 ru:national:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^ru:national$/.test(feature.network) ||
-                                /^ru:regional$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: RU:national }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'ru:national-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
@@ -3231,30 +3153,16 @@ layers:
                 ### SOUTH AFRICA
                 ###
                 za:national:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^za:national$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: ZA:national }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'za:national-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
 
                 # Split up the za:regional filters, but really need a za:provincial network for diamond green shields ZA:P
                 za:regional1:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^za:regional$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: ZA:regional }
                     draw:
                         mapzen_icon_library:
                             sprite: |
@@ -3266,12 +3174,7 @@ layers:
                                     fill: [1.000,0.915,0.610]
 
                 za:regional2:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^za:capetown$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: ZA:capetown }
                     draw:
                         mapzen_icon_library:
                             sprite: |
@@ -3286,19 +3189,9 @@ layers:
                 ### SPAIN
                 ###
                 ES:A-road:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^ES:A-road$/.test(feature.network) ||
-                                /^ES$/.test(feature.network)
-                            )
-                        }
+                    filter: { network: [ES:autonoma, ES:N-road] }
                     draw:
                         mapzen_icon_library:
-                            sprite: |
-                                function() {
-                                    return ( 'ES:A-' + feature.shield_text.length + 'char');
-                                }
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
