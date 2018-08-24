@@ -5709,6 +5709,14 @@ layers:
                 dots:
                     color: [0.722,0.769,0.827]
                     visible: true
+        danger_area:
+            filter:
+                kind: danger_area
+            draw:
+                dots:
+                    color: red #[0.722,0.769,0.827]
+                    visible: true
+                    order: 255
         university:
             filter:
                 kind: [university, college]
@@ -5836,8 +5844,54 @@ layers:
                kind: beach
            draw:
                dots:
-                   color: [0.780,0.740,0.538]
-                   visible: true
+                    color: [0.780,0.740,0.538]
+                    visible: true
+
+        plant_nursery:
+            filter:
+                kind: plant_nursery
+            draw:
+                dots:
+                    color: [0.955,0.752,0.650]
+                    visible: true
+                    order: 235
+
+        orchard:
+            filter:
+                kind: orchard
+            draw:
+                dots:
+                    color: [0.955,0.752,0.650]
+                    visible: true
+                    order: 236
+
+        mud:
+            filter:
+                kind: mud
+            draw:
+                polygons_transparent:
+                    color: [0.8,0.8,0.7,0.1]
+                    visible: true
+                    order: 235
+
+        wetland:
+            filter:
+                kind: wetland
+            draw:
+                polygons_transparent:
+                    color: [0.8,0.8,0.7,0.1]
+                    visible: true
+                    order: 236
+
+        reef:
+            filter:
+                kind: reef
+            draw:
+                polygons_transparent:
+                    color: [0.6,0.7,0.7,0.1]
+                    visible: true
+                    order: 237
+
         #TIER 6
         garden:
             filter:
@@ -6038,11 +6092,17 @@ layers:
                     color: global.city_wall
                     width: [[12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.0px], [16, 2.5px], [19, 3m]]
         walls:
-            filter: { kind: [wall, retaining_wall] }
+            filter: { kind: [wall, retaining_wall,embankment] }
             draw:
                 lines:
                     color: global.retaining_wall
                     width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 2m]]
+            #TODO: hack
+            embankment:
+                filter: { kind: embankment }
+                draw:
+                    lines:
+                        order: 500
         snow_fence:
             filter: { kind: snow_fence }
             draw:
