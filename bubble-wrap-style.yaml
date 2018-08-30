@@ -2495,7 +2495,6 @@ layers:
                         mapzen_icon_library:
                             text:
                                 offset: [0px, 1px]
-
                 US-CO:
                     # Match Colorado state highways: `US:CO`
                     filter: { network: 'US:CO' }
@@ -4059,6 +4058,29 @@ layers:
                         style: italic
                         size: 10px
                         stroke: { color: global.text_stroke_address, width: 4 }
+        entrance-labels:
+            filter:
+                $zoom: { min: 20 }
+                any:
+                    - kind: entrance
+                all:
+                    - function() { return global.text_visible_address; }
+            draw:
+                mapzen_icon_library:
+                    size: [[13, [95%,95%]], [16, [100%,100%]], [18, [105%,105%]]]
+                    sprite: function() { return feature.kind; }
+                    sprite_default: generic
+                    interactive: global.sdk_interactive
+                    priority: 65 #function() { return (feature.min_zoom && Math.floor(feature.min_zoom * 1000)) || 65; }
+                    repeat_group: abc
+                    buffer: 3px
+                    text:
+                        font:
+                            fill: global.text_fill_address
+                            family: global.text_font_family
+                            style: italic
+                            size: 10px
+                            stroke: { color: global.text_stroke_address, width: 4 }
 
     boundaries:
         data: { source: mapzen, layer: boundaries }
@@ -5704,7 +5726,7 @@ layers:
                     visible: true
         military:
             filter:
-                kind: military
+                kind: [military,naval_base]
             draw:
                 dots:
                     color: [0.722,0.769,0.827]
@@ -5717,6 +5739,15 @@ layers:
                     color: red #[0.722,0.769,0.827]
                     visible: true
                     order: 255
+        range:
+            filter:
+                kind: range
+            draw:
+                dots:
+                    color: red
+                    visible: true
+                    order: 256
+
         university:
             filter:
                 kind: [university, college]
@@ -5815,7 +5846,7 @@ layers:
                     color: global.grey8
                     visible: global.grey8_v
         man-made:
-            filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline] }
+            filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline,quay,wharf,shipyard,container_terminal,ferry_terminal,port_terminal] }
             draw:
                 dots:
                     color: [0.690,0.690,0.690]
@@ -5826,6 +5857,22 @@ layers:
                     dots:
                         color: [0.679,0.679,0.679]
                         visible: true
+            quay_wharf:
+                filter: { kind: [quay,wharf] }
+                draw:
+                    dots:
+                        visible: false
+                    polygons_transparent:
+                        color: [0.8,0.8,0.8,0.5]
+                        visible: true
+                        # hack
+                        order: 236
+            # hack
+            shipyard:
+                filter: { kind: [shipyard,container_terminal,ferry_terminal,port_terminal] }
+                draw:
+                    dots:
+                        order: 237
         #TIER 5
         tourism-related:
             filter:
@@ -6110,7 +6157,7 @@ layers:
                     color: global.snow_fence
                     width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1m]]
         fence:
-            filter: { kind: fence }
+            filter: { kind: [fence,kerb,guard_rail,ditch] }
             draw:
                 lines:
                     color: global.fence
