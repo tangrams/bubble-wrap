@@ -4068,7 +4068,7 @@ layers:
             draw:
                 mapzen_icon_library:
                     size: [[13, [95%,95%]], [16, [100%,100%]], [18, [105%,105%]]]
-                    sprite: function() { return feature.kind; }
+                    sprite: generic #function() { return feature.kind; }
                     sprite_default: generic
                     interactive: global.sdk_interactive
                     priority: 65 #function() { return (feature.min_zoom && Math.floor(feature.min_zoom * 1000)) || 65; }
