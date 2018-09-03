@@ -1514,10 +1514,10 @@ layers:
                             stroke: { color: [1.000,1.000,1.000], width: [[15, 2px], [18, 4px]] }
 
         major_road:
-            filter: 
+            filter:
                 all:
                     - $zoom: { min: 8 }
-                    - any: 
+                    - any:
                         - { kind: major_road }
                         - { kind: minor_road, kind_detail: unclassified }
             # default style
@@ -1795,7 +1795,7 @@ layers:
                                 size: 16px
                                 stroke: { color: [1.00,1.00,1.00], width: 3px }
             tertiary:
-                filter: 
+                filter:
                     any:
                         - kind_detail: [tertiary, tertiary_link, unclassified ]
                 draw:
@@ -5111,7 +5111,6 @@ layers:
                 kind:
                     - runway
                     - apron
-                    - beach
                     - roller_coaster
                     - amusement_ride
                     - summer_toboggan
