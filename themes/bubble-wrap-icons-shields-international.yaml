@@ -1431,10 +1431,9 @@ layers:
                                 fill: [0.308,0.308,0.308]
                                 #size: [[7,7px],[13,9px],[15,10px]]
                 zoom8up:
-                    filter: #|
-                        all:
-                            - zoom: { min: 8 }
-                            - network: ['BR:BR', 'DE:BAB', 'CA:transcanada', 'CN:expressway', 'FR:A-road', 'MX:MEX', 'RU:national', 'SK:national', 'GR:motorway', 'GR:national', 'IN:NH', 'IN:NH']
+                    filter:
+                        - zoom: { min: 8 }
+                        - network: ['BR:BR', 'DE:BAB', 'CA:transcanada', 'CN:expressway', 'FR:A-road', 'MX:MEX', 'RU:national', 'SK:national', 'GR:motorway', 'GR:national', 'IN:NH', 'IN:NH']
                     draw:
                         mapzen_icon_library:
                             visible: global.sdk_road_shields
