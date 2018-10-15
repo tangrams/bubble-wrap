@@ -12,8 +12,8 @@ global:
     text_visible_island:                true
     icon_visible_landuse_green:         true     # needs work
     text_visible_landuse_green:         true
-    icon_size_green:                    [[13, [95%,95%]], [16, [100%,100%]], [18, [105%,105%]]]
-    icon_size_green_l:                  [[14, [115%,115%]], [16, [200%,200%]]]
+    icon_size_green:                    [[13, '95%'], [16, '100%'], [18, '105%']]
+    icon_size_green_l:                  [[14, '115%'], [16, '200%']]
     icon_visible_arrows:                true
     icon_visible_poi_landuse:           true     # false for default
     text_visible_poi_landuse:           true     # false for default
