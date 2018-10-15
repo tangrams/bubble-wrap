@@ -879,15 +879,10 @@ textures:
             'IN:NH-4char': [504, 558, 54, 50]
             'IN:NH-5char': [436, 558, 62, 50]
             'IN:SH-1char': [396, 558, 34, 50]
-            'IN:MH-1char': [396, 558, 34, 50]
             'IN:SH-2char': [352, 558, 38, 50]
-            'IN:MH-2char': [352, 558, 38, 50]
             'IN:SH-3char': [300, 558, 46, 50]
-            'IN:MH-3char': [300, 558, 46, 50]
             'IN:SH-4char': [240, 558, 54, 50]
-            'IN:MH-4char': [240, 558, 54, 50]
             'IN:SH-5char': [172, 558, 62, 50]
-            'IN:MH-5char': [172, 558, 62, 50]
             'IT:A-road-1char': [830, 504, 38, 46]
             'IT:A-road-2char': [780, 504, 44, 46]
             'IT:A-road-3char': [726, 504, 48, 46]
@@ -1423,19 +1418,14 @@ layers:
             shields-international:
                 filter: #|
                     all:
-                        - network: ['AM:AM', 'AU:I2', 'AU:A-road', 'AU:M-road', 'AU:B-road', 'AU:C-road', 'e-road', 'GB:A-road-green', 'ES:AA2', 'BD:NH', 'IT:RA', 'IQ:IQ', 'IQ', 'IE:N', 'AU:I3', 'AU:N-route', 'MX:SH', 'NZ:SR', 'AR:national', 'CA:AB', 'CA:AB:primary', 'CA:AB:trunk', 'CA:MB', 'CA:MB:PTH', 'PE:AM', 'PE:AN', 'PE:AP', 'PE:AR', 'PE:AY', 'PE:CA', 'PE:CL', 'PE:CU', 'PE:HV', 'PE:HU', 'PE:IC', 'PE:JU', 'PE:LI', 'PE:LA', 'PE:LM', 'PE:LO', 'PE:MD', 'PE:MO', 'PE:PA', 'PE:PI', 'PE:PU', 'PE:SM', 'PE:TA', 'PE:TU', 'PE:UC', 'AU:Metro-road', 'AU:N-highway', 'AU:S-route', 'AU:T-drive', 'BR-', 'BR:PA', 'BR:PB', 'BR:PR', 'BR:PE', 'BR:PI', 'BR:RJ', 'BR:RN', 'BR:RS', 'BR:RO', 'BR:RR', 'BR:SC', 'BR:SP', 'BR:SE', 'BR:TO', 'BR', 'BR:BR', 'BR:DF', 'BR:AC', 'BR:AL', 'BR:AP', 'BR:AM', 'BR:BA', 'BR:CE', 'BR:ES', 'BR:GO', 'BR:MA', 'BR:MT', 'BR:MS', 'BR:MG', 'BR:Trans-Amazonian', 'CA:BC', 'CA:BC:primary', 'CA:BC:trunk', 'CA:I2', 'CA:NB', 'CA:NB2', 'CA:NB3', 'CA:NS', 'CA:NS:R', 'CA:NS:T', 'CA:NT', 'CA:ON', 'CA:ON:primary', 'CA:PEI', 'CA:QC', 'CA:QC:A', 'CA:QC:R', 'CA:SK', 'CA:SK:primary', 'CA:transcanada', 'CH:motorway', 'CL:national', 'CL', 'CL:panamerican', 'CL:regional', 'CN:expressway', 'CN:expressway:regional', 'CN:road', 'CN-roads', 'FR:A-road', 'FR:N-road', 'PL:national', 'PL:expressway', 'PL:motorway', 'PT:primary', 'NL:A-road', 'ES:autonoma', 'ES:N-road', 'LU:RN', 'FI:FI', 'CZ:national', 'DE:BAB', 'DE:DE', 'DE:BS', 'PL:regional', 'DK:national', 'VN:expressway', 'SK:LR', 'FI:FS', 'UA:regional-yellow', 'UA:territorial', 'DE:L', 'DE:LS', 'UK:G', 'PT:IC', 'NO:fylkesvei', 'DK:D', 'AT:L', 'VN:VN', 'AR:provincial', 'CA:YT', 'FI:RR', 'IE:R', 'BE:I', 'GB:A-road-white', 'BE:A-road', 'BE:N-road', 'PT:national', 'PT:secondary', 'PT:regional', 'VN:national', 'ES:IU', 'KR:local', 'FR:D', 'FR:D-road', 'NL:N-road', 'ES:province', 'LU:CR', 'GR:I', 'GR:motorway', 'ID:ID', 'ID:national', 'ID:motorway', 'IN:NH', 'IN:SH', 'IN:MH', 'IT:A-road', 'JP:expressway', 'JP:national', 'JP:prefectural', 'jp:prefectural', 'KR:expressway', 'KR:national', 'MX:MEX', 'MX:MX', 'MX:CMX', 'MX:AGU', 'MX:BCN', 'MX:BCS', 'MX:CAM', 'MX:COA', 'MX:COL', 'MX:CHP', 'MX:CHH', 'MX:DUR', 'MX:GUA', 'MX:GRO', 'MX:HID', 'MX:JAL', 'MX:MIC', 'MX:MOR', 'MX:NAY', 'MX:NLE', 'MX:OAX', 'MX:PUE', 'MX:QUE', 'MX:ROO', 'MX:SLP', 'MX:SIN', 'MX:SON', 'MX:TAB', 'MX:TAM', 'MX:TLA', 'MX:VER', 'MX:YUC', 'MX:ZAC', 'NL:S-road', 'NO:RR', 'NZ:SH', 'PE:PE', 'PT:A', 'PT:motorway', 'CH:national', 'VN:PR', 'IE:M', 'SG:expressway', 'RO:county', 'HU:national', 'RO:local', 'RO:national', 'SA:SA', 'SA:national', 'SA', 'SG:E', 'TH:TH', 'TH', 'TH:road', 'TH:motorway', 'TH:motorway-toll', 'TR-roads', 'TR:motorway', 'MY:expressway', 'UA:international', 'UA:national', 'UA:regional', 'IT:SP', 'IT:SR', 'IT:SS', 'CZ:regional', 'ZA:metropolitan', 'ZA:national', 'ZA:provincial', 'ZA:regional', 'NO:riksvei', 'RO:motorway', 'ru:national', 'RU:national', 'GB:M-road', 'GR:GR', 'GR:national', 'IT:B-road', 'ES:A-road', 'SE:A', 'AT:A-road', 'AT:S-road', 'TR:highway', 'LU:M', 'FI:LR']
+                        - network: ['AM:AM', 'AU:I2', 'AU:A-road', 'AU:M-road', 'AU:B-road', 'AU:C-road', 'e-road', 'GB:A-road-green', 'ES:AA2', 'BD:NH', 'IT:RA', 'IQ:IQ', 'IQ', 'IE:N', 'AU:I3', 'AU:N-route', 'MX:SH', 'NZ:SR', 'AR:national', 'CA:AB', 'CA:AB:primary', 'CA:AB:trunk', 'CA:MB', 'CA:MB:PTH', 'PE:AM', 'PE:AN', 'PE:AP', 'PE:AR', 'PE:AY', 'PE:CA', 'PE:CL', 'PE:CU', 'PE:HV', 'PE:HU', 'PE:IC', 'PE:JU', 'PE:LI', 'PE:LA', 'PE:LM', 'PE:LO', 'PE:MD', 'PE:MO', 'PE:PA', 'PE:PI', 'PE:PU', 'PE:SM', 'PE:TA', 'PE:TU', 'PE:UC', 'AU:Metro-road', 'AU:N-highway', 'AU:S-route', 'AU:T-drive', 'BR-', 'BR:PA', 'BR:PB', 'BR:PR', 'BR:PE', 'BR:PI', 'BR:RJ', 'BR:RN', 'BR:RS', 'BR:RO', 'BR:RR', 'BR:SC', 'BR:SP', 'BR:SE', 'BR:TO', 'BR', 'BR:BR', 'BR:DF', 'BR:AC', 'BR:AL', 'BR:AP', 'BR:AM', 'BR:BA', 'BR:CE', 'BR:ES', 'BR:GO', 'BR:MA', 'BR:MT', 'BR:MS', 'BR:MG', 'BR:Trans-Amazonian', 'CA:BC', 'CA:BC:primary', 'CA:BC:trunk', 'CA:I2', 'CA:NB', 'CA:NB2', 'CA:NB3', 'CA:NS', 'CA:NS:R', 'CA:NS:T', 'CA:NT', 'CA:ON', 'CA:ON:primary', 'CA:PEI', 'CA:QC', 'CA:QC:A', 'CA:QC:R', 'CA:SK', 'CA:SK:primary', 'CA:transcanada', 'CH:motorway', 'CL:national', 'CL', 'CL:panamerican', 'CL:regional', 'CN:expressway', 'CN:expressway:regional', 'CN:road', 'CN-roads', 'FR:A-road', 'FR:N-road', 'PL:national', 'PL:expressway', 'PL:motorway', 'PT:primary', 'NL:A-road', 'ES:autonoma', 'ES:N-road', 'LU:RN', 'FI:FI', 'CZ:national', 'DE:BAB', 'DE:DE', 'DE:BS', 'PL:regional', 'DK:national', 'VN:expressway', 'SK:LR', 'FI:FS', 'UA:regional-yellow', 'UA:territorial', 'DE:L', 'DE:LS', 'UK:G', 'PT:IC', 'NO:fylkesvei', 'DK:D', 'AT:L', 'VN:VN', 'AR:provincial', 'CA:YT', 'FI:RR', 'IE:R', 'BE:I', 'GB:A-road-white', 'BE:A-road', 'BE:N-road', 'PT:national', 'PT:secondary', 'PT:regional', 'VN:national', 'ES:IU', 'KR:local', 'FR:D', 'FR:D-road', 'NL:N-road', 'ES:province', 'LU:CR', 'GR:I', 'GR:motorway', 'ID:ID', 'ID:national', 'ID:motorway', 'IN:NH', 'IN:SH', 'IT:A-road', 'JP:expressway', 'JP:national', 'JP:prefectural', 'jp:prefectural', 'KR:expressway', 'KR:national', 'MX:MEX', 'MX:MX', 'MX:CMX', 'MX:AGU', 'MX:BCN', 'MX:BCS', 'MX:CAM', 'MX:COA', 'MX:COL', 'MX:CHP', 'MX:CHH', 'MX:DUR', 'MX:GUA', 'MX:GRO', 'MX:HID', 'MX:JAL', 'MX:MIC', 'MX:MOR', 'MX:NAY', 'MX:NLE', 'MX:OAX', 'MX:PUE', 'MX:QUE', 'MX:ROO', 'MX:SLP', 'MX:SIN', 'MX:SON', 'MX:TAB', 'MX:TAM', 'MX:TLA', 'MX:VER', 'MX:YUC', 'MX:ZAC', 'NL:S-road', 'NO:RR', 'NZ:SH', 'PE:PE', 'PT:A', 'PT:motorway', 'CH:national', 'VN:PR', 'IE:M', 'SG:expressway', 'RO:county', 'HU:national', 'RO:local', 'RO:national', 'SA:SA', 'SA:national', 'SA', 'SG:E', 'TH:TH', 'TH', 'TH:road', 'TH:motorway', 'TH:motorway-toll', 'TR-roads', 'TR:motorway', 'MY:expressway', 'UA:international', 'UA:national', 'UA:regional', 'IT:SP', 'IT:SR', 'IT:SS', 'CZ:regional', 'ZA:metropolitan', 'ZA:national', 'ZA:provincial', 'ZA:regional', 'NO:riksvei', 'RO:motorway', 'ru:national', 'RU:national', 'GB:M-road', 'GR:GR', 'GR:national', 'IT:B-road', 'ES:A-road', 'SE:A', 'AT:A-road', 'AT:S-road', 'TR:highway', 'LU:M', 'FI:LR']
                         - shield_text: true
                 draw:
                     mapzen_icon_library:
                         texture: mapzen_icon_library_shields_international
-                        sprite: |
-                            function() {
-                                return ( feature.network + '-' + feature.shield_text.length + 'char');
-                            }
-                        sprite_default: |
-                            function() {
-                                return ( 'generic_shield' + '-' + feature.shield_text.length + 'char');
-                            }
+                        # you need to match any custom shield to the vector tile `network` values
+                        sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                        sprite_default: function() { return ('generic_shield-' + feature.shield_text.length + 'char'); }
                         text:
                             # offset: [0px, 1px]
                             font:
@@ -1445,7 +1435,7 @@ layers:
                     filter: #|
                         all:
                             - zoom: { min: 8 }
-                            - network: [BR:BR, DE:BAB, CA:transcanada, CN:expressway, FR:A-road, MX:MEX, RU:national, SK:national, GR:motorway, GR:national, IN:NH, IN:NH]
+                            - network: ['BR:BR', 'DE:BAB', 'CA:transcanada', 'CN:expressway', 'FR:A-road', 'MX:MEX', 'RU:national', 'SK:national', 'GR:motorway', 'GR:national', 'IN:NH', 'IN:NH']
                     draw:
                         mapzen_icon_library:
                             visible: global.sdk_road_shields
@@ -1545,7 +1535,7 @@ layers:
 
                 # BRITISH COLUMBIA
                 CA-BC:
-                    filter: { network: [CA:BC, CA:BC:primary, CA:BC:trunk] }
+                    filter: { network: ['CA:BC', 'CA:BC:primary', 'CA:BC:trunk'] }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1571,7 +1561,7 @@ layers:
 
                 # QUEBEC
                 CA:QC:
-                    filter: { network: [CA:QC, CA:QC:A, CA:QC:R] }
+                    filter: { network: ['CA:QC', 'CA:QC:A', 'CA:QC:R'] }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1655,7 +1645,7 @@ layers:
                 ### CHINA
                 ###
                 CN-expressways:
-                    filter: { network: CN:expressway }
+                    filter: { network: 'CN:expressway' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1664,7 +1654,7 @@ layers:
                                     fill: [1.000,1.000,1.000]
 
                 CN-expressway-regional:
-                    filter: { network: CN:expressway:regional }
+                    filter: { network: 'CN:expressway:regional' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1673,7 +1663,7 @@ layers:
                                     fill: [1.000,0.931,0.680]
 
                 CN-road:
-                    filter: { network: CN:road }
+                    filter: { network: 'CN:road' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1695,7 +1685,7 @@ layers:
                 ### HUNGARY
                 ###
                 HU:national:
-                    filter: { network: HU:national }
+                    filter: { network: 'HU:national' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1759,14 +1749,14 @@ layers:
                 ###
 
                 IN:NH:
-                    filter: { network: IN:NH }
+                    filter: { network: 'IN:NH' }
                     draw:
                         mapzen_icon_library:
                             text:
                                 offset: [0px, 2px]
 
                 IN:SH:
-                    filter: { network: IN:SH }
+                    filter: { network: 'IN:SH' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1776,21 +1766,21 @@ layers:
                 ### ITALY
                 ###
                 IT:AS:
-                    filter: { network: IT:A-road }
+                    filter: { network: 'IT:A-road' }
                     draw:
                         mapzen_icon_library:
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
                 IT:B-road:
-                    filter: { network: IT:B-road }
+                    filter: { network: 'IT:B-road' }
                     draw:
                         mapzen_icon_library:
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
                 IT:SS-road:
-                    filter: { network: [IT:B-road, IT:SS-road, IT:SP-road, IT:SR:road] }
+                    filter: { network: ['IT:B-road', 'IT:SS-road', 'IT:SP-road', 'IT:SR:road'] }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1802,14 +1792,14 @@ layers:
                 ###
                 # JP:prefectural, JP:prefectural:chiba, JP:prefectural:gunma
                 JP:expressway:
-                    filter: { network: JP:expressway }
+                    filter: { network: 'JP:expressway' }
                     draw:
                         mapzen_icon_library:
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
                 JP:national:
-                    filter: { network: [JP:national, JP:national:expressway] }
+                    filter: { network: ['JP:national', 'JP:national:expressway'] }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1818,7 +1808,7 @@ layers:
                                     fill: [1.00,1.00,1.00]
                 # JP:prefectural, JP:prefectural:chiba, JP:prefectural:gunma
                 JP:prefectural:
-                    filter: { network: JP:prefectural }
+                    filter: { network: 'JP:prefectural' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1829,7 +1819,7 @@ layers:
                 ### CZ
                 ###
                 CZ:national:
-                    filter: { network: [CZ:national, CZ:regional] }
+                    filter: { network: ['CZ:national', 'CZ:regional'] }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1840,14 +1830,14 @@ layers:
                 ### KOREA
                 ###
                 KR:national:
-                    filter: { network: [KR:expressway, KR:national] }
+                    filter: { network: ['KR:expressway', 'KR:national'] }
                     draw:
                         mapzen_icon_library:
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
                 KR:local:
-                    filter: { network: [KR:local] }
+                    filter: { network: ['KR:local'] }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1858,7 +1848,7 @@ layers:
                 ### NEW ZEALAND
                 ###
                 NZ:SH:
-                    filter: { network: NZ:SH }
+                    filter: { network: 'NZ:SH' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1891,7 +1881,7 @@ layers:
                 ###
                 # pl:national, pl:expressways, pl:motorways
                 PL:national:
-                    filter: { network: [PL:national, PL:expressway, PL:motorway] }
+                    filter: { network: ['PL:national', 'PL:expressway', 'PL:motorway'] }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1902,7 +1892,7 @@ layers:
                 ### PORTUGAL
                 ###
                 PT:national:
-                    filter: { network: [PT:motorway,PT:primary] }
+                    filter: { network: ['PT:motorway', 'PT:primary'] }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1913,7 +1903,7 @@ layers:
                 ### ROMANIA
                 ###
                 ROMANIA:
-                    filter: { network: [RO:motorway, RO:national, RO:county]}
+                    filter: { network: ['RO:motorway', 'RO:national', 'RO:county']}
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1924,7 +1914,7 @@ layers:
                 ### RUSSIA
                 ###
                 RU:national:
-                    filter: { network: RU:national }
+                    filter: { network: 'RU:national' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1935,7 +1925,7 @@ layers:
                 ### SINGAPORE
                 ###
                 SG:expressway:
-                    filter: { network: SG:expressway }
+                    filter: { network: 'SG:expressway' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1946,7 +1936,7 @@ layers:
                 ### SAUDI ARABIA
                 ###
                 SA:national:
-                    filter: { network: [SA:national] }
+                    filter: { network: 'SA:national' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1979,7 +1969,7 @@ layers:
                 ### SOUTH AFRICA
                 ###
                 ZA:national:
-                    filter: { network: ZA:national }
+                    filter: { network: 'ZA:national' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1988,7 +1978,7 @@ layers:
                                 offset: [0px, 1px]
 
                 ZA:metropolitan:
-                    filter: { network: ZA:metropolitan }
+                    filter: { network: 'ZA:metropolitan' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1998,7 +1988,7 @@ layers:
 
                 # Split up the za:regional filters, but really need a za:provincial network for diamond green shields ZA:P
                 ZA:regional:
-                    filter: { network: [ZA:regional,ZA:provincial] }
+                    filter: { network: ['ZA:regional', 'ZA:provincial'] }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -2006,7 +1996,7 @@ layers:
                                     fill: [1.000,0.915,0.610]
 
                 za:regional-capetown:
-                    filter: { network: ZA:capetown }
+                    filter: { network: 'ZA:capetown' }
                     draw:
                         mapzen_icon_library:
                             sprite: |
@@ -2022,7 +2012,7 @@ layers:
                 ###
                 # TODO: Much of Spain is terrible now, use default shields instead?
                 ES:A-road:
-                    filter: { network: [ES:A-road, ES:autonoma, ES:N-road] }
+                    filter: { network: ['ES:A-road', 'ES:autonoma', 'ES:N-road'] }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -2033,7 +2023,7 @@ layers:
                 ### SWITZERLAND
                 ###
                 CH:motorway:
-                    filter: { network: CH:motorway }
+                    filter: { network: 'CH:motorway' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -2041,7 +2031,7 @@ layers:
                                     fill: [1.00,1.00,1.00]
 
                 CH:national:
-                    filter: { network: CH:national }
+                    filter: { network: 'CH:national' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -2082,7 +2072,7 @@ layers:
                 ### UKRAINE
                 ###
                 ua:international:
-                    filter: { network: [UA:international, UA:national, UA:regional] }
+                    filter: { network: ['UA:international', 'UA:national', 'UA:regional'] }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -2111,7 +2101,7 @@ layers:
                 ### TURKEY
                 ###
                 TR:highway:
-                    filter: { network: TR:highway }
+                    filter: { network: 'TR:highway' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -2122,7 +2112,7 @@ layers:
                 ### VIETNAM
                 ###
                 VN:expressway:
-                    filter: { network: VN:expressway }
+                    filter: { network: 'VN:expressway' }
                     early:
                         filter: { $zoom: { min: 8 } }
                         draw:
@@ -2133,7 +2123,7 @@ layers:
                 ### MEXICO
                 ###
                 MX:MX:
-                    filter: { network: [MX:MX, MX:MEX] }
+                    filter: { network: ['MX:MX', 'MX:MEX'] }
                     draw:
                         mapzen_icon_library:
                             text:
