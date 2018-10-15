@@ -3,7 +3,7 @@ global:
     # are otherwise defined in the root {style}-style.yaml,
     # themes/color-{theme}.yaml or themes/label-{step} files.
     # This also means {style}-icons.yaml should be imported first.
-    icon_size:          [[7,[75%,75%]],[12,[100%,100%]],[15,[110%,110%]]]
+    icon_size:          [[7,'75%'],[12,'100%'],[15,'110%']]
     text_font_family:   'Quicksand'
     #black_color:        [0.00,0.00,0.00]
     #dark_color:         [0.250,0.250,0.250]
