@@ -5476,7 +5476,7 @@ layers:
             draw:
                 mapzen_icon_library:
                     sprite: train_station
-                    size: [[13, [65%,65%]], [16, [100%,100%]]]
+                    size: [[13, '65%'], [16, '100%']]
                     priority: 11
                     text:
                         #offset: [[13, [0, 6px]], [14, [0, 7px]],[15, [0, 8px]], [17, [0, 10px]]]
@@ -5485,7 +5485,7 @@ layers:
                 filter: { kind_tile_rank: { min: 3 }, $zoom: { min: 0, max: 12 } }
                 draw:
                     mapzen_icon_library:
-                        size: [[12, [40%,40%]], [15, [50%,50%]]]
+                        size: [[12, '40%'], [15, '50%']]
                         text:
                             visible: false
                 long-tail:
@@ -5498,7 +5498,7 @@ layers:
                 draw:
                     mapzen_icon_library:
 #                        visible: false
-                        size: [[12, [40%,40%]], [15, [50%,50%]]]
+                        size: [[12, '40%'], [15, '50%']]
                         text:
                             visible: false
             low-priority-early-z13:
@@ -5506,14 +5506,14 @@ layers:
                 draw:
                     mapzen_icon_library:
                         #visible: false
-                        size: [[12, [40%,40%]], [15, [50%,50%]]]
+                        size: [[12, '40%'], [15, '50%']]
                         text:
                             visible: false
             low-priority-early-z14:
                 filter: { kind_tile_rank: { min: 7 }, $zoom: [14] }
                 draw:
                     mapzen_icon_library:
-                        size: [[12, [40%,40%]], [15, [50%,50%]]]
+                        size: [[12, '40%'], [15, '50%']]
                         #visible: false
                         text:
                             visible: false
