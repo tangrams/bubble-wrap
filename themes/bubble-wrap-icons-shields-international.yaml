@@ -1440,14 +1440,14 @@ layers:
 
                 # This is causing Cologne Germany to get red road shields
                 e-roads:
-                    filter: { network: [e-road] }
+                    filter: { network: e-road }
                     draw:
                         mapzen_icon_library:
                             text:
                                 font:
                                     fill: [1.00,1.00,1.00]
                     early:
-                        filter: { $zoom: [7] }
+                        filter: { $zoom: 7 }
                         draw:
                             mapzen_icon_library:
                                 visible: false
@@ -1484,7 +1484,7 @@ layers:
                                     fill: [1.000,0.942,0.860]
 
                 AU-S-route:
-                    filter: { network: ['AU:S-route'] }
+                    filter: { network: 'AU:S-route' }
                     draw:
                         mapzen_icon_library:
                             priority: 180
@@ -1498,7 +1498,7 @@ layers:
                                 visible: false
 
                 AU-T-drive:
-                    filter: { network: ['AU:T-drive'] }
+                    filter: { network: 'AU:T-drive' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1569,7 +1569,7 @@ layers:
 
                 # NOVA SCOTIA
                 CA:NS:
-                    filter: { network: ['CA:NS'] }
+                    filter: { network: 'CA:NS' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1578,7 +1578,7 @@ layers:
                                     fill: [1.000,1.000,1.000]
 
                 CA:NS:R:
-                    filter: { network: ['CA:NS:R'] }
+                    filter: { network: 'CA:NS:R' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1587,7 +1587,7 @@ layers:
 
                 # PRINCE EDWARD ISLAND
                 CA:PEI:
-                    filter: { network: ['CA:PEI'] }
+                    filter: { network: 'CA:PEI' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1595,7 +1595,7 @@ layers:
 
                 # NORTHWEST TERRITORIES
                 CA:NT:
-                    filter: { network: ['CA:NT'] }
+                    filter: { network: 'CA:NT' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1694,7 +1694,7 @@ layers:
                 ### GERMANY
                 ###
                 DE:BAB:
-                    filter: { network: ['DE:BAB'] }
+                    filter: { network: 'DE:BAB' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1705,7 +1705,7 @@ layers:
                 ### AUSTRIA
                 ###
                 AT:A-road:
-                    filter: { network: ['AT:A-road'] }
+                    filter: { network: 'AT:A-road' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1716,7 +1716,7 @@ layers:
                 ### NETHERLANDS
                 ###
                 NL:A-road:
-                    filter: { network: ['NL:A-road'] }
+                    filter: { network: 'NL:A-road' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1727,7 +1727,7 @@ layers:
                 ### GREECE
                 ###
                 GR:
-                    filter: { network: ['GR:motorway'] }
+                    filter: { network: 'GR:motorway' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1735,7 +1735,7 @@ layers:
                                     fill: [1.00,1.00,1.00]
                 
                 GR:national:
-                    filter: { network: ['GR:national'] }
+                    filter: { network: 'GR:national' }
                     draw:
                         mapzen_icon_library:
                             text:
@@ -1835,7 +1835,7 @@ layers:
                                 font:
                                     fill: [1.00,1.00,1.00]
                 KR:local:
-                    filter: { network: ['KR:local'] }
+                    filter: { network: 'KR:local' }
                     draw:
                         mapzen_icon_library:
                             text:
