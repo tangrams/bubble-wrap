@@ -4510,7 +4510,7 @@ layers:
                 kind: [bus_stop]
             draw:
                 mapzen_icon_library:
-                    size: [[18, [80%,80%]], [20, [100%,100%]]]
+                    size: [[18, 80%], [20, 100%]]
                     text:
                         optional: true
                         font:
