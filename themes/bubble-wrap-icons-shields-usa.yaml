@@ -331,8 +331,9 @@ layers:
         shields:
             shields-usa:
                 filter:
-                    - network: ['US:AK', 'US:AL', 'US:AR', 'US:AZ', 'US:BIA', 'US:BLM', 'US:CA', 'US:CO', 'US:DC', 'US:FL', 'US:FSH', 'US:FSR', 'US:GA', 'US:HI', 'US:I', 'US:I:Business', 'US:I:Truck', 'US:I:Alternate', 'US:ID', 'US:KS', 'US:LA', 'US:MA', 'US:CT', 'US:IL', 'US:TX', 'US:IN', 'US:RI', 'US:ME', 'US:WV', 'US:MT', 'US:MD', 'US:MN', 'US:MO', 'US:NC', 'US:MI', 'US:ND', 'US:NE', 'US:NH', 'US:NJ', 'US:IA', 'US:DE', 'US:KY', 'US:MS', 'US:NM', 'US:NV', 'US:NY', 'US:OH', 'US:OK', 'US:OR', 'US:PA', 'US:SC', 'US:SD', 'US:TN', 'US:US', 'US:US:Business', 'US:US:Truck', 'US:US:Alternate', 'US:UT', 'US:VA', 'US:VT', 'US:WA', 'US:WI', 'US:WY']
-                    - shield_text: true
+                    all:
+                        - network: ['US:AK', 'US:AL', 'US:AR', 'US:AZ', 'US:BIA', 'US:BLM', 'US:CA', 'US:CO', 'US:DC', 'US:FL', 'US:FSH', 'US:FSR', 'US:GA', 'US:HI', 'US:I', 'US:I:Business', 'US:I:Truck', 'US:I:Alternate', 'US:ID', 'US:KS', 'US:LA', 'US:MA', 'US:CT', 'US:IL', 'US:TX', 'US:IN', 'US:RI', 'US:ME', 'US:WV', 'US:MT', 'US:MD', 'US:MN', 'US:MO', 'US:NC', 'US:MI', 'US:ND', 'US:NE', 'US:NH', 'US:NJ', 'US:IA', 'US:DE', 'US:KY', 'US:MS', 'US:NM', 'US:NV', 'US:NY', 'US:OH', 'US:OK', 'US:OR', 'US:PA', 'US:SC', 'US:SD', 'US:TN', 'US:US', 'US:US:Business', 'US:US:Truck', 'US:US:Alternate', 'US:UT', 'US:VA', 'US:VT', 'US:WA', 'US:WI', 'US:WY']
+                        - shield_text: true
                 draw:
                     mapzen_icon_library:
                         texture: mapzen_icon_library_shields_usa
@@ -353,7 +354,7 @@ layers:
                 # US Federal Routes
                 US-US:
                     filter:
-                        network: ['US:US','US:US:Business', 'US:US:Truck', 'US:US:Alternate']
+                        network: ['US:US','US:US:Business','US:US:Truck','US:US:Alternate']
                         shield_text: true
                         $zoom: { min: 7 }
                     draw:
