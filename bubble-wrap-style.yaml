@@ -3094,7 +3094,7 @@ layers:
                     - function() { return global.text_visible_address; }
             draw:
                 mapzen_icon_library:
-                    size: [[13, [95%,95%]], [16, [100%,100%]], [18, [105%,105%]]]
+                    size: [[13, 95%], [16, 100%], [18, 105%]]
                     sprite: generic #function() { return feature.kind; }
                     sprite_default: generic
                     interactive: global.sdk_interactive
@@ -3936,7 +3936,7 @@ layers:
         draw:
             mapzen_icon_library:
                 visible: global.icon_visible_poi_landuse
-                size: [[13, [95%,95%]], [16, [100%,100%]], [18, [105%,105%]]]
+                size: [[13, 95%], [16, 100%], [18, 105%]]
                 sprite: function() { return feature.kind; }
                 sprite_default: generic
                 interactive: global.sdk_interactive
