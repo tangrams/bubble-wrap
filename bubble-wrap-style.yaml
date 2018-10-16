@@ -4443,7 +4443,7 @@ layers:
             draw:
                 mapzen_icon_library:
                     visible: global.icon_visible_station
-                    size: [[13, [80%,80%]], [17, [100%,100%]], [18, [110%,110%]]]
+                    size: [[13, 80%], [17, 100%], [18, 110%]]
                     priority: 42
                     text:
                         visible: global.text_visible_station
