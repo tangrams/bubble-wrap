@@ -1468,21 +1468,12 @@ layers:
                 ### AUSTRALIA
                 ###
                 AU-M:
-                    filter: { network: ['AU:A-road','AU:M-road','AU:B-road', 'AU:C-road'] }
+                    filter: { network: ['AU:A-road','AU:M-road','AU:B-road','AU:C-road'] }
                     draw:
                         mapzen_icon_library:
                             text:
                                 font:
                                     fill: [1.000,0.942,0.860]
-
-                AU-A-road-M-B-C:
-                    filter: { network: ['AU:A-road','AU:M-road','AU:B-road', 'AU:C-road'] }
-                    draw:
-                        mapzen_icon_library:
-                            text:
-                                font:
-                                    fill: [1.000,0.942,0.860]
-
                 AU-S-route:
                     filter: { network: 'AU:S-route' }
                     draw:

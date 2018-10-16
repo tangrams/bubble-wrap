@@ -4920,9 +4920,9 @@ layers:
                     polygons_transparent:
                         color: [0.8,0.8,0.8,0.5]
                         visible: true
-                        # hack
+                        # hack the order as the server isn't provided a good value
                         order: 236
-            # hack
+            # hack the order as the server isn't provided a good value
             shipyard:
                 filter: { kind: [shipyard,container_terminal,ferry_terminal,port_terminal] }
                 draw:
