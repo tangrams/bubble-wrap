@@ -1444,7 +1444,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
                     early:
                         filter: { $zoom: 7 }
                         draw:
@@ -1480,7 +1480,7 @@ layers:
                             priority: 180
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
                     early:
                         filter: { $zoom: { max: 13 }, kind: [major_road, minor_road] }
                         draw:
@@ -1493,7 +1493,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### BRAZIL
@@ -1667,7 +1667,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### HUNGARY
@@ -1678,7 +1678,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### GERMANY
@@ -1689,7 +1689,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### AUSTRIA
@@ -1700,7 +1700,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### NETHERLANDS
@@ -1711,7 +1711,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### GREECE
@@ -1722,7 +1722,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
                 
                 GR:national:
                     filter: { network: 'GR:national' }
@@ -1730,7 +1730,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### INDIA
@@ -1759,21 +1759,21 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
                 IT:B-road:
                     filter: { network: 'IT:B-road' }
                     draw:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
                 IT:SS-road:
                     filter: { network: ['IT:B-road','IT:SS-road','IT:SP-road','IT:SR:road'] }
                     draw:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### JAPAN
@@ -1785,7 +1785,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
                 JP:national:
                     filter: { network: ['JP:national','JP:national:expressway'] }
                     draw:
@@ -1793,7 +1793,7 @@ layers:
                             text:
                                 offset: [0px, -1px]
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
                 # JP:prefectural, JP:prefectural:chiba, JP:prefectural:gunma
                 JP:prefectural:
                     filter: { network: 'JP:prefectural' }
@@ -1801,7 +1801,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### CZ
@@ -1812,7 +1812,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### KOREA
@@ -1823,7 +1823,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
                 KR:local:
                     filter: { network: 'KR:local' }
                     draw:
@@ -1841,7 +1841,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### NORWAY
@@ -1852,7 +1852,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### PERU
@@ -1874,7 +1874,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### PORTUGAL
@@ -1885,7 +1885,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### ROMANIA
@@ -1896,7 +1896,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### RUSSIA
@@ -1907,7 +1907,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### SINGAPORE
@@ -1918,7 +1918,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### SAUDI ARABIA
@@ -1951,7 +1951,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### SOUTH AFRICA
@@ -1962,7 +1962,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
                                 offset: [0px, 1px]
 
                 ZA:metropolitan:
@@ -1972,7 +1972,7 @@ layers:
                             text:
                                 offset: [0px, 2px]
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 # Split up the za:regional filters, but really need a za:provincial network for diamond green shields ZA:P
                 ZA:regional:
@@ -2005,7 +2005,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### SWITZERLAND
@@ -2016,7 +2016,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 CH:national:
                     filter: { network: 'CH:national' }
@@ -2024,7 +2024,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### THAILAND
@@ -2042,7 +2042,7 @@ layers:
                             mapzen_icon_library:
                                 text:
                                     font:
-                                        fill: [1.00,1.00,1.00]
+                                        fill: white
                     # TODO: This is a hack, only TH is present in the data
                     motorway-funky:
                         filter: { kind_detail: motorway }
@@ -2054,7 +2054,7 @@ layers:
                                     }
                                 text:
                                     font:
-                                        fill: [1.00,1.00,1.00]
+                                        fill: white
 
                 ###
                 ### UKRAINE
@@ -2065,7 +2065,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
 
                 ###
                 ### UNITED KINGDOM
@@ -2076,7 +2076,7 @@ layers:
                         mapzen_icon_library:
                             text:
                                 font:
-                                    fill: [1.00,1.00,1.00]
+                                    fill: white
                 GB:A-road:
                     filter: { network: 'GB:A-road-green' }
                     draw:
