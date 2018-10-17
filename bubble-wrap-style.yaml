@@ -2,9 +2,9 @@ Author: Geraldine Sarmiento, Nathaniel V. Kelso, Patricio Gonzalez Vivo, Brett C
 
 import:
     - themes/bubble-wrap-icons.yaml
-    - themes/bubble-wrap-icons-shields-usa.yaml
-    - themes/bubble-wrap-icons-shields-international.yaml
     - themes/label-5.yaml
+
+# NOTE: As of v10, USA and international shields are no longer included by default. Instead import each theme.
 
 global:
     # Sign up for a Mapzen API key to enjoy higher rate limits
@@ -2436,6 +2436,46 @@ layers:
             #
             # JK: see the theme files for USA and international shields
 
+            shields-usa:
+                filter:
+                    all:
+                        - network: ['US:I','US:I:Business','US:I:Truck','US:I:Alternate','US:US','US:US:Business','US:US:Truck','US:US:Alternate']
+                        - shield_text: true
+                draw:
+                    mapzen_icon_library:
+                        #texture: mapzen_icon_library_shields_usa
+                        # you need to match any custom shield to the vector tile `network` values
+                        sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                        sprite_default: function() { return ('generic_shield-' + feature.shield_text.length + 'char'); }
+
+                # US Interstate roads
+                US-I:
+                    filter:
+                        network: 'US:I'
+                        shield_text: true
+                    draw:
+                        mapzen_icon_library:
+                            priority: 46
+                            # always show (or not show), irrespective of zoom
+                            visible: global.sdk_road_shields
+                # US Federal Routes
+                US-US:
+                    filter:
+                        network: ['US:US','US:US:Business','US:US:Truck','US:US:Alternate']
+                        shield_text: true
+                        $zoom: { min: 7 }
+                    draw:
+                        mapzen_icon_library:
+                            priority: 47
+                            cull_from_tile: true
+                            # always show (or not show), irrespective of zoom
+                            visible: global.sdk_road_shields
+                            text:
+                                font:
+                                    fill: [0.380,0.318,0.312]
+                                    size: [[7,8px],[13,10px],[15,11px]]
+
+
         path:
             filter:
                 all:
@@ -3095,10 +3135,9 @@ layers:
             draw:
                 mapzen_icon_library:
                     size: [[13, 95%], [16, 100%], [18, 105%]]
-                    sprite: generic #function() { return feature.kind; }
-                    sprite_default: generic
+                    sprite: generic # TODO: add custom entrance/edit icons
                     interactive: global.sdk_interactive
-                    priority: 65 #function() { return (feature.min_zoom && Math.floor(feature.min_zoom * 1000)) || 65; }
+                    priority: 65
                     repeat_group: abc
                     buffer: 3px
                     text:
