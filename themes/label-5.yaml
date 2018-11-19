@@ -26,11 +26,11 @@ global:
     text_visible_trunk_primary_route:   true        # true by default
     text_visible_trunk_primary_e:       false     # false for default, false for more
     text_visible_secondary:             true
-    text_visible_secondary_e:           false     # false for default, false for more
+    text_visible_secondary_e:           true     # false for default, false for more
     text_visible_tertiary:              true
     text_visible_tertiary_e:            false     # false for default, false for more
     text_visible_minor_road:            true
-    text_visible_minor_road_e:          true
+    text_visible_minor_road_e:          false
     text_visible_service_road:          true
     text_visible_path:                  true
     text_visible_piste:                 true

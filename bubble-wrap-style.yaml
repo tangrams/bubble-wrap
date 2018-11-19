@@ -4,6 +4,8 @@ import:
     - themes/bubble-wrap-icons.yaml
     - themes/label-5.yaml
 
+# NOTE: As of v10, USA and international shields are no longer included by default. Instead import each theme.
+
 global:
     # Sign up for a Mapzen API key to enjoy higher rate limits
     # https://mapzen.com/documentation/overview/#developer-accounts-and-api-keys
@@ -433,8 +435,10 @@ fonts:
 
 sources:
     mapzen:
-        type:  MVT #TopoJSON
+        type: MVT #TopoJSON
         url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
+        #url:  https://dev-tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
+        #url: http://localhost:8050/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt?api_key=&
         url_params:
             api_key: global.sdk_api_key
         tile_size: 512
@@ -1432,10 +1436,10 @@ layers:
             draw:
                 lines:
                     color: [[8, global.highway1], [14, global.highway1], [15, [1.0,1.0,1.0]], [17, [1.0,1.0,1.0]]]
-                    width: [[8, 1px], [9, 1.25px], [11, 1.2px], [12, 1.3px], [13, 1.5px], [14, 2.25px], [15, 0.15px], [16, 5.5px], [17, 12m]]
+                    width: [[8, 1.4px], [9, 1.4px], [11, 1.2px], [12, 1.3px], [13, 1.5px], [14, 2.25px], [15, 0.15px], [16, 5.5px], [17, 12m]]
                     outline:
                         color: [[11, global.highway_casing1], [15,[0.988,0.495,0.439]], [17, [0.988,0.495,0.439]]]
-                        width: [[11, 0], [12, 1px], [13, 1.33px], [15, 2px], [16, 2.25px], [17, 3px], [18, 3px]]
+                        width: [[11, 0], [12, 1.2px], [13, 1.8px], [15, 2px], [16, 2.25px], [17, 3px], [18, 3px]]
             early:
                 filter: { $zoom: { max: 15 } }
                 draw:
@@ -1484,22 +1488,9 @@ layers:
                 draw:
                     text-blend-order:
                         text_source: global.ux_language_text_source_road_ref_and_name
-            labels-highway-z13:
+            labels-highway-z13-z14:
                 filter:
-                    $zoom: 13
-                draw:
-                    text-blend-order:
-                        priority: 50
-                        visible: global.text_visible_highway
-                        #text_source: ref
-                        font:
-                            fill: [0.0,0.0,0.0]
-                            weight: 600
-                            size: 12px
-                            # stroke: { color: [0.976,0.541,0.490], width: 4px }
-            labels-highway-z14:
-                filter:
-                    $zoom: 14
+                    $zoom: [13,14]
                 draw:
                     text-blend-order:
                         priority: 50
@@ -1511,39 +1502,24 @@ layers:
                             size: 12px
                             # stroke: { color: [0.976,0.541,0.490], width: 4px }
             labels-highway-z15:
-                filter:
-                    $zoom: 15
+                filter: { $zoom: { min: 15 } }
                 draw:
                     text-blend-order:
+                        priority: 50
                         visible: global.text_visible_highway
                         font:
                             fill: [0.0,0.0,0.0]
                             weight: 600
-                            size: 14px
-                            stroke: { color: [1.000,1.000,1.000], width: 2px }
-            labels-highway-z16:
-                filter: { $zoom: { min: 16, max: 18 } }
-                draw:
-                    text-blend-order:
-                        priority: 50
-                        visible: global.text_visible_highway
-                        font:
-                            fill: [0.0,0.0,0.0]
-                            size: 15px
-                            stroke: { color: [1.000,1.000,1.000], width: 4px }
-            labels-highway-z18:
-                filter: { $zoom: { min: 18 } }
-                draw:
-                    text-blend-order:
-                        priority: 50
-                        visible: global.text_visible_highway
-                        font:
-                            fill: [0.0,0.0,0.0]
-                            size: 17px
-                            stroke: { color: [1.000,1.000,1.000], width: 4px }
+                            size: [[15, 14px], [18, 17px]]
+                            stroke: { color: [1.000,1.000,1.000], width: [[15, 2px], [18, 4px]] }
 
         major_road:
-            filter: { kind: major_road, $zoom: { min: 8 } }
+            filter:
+                all:
+                    - $zoom: { min: 8 }
+                    - any:
+                        - { kind: major_road }
+                        - { kind: minor_road, kind_detail: unclassified }
             # default style
             draw:
                 lines:
@@ -1554,7 +1530,7 @@ layers:
                 draw:
                     lines:
                         color: [1.0,1.0,1.0]
-                        width: [[9, 0.5px], [10, 0.5px], [11, 1.0px], [12, 1.0px], [13, 1.5px], [14, 2.5px], [15, 5px], [16, 10m], [17, 10m]]
+                        width: [[9, 0.5px], [11, 1.0px], [12, 1.0px], [13, 1.5px], [14, 2.5px], [15, 5px], [16, 10m]]
                         outline:
                             color: [[13, [0.827,0.827,0.827]], [15, [1.000,0.739,0.710]]]
                             # todo: investigate width optimizations
@@ -1576,10 +1552,10 @@ layers:
                     filter: { ref: true }
                     draw:
                         lines:
-                            color: [[9, global.major_route1], [14, global.major_route1], [15,[1.0,1.0,1.0]], [16,[1.0,1.0,1.0]]]
+                            color: [[9, global.major_route1], [14, global.major_route1], [15,[1.0,1.0,1.0]]]
                             #order: function() { return feature.sort_rank + 1; }
                             # todo confirm widths
-                            width: [[9, 1.0px], [10, 1.0px], [11, 1.2px], [12, 1.25px], [13, 1.5px], [14, 1.6px], [15, 0.15px], [16, 5.25px], [17, 12m]]
+                            width: [[9, 1.0px], [12, 1.25px], [14, 1.6px], [15, 0.15px], [16, 5.25px], [17, 12m]]
                             outline:
                                 color: [[13, [0.870,0.870,0.870]], [15, [0.976,0.612,0.573]]]
                                 width: [[13, 0], [15, 2px], [16, 2px], [17, 3px]]
@@ -1604,40 +1580,17 @@ layers:
                             text-blend-order:
                                 text_source: global.ux_language_text_source_road_ref_and_name
                                 visible: global.text_visible_trunk_primary_route
-                    # labels-trunk_primary-route-z13:
-                    #     filter:
-                    #         $zoom: { max: 14 }
-                    #         shield_text: false
-                    #     draw:
-                    #         text-blend-order:
-                    #             text_source: ref
-                    #             visible: global.text_visible_trunk_primary_route
-                    #             font:
-                    #                 fill: [1.0,1.0,1.0]
-                    #                 weight: 600
-                    #                 size: 11px
-                    #                 stroke: { color: [0.976,0.541,0.490], width: 2 }
-                    labels-trunk_primary-route-z14:
-                        filter: { $zoom: [14] }
+                    labels-trunk_primary-route-z14-z15:
+                        filter: { $zoom: [14, 15] }
                         draw:
                             text-blend-order:
                                 priority: 51
                                 #text_source: ref
                                 font:
                                     fill: [0.0,0.0,0.0]
-                                    #size: 12px
-                                    stroke: { color: [0.95,0.95,0.95], width: 0.1px }
-                    labels-trunk_primary-route-z15:
-                        filter: { $zoom: [15] }
-                        draw:
-                            text-blend-order:
-                                priority: 51
-                                #text_source: global.ux_language_text_source_road_ref_and_name
-                                font:
-                                    fill: [0.0,0.0,0.0]
                                     weight: 600
-                                    size: 14px
-                                    stroke: { color: [0.95,0.95,0.95], width: 0.1px }
+                                    size: [[14, 12px], [15, 14px]]
+                                    stroke: { width: 0px }
                     labels-trunk_primary-route-z16:
                         filter: { $zoom: { min: 16 } }
                         draw:
@@ -1652,38 +1605,23 @@ layers:
                 labels-trunk_primary-default:
                     draw:
                         text-blend-order:
+                            priority: 51
                             text_source: global.ux_language_text_source_road_ref_and_name_short
                             visible: global.text_visible_trunk_primary
-                labels-trunk_primary-z11:
+                labels-trunk_primary-z11-z12:
                     filter:
-                        $zoom: [11]
+                        $zoom: [11, 12]
                     draw:
                         text-blend-order:
-                            priority: 51
                             visible: global.text_visible_trunk_primary_e
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
-                                fill: [0.4,0.4,0.4]
-                                size: 10px
-                                # stroke: { color: [1.000,0.631,0.590], width: 3px }
-                labels-trunk_primary-z12:
-                    filter:
-                        $zoom: [12]
-                    draw:
-                        text-blend-order:
-                            priority: 51
-                            visible: global.text_visible_trunk_primary_e
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
-                            font:
-                                fill: [0.4,0.4,0.4]
-                                size: 11px
-                                # stroke: { color: [1.000,0.631,0.590], width: 3px }
+                                fill: [0.40,0.40,0.40]
+                                size: [[11, 10px], [12, 11px]]
                 labels-trunk_primary-z13:
                     filter:
                         $zoom: [13]
                     draw:
                         text-blend-order:
-                            priority: 51
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.25,0.25,0.25]
@@ -1694,51 +1632,18 @@ layers:
                         $zoom: [14]
                     draw:
                         text-blend-order:
-                            priority: 51
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.10,0.10,0.10]
                                 size: 13px
                                 stroke: { color: [1.00,1.00,1.00], width: 2px }
-                labels-trunk_primary-z15:
-                    filter: { $zoom: [15] }
+                labels-trunk_primary-z15-up:
+                    filter: { $zoom: { min: 15 } }
                     draw:
                         text-blend-order:
-                            priority: 51
-                            #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [0.0,0.0,0.0]
-                                size: 14px
-                                stroke: { color: [1.00,1.00,1.00], width: 3px }
-                labels-trunk_primary-z16:
-                    filter: { $zoom: [16] }
-                    draw:
-                        text-blend-order:
-                            priority: 51
-                            #text_source: global.ux_language_text_source_road_ref_and_name
-                            font:
-                                fill: [0.0,0.0,0.0]
-                                size: 15px
-                                stroke: { color: [1.00,1.00,1.00], width: 3px }
-                labels-trunk_primary-z17:
-                    filter: { $zoom: [17] }
-                    draw:
-                        text-blend-order:
-                            priority: 51
-                            #text_source: global.ux_language_text_source_road_ref_and_name
-                            font:
-                                fill: [0.0,0.0,0.0]
-                                size: 16px
-                                stroke: { color: [1.00,1.00,1.00], width: 3px }
-                labels-trunk_primary-z18:
-                    filter: { $zoom: { min: 18 } }
-                    draw:
-                        text-blend-order:
-                            priority: 51
-                            #text_source: global.ux_language_text_source_road_ref_and_name
-                            font:
-                                fill: [0.0,0.0,0.0]
-                                size: 17px
+                                size: [[15, 13px], [18, 17px]]
                                 stroke: { color: [1.00,1.00,1.00], width: 3px }
             link:
                 filter: { is_link: true } # on- and off-ramps, etc
@@ -1772,7 +1677,7 @@ layers:
                             outline:
                                 order: 353 #function() { return feature.sort_rank + 2; }
                 routes:
-                    filter: { ref: true, $zoom: { min: 12} }
+                    filter: { ref: true, $zoom: { min: 12 } }
                     draw:
                         lines:
                             #order: function() { return feature.sort_rank + 2; }
@@ -1799,12 +1704,12 @@ layers:
                         draw:
                             text-blend-order:
                                 text_source: global.ux_language_text_source_road_ref_and_name_short
-                    labels-secondary-routes:
-                        filter: { $zoom: [13] }
-                        draw:
-                            text-blend-order:
                                 priority: 56
                                 visible: global.text_visible_secondary_e
+                    labels-secondary-routes:
+                        filter: { $zoom: [13, 14] }
+                        draw:
+                            text-blend-order:
                                 font:
                                     # need fill here?
                                     size: 12px
@@ -1813,8 +1718,6 @@ layers:
                         filter: { $zoom: { min: 15 } }
                         draw:
                             text-blend-order:
-                                priority: 56
-                                visible: global.text_visible_secondary_e
                                 font:
                                     # need fill here?
                                     weight: 600
@@ -1856,7 +1759,7 @@ layers:
                     draw:
                         text-blend-order:
                             text_source: global.ux_language_text_source_road_ref_and_name_short
-                            # visible: global.text_visible_secondary
+                            visible: global.text_visible_secondary
                 labels-secondary-z13:
                     filter:
                         $zoom: [13]
@@ -1869,39 +1772,17 @@ layers:
                                 fill: [0.5,0.5,0.5]
                                 size: 11px
                                 stroke: { color: global.text_stroke, width: 2px }
-                labels-secondary-z14:
-                    filter:
-                        $zoom: [14]
+                labels-secondary-z14-z17:
+                    filter: { $zoom: { min: 14, max: 18 } }
                     draw:
                         text-blend-order:
                             priority: 56
-                            visible: global.text_visible_secondary_e
+                            visible: global.text_visible_secondary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
-                                fill: [0.30,0.30,0.30]
-                                size: 12px
-                                stroke: { color: [1.00,1.00,1.00], width: 2px }
-                labels-secondary-z15:
-                    filter:
-                        $zoom: [15]
-                    draw:
-                        text-blend-order:
-                            priority: 56
-                            visible: global.text_visible_secondary
-                            font:
-                                fill: [0.10,0.10,0.10]
-                                size: 13px
-                                stroke: { color: [1.00,1.00,1.00], width: 2px }
-                labels-secondary-z16:
-                    filter: { $zoom: { min: 16, max: 18 } }
-                    draw:
-                        text-blend-order:
-                            priority: 56
-                            visible: global.text_visible_secondary
-                            font:
-                                fill: [0.0,0.0,0.0]
-                                size: 14.5px
-                                stroke: { color: [1.00,1.00,1.00], width: 3px }
+                                fill: [[14, [0.30,0.30,0.30]], [17, [0.00,0.00,0.00]]]
+                                size: [[14, 12px], [17, 14.5px]]
+                                stroke: { color: [1.00,1.00,1.00], width: [[14, 2px], [17, 3px]] }
                 labels-secondary-z18:
                     filter: { $zoom: { min: 18 } }
                     draw:
@@ -1910,12 +1791,13 @@ layers:
                             visible: global.text_visible_secondary
                             text_source: global.ux_language_text_source_road_ref_and_name
                             font:
-                                # need a fill color here?
                                 fill: [0.15,0.15,0.15]
                                 size: 16px
                                 stroke: { color: [1.00,1.00,1.00], width: 3px }
             tertiary:
-                filter: { kind_detail: [tertiary, tertiary_link] }
+                filter:
+                    any:
+                        - kind_detail: [tertiary, tertiary_link, unclassified ]
                 draw:
                     lines:
                         color: [1.0,1.0,1.0]
@@ -2062,7 +1944,7 @@ layers:
                                 size: 15px
                                 stroke: { color: [1.00,1.00,1.00], width: 2px }
         minor_road:
-            filter: { kind: minor_road, not: { kind_detail: service }, $zoom: { min: 8 } }
+            filter: { kind: minor_road, not: { kind_detail: [service, unclassified] }, $zoom: { min: 8 } }
             draw:
                 lines:
                     color: [[12, [0.9,0.9,0.9]], [13, [0.9,0.9,0.9]], [14, [1.0,1.0,1.0]]]
@@ -2176,7 +2058,7 @@ layers:
                 draw:
                     text-blend-order:
                         priority: 59
-                        visible: global.text_visible_minor_road_e
+                        visible: global.text_visible_minor_road
                         text_source: global.ux_language_text_source
                         font:
                             fill: [0.35,0.35,0.35]
@@ -2187,7 +2069,7 @@ layers:
                 draw:
                     text-blend-order:
                         priority: 59
-                        visible: global.text_visible_minor_road_e
+                        visible: global.text_visible_minor_road
                         text_source: global.ux_language_text_source
                         font:
                             fill: [0.25,0.25,0.25]
@@ -2342,7 +2224,7 @@ layers:
                             }
                         }
                     sprite_default: generic_shield_5char
-                    size: [[7,[90%,90%]],[12,[100%,100%]],[15,[110%,110%]]]
+                    size: [[7,[75%,75%]],[12,[100%,100%]],[15,[110%,110%]]]
                     priority: 58
                     # Size is specified below, and limited to 5 char in another filter
                     repeat_group: shields
@@ -2374,60 +2256,102 @@ layers:
                             family: Montserrat
                             weight: 500
                             fill: [0.308,0.308,0.308]
-                            size: [[7, 7px], [12, 8px], [15, 11px]]
+                            size: [[7, 7px], [13, 9px], [15, 10px]]
                             stroke: { color: global.text_stroke, width: 0px }
 
             default_priority_highway:
                 filter:
                     all:
+                        - kind: highway
                         - kind_detail: motorway
-                        - $zoom: { min: 9 }
                 draw:
                     mapzen_icon_library:
                         priority: 47
                         #color: yellow
                         visible: global.sdk_road_shields
-
+                early:
+                    filter:
+                        - $zoom: { max: 7 }
+                    draw:
+                        mapzen_icon_library:
+                            visible: false
             default_priority_trunk:
                 filter:
                     all:
-                        - kind_detail: [trunk]
-                        - $zoom: { min: 10 }
+                        - kind: major_road
+                        - kind_detail: trunk
                 draw:
                     mapzen_icon_library:
                         priority: 48
                         #color: red
                         visible: global.sdk_road_shields
+                early:
+                    filter:
+                        - $zoom: { max: 9 }
+                    draw:
+                        mapzen_icon_library:
+                            visible: false
             default_priority_primary:
                 filter:
                     all:
-                        - kind_detail: [primary]
-                        - $zoom: { min: 12 }
+                        - kind: major_road
+                        - kind_detail: primary
                 draw:
                     mapzen_icon_library:
                         priority: 49
                         #color: aqua
                         visible: global.sdk_road_shields
+                early:
+                    filter:
+                        - $zoom: { max: 10 }
+                    draw:
+                        mapzen_icon_library:
+                            visible: false
             default_priority_trunk_secondary:
                 filter:
                     all:
-                        - kind_detail: [secondary]
-                        - $zoom: { min: 12 }
+                        - kind: major_road
+                        - kind_detail: secondary
                 draw:
                     mapzen_icon_library:
                         priority: 53
                         #color: blue
                         visible: global.sdk_road_shields
+                early:
+                    filter:
+                        - $zoom: { max: 12 }
+                    draw:
+                        mapzen_icon_library:
+                            visible: false
             default_priority_trunk_tertiary:
                 filter:
                     all:
+                        - kind: major_road
                         - kind_detail: tertiary
-                        - $zoom: { min: 13 }
                 draw:
                     mapzen_icon_library:
                         priority: 55
                         #color: green
                         visible: global.sdk_road_shields
+                early:
+                    filter:
+                        - $zoom: { max: 13 }
+                    draw:
+                        mapzen_icon_library:
+                            visible: false
+            default_priority_minor_road:
+                filter:
+                    - kind: minor_road
+                draw:
+                    mapzen_icon_library:
+                        priority: 56
+                        visible: global.sdk_road_shields
+                early:
+                    filter:
+                        - $zoom: { max: 14 }
+                    draw:
+                        mapzen_icon_library:
+                            visible: false
 
 #            width_1char:
 #                filter: |
@@ -2438,9 +2362,6 @@ layers:
 #                            return (feature.ref.length === 1)
 #                        }
 #                    }
-#                draw:
-#                   mapzen_icon_library:
-#                       size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
 #            width_2char:
 #                filter: |
 #                    function() {
@@ -2450,9 +2371,6 @@ layers:
 #                            return (feature.ref.length === 2)
 #                        }
 #                    }
-#                draw:
-#                   mapzen_icon_library:
-#                       size: [[6,[18px,14px]],[13,[20px,15px]],[15,[24px,18px]]]
 #            width_3char:
 #                filter: |
 #                    function() {
@@ -2462,25 +2380,22 @@ layers:
 #                            return (feature.ref.length === 3)
 #                        }
 #                    }
-#                draw:
-#                   mapzen_icon_library:
-#                       size: [[6,[25px,14px]],[13,[27px,15px]],[15,[33px,18px]]]
             width_4char:
                 filter: |
                     function() {
                         if( feature.shield_text ) {
                             return (feature.shield_text.length === 4)
                         } else {
-                            return (feature.ref.length === 4)
+                            return (feature.ref.replace(" ", "").length === 4)
                         }
                     }
-                #draw:
-#                   mapzen_icon_library:
-#                       size: [[6,[29px,14px]],[13,[31px,15px]],[15,[38px,18px]]]
-                # London sucks
+                draw:
+                    mapzen_icon_library:
+                        # this is sensitive to values > 56
+                        priority: 56
                 early:
-                    filter: { $zoom: { max: 14 } }
-                    draw:
+                   filter: { $zoom: { max: 12 } }
+                   draw:
                         mapzen_icon_library:
                             visible: false
             width_5char:
@@ -2489,19 +2404,20 @@ layers:
                         if( feature.shield_text ) {
                             return (feature.shield_text.length === 5)
                         } else {
-                            return (feature.ref.length === 5)
+                            return (feature.ref.replace(" ", "").length === 5)
                         }
                     }
-                #draw:
-#                   mapzen_icon_library:
-#                       size: [[6,[34px,14px]],[13,[37px,15px]],[15,[45px,18px]]]
-                # London sucks
+                draw:
+                    mapzen_icon_library:
+                        # this is sensitive to values > 56
+                        priority: 56
                 early:
-                    filter: { $zoom: { max: 14 } }
-                    draw:
-                        mapzen_icon_library:
-                            visible: false
-            # this is kinda a hack
+                   filter: { $zoom: { max: 13 } }
+                   draw:
+                       mapzen_icon_library:
+                           visible: false
+
+            # this is kinda a hack – generally we don't have artwork sized 6+
             width_longggggg:
                 filter: |
                     function() {
@@ -2514,22 +2430,23 @@ layers:
                 draw:
                     mapzen_icon_library:
                         visible: false
+
             #
             # Now for the good stuff
             #
-            z-legit-shields:
-                filter: |
-                    function() {
-                        return  feature.shield_text ||
-                                /^A.*$/.test(feature.ref) ||
-                                /^B.*$/.test(feature.ref) ||
-                                /^D.*$/.test(feature.ref) ||
-                                /^N.*$/.test(feature.ref) ||
-                                /^MEX.*$/.test(feature.ref)
-                    }
-                # draw:
-                #     mapzen_icon_library:
-                #         color: pink
+            # JK: see the theme files for USA and international shields
+
+            shields-usa:
+                filter:
+                    all:
+                        - network: ['US:I','US:I:Business','US:I:Truck','US:I:Alternate','US:US','US:US:Business','US:US:Truck','US:US:Alternate']
+                        - shield_text: true
+                draw:
+                    mapzen_icon_library:
+                        #texture: mapzen_icon_library_shields_usa
+                        # you need to match any custom shield to the vector tile `network` values
+                        sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
+                        sprite_default: function() { return ('generic_shield-' + feature.shield_text.length + 'char'); }
 
                 # US Interstate roads
                 US-I:
@@ -2538,706 +2455,26 @@ layers:
                         shield_text: true
                     draw:
                         mapzen_icon_library:
-                            texture: mapzen_icon_library_shields_usa
-                            # you need to match any custom shield to the vector tile `network` values
-                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
                             priority: 46
+                            # always show (or not show), irrespective of zoom
                             visible: global.sdk_road_shields
-                            text:
-                                offset: [0px, 0.5px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,8px],[13,9px],[15,11px]]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[15px,18px]],[13,[17px,20px]],[15,[22px,25px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[25px,25px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[23px,18px]],[13,[26px,20px]],[15,[33px,25px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[35px,25px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[26px,18px]],[13,[30px,20px]],[15,[38px,25px]]]
                 # US Federal Routes
                 US-US:
                     filter:
-                        network: ['US:US','US:US:Business', 'US:US:Truck', 'US:US:Alternate']
+                        network: ['US:US','US:US:Business','US:US:Truck','US:US:Alternate']
                         shield_text: true
                         $zoom: { min: 7 }
                     draw:
                         mapzen_icon_library:
-                            texture: mapzen_icon_library_shields_usa
-                            # you need to match any custom shield to the vector tile `network` values
-                            sprite: |
-                                function() { return ('US:US-' + feature.shield_text.length + 'char'); }
                             priority: 47
                             cull_from_tile: true
+                            # always show (or not show), irrespective of zoom
                             visible: global.sdk_road_shields
                             text:
-                                offset: [0px, -0.7px]
                                 font:
                                     fill: [0.380,0.318,0.312]
-                                    size: [[7,8px],[13,9px],[15,11px]]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[15px,17px]],[13,[17px,19px]],[15,[22px,24px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,17px]],[13,[20px,19px]],[15,[26px,24px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[34px,25px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[25px,17px]],[13,[29px,19px]],[15,[39px,25px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[27px,17px]],[13,[30px,19px]],[15,[41px,25px]]]
-                # US State Routes
-                # US-states:
-                #     # Match state highways: `US:??`
-                #     filter: |
-                #         function() {
-                #             return feature.shield_text &&
-                #                 /^US:(?!US)\w\w$/.test(feature.network)
-                #         }
-                #     draw:
-                #         mapzen_icon_library:
-                #             # you need to match any custom shield to the vector tile `network` values
-                #             #priority: 48
-                #             visible: global.sdk_road_shields
-                US-CA:
-                    # Match California state highways: `US:CA`
-                    filter: |
-                        function() {
-                            return feature.shield_text && /^US:CA$/.test(feature.network)
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            texture: mapzen_icon_library_shields_usa
-                            sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
-                            #priority: 48
-                            text:
-                                offset: [0px, 1px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
-                    motorway:
-                        filter: { kind_detail: [motorway], $zoom: [7,8] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
-                    trunk:
-                        filter: { kind_detail: [trunk], $zoom: [8,9] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
-                    primary:
-                        filter: { kind_detail: primary, $zoom: [10,11] }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[14px,16px]],[13,[15px,18px]],[15,[18px,21px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[18px,18px]],[13,[20px,20px]],[15,[23px,23px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[21px,18px]],[13,[24px,20px]],[15,[28px,23px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[24px,18px]],[13,[26px,20px]],[15,[31px,23px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[25px,18px]],[13,[27px,20px]],[15,[32px,23px]]]
-                US-NY:
-                    # Match New York state highways: `US:NY`
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^US:NY$/.test(feature.network)
-                                /* (/^US:NY$/.test(feature.network) || /^NY:US$/.test(feature.network)) */
-                            )
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            texture: mapzen_icon_library_shields_usa
-                            sprite: |
-                                function() { return ( 'US:NY-' + feature.shield_text.length + 'char'); }
-                            text:
-                                # offset: [0px, 1px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[13px,17px]],[13,[15px,19px]],[15,[18px,22px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[17px,17px]],[13,[19px,19px]],[15,[22px,22px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[20px,17px]],[13,[22px,19px]],[15,[27px,22px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[29px,22px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
-                US-PA:
-                    # Match Pennsylvania state highways
-                    filter: |
-                        function() {
-                            return feature.shield_text && /^US:PA$/.test(feature.network)
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            texture: mapzen_icon_library_shields_usa
-                            sprite: |
-                                function() { return ( 'US:PA-' + feature.shield_text.length + 'char'); }
-                            text:
-                                offset: [0px, 1px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
-                    width_1char:
-                        filter: function() { return (feature.shield_text.length === 1) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[13px,17px]],[13,[15px,19px]],[15,[18px,22px]]]
-                    width_2char:
-                        filter: function() { return (feature.shield_text.length === 2) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[17px,17px]],[13,[19px,19px]],[15,[22px,22px]]]
-                    width_3char:
-                        filter: function() { return (feature.shield_text.length === 3) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[28px,22px]]]
-                    width_4char:
-                        filter: function() { return (feature.shield_text.length === 4) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30x,22px]]]
-                    width_5char:
-                        filter: function() { return (feature.shield_text.length === 5) }
-                        draw:
-                            mapzen_icon_library:
-                                size: [[6,[24px,17px]],[13,[27px,19px]],[15,[32px,22px]]]
-                # USA County Routes
-                US-counties:
-                    # Match state highways: `US:??:*`
-                    #
-                    # this is very USA specific
-                    #
-                    # filter: |
-                    #     function() {
-                    #         return feature.shield_text &&
-                    #             /^US:(?!US)\w\w:.*$/.test(feature.network)
-                    #     }
-                    #
-                    # this generic for any country with 3rd level networks (like county routes in USA)
-                    # BEWARE:
-                    # US:US:Business  about 150
-                    # US:US:Truck
-                    # US:US:Alternate
-    #
-                    # STATE ROUTE
-                    # ??:??:Loop  about 200
-                    # ??:??:Spur  about 200
-                    # ??:??:Business   about 100
-    #
-                    # STATE TEXAS SPECIAL ROUTE
-                    # US:TX:FM -- probably just state? there are 3k of these
-                    #
-                    #
-                    filter: |
-                        function() {
-                            return feature.shield_text &&
-                                /^\w+:\w+:(!Alternate).+$/.test(feature.network) &&
-                                $zoom > 10
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            texture: mapzen_icon_library_shields_usa
-                            # you need to match any custom shield to the vector tile `network` values
-                            sprite: function() { return ('county_shield-' + feature.shield_text.length + 'char'); }
-                            #color: pink
-                            #priority: 19
-                            visible: global.sdk_road_shields
-                            text:
-                                font:
-                                    fill: [0.508,0.508,0.508]
-                                    #size: [[11,7px],[15,10px]]
-                    #width_1char:
-#                        filter: function() { return (feature.shield_text.length === 1) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[14px,14px]],[13,[16px,16px]],[15,[18px,18px]]]
-#                    width_2char:
-#                        filter: function() { return (feature.shield_text.length === 2) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[16px,14px]],[13,[18px,15px]],[15,[22px,18px]]]
-#                    width_3char:
-#                        filter: function() { return (feature.shield_text.length === 3) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[20px,14px]],[13,[21px,15px]],[15,[26px,18px]]]
-#                    width_4char:
-#                        filter: function() { return (feature.shield_text.length === 4) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[25px,14px]],[13,[28px,15px]],[15,[34px,18px]]]
-#                    width_5char:
-#                        filter: function() { return (feature.shield_text.length === 5) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[30px,14px]],[13,[33px,15px]],[15,[40px,18px]]]
+                                    size: [[7,8px],[13,10px],[15,11px]]
 
-                US-OTHER:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^US:AK$/.test(feature.network) ||
-                                /^US:AL$/.test(feature.network) ||
-                                /^US:AR$/.test(feature.network) ||
-                                /^US:AZ$/.test(feature.network) ||
-                                /^US:BIA$/.test(feature.network) ||
-                                /^US:BLM$/.test(feature.network) ||
-                                /^US:CO$/.test(feature.network) ||
-                                /^US:DC$/.test(feature.network) ||
-                                /^US:FL$/.test(feature.network) ||
-                                /^US:FSH$/.test(feature.network) ||
-                                /^US:FSR$/.test(feature.network) ||
-                                /^US:GA$/.test(feature.network) ||
-                                /^US:HI$/.test(feature.network) ||
-                                /^US:ID$/.test(feature.network) ||
-                                /^US:KS$/.test(feature.network) ||
-                                /^US:LA$/.test(feature.network) ||
-                                /^US:MA$/.test(feature.network) ||
-                                /^US:CT$/.test(feature.network) ||
-                                /^US:IL$/.test(feature.network) ||
-                                /^US:TX$/.test(feature.network) ||
-                                /^US:IN$/.test(feature.network) ||
-                                /^US:RI$/.test(feature.network) ||
-                                /^US:ME$/.test(feature.network) ||
-                                /^US:WV$/.test(feature.network) ||
-                                /^US:MT$/.test(feature.network) ||
-                                /^US:MD$/.test(feature.network) ||
-                                /^US:MN$/.test(feature.network) ||
-                                /^US:MO$/.test(feature.network) ||
-                                /^US:NC$/.test(feature.network) ||
-                                /^US:MI$/.test(feature.network) ||
-                                /^US:ND$/.test(feature.network) ||
-                                /^US:NE$/.test(feature.network) ||
-                                /^US:NH$/.test(feature.network) ||
-                                /^US:NJ$/.test(feature.network) ||
-                                /^US:NV$/.test(feature.network) ||
-                                /^US:IA$/.test(feature.network) ||
-                                /^US:DE$/.test(feature.network) ||
-                                /^US:KY$/.test(feature.network) ||
-                                /^US:MS$/.test(feature.network) ||
-                                /^US:NM$/.test(feature.network) ||
-                                /^US:NV$/.test(feature.network) ||
-                                /^US:OH$/.test(feature.network) ||
-                                /^US:OK$/.test(feature.network) ||
-                                /^US:OR$/.test(feature.network) ||
-                                /^US:SC$/.test(feature.network) ||
-                                /^US:SD$/.test(feature.network) ||
-                                /^US:TN$/.test(feature.network) ||
-                                /^US:UT$/.test(feature.network) ||
-                                /^US:VA$/.test(feature.network) ||
-                                /*TODO: US:VA:secondary*/
-                                /^US:VT$/.test(feature.network) ||
-                                /^US:WA$/.test(feature.network) ||
-                                /^US:WI$/.test(feature.network) ||
-                                /^US:WY$/.test(feature.network)
-                                /*US:CA*/
-                                /*US:I*/
-                                /*US:NY*/
-                                /*US:PA*/
-                                /*US:US*/
-                                /*county_shield*/
-                            )
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            texture: mapzen_icon_library_shields_usa
-                            sprite: |
-                                function() { return ( feature.network + '-' + feature.shield_text.length + 'char'); }
-                            text:
-                                # offset: [0px, 1px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    #size: [[7,7px],[13,9px],[15,10px]]
-#                    width_1char:
-#                        filter: function() { return (feature.shield_text.length === 1) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[13px,17px]],[13,[15px,19px]],[15,[18px,22px]]]
-#                    width_2char:
-#                        filter: function() { return (feature.shield_text.length === 2) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[17px,17px]],[13,[19px,19px]],[15,[22px,22px]]]
-#                    width_3char:
-#                        filter: function() { return (feature.shield_text.length === 3) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[20px,17px]],[13,[22px,19px]],[15,[27px,22px]]]
-#                    width_4char:
-#                        filter: function() { return (feature.shield_text.length === 4) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[29px,22px]]]
-#                    width_5char:
-#                        filter: function() { return (feature.shield_text.length === 5) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
-
-                international-shields:
-                    filter: |
-                        function() {
-                            return feature.shield_text && (
-                                /^AM:AM.*$/.test(feature.network) ||
-                                /^AR:AR.*$/.test(feature.network) ||
-                                /^AR:PR.*$/.test(feature.network) ||
-                                /^AT:A.*$/.test(feature.network) ||
-                                /^AT:L.*$/.test(feature.network) ||
-                                /^AT:S.*$/.test(feature.network) ||
-                                /^AU:AU.*$/.test(feature.network) ||
-                                /^AU:I.*$/.test(feature.network) ||
-                                /^AU:A.*$/.test(feature.network) ||
-                                /^AU:M.*$/.test(feature.network) ||
-                                /^A.*$/.test(feature.network) ||
-                                /^M.*$/.test(feature.network) ||
-                                /^AU:I3.*$/.test(feature.network) ||
-                                /^AU:MR.*$/.test(feature.network) ||
-                                /^AU:TD.*$/.test(feature.network) ||
-                                /^BD:NH.*$/.test(feature.network) ||
-                                /^BE:I.*$/.test(feature.network) ||
-                                /^BR$/.test(feature.network) ||
-                                /^BR:.*$/.test(feature.network) ||
-                                /^BR.*$/.test(feature.network) ||
-                                /^BR:TA.*$/.test(feature.network) ||
-                                /^CA:AB.*$/.test(feature.network) ||
-                                /^CA:BC.*$/.test(feature.network) ||
-                                /^CA:I.*$/.test(feature.network) ||
-                                /^CA:transcanada$/.test(feature.network) ||
-                                /^CA:I2.*$/.test(feature.network) ||
-                                /^CA:MB.*$/.test(feature.network) ||
-                                /^CA:NL.*$/.test(feature.network) ||
-                                /^CA:NL2.*$/.test(feature.network) ||
-                                /^CA:NL3.*$/.test(feature.network) ||
-                                /^CA:NS.*$/.test(feature.network) ||
-                                /^CA:NT.*$/.test(feature.network) ||
-                                /^CA:ON.*$/.test(feature.network) ||
-                                /^CA:PEI.*$/.test(feature.network) ||
-                                /^CA:QC.*$/.test(feature.network) ||
-                                /^CA:SK.*$/.test(feature.network) ||
-                                /^CA:YT.*$/.test(feature.network) ||
-                                /^CH:A.*$/.test(feature.network) ||
-                                /^CH:E.*$/.test(feature.network) ||
-                                /^CL:CL.*$/.test(feature.network) ||
-                                /^CL:CL2.*$/.test(feature.network) ||
-                                /^CL:VP.*$/.test(feature.network) ||
-                                /^CN:EXP.*$/.test(feature.network) ||
-                                /^CN-expressways.*$/.test(feature.network) ||
-                                /^CN-roads.*$/.test(feature.network) ||
-                                /^DE:A.*$/.test(feature.network) ||
-                                /^BAB.*$/.test(feature.network) ||
-                                /^DE:DE.*$/.test(feature.network) ||
-                                /^B.*$/.test(feature.ref) ||
-                                /^B .*$/.test(feature.ref) ||
-                                /^DE:L.*$/.test(feature.network) ||
-                                /^dk:national.*$/.test(feature.network) ||
-                                /^DK:D.*$/.test(feature.network) ||
-                                /^ES:A.*$/.test(feature.network) ||
-                                /^ES:AA.*$/.test(feature.network) ||
-                                /^ES:AA2.*$/.test(feature.network) ||
-                                /^ES:C.*$/.test(feature.network) ||
-                                /^ES:IU.*$/.test(feature.network) ||
-                                /^e-road.*$/.test(feature.network) ||
-                                /^FI:FI.*$/.test(feature.network) ||
-                                /^FI:FS.*$/.test(feature.network) ||
-                                /^FI:LR.*$/.test(feature.network) ||
-                                /^FI:RR.*$/.test(feature.network) ||
-                                /^FR:A-road.*$/.test(feature.network) ||
-                                /^A.*$/.test(feature.ref) ||
-                                /^A .*$/.test(feature.ref) ||
-                                /^FR:.*:.*$/.test(feature.network) ||
-                                /^D.*$/.test(feature.ref) ||
-                                /^D .*$/.test(feature.ref) ||
-                                /^FR:N-road.*$/.test(feature.network) ||
-                                /^N.*$/.test(feature.ref) ||
-                                /^N .*$/.test(feature.ref) ||
-                                /^GR:I.*$/.test(feature.network) ||
-                                /^GR:motorway$/.test(feature.network) ||
-                                /^GR:GR.*$/.test(feature.network) ||
-                                /^GR:national$/.test(feature.network) ||
-                                /^ID:ID.*$/.test(feature.network) ||
-                                /^IE:M.*$/.test(feature.network) ||
-                                /^IE:N.*$/.test(feature.network) ||
-                                /^IE:R.*$/.test(feature.network) ||
-                                /^IN:IN.*$/.test(feature.network) ||
-                                /^IN:NH$/.test(feature.network) ||
-                                /^IN:NH:.*$/.test(feature.network) ||
-                                /^IN:SH.*$/.test(feature.network) ||
-                                /^IQ:IQ.*$/.test(feature.network) ||
-                                /^IT:AS.*$/.test(feature.network) ||
-                                /^IT:RA.*$/.test(feature.network) ||
-                                /^IT:SP.*$/.test(feature.network) ||
-                                /^IT:SR.*$/.test(feature.network) ||
-                                /^IT:SS.*$/.test(feature.network) ||
-                                /^JP:EX.*$/.test(feature.network) ||
-                                /^JP:national.*$/.test(feature.network) ||
-                                /^JP:prefectural.*$/.test(feature.network) ||
-                                /^jp:prefectural.*$/.test(feature.network) ||
-                                /^LU:CR.*$/.test(feature.network) ||
-                                /^LU:M.*$/.test(feature.network) ||
-                                /^LU:RN.*$/.test(feature.network) ||
-                                /^MX:MX.*$/.test(feature.network) ||
-                                /^MEX$/.test(feature.network) ||
-                                /^MEX.*$/.test(feature.ref) ||
-                                /^MX:SH.*$/.test(feature.network) ||
-                                /^MY:E.*$/.test(feature.network) ||
-                                /^NL:A.*$/.test(feature.network) ||
-                                /^NL:N.*$/.test(feature.network) ||
-                                /^NL:S.*$/.test(feature.network) ||
-                                /^NO:CR.*$/.test(feature.network) ||
-                                /^NO:RR.*$/.test(feature.network) ||
-                                /^NO:TR.*$/.test(feature.network) ||
-                                /^NZ:SH.*$/.test(feature.network) ||
-                                /^NZ:SR.*$/.test(feature.network) ||
-                                /^PE:PE.*$/.test(feature.network) ||
-                                /^PL:NR.*$/.test(feature.network) ||
-                                /^PL:VR.*$/.test(feature.network) ||
-                                /^PT:A.*$/.test(feature.network) ||
-                                /^PT:IC.*$/.test(feature.network) ||
-                                /^PT:IP.*$/.test(feature.network) ||
-                                /^RO:AS.*$/.test(feature.network) ||
-                                /^RO:DJ.*$/.test(feature.network) ||
-                                /^RO:DX.*$/.test(feature.network) ||
-                                /^RO:DС.*$/.test(feature.network) ||
-                                /^ru:national.*$/.test(feature.network) ||
-                                /^SA:SA.*$/.test(feature.network) ||
-                                /^SE:A.*$/.test(feature.network) ||
-                                /^SG:E.*$/.test(feature.network) ||
-                                /^SK:I.*$/.test(feature.network) ||
-                                /^SK:LR.*$/.test(feature.network) ||
-                                /^SK:SK.*$/.test(feature.network) ||
-                                /^TH:TH.*$/.test(feature.network) ||
-                                /^TH:TM2.*$/.test(feature.network) ||
-                                /^TH:TM3.*$/.test(feature.network) ||
-                                /^TR:DY.*$/.test(feature.network) ||
-                                /^TR:OR.*$/.test(feature.network) ||
-                                /^UA:M.*$/.test(feature.network) ||
-                                /^UA:P.*$/.test(feature.network) ||
-                                /^UA:P2.*$/.test(feature.network) ||
-                                /^UK:A.*$/.test(feature.network) ||
-                                /^UK:G.*$/.test(feature.network) ||
-                                /^UK:M.*$/.test(feature.network) ||
-                                /^VN:I.*$/.test(feature.network) ||
-                                /^VN:PR.*$/.test(feature.network) ||
-                                /^VN:VN.*$/.test(feature.network) ||
-                                /^ZA:M.*$/.test(feature.network) ||
-                                /^ZA:P.*$/.test(feature.network) ||
-                                /^ZA:R.*$/.test(feature.network)
-                            )
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            texture: mapzen_icon_library_shields_international
-                            sprite: |
-                                function() {
-                                    if( feature.network ) {
-                                        var basic_network = feature.network.split(":").slice(0,2).join(":");
-                                    } else {
-                                        var basic_network = "generic";
-                                    }
-                                    return ( basic_network + '-' + feature.shield_text.length + 'char');
-                                }
-                            text:
-                                # offset: [0px, 1px]
-                                font:
-                                    fill: [0.308,0.308,0.308]
-                                    #size: [[7,7px],[13,9px],[15,10px]]
-                    zoom8up:
-                        filter: |
-                            function() {
-                                return $zoom >= 8 && (
-                                    /^BR$/.test(feature.network) ||
-                                    /^BAB.*$/.test(feature.network) ||
-                                    /^CA:transcanada$/.test(feature.network) ||
-                                    /^CN-expressways$/.test(feature.network) ||
-                                    /^FR:A-road.*$/.test(feature.network) ||
-                                    /^A.*$/.test(feature.ref) ||
-                                    /^MEX$/.test(feature.network) ||
-                                    /^MEX.*$/.test(feature.ref) ||
-                                    /^ru:national$/.test(feature.network) ||
-                                    /^sk:national$/.test(feature.network) ||
-                                    /^GR:motorway$/.test(feature.network) ||
-                                    /^GR:national$/.test(feature.network) ||
-                                    /^IN:NH$/.test(feature.network) ||
-                                    /^IN:NH:.*$/.test(feature.network)
-                                )
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                visible: global.sdk_road_shields
-
-#                    width_1char:
-#                        filter: function() { return (feature.shield_text.length === 1) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[13px,17px]],[13,[15px,19px]],[15,[18px,22px]]]
-#                    width_2char:
-#                        filter: function() { return (feature.shield_text.length === 2) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[17px,17px]],[13,[19px,19px]],[15,[22px,22px]]]
-#                    width_3char:
-#                        filter: function() { return (feature.shield_text.length === 3) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[20px,17px]],[13,[22px,19px]],[15,[27px,22px]]]
-#                    width_4char:
-#                        filter: function() { return (feature.shield_text.length === 4) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[21px,17px]],[13,[24px,19px]],[15,[29px,22px]]]
-#                    width_5char:
-#                        filter: function() { return (feature.shield_text.length === 5) }
-#                        draw:
-#                            mapzen_icon_library:
-#                                size: [[6,[22px,17px]],[13,[25px,19px]],[15,[30px,22px]]]
-
-                    brazil-shields:
-                        filter: |
-                            function() {
-                                return feature.shield_text && /^BR:.*$/.test(feature.network)
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'BR:BR-' + feature.shield_text.length + 'char');
-                                    }
-                    france-a-and-n-road-ref-shields:
-                        filter: |
-                            function() {
-                                return ((feature.ref && !feature.shield_text) && (/^A .*$/.test(feature.ref) || /^N .*$/.test(feature.ref))) ||
-                                    ((feature.ref && feature.network == 'e-road') && (/^A .*$/.test(feature.ref) || /^N .*$/.test(feature.ref)))
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'FR:A-road-' + feature.ref.replace(" ", "").length + 'char');
-                                    }
-                                text:
-                                    text_source: |
-                                        function() {
-                                            return feature.ref.replace(" ", "");
-                                        }
-                    france-department-shields:
-                        filter: |
-                            function() {
-                                return ((feature.ref &&
-                                    ! feature.shield_text) &&
-                                    /^FR:.*:.*$/.test(feature.network) ||
-                                    /^D .*$/.test(feature.ref)) ||
-                                    ( feature.ref &&
-                                      /^D .*$/.test(feature.ref))
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        var text_len = feature.shield_text.length || feature.ref.length;
-                                        return ( 'FR:D-' + text_len + 'char');
-                                    }
-                    germany-b-shields:
-                        filter: |
-                            function() {
-                                return feature.ref && /^B .*$/.test(feature.ref)
-                            }
-                        draw:
-                            mapzen_icon_library:
-                                sprite: |
-                                    function() {
-                                        return ( 'DE:DE-' + feature.ref.length + 'char');
-                                    }
-                z-mexico-shields:
-                    filter: |
-                        function() {
-                            return feature.ref && (
-                                /^MEX$/.test(feature.network) ||
-                                /^MEX.*$/.test(feature.ref)
-                            )
-                        }
-                    draw:
-                        mapzen_icon_library:
-                            visible: global.sdk_road_shields
-                            sprite: |
-                                function() {
-                                    return ( 'MX:MX-' + feature.ref.replace("MEX ", "").length + 'char');
-                                }
-                            text:
-                                text_source: |
-                                    function() {
-                                        return feature.ref.replace("MEX ", "");
-                                    }
 
         path:
             filter:
@@ -3366,7 +2603,19 @@ layers:
                     outline:
                         order: 354
                         color: global.minor_casing1
-                        width: [[15, 0px], [16, 0.5px], [17, 1.0px], [18, 2.0px]]
+                        width: [[14, 0px], [15, 0.2px], [16, 0.5px], [17, 1.0px], [18, 2.0px]]
+            major_track:
+                filter:
+                    any:
+                        - { kind_detail: track, surface: [paved, asphalt, concrete, gravel] }
+                        - { kind_detail: track, tracktype: [grade1, grade2] }
+                draw:
+                    lines:
+                        color: [1.0,1.0,1.0]
+                        width: [[11, 0.5px], [12, 0.5px], [13, 0.5px], [14, 0.65px], [15, 1.5px], [16, 8m], [19, 10m]]
+                        outline:
+                            color: [[13, [0.827,0.827,0.827], [15, [1.0,1.0,1.0]]]]
+                            width: [[15, 0], [16, 1.0px], [18, 3.5px]]
             bridge:
                 filter: { is_bridge: true }
                 draw:
@@ -3876,6 +3125,28 @@ layers:
                         style: italic
                         size: 10px
                         stroke: { color: global.text_stroke_address, width: 4 }
+        entrance-labels:
+            filter:
+                $zoom: { min: 20 }
+                any:
+                    - kind: entrance
+                all:
+                    - function() { return global.text_visible_address; }
+            draw:
+                mapzen_icon_library:
+                    size: [[13, 95%], [16, 100%], [18, 105%]]
+                    sprite: generic # TODO: add custom entrance/edit icons
+                    interactive: global.sdk_interactive
+                    priority: 65
+                    repeat_group: abc
+                    buffer: 3px
+                    text:
+                        font:
+                            fill: global.text_fill_address
+                            family: global.text_font_family
+                            style: italic
+                            size: 10px
+                            stroke: { color: global.text_stroke_address, width: 4 }
 
     boundaries:
         data: { source: mapzen, layer: boundaries }
@@ -3893,14 +3164,16 @@ layers:
             draw:
                 lines:
                     color: global.country_boundary
-                    width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [8, 2.5px], [14, 3.5px], [16, 4.5px]]
+                    width: [[1, 0.5px], [4, 2.5px], [14, 4px], [16, 4.5px]]
             water:
-                filter: { maritime_boundary: true }
-                draw:
-                    lines:
-                        visible: false
+                 filter: { maritime_boundary: true }
+                 draw:
+                     lines:
+                         visible: false
+                     text-blend-order:
+                         visible: false
             country-labels:
-                filter: { name: true, $zoom: { min: 8 }, not: { maritime_boundary: true } }
+                filter: { name: true, $zoom: { min: 8 } }
                 draw:
                     text-blend-order:
                         priority: 2
@@ -3946,11 +3219,13 @@ layers:
             draw:
                 lines:
                     color: global.region_boundary
-                    width: [[0, 0.5px], [2, 1.0px], [5, 1.25px], [6, 1.5px], [7, 1.75px], [8, 2.0px], [9, 3.5px], [14, 5.5px], [16, 6.5px]]
+                    width: [[0, 0.5px], [2, 1.0px], [6, 1.5px], [8, 2.0px], [9, 3.5px], [14, 5.5px], [16, 6.5px]]
             water:
                 filter: { maritime_boundary: true }
                 draw:
                     lines:
+                        visible: false
+                    text-blend-order:
                         visible: false
             early:
                 filter: { not: { min_zoom: [1,2] }, $zoom: { max: 8 } }
@@ -3958,7 +3233,7 @@ layers:
                     lines:
                         visible: false
             region-labels:
-                filter: { name: true, $zoom: { min: 8 }, not: { maritime_boundary: true } }
+                filter: { name: true, $zoom: { min: 8 } }
                 draw:
                     text-blend-order:
                         priority: 3
@@ -4700,7 +3975,7 @@ layers:
         draw:
             mapzen_icon_library:
                 visible: global.icon_visible_poi_landuse
-                size: [[13, 14px], [16, 18px], [18, 19px]]
+                size: [[13, 95%], [16, 100%], [18, 105%]]
                 sprite: function() { return feature.kind; }
                 sprite_default: generic
                 interactive: global.sdk_interactive
@@ -4717,7 +3992,7 @@ layers:
                         family: Quicksand #global.text_font_family
                         weight: normal
                         fill: [0.20,0.20,0.20]
-                        size: [[13,10px],[14,11px],[17,12px],[19,12px],[20,14px]]
+                        size: [[13,10px], [17,12px], [19,12px], [20,14px]]
                         stroke: { color: global.text_stroke, width: [[12,2px],[16,4px]] }
 
         # improve legibility at high zooms
@@ -4813,7 +4088,7 @@ layers:
                 kind: [natural_forest, natural_park, natural_wood]
             draw:
                 mapzen_icon_library:
-                    size: 0px
+                    visible: false
                     priority: 100
                     text:
                         font:
@@ -4827,8 +4102,7 @@ layers:
                 kind: [common, grass, houseboat, pedestrian, railway, ship, wetland]
             draw:
                 mapzen_icon_library:
-                    size: 0px
-                    #visible: false
+                    visible: false
                     text: { font: { style: italic } }
 
         # the server should be setting better values here
@@ -5091,7 +4365,7 @@ layers:
                 filter: { kind: [grass], $zoom: { min: 16 } }
                 draw:
                     mapzen_icon_library:
-                        size: 0px
+                        visible: false
                         text:
                             font:
                                 style: italic
@@ -5141,20 +4415,46 @@ layers:
             draw:
                 mapzen_icon_library:
                     priority: 43
-                    size: 0px
-                    #: dot-black
+                    visible: false
                     text:
                         text_wrap: 10
                         font:
                             style: italic
                             weight: normal
+
+        gate-early:
+            filter: { kind: gate, $zoom: { max: 20 } }
+            draw:
+                mapzen_icon_library:
+                    icon: generic
+        gate-late:
+            filter: { kind: gate, $zoom: { min: 20 } }
+            draw:
+                mapzen_icon_library:
+                    visible: yes
+
+        tree:
+            filter: { kind: tree, $zoom: { min: 18 } }
+            draw:
+                background-icons:
+                    # TODO: put tree icons behind the buildings
+                    # See SF State University #20/37.72314/-122.47772
+                    color: [0.145,0.745,0.643]
+                    visible: true #global.icon_visible_poi_landuse_e
+                    collide: false
+            z18:
+                filter: { $zoom: [18] }
+                draw:
+                    mapzen_icon_library:
+                        color: [0.459,0.765,0.722]
+                        sprite: tree-s
+
         glacier:
             filter:
                 kind: glacier
             draw:
                 mapzen_icon_library:
-                    size: 0px
-                    #visible: false
+                    visible: false
                     text:
                         visible: true
                         priority: 44
@@ -5182,7 +4482,7 @@ layers:
             draw:
                 mapzen_icon_library:
                     visible: global.icon_visible_station
-                    size: [[13, 12px], [14, 12px], [15, 16px], [17, 18px], [18, 20px]]
+                    size: [[13, 80%], [17, 100%], [18, 110%]]
                     priority: 42
                     text:
                         visible: global.text_visible_station
@@ -5214,14 +4514,12 @@ layers:
             draw:
                 mapzen_icon_library:
                     priority: 45
-                    size: 14px
                     text:  { font: { size: 10px, style: italic } }
         garden-no-area-later:
             filter: { kind: [garden, allotments], $zoom: { min: 17 }, area: false }
             draw:
                 mapzen_icon_library:
                     priority: 45
-                    size: 16px
                     text:  { font: { size: 11px, style: italic } }
         gate:
             filter: { kind: gate, name: true  }
@@ -5241,8 +4539,7 @@ layers:
             filter: { kind: [tower], label_placement: true }
             draw:
                 mapzen_icon_library:
-                    size: 0px
-                    #visible: false
+                    visible: false
                     text:
                         font:
                             style: italic
@@ -5252,7 +4549,7 @@ layers:
                 kind: [bus_stop]
             draw:
                 mapzen_icon_library:
-                    size: [[18,12px],[20,18px]]
+                    size: [[18, 80%], [20, 100%]]
                     text:
                         optional: true
                         font:
@@ -5523,11 +4820,28 @@ layers:
                     visible: true
         military:
             filter:
-                kind: military
+                kind: [military,naval_base]
             draw:
                 dots:
                     color: [0.722,0.769,0.827]
                     visible: true
+        danger_area:
+            filter:
+                kind: danger_area
+            draw:
+                dots:
+                    color: red #[0.722,0.769,0.827]
+                    visible: true
+                    order: 255
+        range:
+            filter:
+                kind: range
+            draw:
+                dots:
+                    color: red
+                    visible: true
+                    order: 256
+
         university:
             filter:
                 kind: [university, college]
@@ -5626,7 +4940,7 @@ layers:
                     color: global.grey8
                     visible: global.grey8_v
         man-made:
-            filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline] }
+            filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline,quay,wharf,shipyard,container_terminal,ferry_terminal,port_terminal] }
             draw:
                 dots:
                     color: [0.690,0.690,0.690]
@@ -5637,6 +4951,22 @@ layers:
                     dots:
                         color: [0.679,0.679,0.679]
                         visible: true
+            quay_wharf:
+                filter: { kind: [quay,wharf] }
+                draw:
+                    dots:
+                        visible: false
+                    polygons_transparent:
+                        color: [0.8,0.8,0.8,0.5]
+                        visible: true
+                        # hack the order as the server isn't provided a good value
+                        order: 236
+            # hack the order as the server isn't provided a good value
+            shipyard:
+                filter: { kind: [shipyard,container_terminal,ferry_terminal,port_terminal] }
+                draw:
+                    dots:
+                        order: 237
         #TIER 5
         tourism-related:
             filter:
@@ -5655,8 +4985,54 @@ layers:
                kind: beach
            draw:
                dots:
-                   color: [0.780,0.740,0.538]
-                   visible: true
+                    color: [0.780,0.740,0.538]
+                    visible: true
+
+        plant_nursery:
+            filter:
+                kind: plant_nursery
+            draw:
+                dots:
+                    color: [0.955,0.752,0.650]
+                    visible: true
+                    order: 235
+
+        orchard:
+            filter:
+                kind: orchard
+            draw:
+                dots:
+                    color: [0.955,0.752,0.650]
+                    visible: true
+                    order: 236
+
+        mud:
+            filter:
+                kind: mud
+            draw:
+                polygons_transparent:
+                    color: [0.8,0.8,0.7,0.1]
+                    visible: true
+                    order: 235
+
+        wetland:
+            filter:
+                kind: wetland
+            draw:
+                polygons_transparent:
+                    color: [0.8,0.8,0.7,0.1]
+                    visible: true
+                    order: 236
+
+        reef:
+            filter:
+                kind: reef
+            draw:
+                polygons_transparent:
+                    color: [0.6,0.7,0.7,0.1]
+                    visible: true
+                    order: 237
+
         #TIER 6
         garden:
             filter:
@@ -5774,7 +5150,6 @@ layers:
                 kind:
                     - runway
                     - apron
-                    - beach
                     - roller_coaster
                     - amusement_ride
                     - summer_toboggan
@@ -5850,18 +5225,24 @@ layers:
                     order: global.feature_order
                     color: [[4,[0.965,0.600,0.882]],[6,[0.965,0.600,0.882]],[7,[0.882,0.639,0.827]],[8,[0.757,0.729,0.753]]]
 
-        city_walls:
+        city_wall:
             filter: { kind: city_wall }
             draw:
                 lines:
                     color: global.city_wall
                     width: [[12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.0px], [16, 2.5px], [19, 3m]]
-        retaining_wall:
-            filter: { kind: retaining_wall }
+        walls:
+            filter: { kind: [wall, retaining_wall,embankment] }
             draw:
                 lines:
                     color: global.retaining_wall
                     width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 2m]]
+            #TODO: hack
+            embankment:
+                filter: { kind: embankment }
+                draw:
+                    lines:
+                        order: 500
         snow_fence:
             filter: { kind: snow_fence }
             draw:
@@ -5869,11 +5250,23 @@ layers:
                     color: global.snow_fence
                     width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1m]]
         fence:
-            filter: { kind: fence }
+            filter: { kind: [fence,kerb,guard_rail,ditch] }
             draw:
                 lines:
                     color: global.fence
                     width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1m]]
+        power_line:
+            filter: { kind: [power_line, power_minor_line] }
+            draw:
+                lines:
+                    color: [0.779,0.779,0.779]
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 1m]]
+            minor:
+                filter: { kind: power_minor_line }
+                draw:
+                    lines:
+                        color: [0.8,0.8,0.8]
+                        width: [[14, 0.5px], [15, 0.8px], [16, 1.25px], [17, 1.5px], [19, 0.5m]]
 
     transit-overlay-rail-lines:
         data: { source: mapzen, layer: transit }
@@ -6122,7 +5515,7 @@ layers:
             draw:
                 mapzen_icon_library:
                     sprite: train_station
-                    size: [[13, 12px], [14, 14px], [15, 16px], [17, 20px]]
+                    size: [[13, '65%'], [16, '100%']]
                     priority: 11
                     text:
                         #offset: [[13, [0, 6px]], [14, [0, 7px]],[15, [0, 8px]], [17, [0, 10px]]]
@@ -6131,7 +5524,7 @@ layers:
                 filter: { kind_tile_rank: { min: 3 }, $zoom: { min: 0, max: 12 } }
                 draw:
                     mapzen_icon_library:
-                        size: [[12, 5px], [14, 6px], [15, 16px]]
+                        size: [[12, '40%'], [15, '50%']]
                         text:
                             visible: false
                 long-tail:
@@ -6144,7 +5537,7 @@ layers:
                 draw:
                     mapzen_icon_library:
 #                        visible: false
-                        size: [[12, 5px], [14, 6px], [15, 16px]]
+                        size: [[12, '40%'], [15, '50%']]
                         text:
                             visible: false
             low-priority-early-z13:
@@ -6152,14 +5545,14 @@ layers:
                 draw:
                     mapzen_icon_library:
                         #visible: false
-                        size: [[12, 8px], [14, 6px], [15, 16px]]
+                        size: [[12, '40%'], [15, '50%']]
                         text:
                             visible: false
             low-priority-early-z14:
                 filter: { kind_tile_rank: { min: 7 }, $zoom: [14] }
                 draw:
                     mapzen_icon_library:
-                        size: [[12, 10px], [14, 11px], [15, 16px]]
+                        size: [[12, '40%'], [15, '50%']]
                         #visible: false
                         text:
                             visible: false
