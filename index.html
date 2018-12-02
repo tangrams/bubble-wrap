@@ -22,9 +22,9 @@
 
         <!-- Main tangram library -->
         <!-- production -->
-        <script src="https://www.nextzen.org/tangram/0.15/tangram.min.js"></script>
+        <script src="https://www.nextzen.org/tangram/0.16/tangram.min.js"></script>
         <!-- production debug -->
-        <!-- <script src="https://mapzen.com/tangram/0.15/tangram.debug.js"></script> -->
+        <!-- <script src="https://mapzen.com/tangram/0.16/tangram.debug.js"></script> -->
         <!-- dev -->
         <!-- <script src="https://precog.mapzen.com/tangrams/tangram/master/dist/tangram.debug.js"></script> -->
         <!-- dev branch -->
@@ -236,7 +236,7 @@
         var layer = Tangram.leafletLayer({
             scene: { import: [  tg_baseScene,
                                 'themes/bubble-wrap-road-shields-usa.yaml',
-                                'themes/bubble-wrap-road-shields-international.yaml'], 
+                                'themes/bubble-wrap-road-shields-international.yaml'],
                             global: tg_global },
             attribution: '<a href="https://github.com/tangrams/tangram" target="_blank">Tangram</a>, &copy; OSM contributors'
         });
@@ -449,7 +449,7 @@
                 }
                 update_scene_with_themes();
             });
-            
+
             // Enable/disable international road shields
             var shields_international = 'International shields';
             gui[shields_international] = true;
