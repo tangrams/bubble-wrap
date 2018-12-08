@@ -14,57 +14,95 @@ global:
     #ux/ui
     ux_language: false             # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
     ux_language_fallback: false    # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
+    # if a ux_langauge has been defined use that, else if there is feature name
+    # in the fallback_ux_language then use that, else use the feature's default
+    # name in the local language
     ux_language_text_source: |
         function() {
-            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
-            return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+            return (global.ux_language && feature['name:'+global.ux_language]) ||
+                   (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                   feature.name;
         }
     ux_language_text_source_left: |
         function() {
-            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
-            return (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
+            return (global.ux_language && feature['name:left:'+global.ux_language]) ||
+                   (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) ||
+                   feature['name:left'];
         }
     ux_language_text_source_right: |
         function() {
-            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
-            return (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
+            return (global.ux_language && feature['name:right:'+global.ux_language]) ||
+                   (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) ||
+                   feature['name:right'];
         }
     ux_language_text_source_boundary_lines_left_right:
         left: global.ux_language_text_source_left
         right: global.ux_language_text_source_right
     ux_language_text_source_boundary_lines: |
        function() {
-           var right = (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
-           var left = (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
+           var right = (global.ux_language && feature['name:right:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) ||
+                       feature['name:right'];
+           var left = (global.ux_language && feature['name:left:'+global.ux_language]) ||
+                      (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) ||
+                      feature['name:left'];
            if( right && left ) {
-               //if( right.includes(' ') || left.includes(' ') ) {
-                   return left + " - " + right;
-               //} else {
-               //    return right + '\n' + left;
-               //}
+               return left + " - " + right;
            } else {
-               return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+               return (global.ux_language && feature['name:'+global.ux_language]) ||
+                      (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
            }
        }
+    # ux_language_text_source_boundary_lines: |
+    #    function() {
+    #        var right = (global.ux_language && feature['name:right:'+global.ux_language]) ||
+    #                    (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) ||
+    #                    feature['name:right'];
+    #        var left = (global.ux_language && feature['name:left:'+global.ux_language]) ||
+    #                   (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) ||
+    #                   feature['name:left'];
+    #        if( right && left ) {
+    #            if( right.includes(' ') || left.includes(' ') ) {
+    #                return left + " - " + right;
+    #            } else {
+    #                return right + '\n' + left;
+    #            }
+    #        } else {
+    #            return (global.ux_language && feature['name:'+global.ux_language]) ||
+    #                   (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+    #        }
+    #    }
     ux_language_text_source_short: |
         function() {
-            return (global.ux_language && feature['name:short:'+global.ux_language]) || (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) || feature['name:short'];
+            return (global.ux_language && feature['name:short:'+global.ux_language]) ||
+                   (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) ||
+                   feature['name:short'];
         }
     ux_language_text_source_short_proxy_name: |
         function() {
-            var name  = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
-            var short = (global.ux_language && feature['name:short:'+global.ux_language]) || (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) || feature['name:short'];
+            var name  = (global.ux_language && feature['name:'+global.ux_language]) ||
+                        (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                        feature['name'] || '';
+            var short = (global.ux_language && feature['name:short:'+global.ux_language]) ||
+                        (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) ||
+                        feature['name:short'];
             return short ? name : '';
         }
     ux_language_text_source_abbreviation: |
         function() {
-            var name  = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
-            var abbrev = (global.ux_language && feature['name:abbreviation:'+global.ux_language]) || (global.ux_language_fallback && feature['name:abbreviation:'+global.ux_language_fallback]) || feature['name:abbreviation'];
+            var name  = (global.ux_language && feature['name:'+global.ux_language]) ||
+                        (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                        feature['name'] || '';
+            var abbrev = (global.ux_language && feature['name:abbreviation:'+global.ux_language]) ||
+                         (global.ux_language_fallback && feature['name:abbreviation:'+global.ux_language_fallback]) ||
+                         feature['name:abbreviation'];
             return abbrev || name;
         }
     ux_language_text_source_iata: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                       feature['name']
             if(feature.iata) {
                 if (name) {
                     return name + ' (' + feature.iata + ')';
@@ -78,68 +116,73 @@ global:
         }
     ux_language_text_source_ocean: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                       feature['name'] || '';
             name = name.split(' ').join('\n');
             return name.split('').join('  ');
         }
     ux_language_text_source_sea: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                       feature['name'] || '';
             name = name.split(' ').join('\n');
             return name.split('').join(' ');
         }
     ux_language_text_source_continent_stacked_only: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                       feature['name'] || '';
             return name.split(' ').join('\n');
         }
     ux_language_text_source_continent: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                       feature['name'] || '';
             name = name.split(' ').join('\n');
             return name.split('').join(' ');
         }
-    ux_language_text_source_road_ref_and_name: |
-        function() {
-            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
-            return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
-
-            /*
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
-            if(feature.ref && name) {
-                return (feature.ref + ' ' + name);
-            } else {
-                return name;
-            }
-            */
-        }
-    ux_language_text_source_road_ref_and_name_short: |
-        function() {
-            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
-            return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
-
-            /*
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
-            if (feature.ref && (feature.ref.length < 6) && name) {
-                return feature.ref + ' ' + name;
-            } else {
-                return name;
-            }
-            */
-        }
+    ux_language_text_source_road_ref_and_name: global.ux_language_text_source
+    # ux_language_text_source_road_ref_and_name: |
+    #     function() {
+    #         var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+    #                    (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+    #         if(feature.ref && name) {
+    #             return (feature.ref + ' ' + name);
+    #         } else {
+    #             return name;
+    #         }
+    #     }
+    ux_language_text_source_road_ref_and_name_short: global.ux_language_text_source
+    # ux_language_text_source_road_ref_and_name_short: |
+    #     function() {
+    #         var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+    #                    (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+    #         if (feature.ref && (feature.ref.length < 6) && name) {
+    #             return feature.ref + ' ' + name;
+    #         } else {
+    #             return name;
+    #         }
+    #     }
     ux_language_text_source_piste_advanced: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             return name ? ('◆ ' + name) : '◆';
         }
     ux_language_text_source_piste_expert: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             return name ? ('◆◆ ' + name) : '◆◆';
         }
     ux_language_text_source_building_and_address: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if (name && feature.addr_housenumber) {
                 return name + '\n' + feature.addr_housenumber;
             } else {
