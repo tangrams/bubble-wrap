@@ -14,57 +14,95 @@ global:
     #ux/ui
     ux_language: false             # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
     ux_language_fallback: false    # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
+    # if a ux_langauge has been defined use that, else if there is feature name
+    # in the fallback_ux_language then use that, else use the feature's default
+    # name in the local language
     ux_language_text_source: |
         function() {
-            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
-            return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+            return (global.ux_language && feature['name:'+global.ux_language]) ||
+                   (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                   feature.name;
         }
     ux_language_text_source_left: |
         function() {
-            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
-            return (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
+            return (global.ux_language && feature['name:left:'+global.ux_language]) ||
+                   (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) ||
+                   feature['name:left'];
         }
     ux_language_text_source_right: |
         function() {
-            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
-            return (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
+            return (global.ux_language && feature['name:right:'+global.ux_language]) ||
+                   (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) ||
+                   feature['name:right'];
         }
     ux_language_text_source_boundary_lines_left_right:
         left: global.ux_language_text_source_left
         right: global.ux_language_text_source_right
     ux_language_text_source_boundary_lines: |
        function() {
-           var right = (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
-           var left = (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
+           var right = (global.ux_language && feature['name:right:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) ||
+                       feature['name:right'];
+           var left = (global.ux_language && feature['name:left:'+global.ux_language]) ||
+                      (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) ||
+                      feature['name:left'];
            if( right && left ) {
-               //if( right.includes(' ') || left.includes(' ') ) {
-                   return left + " - " + right;
-               //} else {
-               //    return right + '\n' + left;
-               //}
+               return left + " - " + right;
            } else {
-               return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+               return (global.ux_language && feature['name:'+global.ux_language]) ||
+                      (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
            }
        }
+    # ux_language_text_source_boundary_lines: |
+    #    function() {
+    #        var right = (global.ux_language && feature['name:right:'+global.ux_language]) ||
+    #                    (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) ||
+    #                    feature['name:right'];
+    #        var left = (global.ux_language && feature['name:left:'+global.ux_language]) ||
+    #                   (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) ||
+    #                   feature['name:left'];
+    #        if( right && left ) {
+    #            if( right.includes(' ') || left.includes(' ') ) {
+    #                return left + " - " + right;
+    #            } else {
+    #                return right + '\n' + left;
+    #            }
+    #        } else {
+    #            return (global.ux_language && feature['name:'+global.ux_language]) ||
+    #                   (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+    #        }
+    #    }
     ux_language_text_source_short: |
         function() {
-            return (global.ux_language && feature['name:short:'+global.ux_language]) || (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) || feature['name:short'];
+            return (global.ux_language && feature['name:short:'+global.ux_language]) ||
+                   (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) ||
+                   feature['name:short'];
         }
     ux_language_text_source_short_proxy_name: |
         function() {
-            var name  = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
-            var short = (global.ux_language && feature['name:short:'+global.ux_language]) || (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) || feature['name:short'];
+            var name  = (global.ux_language && feature['name:'+global.ux_language]) ||
+                        (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                        feature['name'] || '';
+            var short = (global.ux_language && feature['name:short:'+global.ux_language]) ||
+                        (global.ux_language_fallback && feature['name:short:'+global.ux_language_fallback]) ||
+                        feature['name:short'];
             return short ? name : '';
         }
     ux_language_text_source_abbreviation: |
         function() {
-            var name  = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
-            var abbrev = (global.ux_language && feature['name:abbreviation:'+global.ux_language]) || (global.ux_language_fallback && feature['name:abbreviation:'+global.ux_language_fallback]) || feature['name:abbreviation'];
+            var name  = (global.ux_language && feature['name:'+global.ux_language]) ||
+                        (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                        feature['name'] || '';
+            var abbrev = (global.ux_language && feature['name:abbreviation:'+global.ux_language]) ||
+                         (global.ux_language_fallback && feature['name:abbreviation:'+global.ux_language_fallback]) ||
+                         feature['name:abbreviation'];
             return abbrev || name;
         }
     ux_language_text_source_iata: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                       feature['name']
             if(feature.iata) {
                 if (name) {
                     return name + ' (' + feature.iata + ')';
@@ -78,68 +116,73 @@ global:
         }
     ux_language_text_source_ocean: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                       feature['name'] || '';
             name = name.split(' ').join('\n');
             return name.split('').join('  ');
         }
     ux_language_text_source_sea: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                       feature['name'] || '';
             name = name.split(' ').join('\n');
             return name.split('').join(' ');
         }
     ux_language_text_source_continent_stacked_only: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                       feature['name'] || '';
             return name.split(' ').join('\n');
         }
     ux_language_text_source_continent: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'] || '';
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) ||
+                       feature['name'] || '';
             name = name.split(' ').join('\n');
             return name.split('').join(' ');
         }
-    ux_language_text_source_road_ref_and_name: |
-        function() {
-            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
-            return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
-
-            /*
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
-            if(feature.ref && name) {
-                return (feature.ref + ' ' + name);
-            } else {
-                return name;
-            }
-            */
-        }
-    ux_language_text_source_road_ref_and_name_short: |
-        function() {
-            // if a ux_langauge has been defined use that, else if there is feature name in the fallback_ux_language then use that, else use the feature's default name in the local language
-            return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
-
-            /*
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
-            if (feature.ref && (feature.ref.length < 6) && name) {
-                return feature.ref + ' ' + name;
-            } else {
-                return name;
-            }
-            */
-        }
+    ux_language_text_source_road_ref_and_name: global.ux_language_text_source
+    # ux_language_text_source_road_ref_and_name: |
+    #     function() {
+    #         var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+    #                    (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+    #         if(feature.ref && name) {
+    #             return (feature.ref + ' ' + name);
+    #         } else {
+    #             return name;
+    #         }
+    #     }
+    ux_language_text_source_road_ref_and_name_short: global.ux_language_text_source
+    # ux_language_text_source_road_ref_and_name_short: |
+    #     function() {
+    #         var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+    #                    (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+    #         if (feature.ref && (feature.ref.length < 6) && name) {
+    #             return feature.ref + ' ' + name;
+    #         } else {
+    #             return name;
+    #         }
+    #     }
     ux_language_text_source_piste_advanced: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             return name ? ('◆ ' + name) : '◆';
         }
     ux_language_text_source_piste_expert: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             return name ? ('◆◆ ' + name) : '◆◆';
         }
     ux_language_text_source_building_and_address: |
         function() {
-            var name = (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
+            var name = (global.ux_language && feature['name:'+global.ux_language]) ||
+                       (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature['name'];
             if (name && feature.addr_housenumber) {
                 return name + '\n' + feature.addr_housenumber;
             } else {
@@ -2191,6 +2234,7 @@ layers:
                             stroke: { color: [1.00,1.00,1.00], width: 2 }
 
         shields:
+            enabled: global.sdk_road_shields
             filter:
                 all:
                     - $zoom: { min: 6 }
@@ -2204,7 +2248,6 @@ layers:
                     # that makes United States look a bit funky with `(xxx)` and generic shields
                     # showing up in fields of custom state shields like US:CA and US:NY
                     #
-                    - function() { return global.sdk_road_shields; }
                     - any:
                         - shield_text: true    # some roads don't have shield text, deal with that later
                         - all:
@@ -2215,15 +2258,40 @@ layers:
             draw:
                 mapzen_icon_library:
                     # you need to match any custom shield to the vector tile `network` values
+                    # sprite: |
+                    #     function() {
+                    #       if( feature.shield_text ) {
+                    #         return ['generic_shield-', feature.shield_text.length, 'char'].join('');
+                    #       }
+                    #       return ['generic_shield-', feature.ref.length, 'char'].join('');
+                    #     }
+                    ## [].join('') is good - Better build no new strings at all:
+                    sprite_default: ~ # remove 'generic' default to make discard label-by-sprite function work
                     sprite: |
                         function() {
-                            if( feature.shield_text ) {
-                                return ('generic_shield-' + feature.shield_text.length + 'char');
-                            } else {
-                                return ('generic_shield-' + feature.ref.length + 'char');
+                          var text = feature.shield_text;
+                          if (text === undefined) {
+                            text = feature.ref;
+                            if (text === undefined) { return undefined; }
+                            if (text.length > 3) {
+                              text = text.replace(" ", "");
                             }
+                          }
+                          switch (text.length) {
+                            case 1:
+                                return 'generic_shield-1char';
+                            case 2:
+                                return 'generic_shield-2char';
+                            case 3:
+                                return 'generic_shield-3char';
+                            case 4:
+                                if ($zoom < 11) break;
+                                return 'generic_shield-4char';
+                            case 5:
+                                if ($zoom < 15) break;
+                                return 'generic_shield-5char';
+                          }
                         }
-                    sprite_default: generic_shield_5char
                     size: [[7,[75%,75%]],[12,[100%,100%]],[15,[110%,110%]]]
                     priority: 58
                     # Size is specified below, and limited to 5 char in another filter
@@ -2239,19 +2307,12 @@ layers:
                         - [13, 1.50]
                         - [14, 2.0]
                     cull_from_tile: true
-                    visible: false
+                    visible: true
                     text:
                         offset: [0px, -0.5px]
                         repeat_distance: 200px
                         anchor: center
-                        text_source: |
-                            function() {
-                                if( feature.shield_text ) {
-                                    return feature.shield_text;
-                                } else {
-                                    return feature.ref;
-                                }
-                            }
+                        text_source: [shield_text, ref]
                         font:
                             family: Montserrat
                             weight: 500
@@ -2268,7 +2329,6 @@ layers:
                     mapzen_icon_library:
                         priority: 47
                         #color: yellow
-                        visible: global.sdk_road_shields
                 early:
                     filter:
                         - $zoom: { max: 7 }
@@ -2284,7 +2344,6 @@ layers:
                     mapzen_icon_library:
                         priority: 48
                         #color: red
-                        visible: global.sdk_road_shields
                 early:
                     filter:
                         - $zoom: { max: 9 }
@@ -2300,7 +2359,6 @@ layers:
                     mapzen_icon_library:
                         priority: 49
                         #color: aqua
-                        visible: global.sdk_road_shields
                 early:
                     filter:
                         - $zoom: { max: 10 }
@@ -2316,7 +2374,6 @@ layers:
                     mapzen_icon_library:
                         priority: 53
                         #color: blue
-                        visible: global.sdk_road_shields
                 early:
                     filter:
                         - $zoom: { max: 12 }
@@ -2332,7 +2389,6 @@ layers:
                     mapzen_icon_library:
                         priority: 55
                         #color: green
-                        visible: global.sdk_road_shields
                 early:
                     filter:
                         - $zoom: { max: 13 }
@@ -2345,7 +2401,6 @@ layers:
                 draw:
                     mapzen_icon_library:
                         priority: 56
-                        visible: global.sdk_road_shields
                 early:
                     filter:
                         - $zoom: { max: 14 }
@@ -2353,91 +2408,26 @@ layers:
                         mapzen_icon_library:
                             visible: false
 
-#            width_1char:
-#                filter: |
-#                    function() {
-#                        if( feature.shield_text ) {
-#                            return (feature.shield_text.length === 1)
-#                        } else {
-#                            return (feature.ref.length === 1)
-#                        }
-#                    }
-#            width_2char:
-#                filter: |
-#                    function() {
-#                        if( feature.shield_text ) {
-#                            return (feature.shield_text.length === 2)
-#                        } else {
-#                            return (feature.ref.length === 2)
-#                        }
-#                    }
-#            width_3char:
-#                filter: |
-#                    function() {
-#                        if( feature.shield_text ) {
-#                            return (feature.shield_text.length === 3)
-#                        } else {
-#                            return (feature.ref.length === 3)
-#                        }
-#                    }
-            width_4char:
-                filter: |
-                    function() {
-                        if( feature.shield_text ) {
-                            return (feature.shield_text.length === 4)
-                        } else {
-                            return (feature.ref.replace(" ", "").length === 4)
-                        }
-                    }
+            width_4-5char:
+                filter:
+                    all:
+                        - not:
+                            kind: [minor_road]
+                            network: ['US:I','US:US','US:US:Business','US:US:Truck','US:US:Alternate'] # propably all US:* - bug below?
+                        - |
+                            function() {
+                              var text = feature.shield_text;
+                              var length = text ? text.length : feature.ref.replace(" ", "").length;
+                              return length === 4 || length === 5;
+                            }
                 draw:
                     mapzen_icon_library:
                         # this is sensitive to values > 56
                         priority: 56
-                early:
-                   filter: { $zoom: { max: 12 } }
-                   draw:
-                        mapzen_icon_library:
-                            visible: false
-            width_5char:
-                filter: |
-                    function() {
-                        if( feature.shield_text ) {
-                            return (feature.shield_text.length === 5)
-                        } else {
-                            return (feature.ref.replace(" ", "").length === 5)
-                        }
-                    }
-                draw:
-                    mapzen_icon_library:
-                        # this is sensitive to values > 56
-                        priority: 56
-                early:
-                   filter: { $zoom: { max: 13 } }
-                   draw:
-                       mapzen_icon_library:
-                           visible: false
-
-            # this is kinda a hack – generally we don't have artwork sized 6+
-            # FYI: This happens to "win" in style resolution because it's a-z sorted
-            # don't rename the layer or it'll fail
-            width_longggggg:
-                filter: |
-                    function() {
-                        if( feature.shield_text ) {
-                            return (feature.shield_text.length > 5)
-                        } else {
-                            return (feature.ref.length > 5)
-                        }
-                    }
-                draw:
-                    mapzen_icon_library:
-                        visible: false
-
             #
             # Now for the good stuff
             #
             # JK: see the theme files for USA and international shields
-
             # FYI: When the USA shields theme is imported it replaces this layer with a richer set of textures
             shields-usa:
                 filter:
@@ -2446,37 +2436,154 @@ layers:
                         - shield_text: true
                 draw:
                     mapzen_icon_library:
-                        #texture: mapzen_icon_library_shields_usa
+                        # texture: mapzen_icon_library_shields_usa
                         # you need to match any custom shield to the vector tile `network` values
-                        sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
-                        # FYI: sprite_default doesn't support functions, default is carried by parent style's sprite function
+                        sprite_default: |
+                            function() {
+                              switch (feature.shield_text.length) {
+                                case 1: return 'generic_shield-1char';
+                                case 2: return 'generic_shield-2char';
+                                case 3: return 'generic_shield-3char';
+                                case 4: return 'generic_shield-4char';
+                                case 5: return 'generic_shield-5char';
+                               }
+                            }
 
                 # US Interstate roads
                 US-I:
                     filter:
                         network: 'US:I'
-                        shield_text: true
                     draw:
                         mapzen_icon_library:
                             priority: 46
-                            # always show (or not show), irrespective of zoom
-                            visible: global.sdk_road_shields
+                            sprite: |
+                                function() {
+                                  switch (feature.shield_text.length) {
+                                    case 1: return 'US:I-1char';
+                                    case 2: return 'US:I-2char';
+                                    case 3: return 'US:I-3char';
+                                    case 4: return 'US:I-4char';
+                                    case 5: return 'US:I-5char';
+                                  }
+                                }
+                US-I-Business:
+                    filter:
+                        network: 'US:I:Business'
+                    draw:
+                        mapzen_icon_library:
+                            sprite: |
+                                function() {
+                                  switch (feature.shield_text.length) {
+                                    case 1: return 'US:I:Business-1char';
+                                    case 2: return 'US:I:Business-2char';
+                                    case 3: return 'US:I:Business-3char';
+                                    case 4: return 'US:I:Business-4char';
+                                    case 5: return 'US:I:Business-5char';
+                                  }
+                                }
+                US-I-Truck:
+                    filter:
+                        network: 'US:I:Truck'
+                    draw:
+                        mapzen_icon_library:
+                            sprite: |
+                                function() {
+                                  switch (feature.shield_text.length) {
+                                    case 1: return 'US:I:Truck-1char';
+                                    case 2: return 'US:I:Truck-2char';
+                                    case 3: return 'US:I:Truck-3char';
+                                    case 4: return 'US:I:Truck-4char';
+                                    case 5: return 'US:I:Truck-5char';
+                                  }
+                                }
+                US-I-Alternate:
+                    filter:
+                        network: 'US:I:Alternate'
+                    draw:
+                        mapzen_icon_library:
+                            sprite: |
+                                function() {
+                                  switch (feature.shield_text.length) {
+                                    case 1: return 'US:I:Alternate-1char';
+                                    case 2: return 'US:I:Alternate-2char';
+                                    case 3: return 'US:I:Alternate-3char';
+                                    case 4: return 'US:I:Alternate-4char';
+                                    case 5: return 'US:I:Alternate-5char';
+                                  }
+                                }
                 # US Federal Routes
-                US-US:
+                US-US-common:
                     filter:
                         network: ['US:US','US:US:Business','US:US:Truck','US:US:Alternate']
-                        shield_text: true
                         $zoom: { min: 7 }
                     draw:
                         mapzen_icon_library:
                             priority: 47
                             cull_from_tile: true
-                            # always show (or not show), irrespective of zoom
-                            visible: global.sdk_road_shields
                             text:
                                 font:
                                     fill: [0.380,0.318,0.312]
                                     size: [[7,8px],[13,10px],[15,11px]]
+                US-US:
+                    filter:
+                        network: 'US:US'
+                    draw:
+                        mapzen_icon_library:
+                            sprite: |
+                                function() {
+                                  switch (feature.shield_text.length) {
+                                    case 1: return 'US:US-1char';
+                                    case 2: return 'US:US-2char';
+                                    case 3: return 'US:US-3char';
+                                    case 4: return 'US:US-4char';
+                                    case 5: return 'US:US-5char';
+                                  }
+                                }
+                US-US-Business:
+                    filter:
+                        network: 'US:US:Business'
+                    draw:
+                        mapzen_icon_library:
+                            sprite: |
+                                function() {
+                                  switch (feature.shield_text.length) {
+                                    case 1: return 'US:US:Business-1char';
+                                    case 2: return 'US:US:Business-2char';
+                                    case 3: return 'US:US:Business-3char';
+                                    case 4: return 'US:US:Business-4char';
+                                    case 5: return 'US:US:Business-5char';
+                                  }
+                                }
+                US-US-Truck:
+                    filter:
+                        network: 'US:US:Truck'
+                    draw:
+                        mapzen_icon_library:
+                            sprite: |
+                                function() {
+                                  switch (feature.shield_text.length) {
+                                    case 1: return 'US:US:Truck-1char';
+                                    case 2: return 'US:US:Truck-2char';
+                                    case 3: return 'US:US:Truck-3char';
+                                    case 4: return 'US:US:Truck-4char';
+                                    case 5: return 'US:US:Truck-5char';
+                                  }
+                                }
+                US-US-Alternate:
+                    filter:
+                        network: 'US:US:Alternate'
+                    draw:
+                        mapzen_icon_library:
+                            sprite: |
+                                function() {
+                                  switch (feature.shield_text.length) {
+                                    case 1: return 'US:US:Alternate-1char';
+                                    case 2: return 'US:US:Alternate-2char';
+                                    case 3: return 'US:US:Alternate-3char';
+                                    case 4: return 'US:US:Alternate-4char';
+                                    case 5: return 'US:US:Alternate-5char';
+                                  }
+                                }
 
 
         path:
