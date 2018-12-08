@@ -2511,6 +2511,19 @@ layers:
                                     case 5: return 'US:I:Alternate-5char';
                                   }
                                 }
+                # US Federal Routes
+                US-US-common:
+                    filter:
+                        network: ['US:US','US:US:Business','US:US:Truck','US:US:Alternate']
+                        $zoom: { min: 7 }
+                    draw:
+                        mapzen_icon_library:
+                            priority: 47
+                            cull_from_tile: true
+                            text:
+                                font:
+                                    fill: [0.380,0.318,0.312]
+                                    size: [[7,8px],[13,10px],[15,11px]]
                 US-US:
                     filter:
                         network: 'US:US'
@@ -2571,20 +2584,6 @@ layers:
                                     case 5: return 'US:US:Alternate-5char';
                                   }
                                 }
-                # US Federal Routes
-                US-US:
-                    filter:
-                        network: ['US:US','US:US:Business','US:US:Truck','US:US:Alternate']
-                        shield_text: true
-                        $zoom: { min: 7 }
-                    draw:
-                        mapzen_icon_library:
-                            priority: 47
-                            cull_from_tile: true
-                            text:
-                                font:
-                                    fill: [0.380,0.318,0.312]
-                                    size: [[7,8px],[13,10px],[15,11px]]
 
 
         path:
