@@ -2264,7 +2264,7 @@ layers:
                         - [13, 1.50]
                         - [14, 2.0]
                     cull_from_tile: true
-                    visible: false
+                    visible: true
                     text:
                         offset: [0px, -0.5px]
                         repeat_distance: 200px
@@ -2286,7 +2286,6 @@ layers:
                     mapzen_icon_library:
                         priority: 47
                         #color: yellow
-                        visible: global.sdk_road_shields
                 early:
                     filter:
                         - $zoom: { max: 7 }
@@ -2302,7 +2301,6 @@ layers:
                     mapzen_icon_library:
                         priority: 48
                         #color: red
-                        visible: global.sdk_road_shields
                 early:
                     filter:
                         - $zoom: { max: 9 }
@@ -2318,7 +2316,6 @@ layers:
                     mapzen_icon_library:
                         priority: 49
                         #color: aqua
-                        visible: global.sdk_road_shields
                 early:
                     filter:
                         - $zoom: { max: 10 }
@@ -2334,7 +2331,6 @@ layers:
                     mapzen_icon_library:
                         priority: 53
                         #color: blue
-                        visible: global.sdk_road_shields
                 early:
                     filter:
                         - $zoom: { max: 12 }
@@ -2350,7 +2346,6 @@ layers:
                     mapzen_icon_library:
                         priority: 55
                         #color: green
-                        visible: global.sdk_road_shields
                 early:
                     filter:
                         - $zoom: { max: 13 }
@@ -2363,7 +2358,6 @@ layers:
                 draw:
                     mapzen_icon_library:
                         priority: 56
-                        visible: global.sdk_road_shields
                 early:
                     filter:
                         - $zoom: { max: 14 }
