@@ -10,7 +10,7 @@ global:
     # Sign up for a Mapzen API key to enjoy higher rate limits
     # https://mapzen.com/documentation/overview/#developer-accounts-and-api-keys
     sdk_api_key: ''     # set this value to your Mapzen API key
-
+    global.sdk_road_shields: true
     #ux/ui
     ux_language: false             # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
     ux_language_fallback: false    # l10n language code, trusting OSM in v0.10 tiles, fixed in v1.0 tiles
@@ -486,6 +486,11 @@ sources:
             api_key: global.sdk_api_key
         tile_size: 512
         max_zoom: 16
+        drop_feature_properties: ['source', 'id', 'root_id', 'name:*', 'alt_name*', 'old_name*', 'nat_name',
+                                  'int_name', 'loc_name', 'operator', 'osm_relation', 'surface', 'walking_network',
+                                  'walking_shield_text', 'bus_network', 'bus_shield_text', 'bicycle_network',
+                                  'is_bicycle_related', 'access', 'colour_name', 'cycleway_right', 'cycleway_left']
+        keep_feature_properties: ['name:en']
 
 #    # Only enable this for local debug, should not be enabled for prod (app inserts these at runtime)
 #    # These are all in San Francisco, California
@@ -949,7 +954,7 @@ layers:
                 sprite: |
                     function() {
                         if( feature.shield_text ) {
-                            return ('sdk_shield-' + feature.shield_text.length + 'char');
+                            return (['sdk_shield-', feature.shield_text.length, 'char'].join());
                         } else {
                             return ('sdk_shield-' + feature.name.length + 'char');
                         }
@@ -1083,8 +1088,7 @@ layers:
                     color: global.water1
         inland-water:
             filter:
-                all:
-                    - kind: [lake, water, riverbank, reservoir, swimming_pool]
+                kind: [lake, water, riverbank, reservoir, swimming_pool]
                 any:
                     # limit show smaller landuse areas to higher zooms
                     - { $zoom: { min: 1 },  area: { min: 40000000000 } }
@@ -1839,8 +1843,7 @@ layers:
                                 stroke: { color: [1.00,1.00,1.00], width: 3px }
             tertiary:
                 filter:
-                    any:
-                        - kind_detail: [tertiary, tertiary_link, unclassified ]
+                    kind_detail: [tertiary, tertiary_link, unclassified ]
                 draw:
                     lines:
                         color: [1.0,1.0,1.0]
@@ -2247,7 +2250,6 @@ layers:
                     # that makes United States look a bit funky with `(xxx)` and generic shields
                     # showing up in fields of custom state shields like US:CA and US:NY
                     #
-                    - function() { return global.sdk_road_shields; }
                     - any:
                         - shield_text: true    # some roads don't have shield text, deal with that later
                         - all:
@@ -2257,16 +2259,44 @@ layers:
             # default
             draw:
                 mapzen_icon_library:
-                    # you need to match any custom shield to the vector tile `network` values
+                    # you need to match any custom shield to the vector tile `network` values <= Is this comment at the right place?
+                    # This combines filtering and styling function: Return the right sprite when it matches otherwise draws nothing
                     sprite: |
-                        function() {
-                            if( feature.shield_text ) {
-                                return ('generic_shield-' + feature.shield_text.length + 'char');
-                            } else {
-                                return ('generic_shield-' + feature.ref.length + 'char');
+                        funtion() {
+                          val text = feature.shield_text;
+                          if (text === undefined) {
+                            text = feature.ref;
+                            if (text === undefined) { return undefined; }
+                            if (text.length > 3) {
+                              text = text.replace(" ", "");
                             }
+                          }
+                          swith(text.length) {
+                            case 0: return undefined;
+                            case 1: return 'gs-1';
+                            case 2: return 'gs-2';
+                            case 3: return 'gs-3';
+                            case 4: return ($zoom > 12) ? 'gs-4' : undefined;
+                            case 5: return ($zoom > 13) ? 'gs-5' : undefined;
+                            default: break; // disables too longggggg
+                          }
+                          return undefined;
                         }
-                    sprite_default: generic_shield_5char
+                    # case 1: return 'generic_shield-1char';
+                    # case 2: return 'generic_shield-2char';
+                    # case 3: return 'generic_shield-3char';
+                    # case 4: return ($zoom > 12) ? 'generic_shield-4char' : undefined;
+                    # case 5: return ($zoom > 13) ? 'generic_shield-5char' : undefined;
+                    ## This builds 2 temporary strings: one for the number N, one for generic_shield-N
+                    # sprite: |
+                    #     function() {
+                    #         if( feature.shield_text ) {
+                    #             return ('generic_shield-' + feature.shield_text.length + 'char');
+                    #         } else {
+                    #             return ('generic_shield-' + feature.ref.length + 'char');
+                    #         }
+                    #     }
+                    sprite_default: generic_shield-5char
                     size: [[7,[75%,75%]],[12,[100%,100%]],[15,[110%,110%]]]
                     priority: 58
                     # Size is specified below, and limited to 5 char in another filter
@@ -2396,83 +2426,83 @@ layers:
                         mapzen_icon_library:
                             visible: false
 
-#            width_1char:
-#                filter: |
-#                    function() {
-#                        if( feature.shield_text ) {
-#                            return (feature.shield_text.length === 1)
-#                        } else {
-#                            return (feature.ref.length === 1)
-#                        }
-#                    }
-#            width_2char:
-#                filter: |
-#                    function() {
-#                        if( feature.shield_text ) {
-#                            return (feature.shield_text.length === 2)
-#                        } else {
-#                            return (feature.ref.length === 2)
-#                        }
-#                    }
-#            width_3char:
-#                filter: |
-#                    function() {
-#                        if( feature.shield_text ) {
-#                            return (feature.shield_text.length === 3)
-#                        } else {
-#                            return (feature.ref.length === 3)
-#                        }
-#                    }
-            width_4char:
-                filter: |
-                    function() {
-                        if( feature.shield_text ) {
-                            return (feature.shield_text.length === 4)
-                        } else {
-                            return (feature.ref.replace(" ", "").length === 4)
-                        }
-                    }
-                draw:
-                    mapzen_icon_library:
-                        # this is sensitive to values > 56
-                        priority: 56
-                early:
-                   filter: { $zoom: { max: 12 } }
-                   draw:
-                        mapzen_icon_library:
-                            visible: false
-            width_5char:
-                filter: |
-                    function() {
-                        if( feature.shield_text ) {
-                            return (feature.shield_text.length === 5)
-                        } else {
-                            return (feature.ref.replace(" ", "").length === 5)
-                        }
-                    }
-                draw:
-                    mapzen_icon_library:
-                        # this is sensitive to values > 56
-                        priority: 56
-                early:
-                   filter: { $zoom: { max: 13 } }
-                   draw:
-                       mapzen_icon_library:
-                           visible: false
+            # width_1char:
+            #     filter: |
+            #         function() {
+            #             if( feature.shield_text ) {
+            #                 return (feature.shield_text.length === 1)
+            #             } else {
+            #                 return (feature.ref.length === 1)
+            #             }
+            #         }
+            # width_2char:
+            #     filter: |
+            #         function() {
+            #             if( feature.shield_text ) {
+            #                 return (feature.shield_text.length === 2)
+            #             } else {
+            #                 return (feature.ref.length === 2)
+            #             }
+            #         }
+            # width_3char:
+            #     filter: |
+            #         function() {
+            #             if( feature.shield_text ) {
+            #                 return (feature.shield_text.length === 3)
+            #             } else {
+            #                 return (feature.ref.length === 3)
+            #             }
+            #         }
+            # width_4char:
+            #     filter: |
+            #         function() {
+            #             if( feature.shield_text ) {
+            #                 return (feature.shield_text.length === 4)
+            #             } else {
+            #                 return (feature.ref.replace(" ", "").length === 4)
+            #             }
+            #         }
+            #     draw:
+            #         mapzen_icon_library:
+            #             # this is sensitive to values > 56
+            #             priority: 56
+            #     early:
+            #        filter: { $zoom: { max: 12 } }
+            #        draw:
+            #             mapzen_icon_library:
+            #                 visible: false
+            # width_5char:
+            #     filter: |
+            #         function() {
+            #             if( feature.shield_text ) {
+            #                 return (feature.shield_text.length === 5)
+            #             } else {
+            #                 return (feature.ref.replace(" ", "").length === 5)
+            #             }
+            #         }
+            #     draw:
+            #         mapzen_icon_library:
+            #             # this is sensitive to values > 56
+            #             priority: 56
+            #     early:
+            #        filter: { $zoom: { max: 13 } }
+            #        draw:
+            #            mapzen_icon_library:
+            #                visible: false
 
-            # this is kinda a hack – generally we don't have artwork sized 6+
-            width_longggggg:
-                filter: |
-                    function() {
-                        if( feature.shield_text ) {
-                            return (feature.shield_text.length > 5)
-                        } else {
-                            return (feature.ref.length > 5)
-                        }
-                    }
-                draw:
-                    mapzen_icon_library:
-                        visible: false
+            # # this is kinda a hack – generally we don't have artwork sized 6+
+            # width_longggggg:
+            #     filter: |
+            #         function() {
+            #             if( feature.shield_text ) {
+            #                 return (feature.shield_text.length > 5)
+            #             } else {
+            #                 return (feature.ref.length > 5)
+            #             }
+            #         }
+            #     draw:
+            #         mapzen_icon_library:
+            #             visible: false
 
             #
             # Now for the good stuff
@@ -2489,7 +2519,7 @@ layers:
                         #texture: mapzen_icon_library_shields_usa
                         # you need to match any custom shield to the vector tile `network` values
                         sprite: function() { return (feature.network + '-' + feature.shield_text.length + 'char'); }
-                        sprite_default: function() { return ('generic_shield-' + feature.shield_text.length + 'char'); }
+                        sprite_default: function() { return ('gs-' + feature.shield_text.length); }
 
                 # US Interstate roads
                 US-I:
@@ -3169,12 +3199,11 @@ layers:
                         size: 10px
                         stroke: { color: global.text_stroke_address, width: 4 }
         entrance-labels:
+            visible: global.text_visible_address
             filter:
-                $zoom: { min: 20 }
-                any:
-                    - kind: entrance
                 all:
-                    - function() { return global.text_visible_address; }
+                - $zoom: { min: 20 }
+                - kind: entrance
             draw:
                 mapzen_icon_library:
                     size: [[13, 95%], [16, 100%], [18, 105%]]
@@ -4738,11 +4767,11 @@ layers:
                 order: global.feature_order
 
         landuse-labels:
+            enabled: global.text_visible_landuse_generic
             filter:
                 all:
                     - label_placement: true
                     - name: true
-                    - function() { return global.text_visible_landuse_generic; }
             draw:
                 text-blend-order:
                     text_source: global.ux_language_text_source
@@ -4797,8 +4826,7 @@ layers:
                     order: 33
         national_forest_level_6:
             filter:
-                all:
-                    - kind: forest
+                kind: forest
                 any:
                     - protect_class: ['6']
                     - operator: ['United States Forest Service']
@@ -4983,7 +5011,8 @@ layers:
                     color: global.grey8
                     visible: global.grey8_v
         man-made:
-            filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline,quay,wharf,shipyard,container_terminal,ferry_terminal,port_terminal] }
+            filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline,
+                             quay,wharf,shipyard,container_terminal,ferry_terminal,port_terminal] }
             draw:
                 dots:
                     color: [0.690,0.690,0.690]
@@ -5402,12 +5431,11 @@ layers:
                     lines:
                         order: 504
         labels-transit-lines:
+            enabled: global.sdk_transit_overlay
             filter:
                 all:
-                    - function() { return global.sdk_transit_overlay; }
-                    - all:
-                        - $zoom: { min: 13 }
-                        - ref: true
+                    - $zoom: { min: 13 }
+                    - ref: true
             draw:
                 mapzen_icon_library:
                     priority: 20
@@ -5486,9 +5514,10 @@ layers:
                         visible: false
 
         z19-show-long-route-name:
+                enabled: global.sdk_transit_overlay
                 filter:
                     all:
-                        - function() { return global.sdk_transit_overlay; }
+                        - function() { return ; }
                         - $zoom: { min: 19 }
                 draw:
                     text:
