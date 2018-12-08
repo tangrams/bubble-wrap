@@ -2371,6 +2371,22 @@ layers:
                         mapzen_icon_library:
                             visible: false
 
+            width_4-5char:
+                filter:
+                    all:
+                        - not:
+                            kind: [minor_road]
+                            network: ['US:I','US:US','US:US:Business','US:US:Truck','US:US:Alternate'] # propably all US:* - bug below?
+                        - |
+                            function() {
+                              var text = feature.shield_text;
+                              var length = text ? text.length : feature.ref.replace(" ", "").length;
+                              return length === 4 || length === 5;
+                            }
+                draw:
+                    mapzen_icon_library:
+                        # this is sensitive to values > 56
+                        priority: 56
             #
             # Now for the good stuff
             #
@@ -2402,6 +2418,7 @@ layers:
                         network: 'US:I'
                     draw:
                         mapzen_icon_library:
+                            priority: 46
                             sprite: |
                                 function() {
                                   switch (feature.shield_text.length) {
@@ -2412,7 +2429,6 @@ layers:
                                     case 5: return 'US:I-5char';
                                   }
                                 }
-                            priority: 46
                 US-I-Business:
                     filter:
                         network: 'US:I:Business'
