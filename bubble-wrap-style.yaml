@@ -2265,8 +2265,8 @@ layers:
                     #       }
                     #       return ['generic_shield-', feature.ref.length, 'char'].join('');
                     #     }
-                    # sprite_default: generic_shield_5char
                     ## [].join('') is good - Better build no new strings at all:
+                    sprite_default: ~ # remove 'generic' default to make discard label-by-sprite function work
                     sprite: |
                         function() {
                           var text = feature.shield_text;
