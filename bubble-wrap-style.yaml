@@ -4431,7 +4431,7 @@ layers:
             filter: { kind: gate, $zoom: { min: 20 } }
             draw:
                 mapzen_icon_library:
-                    visible: yes
+                    visible: true
 
         tree:
             filter: { kind: tree, $zoom: { min: 18 } }
