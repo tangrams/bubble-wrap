@@ -2238,7 +2238,6 @@ layers:
                         - [12, 1]
                         - [13, 1.50]
                         - [14, 2.0]
-                    cull_from_tile: true
                     visible: false
                     text:
                         offset: [0px, -0.5px]
@@ -2470,7 +2469,6 @@ layers:
                     draw:
                         mapzen_icon_library:
                             priority: 47
-                            cull_from_tile: true
                             # always show (or not show), irrespective of zoom
                             visible: global.sdk_road_shields
                             text:
@@ -3077,7 +3075,6 @@ layers:
             draw:
                 text-blend-order:
                     text_source: global.ux_language_text_source
-                    move_into_tile: true
                     priority: 70
                     order: 7
                     font:
@@ -4707,7 +4704,6 @@ layers:
                 text-blend-order:
                     text_source: global.ux_language_text_source
                     interactive: global.sdk_interactive
-                    move_into_tile: true
                     priority: 100
                     font:
                         fill: '#666'
@@ -5387,7 +5383,6 @@ layers:
                         - [12, 1]
                         - [13, 1.50]
                         - [14, 2.0]
-                    cull_from_tile: true
 #                    visible: false
                     text:
                         offset: [0px, -0.5px]
@@ -5491,7 +5486,6 @@ layers:
                 priority: 15
                 text:
                     buffer: 4px
-                    move_into_tile: false # preserves text alignment w/icons in JS
                     #anchor: bottom
                     #offset: [[13, [0, 6px]], [16, [0, 8px]], [19, [0, 10px]]] # offset tracks alongside icon size (half icon height)
                     interactive: global.sdk_interactive
