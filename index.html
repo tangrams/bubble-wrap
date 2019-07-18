@@ -22,10 +22,11 @@
 
         <!-- Main tangram library -->
         <!-- production -->
-        <script src="https://www.nextzen.org/tangram/0.16/tangram.min.js"></script>
+        <script src="https://www.nextzen.org/tangram/0.19/tangram.min.js"></script>
         <!-- production debug -->
-        <!-- <script src="https://mapzen.com/tangram/0.16/tangram.debug.js"></script> -->
+        <!-- <script src="https://mapzen.com/tangram/0.19/tangram.debug.js"></script> -->
         <!-- dev -->
+        <!-- <script src="https://line-label-repeats--tangram.netlify.com/dist/tangram.debug.js"></script> -->
         <!-- <script src="https://precog.mapzen.com/tangrams/tangram/master/dist/tangram.debug.js"></script> -->
         <!-- dev branch -->
         <!-- <script src="https://precog.mapzen.com/tangrams/tangram/oriented-lines-rebase/dist/tangram.min.js"></script> -->
@@ -223,7 +224,7 @@
 
         var tg_baseScene = 'bubble-wrap-style.yaml';
 
-        var dev_or_prod = 'prod';
+        var dev_or_prod = 'dev';
         // prod
         var sdk_api_key = '-ZTNBBKCS5WZa62pfZyUkA';
 
@@ -391,6 +392,55 @@
             });
             gui.fallback_button.name('lang fallback');
 
+            // POV (point of view) selector
+            var pov = {
+                '(default)': false,
+                'ISO': 'iso',
+                'Argentina': 'ar',
+                'Bangladesh': 'bd',
+                'Brazil': 'br',
+                'China': 'cn',
+                'Egypt': 'eg',
+                'France': 'fr',
+                'Germany': 'de',
+                'Greece': 'gr',
+                'India': 'in',
+                'Indonesia': 'id',
+                'Israel': 'il',
+                'Italy': 'it',
+                'Japan': 'jp',
+                'Morocco': 'ma',
+                'Nepal': 'np',
+                'Netherlands': 'nl',
+                'Pakistan': 'pk',
+                'Palestine': 'ps',
+                'Poland': 'pl',
+                'Portugal': 'pt',
+                'Russia': 'ru',
+                'Saudi Arabia': 'sa',
+                'South Korea': 'ko',
+                'South Africa': 'za',   // this isn't supported
+                'Spain': 'es',
+                'Sweden': 'se',
+                'Taiwan': 'tw',
+                'Turkey': 'tr',
+                'Ukraine': 'ua',
+                'United Kingdom': 'gb',
+                'United States': 'us',
+                'Vietnam': 'vn'
+            };
+            // use query language, else default to English
+            gui.pov = query.pov || false;
+            gui.add(gui, 'pov', pov).onChange(function(value) {
+                scene.config.global.ux_point_of_view = value;
+                scene.updateConfig();
+            });
+            gui.fallback_pov = query.pov || false;
+            gui.pov_fallback_button = gui.add(gui, 'fallback_pov', pov).onChange(function(value) {
+                scene.config.global.ux_point_of_view_fallback = value;
+                scene.updateConfig();
+            });
+            gui.pov_fallback_button.name('pov fallback');
 
             // So many themes
             var all_theme_imports = { color: null,
@@ -628,7 +678,9 @@
                                 var layers = selection.feature.layers;
                                 label += "<span class='labelLine'>Layers:</span><br>"
                                 layers.forEach(function(val) {
-                                    label += "<span class='labelLine' value="+val+"'>&nbsp;"+val+"</span><br>"
+                                    if( !val.includes("name:") ) {
+                                        label += "<span class='labelLine' value="+val+"'>&nbsp;"+val+"</span><br>"
+                                    }
                                 });
 
                                 if (label != '') {
