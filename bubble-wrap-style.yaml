@@ -3052,43 +3052,38 @@ layers:
         # set default footprint and extrusion draw properties, but don't draw by default (rules below will turn visibility on)
         draw:
             polygons:
-                order: 329
                 visible: false
+                order: 329
                 color: global.building2
-                visible: true
-#                color: |
-#                  function() {
-#                      //if( feature.scale_rank == 6 ) {
-#                      //    return [1.,0.,0.,1];
-#                      //} else if( feature.scale_rank == 5 ) {
-#                      //    return [0.,1.,0.,1];
-#                      //} else if( feature.scale_rank == 4 ) {
-#                      //    return [0.,0.,1.,1];
-#                      //} else if( feature.scale_rank == 3 ) {
-#                      //    return [0.,0.,0.5,1];
-#                      //} else if( feature.scale_rank == 2 ) {
-#                      //    return [0.,0.5,0.,1];
-#                      //} else if( feature.scale_rank == 1 ) {
-#                      //    return [0.,0.5,0.,1];
-#                      //} else if( feature.scale_rank == 0 ) {
-#                      //    return [0.5,0.,0.,1];
-#                      //} else {
-#                      //    return 'red';
-#                      //}
-#                      if( feature.min_zoom == 13 ) {
-#                          return 'yellow';
-#                      } else if( feature.min_zoom == 14 ) {
-#                          return 'orange';
-#                      } else if( feature.min_zoom == 15 ) {
-#                          return 'green';
-#                      } else if( feature.min_zoom == 16 ) {
-#                          return 'pink';
-#                      } else if( feature.min_zoom == 17 ) {
-#                          return 'red';
-#                      } else {
-#                          return 'black';
-#                      }
-#                    }
+                #color: |
+#                   function() {
+#                       if( feature.id ) {
+#                           return [
+#                               0.7 * (parseInt(feature.id, 16) / 100 % 1),     // jshint ignore:line
+#                               0.7 * (parseInt(feature.id, 16) / 10000 % 1),   // jshint ignore:line
+#                               0.7 * (parseInt(feature.id, 16) / 1000000 % 1), // jshint ignore:line
+#                               1
+#                           ];
+#                       } else {
+#                           if( feature.scale_rank == 6 ) {
+#                               return [1.,0.,0.,1];
+#                           } else if( feature.scale_rank == 5 ) {
+#                               return [0.,1.,0.,1];
+#                           } else if( feature.scale_rank == 4 ) {
+#                               return [0.,0.,1.,1];
+#                           } else if( feature.scale_rank == 3 ) {
+#                               return [0.,0.,0.5,1];
+#                           } else if( feature.scale_rank == 2 ) {
+#                               return [0.,0.5,0.,1];
+#                           } else if( feature.scale_rank == 1 ) {
+#                               return [0.,0.5,0.,1];
+#                           } else if( feature.scale_rank == 0 ) {
+#                               return [0.5,0.,0.,1];
+#                           } else {
+#                               return [0.5,0.5,0.5,1];
+#                           }
+#                       }
+#                   }
             lines:
                 style: lines
                 order: 330
@@ -3096,8 +3091,150 @@ layers:
                 color: [[13,[0.70,0.70,0.70]],[17,[0.65, 0.65, 0.65]]]
                 width: [[13, 0.55px], [15, 0.65px], [16,0.75px], [18, 1.25px]]
 
-        parts:
-            filter: { kind: building_part }
+        # building footprints, pre-extrusion
+        footprints:
+            filter:
+                # show footprints for buildings at least one zoom level before they will be extruded
+                - { $zoom: 13, scale_rank: [1,2] }
+                - { $zoom: 14, scale_rank: [1,2,3] }
+                - { $zoom: 15, height: { min: 100 } }
+                - { $zoom: 15, area: { min: 500 } }
+                - { $zoom: 15, volume: { min: 100000 } }
+                - { $zoom: 16, area: { min: 100 } }
+                - { $zoom: 16, volume: { min: 50000 } }
+                - { $zoom: { min: 17 }, area: true }
+            draw:
+                polygons: { visible: true }
+                lines: { visible: true }
+
+            # 3d buildings
+            extrude:
+                filter:
+                    all:
+                        - function() { return global.sdk_building_extrude; }
+                        - any:
+                            - { $zoom: 15, height: { min: 190 } }
+                            - { $zoom: 15, area: { min: 5000 } }
+                            - { $zoom: 15, volume: { min: 100000 } }
+                            - { $zoom: 16, height: { min: 100 } }
+                            - { $zoom: 16, area: { min: 3500 } }
+                            - { $zoom: 16, volume: { min: 50000 } }
+                            - { $zoom: 17, area: { min: 500 } }
+                            - { $zoom: 17, volume: { min: 15000 } }
+                            - { $zoom: { min: 18 } }
+                        - not:
+                            - layer: [-1, -2, -3, -4, -5]
+                draw:
+                    polygons:
+                        order: 438
+                        style: building-grid
+                        extrude: global.building_extrude_height
+                    lines:
+                        order: 439
+                        style: building-lines
+                        extrude: global.building_extrude_height
+                # NOTE: This is a hack to re-enable the building colors per landuse_kind
+                # Earlier versions before October 2016 didn't need this hack
+                not_landuse:
+                    filter: { not: { landuse_kind: [station, retail, aerodrome, runway, taxiway, park,forest,nature_reserve,conservation,golf_course,garden, university,school, hospital] } }
+                    draw:
+                        polygons:
+                            color: [0.892,0.880,0.878]
+
+        # landuse-specific rules
+        in_park:
+            filter:
+                landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden]
+            draw:
+                polygons:
+                    color: [0.864,0.910,0.905]
+
+            # golf_course:
+            #     filter: { landuse_kind: golf_course }
+            #     draw:
+            #         polygons:
+            #             color: global.building2
+            # nature_reserve:
+            #     filter: { landuse_kind: nature_reserve }
+            #     draw:
+            #         polygons:
+            #             color: global.building2
+            # conservation:
+            #     filter: { landuse_kind: conservation }
+            #     draw:
+            #         polygons:
+            #             color: global.building2
+            # zoo:
+            #     filter: { landuse_kind: zoo }
+            #     draw:
+            #         polygons:
+            #             color: global.building2
+        in_university:
+            filter: { landuse_kind: [university,school] }
+            draw:
+                polygons:
+                    color: [0.950,0.917,0.883]
+                lines:
+                    color: global.brown1_bo
+        in_hospital:
+            filter: { landuse_kind: hospital }
+            draw:
+                polygons:
+                    color: [0.976,0.908,0.913]
+        in_airport:
+            filter: { landuse_kind: [aerodrome, runway, taxiway] }
+            draw:
+                polygons:
+                    color: global.purple_b
+                lines:
+                    color: global.purple_bo
+                    width: [[14,0.5px],[15,0.5px],[17,0.5px],[18,0.75px],[19,0.25m]]
+        in_retail:
+           filter: { landuse_kind: retail }
+           draw:
+                polygons:
+                    color: [0.945, 0.898, 0.878]
+
+        transit-overlay-station-buildings:
+            filter:
+                all:
+                    - landuse_kind: [station]
+                    - function() { return global.sdk_transit_overlay; }
+            draw:
+                polygons:
+                    color: '#bdadbf'
+                    order: 500
+                    #extrude: function() { return feature.height || 20; }
+                outline:
+                    style: lines
+                    order: 501
+                    color: '#d534df'
+                    width: [[14,0.1px],[15,0.5px],[17,0.5px],[18,0.75px],[19,0.25m]]
+                    #extrude: function() { return feature.height || 20; }
+
+        buildings-labels:
+            filter:
+                all:
+                    - { $zoom: { min: 17 } }
+                    - $geometry: point
+                    - not: { location: underground, kind: address }
+                    - name: true
+                    - function() { return global.text_visible_building; }
+                    - landuse_kind: [university, college, school, kindergarten]
+    #                - kind: [false, building, university, college, school, kindergarten]
+                any:
+                    - { $zoom: [16], area: { min: 5000 } }
+                    - { $zoom: [16], area: { min: 5000 } }
+                    - { $zoom: [16], area: { min: 10000 }, landuse_kind: true }
+                    - { $zoom: [16], area: { min: 7000 }, kind_detail: [university, college, school, kindergarten] }
+                    - { $zoom: [16], volume: { min: 50000 }, name: true }
+                    - { $zoom: [17], area: { min: 3000 } }
+                    - { $zoom: [17], area: { min: 2000 }, kind_detail: [university, college, school, kindergarten] }
+                    - { $zoom: [18], area: { min: 1000 } }
+                    - { $zoom: [18], kind_detail: [university, college, school, kindergarten] }
+                    - { $zoom: [19], area: { min: 200 } }
+                    - { $zoom: { min: 19 }, kind_detail: [university, college, school, kindergarten] }
+                    - { $zoom: { min: 20 }, area: true }
             draw:
                 text-blend-order:
                     text_source: global.ux_language_text_source
