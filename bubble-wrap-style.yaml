@@ -79,27 +79,17 @@ global:
     ux_point_of_view_kind_filter_country_capital: |
         function() {
             // if a ux_point_of_view has been defined use that, else fallback POV, else use the feature's default country capital boolean
-            var capital_pov = (global.ux_point_of_view && feature['country_capital:'+global.ux_point_of_view]);
-            var capital_pov_falback = (global.ux_point_of_view_fallback && feature['country_capital:'+global.ux_point_of_view_fallback]);
-            var capital_default = feature.country_capital;
-            var capital = false;
-            
-            if( feature['name:en'] === 'Taipei' ) {
-                console.log( feature['name:en'] + " - " + global.ux_point_of_view + ": " + capital );
-                console.log( '\t' + global.ux_point_of_view + ": " + global.ux_point_of_view );
-                console.log( '\t' + feature['country_capital:'+global.ux_point_of_view] );
-                console.log( '\t' + feature['country_capital:'+global.ux_point_of_view_fallback] );
-                console.log( '\t' + feature['country_capital'] );
+            if (global.ux_point_of_view && feature['country_capital:'+global.ux_point_of_view] != null) {
+                return feature['country_capital:'+global.ux_point_of_view];
             }
-            switch( capital_default ) {
-                case( 'true' ): 
-                case( true ): 
-                    return true;
-                default:
-                    return false;
+            else if (global.ux_point_of_view_fallback && feature['country_capital:'+global.ux_point_of_view_fallback] != null) {
+                return feature['country_capital:'+global.ux_point_of_view_fallback];
+            }
+            else {
+                return feature.country_capital;
             }
         }
-    
+
     ux_language: false             # 2-char l10n language code (generally)
     ux_language_fallback: false    # 2-char l10n language code (generally)
     ux_language_text_source: |
