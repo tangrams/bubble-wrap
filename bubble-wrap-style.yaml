@@ -4679,26 +4679,36 @@ layers:
                                 weight: 600
 
         highway-exit:
-            filter: { kind: motorway_junction, $zoom: { min: 14 } }
+            filter: { kind: motorway_junction }
             draw:
                 mapzen_icon_library:
                     visible: false
-                text-blend-order:
-                    visible: global.text_visible_exits
-                    text_source: ref
-#                    priority: 63
-                    font:
-                        family: Montserrat
-                        fill: global.text_fill_exits
-                        size: [[12,9px],[15,12px],[17,14px]]
-                        stroke: { color: global.text_stroke, width: [[12,2px],[14,3px],[15,3px]] }
+            z14+: 
+                filter: { $zoom: { min: 14, max: 16 } }
+                draw:
+                    text-blend-order:
+                        visible: global.text_visible_exits
+                        text_source: ref
+                        font:
+                            family: Montserrat
+                            fill: global.text_fill_exits
+                            size: [[12,9px],[15,12px],[17,14px]]
+                            stroke: { color: global.text_stroke, width: [[12,2px],[14,3px],[15,3px]] }
             later:
                 filter: { $zoom: { min: 16 } }
                 draw:
+                    text-blend-order:
+                        visible: false
                     mapzen_icon_library:
+                        visible: global.text_visible_exits
                         text:
+                            visible: global.text_visible_exits
+                            text_source: ref
                             font:
-                                weight: 600
+                                family: Montserrat
+                                fill: global.text_fill_exits
+                                size: [[12,9px],[15,12px],[17,14px]]
+                                stroke: { color: global.text_stroke, width: [[12,2px],[14,3px],[15,3px]] }
 
     earth-labels:
         data: { source: mapzen, layer: earth }
@@ -5274,15 +5284,18 @@ layers:
                     color: [0.765,0.765,0.765]
                     visible: true
 
-        all-other-landuse-late:
-            filter:
-                $zoom: { min: 13 }
-                $geometry: polygon
-                not: { kind: [fence, tree_row] }
-            draw:
-                dots:
-                    color: [0.765,0.765,0.765]
-                    visible: true
+#        # (20190729: nvk) TODO: This should only show when no other kind condition
+#        # has been met, which is not how the style is written / it's broken.
+#
+#        all-other-landuse-late:
+#            filter:
+#                $zoom: { min: 13 }
+#                $geometry: polygon
+#                not: { kind: [fence, tree_row] }
+#            draw:
+#                dots:
+#                    color: [0.765,0.765,0.765]
+#                    visible: true
 
         # GO MELLOW
         # 18/41.19776/-8.68722
