@@ -1455,7 +1455,6 @@ layers:
 #                   width: 1px
 #                   visible: true
 
-        # TODO: tunnels
         hgv-interlay:
             filter:
                 all:
@@ -1480,6 +1479,14 @@ layers:
                     lines:
                         color: purple
                         width: 2.5px
+                tunnel:
+                    filter: {is_tunnel: true, $zoom: {min: 13} }
+                    draw:
+                        lines:
+                            # color: [[16, [0.843,0.843,0.843]]]
+                            color: purple
+#                            outline:
+#                                color: [[13, [0.890,0.890,0.890]], [14, [0.870,0.870,0.870]], [16, [0.824,0.753,0.741]]]
                 z-shields:
                     filter: { hgv_restriction_shield_text: true }
                     draw:
