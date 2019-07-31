@@ -4812,12 +4812,7 @@ layers:
                         visible: true
                         # hack the order as the server isn't provided a good value
                         #order: 236
-            # hack the order as the server isn't provided a good value
-            #shipyard:
-#                filter: { kind: [shipyard,container_terminal,ferry_terminal,port_terminal] }
-#                draw:
-#                    dots:
-#                        order: 237
+
         #TIER 5
         tourism-related:
             filter:
