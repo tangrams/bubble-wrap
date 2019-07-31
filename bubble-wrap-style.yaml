@@ -4168,67 +4168,6 @@ layers:
                         visible: false
         #end different icon sprites
 
-        #most POI icons without name should be hidden, except these
-#        no-name:
-#            filter: { name: false }
-#            draw:
-#                mapzen_icon_library:
-#                    visible: false
-#            # eg park polygons in SF that have area but no name, sigh
-#            no-name-no-area:
-#                filter:
-#                    kind: true
-#                    name: false
-#                draw:
-#                    mapzen_icon_library:
-#                        visible: false
-#            sports-pitch:
-#                filter:
-#                    $zoom: { min: 17 }
-#                    kind: [grass, pitch]
-#                    kind_detail: [baseball, basketball, football, hockey, soccer, tennis]
-#                draw:
-#                    mapzen_icon_library:
-#                        visible: global.icon_visible_poi_landuse_e
-#            z17:
-#                filter:
-#                    kind: [parking]
-#                draw: { mapzen_icon_library: { visible: global.icon_visible_poi_landuse_e } }
-#            z18:
-#                # for different styles, different sets
-#                # since [picnic_site] doesn't have bubble-wrap icon, it's omitted here
-#                filter:
-#                    $zoom: { min: 18 }
-#                    kind: [drinking_water, information, playground, toilets, traffic_signals]
-#                draw: { mapzen_icon_library: { visible: global.icon_visible_poi_landuse_e } }
-#            z19:
-#                filter:
-#                    $zoom: { min: 19 }
-#                    kind: [bicycle_parking]
-#                draw: { mapzen_icon_library: { visible: global.icon_visible_poi_landuse_e } }
-#
-#        # NOTE: all natural_* should only be in landuse layer
-#        suppress-icon-always:
-#            filter:
-#                kind: [natural_forest, natural_park, natural_wood]
-#            draw:
-#                mapzen_icon_library:
-#                    visible: false
-#                    text:
-#                        font:
-#                            fill: '#666'
-#                            family: global.text_font_family
-#                            style: italic
-#                            size: 11px
-#        suppress-icon-z17:
-#            filter:
-#                $zoom: { min: 17 }
-#                kind: [common, grass, houseboat, pedestrian, railway, ship, wetland]
-#            draw:
-#                mapzen_icon_library:
-#                    visible: false
-#                    text: { font: { style: italic } }
-
         national-park-protected-areas:
             filter:
                 kind: [national_park, battlefield]
