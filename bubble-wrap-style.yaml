@@ -4021,19 +4021,6 @@ layers:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-s
 
-#            z_country_capital_pov:
-#                filter: 
-#                draw:
-#                    mapzen_icon_library:
-#                        text:
-#                            font:
-#                                weight: 900
-#                                color: red
-#                    text-blend-order:
-#                        font:
-#                            weight: 900
-#                            color: red
-
         #
         #neighborhoods (excluding microhoods, eg the Tendernob)
         #
