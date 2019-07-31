@@ -1191,11 +1191,11 @@ layers:
                     lines:
                         color: [[8,[0.667,0.792,0.824]],[11,[0.698,0.808,0.835]],[13,[0.710,0.796,0.824]],[14,[0.522,0.792,0.855]]]
                         width: [[9,0.5px],[10,0.75px],[11,0.75px],[12,0.8px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1.5px]]
-#            intermittent: 
-#                filter: { intermittent: true }
-#                draw: 
-#                    lines:
-#                        color: water1_o
+            intermittent: 
+                filter: { intermittent: true }
+                draw: 
+                    lines:
+                        color: water1_o
         river:
             #river center lines, not boundaries for polygons
             filter: { kind: [river,canal,stream,dam,ditch,drain], $zoom: { min: 12 }, not: { is_tunnel: true } }
