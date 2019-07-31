@@ -3261,8 +3261,6 @@ layers:
         country:
             filter:
                 any:
-                    #- kind: [country, indefinite, indeterminate]
-                    #- admin_level: 2
                     - global.ux_point_of_view_kind_filter_country
             draw:
                 lines:
@@ -3302,14 +3300,7 @@ layers:
         other_country_boundary_disputed_etc:
             filter: 
                 global.ux_point_of_view_kind_filter_disputed_etc
-                #- kind: [disputed, lease_limit, line_of_control, overlay_limit]
-                #- kind: [disputed_breakaway, disputed_claim, disputed_elusive, disputed_reference_line]
             draw:
-                #lines: 
-#                    order: global.feature_order
-#                    visible: true
-#                    color: blue
-#                    width: 2px
                 dashed:
                     visible: true
                     order: global.feature_order
@@ -3317,34 +3308,15 @@ layers:
                     width: [[1, 0.2px], [2, 0.5px], [5, 1.5px], [6, 2.0px], [8, 2.5px], [16, 3.5px], [17, 10m]]
             disputed:
                 filter: 
-                    #- kind: [disputed, line_of_control]
-                    #- kind: [disputed_breakaway, disputed_claim, disputed_elusive, disputed_reference_line]
                     global.ux_point_of_view_kind_filter_disputed_star
                 draw:
-                    #lines: 
-#                        order: global.feature_order
-#                        visible: true
-#                        color: red
-#                        width: 2px
                     dashed:
                         visible: false
                     dashed_big:
                         visible: true
                         order: global.feature_order
                         color: global.country_boundary
-                        #width: [[1, 0.2px], [2, 0.5px], [4, 1.0px], [9, 1.5px], [14, 2.5px], [16, 3.5px], [17, 10m]]
                         width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [9, 2.5px], [14, 3.5px], [16, 4.5px], [17, 14m]]
-                        #width: 20px
-#            disputed_star_early:
-#                filter: 
-#                    #kind: [disputed_breakaway, disputed_claim, disputed_elusive, disputed_reference_line]
-#                    global.ux_point_of_view_kind_filter_disputed_star
-#                    $zoom: [5,6]
-#                draw:
-#                    dashed:
-#                        width: [[4, 0px], [5, 1.0px], [8, 2.5px], [16, 3.5px], [17, 10m]]
-#                    dashed_big:
-#                        width: [[5, 0px], [5, 1.0px], [9, 2.5px], [14, 3.5px], [16, 4.5px], [17, 14m]]
 
         unrecognized:
             filter: 
