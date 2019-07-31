@@ -744,16 +744,6 @@ styles:
                     color.rgb = mix(color.rgb, vec3(0.850), TileDots(45., 0.1));
                     // size was set to 35 previously, now 45
 
-    dots_transparent:
-        base: polygons
-        mix: pattern-dots
-        blend: overlay
-        shaders:
-            blocks:
-                color: |
-                    color.rgb = mix(color.rgb, vec3(0.850), TileDots(45., 0.1));
-                    // size was set to 35 previously, now 45
-
     dots-rev:
         base: polygons
         mix: pattern-dots
