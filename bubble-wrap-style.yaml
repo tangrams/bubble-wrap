@@ -1415,7 +1415,6 @@ layers:
 
     roads:
         data: { source: mapzen, layer: roads }
-        #enabled: false
         draw:
             lines:
                 # let roads sort themselves past zoom 14 (using server value)
@@ -1622,19 +1621,15 @@ layers:
                     $zoom: [13,14]
                 draw:
                     text-blend-order:
-#                        priority: 50
                         visible: global.text_visible_highway
-                        #text_source: ref
                         font:
                             fill: [0.0,0.0,0.0]
                             weight: 600
                             size: 12px
-                            # stroke: { color: [0.976,0.541,0.490], width: 4px }
             labels-highway-z15:
                 filter: { $zoom: { min: 15 } }
                 draw:
                     text-blend-order:
-#                        priority: 50
                         visible: global.text_visible_highway
                         font:
                             fill: [0.0,0.0,0.0]
@@ -1713,8 +1708,6 @@ layers:
                         filter: { $zoom: [14, 15] }
                         draw:
                             text-blend-order:
-#                                priority: 51
-                                #text_source: ref
                                 font:
                                     fill: [0.0,0.0,0.0]
                                     weight: 600
@@ -1724,8 +1717,6 @@ layers:
                         filter: { $zoom: { min: 16 } }
                         draw:
                             text-blend-order:
-#                                priority: 51
-                                #text_source: global.ux_language_text_source_road_ref_and_name
                                 font:
                                     fill: [0.0,0.0,0.0]
                                     weight: 600
@@ -1734,7 +1725,6 @@ layers:
                 labels-trunk_primary-default:
                     draw:
                         text-blend-order:
-                            priority: 51
                             text_source: global.ux_language_text_source_road_ref_and_name_short
                             visible: global.text_visible_trunk_primary
                 labels-trunk_primary-z11-z12:
@@ -1833,7 +1823,6 @@ layers:
                         draw:
                             text-blend-order:
                                 text_source: global.ux_language_text_source_road_ref_and_name_short
-                                priority: 56
                                 visible: global.text_visible_secondary_e
                     labels-secondary-routes:
                         filter: { $zoom: [13, 14] }
@@ -1894,7 +1883,6 @@ layers:
                         $zoom: [13]
                     draw:
                         text-blend-order:
-                            priority: 56
                             visible: global.text_visible_secondary_e
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -1905,7 +1893,6 @@ layers:
                     filter: { $zoom: { min: 14, max: 18 } }
                     draw:
                         text-blend-order:
-                            priority: 56
                             visible: global.text_visible_secondary
                             #text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
@@ -1916,7 +1903,6 @@ layers:
                     filter: { $zoom: { min: 18 } }
                     draw:
                         text-blend-order:
-                            priority: 56
                             visible: global.text_visible_secondary
                             text_source: global.ux_language_text_source_road_ref_and_name
                             font:
@@ -2016,7 +2002,6 @@ layers:
                     filter: { $zoom: [13] }
                     draw:
                         text-blend-order:
-                            priority: 57
                             visible: global.text_visible_tertiary_e
                             font:
                                 fill: [0.5,0.5,0.5]
@@ -2026,7 +2011,6 @@ layers:
                     filter: { $zoom: [14] }
                     draw:
                         text-blend-order:
-                            priority: 57
                             visible: global.text_visible_tertiary_e
                             font:
                                 fill: [0.5,0.5,0.5]
@@ -2036,7 +2020,6 @@ layers:
                     filter: { $zoom: [15] }
                     draw:
                         text-blend-order:
-                            priority: 57
                             visible: global.text_visible_tertiary
                             font:
                                 fill: [0.3,0.3,0.3]
@@ -2046,7 +2029,6 @@ layers:
                     filter: { $zoom: [16] }
                     draw:
                         text-blend-order:
-                            priority: 57
                             visible: global.text_visible_tertiary
                             font:
                                 fill: [0.3,0.3,0.3]
@@ -2056,7 +2038,6 @@ layers:
                     filter: { $zoom: { min: 17, max: 18 } }
                     draw:
                         text-blend-order:
-                            priority: 57
                             visible: global.text_visible_tertiary
                             font:
                                 fill: [0.15,0.15,0.15]
@@ -2066,7 +2047,6 @@ layers:
                     filter: { $zoom: { min: 18 } }
                     draw:
                         text-blend-order:
-                            priority: 57
                             visible: global.text_visible_tertiary
                             font:
                                 fill: [0.15,0.15,0.15]
@@ -2175,7 +2155,6 @@ layers:
                 filter: { $zoom: 15 }
                 draw:
                     text-blend-order:
-                        priority: 59
                         visible: global.text_visible_minor_road_e
                         text_source: global.ux_language_text_source
                         font:
@@ -2186,7 +2165,6 @@ layers:
                 filter: { $zoom: 16 }
                 draw:
                     text-blend-order:
-                        priority: 59
                         visible: global.text_visible_minor_road
                         text_source: global.ux_language_text_source
                         font:
@@ -2197,7 +2175,6 @@ layers:
                 filter: { $zoom: { min: 17, max: 18 } }
                 draw:
                     text-blend-order:
-                        priority: 59
                         visible: global.text_visible_minor_road
                         text_source: global.ux_language_text_source
                         font:
@@ -2208,7 +2185,6 @@ layers:
                 filter: { $zoom: { min: 18 } }
                 draw:
                     text-blend-order:
-                        priority: 59
                         visible: global.text_visible_minor_road
                         text_source: global.ux_language_text_source
                         font:
@@ -2298,7 +2274,6 @@ layers:
                 filter: { $zoom: 17 }
                 draw:
                     text-blend-order:
-                        priority: 60
                         visible: global.text_visible_service_road
                         text_source: global.ux_language_text_source
                         font:
@@ -2310,7 +2285,6 @@ layers:
                 filter: { $zoom: { min: 18 } }
                 draw:
                     text-blend-order:
-                        priority: 60
                         visible: global.text_visible_service_road
                         text_source: global.ux_language_text_source
                         font:
@@ -2354,7 +2328,8 @@ layers:
                         }
                     sprite_default: generic_shield_5char
                     size: [[7,[75%,75%]],[12,[100%,100%]],[15,[110%,110%]]]
-                    priority: 58
+                    priority: |
+                        function() { return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || 58; }
                     # Size is specified below, and limited to 5 char in another filter
                     repeat_group: shields
                     repeat_distance: [[8,90px],[10,40px],[13,30px]]
@@ -2394,7 +2369,6 @@ layers:
                         - kind_detail: motorway
                 draw:
                     mapzen_icon_library:
-                        priority: 47
                         #color: yellow
                         visible: global.sdk_road_shields
                 early:
@@ -2410,7 +2384,6 @@ layers:
                         - kind_detail: trunk
                 draw:
                     mapzen_icon_library:
-                        priority: 48
                         #color: red
                         visible: global.sdk_road_shields
                 early:
@@ -2426,7 +2399,6 @@ layers:
                         - kind_detail: primary
                 draw:
                     mapzen_icon_library:
-                        priority: 49
                         #color: aqua
                         visible: global.sdk_road_shields
                 early:
@@ -2442,8 +2414,6 @@ layers:
                         - kind_detail: secondary
                 draw:
                     mapzen_icon_library:
-                        priority: 53
-                        #color: blue
                         visible: global.sdk_road_shields
                 early:
                     filter:
@@ -2458,8 +2428,6 @@ layers:
                         - kind_detail: tertiary
                 draw:
                     mapzen_icon_library:
-                        priority: 55
-                        #color: green
                         visible: global.sdk_road_shields
                 early:
                     filter:
@@ -2472,7 +2440,6 @@ layers:
                     - kind: minor_road
                 draw:
                     mapzen_icon_library:
-                        priority: 56
                         visible: global.sdk_road_shields
                 early:
                     filter:
@@ -2518,9 +2485,8 @@ layers:
                         }
                     }
                 draw:
-                    mapzen_icon_library:
+                    mapzen_icon_library: {}
                         # this is sensitive to values > 56
-                        priority: 56
                 early:
                    filter: { $zoom: { max: 12 } }
                    draw:
@@ -2536,9 +2502,8 @@ layers:
                         }
                     }
                 draw:
-                    mapzen_icon_library:
+                    mapzen_icon_library: {}
                         # this is sensitive to values > 56
-                        priority: 56
                 early:
                    filter: { $zoom: { max: 13 } }
                    draw:
@@ -2586,7 +2551,6 @@ layers:
                         shield_text: true
                     draw:
                         mapzen_icon_library:
-                            priority: 46
                             # always show (or not show), irrespective of zoom
                             visible: global.sdk_road_shields
                 # US Federal Routes
@@ -2597,7 +2561,6 @@ layers:
                         $zoom: { min: 7 }
                     draw:
                         mapzen_icon_library:
-                            priority: 47
                             # always show (or not show), irrespective of zoom
                             visible: global.sdk_road_shields
                             text:
@@ -2719,7 +2682,6 @@ layers:
                 filter: { $zoom: { min: 17 } }
                 draw:
                     text-blend-order:
-                        priority: 61
                         visible: global.text_visible_path
                         text_source: global.ux_language_text_source
                         font:
@@ -2816,7 +2778,6 @@ layers:
                 filter: { $zoom: { min: 17 } }
                 draw:
                     text-blend-order:
-                        priority: 62
                         visible: global.text_visible_steps
                         text_source: global.ux_language_text_source
                         font:
@@ -2833,7 +2794,6 @@ layers:
                     color: '#909090'
                     width: [[13,0px],[14,0.5px],[15, 1px], [16, 1.5px], [18, 3m]]
                 text-blend-order:
-                    priority: 60
                     visible: global.text_visible_piste
                     font:
                         fill: global.text_fill_piste
@@ -2962,7 +2922,6 @@ layers:
                 filter: { $zoom: { min: 14 } }
                 draw:
                     text-blend-order:
-                        priority: 63
                         visible: global.text_visible_aerialway
                         text_source: global.ux_language_text_source
                         font:
@@ -3218,7 +3177,6 @@ layers:
             draw:
                 text-blend-order:
                     text_source: global.ux_language_text_source
-                    priority: 70
                     order: 7
                     font:
                         fill: '#666'
@@ -3280,7 +3238,6 @@ layers:
                     size: [[13, 95%], [16, 100%], [18, 105%]]
                     sprite: generic # TODO: add custom entrance/edit icons
                     interactive: global.sdk_interactive
-                    priority: 65
                     repeat_group: abc
                     buffer: 3px
                     text:
@@ -3322,7 +3279,6 @@ layers:
                 filter: { name: true, $zoom: { min: 8 } }
                 draw:
                     text-blend-order:
-#                        priority: 2
                         priority: |
                             function() { return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || 65; }
                         visible: global.text_visible_admin
@@ -3444,7 +3400,6 @@ layers:
                 filter: { name: true, $zoom: { min: 8 } }
                 draw:
                     text-blend-order:
-#                        priority: 3
                         priority: |
                             function() { return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || 65; }
                         visible: global.text_visible_admin
@@ -3518,7 +3473,6 @@ layers:
                 $zoom: { min: 2, max: 9 }
             draw:
                 text-blend-order:
-#                    priority: 3
                     visible: global.text_visible_admin
                     font:
                         fill: [[2,[0.357,0.243,0.184]],[6,[0.604,0.437,0.427]]]
@@ -3528,7 +3482,6 @@ layers:
                     $zoom: [2,3]
                 draw:
                     text-blend-order:
-#                        priority: 10
                         buffer: 10px
                         font:
                             size: 10px
@@ -3552,7 +3505,6 @@ layers:
                 draw:
                     text-blend-order:
                         buffer: 10px
-#                        priority: 8
                         font:
                             size: 11px
                 early-ones-z4:
@@ -3566,7 +3518,6 @@ layers:
                     $zoom: [5]
                 draw:
                     text-blend-order:
-#                        priority: 8
                         font:
                             size: 13px
                 early-ones-z5:
@@ -3582,7 +3533,6 @@ layers:
                     $zoom: [6]
                 draw:
                     text-blend-order:
-#                        priority: 8
                         font:
                             size: 16px
                 small-ones-z6:
@@ -3613,7 +3563,6 @@ layers:
                         - population: { max: 5000000 }
                     draw:
                         text-blend-order:
-#                            priority: 30
                             font:
                                 size: 12px
 
@@ -3623,7 +3572,6 @@ layers:
                 $zoom: { min: 4, max: 9 }
             draw:
                 text-blend-order:
-#                    priority: 14
                     visible: false
                     text_source: global.ux_language_text_source_short
                     font:
@@ -3706,7 +3654,6 @@ layers:
                     size: [[10,4px],[11,0px]]
                     sprite: townspot-xs-rev
                     buffer: 8px
-#                    priority: 30
                     # debug testing
                     #collide: false
                     text:
@@ -3751,22 +3698,16 @@ layers:
                 draw:
                     mapzen_icon_library:
                         buffer: 25px
-                        #color: red
-                        #visible: false
             z9-10k-below:
                 filter: { $zoom: [8,9], population: { max: 10000 } }
                 draw:
                     mapzen_icon_library:
                         buffer: 18px
-                        #color: blue
-                        #visible: false
             z9-no-population:
                 filter: { $zoom: [8,9], population: false }
                 draw:
                     mapzen_icon_library:
                         buffer: 10px
-                        #color: yellow
-                        #visible: false
 
             sorry-denver:
                 filter:
@@ -3811,12 +3752,10 @@ layers:
                     mapzen_icon_library:
                         size: [[4,5px],[8,6px],[9,0px]]
                         sprite: townspot-m-rev
-#                        priority: 6
                         text:
                             font:
                                 size: [[2,11px],[6,15px],[8,16px],[10,18px],[12,18px],[13,0px]]
                     text-blend-order:
-#                        priority: 6
                         font:
                             size: [[2,11px],[6,15px],[8,16px],[10,18px],[12,18px],[13,0px]]
                 capital:
@@ -3829,9 +3768,6 @@ layers:
                         mapzen_icon_library:
                             size: [[10,8px],[11,0px]]
                             sprite: capital-l
-#                            priority: 5
-#                        text-blend-order:
-#                            priority: 5
             population-5m-10m:
                 filter:
                     population: { min: 5000000, max: 10000000 }
@@ -3839,12 +3775,10 @@ layers:
                     mapzen_icon_library:
                         size: [[4,5px],[8,6px],[9,0px]]
                         sprite: townspot-m-rev
-#                        priority: 7
                         text:
                             font:
                                 size: [[4,10px],[6,13px],[8,16px],[10,18px],[12,18px],[13,0px]]
                     text-blend-order:
-#                        priority: 7
                         font:
                             size: [[4,10px],[6,13px],[8,16px],[10,18px],[12,18px],[13,0px]]
                 capital:
@@ -3857,9 +3791,6 @@ layers:
                         mapzen_icon_library:
                             size: [[10,8px],[11,0px]]
                             sprite: capital-l
-#                            priority: 6
-#                        text-blend-order:
-#                            priority: 6
             population-1m-5m:
                 filter:
                     population: { min: 1000000, max: 5000000 }
@@ -3867,12 +3798,10 @@ layers:
                     mapzen_icon_library:
                         size: [[4,5px],[8,6px],[9,0px]]
                         sprite: townspot-m-rev
-#                        priority: 9
                         text:
                             font:
                                 size: [[4,10px],[6,13px],[8,16px],[10,18px],[12,18px],[13,0px]]
                     text-blend-order:
-#                        priority: 9
                         font:
                             size: [[4,10px],[6,13px],[8,16px],[10,18px],[12,18px],[13,0px]]
                 capital:
@@ -3885,9 +3814,6 @@ layers:
                         mapzen_icon_library:
                             size: [[10,8px],[11,0px]]
                             sprite: capital-l
-#                            priority: 8
-#                        text-blend-order:
-#                            priority: 8
             population-500k-1m:
                 filter:
                     population: { min: 500000, max: 1000000 }
@@ -3895,12 +3821,10 @@ layers:
                     mapzen_icon_library:
                         size: [[8,6px],[9,0px]]
                         sprite: townspot-m-rev
-#                        priority: 11
                         text:
                             font:
                                 size: [[5,10px],[8,14px],[10,14px],[12,16px],[13,0px]]
                     text-blend-order:
-#                        priority: 11
                         font:
                             size: [[5,10px],[8,14px],[10,14px],[12,16px],[13,0px]]
                 capital:
@@ -3912,9 +3836,6 @@ layers:
                         mapzen_icon_library:
                             size: [[10,6px],[11,0px]]
                             sprite: capital-m
-#                            priority: 10
-#                        text-blend-order:
-#                            priority: 10
             population-200k-500k:
                 filter:
                     population: { min: 200000, max: 500000 }
@@ -3922,12 +3843,10 @@ layers:
                     mapzen_icon_library:
                         size: [[8,6px],[9,6px],[10,6px],[11,0px]]
                         sprite: townspot-m-rev
-#                        priority: 13
                         text:
                             font:
                                 size: [[6,10px],[8,12px],[10,14px],[12,16px],[13,0px]]
                     text-blend-order:
-#                        priority: 13
                         font:
                             size: [[6,10px],[8,12px],[10,14px],[12,16px],[13,0px]]
                 capital:
@@ -3939,9 +3858,6 @@ layers:
                         mapzen_icon_library:
                             size: [[10,6px],[11,0px]]
                             sprite: capital-m
-#                            priority: 12
-#                        text-blend-order:
-#                            priority: 12
             population-100k-200k:
                 filter:
                     population: { min: 100000, max: 200000 }
@@ -3949,12 +3865,10 @@ layers:
                     mapzen_icon_library:
                         size: [[8,6px],[9,6px],[10,6px],[11,0px]]
                         sprite: townspot-m-rev
-#                        priority: 15
                         text:
                             font:
                                 size: [[6,10px],[8,12px],[10,12px],[12,14px],[14,14px],[15,0px]]
                     text-blend-order:
-#                        priority: 15
                         font:
                             size: [[6,10px],[8,12px],[10,12px],[12,14px],[14,14px],[15,0px]]
                 capital:
@@ -3966,9 +3880,6 @@ layers:
                         mapzen_icon_library:
                             size: [[10,6px],[11,0px]]
                             sprite: capital-m
-#                            priority: 14
-#                        text-blend-order:
-#                            priority: 14
             population-50k-100k:
                 filter:
                     population: { min: 50000, max: 100000 }
@@ -3976,13 +3887,11 @@ layers:
                     mapzen_icon_library:
                         size: [[8,5px],[9,5px],[10,6px],[11,0px]]
                         sprite: townspot-s-rev
-#                        priority: 17
                         text:
                             font:
                                 fill: [0.30,0.30,0.30]
                                 size: [[6,10px],[8,11px],[10,12px],[12,14px],[14,14px],[15,0px]]
                     text-blend-order:
-#                        priority: 17
                         font:
                             fill: [0.30,0.30,0.30]
                             size: [[6,10px],[8,11px],[10,12px],[12,14px],[14,14px],[15,0px]]
@@ -3995,9 +3904,6 @@ layers:
                         mapzen_icon_library:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-m
-#                            priority: 16
-#                        text-blend-order:
-#                            priority: 16
             population-20k-50k:
                 filter:
                     population: { min: 20000, max: 50000 }
@@ -4005,13 +3911,11 @@ layers:
                     mapzen_icon_library:
                         size: [[8,5px],[9,5px],[10,5px],[11,0px]]
                         sprite: townspot-s-rev
-#                        priority: 19
                         text:
                             font:
                                 fill: [0.30,0.30,0.30]
                                 size: [[9,11px],[12,12px],[14,12px],[15,0px]]
                     text-blend-order:
-#                        priority: 19
                         font:
                             fill: [0.30,0.30,0.30]
                             size: [[9,11px],[12,12px],[14,12px],[15,0px]]
@@ -4024,9 +3928,6 @@ layers:
                         mapzen_icon_library:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-s
-#                            priority: 18
-#                        text-blend-order:
-#                            priority: 18
             population-10k-20k:
                 filter:
                     population: { min: 10000, max: 20000 }
@@ -4034,13 +3935,11 @@ layers:
                     mapzen_icon_library:
                         size: [[8,4px],[9,4px],[10,4px],[11,0px]]
                         sprite: townspot-xs-rev
-#                        priority: 21
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
                                 size: [[9,11px],[12,12px],[14,12px],[15,0px]]
                     text-blend-order:
-#                        priority: 21
                         font:
                             fill: [0.35,0.35,0.35]
                             size: [[9,11px],[12,12px],[14,12px],[15,0px]]
@@ -4053,9 +3952,6 @@ layers:
                         mapzen_icon_library:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-s
-#                            priority: 20
-#                        text-blend-order:
-#                            priority: 20
             population-5k-10k:
                 filter:
                     population: { min: 5000, max: 10000 }
@@ -4063,13 +3959,11 @@ layers:
                     mapzen_icon_library:
                         size: [[8,4px],[9,4px],[10,4px],[11,0px]]
                         sprite: townspot-xs-rev
-#                        priority: 23
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
                                 size: [[9,10px],[12,12px],[13,12px],[14,12px],[15,0px]]
                     text-blend-order:
-#                        priority: 23
                         font:
                             fill: [0.35,0.35,0.35]
                             size: [[9,10px],[12,12px],[13,12px],[14,12px],[15,0px]]
@@ -4082,9 +3976,6 @@ layers:
                         mapzen_icon_library:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-s
-#                            priority: 22
-#                        text-blend-order:
-#                            priority: 22
             population-2k-5k:
                 filter:
                     population: { min: 2000, max: 5000 }
@@ -4092,13 +3983,11 @@ layers:
                     mapzen_icon_library:
                         size: [[8,4px],[9,4px],[10,4px],[11,0px]]
                         sprite: townspot-xs-rev
-#                        priority: 25
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
                                 size: [[9,10px],[12,10px],[13,12px],[14,12px],[15,0px]]
                     text-blend-order:
-#                        priority: 25
                         font:
                             fill: [0.35,0.35,0.35]
                             size: [[9,10px],[12,10px],[13,12px],[14,12px],[15,0px]]
@@ -4111,9 +4000,6 @@ layers:
                         mapzen_icon_library:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-s
-#                            priority: 24
-#                        text-blend-order:
-#                            priority: 24
             population-1k-2k:
                 filter:
                     population: { min: 1000, max: 2000 }
@@ -4121,13 +4007,11 @@ layers:
                     mapzen_icon_library:
                         size: [[8,4px],[9,4px],[10,4px],[11,0px]]
                         sprite: townspot-xs-rev
-#                        priority: 27
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
                                 size: [[9,10px],[12,10px],[14,11px],[15,0px]]
                     text-blend-order:
-#                        priority: 27
                         font:
                             fill: [0.35,0.35,0.35]
                             size: [[9,10px],[12,10px],[14,11px],[15,0px]]
@@ -4140,9 +4024,6 @@ layers:
                         mapzen_icon_library:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-s
-#                            priority: 26
-#                        text-blend-order:
-#                            priority: 26
             population-200-1k:
                 filter:
                     population: { min: 200, max: 1000 }
@@ -4150,13 +4031,11 @@ layers:
                     mapzen_icon_library:
                         size: [[8,4px],[9,4px],[10,4px],[11,0px]]
                         sprite: townspot-xs-rev
-#                        priority: 28
                         text:
                             font:
                                 fill: [0.35,0.35,0.35]
                                 size: [[9,10px],[12,10px],[14,11px],[15,0px]]
                     text-blend-order:
-#                        priority: 28
                         font:
                             fill: [0.35,0.35,0.35]
                             size: [[9,10px],[12,10px],[14,11px],[15,0px]]
@@ -4169,9 +4048,6 @@ layers:
                         mapzen_icon_library:
                             size: [[10,5px],[11,0px]]
                             sprite: capital-s
-#                            priority: 27
-#                        text-blend-order:
-#                            priority: 27
 
 #            z_country_capital_pov:
 #                filter: 
@@ -4205,7 +4081,6 @@ layers:
                     # there are more labels than we want to show, so we hide them,
                     # then selectively reveal in classes below (ultimately a data problem)
                     visible: global.text_visible_neighbourhoods_e
-#                    priority: 29
                     buffer: 8px
                     text_wrap: 10
                     max_lines: 2
@@ -4244,7 +4119,6 @@ layers:
                             min_zoom: { min: 15 }
                         draw:
                             text-blend-order:
-#                                priority: 19
                                 font:
                                     size: 13px
 
@@ -4264,7 +4138,6 @@ layers:
                 sprite: function() { return feature.kind; }
                 sprite_default: generic
                 interactive: global.sdk_interactive
-                #priority: 65
                 priority: |
                     function() { return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || 65; }
                 repeat_group: abc
@@ -4358,7 +4231,6 @@ layers:
 #                draw:
 #                    mapzen_icon_library:
 #                        visible: global.icon_visible_poi_landuse_e
-#                        #priority: 69
 #            z17:
 #                filter:
 #                    kind: [parking]
@@ -4383,7 +4255,6 @@ layers:
 #            draw:
 #                mapzen_icon_library:
 #                    visible: false
-#                    #priority: 100
 #                    text:
 #                        font:
 #                            fill: '#666'
@@ -4398,14 +4269,6 @@ layers:
 #                mapzen_icon_library:
 #                    visible: false
 #                    text: { font: { style: italic } }
-
-
-        # set special priority, sprite, and text styles per kind
-#        has-area:
-#            filter: { area: true }
-#            draw:
-#                mapzen_icon_library:
-#                    priority: 41
 
         national-park-protected-areas:
             filter:
@@ -4480,7 +4343,6 @@ layers:
                 mapzen_icon_library:
                     visible: global.icon_visible_landuse_green
                     size: global.icon_size_green
-                    #priority: 42
                     text:
                         visible: global.text_visible_landuse_green
                         text_source: global.ux_language_text_source_iata
@@ -4495,7 +4357,6 @@ layers:
                 mapzen_icon_library:
                     visible: false
                 text:
-#                    priority: 43
                     text_wrap: 10
                     visible: true
                     font:
@@ -4538,19 +4399,11 @@ layers:
                     visible: false
                     text:
                         visible: true
-                        #priority: 44
                         text_wrap: 10
                         font:
                             weight: normal
                             style: italic
                             fill: '#4ba3c5'
-
-#        landuse-labels-not-any-above:
-#            filter:
-#                not: { kind: [aerodrome, airport, allotments, aquarium, attraction, battlefield, beach, cemetery, college, conservation, forest, garden, glacier, golf_course, grass, kindergarten, landmark, maze, national_park, nature_reserve, park, playground, protected_area, resort, school, stadium, station, theme_park, university, winery, winter_sports, zoo] }
-#            draw:
-#                mapzen_icon_library:
-##                    priority: 43
 
         building-like:
             filter: { kind: [commercial,residential,warehouse,public,dormitory], osm_relation: false }
@@ -4564,7 +4417,6 @@ layers:
                 mapzen_icon_library:
                     visible: global.icon_visible_station
                     size: [[13, 60%], [15, 80%], [17, 100%], [18, 110%]]
-#                    priority: 42
                     text:
                         visible: global.text_visible_station
             station-early:
@@ -4599,13 +4451,11 @@ layers:
             filter: { kind: [garden, allotments], $zoom: [16], area: false }
             draw:
                 mapzen_icon_library:
-#                    priority: 45
                     text:  { font: { size: 10px, style: italic } }
         garden-no-area-later:
             filter: { kind: [garden, allotments], $zoom: { min: 17 }, area: false }
             draw:
                 mapzen_icon_library:
-#                    priority: 45
                     text:  { font: { size: 11px, style: italic } }
         gate:
             filter: { kind: gate, name: true  }
@@ -4656,7 +4506,6 @@ layers:
                 text-blend-order:
                     visible: global.text_visible_airport_gate
                     text_source: ref
-#                    priority: 63
                     font:
                         fill: global.text_fill_exits
                         size: [[16,9px],[17,12px],[20,14px]]
@@ -4800,7 +4649,6 @@ layers:
                 text-blend-order:
                     text_source: global.ux_language_text_source
                     interactive: global.sdk_interactive
-#                    priority: 100
                     font:
                         fill: '#666'
                         family: global.text_font_family
@@ -5544,9 +5392,8 @@ layers:
                         - ref: true
             draw:
                 mapzen_icon_library:
-#                    priority: 20
                     priority: |
-                        function() { return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || 65; }
+                        function() { return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || 20; }
                     # you need to match any custom shield to the vector tile `network` values
                     sprite: function() { return ('sdk_shield-' + feature.ref.length + 'char'); }
                     sprite_default: sdk_shield_5char
