@@ -523,10 +523,6 @@ sources:
         url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
         #url:  https://dev-tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
         #url: http://localhost:8050/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt?api_key=&
-        #url: https://t651c12le3.execute-api.us-east-2.amazonaws.com/staging/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
-        #url: https://d3gy1yxv8mxm7h.cloudfront.net/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
-        #url: https://snapzen-dev.sc-jpl.com/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
-        #url: https://snapzen.sc-jpl.com/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
         #url: https://xyz.api.here.com/tiles/herebase.02/{z}/{x}/{y}/omv
         url_params:
             api_key: global.sdk_api_key
