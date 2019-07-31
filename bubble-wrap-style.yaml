@@ -39,7 +39,7 @@ global:
                 case( 'disputed_breakaway' ):
                 case( 'disputed_claim' ):
                 case( 'disputed_elusive' ):
-                case( 'disputed_reference_line' ): 
+                case( 'disputed_reference_line' ):
                     return true;
                 default:
                     return false;
@@ -55,7 +55,7 @@ global:
                 case( 'disputed_breakaway' ):
                 case( 'disputed_claim' ):
                 case( 'disputed_elusive' ):
-                case( 'disputed_reference_line' ): 
+                case( 'disputed_reference_line' ):
                     return true;
                 default:
                     return false;
@@ -290,6 +290,16 @@ global:
     # should default to "auto", with SDK overriding it to true or false,
     # or app logic sets other booleans that triggers auto behavior later
     sdk_transit_overlay: false
+    #
+    # TOLL ROAD OVERLAY
+    # should default to "false", with SDK overriding it to true or false,
+    # or app logic sets other booleans that triggers auto behavior later
+    sdk_toll_road_overlay: false
+    #
+    # HEAVY GOODS VEHICLE OVERLAY
+    # should default to "false", with SDK overriding it to true or false,
+    # or app logic sets other booleans that triggers auto behavior later
+    sdk_hgv_overlay: false
     #
     # SHIELDS
     sdk_shield_color: [0.506,0.192,0.169]
@@ -1187,9 +1197,9 @@ layers:
                     lines:
                         color: [[8,[0.667,0.792,0.824]],[11,[0.698,0.808,0.835]],[13,[0.710,0.796,0.824]],[14,[0.522,0.792,0.855]]]
                         width: [[9,0.5px],[10,0.75px],[11,0.75px],[12,0.8px],[13,1px],[14,1px],[15,1px],[16,1px],[17,1.5px]]
-            intermittent: 
+            intermittent:
                 filter: { intermittent: true }
-                draw: 
+                draw:
                     lines:
                         color: water1_o
         river:
@@ -1444,72 +1454,80 @@ layers:
 #                   order: 1000
 #                   width: 1px
 #                   visible: true
-#        z-hgv:
-#            filter: { hgv: true }
-#            draw: 
-#                lines: 
-#                    visible: true
-#                    color: blue
-#                    width: 1.7px
-#            z-none:
-#                filter:
-#                    - hgv_restriction: true
-#                draw: 
-#                    lines: 
-#                        color: red
-#                        width: 2.5px
-#            z-restricted:
-#                filter:
-#                    - hgv_restriction: true
-#                draw: 
-#                    lines: 
-#                        color: purple
-#                        width: 2.5px
-#                z-shields:
-#                    filter: { hgv_restriction_shield_text: true }
-#                    draw:
-#                        mapzen_icon_library:
-#                            # you need to match any custom shield to the vector tile `network` values
-#                            sprite: |
-#                                function() {
-#                                    if( feature.hgv_restriction_shield_text ) {
-#                                        return ('generic_shield-' + feature.hgv_restriction_shield_text.length + 'char');
-#                                    }
-#                                }
-#                            size: [[7,[75%,75%]],[12,[100%,100%]],[15,[110%,110%]]]
-#                            priority: 1
-#                            # Size is specified below, and limited to 5 char in another filter
-#                            repeat_group: shields
-#                            repeat_distance: [[8,90px],[10,40px],[13,30px]]
-#                            placement: midpoint
-#                            color: purple
-#                            placement_min_length_ratio:
-#                                - [8, 0.1]
-#                                - [9, 0.25]
-#                                - [10, 0.25]
-#                                - [11, 0.15]
-#                                - [12, 1]
-#                                - [13, 1.50]
-#                                - [14, 2.0]
-#                            #cull_from_tile: true
-#                            visible: true
-#                            text:
-#                                repeat_distance: 200px
-#                                anchor: center
-#                                text_source: hgv_restriction_shield_text
-#                                font:
-#                                    family: Montserrat
-#                                    weight: 500
-#                                    fill: white
-#                                    size: [[7, 7px], [13, 9px], [15, 10px]]
-#                                    stroke: { color: global.text_stroke, width: 0px }
-#            toll:
-#                filter: { toll: true }
-#                draw: 
-#                    lines: 
-#                        outline:
-#                            color: black
-#                            width: 1.5px
+
+        # TODO: tunnels
+        hgv-interlay:
+            filter:
+                all:
+                    - hgv: true
+                    - function() { return global.sdk_hgv_overlay; }
+            draw:
+                lines:
+                    visible: true
+                    color: blue
+                    width: 1.7px
+            z-none:
+                filter:
+                    - hgv_restriction: true
+                draw:
+                    lines:
+                        color: red
+                        width: 2.5px
+            z-restricted:
+                filter:
+                    - hgv_restriction: true
+                draw:
+                    lines:
+                        color: purple
+                        width: 2.5px
+                z-shields:
+                    filter: { hgv_restriction_shield_text: true }
+                    draw:
+                        mapzen_icon_library:
+                            # you need to match any custom shield to the vector tile `network` values
+                            sprite: |
+                                function() {
+                                    if( feature.hgv_restriction_shield_text ) {
+                                        return ('generic_shield-' + feature.hgv_restriction_shield_text.length + 'char');
+                                    }
+                                }
+                            size: [[7,[75%,75%]],[12,[100%,100%]],[15,[110%,110%]]]
+                            priority: 1
+                            # Size is specified below, and limited to 5 char in another filter
+                            repeat_group: shields
+                            repeat_distance: [[8,90px],[10,40px],[13,30px]]
+                            placement: midpoint
+                            color: purple
+                            placement_min_length_ratio:
+                                - [8, 0.1]
+                                - [9, 0.25]
+                                - [10, 0.25]
+                                - [11, 0.15]
+                                - [12, 1]
+                                - [13, 1.50]
+                                - [14, 2.0]
+                            #cull_from_tile: true
+                            visible: true
+                            text:
+                                repeat_distance: 200px
+                                anchor: center
+                                text_source: hgv_restriction_shield_text
+                                font:
+                                    family: Montserrat
+                                    weight: 500
+                                    fill: white
+                                    size: [[7, 7px], [13, 9px], [15, 10px]]
+                                    stroke: { color: global.text_stroke, width: 0px }
+        toll-interlay:
+            filter:
+                all:
+                    - toll: true
+                    - function() { return global.sdk_toll_road_overlay; }
+            draw:
+                lines:
+                    outline:
+                        color: black
+                        width: [[6,0.25px],[10,1px],[12,1.5px],[15,2px],[20,4px]]
 
         arrows:
             # oneway arrows and shields are distinct groups!
@@ -3294,7 +3312,7 @@ layers:
                             offset: [0px, 0px]
 
         other_country_boundary_disputed_etc:
-            filter: 
+            filter:
                 global.ux_point_of_view_kind_filter_disputed_etc
             draw:
                 dashed:
@@ -3303,7 +3321,7 @@ layers:
                     color: global.country_boundary
                     width: [[1, 0.2px], [2, 0.5px], [5, 1.5px], [6, 2.0px], [8, 2.5px], [16, 3.5px], [17, 10m]]
             disputed:
-                filter: 
+                filter:
                     global.ux_point_of_view_kind_filter_disputed_star
                 draw:
                     dashed:
@@ -3315,7 +3333,7 @@ layers:
                         width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [9, 2.5px], [14, 3.5px], [16, 4.5px], [17, 14m]]
 
         unrecognized:
-            filter: 
+            filter:
                 - global.ux_point_of_view_kind_filter_unrecognized
             draw:
                  lines:
@@ -3361,7 +3379,7 @@ layers:
                 filter:
                     kind: aboriginal_lands
                 draw:
-                    lines: 
+                    lines:
                         width: [[8, 1.0px], [9, 1.5px], [14, 2.0px], [16, 3.5px]]
 
             region-labels:
@@ -3395,7 +3413,7 @@ layers:
                         text-blend-order:
                             visible: false
             unrecognized-region:
-                filter: 
+                filter:
                     - global.ux_point_of_view_kind_filter_unrecognized
                 draw:
                      lines:
@@ -4416,7 +4434,7 @@ layers:
             draw:
                 mapzen_icon_library:
                     visible: false
-            z14+: 
+            z14+:
                 filter: { $zoom: { min: 14, max: 16 } }
                 draw:
                     text-blend-order:

@@ -537,6 +537,33 @@
             });
             gui.transit_button.name('transit');
 
+
+            // Toll Road selector
+            var toll_roads = 'Toll roads';
+            gui[toll_roads] = false;
+            gui.add(gui, toll_roads).onChange(function(value) {
+                scene.config.global.sdk_toll_road_overlay = (value === 'true' || value === true); // dat.gui passes a string
+                if (value === 'true' || value === true) {
+                    scene.config.global.sdk_toll_road_overlay = true;
+                } else {
+                    scene.config.global.sdk_toll_road_overlay = false;
+                }
+                scene.updateConfig();
+            });
+
+            // Heavy Goods Vehicle selector
+            var hgv = 'HGV restriction';
+            gui[hgv] = false;
+            gui.add(gui, hgv).onChange(function(value) {
+                scene.config.global.hgv_overlay = (value === 'true' || value === true); // dat.gui passes a string
+                if (value === 'true' || value === true) {
+                    scene.config.global.sdk_hgv_overlay = true;
+                } else {
+                    scene.config.global.sdk_hgv_overlay = false;
+                }
+                scene.updateConfig();
+            });
+
             // Building extrusion selector
             var building_3d = {
                 '(default)': true,
