@@ -489,6 +489,10 @@ global:
     sdk_building_extrude: true              # building extrusion toggle
     building_extrude_height: |              # building extrude height logic
         function() { return feature.height || 20; }
+    collision_priority: |                   # label collision priority logic
+        function(feature, default_priority) {
+            return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || default_priority;
+        }
 
 textures:
     building-grid:
@@ -1435,8 +1439,7 @@ layers:
             text-blend-order:
                 text_source: global.ux_language_text_source
                 visible: false    # labels are enabled by each layer below
-                priority: |
-                    function() { return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || 65; }
+                priority: function() { return global.collision_priority(feature, 65); }
                 font:
                     family: global.text_font_family
                     weight: normal
@@ -2353,8 +2356,7 @@ layers:
                         }
                     sprite_default: generic_shield_5char
                     size: [[7,[75%,75%]],[12,[100%,100%]],[15,[110%,110%]]]
-                    priority: |
-                        function() { return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || 58; }
+                    priority: function() { return global.collision_priority(feature, 58); }
                     # Size is specified below, and limited to 5 char in another filter
                     repeat_group: shields
                     repeat_distance: [[8,90px],[10,40px],[13,30px]]
@@ -3302,8 +3304,7 @@ layers:
                 filter: { name: true, $zoom: { min: 8 } }
                 draw:
                     text-blend-order:
-                        priority: |
-                            function() { return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || 65; }
+                        priority: function() { return global.collision_priority(feature, 65); }
                         visible: global.text_visible_admin
                         text_source: global.ux_language_text_source_boundary_lines_left_right
                         offset: [0px, 5px]
@@ -3397,8 +3398,7 @@ layers:
                 filter: { name: true, $zoom: { min: 8 } }
                 draw:
                     text-blend-order:
-                        priority: |
-                            function() { return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || 65; }
+                        priority: function() { return global.collision_priority(feature, 65); }
                         visible: global.text_visible_admin
                         text_source: global.ux_language_text_source_boundary_lines_left_right
                         offset: [0px, 5px]
@@ -3443,8 +3443,7 @@ layers:
         draw:
             mapzen_icon_library:
                 visible: false
-                priority: |
-                    function() { return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || 65; }
+                priority: function() { return global.collision_priority(feature, 65); }
                 text:
                     text_source: global.ux_language_text_source
                     visible: false    # labels are enabled by each layer below
@@ -3457,8 +3456,7 @@ layers:
                 text_source: global.ux_language_text_source
                 visible: false    # labels are enabled by each layer below
                 buffer: 3px
-                priority: |
-                    function() { return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || 65; }
+                priority: function() { return global.collision_priority(feature, 65); }
                 font:
                     family: Varela
                     fill: global.text_fill
@@ -4122,8 +4120,7 @@ layers:
                 sprite: function() { return feature.kind; }
                 sprite_default: generic
                 interactive: global.sdk_interactive
-                priority: |
-                    function() { return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || 65; }
+                priority: function() { return global.collision_priority(feature, 65); }
                 repeat_group: abc
                 buffer: 3px
                 text:
@@ -5309,8 +5306,7 @@ layers:
                         - ref: true
             draw:
                 mapzen_icon_library:
-                    priority: |
-                        function() { return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || 20; }
+                    priority: function() { return global.collision_priority(feature, 20); }
                     # you need to match any custom shield to the vector tile `network` values
                     sprite: function() { return ('sdk_shield-' + feature.ref.length + 'char'); }
                     sprite_default: sdk_shield_5char
