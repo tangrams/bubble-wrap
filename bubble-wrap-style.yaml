@@ -14,10 +14,14 @@ global:
     #ux/ui
     ux_point_of_view: false                 # 2-char ISO country code (generally)
     ux_point_of_view_fallback: false        # 2-char ISO country code (generally)
+
+    ux_point_of_view_kind: |
+        function(feature) { return (global.ux_point_of_view && feature['kind:'+global.ux_point_of_view]) || (global.ux_point_of_view_fallback && feature['kind:'+global.ux_point_of_view_fallback]) || feature.kind }
+
     ux_point_of_view_kind_filter_country: |
         function() {
             // if a ux_point_of_view has been defined use that, else fallback POV, else use the feature's default kind
-            var kind = (global.ux_point_of_view && feature['kind:'+global.ux_point_of_view]) || (global.ux_point_of_view_fallback && feature['kind:'+global.ux_point_of_view_fallback]) || feature.kind;
+            var kind = global.ux_point_of_view_kind(feature);
             switch( kind ) {
                 case( 'country' ):
                 case( 'indefinite' ):
@@ -29,7 +33,7 @@ global:
     ux_point_of_view_kind_filter_disputed_etc: |
         function() {
             // if a ux_point_of_view has been defined use that, else fallback POV, else use the feature's default kind
-            var kind = (global.ux_point_of_view && feature['kind:'+global.ux_point_of_view]) || (global.ux_point_of_view_fallback && feature['kind:'+global.ux_point_of_view_fallback]) || feature.kind;
+            var kind = global.ux_point_of_view_kind(feature);
             switch( kind ) {
                 case( 'disputed' ):
                 case( 'indeterminate' ):
@@ -48,7 +52,7 @@ global:
     ux_point_of_view_kind_filter_disputed_star: |
         function() {
             // if a ux_point_of_view has been defined use that, else fallback POV, else use the feature's default kind
-            var kind = (global.ux_point_of_view && feature['kind:'+global.ux_point_of_view]) || (global.ux_point_of_view_fallback && feature['kind:'+global.ux_point_of_view_fallback]) || feature.kind;
+            var kind = global.ux_point_of_view_kind(feature);
             switch( kind ) {
                 case( 'disputed' ):
                 case( 'line_of_control' ):
@@ -64,7 +68,7 @@ global:
     ux_point_of_view_kind_filter_unrecognized: |
         function() {
             // if a ux_point_of_view has been defined use that, else fallback POV, else use the feature's default kind
-            var kind = (global.ux_point_of_view && feature['kind:'+global.ux_point_of_view]) || (global.ux_point_of_view_fallback && feature['kind:'+global.ux_point_of_view_fallback]) || feature.kind;
+            var kind = global.ux_point_of_view_kind(feature);
             switch( kind ) {
                 case( 'unrecognized' ):
                     return true;
