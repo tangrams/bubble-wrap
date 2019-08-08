@@ -5599,8 +5599,8 @@ layers:
                     mapzen_icon_library:
                         size: [[12, '40%'], [15, '50%']]
                         #visible: false
-                        #text:
-#                            visible: false
+                        text:
+                            visible: false
             late:
                 filter: { $zoom: { min: 16 } }
                 draw:
