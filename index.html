@@ -431,7 +431,7 @@
                 'United States': 'us',
                 'Vietnam': 'vn'
             };
-            // use query language, else default to English
+            // use query POV, else default to defacto + most the disputed lines
             gui.pov = query.pov || false;
             gui.add(gui, 'pov', pov).onChange(function(value) {
                 scene.config.global.ux_point_of_view = value;
