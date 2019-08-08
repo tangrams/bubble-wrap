@@ -497,6 +497,10 @@ global:
         function() {
             return (feature['min_zoom'] + (6 - 1 / feature['collision_rank']) * 0.1) || (feature['min_zoom'] + 5.9999);
         }
+    collision_priority_water: |             # show labels later in the lines and polys
+        function() {
+            return (feature['min_zoom'] + (3 - 1 / feature['collision_rank']) * 0.1) || (feature['min_zoom'] + 2.9999);
+        }
     collision_priority_transit_pois: |      # show labels earlier than normal
         function(feature, default_priority) {
             return (feature['min_zoom'] - 3 +
@@ -1247,6 +1251,7 @@ layers:
                     $zoom: { min: 14 }
                 draw:
                     text-blend-order:
+                        priority: global.collision_priority_water
                         text_source: global.ux_language_text_source
                         font:
                             fill: [0.314,0.591,0.640]
@@ -1283,6 +1288,7 @@ layers:
                 default-label-text:
                     draw:
                         text-blend-order:
+                            priority: global.collision_priority_water
                             text_source: global.ux_language_text_source
                             text_wrap: 8
                             font:
@@ -1298,6 +1304,7 @@ layers:
                 draw:
                     text-blend-order:
                         text_source: global.ux_language_text_source
+                        priority: global.collision_priority_water
                         font:
                             fill: [0.314,0.591,0.640] #global.text_fill_water
                             family: global.text_font_family
@@ -1348,6 +1355,7 @@ layers:
                         - area: true
                 draw:
                     text-blend-order:
+                        priority: global.collision_priority_water
                         text_source: global.ux_language_text_source
                         font:
                             fill: grey
