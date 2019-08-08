@@ -1469,7 +1469,6 @@ layers:
                     - function() { return global.sdk_hgv_overlay; }
             draw:
                 lines:
-                    visible: true
                     color: blue
                     width: 1.7px
             z-none:
