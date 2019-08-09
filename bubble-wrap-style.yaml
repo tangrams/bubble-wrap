@@ -489,30 +489,53 @@ global:
     sdk_building_extrude: true              # building extrusion toggle
     building_extrude_height: |              # building extrude height logic
         function() { return feature.height || 20; }
+
+    # TODO: Some of this should optimized server side by dropping names and shield_text
+    #       in a similar way (and even changing min_zoom). We'd still need the
+    #       collision_priority function here, though.
+
     collision_priority: |                   # label collision priority logic
         function() {
             if (feature['collision_rank'] != null) {
-                return feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1;
+                if (feature['name'] != null) {
+                    return feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1;
+                }
+                // TODO: This should be moved server side. See the peak and
+                //       park icons in Alta Plaza Park in San Francisco CA
+                return feature['min_zoom'] + 2 + (1 - 1 / feature['collision_rank']) * 0.1;
             }
             return feature['min_zoom'] + 0.9999;
+        }
+    collision_priority_road_shields: |             # show labels later in the lines
+        function() {
+            if (feature['collision_rank'] != null) {
+                // We want to effectively adjust the min_zoom for the shields separate
+                // from their line/polygon visibility by giving them a WORSE collision
+                // than POIs, but still better than general road text labels
+                return feature['min_zoom'] + 5 + (1 - 1 / feature['collision_rank']) * 0.1;
+            }
+            return feature['min_zoom'] + 4.9999;
         }
     collision_priority_roads: |             # show labels later in the lines
         function() {
             if (feature['collision_rank'] != null) {
-                return feature['min_zoom'] + (6 - 1 / feature['collision_rank']) * 0.1;
+                // We want to effectively adjust the min_zoom for the labels separate
+                // from their line/polygon visibility by giving them a WORSE collision
+                return feature['min_zoom'] + 8 + (1 - 1 / feature['collision_rank']) * 0.1;
             }
-            return feature['min_zoom'] + 5.9999;
+            return feature['min_zoom'] + 7.9999;
         }
     collision_priority_water: |             # show labels later in the lines and polys
         function() {
             if (feature['collision_rank'] != null) {
-                return feature['min_zoom'] + (3 - 1 / feature['collision_rank']) * 0.1;
+                return feature['min_zoom'] + 3 + (1 - 1 / feature['collision_rank']) * 0.1;
             }
             return feature['min_zoom'] + 2.9999;
         }
     collision_priority_transit_pois: |      # show labels earlier than normal
         function(feature, default_priority) {
             if (feature['collision_rank'] != null) {
+                // We want to give transit POIs (for the overlay) a BETTER collision
                 return feature['min_zoom'] - 3 +
                        (1 - 1 / (default_priority +
                            (feature['tile_kind_rank'] || 100) * 0.1 + feature['collision_rank'] * 0.01) * 0.1);
@@ -1927,6 +1950,14 @@ layers:
                         text-blend-order:
                             text_source: global.ux_language_text_source_road_ref_and_name_short
                             visible: global.text_visible_secondary
+                            font:
+                                size: 10px
+                labels-secondary-z11:
+                    filter:
+                        $zoom: [11]
+                    draw:
+                        text-blend-order:
+                            visible: false
                 labels-secondary-z13:
                     filter:
                         $zoom: [13]
@@ -2377,7 +2408,7 @@ layers:
                         }
                     sprite_default: generic_shield_5char
                     size: [[7,[75%,75%]],[12,[100%,100%]],[15,[110%,110%]]]
-                    priority: global.collision_priority
+                    priority: global.collision_priority_road_shields
                     # Size is specified below, and limited to 5 char in another filter
                     repeat_group: shields
                     repeat_distance: [[8,90px],[10,40px],[13,30px]]
@@ -3474,10 +3505,10 @@ layers:
                         fill: global.text_fill
             # NOTE: This is a hack for localities because of an icon & text bug, see note below
             text-blend-order:
+                priority: global.collision_priority
                 text_source: global.ux_language_text_source
                 visible: false    # labels are enabled by each layer below
                 buffer: 3px
-                priority: global.collision_priority
                 font:
                     family: Varela
                     fill: global.text_fill
@@ -5528,14 +5559,9 @@ layers:
 
     transit-overlay-station-labels:
         data: { source: mapzen, layer: pois }
+        enabled: global.sdk_transit_overlay
         filter:
             kind: [station, tram_stop, bus_station, subway_entrance, halt, stop, platform, bus_stop, stop_position ]
-            any:
-                - area: false
-                - area: true
-                  all:
-                      - $geometry: point
-                      - kind: true
         draw:
             mapzen_icon_library:
                 visible: global.sdk_transit_overlay
@@ -5619,6 +5645,20 @@ layers:
                             font:
                                 weight: 600
                                 size: 12px
+
+            # highlight the important stations otherwise they get lost
+            # when all the minor station labels get bigger
+            high-priority-late-z15:
+                filter: { kind_tile_rank: { max: 8 }, $zoom: { min: 15 } }
+                draw:
+                    mapzen_icon_library:
+                        size: [[15, '110%'],[17, '150%'],[18, '200%']]
+                        text:
+                            font:
+                                weight: 600
+                                size: [[15,14px],[17,16px],[18,16px]]
+
+
         subway-early:
             filter: { is_subway: true, is_train: false, $zoom: { max: 12 } }
             draw:
