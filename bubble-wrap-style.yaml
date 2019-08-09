@@ -1270,7 +1270,7 @@ layers:
                     join: round
                     outline:
                         color: [[12,[0.671,0.788,0.812]],[14,[0.710,0.800,0.824]],[15,[0.635,0.812,0.843]]]
-                        width: [[9,0px],[11,0px],[13,0px],[14,0.5px],[15,0.75px],[16,0.75px],[17,1px]]
+                        width: [[13,0px],[14,0.5px],[15,0.75px],[16,0.75px],[17,1px]]
 
         water-labels:
             filter:
@@ -1565,7 +1565,6 @@ layers:
                                 - [12, 1]
                                 - [13, 1.50]
                                 - [14, 2.0]
-                            #cull_from_tile: true
                             visible: true
                             text:
                                 repeat_distance: 200px
@@ -2448,7 +2447,6 @@ layers:
                         - kind_detail: motorway
                 draw:
                     mapzen_icon_library:
-                        #color: yellow
                         visible: global.sdk_road_shields
                 early:
                     filter:
@@ -2463,7 +2461,6 @@ layers:
                         - kind_detail: trunk
                 draw:
                     mapzen_icon_library:
-                        #color: red
                         visible: global.sdk_road_shields
                 early:
                     filter:
@@ -2478,7 +2475,6 @@ layers:
                         - kind_detail: primary
                 draw:
                     mapzen_icon_library:
-                        #color: aqua
                         visible: global.sdk_road_shields
                 early:
                     filter:
@@ -4219,7 +4215,7 @@ layers:
             filter: { kind: generator }
             draw:
                 mapzen_icon_library:
-                    sprite: function() { return 'generator_' & feature.kind_detail; }
+                    sprite: function() { return 'generator_' + feature.kind_detail; }
                     sprite_default: generator
 
         # TODO: some or all of this may be unnecessary for the sprite, but is necessary for the early filter
@@ -4328,7 +4324,7 @@ layers:
             draw:
                 mapzen_icon_library:
                     visible: false
-                text:
+                text-blend-order:
                     text_wrap: 10
                     visible: true
                     font:
