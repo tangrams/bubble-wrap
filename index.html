@@ -22,12 +22,13 @@
 
         <!-- Main tangram library -->
         <!-- production npm -->
-        <script src="https://unpkg.com/tangram@latest/dist/tangram.min.js"></script>
+        <!-- <script src="https://unpkg.com/tangram@latest/dist/tangram.min.js"></script> -->
         <!-- production nextzen -->
-        <!-- <script src="https://www.nextzen.org/tangram/0.16/tangram.min.js"></script> -->
+        <script src="https://www.nextzen.org/tangram/0.19/tangram.min.js"></script>
         <!-- production debug -->
-        <!-- <script src="https://mapzen.com/tangram/0.16/tangram.debug.js"></script> -->
+        <!-- <script src="https://mapzen.com/tangram/0.19/tangram.debug.js"></script> -->
         <!-- dev -->
+        <!-- <script src="https://line-label-repeats--tangram.netlify.com/dist/tangram.debug.js"></script> -->
         <!-- <script src="https://precog.mapzen.com/tangrams/tangram/master/dist/tangram.debug.js"></script> -->
         <!-- dev branch -->
         <!-- <script src="https://precog.mapzen.com/tangrams/tangram/oriented-lines-rebase/dist/tangram.min.js"></script> -->
@@ -393,6 +394,55 @@
             });
             gui.fallback_button.name('lang fallback');
 
+            // POV (point of view) selector
+            var pov = {
+                '(default)': false,
+                'ISO': 'iso',
+                'Argentina': 'ar',
+                'Bangladesh': 'bd',
+                'Brazil': 'br',
+                'China': 'cn',
+                'Egypt': 'eg',
+                'France': 'fr',
+                'Germany': 'de',
+                'Greece': 'gr',
+                'India': 'in',
+                'Indonesia': 'id',
+                'Israel': 'il',
+                'Italy': 'it',
+                'Japan': 'jp',
+                'Morocco': 'ma',
+                'Nepal': 'np',
+                'Netherlands': 'nl',
+                'Pakistan': 'pk',
+                'Palestine': 'ps',
+                'Poland': 'pl',
+                'Portugal': 'pt',
+                'Russia': 'ru',
+                'Saudi Arabia': 'sa',
+                'South Korea': 'ko',
+                'South Africa': 'za',   // this isn't supported
+                'Spain': 'es',
+                'Sweden': 'se',
+                'Taiwan': 'tw',
+                'Turkey': 'tr',
+                'Ukraine': 'ua',
+                'United Kingdom': 'gb',
+                'United States': 'us',
+                'Vietnam': 'vn'
+            };
+            // use query POV, else default to defacto + most the disputed lines
+            gui.pov = query.pov || false;
+            gui.add(gui, 'pov', pov).onChange(function(value) {
+                scene.config.global.ux_point_of_view = value;
+                scene.updateConfig();
+            });
+            gui.fallback_pov = query.pov || false;
+            gui.pov_fallback_button = gui.add(gui, 'fallback_pov', pov).onChange(function(value) {
+                scene.config.global.ux_point_of_view_fallback = value;
+                scene.updateConfig();
+            });
+            gui.pov_fallback_button.name('pov fallback');
 
             // So many themes
             var all_theme_imports = { color: null,
@@ -486,6 +536,33 @@
                 scene.updateConfig();
             });
             gui.transit_button.name('transit');
+
+
+            // Toll Road selector
+            var toll_roads = 'Toll roads';
+            gui[toll_roads] = false;
+            gui.add(gui, toll_roads).onChange(function(value) {
+                scene.config.global.sdk_toll_road_overlay = (value === 'true' || value === true); // dat.gui passes a string
+                if (value === 'true' || value === true) {
+                    scene.config.global.sdk_toll_road_overlay = true;
+                } else {
+                    scene.config.global.sdk_toll_road_overlay = false;
+                }
+                scene.updateConfig();
+            });
+
+            // Heavy Goods Vehicle selector
+            var hgv = 'HGV restriction';
+            gui[hgv] = false;
+            gui.add(gui, hgv).onChange(function(value) {
+                scene.config.global.hgv_overlay = (value === 'true' || value === true); // dat.gui passes a string
+                if (value === 'true' || value === true) {
+                    scene.config.global.sdk_hgv_overlay = true;
+                } else {
+                    scene.config.global.sdk_hgv_overlay = false;
+                }
+                scene.updateConfig();
+            });
 
             // Building extrusion selector
             var building_3d = {
@@ -630,7 +707,9 @@
                                 var layers = selection.feature.layers;
                                 label += "<span class='labelLine'>Layers:</span><br>"
                                 layers.forEach(function(val) {
-                                    label += "<span class='labelLine' value="+val+"'>&nbsp;"+val+"</span><br>"
+                                    if( !val.includes("name:") ) {
+                                        label += "<span class='labelLine' value="+val+"'>&nbsp;"+val+"</span><br>"
+                                    }
                                 });
 
                                 if (label != '') {
