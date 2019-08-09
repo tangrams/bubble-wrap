@@ -1639,7 +1639,6 @@ layers:
                         width: [[9, 0px], [11, 0.5px], [13, 1px], [14, 1px], [15, 0.15px], [16, 3px], [17, 4m], [18, 5m]]
                         cap: butt
                         outline:
-#                            order: 355
                             color: [[10, global.highway_casing1], [16, [0.988,0.495,0.439]], [17, [0.988,0.495,0.439]]]
                             width: [[14, 0px], [15, 0.85px], [17, 1.125px], [18, 1.5px]]
                 early:
@@ -3026,7 +3025,7 @@ layers:
                 #filter: { $zoom: {min: 12} }
                 draw:
                     lines:
-                        # let roads sort themselves past zoom 14
+                        # Use server sort order which varies by kind, kind_detail, and zoom
                         order: global.feature_order
                         # but give them all the same outline
                         outline:
