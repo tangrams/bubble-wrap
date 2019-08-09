@@ -491,23 +491,33 @@ global:
         function() { return feature.height || 20; }
     collision_priority: |                   # label collision priority logic
         function() {
-            return (feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1) || (feature['min_zoom'] + 0.9999);
+            if (feature['collision_rank'] != null) {
+                return feature['min_zoom'] + (1 - 1 / feature['collision_rank']) * 0.1;
+            }
+            return feature['min_zoom'] + 0.9999;
         }
     collision_priority_roads: |             # show labels later in the lines
         function() {
-            return (feature['min_zoom'] + (6 - 1 / feature['collision_rank']) * 0.1) || (feature['min_zoom'] + 5.9999);
+            if (feature['collision_rank'] != null) {
+                return feature['min_zoom'] + (6 - 1 / feature['collision_rank']) * 0.1;
+            }
+            return feature['min_zoom'] + 5.9999;
         }
     collision_priority_water: |             # show labels later in the lines and polys
         function() {
-            return (feature['min_zoom'] + (3 - 1 / feature['collision_rank']) * 0.1) || (feature['min_zoom'] + 2.9999);
+            if (feature['collision_rank'] != null) {
+                return feature['min_zoom'] + (3 - 1 / feature['collision_rank']) * 0.1;
+            }
+            return feature['min_zoom'] + 2.9999;
         }
     collision_priority_transit_pois: |      # show labels earlier than normal
         function(feature, default_priority) {
-            return (feature['min_zoom'] - 3 +
-                     (1 - 1 / ( default_priority +
-                                (feature['tile_kind_rank'] || 100 ) * 0.1 +
-                                feature['collision_rank'] * 0.01) * 0.1 ))
-                    || (feature['min_zoom'] + 0.9999);
+            if (feature['collision_rank'] != null) {
+                return feature['min_zoom'] - 3 +
+                       (1 - 1 / (default_priority +
+                           (feature['tile_kind_rank'] || 100) * 0.1 + feature['collision_rank'] * 0.01) * 0.1);
+            }
+            return feature['min_zoom'] + 0.9999;
         }
 
 textures:
