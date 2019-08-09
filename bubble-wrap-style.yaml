@@ -1501,13 +1501,6 @@ layers:
                 lines:
                     color: blue
                     width: 1.7px
-            z-none:
-                filter:
-                    - hgv_restriction: true
-                draw:
-                    lines:
-                        color: red
-                        width: 2.5px
             z-restricted:
                 filter:
                     - hgv_restriction: true
