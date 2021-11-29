@@ -1184,14 +1184,14 @@ layers:
             grid:
                 order: global.feature_order
                 #color: global.water1
-            
+
         ocean:
             filter:
                 kind: ocean
             draw:
                 grid:
                     color: global.water1
-                    
+
         inland-water:
             filter:
                 all:
@@ -1744,7 +1744,7 @@ layers:
                                 outline:
                                     order: function() { return feature.sort_rank + 1; }
                 routes:
-                    filter: { ref: true }
+                    filter: { network: true }
                     draw:
                         lines:
                             color: [[9, global.major_route1], [14, global.major_route1], [15,[1.0,1.0,1.0]]]
@@ -1867,7 +1867,7 @@ layers:
                             outline:
                                 order: 353 #function() { return feature.sort_rank + 2; }
                 routes:
-                    filter: { ref: true, $zoom: { min: 12 } }
+                    filter: { network: true, $zoom: { min: 12 } }
                     draw:
                         lines:
                             #order: function() { return feature.sort_rank + 2; }
@@ -2008,7 +2008,7 @@ layers:
                             outline:
                                 order: function() { return feature.sort_rank + 3; }
                 routes:
-                    filter: { ref: true, $zoom: { min: 12} }
+                    filter: { network: true, $zoom: { min: 12} }
                     draw:
                         lines:
                             color: [1.0,1.0,1.0]
@@ -2391,7 +2391,7 @@ layers:
                         - shield_text: true    # some roads don't have shield text, deal with that later
                         - all:
                             - shield_text: false    # some roads don't have shield text, deal with that later
-                            - ref: true
+                            - network: true
                             - kind_detail: [motorway, trunk, primary, secondary, tertiary]
             # default
             draw:
@@ -4210,7 +4210,7 @@ layers:
                 mapzen_icon_library:
                     sprite: function() { return feature.religion; }
                     sprite_default: place_of_worship
-                    
+
         generator:
             filter: { kind: generator }
             draw:
@@ -5211,7 +5211,7 @@ layers:
                     polygons:
                         visible: true
                         color: [0.83,0.83,0.83]
-                        
+
         city_wall:
             filter: { kind: city_wall }
             draw:
@@ -5351,7 +5351,7 @@ layers:
                     - function() { return global.sdk_transit_overlay; }
                     - all:
                         - $zoom: { min: 13 }
-                        - ref: true
+                        - shield_text: true
             draw:
                 mapzen_icon_library:
                     priority: 10.5
@@ -5454,7 +5454,7 @@ layers:
                 # but give them all the same outline
                 outline:
                     order: 487
-                    
+
         labels-bus-lines:
             filter:
                 all:
@@ -5537,7 +5537,7 @@ layers:
                 draw:
                     mapzen_icon_library:
                         visible: false
- 
+
         z19-show-operator-name:
                 filter:
                     all:
